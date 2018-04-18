@@ -1,0 +1,108 @@
+{
+  "id": "0",
+  "title": "What is Kin?",
+  "desc": "Nice to meet you! We're Kin and we love to make product you love.",
+  "kin_reward": 250,
+  "min_to_complete": 2,
+  "tags": [
+    "kin",
+    "crypto",
+    "product",
+    "research"
+  ],
+  "author": {
+    "name": "Dunkin Donuts",
+    "image_url": "https://upload.wikimedia.org/wikipedia/en/thumb/b/b8/Dunkin%27_Donuts_logo.svg/440px-Dunkin%27_Donuts_logo.svg.png"
+  },
+  "type": "questionnaire",
+  "start_date": 1519299129,
+  "items": [
+    {
+      "id": "435",
+      "text": "How did you hear about Kin?",
+      "type": "text",
+      "results": [
+        {
+          "id": "235",
+          "text": "Friend / Family"
+        },
+        {
+          "id": "34636363",
+          "text": "Facebook group"
+        },
+        {
+          "id": "35345",
+          "text": "Blog"
+        },
+        {
+          "id": "747474574",
+          "text": "Internet Article"
+        },
+        {
+          "id": "34535",
+          "text": "Newspaper Article"
+        },
+        {
+          "id": "46346",
+          "text": "Other"
+        }
+      ]
+    },
+    {
+      "id": "4633",
+      "text": "Do you hold any cryptocurrency?",
+      "type": "text",
+      "results": [
+        {
+          "id": "7665",
+          "text": "Yes"
+        },
+        {
+          "id": "35535",
+          "text": "No"
+        },
+        {
+          "id": "6546",
+          "text": "What is cryptocurrency?"
+        }
+      ]
+    },
+    {
+    "id": "46332y",
+    "text": "Who is the most photogenic person in the team?",
+    "type": "text/image",
+    "results": [
+                {
+                "id": "sb7665",
+                "text": "Shay",
+                "image_url": "https://kin-standalone-temp-images.s3.amazonaws.com/Shay.png"
+                },
+                {
+                "id": "bv19830",
+                "text": "Berry",
+                "image_url": "https://kin-standalone-temp-images.s3.amazonaws.com/Berry.png"
+                },
+                {
+                "id": "sa7665",
+                "text": "Sarit",
+                "image_url": "https://kin-standalone-temp-images.s3.amazonaws.com/Sarit.png"
+                },
+                {
+                "id": "nr1987",
+                "text": "Natan",
+                "image_url": "https://kin-standalone-temp-images.s3.amazonaws.com/Natan.png"
+                },
+                {
+                "id": "ak7665",
+                "text": "Arie",
+                "image_url": "https://kin-standalone-temp-images.s3.amazonaws.com/Arie.png"
+                },
+                {
+                "id": "amb198345",
+                "text": "Ami",
+                "image_url": "https://kin-standalone-temp-images.s3.amazonaws.com/Ami.png"
+                },
+                ]
+    }
+  ]
+}

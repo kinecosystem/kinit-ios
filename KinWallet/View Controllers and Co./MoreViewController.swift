@@ -1,0 +1,133 @@
+//
+//  MoreViewController.swift
+//  KinWallet
+//
+//  Copyright © 2018 KinFoundation. All rights reserved.
+//
+
+import UIKit
+
+class MoreViewController: UIViewController {
+    @IBOutlet var separators: [UIView]! {
+        didSet {
+            separators.forEach { $0.backgroundColor = UIColor.kin.lightGray }
+        }
+    }
+
+    @IBOutlet weak var versionLabel: UILabel! {
+        didSet {
+            versionLabel.font = FontFamily.Roboto.regular.font(size: 14)
+            versionLabel.textColor = UIColor.kin.gray
+            versionLabel.text = "V. \(Bundle.appVersion) (Build \(Bundle.buildNumber))"
+        }
+    }
+
+    @IBOutlet weak var supportLabel: UILabel! {
+        didSet {
+            supportLabel.font = FontFamily.Roboto.regular.font(size: 18)
+            supportLabel.textColor = UIColor.kin.gray
+        }
+    }
+
+    @IBOutlet weak var emailButton: UIButton! {
+        didSet {
+            emailButton.makeKinButtonFilled()
+        }
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let fourTapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGestureRecognized))
+
+        fourTapGesture.numberOfTapsRequired = 4
+        fourTapGesture.numberOfTouchesRequired = 4
+
+        view.addGestureRecognizer(fourTapGesture)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        Analytics.logEvent(Events.Analytics.ViewProfilePage())
+    }
+
+    @IBAction func emailTapped(_ sender: Any) {
+        KinSupportViewController.present(from: self)
+    }
+}
+
+extension MoreViewController {
+    @objc func tapGestureRecognized() {
+        let alertController = UIAlertController(title: "Config Panel",
+                                                message: "Please insert the password",
+                                                preferredStyle: .alert)
+        var observer: AnyObject?
+
+        let passwordAction = UIAlertAction(title: "Confirm", style: .default) { _ in
+            if let observer = observer {
+                NotificationCenter.default.removeObserver(observer)
+            }
+
+            guard let password = alertController.textFields?[0].text else {
+                return
+            }
+
+            if password == Configuration.shared.moreScreenTapsPassword {
+                self.displayServerURLChange()
+            } else {
+                self.wrongConfigPassword()
+            }
+        }
+
+        alertController.addTextField { textField in
+            textField.isSecureTextEntry = true
+            observer = NotificationCenter.default.addObserver(forName: .UITextFieldTextDidChange,
+                                                              object: nil,
+                                                              queue: nil) { _ in
+                passwordAction.isEnabled = !(textField.text?.isEmpty ?? false)
+            }
+        }
+        passwordAction.isEnabled = false
+
+        alertController.addAction(UIAlertAction.cancel { _ in
+            if let observer = observer {
+                NotificationCenter.default.removeObserver(observer)
+            }
+        })
+
+        alertController.addAction(passwordAction)
+        present(alertController, animated: true)
+    }
+
+    func displayServerURLChange() {
+        let currentServerIdentifier = KinWebService.shared.identifier
+        let message =
+        """
+        Current server is \(currentServerIdentifier) (\(KinWebService.shared.serverURL.absoluteString)).
+        Changing servers will delete all user data, including the Stellar account!
+        """
+
+        let alertController = UIAlertController(title: "Would you like to change the server URL?",
+                                                message: message,
+                                                preferredStyle: .actionSheet)
+
+        let possibleServices: [IdentifiableWebService.Type] = [KinStagingService.self, KinProductionService.self]
+        if let toUse = possibleServices.filter({ $0.identifier != currentServerIdentifier }).first {
+            alertController.addAction(UIAlertAction(title: toUse.identifier, style: .default) { _ in
+                KinWebService.setAlternateService(type: toUse)
+            })
+        }
+
+        alertController.addAction(.cancel())
+        present(alertController, animated: true)
+    }
+
+    func wrongConfigPassword() {
+        let alertController = UIAlertController(title: "Wrong config password",
+                                                message: nil,
+                                                preferredStyle: .alert)
+        alertController.addAction(.ok())
+        present(alertController, animated: true)
+    }
+}

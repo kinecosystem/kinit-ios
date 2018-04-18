@@ -1,0 +1,65 @@
+{
+  "images" : [
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "tile",
+          "width" : 1,
+          "height" : 1
+        },
+        "cap-insets" : {
+          "bottom" : 39,
+          "top" : 38,
+          "right" : 11,
+          "left" : 11
+        }
+      },
+      "idiom" : "universal",
+      "filename" : "OfferCardShadow.png",
+      "scale" : "1x"
+    },
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "tile",
+          "width" : 1,
+          "height" : 1
+        },
+        "cap-insets" : {
+          "bottom" : 78,
+          "top" : 77,
+          "right" : 22,
+          "left" : 22
+        }
+      },
+      "idiom" : "universal",
+      "filename" : "OfferCardShadow@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "tile",
+          "width" : 1,
+          "height" : 1
+        },
+        "cap-insets" : {
+          "bottom" : 117,
+          "top" : 116,
+          "right" : 33,
+          "left" : 33
+        }
+      },
+      "idiom" : "universal",
+      "filename" : "OfferCardShadow@3x.png",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

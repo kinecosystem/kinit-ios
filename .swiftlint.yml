@@ -1,0 +1,7 @@
+disabled_rules:
+  - identifier_name
+excluded:
+  - "KinWallet/Generated Files"
+  - "Submodules"
+opt_in_rules:
+  - overridden_super_call

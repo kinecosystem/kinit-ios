@@ -1,0 +1,341 @@
+{
+    "tasks" : [
+               {
+               "tags" : [
+                         "Finance"
+                         ],
+               "provider" : {
+               "name" : "Kin Team",
+               "image_url" : "https:\/\/s3.amazonaws.com\/kinapp-static\/brand_img\/kin_logo.png"
+               },
+               "id" : "1",
+               "min_to_complete" : 2,
+               "price" : 251,
+               "start_date" : 1520154600,
+               "title" : "Let's Get to Know task 1",
+               "type" : "questionnaire",
+               "desc" : "Welcome! Start earning KIN by completing simple tasks",
+               "items" : [
+                          {
+                          "id" : "185",
+                          "results" : [
+                                       {
+                                       "id" : "32654",
+                                       "text" : "To kill some time"
+                                       },
+                                       {
+                                       "id" : "92353",
+                                       "text" : "I'm looking for a new experience"
+                                       },
+                                       {
+                                       "id" : "22985",
+                                       "text" : "I want to earn cryptocurrency"
+                                       },
+                                       {
+                                       "id" : "34567",
+                                       "text" : "Not sure yet, still exploring"
+                                       },
+                                       {
+                                       "id" : "2653",
+                                       "text" : "Get gift cards for free"
+                                       }
+                                       ],
+                          "type" : "text",
+                          "text" : "Why do you want to use the Kin app?"
+                          },
+                          {
+                          "id" : "823",
+                          "results" : [
+                                       {
+                                       "id" : "82346",
+                                       "text" : "20 or less"
+                                       },
+                                       {
+                                       "id" : "4256",
+                                       "text" : "21-30"
+                                       },
+                                       {
+                                       "id" : "2598",
+                                       "text" : "31-40"
+                                       },
+                                       {
+                                       "id" : "3435",
+                                       "text" : "41-50"
+                                       },
+                                       {
+                                       "id" : "4697",
+                                       "text" : "51+"
+                                       }
+                                       ],
+                          "type" : "text",
+                          "text" : "How old are you?"
+                          },
+                          {
+                          "id" : "8364",
+                          "results" : [
+                                       {
+                                       "id" : "2586",
+                                       "text" : "Instagram"
+                                       },
+                                       {
+                                       "id" : "26532",
+                                       "text" : "Spotify"
+                                       },
+                                       {
+                                       "id" : "4576",
+                                       "text" : "Facebook"
+                                       },
+                                       {
+                                       "id" : "24576",
+                                       "text" : "YouTube"
+                                       },
+                                       {
+                                       "id" : "28676",
+                                       "text" : "Messenger"
+                                       },
+                                       {
+                                       "id" : "2567",
+                                       "text" : "None"
+                                       }
+                                       ],
+                          "type" : "text",
+                          "text" : "Which of the following apps you use the most frequently? (choose one)"
+                          },
+                          {
+                          "id" : "728",
+                          "results" : [
+                                       {
+                                       "id" : "24578",
+                                       "text" : "Not sure..."
+                                       },
+                                       {
+                                       "id" : "874654",
+                                       "text" : "No"
+                                       },
+                                       {
+                                       "id" : "87523",
+                                       "text" : "Yes"
+                                       }
+                                       ],
+                          "type" : "text",
+                          "text" : "KIN is a cryptocurrency. Have you ever heard about cryptocurrency?"
+                          },
+                          {
+                          "id" : "844",
+                          "results" : [
+                                       {
+                                       "id" : "46584",
+                                       "text" : "Not sure..."
+                                       },
+                                       {
+                                       "id" : "4589",
+                                       "text" : "No"
+                                       },
+                                       {
+                                       "id" : "3576",
+                                       "text" : "Yes"
+                                       }
+                                       ],
+                          "type" : "text",
+                          "text" : "Have you ever heard about Bitcoin?"
+                          },
+                          {
+                          "id" : "347",
+                          "results" : [
+                                       {
+                                       "id" : "4359698",
+                                       "text" : "Not sure..."
+                                       },
+                                       {
+                                       "id" : "345768",
+                                       "text" : "No"
+                                       },
+                                       {
+                                       "id" : "45763",
+                                       "text" : "Yes"
+                                       }
+                                       ],
+                          "type" : "text",
+                          "text" : "Have you ever heard about Ethereum?"
+                          },
+                          {
+                          "id" : "372",
+                          "results" : [
+                                       {
+                                       "id" : "34756",
+                                       "text" : "Sounds great!"
+                                       },
+                                       {
+                                       "id" : "3576",
+                                       "text" : "Why should I bother?"
+                                       },
+                                       {
+                                       "id" : "4987485",
+                                       "text" : "I don't have time for this..."
+                                       },
+                                       {
+                                       "id" : "435767",
+                                       "text" : "OK, but what can I do with KIN?"
+                                       }
+                                       ],
+                          "type" : "text",
+                          "text" : "KIN is a cryptocurrency. You can earn KIN by completing tasks (e.g. a survey)"
+                          },
+                          {
+                          "id" : "458",
+                          "results" : [
+                                       {
+                                       "id" : "3457683",
+                                       "text" : "That's totally OK :)"
+                                       },
+                                       {
+                                       "id" : "3454",
+                                       "text" : "Bummer!"
+                                       },
+                                       {
+                                       "id" : "7454",
+                                       "text" : "I will still give it a try "
+                                       },
+                                       {
+                                       "id" : "54465",
+                                       "text" : "I want to quit"
+                                       }
+                                       ],
+                          "type" : "text",
+                          "text" : "The Kin app lets you complete only one task per day. thoughts?"
+                          },
+                          {
+                          "id" : "8734",
+                          "results" : [
+                                       {
+                                       "id" : "546546",
+                                       "text" : "Food delivery coupons"
+                                       },
+                                       {
+                                       "id" : "3435",
+                                       "text" : "Gift cards"
+                                       },
+                                       {
+                                       "id" : "5645",
+                                       "text" : "Taxi rides coupons"
+                                       },
+                                       {
+                                       "id" : "67545",
+                                       "text" : "Movie tickets"
+                                       },
+                                       {
+                                       "id" : "78745",
+                                       "text" : "Sport \/ concert ticket coupons"
+                                       },
+                                       {
+                                       "id" : "5674",
+                                       "text" : "Music app subscription"
+                                       }
+                                       ],
+                          "type" : "text",
+                          "text" : "Tap on something you would most likely spend your KIN on (choose one)"
+                          },
+                          {
+                          "id" : "6645",
+                          "results" : [
+                                       {
+                                       "id" : "46746",
+                                       "text" : "0 tasks, sorry..."
+                                       },
+                                       {
+                                       "id" : "4574",
+                                       "text" : "1 task, I'm very busy "
+                                       },
+                                       {
+                                       "id" : "5744",
+                                       "text" : "10 tasks, I like it so far"
+                                       },
+                                       {
+                                       "id" : "46745",
+                                       "text" : "20 tasks, if it's easy and fun"
+                                       },
+                                       {
+                                       "id" : "46744",
+                                       "text" : "100 tasks, as many as possible!"
+                                       }
+                                       ],
+                          "type" : "text",
+                          "text" : "How namy tasks like this survey are you willing to complete in a week?"
+                          },
+                          {
+                          "id" : "7865",
+                          "results" : [
+                                       {
+                                       "id" : "456456",
+                                       "text" : "I don't really want it"
+                                       },
+                                       {
+                                       "id" : "6756",
+                                       "text" : "What is KIN?"
+                                       },
+                                       {
+                                       "id" : "67855",
+                                       "text" : "Awesome!!!"
+                                       },
+                                       {
+                                       "id" : "5674",
+                                       "text" : "Can I actually use it to buy things?"
+                                       },
+                                       {
+                                       "id" : "4564",
+                                       "text" : "Cool, I have to "
+                                       }
+                                       ],
+                          "type" : "text",
+                          "text" : "You are going to get some KIN for completing this survey. "
+                          },
+                          {
+                          "id" : "6754",
+                          "results" : [
+                                       {
+                                       "id" : "76856",
+                                       "text" : "Only after sepnding my KIN"
+                                       },
+                                       {
+                                       "id" : "6785",
+                                       "text" : "Sure, I'll share it!"
+                                       },
+                                       {
+                                       "id" : "7856",
+                                       "text" : "I am not sure yet..."
+                                       },
+                                       {
+                                       "id" : "5784",
+                                       "text" : "Never!"
+                                       }
+                                       ],
+                          "type" : "text",
+                          "text" : "How likely you are to share this app with a friend?"
+                          },
+                          {
+                          "id" : "7867",
+                          "results" : [
+                                       {
+                                       "id" : "67655",
+                                       "text" : "I loved it!"
+                                       },
+                                       {
+                                       "id" : "7856",
+                                       "text" : "It was actually not bad..."
+                                       },
+                                       {
+                                       "id" : "67854",
+                                       "text" : "I prefer other types of tasks"
+                                       },
+                                       {
+                                       "id" : "67854",
+                                       "text" : "I'll never do it again!!!"
+                                       }
+                                       ],
+                          "type" : "text",
+                          "text" : "Oh, last thing - what do you think of this survey?"
+                          }
+                          ]
+               }
+               ]
+}

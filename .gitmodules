@@ -1,0 +1,18 @@
+[submodule "Submodules/Lottie"]
+	path = Submodules/Lottie
+	url = https://github.com/airbnb/lottie-ios.git
+[submodule "Submodules/Amplitude"]
+	path = Submodules/Amplitude
+	url = https://github.com/amplitude/Amplitude-iOS.git
+[submodule "Submodules/GradientView"]
+	path = Submodules/GradientView
+	url = https://github.com/soffes/GradientView.git
+[submodule "Submodules/UICountingLabel"]
+	path = Submodules/UICountingLabel
+	url = https://github.com/dataxpress/UICountingLabel.git
+[submodule "Submodules/KinCore"]
+	path = Submodules/KinCore
+	url = https://github.com/kinfoundation/kin-core-ios.git
+[submodule "Submodules/XLPagerTabStrip"]
+	path = Submodules/XLPagerTabStrip
+	url = https://github.com/xmartlabs/XLPagerTabStrip
