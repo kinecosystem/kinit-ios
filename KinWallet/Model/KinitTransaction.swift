@@ -11,17 +11,19 @@ struct KinitTransaction: Codable {
     let amount: Int
     let author: Author
     private let _date: TimeInterval
-    let serverReceived: Bool
+    let clientReceived: Bool
     let title: String
     let txHash: String
+    let type: String
 
     enum CodingKeys: CodingKey, String {
         case amount
         case author = "provider"
         case _date = "date"
-        case serverReceived = "server_received"
+        case clientReceived = "client_received"
         case title
         case txHash = "tx_hash"
+        case type
     }
 }
 
@@ -34,13 +36,5 @@ extension KinitTransaction: Equatable {
 extension KinitTransaction {
     var date: Date {
         return Date(timeIntervalSince1970: _date)
-    }
-
-    var isEarn: Bool {
-        return !isSpend
-    }
-
-    var isSpend: Bool {
-        return serverReceived
     }
 }

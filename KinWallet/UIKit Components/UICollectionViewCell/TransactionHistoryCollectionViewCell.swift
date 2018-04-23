@@ -28,16 +28,14 @@ class TransactionHistoryCellFactory {
                         isFirst: Bool,
                         isLast: Bool,
                         balanceAfter: UInt64) {
-        cell.amountLabel.text = "\(transaction.isEarn ? "+" : "-")\(transaction.amount) K"
-        cell.amountLabel.textColor = transaction.isEarn
+        cell.amountLabel.text = "\(transaction.clientReceived ? "+" : "-")\(transaction.amount) K"
+        cell.amountLabel.textColor = transaction.clientReceived
             ? UIColor.kin.appTint
             : UIColor.kin.gray
 
-        if transaction.isEarn {
-            cell.sourceLabel.text = "Daily Task"
-        } else {
-            cell.sourceLabel.text = transaction.title
-        }
+        cell.sourceLabel.text = transaction.clientReceived
+            ? "Daily Task"
+            : transaction.title
 
         let date = transaction.date
         cell.dateLabel.text = Date().beginningOfDay() < date
@@ -49,7 +47,10 @@ class TransactionHistoryCellFactory {
 
         cell.balanceLabel.text = "\(balanceAfter) K"
 
-        cell.iconImageView.image = (transaction.isEarn ? Asset.historyKinIcon : Asset.historyCouponIcon).image
+        let asset = transaction.clientReceived
+            ? Asset.historyKinIcon
+            : Asset.historyCouponIcon
+        cell.iconImageView.image = asset.image
     }
 }
 

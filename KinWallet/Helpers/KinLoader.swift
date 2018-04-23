@@ -95,7 +95,6 @@ class KinLoader {
     }
 
     func loadItems<A, B>(request: WebRequest<A, B>, observable: Observable<FetchResult<B>>) where B: Collection {
-
         request.withCompletion { result, error in
             if let result = result, result.isNotEmpty {
                 observable.next(.some(result))
