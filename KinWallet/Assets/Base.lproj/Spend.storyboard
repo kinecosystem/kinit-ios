@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -122,6 +123,8 @@
                         <outlet property="offerTypeImageView" destination="I6w-WW-FG3" id="jUI-Ps-KRA"/>
                         <outlet property="priceLabel" destination="vuh-qW-ElL" id="tFG-lg-DUK"/>
                         <outlet property="titleLabel" destination="l6w-Pz-suE" id="AMx-2d-sD8"/>
+                        <outlet property="toastLabel" destination="EC1-GU-AsJ" id="dYe-Xg-Zny"/>
+                        <outlet property="toastView" destination="ANJ-wV-CX0" id="9rL-fR-y1Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yHq-NT-9xn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -167,7 +170,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tuy-no-RlG">
-                            <rect key="frame" x="16" y="-15" width="343" height="100"/>
+                            <rect key="frame" x="16" y="10" width="343" height="50"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="55" maxY="0.0"/>
                             <state key="normal" title="Some Title a very long title here, ok? Even longer" backgroundImage="RedeemBubble">
@@ -216,6 +219,24 @@ on your phone to redeem</string>
                         <constraint firstAttribute="leadingMargin" secondItem="KAi-dn-G7v" secondAttribute="leading" id="wCC-iJ-QAh"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="bEb-fH-RjG"/>
+                </view>
+                <view contentMode="scaleToFill" id="ANJ-wV-CX0">
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="54"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Code saved to My Coupons" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EC1-GU-AsJ">
+                            <rect key="frame" x="45" y="17" width="211" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="EC1-GU-AsJ" firstAttribute="centerY" secondItem="ANJ-wV-CX0" secondAttribute="centerYWithinMargins" id="4En-ko-Ylh"/>
+                        <constraint firstItem="EC1-GU-AsJ" firstAttribute="centerX" secondItem="ANJ-wV-CX0" secondAttribute="centerXWithinMargins" id="Yi6-Kz-wfZ"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="r6z-Ie-DRU"/>
                 </view>
             </objects>
             <point key="canvasLocation" x="-55.200000000000003" y="-1.3493253373313345"/>

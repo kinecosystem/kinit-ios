@@ -14,7 +14,6 @@ let internetErrorMessage = "Please check your internet connection and try again.
 
 class OfferDetailsViewController: UIViewController {
     var offer: Offer!
-    var requiresUserExport = false
     var redeemGood: RedeemGood?
 
     @IBOutlet weak var buyView: UIView!
@@ -29,6 +28,23 @@ class OfferDetailsViewController: UIViewController {
     @IBOutlet weak var buyButton: UIButton! {
         didSet {
             buyButton.makeKinButtonFilled()
+        }
+    }
+
+    @IBOutlet var toastView: UIView! {
+        didSet {
+            toastView.widthAnchor.constraint(equalToConstant: 300).isActive = true
+            toastView.heightAnchor.constraint(equalToConstant: 54).isActive = true
+            toastView.layer.cornerRadius = 27
+            toastView.layer.masksToBounds = true
+            toastView.backgroundColor = UIColor.kin.gray
+        }
+    }
+
+    @IBOutlet weak var toastLabel: UILabel! {
+        didSet {
+            toastLabel.font = FontFamily.Roboto.medium.font(size: 16)
+            toastLabel.textColor = .white
         }
     }
 
@@ -94,31 +110,7 @@ class OfferDetailsViewController: UIViewController {
     }
 
     @IBAction func dismissTapped(_ sender: UIBarButtonItem) {
-        guard !requiresUserExport else {
-            FeedbackGenerator.notifyWarningIfAvailable()
-            alertCodeIsEphemeral()
-
-            return
-        }
-
         dismiss(animated: true)
-    }
-
-    func alertCodeIsEphemeral() {
-        let message =
-        """
-        This code will only appear once.
-        Copy and paste it somewhere safe.
-        """
-
-        let alertController = UIAlertController(title: "Don’t leave without your code!",
-                                                message: message,
-                                                preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok, I'll save it",
-                                     style: .default, handler: nil)
-        alertController.addAction(okAction)
-        present(alertController, animated: true)
-        requiresUserExport = false
     }
 
     func drawOffer() {
@@ -133,6 +125,52 @@ class OfferDetailsViewController: UIViewController {
         priceLabel.amount = UInt64(offer.price)
 
         buyButton.isEnabled = Kin.shared.balance >= offer.price
+    }
+
+    fileprivate func showToast() {
+        view.addSubview(toastView)
+        toastView.translatesAutoresizingMaskIntoConstraints = false
+        toastView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        let finalTopConstraint = toastView.topAnchor.constraint(equalTo: bottomView.topAnchor)
+        finalTopConstraint.priority = .defaultHigh
+        let initialBottomConstraint = view.bottomAnchor.constraint(equalTo: toastView.topAnchor)
+        initialBottomConstraint.isActive = true
+        view.layoutIfNeeded()
+
+        UIView.animate(withDuration: 0.3,
+                       delay: 0,
+                       usingSpringWithDamping: 0.7,
+                       initialSpringVelocity: 0.8,
+                       options: [],
+                       animations: { [weak self] in
+                        initialBottomConstraint.isActive = false
+                        finalTopConstraint.isActive = true
+                        self?.view.layoutIfNeeded()
+        }, completion: nil)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            self?.dismissToast()
+        }
+
+        let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self,
+                                                  action: #selector(dismissToast))
+        swipeGestureRecognizer.direction = .down
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                          action: #selector(dismissToast))
+        toastView.addGestureRecognizer(swipeGestureRecognizer)
+        toastView.addGestureRecognizer(tapGestureRecognizer)
+    }
+
+    @objc fileprivate func dismissToast() {
+        let dismissBottomConstraint = view.bottomAnchor.constraint(equalTo: toastView.topAnchor)
+        dismissBottomConstraint.priority = .required
+        UIView.animate(withDuration: 0.2,
+                       animations: { [weak self] in
+                        dismissBottomConstraint.isActive = true
+                        self?.view.layoutIfNeeded()
+            }, completion: { [weak self] _ in
+                self?.toastView.removeFromSuperview()
+        })
     }
 }
 
@@ -218,10 +256,13 @@ extension OfferDetailsViewController {
     private func offerRedeemed(with redeemGood: RedeemGood) {
         self.redeemGood = redeemGood
         FeedbackGenerator.notifySuccessIfAvailable()
-        requiresUserExport = true
         exportButton.setTitle(redeemGood.value, for: .normal)
         buyActivityIndicator.stopAnimating()
-        transitionBottomView(to: exportCodeView)
+        transitionBottomView(to: exportCodeView) { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: { [weak self] in
+                self?.showToast()
+            })
+        }
         logViewedCode()
     }
 
@@ -230,7 +271,6 @@ extension OfferDetailsViewController {
             return
         }
 
-        requiresUserExport = false
         logTappedShare()
 
         let activityViewController = UIActivityViewController(activityItems: [redeemGood.value],
@@ -238,7 +278,7 @@ extension OfferDetailsViewController {
         present(activityViewController, animated: true)
     }
 
-    func transitionBottomView(to newView: UIView) {
+    func transitionBottomView(to newView: UIView, completion: (() -> Void)? = nil) {
         guard let currentView = bottomView.subviews.first else {
             return
         }
@@ -256,6 +296,7 @@ extension OfferDetailsViewController {
                         currentView.transform = CGAffineTransform(translationX: -currentView.frame.width, y: 0)
         }, completion: { _ in
             currentView.removeFromSuperview()
+            completion?()
         })
     }
 }
@@ -282,7 +323,8 @@ private extension OfferDetailsViewController {
         alertController.addAction(.init(title: "Back to Spend",
                                         style: .default,
                                         handler: { _ in
-                                            Analytics.logEvent(Events.Analytics.ClickOkButtonOnErrorPopup(errorType: errorType))
+                                            let event = Events.Analytics.ClickOkButtonOnErrorPopup(errorType: errorType)
+                                            Analytics.logEvent(event)
                                             self.dismiss(animated: true)
         }))
         present(alertController, animated: true)
