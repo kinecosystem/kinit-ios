@@ -33,14 +33,15 @@ class TransactionHistoryViewController: HistoryViewController<KinitTransaction, 
     override func availabilityChanged(items: [KinitTransaction]?, error: Error?) {
         super.availabilityChanged(items: items, error: error)
 
-        if let items = items {
-            balances.removeAll()
-            var lastBalance = 0
+        guard let items = items else {
+            return
+        }
+        balances.removeAll()
+        var lastBalance = 0
 
-            items.reversed().forEach {
-                lastBalance += $0.amount * ($0.isSpend ? -1 : 1)
-                balances[$0.txHash] = UInt64(lastBalance)
-            }
+        items.reversed().forEach {
+            lastBalance += $0.amount * ($0.clientReceived ? 1 : -1)
+            balances[$0.txHash] = UInt64(lastBalance)
         }
     }
 

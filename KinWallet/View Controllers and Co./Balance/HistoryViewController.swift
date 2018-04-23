@@ -80,9 +80,12 @@ class HistoryViewController<T, C: CellType>: UIViewController, UICollectionViewD
             emptyStateView?.removeFromSuperview()
             emptyStateView = nil
         } else {
-            let emptyView = createEmptyStateView()
-            emptyView.startAnimating()
-            view.addAndFit(emptyView)
+            if emptyStateView == nil {
+                let emptyView = createEmptyStateView()
+                view.addAndFit(emptyView)
+            }
+
+            emptyStateView?.startAnimating()
         }
     }
 
