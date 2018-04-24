@@ -31,13 +31,13 @@ class OfferDetailsViewController: UIViewController {
         }
     }
 
-    @IBOutlet var toastView: UIView! {
+    @IBOutlet var toastView: UIView? {
         didSet {
-            toastView.widthAnchor.constraint(equalToConstant: 300).isActive = true
-            toastView.heightAnchor.constraint(equalToConstant: 54).isActive = true
-            toastView.layer.cornerRadius = 27
-            toastView.layer.masksToBounds = true
-            toastView.backgroundColor = UIColor.kin.gray
+            toastView?.widthAnchor.constraint(equalToConstant: 300).isActive = true
+            toastView?.heightAnchor.constraint(equalToConstant: 54).isActive = true
+            toastView?.layer.cornerRadius = 27
+            toastView?.layer.masksToBounds = true
+            toastView?.backgroundColor = UIColor.kin.gray
         }
     }
 
@@ -128,6 +128,10 @@ class OfferDetailsViewController: UIViewController {
     }
 
     fileprivate func showToast() {
+        guard let toastView = toastView else {
+            return
+        }
+
         view.addSubview(toastView)
         toastView.translatesAutoresizingMaskIntoConstraints = false
         toastView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -162,14 +166,20 @@ class OfferDetailsViewController: UIViewController {
     }
 
     @objc fileprivate func dismissToast() {
+        guard let toastView = toastView else {
+            return
+        }
+
+        self.toastView = nil
+
         let dismissBottomConstraint = view.bottomAnchor.constraint(equalTo: toastView.topAnchor)
         dismissBottomConstraint.priority = .required
         UIView.animate(withDuration: 0.2,
                        animations: { [weak self] in
                         dismissBottomConstraint.isActive = true
                         self?.view.layoutIfNeeded()
-            }, completion: { [weak self] _ in
-                self?.toastView.removeFromSuperview()
+            }, completion: { _ in
+                toastView.removeFromSuperview()
         })
     }
 }
