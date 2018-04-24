@@ -14,6 +14,7 @@ default_platform(:ios)
 platform :ios do
   desc "Submits a new build to TestFairy"
   lane :test_fairy do
+    ensure_git_status_clean
     build_ios_app(export_method: 'enterprise')
     testfairy(api_key: ENV['testfairy_api_key'],
               auto_update: 'on',
