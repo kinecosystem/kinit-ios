@@ -101,7 +101,7 @@ class RootViewController: UIViewController {
 
             #if !TESTS
             if Configuration.shared.testFairyKey != nil {
-                TestFairy.setAttribute("userId", withValue: currentUser.userId)
+                TestFairy.setUserId(currentUser.userId)
             }
             #endif
 
