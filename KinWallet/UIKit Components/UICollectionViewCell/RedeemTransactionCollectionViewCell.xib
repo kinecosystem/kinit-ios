@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,7 +27,7 @@
                                 <rect key="frame" x="0.0" y="110" width="320" height="26"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" contentInsetAdjustmentBehavior="never" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPZ-De-gej">
-                                <rect key="frame" x="79" y="0.0" width="197" height="110"/>
+                                <rect key="frame" x="79" y="0.0" width="175" height="110"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -75,7 +76,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EqG-vF-fn5">
-                                <rect key="frame" x="282" y="24" width="22" height="22"/>
+                                <rect key="frame" x="260" y="13" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="Mkd-S8-V8S"/>
+                                    <constraint firstAttribute="width" secondItem="EqG-vF-fn5" secondAttribute="height" multiplier="1:1" id="cPm-kb-eoz"/>
+                                </constraints>
                                 <state key="normal" image="HistoryShareButton"/>
                                 <connections>
                                     <action selector="export:" destination="gTV-IL-0wX" eventType="touchUpInside" id="rWJ-Md-hZx"/>
