@@ -36,7 +36,7 @@ class RedeemedGoodsViewController: HistoryViewController<RedeemTransaction, Rede
 
     override func createEmptyStateView() -> EmptyStateView {
         let emptyView = super.createEmptyStateView()
-        emptyView.textLabel.text = "Your coupons will be saved here!"
+        emptyView.textLabel.text = "Your vouchers will be saved here!"
         emptyView.imageView.image = Asset.emptyHistoryCoupon.image
 
         return emptyView
@@ -97,6 +97,6 @@ extension RedeemedGoodsViewController: RedeemTransactionCellDelegate {
 
 extension RedeemedGoodsViewController: IndicatorInfoProvider {
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "My Coupons")
+        return IndicatorInfo(title: "My Vouchers")
     }
 }
