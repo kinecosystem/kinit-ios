@@ -147,7 +147,7 @@ class OfferDetailsViewController: UIViewController {
                         finalTopConstraint.isActive = true
                         self?.view.layoutIfNeeded()
         }, completion: nil)
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
             self?.dismissToast()
         }
@@ -182,8 +182,7 @@ extension OfferDetailsViewController {
         buyButton.setTitle(nil, for: .normal)
         buyActivityIndicator.startAnimating()
 
-        KinWebService.shared.load(WebRequests
-            .bookOffer(offer)
+        WebRequests.bookOffer(offer)
             .withCompletion { [weak self] bookOfferResult, error in
                 guard let aSelf = self else {
                     return
@@ -205,7 +204,7 @@ extension OfferDetailsViewController {
                                             message: lastOfferGrabbedMessage,
                                             errorType: .offerNotAvailable)
                 }
-        })
+            }.load(with: KinWebService.shared)
     }
 
     private func payOffer(with orderId: String) {
@@ -229,28 +228,25 @@ extension OfferDetailsViewController {
 
     private func redeemOffer(with txHash: String) {
         let receipt = PaymentReceipt(txHash: txHash)
-        let redeemRequest = WebRequests
-            .redeemOffer(with: receipt)
+        WebRequests.redeemOffer(with: receipt)
             .withCompletion { [weak self] goods, error in
                 guard let aSelf = self else {
                     return
                 }
-
+                
                 guard let redeemGood = goods?.first else {
                     KLogError("Error redeeming goods \(String(describing: error))")
                     aSelf.presentIncompleteTransactionAlert()
                     return
                 }
-
+                
                 KinLoader.shared.loadTransactions()
                 KinLoader.shared.loadRedeemedItems()
-
+                
                 DispatchQueue.main.async {
                     aSelf.offerRedeemed(with: redeemGood)
                 }
-        }
-
-        KinWebService.shared.load(redeemRequest)
+            }.load(with: KinWebService.shared)
     }
 
     private func offerRedeemed(with redeemGood: RedeemGood) {

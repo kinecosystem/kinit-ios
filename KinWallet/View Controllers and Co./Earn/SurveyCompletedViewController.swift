@@ -62,30 +62,29 @@ class SurveyCompletedViewController: UIViewController {
 
     private func submitResults() {
         let tResults = results.applyingAddress(Kin.shared.publicAddress)
-        let resultsRequest = WebRequests.submitTaskResults(tResults).withCompletion { [weak self] memo, error in
-            guard let aSelf = self else {
-                return
-            }
-
-            guard let memo = memo, error == nil else {
-                aSelf.failedToSubmitResults = true
-                KLogError(String(describing: error?.localizedDescription))
-                DispatchQueue.main.async {
-                    aSelf.errorSubmitingResults()
+        WebRequests.submitTaskResults(tResults)
+            .withCompletion { [weak self] memo, error in
+                guard let aSelf = self else {
+                    return
                 }
 
-                return
-            }
+                guard let memo = memo, error == nil else {
+                    aSelf.failedToSubmitResults = true
+                    KLogError(String(describing: error?.localizedDescription))
+                    DispatchQueue.main.async {
+                        aSelf.errorSubmitingResults()
+                    }
 
-            KLogVerbose("Success submitting results for task. Memo is \(memo)")
+                    return
+                }
 
-            SimpleDatastore.delete(aSelf.results)
-            KinLoader.shared.deleteNextTask()
+                KLogVerbose("Success submitting results for task. Memo is \(memo)")
 
-            aSelf.watchPayment(with: memo)
-        }
+                SimpleDatastore.delete(aSelf.results)
+                KinLoader.shared.deleteNextTask()
 
-        KinWebService.shared.load(resultsRequest)
+                aSelf.watchPayment(with: memo)
+            }.load(with: KinWebService.shared)
     }
 
     private func watchPayment(with memo: String) {

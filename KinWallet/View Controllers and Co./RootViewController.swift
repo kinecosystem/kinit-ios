@@ -116,31 +116,31 @@ class RootViewController: UIViewController {
         } else {
             Kin.shared.resetKeyStore()
             let user = User.createNew()
-            let userRegistration = WebRequests.userRegistrationRequest(for: user)
-            KinWebService.shared.load(userRegistration.withCompletion { success, error in
-                KLogVerbose("User registration: \(success.boolValue)")
-                guard success.boolValue else {
-                    let reason = error?.localizedDescription ?? "Unknown error"
-                    let event = Events.Log.UserRegistrationFailed(failureReason: reason)
-                    Analytics.logEvent(event)
-                    return
-                }
+            WebRequests.userRegistrationRequest(for: user)
+                .withCompletion { success, error in
+                    KLogVerbose("User registration: \(success.boolValue)")
+                    guard success.boolValue else {
+                        let reason = error?.localizedDescription ?? "Unknown error"
+                        let event = Events.Log.UserRegistrationFailed(failureReason: reason)
+                        Analytics.logEvent(event)
+                        return
+                    }
 
-                Analytics.userId = user.userId
-                Analytics.deviceId = user.deviceId
-                Analytics.logEvent(Events.Business.UserRegistered())
-                user.save()
+                    Analytics.userId = user.userId
+                    Analytics.deviceId = user.deviceId
+                    Analytics.logEvent(Events.Business.UserRegistered())
+                    user.save()
 
-                KinLoader.shared.loadAllData()
+                    KinLoader.shared.loadAllData()
 
-                Kin.shared.performOnboardingIfNeeded().then {
-                    self.onboardSucceeded($0)
-                }
+                    Kin.shared.performOnboardingIfNeeded().then {
+                        self.onboardSucceeded($0)
+                    }
 
-                DispatchQueue.main.async {
-                    UIApplication.shared.registerForRemoteNotifications()
-                }
-            })
+                    DispatchQueue.main.async {
+                        UIApplication.shared.registerForRemoteNotifications()
+                    }
+            }.load(with: KinWebService.shared)
         }
     }
 

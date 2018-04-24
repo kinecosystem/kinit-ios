@@ -106,8 +106,7 @@ extension Kin {
     private func onboardAndActivateAccount() -> Promise<Bool> {
         let p = Promise<Bool>()
 
-        KinWebService.shared.load(WebRequests
-            .createAccount(with: account.publicAddress)
+        WebRequests.createAccount(with: account.publicAddress)
             .withCompletion { success, error in
                 if let error = error {
                     KLogError("Error creating account: \(error)")
@@ -122,7 +121,7 @@ extension Kin {
                 self.activateAccount().then {
                     p.signal($0)
                 }
-        })
+            }.load(with: KinWebService.shared)
 
         return p
     }
@@ -131,7 +130,7 @@ extension Kin {
         let p = Promise<Bool>()
 
         account.activate()
-            .then({ _ in
+            .then { _ in
                 UserDefaults.standard.set(AccountStatus.activated.rawValue,
                                           forKey: accountStatusUserDefaultsKey)
                 KLogVerbose("Account activated")
@@ -140,13 +139,13 @@ extension Kin {
                 self.createBalanceWatch(initialBalance: 0)
 
                 p.signal(true)
-            }).error({ error in
+            }.error { error in
                 KLogError("Error activating account: \(error)")
                 let event = Events.Log.StellarKinTrustlineSetupFailed(failureReason: error.localizedDescription)
                 Analytics.logEvent(event)
 
                 p.signal(false)
-            })
+            }
 
         return p
     }
