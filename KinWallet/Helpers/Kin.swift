@@ -193,7 +193,7 @@ extension Kin {
                 completion?(balance, error)
             }
 
-            if let error = error {
+            if let error = error, Kin.shared.accountStatus == .activated {
                 KLogError("Error fetching balance")
                 let logEvent = Events.Log.BalanceUpdateFailed(failureReason: error.localizedDescription)
                 Analytics.logEvent(logEvent)
