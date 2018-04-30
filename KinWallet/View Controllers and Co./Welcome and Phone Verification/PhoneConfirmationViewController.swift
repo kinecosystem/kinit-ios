@@ -58,6 +58,12 @@ class PhoneConfirmationViewController: UIViewController {
         }).add(to: linkBag)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
     func verifyCode() {
         guard
             var user = User.current,
@@ -75,7 +81,7 @@ class PhoneConfirmationViewController: UIViewController {
             }
 
             aSelf.activityIndicatorView.stopAnimating()
-            
+
             if error != nil {
                 FeedbackGenerator.notifyErrorIfAvailable()
                 aSelf.textFields.forEach {

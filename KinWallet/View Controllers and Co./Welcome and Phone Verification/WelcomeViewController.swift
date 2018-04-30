@@ -38,6 +38,15 @@ final class WelcomeViewController: UIViewController {
         super.viewDidLoad()
 
         pages.forEach(scrollView.addSubview)
+        let backButtonItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
+        backButtonItem.tintColor = UIColor.kin.darkGray
+        navigationItem.backBarButtonItem = backButtonItem
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
     override func viewDidLayoutSubviews() {
