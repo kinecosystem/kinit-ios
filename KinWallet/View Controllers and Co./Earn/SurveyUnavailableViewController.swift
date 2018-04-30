@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SurveyUnavailableViewController: UIViewController, AddNoticeViewController {
+final class SurveyUnavailableViewController: UIViewController, AddNoticeViewController {
     var task: Task?
     var error: Error?
     var noticeViewController: NoticeViewController?

@@ -10,7 +10,7 @@ import Lottie
 import KinSDK
 import KinUtil
 
-class SurveyCompletedViewController: UIViewController {
+final class SurveyCompletedViewController: UIViewController {
     var task: Task!
     var results: TaskResults!
     var watch: PaymentWatch?

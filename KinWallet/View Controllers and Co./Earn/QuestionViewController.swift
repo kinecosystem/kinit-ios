@@ -24,7 +24,7 @@ private struct Constants {
     static let nextButtonHeight: CGFloat = 66
 }
 
-class QuestionViewController: UIViewController {
+final class QuestionViewController: UIViewController {
     let question: Question
     fileprivate let collectionViewDataSource: QuestionCollectionViewDataSource
     let collectionView: UICollectionView

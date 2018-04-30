@@ -41,7 +41,7 @@ private struct Constants {
     }
 }
 
-class SurveyViewController: UIViewController {
+final class SurveyViewController: UIViewController {
     private let task: Task
     private let progressLabel: UILabel = {
         let l = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: 16))

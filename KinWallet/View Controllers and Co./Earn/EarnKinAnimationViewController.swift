@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EarnKinAnimationViewController: UIViewController {
+final class EarnKinAnimationViewController: UIViewController {
     @IBOutlet weak var textLabel: UILabel! {
         didSet {
             textLabel.font = FontFamily.Roboto.regular.font(size: 26)

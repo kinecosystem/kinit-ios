@@ -12,7 +12,7 @@ enum QuestionnaireSections: Int, AutoCases {
     case answers
 }
 
-class QuestionCollectionViewDataSource: NSObject {
+final class QuestionCollectionViewDataSource: NSObject {
     private struct Constants {
         static let imageQuestionCellSize = CGSize(width: 134, height: 124)
         static let questionCellHeight: CGFloat = 140

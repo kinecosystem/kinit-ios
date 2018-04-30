@@ -8,7 +8,7 @@
 import UIKit
 import KinUtil
 
-class SurveyHomeViewController: UIViewController {
+final class SurveyHomeViewController: UIViewController {
     var showEarnAnimation = true
     var animatingEarn = false
     let linkBag = LinkBag()

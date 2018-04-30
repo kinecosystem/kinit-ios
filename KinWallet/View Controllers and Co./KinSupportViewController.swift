@@ -10,7 +10,7 @@ import MessageUI
 
 private let supportEmail = "support@kinitapp.com"
 
-class KinSupportViewController: MFMailComposeViewController {
+final class KinSupportViewController: MFMailComposeViewController {
     class func present(from presenter: UIViewController) {
         Analytics.logEvent(Events.Analytics.ClickSupportButton())
 

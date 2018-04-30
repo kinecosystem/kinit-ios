@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SurveyDoneViewController: UIViewController {
+final class SurveyDoneViewController: UIViewController {
     private struct Constants {
         static let doneSignInitialScale: CGFloat = 0.8
         static let fireworksInitialScale: CGFloat = 0.2
