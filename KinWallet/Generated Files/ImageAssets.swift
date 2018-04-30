@@ -47,6 +47,10 @@ enum Asset {
   static let buttonStroke = ImageAsset(name: "ButtonStroke")
   static let closeXButton = ImageAsset(name: "CloseXButton")
   static let closeXButtonDarkGray = ImageAsset(name: "CloseXButtonDarkGray")
+  static let confettiDiamond = ImageAsset(name: "ConfettiDiamond")
+  static let confettiNormal = ImageAsset(name: "ConfettiNormal")
+  static let confettiStar = ImageAsset(name: "ConfettiStar")
+  static let confettiTriangle = ImageAsset(name: "ConfettiTriangle")
   static let doneFireworks = ImageAsset(name: "DoneFireworks")
   static let doneSign = ImageAsset(name: "DoneSign")
   static let emptyHistoryCoupon = ImageAsset(name: "EmptyHistoryCoupon")
@@ -101,6 +105,10 @@ enum Asset {
     buttonStroke,
     closeXButton,
     closeXButtonDarkGray,
+    confettiDiamond,
+    confettiNormal,
+    confettiStar,
+    confettiTriangle,
     doneFireworks,
     doneSign,
     emptyHistoryCoupon,

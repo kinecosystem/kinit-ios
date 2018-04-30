@@ -101,7 +101,7 @@ extension UIView: Shakeable {
 
         animation.duration = 0.25 * Double(times)
         let values: [NSNumber] = {
-            var p = [NSNumber](NSNumber(value: 0))
+            var p = [NSNumber(value: 0)]
             p += (0...times).flatMap { _ -> [NSNumber] in
                 return [NSNumber(value: Float(delta)), NSNumber(value: 0), NSNumber(value: Float(-delta))]
             }

@@ -76,6 +76,8 @@ enum StoryboardScene {
   enum Main: StoryboardType {
     static let storyboardName = "Main"
 
+    static let accountReadyViewController = SceneType<AccountReadyViewController>(storyboard: Main.self, identifier: "AccountReadyViewController")
+
     static let balancePagerTabViewController = SceneType<BalancePagerTabViewController>(storyboard: Main.self, identifier: "BalancePagerTabViewController")
 
     static let balanceViewController = SceneType<BalanceViewController>(storyboard: Main.self, identifier: "BalanceViewController")

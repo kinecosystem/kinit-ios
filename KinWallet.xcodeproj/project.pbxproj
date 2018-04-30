@@ -104,6 +104,12 @@
 		910AA21C209613EA00CC822A /* Shakeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA21B209613EA00CC822A /* Shakeable.swift */; };
 		910AA21D2096149F00CC822A /* Shakeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA21B209613EA00CC822A /* Shakeable.swift */; };
 		910AA21E2096149F00CC822A /* Shakeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA21B209613EA00CC822A /* Shakeable.swift */; };
+		910AA2242096F34600CC822A /* AccountReadyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA2232096F34600CC822A /* AccountReadyViewController.swift */; };
+		910AA22B2096F34800CC822A /* AccountReadyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA2232096F34600CC822A /* AccountReadyViewController.swift */; };
+		910AA22C2096F34900CC822A /* AccountReadyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA2232096F34600CC822A /* AccountReadyViewController.swift */; };
+		910AA22E2096F42F00CC822A /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA22D2096F42F00CC822A /* ConfettiView.swift */; };
+		910AA22F2096F7F800CC822A /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA22D2096F42F00CC822A /* ConfettiView.swift */; };
+		910AA2302096F7F900CC822A /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA22D2096F42F00CC822A /* ConfettiView.swift */; };
 		9114743A203F177500C16279 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91147439203F177500C16279 /* GradientView.swift */; };
 		9114743D203F17ED00C16279 /* WeakBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114743C203F17ED00C16279 /* WeakBox.swift */; };
 		9114743E203F1A5000C16279 /* WeakBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114743C203F17ED00C16279 /* WeakBox.swift */; };
@@ -584,6 +590,8 @@
 		82A12DEB2056B841008841F2 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		910AA2112095C34600CC822A /* UITextField+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+KinWallet.swift"; sourceTree = "<group>"; };
 		910AA21B209613EA00CC822A /* Shakeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shakeable.swift; sourceTree = "<group>"; };
+		910AA2232096F34600CC822A /* AccountReadyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountReadyViewController.swift; sourceTree = "<group>"; };
+		910AA22D2096F42F00CC822A /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		9110282670A0FC7CBAB94B48 /* Pods_KinWalletTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KinWalletTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91147439203F177500C16279 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradientView.swift; path = Submodules/GradientView/GradientView/GradientView.swift; sourceTree = SOURCE_ROOT; };
 		9114743C203F17ED00C16279 /* WeakBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakBox.swift; sourceTree = "<group>"; };
@@ -854,6 +862,7 @@
 			children = (
 				91147439203F177500C16279 /* GradientView.swift */,
 				91E84A4E2085ED2300E8B7A6 /* EmptyStateView.swift */,
+				910AA22D2096F42F00CC822A /* ConfettiView.swift */,
 				91E84A502085ED3000E8B7A6 /* EmptyStateView.xib */,
 				91B4453C20909C4500ED6802 /* TutorialPageView.swift */,
 				91B4454620909C5400ED6802 /* TutorialPageView.xib */,
@@ -905,6 +914,7 @@
 				91392A30208F48330026C2F9 /* WelcomeViewController.swift */,
 				91B4454E2090C3B400ED6802 /* PhoneVerificationRequestViewController.swift */,
 				91B445682091F98800ED6802 /* PhoneConfirmationViewController.swift */,
+				910AA2232096F34600CC822A /* AccountReadyViewController.swift */,
 			);
 			path = "Welcome and Phone Verification";
 			sourceTree = "<group>";
@@ -1788,6 +1798,7 @@
 				914013D22019F2300066367C /* ReusableView.swift in Sources */,
 				91E6B64F203C69A90080C2FC /* AMPLocationManagerDelegate.m in Sources */,
 				91796BD92028692A00F8C6A0 /* KinWebService.swift in Sources */,
+				910AA2242096F34600CC822A /* AccountReadyViewController.swift in Sources */,
 				9138BBE5204EF1A700450C97 /* SimpleCollectionReusableView.swift in Sources */,
 				91D891DA2020B43D0090E77C /* SurveyQuestionCollectionViewCell.swift in Sources */,
 				9114743D203F17ED00C16279 /* WeakBox.swift in Sources */,
@@ -1894,6 +1905,7 @@
 				91473FE0201DCDBF0013A530 /* SelectedResult.swift in Sources */,
 				91401372201635760066367C /* Storyboards.swift in Sources */,
 				91FF9D32207F4BE100B536E9 /* RedeemedGoodsViewController.swift in Sources */,
+				910AA22E2096F42F00CC822A /* ConfettiView.swift in Sources */,
 				91796BC72027261F00F8C6A0 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1914,6 +1926,7 @@
 				914013B82018C5D70066367C /* StoryboardInitializable.swift in Sources */,
 				91796BCA2027276000F8C6A0 /* UIDevice+KinWallet.swift in Sources */,
 				91E84A752086186B00E8B7A6 /* ButtonBarViewCell.swift in Sources */,
+				910AA22B2096F34800CC822A /* AccountReadyViewController.swift in Sources */,
 				91B445502090C3B400ED6802 /* PhoneVerificationRequestViewController.swift in Sources */,
 				91401398201892640066367C /* QuestionTests.swift in Sources */,
 				9140138B20187CE90066367C /* Result.swift in Sources */,
@@ -1936,6 +1949,7 @@
 				9114743E203F1A5000C16279 /* WeakBox.swift in Sources */,
 				91E84A6E2086186300E8B7A6 /* BarPagerTabStripViewController.swift in Sources */,
 				91147442203F1D4100C16279 /* BalanceLabel.swift in Sources */,
+				910AA2302096F7F900CC822A /* ConfettiView.swift in Sources */,
 				91E84A5D208617D100E8B7A6 /* BalanceViewController.swift in Sources */,
 				824138502060376400D7117E /* URLRequest+KinWallet.swift in Sources */,
 				91E84AA020862D1000E8B7A6 /* FetchableCollectionViewDataSource.swift in Sources */,
@@ -2073,6 +2087,7 @@
 				828CB44F2056EA42007C679C /* Date+Kinit.swift in Sources */,
 				828CB4432056EA08007C679C /* ImageAssets.swift in Sources */,
 				828CB44B2056EA42007C679C /* UICollectionView+KinWallet.swift in Sources */,
+				910AA22F2096F7F800CC822A /* ConfettiView.swift in Sources */,
 				91B4454D2090A91E00ED6802 /* WelcomeViewController.swift in Sources */,
 				91E84A842086186B00E8B7A6 /* PagerTabStripError.swift in Sources */,
 				91E84A9120862C5200E8B7A6 /* User.swift in Sources */,
@@ -2160,6 +2175,7 @@
 				828CB4382056E9F2007C679C /* Analytics.swift in Sources */,
 				91E84ABD20862E6F00E8B7A6 /* RedeemTransactionCollectionViewCell.swift in Sources */,
 				828CB4362056E9EA007C679C /* OfferCollectionViewCell.swift in Sources */,
+				910AA22C2096F34900CC822A /* AccountReadyViewController.swift in Sources */,
 				828CB4312056E9E1007C679C /* BalanceLabel.swift in Sources */,
 				91E84A892086187200E8B7A6 /* EmptyStateView.swift in Sources */,
 				828CB4502056EA43007C679C /* UITableView+KinWallet.swift in Sources */,

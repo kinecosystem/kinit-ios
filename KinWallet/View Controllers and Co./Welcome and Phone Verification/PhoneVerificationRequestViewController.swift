@@ -87,7 +87,6 @@ class PhoneVerificationRequestViewController: UIViewController {
             .add(to: linkBag)
 
         phoneTextField.inputAccessoryView = accessoryView
-        phoneTextField.becomeFirstResponder()
         accessoryView.tapped.on(next: {
             self.verifyPhone()
         })
@@ -96,6 +95,7 @@ class PhoneVerificationRequestViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        phoneTextField.becomeFirstResponder()
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
@@ -114,6 +114,8 @@ class PhoneVerificationRequestViewController: UIViewController {
                 guard let `self` = self else {
                     return
                 }
+
+                self.accessoryView.isLoading = false
 
                 guard error == nil, let verificationID = verificationID else {
                     print(error?.localizedDescription ?? "No error")
@@ -209,8 +211,7 @@ private class ButtonAcessoryInputView: UIView {
         applyThinShadow()
 
         button.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(button)
-        button.centerInSuperview()
+        addAndFit(button)
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
 
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false

@@ -9,9 +9,13 @@ import UIKit
 import FirebaseAuth
 import KinUtil
 
+private var secondsCountDown: TimeInterval = 16
+
 class PhoneConfirmationViewController: UIViewController {
     let isCodeLengthValid = Observable<Bool>(false)
     let linkBag = LinkBag()
+    var smsArrivalTimer: Timer?
+    var didAppearAtDate: Date!
 
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
 
@@ -26,6 +30,21 @@ class PhoneConfirmationViewController: UIViewController {
         didSet {
             descriptionLabel.font = FontFamily.Roboto.regular.font(size: 16)
             descriptionLabel.textColor = UIColor.kin.gray
+        }
+    }
+
+    @IBOutlet weak var countdownLabel: UILabel! {
+        didSet {
+            countdownLabel.font = FontFamily.Roboto.regular.font(size: 14)
+            countdownLabel.textColor = UIColor.kin.lightGray
+            countdownLabel.alpha = 0
+        }
+    }
+
+    @IBOutlet weak var newCodeButton: UIButton! {
+        didSet {
+            newCodeButton.isHidden = true
+            newCodeButton.titleLabel?.font = FontFamily.Roboto.regular.font(size: 14)
         }
     }
 
@@ -64,6 +83,18 @@ class PhoneConfirmationViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        didAppearAtDate = Date()
+        smsArrivalTimer = Timer.scheduledTimer(timeInterval: 1,
+                                               target: self,
+                                               selector: #selector(updateCountdown),
+                                               userInfo: nil,
+                                               repeats: true)
+        updateCountdown()
+    }
+
     func verifyCode() {
         guard
             var user = User.current,
@@ -97,10 +128,39 @@ class PhoneConfirmationViewController: UIViewController {
             user.phoneNumber = aSelf.phoneNumber
             user.save()
 
-            AppDelegate.shared.dismissSplashIfNeeded()
+            aSelf.smsArrivalTimer?.invalidate()
+            aSelf.smsArrivalTimer = nil
+
+            let accountReady = StoryboardScene.Main.accountReadyViewController.instantiate()
+            aSelf.navigationController?.pushViewController(accountReady, animated: true)
             WebRequests.updateUserPhone(aSelf.phoneNumber).load(with: KinWebService.shared)
-            FeedbackGenerator.notifySuccessIfAvailable()
         }
+    }
+
+    @objc func updateCountdown() {
+        let sinceDidAppear = Date().timeIntervalSince(didAppearAtDate)
+        let countdown = Int(secondsCountDown - sinceDidAppear)
+        if countdown > 0 {
+            if countdownLabel.alpha == 0 {
+                UIView.animate(withDuration: 0.2) { [weak self] in
+                    self?.countdownLabel.alpha = 1
+                }
+            }
+
+            countdownLabel.text = "The code should arrive in \(countdown)s."
+        } else {
+            smsArrivalTimer?.invalidate()
+            smsArrivalTimer = nil
+
+            UIView.animate(withDuration: 0.2) { [weak self] in
+                self?.countdownLabel.isHidden = true
+                self?.newCodeButton.isHidden = false
+            }
+        }
+    }
+
+    @IBAction func sendNewCode(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
 
     func isCurrentCodeValid() -> Bool {
