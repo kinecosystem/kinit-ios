@@ -12,24 +12,33 @@ private let taskFetchTimeout: TimeInterval = 6
 private let creatingAccountTimeout: TimeInterval = 25
 
 class RootViewController: UIViewController {
-    fileprivate var splashScreenViewController: SplashScreenViewController? = SplashScreenViewController()
+    fileprivate var splashScreenNavigationController: UINavigationController? = {
+        return UINavigationController(rootViewController: SplashScreenViewController())
+    }()
+
     fileprivate let rootTabBarController = StoryboardScene.Main.rootTabBarController.instantiate()
     weak var walletCreationNoticeViewController: NoticeViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if Kin.shared.accountStatus == .activated {
+        if Kin.shared.accountStatus == .activated && false {
             DispatchQueue.main.asyncAfter(deadline: .now() + taskFetchTimeout) {
                 self.dismissSplashIfNeeded()
             }
         } else {
-            splashScreenViewController!.creatingAccount = true
+            //swiftlint:disable:next force_cast
+            let splash = splashScreenNavigationController!.viewControllers.first as! SplashScreenViewController
+            splash.creatingAccount = true
             startWalletCreationTimeout()
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.onboardSucceeded(true)
+            }
         }
 
         addAndFit(rootTabBarController)
-        addAndFit(splashScreenViewController!)
+        addAndFit(splashScreenNavigationController!)
     }
 
     override var childViewControllerForStatusBarStyle: UIViewController? {
@@ -37,11 +46,11 @@ class RootViewController: UIViewController {
     }
 
     func dismissSplashIfNeeded() {
-        guard let splash = splashScreenViewController else {
+        guard let splash = splashScreenNavigationController else {
             return
         }
 
-        self.splashScreenViewController = nil
+        self.splashScreenNavigationController = nil
 
         UIView.animate(withDuration: 0.25, animations: {
             splash.view.alpha = 0
@@ -84,7 +93,8 @@ class RootViewController: UIViewController {
 
     func startWalletCreationTimeout() {
         DispatchQueue.main.asyncAfter(deadline: .now() + creatingAccountTimeout) {
-            guard self.splashScreenViewController != nil else {
+            guard let splashNavigationController = self.splashScreenNavigationController,
+                splashNavigationController.viewControllers.count == 1 else {
                 return
             }
 
@@ -158,8 +168,27 @@ class RootViewController: UIViewController {
         user.save()
 
         DispatchQueue.main.async {
-            if self.walletCreationNoticeViewController == nil {
-                AppDelegate.shared.dismissSplashIfNeeded()
+            guard let splashNavigationController = self.splashScreenNavigationController else {
+                return
+            }
+
+            let containsWelcome = splashNavigationController.viewControllers.contains(where: {
+                $0 is WelcomeViewController
+            })
+
+            guard !containsWelcome else {
+                return
+            }
+
+            let pushWelcome = {
+                let welcome = StoryboardScene.Main.welcomeViewController.instantiate()
+                splashNavigationController.pushViewController(welcome, animated: true)
+            }
+
+            if let walletCreationNotice = self.walletCreationNoticeViewController {
+                walletCreationNotice.dismiss(animated: true, completion: pushWelcome)
+            } else {
+                pushWelcome()
             }
         }
     }

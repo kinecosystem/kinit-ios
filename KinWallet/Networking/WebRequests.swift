@@ -32,6 +32,12 @@ extension WebRequests {
                                                          transform: WebResourceHandlers.isJSONStatusOk)
     }
 
+    static func updateUserPhone(_ number: String) -> WebRequest<SimpleStatusResponse, Success> {
+        return WebRequest<SimpleStatusResponse, Success>(POST: "/user/phone",
+                                                         body: ["number": number],
+                                                         transform: WebResourceHandlers.isJSONStatusOk)
+    }
+
     static func appLaunch() -> WebRequest<SimpleStatusResponse, Success> {
         return WebRequest<SimpleStatusResponse, Success>(POST: "/user/app-launch",
                                                          body: ["app_ver": Bundle.appVersion],

@@ -8,19 +8,21 @@
 import UIKit
 import KinUtil
 
-class SplashScreenViewController: UIViewController {
+final class SplashScreenViewController: UIViewController {
     var creatingAccount = false
     let linkBag = LinkBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        KinLoader.shared.currentTask
-            .on(queue: .main, next: { _ in
-                if Kin.shared.accountStatus == .activated {
+        navigationController?.setNavigationBarHidden(true, animated: false)
+
+        if Kin.shared.accountStatus == .activated && false {
+            KinLoader.shared.currentTask
+                .on(queue: .main, next: { _ in
                     AppDelegate.shared.dismissSplashIfNeeded()
-                }
-            }).add(to: linkBag)
+                }).add(to: linkBag)
+        }
 
         let splashFromStoryboard = StoryboardScene.LaunchScreen.splashScreenViewController.instantiate()
         addAndFit(splashFromStoryboard)

@@ -86,11 +86,17 @@ enum StoryboardScene {
 
     static let offerWallViewController = SceneType<OfferWallViewController>(storyboard: Main.self, identifier: "OfferWallViewController")
 
+    static let phoneConfirmationViewController = SceneType<PhoneConfirmationViewController>(storyboard: Main.self, identifier: "PhoneConfirmationViewController")
+
+    static let phoneVerificationRequestViewController = SceneType<PhoneVerificationRequestViewController>(storyboard: Main.self, identifier: "PhoneVerificationRequestViewController")
+
     static let rootTabBarController = SceneType<RootTabBarController>(storyboard: Main.self, identifier: "RootTabBarController")
 
     static let surveyHomeViewController = SceneType<SurveyHomeViewController>(storyboard: Main.self, identifier: "SurveyHomeViewController")
 
     static let surveyNavigationController = SceneType<KinNavigationController>(storyboard: Main.self, identifier: "SurveyNavigationController")
+
+    static let welcomeViewController = SceneType<WelcomeViewController>(storyboard: Main.self, identifier: "WelcomeViewController")
   }
   enum Spend: StoryboardType {
     static let storyboardName = "Spend"

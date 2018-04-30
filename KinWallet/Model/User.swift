@@ -13,6 +13,7 @@ struct User: Codable {
     let deviceModel: String
     var deviceToken: String?
     let os = "iOS"
+    var phoneNumber: String?
     var publicAddress: String?
     var timeZone: String
     let userId: String
@@ -23,6 +24,7 @@ struct User: Codable {
         case deviceModel = "device_model"
         case deviceToken = "token"
         case os
+        case phoneNumber
         case publicAddress = "public_address"
         case timeZone = "time_zone"
         case userId = "user_id"
@@ -51,6 +53,7 @@ extension User {
                     deviceId: (UIDevice.current.identifierForVendor ?? UUID()).uuidString,
                     deviceModel: UIDevice.current.modelMarketingName,
                     deviceToken: nil,
+                    phoneNumber: nil,
                     publicAddress: nil,
                     timeZone: TimeZone.current.fromGMT,
                     userId: UUID().uuidString)

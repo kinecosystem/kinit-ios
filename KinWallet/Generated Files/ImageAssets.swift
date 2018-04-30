@@ -90,6 +90,9 @@ enum Asset {
   static let timer = ImageAsset(name: "Timer")
   static let transferFireworks = ImageAsset(name: "TransferFireworks")
   static let walletCreationFailed = ImageAsset(name: "WalletCreationFailed")
+  static let welcomeTutorial1 = ImageAsset(name: "WelcomeTutorial1")
+  static let welcomeTutorial2 = ImageAsset(name: "WelcomeTutorial2")
+  static let welcomeTutorial3 = ImageAsset(name: "WelcomeTutorial3")
 
   // swiftlint:disable trailing_comma
   static let allColors: [ColorAsset] = [
@@ -141,6 +144,9 @@ enum Asset {
     timer,
     transferFireworks,
     walletCreationFailed,
+    welcomeTutorial1,
+    welcomeTutorial2,
+    welcomeTutorial3,
   ]
   // swiftlint:enable trailing_comma
   @available(*, deprecated, renamed: "allImages")
