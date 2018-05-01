@@ -22,6 +22,7 @@ class PhoneVerificationRequestViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel! {
         didSet {
             errorLabel.isHidden = true
+            errorLabel.alpha = 0
             errorLabel.textColor = UIColor.kin.errorRed
             errorLabel.font = FontFamily.Roboto.regular.font(size: 14)
         }
@@ -139,6 +140,7 @@ class PhoneVerificationRequestViewController: UIViewController {
                 self.accessoryView.isLoading = false
 
                 if let error = error {
+                    FeedbackGenerator.notifyErrorIfAvailable()
                     let errorMessage = self.errorMessage(for: error as NSError)
                     self.errorLabel.text = errorMessage
                     self.makeErrorLabelVisible(true)

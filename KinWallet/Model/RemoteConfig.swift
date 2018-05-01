@@ -8,8 +8,6 @@
 import Foundation
 
 struct RemoteConfig: Codable {
-    static var current: RemoteConfig?
-
     let authTokenEnabled: Bool?
     let peerToPeerEnabled: Bool?
     let peerToPeerMaxKin: UInt?
@@ -24,5 +22,23 @@ struct RemoteConfig: Codable {
         case peerToPeerMinKin = "p2p_min_kin"
         case peerToPeerMinTasks = "p2p_min_tasks"
         case phoneVerificationEnabled = "phone_verification_enabled"
+    }
+
+    private static var _current: RemoteConfig?
+}
+
+extension RemoteConfig {
+    private static let currentConfigIdentifier = "Current"
+    static var current: RemoteConfig? {
+        if _current == nil {
+            _current = SimpleDatastore.loadObject(currentConfigIdentifier)
+        }
+
+        return _current
+    }
+
+    static func updateCurrent(with config: RemoteConfig) {
+        _current = config
+        SimpleDatastore.persist(config, with: currentConfigIdentifier)
     }
 }

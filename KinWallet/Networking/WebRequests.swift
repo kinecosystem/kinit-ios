@@ -23,7 +23,7 @@ private struct WebResourceHandlers {
         }
 
         if let config = response.config {
-            RemoteConfig.current = config
+            RemoteConfig.updateCurrent(with: config)
         }
 
         return response.config
