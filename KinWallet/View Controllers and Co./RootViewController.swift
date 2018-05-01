@@ -10,6 +10,7 @@ import Crashlytics
 
 private let taskFetchTimeout: TimeInterval = 6
 private let creatingAccountTimeout: TimeInterval = 25
+let shownTutorialKey = "ShownTutorial"
 
 extension NSNotification.Name {
     static let SplashScreenWillDismiss = NSNotification.Name(rawValue: "SplashScreenWillDismiss")
@@ -37,8 +38,12 @@ class RootViewController: UIViewController {
             splash.creatingAccount = true
             startWalletCreationTimeout()
         } else {
-            DispatchQueue.main.asyncAfter(deadline: .now() + taskFetchTimeout) {
-                self.dismissSplashIfNeeded()
+            if UserDefaults.standard.bool(forKey: shownTutorialKey) {
+                showWelcomeViewController()
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + taskFetchTimeout) {
+                    self.dismissSplashIfNeeded()
+                }
             }
         }
 
@@ -191,6 +196,8 @@ class RootViewController: UIViewController {
         guard !containsWelcome else {
             return
         }
+
+        UserDefaults.standard.set(true, forKey: shownTutorialKey)
 
         let pushWelcome = {
             let welcome = StoryboardScene.Main.welcomeViewController.instantiate()

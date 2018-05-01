@@ -54,7 +54,9 @@ class AccountReadyViewController: UIViewController {
     }
 
     func startUsingApp() {
+        UserDefaults.standard.removeObject(forKey: shownTutorialKey)
         let dismissedSplash = AppDelegate.shared.dismissSplashIfNeeded()
+
         if !dismissedSplash {
             dismiss(animated: true, completion: nil)
         }
