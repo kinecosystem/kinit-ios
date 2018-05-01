@@ -1,0 +1,28 @@
+//
+//  RemoteConfig.swift
+//  KinWallet
+//
+//  Copyright © 2018 KinFoundation. All rights reserved.
+//
+
+import Foundation
+
+struct RemoteConfig: Codable {
+    static var current: RemoteConfig?
+
+    let authTokenEnabled: Bool?
+    let peerToPeerEnabled: Bool?
+    let peerToPeerMaxKin: UInt?
+    let peerToPeerMinKin: UInt?
+    let peerToPeerMinTasks: UInt?
+    let phoneVerificationEnabled: Bool?
+
+    enum CodingKeys: CodingKey, String {
+        case authTokenEnabled = "auth_token_enabled"
+        case peerToPeerEnabled = "p2p_enabled"
+        case peerToPeerMaxKin = "p2p_max_kin"
+        case peerToPeerMinKin = "p2p_min_kin"
+        case peerToPeerMinTasks = "p2p_min_tasks"
+        case phoneVerificationEnabled = "phone_verification_enabled"
+    }
+}

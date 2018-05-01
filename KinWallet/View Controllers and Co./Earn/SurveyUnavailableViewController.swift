@@ -31,9 +31,13 @@ final class SurveyUnavailableViewController: UIViewController, AddNoticeViewCont
 
         if task == nil {
             if error != nil {
-                Analytics.logEvent(Events.Analytics.ViewErrorPage(errorType: .internetConnection))
+                Events.Analytics
+                    .ViewErrorPage(errorType: .internetConnection)
+                    .send()
             } else {
-                Analytics.logEvent(Events.Analytics.ViewEmptyStatePage(menuItemName: .earn))
+                Events.Analytics
+                    .ViewEmptyStatePage(menuItemName: .earn)
+                    .send()
             }
         }
     }
@@ -53,9 +57,9 @@ final class SurveyUnavailableViewController: UIViewController, AddNoticeViewCont
             subtitle = "We have planted the seed and your next task is currently growing"
             image = Asset.nextTask.image
 
-            let event = Events.Analytics
+            Events.Analytics
                 .ViewLockedTaskPage(timeToUnlock: Int(toUnlock))
-            Analytics.logEvent(event)
+                .send()
         } else {
             if error != nil {
                 image = noInternetImage
@@ -122,7 +126,9 @@ final class SurveyUnavailableViewController: UIViewController, AddNoticeViewCont
 
 extension SurveyUnavailableViewController: NoticeViewControllerDelegate {
     func noticeViewControllerDidTapButton(_ viewController: NoticeViewController) {
-        Analytics.logEvent(Events.Analytics.ClickReminderButtonOnLockedTaskPage())
+        Events.Analytics
+            .ClickReminderButtonOnLockedTaskPage()
+            .send()
 
         guard let notificationHandler = AppDelegate.shared.notificationHandler else {
             return

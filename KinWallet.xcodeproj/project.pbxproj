@@ -110,6 +110,9 @@
 		910AA22E2096F42F00CC822A /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA22D2096F42F00CC822A /* ConfettiView.swift */; };
 		910AA22F2096F7F800CC822A /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA22D2096F42F00CC822A /* ConfettiView.swift */; };
 		910AA2302096F7F900CC822A /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA22D2096F42F00CC822A /* ConfettiView.swift */; };
+		910AA2322097308000CC822A /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA2312097307F00CC822A /* RemoteConfig.swift */; };
+		910AA2332097308000CC822A /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA2312097307F00CC822A /* RemoteConfig.swift */; };
+		910AA2342097308000CC822A /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA2312097307F00CC822A /* RemoteConfig.swift */; };
 		9114743A203F177500C16279 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91147439203F177500C16279 /* GradientView.swift */; };
 		9114743D203F17ED00C16279 /* WeakBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114743C203F17ED00C16279 /* WeakBox.swift */; };
 		9114743E203F1A5000C16279 /* WeakBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114743C203F17ED00C16279 /* WeakBox.swift */; };
@@ -592,6 +595,7 @@
 		910AA21B209613EA00CC822A /* Shakeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shakeable.swift; sourceTree = "<group>"; };
 		910AA2232096F34600CC822A /* AccountReadyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountReadyViewController.swift; sourceTree = "<group>"; };
 		910AA22D2096F42F00CC822A /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
+		910AA2312097307F00CC822A /* RemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfig.swift; sourceTree = "<group>"; };
 		9110282670A0FC7CBAB94B48 /* Pods_KinWalletTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KinWalletTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91147439203F177500C16279 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradientView.swift; path = Submodules/GradientView/GradientView/GradientView.swift; sourceTree = SOURCE_ROOT; };
 		9114743C203F17ED00C16279 /* WeakBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakBox.swift; sourceTree = "<group>"; };
@@ -1077,6 +1081,7 @@
 				91FF9D17207E4C0200B536E9 /* RedeemTransaction.swift */,
 				9157F98E204D589100351E2A /* Offer.swift */,
 				91473FDF201DCDBF0013A530 /* SelectedResult.swift */,
+				910AA2312097307F00CC822A /* RemoteConfig.swift */,
 				91D891C0201F32B60090E77C /* TaskResults.swift */,
 				91796BC62027261F00F8C6A0 /* User.swift */,
 			);
@@ -1822,6 +1827,7 @@
 				91F69D2F208379F400F06181 /* ButtonBarViewCell.swift in Sources */,
 				91FF9D05207E091500B536E9 /* Array+KinWallet.swift in Sources */,
 				91B4453D20909C4500ED6802 /* TutorialPageView.swift in Sources */,
+				910AA2322097308000CC822A /* RemoteConfig.swift in Sources */,
 				91D891CD2020B3C70090E77C /* TouchUpEffectScalable.swift in Sources */,
 				91FF9D18207E4C0200B536E9 /* RedeemTransaction.swift in Sources */,
 				914013BE2019D07D0066367C /* UIColor+KinWallet.swift in Sources */,
@@ -1981,6 +1987,7 @@
 				914013DF2019F2BF0066367C /* UITableViewCell+KinWallet.swift in Sources */,
 				91E84A9020862C5100E8B7A6 /* User.swift in Sources */,
 				824138402060368B00D7117E /* KinWebService.swift in Sources */,
+				910AA2332097308000CC822A /* RemoteConfig.swift in Sources */,
 				82413847206036B400D7117E /* WebService.swift in Sources */,
 				9182C29A203C6C0C0051F003 /* AMPUtils.m in Sources */,
 				91B4456A2091F98800ED6802 /* PhoneConfirmationViewController.swift in Sources */,
@@ -2095,6 +2102,7 @@
 				91E84ABB20862E4700E8B7A6 /* TransactionHistoryCollectionViewCell.swift in Sources */,
 				91E84A9520862C6C00E8B7A6 /* Array+KinWallet.swift in Sources */,
 				828CB42A2056E9D9007C679C /* WebRequest.swift in Sources */,
+				910AA2342097308000CC822A /* RemoteConfig.swift in Sources */,
 				91E84A862086186B00E8B7A6 /* SegmentedPagerTabStripViewController.swift in Sources */,
 				828CB40F2056E8F5007C679C /* TransferringKinViewController.swift in Sources */,
 				91E84AB220862E0F00E8B7A6 /* TransactionHistoryViewController.swift in Sources */,

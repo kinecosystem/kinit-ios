@@ -96,14 +96,27 @@ class PhoneVerificationRequestViewController: UIViewController {
         super.viewWillAppear(animated)
 
         phoneTextField.becomeFirstResponder()
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+
+        if let navController = navigationController,
+            navController.viewControllers.first != self {
+            navController.setNavigationBarHidden(false, animated: animated)
+        }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        logViewedPage()
     }
 
     private func verifyPhone() {
+        logSubmittedPhone()
+
         guard
             let text = phoneTextField.text,
             let phoneNumber = try? phoneNumberUtility.parse(text, defaultRegion: regionCode),
             let formattedNumber = try? phoneNumberUtility.format(phoneNumber, numberFormat: .INTERNATIONAL) else {
+                logPhoneFormattingFailed()
                 return
         }
 
@@ -137,7 +150,8 @@ class PhoneVerificationRequestViewController: UIViewController {
         guard
             let phoneNumber = try? phoneNumberUtility.parse(text, defaultRegion: regionCode),
             var formattedNumber = try? phoneNumberUtility.format(phoneNumber, numberFormat: .NATIONAL) else {
-            return
+                logPhoneFormattingFailed()
+                return
         }
 
         if formattedNumber.first == "0" {
@@ -150,6 +164,20 @@ class PhoneVerificationRequestViewController: UIViewController {
         phoneTextField.text = formattedNumber
         let isValid = phoneNumberUtility.isValidNumber(forRegion: phoneNumber, regionCode: regionCode)
         isPhoneNumberValid.next(isValid)
+    }
+}
+
+extension PhoneVerificationRequestViewController {
+    fileprivate func logViewedPage() {
+        Events.Analytics.ViewPhoneAuthPage().send()
+    }
+
+    fileprivate func logSubmittedPhone() {
+        Events.Analytics.ClickNextButtonOnPhoneAuthPage().send()
+    }
+
+    fileprivate func logPhoneFormattingFailed() {
+        Events.Log.PhoneFormattingFailed().send()
     }
 }
 

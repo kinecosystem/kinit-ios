@@ -86,6 +86,7 @@ class PhoneConfirmationViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
+        logViewedPage()
         didAppearAtDate = Date()
         smsArrivalTimer = Timer.scheduledTimer(timeInterval: 1,
                                                target: self,
@@ -114,6 +115,7 @@ class PhoneConfirmationViewController: UIViewController {
             aSelf.activityIndicatorView.stopAnimating()
 
             if error != nil {
+                aSelf.logVerificationError()
                 FeedbackGenerator.notifyErrorIfAvailable()
                 aSelf.textFields.forEach {
                     $0.text = ""
@@ -160,6 +162,7 @@ class PhoneConfirmationViewController: UIViewController {
     }
 
     @IBAction func sendNewCode(_ sender: Any) {
+        logRequestedNewCode()
         navigationController?.popViewController(animated: true)
     }
 
@@ -218,5 +221,19 @@ extension PhoneConfirmationViewController: UITextFieldDelegate {
         }
 
         return false
+    }
+}
+
+extension PhoneConfirmationViewController {
+    fileprivate func logViewedPage() {
+        Events.Analytics.ViewVerificationPage().send()
+    }
+
+    fileprivate func logVerificationError() {
+        Events.Analytics.ViewErrorMessageOnVerificationPage().send()
+    }
+
+    fileprivate func logRequestedNewCode() {
+        Events.Analytics.ClickNewCodeLinkOnVerificationPage(verificationCodeCount: 0).send()
     }
 }

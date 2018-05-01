@@ -9,7 +9,8 @@ import UIKit
 
 class TutorialPageView: UIView {
     class func create(with title: String, message: String, image: UIImage) -> TutorialPageView {
-        guard let pageView = Bundle.main.loadNibNamed("TutorialPageView", owner: nil, options: nil)?.first as? TutorialPageView else {
+        let nib = Bundle.main.loadNibNamed("TutorialPageView", owner: nil, options: nil)
+        guard let pageView = nib?.first as? TutorialPageView else {
             fatalError("TutorialPageView could not be loaded from main bundle.")
         }
 

@@ -11,6 +11,11 @@ import Crashlytics
 private let taskFetchTimeout: TimeInterval = 6
 private let creatingAccountTimeout: TimeInterval = 25
 
+extension NSNotification.Name {
+    static let SplashScreenWillDismiss = NSNotification.Name(rawValue: "SplashScreenWillDismiss")
+    static let SplashScreenDidDismiss = NSNotification.Name(rawValue: "SplashScreenDidDismiss")
+}
+
 class RootViewController: UIViewController {
     fileprivate var splashScreenNavigationController: UINavigationController? = {
         return UINavigationController(rootViewController: SplashScreenViewController())
@@ -19,21 +24,21 @@ class RootViewController: UIViewController {
     fileprivate let rootTabBarController = StoryboardScene.Main.rootTabBarController.instantiate()
     weak var walletCreationNoticeViewController: NoticeViewController?
 
+    var isShowingSplashScreen: Bool {
+        return splashScreenNavigationController != nil
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if Kin.shared.accountStatus == .activated && false {
-            DispatchQueue.main.asyncAfter(deadline: .now() + taskFetchTimeout) {
-                self.dismissSplashIfNeeded()
-            }
-        } else {
+        if Kin.shared.accountStatus != .activated {
             //swiftlint:disable:next force_cast
             let splash = splashScreenNavigationController!.viewControllers.first as! SplashScreenViewController
             splash.creatingAccount = true
             startWalletCreationTimeout()
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.onboardSucceeded(true)
+        } else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + taskFetchTimeout) {
+                self.dismissSplashIfNeeded()
             }
         }
 
@@ -45,19 +50,24 @@ class RootViewController: UIViewController {
         return childViewControllers.last
     }
 
-    func dismissSplashIfNeeded() {
+    @discardableResult func dismissSplashIfNeeded() -> Bool {
         guard let splash = splashScreenNavigationController else {
-            return
+            return false
         }
 
         self.splashScreenNavigationController = nil
+
+        NotificationCenter.default.post(name: .SplashScreenWillDismiss, object: nil)
 
         UIView.animate(withDuration: 0.25, animations: {
             splash.view.alpha = 0
         }, completion: { _ in
             splash.remove()
             self.setNeedsStatusBarAppearanceUpdate()
+            NotificationCenter.default.post(name: .SplashScreenDidDismiss, object: nil)
         })
+
+        return true
     }
 
     private func showWalletCreationFailed() {
@@ -88,7 +98,7 @@ class RootViewController: UIViewController {
 
         walletCreationNoticeViewController = noticeViewController
 
-        Analytics.logEvent(Events.Analytics.ViewErrorPage(errorType: .onboarding))
+        logViewedErrorPage()
     }
 
     func startWalletCreationTimeout() {
@@ -118,8 +128,8 @@ class RootViewController: UIViewController {
             Crashlytics.sharedInstance().setUserIdentifier(currentUser.userId)
 
             UIApplication.shared.registerForRemoteNotifications()
-            WebRequests.appLaunch().withCompletion { success, _ in
-                KLogVerbose("App Launch: \(success.boolValue)")
+            WebRequests.appLaunch().withCompletion { config, _ in
+                KLogVerbose("App Launch: \(config != nil ? String(describing: config!) : "No config")")
             }.load(with: KinWebService.shared)
 
             KinLoader.shared.loadAllData()
@@ -127,24 +137,21 @@ class RootViewController: UIViewController {
             Kin.shared.resetKeyStore()
             let user = User.createNew()
             WebRequests.userRegistrationRequest(for: user)
-                .withCompletion { success, error in
-                    KLogVerbose("User registration: \(success.boolValue)")
-                    guard success.boolValue else {
-                        let reason = error?.localizedDescription ?? "Unknown error"
-                        let event = Events.Log.UserRegistrationFailed(failureReason: reason)
-                        Analytics.logEvent(event)
+                .withCompletion { [weak self] config, error in
+                    KLogVerbose("User registration: \(config != nil ? String(describing: config!) : "No config")")
+                    guard config != nil else {
+                        self?.logRegistrationFailed(error: error)
                         return
                     }
 
-                    Analytics.userId = user.userId
-                    Analytics.deviceId = user.deviceId
-                    Analytics.logEvent(Events.Business.UserRegistered())
+                    self?.logRegistrationSucceded(userId: user.userId,
+                                                  deviceId: user.deviceId)
                     user.save()
 
                     KinLoader.shared.loadAllData()
 
                     Kin.shared.performOnboardingIfNeeded().then {
-                        self.onboardSucceeded($0)
+                        self?.onboardSucceeded($0)
                     }
 
                     DispatchQueue.main.async {
@@ -168,35 +175,39 @@ class RootViewController: UIViewController {
         user.save()
 
         DispatchQueue.main.async {
-            guard let splashNavigationController = self.splashScreenNavigationController else {
-                return
-            }
+            self.showWelcomeViewController()
+        }
+    }
 
-            let containsWelcome = splashNavigationController.viewControllers.contains(where: {
-                $0 is WelcomeViewController
-            })
+    func showWelcomeViewController() {
+        guard let splashNavigationController = self.splashScreenNavigationController else {
+            return
+        }
 
-            guard !containsWelcome else {
-                return
-            }
+        let containsWelcome = splashNavigationController.viewControllers.contains(where: {
+            $0 is WelcomeViewController
+        })
 
-            let pushWelcome = {
-                let welcome = StoryboardScene.Main.welcomeViewController.instantiate()
-                splashNavigationController.pushViewController(welcome, animated: true)
-            }
+        guard !containsWelcome else {
+            return
+        }
 
-            if let walletCreationNotice = self.walletCreationNoticeViewController {
-                walletCreationNotice.dismiss(animated: true, completion: pushWelcome)
-            } else {
-                pushWelcome()
-            }
+        let pushWelcome = {
+            let welcome = StoryboardScene.Main.welcomeViewController.instantiate()
+            splashNavigationController.pushViewController(welcome, animated: true)
+        }
+
+        if let walletCreationNotice = self.walletCreationNoticeViewController {
+            walletCreationNotice.dismiss(animated: true, completion: pushWelcome)
+        } else {
+            pushWelcome()
         }
     }
 }
 
 extension RootViewController: NoticeViewControllerDelegate {
     func noticeViewControllerDidTapButton(_ viewController: NoticeViewController) {
-        Analytics.logEvent(Events.Analytics.ClickRetryButtonOnErrorPage(errorType: .onboarding))
+        logClickedRetryOnErrorPage()
 
         dismiss(animated: true) { [weak self] in
             self?.startWalletCreationTimeout()
@@ -204,8 +215,41 @@ extension RootViewController: NoticeViewControllerDelegate {
         }
     }
 
-    func noticeViewControllerDidAdditionalMessage(_ viewController: NoticeViewController) {
-        Analytics.logEvent(Events.Analytics.ClickContactLinkOnErrorPage(errorType: .onboarding))
+    func noticeViewControllerDidTapAdditionalMessage(_ viewController: NoticeViewController) {
+        logClickedSupportOnErrorPage()
         KinSupportViewController.present(from: viewController)
+    }
+}
+
+extension RootViewController {
+    fileprivate func logRegistrationSucceded(userId: String, deviceId: String) {
+        Analytics.userId = userId
+        Analytics.deviceId = deviceId
+        Events.Business.UserRegistered().send()
+    }
+
+    fileprivate func logRegistrationFailed(error: Error?) {
+        let reason = error?.localizedDescription ?? "Unknown error"
+        Events.Log
+            .UserRegistrationFailed(failureReason: reason)
+            .send()
+    }
+
+    fileprivate func logViewedErrorPage() {
+        Events.Analytics
+            .ViewErrorPage(errorType: .onboarding)
+            .send()
+    }
+
+    fileprivate func logClickedRetryOnErrorPage() {
+        Events.Analytics
+            .ClickRetryButtonOnErrorPage(errorType: .onboarding)
+            .send()
+    }
+
+    fileprivate func logClickedSupportOnErrorPage() {
+        Events.Analytics
+            .ClickContactLinkOnErrorPage(errorType: .onboarding)
+            .send()
     }
 }

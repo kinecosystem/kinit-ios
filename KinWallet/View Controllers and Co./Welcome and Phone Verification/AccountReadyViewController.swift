@@ -40,14 +40,33 @@ class AccountReadyViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        FeedbackGenerator.notifySuccessIfAvailable()
+        logViewedPage()
+        logFinishedVerification()
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            AppDelegate.shared.dismissSplashIfNeeded()
+        FeedbackGenerator.notifySuccessIfAvailable()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
+            self?.startUsingApp()
         }
     }
 
     @objc func viewTapped() {
-        AppDelegate.shared.dismissSplashIfNeeded()
+        startUsingApp()
+    }
+
+    func startUsingApp() {
+        let dismissedSplash = AppDelegate.shared.dismissSplashIfNeeded()
+        if !dismissedSplash {
+            dismiss(animated: true, completion: nil)
+        }
+    }
+}
+
+extension AccountReadyViewController {
+    fileprivate func logViewedPage() {
+        Events.Analytics.ViewOnboardingCompletedPage().send()
+    }
+
+    fileprivate func logFinishedVerification() {
+        Events.Business.UserVerified().send()
     }
 }

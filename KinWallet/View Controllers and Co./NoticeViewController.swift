@@ -43,11 +43,11 @@ struct NoticeButtonConfiguration {
 
 protocol NoticeViewControllerDelegate: class {
     func noticeViewControllerDidTapButton(_ viewController: NoticeViewController)
-    func noticeViewControllerDidAdditionalMessage(_ viewController: NoticeViewController)
+    func noticeViewControllerDidTapAdditionalMessage(_ viewController: NoticeViewController)
 }
 
 extension NoticeViewControllerDelegate {
-    func noticeViewControllerDidAdditionalMessage(_ viewController: NoticeViewController) {
+    func noticeViewControllerDidTapAdditionalMessage(_ viewController: NoticeViewController) {
 
     }
 }
@@ -137,7 +137,7 @@ class NoticeViewController: UIViewController {
     }
 
     @objc func additionalLabelTapped() {
-        delegate?.noticeViewControllerDidAdditionalMessage(self)
+        delegate?.noticeViewControllerDidTapAdditionalMessage(self)
     }
 }
 

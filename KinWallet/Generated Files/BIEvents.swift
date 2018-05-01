@@ -2,7 +2,7 @@
 // BIEvents.swift
 //
 // Don't edit this file.
-// Generated at 2018-04-11 09:06:09 +0000 by Kik BI-Generator.
+// Generated at 2018-05-01 08:14:14 +0000 by Kik BI-Generator.
 //
 
 protocol BIEvent {
@@ -272,7 +272,7 @@ struct Events {
                         ]
             }
         } 
-        /// user was successfully created in the server (user_id). Event name: `user_registered`
+        /// user was successfully created in the server (user ID). Event name: `user_registered`
         struct UserRegistered: BIEvent {
             let name = "user_registered"
             
@@ -286,6 +286,17 @@ struct Events {
         /// Stellar wallet (account) successfully created for the user. Event name: `wallet_created`
         struct WalletCreated: BIEvent {
             let name = "wallet_created"
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "business",
+                        
+                        ]
+            }
+        } 
+        /// user was successfully verified (completed phone verification). Event name: `user_verified`
+        struct UserVerified: BIEvent {
+            let name = "user_verified"
             
             var properties: [String: Any] {
                 return [
@@ -521,6 +532,41 @@ struct Events {
                         ]
             }
         } 
+        /// user views question page, as part of a questionnaire. Event name: `view_Question_page`
+        struct ViewQuestionPage: BIEvent {
+            let name = "view_Question_page"
+            let creator: String
+            let estimatedTimeToComplete: Float
+            let kinReward: Int
+            let numberOfQuestions: Int
+            let questionId: String
+            let questionOrder: Int
+            let questionType: QuestionType
+            let taskCategory: String
+            let taskId: String
+            let taskTitle: String
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Question",
+                        "item_type": "page",
+                        "action": "view",
+                        "event_type": "analytics",
+                        
+                        
+                        "creator": creator,
+                        "estimated_time_to_complete": estimatedTimeToComplete,
+                        "KIN_reward": kinReward,
+                        "number_of_questions": numberOfQuestions,
+                        "question_id": questionId,
+                        "question_order": questionOrder,
+                        "question_type": questionType.rawValue,
+                        "task_category": taskCategory,
+                        "task_id": taskId,
+                        "task_title": taskTitle, 
+                        ]
+            }
+        } 
         /// user views Reward page after completing a task. Event name: `view_Reward_page`
         struct ViewRewardPage: BIEvent {
             let name = "view_Reward_page"
@@ -535,35 +581,6 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Reward",
-                        "item_type": "page",
-                        "action": "view",
-                        "event_type": "analytics",
-                        
-                        
-                        "creator": creator,
-                        "estimated_time_to_complete": estimatedTimeToComplete,
-                        "KIN_reward": kinReward,
-                        "task_category": taskCategory,
-                        "task_id": taskId,
-                        "task_title": taskTitle,
-                        "task_type": taskType.rawValue, 
-                        ]
-            }
-        } 
-        /// user views earning task end page (Yay!). Event name: `view_Task_End_page`
-        struct ViewTaskEndPage: BIEvent {
-            let name = "view_Task_End_page"
-            let creator: String
-            let estimatedTimeToComplete: Float
-            let kinReward: Int
-            let taskCategory: String
-            let taskId: String
-            let taskTitle: String
-            let taskType: TaskType
-            
-            var properties: [String: Any] {
-                return [
-                        "item_name": "Task_End",
                         "item_type": "page",
                         "action": "view",
                         "event_type": "analytics",
@@ -997,23 +1014,179 @@ struct Events {
                         ]
             }
         } 
-        /// user views question page, as part of a questionnaire. Event name: `view_Question_page`
-        struct ViewQuestionPage: BIEvent {
-            let name = "view_Question_page"
-            let creator: String
-            let estimatedTimeToComplete: Float
-            let kinReward: Int
-            let numberOfQuestions: Int
-            let questionId: String
-            let questionOrder: Int
-            let questionType: QuestionType
-            let taskCategory: String
-            let taskId: String
-            let taskTitle: String
+        /// user clicks the button on the onboarding page (tutorial pages). Event name: `click_Start_button_on_Onboarding_page`
+        struct ClickStartButtonOnOnboardingPage: BIEvent {
+            let name = "click_Start_button_on_Onboarding_page"
+            let onboardingTutorialPage: Int
             
             var properties: [String: Any] {
                 return [
-                        "item_name": "Question",
+                        "item_name": "Start",
+                        "item_type": "button",
+                        "action": "click",
+                        "event_type": "analytics",
+                        "parent_name": "Onboarding",
+                        "parent_type": "page",
+                        
+                        
+                        "onboarding_tutorial_page": onboardingTutorialPage, 
+                        ]
+            }
+        } 
+        /// user views the onboarding page (tutorial pages). sent also when moving to other tutorial slide. Event name: `view_Onboarding_page`
+        struct ViewOnboardingPage: BIEvent {
+            let name = "view_Onboarding_page"
+            let onboardingTutorialPage: Int
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Onboarding",
+                        "item_type": "page",
+                        "action": "view",
+                        "event_type": "analytics",
+                        
+                        
+                        "onboarding_tutorial_page": onboardingTutorialPage, 
+                        ]
+            }
+        } 
+        /// user views the phone authentication page when phone number should be inserted. Event name: `view_Phone_Auth_page`
+        struct ViewPhoneAuthPage: BIEvent {
+            let name = "view_Phone_Auth_page"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Phone_Auth",
+                        "item_type": "page",
+                        "action": "view",
+                        "event_type": "analytics",
+                        
+                        ]
+            }
+        } 
+        /// user click the button to continue to verification page. Event name: `click_Next_button_on_Phone_Auth_page`
+        struct ClickNextButtonOnPhoneAuthPage: BIEvent {
+            let name = "click_Next_button_on_Phone_Auth_page"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Next",
+                        "item_type": "button",
+                        "action": "click",
+                        "event_type": "analytics",
+                        "parent_name": "Phone_Auth",
+                        "parent_type": "page",
+                        
+                        ]
+            }
+        } 
+        /// user views the verification page, where a verification code should be inserted. Event name: `view_Verification_page`
+        struct ViewVerificationPage: BIEvent {
+            let name = "view_Verification_page"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Verification",
+                        "item_type": "page",
+                        "action": "view",
+                        "event_type": "analytics",
+                        
+                        ]
+            }
+        } 
+        /// user gets an error message when entering a wrong verification code. Event name: `view_Error_message_on_Verification_page`
+        struct ViewErrorMessageOnVerificationPage: BIEvent {
+            let name = "view_Error_message_on_Verification_page"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Error",
+                        "item_type": "message",
+                        "action": "view",
+                        "event_type": "analytics",
+                        "parent_name": "Verification",
+                        "parent_type": "page",
+                        
+                        ]
+            }
+        } 
+        /// user view the completion message after successfully completed onboarding. Event name: `view_Onboarding_Completed_page`
+        struct ViewOnboardingCompletedPage: BIEvent {
+            let name = "view_Onboarding_Completed_page"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Onboarding_Completed",
+                        "item_type": "page",
+                        "action": "view",
+                        "event_type": "analytics",
+                        
+                        ]
+            }
+        } 
+        /// user clicks the new code link to receive a new SMS with verification code. Event name: `click_New_Code_link_on_Verification_page`
+        struct ClickNewCodeLinkOnVerificationPage: BIEvent {
+            let name = "click_New_Code_link_on_Verification_page"
+            let verificationCodeCount: Int
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "New_Code",
+                        "item_type": "link",
+                        "action": "click",
+                        "event_type": "analytics",
+                        "parent_name": "Verification",
+                        "parent_type": "page",
+                        
+                        
+                        "verification_code_count": verificationCodeCount, 
+                        ]
+            }
+        } 
+        /// existing user receives a popup message explaining the phone auth required. Event name: `view_Phone_Auth_popup`
+        struct ViewPhoneAuthPopup: BIEvent {
+            let name = "view_Phone_Auth_popup"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Phone_Auth",
+                        "item_type": "popup",
+                        "action": "view",
+                        "event_type": "analytics",
+                        
+                        ]
+            }
+        } 
+        /// existing user clicks the button on the popup message to start phone auth flow. Event name: `click_Verify_button_on_Phone_Auth_popup`
+        struct ClickVerifyButtonOnPhoneAuthPopup: BIEvent {
+            let name = "click_Verify_button_on_Phone_Auth_popup"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Verify",
+                        "item_type": "button",
+                        "action": "click",
+                        "event_type": "analytics",
+                        "parent_name": "Phone_Auth",
+                        "parent_type": "popup",
+                        
+                        ]
+            }
+        } 
+        /// user views earning task end page (Yay!). Event name: `view_Task_End_page`
+        struct ViewTaskEndPage: BIEvent {
+            let name = "view_Task_End_page"
+            let creator: String
+            let estimatedTimeToComplete: Float
+            let kinReward: Int
+            let taskCategory: String
+            let taskId: String
+            let taskTitle: String
+            let taskType: TaskType
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Task_End",
                         "item_type": "page",
                         "action": "view",
                         "event_type": "analytics",
@@ -1022,13 +1195,10 @@ struct Events {
                         "creator": creator,
                         "estimated_time_to_complete": estimatedTimeToComplete,
                         "KIN_reward": kinReward,
-                        "number_of_questions": numberOfQuestions,
-                        "question_id": questionId,
-                        "question_order": questionOrder,
-                        "question_type": questionType.rawValue,
                         "task_category": taskCategory,
                         "task_id": taskId,
-                        "task_title": taskTitle, 
+                        "task_title": taskTitle,
+                        "task_type": taskType.rawValue, 
                         ]
             }
         } 
@@ -1109,6 +1279,17 @@ struct Events {
                         
                         
                         "failure_reason": failureReason, 
+                        ]
+            }
+        } 
+        /// When formatting of the phone inserted by the user when validating fails. Event name: `phone_formatting_failed`
+        struct PhoneFormattingFailed: BIEvent {
+            let name = "phone_formatting_failed"
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
                         ]
             }
         } 

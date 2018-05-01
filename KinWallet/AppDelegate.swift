@@ -80,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication,
-                     didReceiveRemoteNotification userInfo: [AnyHashable : Any],
+                     didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         if Auth.auth().canHandleNotification(userInfo) {
             completionHandler(.noData)
@@ -97,8 +97,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate {
-    func dismissSplashIfNeeded() {
-        rootViewController.dismissSplashIfNeeded()
+    @discardableResult func dismissSplashIfNeeded() -> Bool {
+        return rootViewController.dismissSplashIfNeeded()
+    }
+
+    var isShowingSplashScreen: Bool {
+        return rootViewController.isShowingSplashScreen
     }
 }
 

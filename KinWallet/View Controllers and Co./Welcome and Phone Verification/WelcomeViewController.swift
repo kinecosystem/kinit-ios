@@ -49,6 +49,12 @@ final class WelcomeViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        logViewedPage()
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
@@ -75,13 +81,38 @@ final class WelcomeViewController: UIViewController {
     }
 
     @IBAction func startEarning(_ sender: Any) {
-        let phoneVerification = StoryboardScene.Main.phoneVerificationRequestViewController.instantiate()
-        navigationController?.pushViewController(phoneVerification, animated: true)
+        logClickedStart()
+
+        if RemoteConfig.current?.phoneVerificationEnabled == true {
+            let phoneVerification = StoryboardScene.Main.phoneVerificationRequestViewController.instantiate()
+            navigationController?.pushViewController(phoneVerification, animated: true)
+        } else {
+            AppDelegate.shared.dismissSplashIfNeeded()
+        }
     }
 
     @IBAction func pageControlChangedValue(_ sender: Any) {
         let offsetX = scrollView.frame.width * CGFloat(pageControl.currentPage)
         scrollView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
+        logViewedPage()
+    }
+}
+
+extension WelcomeViewController {
+    fileprivate func logClickedStart() {
+        Events.Analytics
+            .ClickStartButtonOnOnboardingPage(onboardingTutorialPage: currentPageForAnalytics())
+            .send()
+    }
+
+    fileprivate func logViewedPage() {
+        Events.Analytics
+            .ViewOnboardingPage(onboardingTutorialPage: currentPageForAnalytics())
+            .send()
+    }
+
+    private func currentPageForAnalytics() -> Int {
+        return pageControl.currentPage + 1
     }
 }
 
@@ -89,5 +120,6 @@ extension WelcomeViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let page = scrollView.contentOffset.x / scrollView.frame.width
         pageControl.currentPage = Int(page)
+        logViewedPage()
     }
 }

@@ -14,16 +14,31 @@ private struct WebResourceHandlers {
     static func isJSONStatusOk(response: StatusResponse?) -> Bool? {
         return response?.status == "ok"
     }
+
+    static func isRemoteStatusOk(response: RemoteConfigStatusResponse?) -> RemoteConfig? {
+        guard
+            let response = response,
+            WebResourceHandlers.isJSONStatusOk(response: response).boolValue else {
+                return nil
+        }
+
+        if let config = response.config {
+            RemoteConfig.current = config
+        }
+
+        return response.config
+    }
 }
 
 struct WebRequests {}
 
 // MARK: User registration
+
 extension WebRequests {
-    static func userRegistrationRequest(for user: User) -> WebRequest<SimpleStatusResponse, Success> {
-        return WebRequest<SimpleStatusResponse, Success>(POST: "/user/register",
-                                                         body: user,
-                                                         transform: WebResourceHandlers.isJSONStatusOk)
+    static func userRegistrationRequest(for user: User) -> WebRequest<RemoteConfigStatusResponse, RemoteConfig> {
+        return WebRequest<RemoteConfigStatusResponse, RemoteConfig>(POST: "/user/register",
+                                                               body: user,
+                                                               transform: WebResourceHandlers.isRemoteStatusOk)
     }
 
     static func updateUserToken(_ newToken: String) -> WebRequest<SimpleStatusResponse, Success> {
@@ -38,10 +53,10 @@ extension WebRequests {
                                                          transform: WebResourceHandlers.isJSONStatusOk)
     }
 
-    static func appLaunch() -> WebRequest<SimpleStatusResponse, Success> {
-        return WebRequest<SimpleStatusResponse, Success>(POST: "/user/app-launch",
+    static func appLaunch() -> WebRequest<RemoteConfigStatusResponse, RemoteConfig> {
+        return WebRequest<RemoteConfigStatusResponse, RemoteConfig>(POST: "/user/app-launch",
                                                          body: ["app_ver": Bundle.appVersion],
-                                                         transform: WebResourceHandlers.isJSONStatusOk)
+                                                         transform: WebResourceHandlers.isRemoteStatusOk)
     }
 }
 

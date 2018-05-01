@@ -49,7 +49,7 @@ struct Analytics {
         }
     }
 
-    static func setUserProperties(properties: [String: Any]) {
+    static func setUserProperties(_ properties: [String: Any]) {
         Amplitude.instance().setUserProperties(properties)
     }
 
@@ -64,6 +64,12 @@ struct Analytics {
     static func logEvent(_ event: BIEvent) {
         Amplitude.instance().logEvent(event.name,
                                       withEventProperties: event.properties)
+    }
+}
+
+extension BIEvent {
+    func send() {
+        Analytics.logEvent(self)
     }
 }
 

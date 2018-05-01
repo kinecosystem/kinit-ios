@@ -204,17 +204,6 @@ final class SurveyViewController: UIViewController {
         surveyComplete.results = results
         navigationController?.pushViewController(surveyComplete, animated: true)
     }
-
-    func logTaskCompleted() {
-        let event = Events.Business.EarningTaskCompleted(creator: task.author.name,
-                                                         estimatedTimeToComplete: task.minutesToComplete,
-                                                         kinReward: Int(task.kinReward),
-                                                         taskCategory: task.tags.asString,
-                                                         taskId: task.identifier,
-                                                         taskTitle: task.title,
-                                                         taskType: .questionnaire)
-        Analytics.logEvent(event)
-    }
 }
 
 extension SurveyViewController: QuestionViewControllerDelegate {
@@ -260,7 +249,7 @@ extension SurveyViewController: QuestionViewControllerDelegate {
 // MARK: Analytics
 extension SurveyViewController {
     func logQuestionShown(_ question: Question, at questionIndex: Int) {
-        let event = Events.Analytics
+        Events.Analytics
             .ViewQuestionPage(creator: task.author.name,
                 estimatedTimeToComplete: task.minutesToComplete,
                 kinReward: Int(task.kinReward),
@@ -271,11 +260,11 @@ extension SurveyViewController {
                 taskCategory: task.tags.asString,
                 taskId: task.identifier,
                 taskTitle: task.title)
-        Analytics.logEvent(event)
+            .send()
     }
 
     func logQuestionAnswered(_ question: Question, questionIndex: Int, answerIds: String, answerIndex: Int?) {
-        let event = Events.Analytics
+        Events.Analytics
             .ClickAnswerButtonOnQuestionPage(answerId: answerIds,
                                              answerOrder: answerIndex != nil ? answerIndex! + 1 : -1,
                                              creator: task.author.name,
@@ -289,11 +278,11 @@ extension SurveyViewController {
                                              taskCategory: task.tags.asString,
                                              taskId: task.identifier,
                                              taskTitle: task.title)
-        Analytics.logEvent(event)
+            .send()
     }
 
-    func logClosedOnQuestion(_ question: Question, questionIndex: Int) {
-        let event = Events.Analytics
+    fileprivate func logClosedOnQuestion(_ question: Question, questionIndex: Int) {
+        Events.Analytics
             .ClickCloseButtonOnQuestionPage(creator: task.author.name,
                                             estimatedTimeToComplete: task.minutesToComplete,
                                             kinReward: Int(task.kinReward),
@@ -305,7 +294,19 @@ extension SurveyViewController {
                                             taskCategory: task.tags.asString,
                                             taskId: task.identifier,
                                             taskTitle: task.title)
-        Analytics.logEvent(event)
+            .send()
+    }
+
+    fileprivate func logTaskCompleted() {
+        Events.Business
+            .EarningTaskCompleted(creator: task.author.name,
+                                  estimatedTimeToComplete: task.minutesToComplete,
+                                  kinReward: Int(task.kinReward),
+                                  taskCategory: task.tags.asString,
+                                  taskId: task.identifier,
+                                  taskTitle: task.title,
+                                  taskType: .questionnaire)
+            .send()
     }
 }
 

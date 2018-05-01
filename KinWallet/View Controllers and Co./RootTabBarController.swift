@@ -31,7 +31,9 @@ class RootTabBarController: UITabBarController {
         if
             let itemTitle = item.title,
             let menuItemName = Events.MenuItemName(rawValue: itemTitle) {
-            Analytics.logEvent(Events.Analytics.ClickMenuItem(menuItemName: menuItemName))
+            Events.Analytics
+                .ClickMenuItem(menuItemName: menuItemName)
+                .send()
         }
     }
 }

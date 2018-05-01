@@ -17,7 +17,7 @@ final class SplashScreenViewController: UIViewController {
 
         navigationController?.setNavigationBarHidden(true, animated: false)
 
-        if Kin.shared.accountStatus == .activated && false {
+        if Kin.shared.accountStatus == .activated {
             KinLoader.shared.currentTask
                 .on(queue: .main, next: { _ in
                     AppDelegate.shared.dismissSplashIfNeeded()
@@ -39,7 +39,7 @@ final class SplashScreenViewController: UIViewController {
             }
         }
 
-        Analytics.logEvent(Events.Analytics.ViewSplashscreenPage())
+        Events.Analytics.ViewSplashscreenPage().send()
     }
 
     func creatingWalletLabel() -> UILabel {

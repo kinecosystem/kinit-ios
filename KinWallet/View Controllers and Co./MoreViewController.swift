@@ -49,7 +49,7 @@ class MoreViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        Analytics.logEvent(Events.Analytics.ViewProfilePage())
+        Events.Analytics.ViewProfilePage().send()
     }
 
     @IBAction func emailTapped(_ sender: Any) {

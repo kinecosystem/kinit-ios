@@ -108,24 +108,26 @@ extension OfferWallViewController: UICollectionViewDelegateFlowLayout {
 // MARK: Analytics
 extension OfferWallViewController {
     func logViewPage() {
-        let event: BIEvent = {
-            switch KinLoader.shared.offers.value! {
-            case .none(let error):
-                if error != nil {
-                    return Events.Analytics.ViewErrorPage(errorType: .internetConnection)
-                } else {
-                    return Events.Analytics.ViewEmptyStatePage(menuItemName: .earn)
-                }
-            case .some(let offers):
-                return Events.Analytics.ViewSpendPage(numberOfOffers: offers.count)
+        switch KinLoader.shared.offers.value! {
+        case .none(let error):
+            if error != nil {
+                Events.Analytics
+                    .ViewErrorPage(errorType: .internetConnection)
+                    .send()
+            } else {
+                Events.Analytics
+                    .ViewEmptyStatePage(menuItemName: .earn)
+                    .send()
             }
-        }()
-
-        Analytics.logEvent(event)
+        case .some(let offers):
+            Events.Analytics
+                .ViewSpendPage(numberOfOffers: offers.count)
+                .send()
+        }
     }
 
     func logTappedOffer(_ offer: Offer, index: Int) {
-        let event = Events.Analytics
+        Events.Analytics
             .ClickOfferItemOnSpendPage(brandName: offer.author.name,
                                        kinPrice: Int(offer.price),
                                        numberOfOffers: subscriber.items.count,
@@ -134,6 +136,6 @@ extension OfferWallViewController {
                                        offerName: offer.title,
                                        offerOrder: index,
                                        offerType: offer.type)
-        Analytics.logEvent(event)
+            .send()
     }
 }

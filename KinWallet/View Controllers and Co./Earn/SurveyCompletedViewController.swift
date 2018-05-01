@@ -97,7 +97,7 @@ final class SurveyCompletedViewController: UIViewController {
                 }
 
                 KinLoader.shared.loadTransactions()
-                
+
                 KLogVerbose("Transaction succeeded!")
                 aSelf.watch = nil
 
@@ -136,8 +136,7 @@ final class SurveyCompletedViewController: UIViewController {
                                                  buttonConfiguration: buttonConfig,
                                                  displayType: .imageFirst)
             aSelf.present(noticeViewController, animated: true)
-
-            Analytics.logEvent(Events.Analytics.ViewErrorPage(errorType: .reward))
+            aSelf.logViewedErrorPage(errorType: .reward)
         }
     }
 
@@ -202,13 +201,13 @@ final class SurveyCompletedViewController: UIViewController {
 
         present(viewController, animated: true)
 
-        Analytics.logEvent(Events.Analytics.ViewErrorPage(errorType: .taskSubmission))
+        logViewedErrorPage(errorType: .taskSubmission)
     }
 }
 
 extension SurveyCompletedViewController {
-    func logViewedDone() {
-        let event = Events.Analytics
+    fileprivate func logViewedDone() {
+        Events.Analytics
             .ViewTaskEndPage(creator: task.author.name,
                              estimatedTimeToComplete: task.minutesToComplete,
                              kinReward: Int(task.kinReward),
@@ -216,11 +215,11 @@ extension SurveyCompletedViewController {
                              taskId: task.identifier,
                              taskTitle: task.title,
                              taskType: .questionnaire)
-        Analytics.logEvent(event)
+            .send()
     }
 
-    func logTransferringKinEvent() {
-        let event = Events.Analytics
+    fileprivate func logTransferringKinEvent() {
+        Events.Analytics
             .ViewRewardPage(creator: task.author.name,
                             estimatedTimeToComplete: task.minutesToComplete,
                             kinReward: Int(task.kinReward),
@@ -228,11 +227,11 @@ extension SurveyCompletedViewController {
                             taskId: task.identifier,
                             taskTitle: task.title,
                             taskType: .questionnaire)
-        Analytics.logEvent(event)
+            .send()
     }
 
-    func logKinTransferred() {
-        let event = Events.Analytics
+    fileprivate func logKinTransferred() {
+        Events.Analytics
             .ViewKinProvidedImageOnRewardPage(creator: task.author.name,
                                               estimatedTimeToComplete: task.minutesToComplete,
                                               kinReward: Int(task.kinReward),
@@ -240,11 +239,11 @@ extension SurveyCompletedViewController {
                                               taskId: task.identifier,
                                               taskTitle: task.title,
                                               taskType: .questionnaire)
-        Analytics.logEvent(event)
+            .send()
     }
 
-    func logClosedEvent() {
-        let event = Events.Analytics
+    fileprivate func logClosedEvent() {
+        Events.Analytics
             .ClickCloseButtonOnRewardPage(creator: task.author.name,
                                           estimatedTimeToComplete: task.minutesToComplete,
                                           kinReward: Int(task.kinReward),
@@ -252,29 +251,41 @@ extension SurveyCompletedViewController {
                                           taskId: task.identifier,
                                           taskTitle: task.title,
                                           taskType: .questionnaire)
-        Analytics.logEvent(event)
+            .send()
     }
 
-    func logEarnTransactionTimeout() {
-        let event = Events.Business.KINTransactionFailed(failureReason: "Timeout",
+    fileprivate func logEarnTransactionTimeout() {
+        Events.Business
+            .KINTransactionFailed(failureReason: "Timeout",
                                                          kinAmount: Float(task.kinReward),
                                                          transactionType: .earn)
-        Analytics.logEvent(event)
+            .send()
     }
 
-    func logEarnTransactionSucceded(with payment: PaymentInfo) {
-        let event = Events.Business.KINTransactionSucceeded(kinAmount: Float(task.kinReward),
+    fileprivate func logEarnTransactionSucceded(with payment: PaymentInfo) {
+        Events.Business
+            .KINTransactionSucceeded(kinAmount: Float(task.kinReward),
                                                             transactionId: payment.hash,
                                                             transactionType: .earn)
-        Analytics.logEvent(event)
+            .send()
+    }
+
+    fileprivate func logViewedErrorPage(errorType: Events.ErrorType) {
+        Events.Analytics
+            .ViewErrorPage(errorType: errorType)
+            .send()
+    }
+
+    fileprivate func logClickedCloseErrorPage(errorType: Events.ErrorType) {
+        Events.Analytics
+            .ClickCloseButtonOnErrorPage(errorType: errorType)
+            .send()
     }
 }
 
 extension SurveyCompletedViewController: NoticeViewControllerDelegate {
     func noticeViewControllerDidTapButton(_ viewController: NoticeViewController) {
-        let errorType: Events.ErrorType = failedToSubmitResults ? .taskSubmission : .reward
-        Analytics.logEvent(Events.Analytics.ClickCloseButtonOnErrorPage(errorType: errorType))
-
+        logClickedCloseErrorPage(errorType: failedToSubmitResults ? .taskSubmission : .reward)
         presentingViewController!.dismiss(animated: true)
     }
 }
