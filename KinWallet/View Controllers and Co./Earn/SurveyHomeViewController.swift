@@ -61,10 +61,14 @@ final class SurveyHomeViewController: UIViewController {
                                                 message: "Please verify your phone number",
                                                 preferredStyle: .alert)
         alertController.addAction(.init(title: "Verify my account", style: .default) { [weak self] _ in
-            self?.logClickedVerifyPhoneAuthPopup()
+            guard let aSelf = self else {
+                return
+            }
+
+            aSelf.logClickedVerifyPhoneAuthPopup()
             let phoneVerification = StoryboardScene.Main.phoneVerificationRequestViewController.instantiate()
             let navController = UINavigationController(rootViewController: phoneVerification)
-            self.present(navController, animated: true, completion: nil)
+            aSelf.present(navController, animated: true, completion: nil)
         })
 
         present(alertController, animated: true, completion: nil)

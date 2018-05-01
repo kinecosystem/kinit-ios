@@ -427,7 +427,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="EIT-Ri-6P4">
-                                <rect key="frame" x="42.5" y="60" width="290" height="155"/>
+                                <rect key="frame" x="42.5" y="60" width="290" height="215.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="49D-oG-WZy">
                                         <rect key="frame" x="5.5" y="0.0" width="279.5" height="75"/>
@@ -469,8 +469,15 @@
                                             <constraint firstAttribute="height" constant="40" id="iV3-q6-Wev"/>
                                         </constraints>
                                     </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tqu-Fy-a0a">
+                                        <rect key="frame" x="0.0" y="195" width="290" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="tqu-Fy-a0a" firstAttribute="width" secondItem="EIT-Ri-6P4" secondAttribute="width" id="Duk-NE-7cK"/>
                                     <constraint firstItem="mwI-E8-MwT" firstAttribute="width" secondItem="EIT-Ri-6P4" secondAttribute="width" multiplier="0.8" id="M5d-Nv-kiR"/>
                                     <constraint firstAttribute="width" constant="290" id="bLp-BJ-rHL"/>
                                 </constraints>
@@ -486,6 +493,7 @@
                     <connections>
                         <outlet property="countryCodeTextField" destination="od8-7p-yPb" id="5V1-zJ-sVx"/>
                         <outlet property="descriptionLabel" destination="N65-oU-kCr" id="ns8-GH-19Q"/>
+                        <outlet property="errorLabel" destination="tqu-Fy-a0a" id="g0b-gY-31c"/>
                         <outlet property="phoneTextField" destination="pEP-cg-Tqn" id="21l-yO-GQG"/>
                         <outlet property="titleLabel" destination="ZMF-ZY-5dh" id="9xr-Ig-ilT"/>
                     </connections>

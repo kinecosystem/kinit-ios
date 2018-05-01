@@ -41,15 +41,15 @@ extension WebRequests {
                                                                transform: WebResourceHandlers.isRemoteStatusOk)
     }
 
-    static func updateUserToken(_ newToken: String) -> WebRequest<SimpleStatusResponse, Success> {
-        return WebRequest<SimpleStatusResponse, Success>(POST: "/user/update-token",
+    static func updateDeviceToken(_ newToken: String) -> WebRequest<SimpleStatusResponse, Success> {
+        return WebRequest<SimpleStatusResponse, Success>(POST: "/user/push/update-token",
                                                          body: ["token": newToken],
                                                          transform: WebResourceHandlers.isJSONStatusOk)
     }
 
-    static func updateUserPhone(_ number: String) -> WebRequest<SimpleStatusResponse, Success> {
-        return WebRequest<SimpleStatusResponse, Success>(POST: "/user/phone",
-                                                         body: ["number": number],
+    static func updateUserIdToken(_ idToken: String, phoneNumber: String) -> WebRequest<SimpleStatusResponse, Success> {
+        return WebRequest<SimpleStatusResponse, Success>(POST: "/user/firebase/update-id-token",
+                                                         body: ["token": idToken, "phone_number": phoneNumber],
                                                          transform: WebResourceHandlers.isJSONStatusOk)
     }
 

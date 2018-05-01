@@ -19,6 +19,14 @@ class PhoneVerificationRequestViewController: UIViewController {
         return b
     }()
 
+    @IBOutlet weak var errorLabel: UILabel! {
+        didSet {
+            errorLabel.isHidden = true
+            errorLabel.textColor = UIColor.kin.errorRed
+            errorLabel.font = FontFamily.Roboto.regular.font(size: 14)
+        }
+    }
+
     let phoneNumberUtility = NBPhoneNumberUtil()
     let isPhoneNumberValid = Observable<Bool>(false)
     let linkBag = LinkBag()
@@ -130,22 +138,46 @@ class PhoneVerificationRequestViewController: UIViewController {
 
                 self.accessoryView.isLoading = false
 
-                guard error == nil, let verificationID = verificationID else {
-                    print(error?.localizedDescription ?? "No error")
+                if let error = error {
+                    let errorMessage = self.errorMessage(for: error as NSError)
+                    self.errorLabel.text = errorMessage
+                    self.makeErrorLabelVisible(true)
                     self.accessoryView.isLoading = false
 
                     return
                 }
 
                 let confirmCode = StoryboardScene.Main.phoneConfirmationViewController.instantiate()
-                confirmCode.verificationId = verificationID
+                confirmCode.verificationId = verificationID!
                 confirmCode.phoneNumber = formattedNumber
                 self.navigationController?.pushViewController(confirmCode, animated: true)
         }
     }
 
+    fileprivate func errorMessage(for error: NSError) -> String {
+        if error.domain == AuthErrorDomain {
+            if error.code == AuthErrorCode.invalidPhoneNumber.rawValue
+                || error.code == AuthErrorCode.missingPhoneNumber.rawValue {
+                return "Invalid phone number"
+            }
+        }
+
+        return "Something wrong happened. Please check your internet connection"
+    }
+
+    fileprivate func makeErrorLabelVisible(_ visible: Bool) {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.errorLabel.alpha = visible ? 1 : 0
+            self.errorLabel.isHidden = !visible
+        })
+    }
+
     @objc func numberTextDidChange() {
         let text = phoneTextField.text ?? ""
+
+        if !errorLabel.isHidden {
+            makeErrorLabelVisible(false)
+        }
 
         guard
             let phoneNumber = try? phoneNumberUtility.parse(text, defaultRegion: regionCode),

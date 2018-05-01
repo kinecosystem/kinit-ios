@@ -71,7 +71,7 @@ extension User {
             return
         }
 
-        WebRequests.updateUserToken(token).withCompletion { success, _ in
+        WebRequests.updateDeviceToken(token).withCompletion { success, _ in
             KLogVerbose("Updated device token: \(success.boolValue)")
             guard success.boolValue else {
                 return

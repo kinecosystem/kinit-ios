@@ -97,9 +97,7 @@ class PhoneConfirmationViewController: UIViewController {
     }
 
     func verifyCode() {
-        guard
-            var user = User.current,
-            isCurrentCodeValid() else {
+        guard isCurrentCodeValid() else {
             return
         }
 
@@ -107,36 +105,77 @@ class PhoneConfirmationViewController: UIViewController {
                                                                  verificationCode: currentCode())
         activityIndicatorView.startAnimating()
 
-        Auth.auth().signIn(with: credential) { [weak self] _, error in
+        Auth.auth().signIn(with: credential) { [weak self] firebaseUser, error in
             guard let aSelf = self else {
                 return
             }
 
-            aSelf.activityIndicatorView.stopAnimating()
-
             if error != nil {
-                aSelf.logVerificationError()
-                FeedbackGenerator.notifyErrorIfAvailable()
-                aSelf.textFields.forEach {
-                    $0.text = ""
-                    $0.shake(delta: 20)
-                }
-
-                aSelf.textFields.first?.becomeFirstResponder()
-
+                aSelf.validationFailed()
                 return
             }
 
-            user.phoneNumber = aSelf.phoneNumber
-            user.save()
-
-            aSelf.smsArrivalTimer?.invalidate()
-            aSelf.smsArrivalTimer = nil
-
-            let accountReady = StoryboardScene.Main.accountReadyViewController.instantiate()
-            aSelf.navigationController?.pushViewController(accountReady, animated: true)
-            WebRequests.updateUserPhone(aSelf.phoneNumber).load(with: KinWebService.shared)
+            aSelf.getFirebaseIdToken(for: firebaseUser!)
         }
+    }
+
+    func getFirebaseIdToken(for user: FirebaseAuth.User) {
+        user.getIDTokenForcingRefresh(true) { [weak self] token, error in
+            guard let aSelf = self else {
+                return
+            }
+
+            if error != nil {
+                aSelf.validationFailed()
+                return
+            }
+
+            aSelf.updateServer(with: token!)
+        }
+    }
+
+    func updateServer(with token: String) {
+        WebRequests.updateUserIdToken(token, phoneNumber: phoneNumber).withCompletion { [weak self] success, _ in
+            guard let aSelf = self else {
+                return
+            }
+
+            DispatchQueue.main.async {
+                if !success.boolValue {
+                    aSelf.validationFailed()
+                    return
+                }
+
+                aSelf.validationSucceeded()
+            }
+        }.load(with: KinWebService.shared)
+    }
+
+    func validationFailed() {
+        activityIndicatorView.stopAnimating()
+
+        logVerificationError()
+        FeedbackGenerator.notifyErrorIfAvailable()
+        textFields.forEach {
+            $0.text = ""
+            $0.shake(delta: 20)
+        }
+
+        textFields.first?.becomeFirstResponder()
+    }
+
+    func validationSucceeded() {
+        activityIndicatorView.stopAnimating()
+
+        var user = User.current!
+        user.phoneNumber = phoneNumber
+        user.save()
+
+        smsArrivalTimer?.invalidate()
+        smsArrivalTimer = nil
+
+        let accountReady = StoryboardScene.Main.accountReadyViewController.instantiate()
+        navigationController?.pushViewController(accountReady, animated: true)
     }
 
     @objc func updateCountdown() {
