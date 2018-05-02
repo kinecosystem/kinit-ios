@@ -47,7 +47,7 @@ class KinLoader {
         loadNextTasks()
     }
 
-    func deleteNextTask() {
+    func deleteCachedAndFetchNextTask() {
         currentTask.next(.none(nil))
 
         SimpleDatastore.delete(objectOf: Task.self,

@@ -165,6 +165,8 @@ class PhoneConfirmationViewController: UIViewController {
     }
 
     func validationSucceeded() {
+        KinLoader.shared.deleteCachedAndFetchNextTask()
+
         activityIndicatorView.stopAnimating()
 
         var user = User.current!

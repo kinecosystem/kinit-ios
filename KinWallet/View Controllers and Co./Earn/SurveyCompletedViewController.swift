@@ -81,7 +81,7 @@ final class SurveyCompletedViewController: UIViewController {
                 KLogVerbose("Success submitting results for task. Memo is \(memo)")
 
                 SimpleDatastore.delete(aSelf.results)
-                KinLoader.shared.deleteNextTask()
+                KinLoader.shared.deleteCachedAndFetchNextTask()
 
                 aSelf.watchPayment(with: memo)
             }.load(with: KinWebService.shared)
