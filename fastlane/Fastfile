@@ -17,7 +17,7 @@ platform :ios do
     ensure_git_status_clean
     build_ios_app(export_method: 'enterprise')
     testfairy(api_key: ENV['testfairy_api_key'],
-              auto_update: 'on',
-              notify: 'on')
+              auto_update: 'false',
+              notify: 'false')
   end
 end
