@@ -8,6 +8,9 @@
 import UIKit
 
 class TutorialPageView: UIView {
+    @IBOutlet weak var leadingMinimumConstraint: NSLayoutConstraint!
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
+
     class func create(with title: String, message: String, image: UIImage) -> TutorialPageView {
         let nib = Bundle.main.loadNibNamed("TutorialPageView", owner: nil, options: nil)
         guard let pageView = nib?.first as? TutorialPageView else {
@@ -41,5 +44,10 @@ class TutorialPageView: UIView {
         super.awakeFromNib()
 
         backgroundColor = .clear
+
+        if UIDevice.isiPhone5() {
+            leadingMinimumConstraint.constant = 20
+            topConstraint.constant /= 3
+        }
     }
 }

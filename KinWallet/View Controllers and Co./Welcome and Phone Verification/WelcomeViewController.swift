@@ -84,7 +84,10 @@ final class WelcomeViewController: UIViewController {
     private func configurePages() {
         let scrollViewSize = scrollView.frame.size
 
-        pages.first?.imageView.contentMode = .scaleAspectFit
+        pages.first?.imageView.contentMode = UIDevice.isiPhone5()
+            ? .scaleAspectFill
+            : .scaleAspectFit
+
         pages.enumerated().forEach {
             let page = $0.element
             let origin = CGPoint(x: scrollViewSize.width * CGFloat($0.offset), y: 0)

@@ -15,13 +15,13 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7DY-18-h5R">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="7DY-18-h5R">
                     <rect key="frame" x="0.0" y="186" width="375" height="214"/>
                 </imageView>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6Lq-YT-9Ri">
+                <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6Lq-YT-9Ri">
                     <rect key="frame" x="143" y="60" width="88" height="106"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M9z-Qs-crw">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="M9z-Qs-crw">
                             <rect key="frame" x="0.0" y="0.0" width="88" height="38.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="32"/>
                             <nil key="textColor"/>
@@ -53,10 +53,12 @@ Label Line 3</string>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="imageView" destination="7DY-18-h5R" id="V1E-mO-EQX"/>
+                <outlet property="leadingMinimumConstraint" destination="SXF-4E-uxw" id="T9s-1B-XqX"/>
                 <outlet property="messageLabel" destination="khJ-ya-FXc" id="DF1-hu-zfI"/>
                 <outlet property="titleLabel" destination="M9z-Qs-crw" id="Ice-yc-JiA"/>
+                <outlet property="topConstraint" destination="xvo-pM-elU" id="Ork-38-HXc"/>
             </connections>
-            <point key="canvasLocation" x="29" y="113"/>
+            <point key="canvasLocation" x="-204" y="52"/>
         </view>
     </objects>
 </document>

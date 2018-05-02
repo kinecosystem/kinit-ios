@@ -351,13 +351,13 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQg-52-QvA">
-                                <rect key="frame" x="0.0" y="20" width="375" height="482"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="492"/>
                                 <connections>
                                     <outlet property="delegate" destination="wvP-60-dyh" id="DUs-8y-cnc"/>
                                 </connections>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="jmA-l5-kEJ">
-                                <rect key="frame" x="0.0" y="502" width="375" height="25"/>
+                                <rect key="frame" x="0.0" y="512" width="375" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="vZF-JT-B4z"/>
                                 </constraints>
@@ -366,10 +366,10 @@
                                 </connections>
                             </pageControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gXJ-jq-GLR">
-                                <rect key="frame" x="0.0" y="527" width="375" height="140"/>
+                                <rect key="frame" x="0.0" y="537" width="375" height="130"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Og2-eS-u1O">
-                                        <rect key="frame" x="48" y="26" width="280" height="89"/>
+                                        <rect key="frame" x="48" y="10.5" width="280" height="89"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4en-ag-SsL">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
@@ -393,9 +393,9 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="Og2-eS-u1O" firstAttribute="centerY" secondItem="gXJ-jq-GLR" secondAttribute="centerY" id="Uya-Yb-IsD"/>
+                                    <constraint firstItem="Og2-eS-u1O" firstAttribute="centerY" secondItem="gXJ-jq-GLR" secondAttribute="centerY" constant="-10" id="Uya-Yb-IsD"/>
                                     <constraint firstItem="Og2-eS-u1O" firstAttribute="centerX" secondItem="gXJ-jq-GLR" secondAttribute="centerX" id="XPd-4W-pMG"/>
-                                    <constraint firstAttribute="height" constant="140" id="jTb-wS-uVm"/>
+                                    <constraint firstAttribute="height" constant="130" id="jTb-wS-uVm"/>
                                 </constraints>
                             </view>
                         </subviews>

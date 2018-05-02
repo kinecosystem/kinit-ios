@@ -17,7 +17,6 @@ final class QuestionCollectionViewDataSource: NSObject {
         static let imageQuestionCellSize = CGSize(width: 134, height: 124)
         static let questionCellHeight: CGFloat = 140
         static let textAnswerCellHeight: CGFloat = 46
-        static let compactHeight: CGFloat = 568
         static let textMultipleAnswerCellHeight: CGFloat = 60
         static let textMultipleAnswerCellHeightCompact: CGFloat = 44
         static let collectionViewMinimumSpacing: CGFloat = 15
@@ -154,7 +153,7 @@ extension QuestionCollectionViewDataSource: UICollectionViewDelegate, UICollecti
             case .text, .textEmoji:
                 return CGSize(width: widthWithLateralInset, height: Constants.textAnswerCellHeight)
             case .multipleText:
-                let height = UIApplication.shared.keyWindow!.frame.height <= Constants.compactHeight
+                let height = UIDevice.isiPhone5()
                     ? Constants.textMultipleAnswerCellHeightCompact
                     : Constants.textMultipleAnswerCellHeight
 

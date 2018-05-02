@@ -140,6 +140,10 @@ class PhoneVerificationRequestViewController: UIViewController {
                 self.accessoryView.isLoading = false
 
                 if let error = error {
+                    if UIDevice.isiPhone5() {
+                        self.view.endEditing(true)
+                    }
+                    
                     FeedbackGenerator.notifyErrorIfAvailable()
                     let errorMessage = self.errorMessage(for: error as NSError)
                     self.errorLabel.text = errorMessage
