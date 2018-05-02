@@ -32,6 +32,10 @@ final class SurveyHomeViewController: UIViewController {
                                                selector: #selector(splashScreenWillDismiss),
                                                name: .SplashScreenWillDismiss,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(splashScreenDidDismiss),
+                                               name: .SplashScreenDidDismiss,
+                                               object: nil)
     }
 
     private func renderCurrentTask(_ taskResult: FetchResult<Task>) {
@@ -53,7 +57,9 @@ final class SurveyHomeViewController: UIViewController {
 
     private func requestToVerifyPhoneIfNeeded() {
         guard User.current?.phoneNumber == nil,
-            RemoteConfig.current?.phoneVerificationEnabled == true else {
+            RemoteConfig.current?.phoneVerificationEnabled == true,
+            !AppDelegate.shared.isShowingSplashScreen,
+            presentedViewController == nil else {
                 return
         }
 
@@ -109,6 +115,14 @@ final class SurveyHomeViewController: UIViewController {
         showEarnAnimationIfNeeded(surveyInfo: surveyInfo)
     }
 
+    @objc func splashScreenDidDismiss() {
+        if (childViewControllers.first as? SurveyInfoViewController) != nil {
+            return
+        }
+
+        requestToVerifyPhoneIfNeeded()
+    }
+
     func showEarnAnimationIfNeeded(surveyInfo: SurveyInfoViewController) {
         guard
             !AppDelegate.shared.isShowingSplashScreen,
@@ -147,9 +161,7 @@ final class SurveyHomeViewController: UIViewController {
         surveyUnavailable.error = error
         add(surveyUnavailable) { $0.fitInSuperview(with: .safeArea) }
 
-        if error == nil
-            && !AppDelegate.shared.isShowingSplashScreen
-            && presentedViewController == nil {
+        if error == nil {
             requestToVerifyPhoneIfNeeded()
         }
     }
