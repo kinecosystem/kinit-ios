@@ -55,6 +55,8 @@ final class QuestionCollectionViewDataSource: NSObject {
 
     func answerCell(_ collectionView: UICollectionView,
                     indexPath: IndexPath) -> UICollectionViewCell {
+        let answer = question.results[indexPath.item]
+
         let cell: SurveyAnswerCollectionViewCell = {
             switch question.type {
             case .text, .textEmoji:
@@ -64,12 +66,16 @@ final class QuestionCollectionViewDataSource: NSObject {
                 return collectionView.dequeueReusableCell(forIndexPath: indexPath)
                     as SurveyMultipleTextAnswerCollectionViewCell
             case .textAndImage:
+                if answer.hasOnlyImage() {
+                    return collectionView.dequeueReusableCell(forIndexPath: indexPath)
+                        as SurveyImageAnswerCollectionViewCell
+                }
+
                 return collectionView.dequeueReusableCell(forIndexPath: indexPath)
                     as SurveyTextImageAnswerCollectionViewCell
             }
         }()
 
-        let answer = question.results[indexPath.item]
         cell.indexPath = indexPath
         cell.delegate = self
         SurveyCellFactory.drawCell(cell, for: answer, questionType: question.type)

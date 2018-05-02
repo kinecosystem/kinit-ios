@@ -53,6 +53,7 @@ final class QuestionViewController: UIViewController {
         collectionView.register(nib: SurveyTextAnswerCollectionViewCell.self)
         collectionView.register(nib: SurveyMultipleTextAnswerCollectionViewCell.self)
         collectionView.register(nib: SurveyTextImageAnswerCollectionViewCell.self)
+        collectionView.register(nib: SurveyImageAnswerCollectionViewCell.self)
         collectionViewDataSource = QuestionCollectionViewDataSource(question: question,
                                                                     collectionView: collectionView)
 

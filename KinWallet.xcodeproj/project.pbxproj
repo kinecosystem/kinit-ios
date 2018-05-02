@@ -306,8 +306,8 @@
 		91D891DB2020B43D0090E77C /* SurveyQuestionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D891D22020B43D0090E77C /* SurveyQuestionCollectionViewCell.swift */; };
 		91D891DC2020B43D0090E77C /* SurveyTextAnswerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D891D32020B43D0090E77C /* SurveyTextAnswerCollectionViewCell.xib */; };
 		91D891DD2020B43D0090E77C /* SurveyTextAnswerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D891D32020B43D0090E77C /* SurveyTextAnswerCollectionViewCell.xib */; };
-		91D891DE2020B43D0090E77C /* SurveyTextImageAnswerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D891D42020B43D0090E77C /* SurveyTextImageAnswerCollectionViewCell.xib */; };
-		91D891DF2020B43D0090E77C /* SurveyTextImageAnswerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D891D42020B43D0090E77C /* SurveyTextImageAnswerCollectionViewCell.xib */; };
+		91D891DE2020B43D0090E77C /* SurveyImageAnswerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D891D42020B43D0090E77C /* SurveyImageAnswerCollectionViewCell.xib */; };
+		91D891DF2020B43D0090E77C /* SurveyImageAnswerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D891D42020B43D0090E77C /* SurveyImageAnswerCollectionViewCell.xib */; };
 		91D891E02020B43D0090E77C /* SurveyAnswerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D891D52020B43D0090E77C /* SurveyAnswerCollectionViewCell.swift */; };
 		91D891E22020B43D0090E77C /* AnswersCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D891D72020B43D0090E77C /* AnswersCollectionViewLayout.swift */; };
 		91E20B8B202B3E3B000CB741 /* FeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E20B8A202B3E3B000CB741 /* FeedbackGenerator.swift */; };
@@ -450,6 +450,9 @@
 		91E84ABB20862E4700E8B7A6 /* TransactionHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F69D1420834A9B00F06181 /* TransactionHistoryCollectionViewCell.swift */; };
 		91E84ABC20862E6E00E8B7A6 /* RedeemTransactionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F69D4020848C0200F06181 /* RedeemTransactionCollectionViewCell.swift */; };
 		91E84ABD20862E6F00E8B7A6 /* RedeemTransactionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F69D4020848C0200F06181 /* RedeemTransactionCollectionViewCell.swift */; };
+		91E90F7F2099B4E2004B50C8 /* SurveyTextImageAnswerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E90F782099B4E2004B50C8 /* SurveyTextImageAnswerCollectionViewCell.xib */; };
+		91E90F802099B4E2004B50C8 /* SurveyTextImageAnswerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E90F782099B4E2004B50C8 /* SurveyTextImageAnswerCollectionViewCell.xib */; };
+		91E90F812099B4E2004B50C8 /* SurveyTextImageAnswerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E90F782099B4E2004B50C8 /* SurveyTextImageAnswerCollectionViewCell.xib */; };
 		91F69D1620834A9B00F06181 /* TransactionHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F69D1420834A9B00F06181 /* TransactionHistoryCollectionViewCell.swift */; };
 		91F69D1720834A9B00F06181 /* TransactionHistoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F69D1520834A9B00F06181 /* TransactionHistoryCollectionViewCell.xib */; };
 		91F69D2F208379F400F06181 /* ButtonBarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F69D1F208379F300F06181 /* ButtonBarViewCell.swift */; };
@@ -723,7 +726,7 @@
 		91D891D12020B43D0090E77C /* SurveyQuestionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SurveyQuestionCollectionViewCell.xib; sourceTree = "<group>"; };
 		91D891D22020B43D0090E77C /* SurveyQuestionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyQuestionCollectionViewCell.swift; sourceTree = "<group>"; };
 		91D891D32020B43D0090E77C /* SurveyTextAnswerCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SurveyTextAnswerCollectionViewCell.xib; sourceTree = "<group>"; };
-		91D891D42020B43D0090E77C /* SurveyTextImageAnswerCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SurveyTextImageAnswerCollectionViewCell.xib; sourceTree = "<group>"; };
+		91D891D42020B43D0090E77C /* SurveyImageAnswerCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SurveyImageAnswerCollectionViewCell.xib; sourceTree = "<group>"; };
 		91D891D52020B43D0090E77C /* SurveyAnswerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyAnswerCollectionViewCell.swift; sourceTree = "<group>"; };
 		91D891D72020B43D0090E77C /* AnswersCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswersCollectionViewLayout.swift; sourceTree = "<group>"; };
 		91E20B8A202B3E3B000CB741 /* FeedbackGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackGenerator.swift; sourceTree = "<group>"; };
@@ -772,6 +775,7 @@
 		91E84A442085EA3800E8B7A6 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		91E84A4E2085ED2300E8B7A6 /* EmptyStateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		91E84A502085ED3000E8B7A6 /* EmptyStateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyStateView.xib; sourceTree = "<group>"; };
+		91E90F782099B4E2004B50C8 /* SurveyTextImageAnswerCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SurveyTextImageAnswerCollectionViewCell.xib; sourceTree = "<group>"; };
 		91F69D1420834A9B00F06181 /* TransactionHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		91F69D1520834A9B00F06181 /* TransactionHistoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionHistoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		91F69D1F208379F300F06181 /* ButtonBarViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ButtonBarViewCell.swift; path = Submodules/XLPagerTabStrip/Sources/ButtonBarViewCell.swift; sourceTree = SOURCE_ROOT; };
@@ -1231,7 +1235,8 @@
 				91D891D52020B43D0090E77C /* SurveyAnswerCollectionViewCell.swift */,
 				91D891D32020B43D0090E77C /* SurveyTextAnswerCollectionViewCell.xib */,
 				91AC468E207CE6590016B648 /* SurveyMultipleTextAnswerCollectionViewCell.xib */,
-				91D891D42020B43D0090E77C /* SurveyTextImageAnswerCollectionViewCell.xib */,
+				91D891D42020B43D0090E77C /* SurveyImageAnswerCollectionViewCell.xib */,
+				91E90F782099B4E2004B50C8 /* SurveyTextImageAnswerCollectionViewCell.xib */,
 				91908C63204D69F200971F11 /* OfferCollectionViewCell.swift */,
 				91908C64204D69F200971F11 /* OfferCollectionViewCell.xib */,
 				91F69D1420834A9B00F06181 /* TransactionHistoryCollectionViewCell.swift */,
@@ -1556,8 +1561,9 @@
 				915F496120430125005C09B3 /* Roboto-LightItalic.ttf in Resources */,
 				91D891D82020B43D0090E77C /* SurveyQuestionCollectionViewCell.xib in Resources */,
 				915F495B20430125005C09B3 /* Roboto-Light.ttf in Resources */,
-				91D891DE2020B43D0090E77C /* SurveyTextImageAnswerCollectionViewCell.xib in Resources */,
+				91D891DE2020B43D0090E77C /* SurveyImageAnswerCollectionViewCell.xib in Resources */,
 				91B4454720909C5400ED6802 /* TutorialPageView.xib in Resources */,
+				91E90F7F2099B4E2004B50C8 /* SurveyTextImageAnswerCollectionViewCell.xib in Resources */,
 				9120CA7B2060118C00AFC597 /* upload-dsym.sh in Resources */,
 				91E84A512085ED3000E8B7A6 /* EmptyStateView.xib in Resources */,
 				91B445652091EFE700ED6802 /* GoogleService-Info.plist in Resources */,
@@ -1596,6 +1602,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91E90F802099B4E2004B50C8 /* SurveyTextImageAnswerCollectionViewCell.xib in Resources */,
 				9182C29E203C6C0C0051F003 /* ComodoRsaDomainValidationCA.der in Resources */,
 				9182C29D203C6C0C0051F003 /* api.amplitude.com.der in Resources */,
 				91E84A762086186B00E8B7A6 /* ButtonCell.xib in Resources */,
@@ -1607,7 +1614,7 @@
 				9182C2A5203C6C0C0051F003 /* ComodoRsaCA.der in Resources */,
 				91B4454820909C5400ED6802 /* TutorialPageView.xib in Resources */,
 				91B445662091EFE700ED6802 /* GoogleService-Info.plist in Resources */,
-				91D891DF2020B43D0090E77C /* SurveyTextImageAnswerCollectionViewCell.xib in Resources */,
+				91D891DF2020B43D0090E77C /* SurveyImageAnswerCollectionViewCell.xib in Resources */,
 				9140139120187E140066367C /* SampleTask.json in Resources */,
 				91D891DD2020B43D0090E77C /* SurveyTextAnswerCollectionViewCell.xib in Resources */,
 				9182C2A0203C6C0C0051F003 /* AppledocSettings.plist in Resources */,
@@ -1618,6 +1625,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91E90F812099B4E2004B50C8 /* SurveyTextImageAnswerCollectionViewCell.xib in Resources */,
 				91E84A812086186B00E8B7A6 /* ButtonCell.xib in Resources */,
 				91B4454920909C5400ED6802 /* TutorialPageView.xib in Resources */,
 				91B445672091EFE700ED6802 /* GoogleService-Info.plist in Resources */,

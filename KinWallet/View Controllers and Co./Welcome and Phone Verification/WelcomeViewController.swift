@@ -140,12 +140,20 @@ to our Terms of Service and Privacy Policy
     @IBAction func startEarning(_ sender: Any) {
         logClickedStart()
 
+        #if targetEnvironment(simulator)
+
+        AppDelegate.shared.dismissSplashIfNeeded()
+
+        #else
+
         if RemoteConfig.current?.phoneVerificationEnabled == true {
             let phoneVerification = StoryboardScene.Main.phoneVerificationRequestViewController.instantiate()
             navigationController?.pushViewController(phoneVerification, animated: true)
         } else {
             AppDelegate.shared.dismissSplashIfNeeded()
         }
+
+        #endif
     }
 
     @IBAction func pageControlChangedValue(_ sender: Any) {
