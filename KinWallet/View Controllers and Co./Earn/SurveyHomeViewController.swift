@@ -52,8 +52,6 @@ final class SurveyHomeViewController: UIViewController {
     }
 
     private func requestToVerifyPhoneIfNeeded() {
-        #if !targetEnvironment(simulator)
-
         guard User.current?.phoneNumber == nil,
             RemoteConfig.current?.phoneVerificationEnabled == true else {
                 return
@@ -68,16 +66,17 @@ final class SurveyHomeViewController: UIViewController {
             }
 
             aSelf.logClickedVerifyPhoneAuthPopup()
+
+            #if !targetEnvironment(simulator)
             let phoneVerification = StoryboardScene.Main.phoneVerificationRequestViewController.instantiate()
             let navController = UINavigationController(rootViewController: phoneVerification)
             aSelf.present(navController, animated: true, completion: nil)
+            #endif
             })
 
         present(alertController, animated: true, completion: nil)
 
         logViewedPhoneAuthPopup()
-
-        #endif
     }
 
     func showTaskAvailable(_ task: Task) {

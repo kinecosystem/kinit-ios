@@ -73,3 +73,6 @@ KinWallet/config.json
 secrets.zip
 
 .DS_Store
+
+KinWallet/GoogleService-Info-Staging.plist
+KinWallet/GoogleService-Info-Prod.plist
