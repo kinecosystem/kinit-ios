@@ -146,6 +146,12 @@ final class SurveyHomeViewController: UIViewController {
         surveyUnavailable.task = task
         surveyUnavailable.error = error
         add(surveyUnavailable) { $0.fitInSuperview(with: .safeArea) }
+
+        if error == nil
+            && !AppDelegate.shared.isShowingSplashScreen
+            && presentedViewController == nil {
+            requestToVerifyPhoneIfNeeded()
+        }
     }
 }
 
