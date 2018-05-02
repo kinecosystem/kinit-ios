@@ -8,7 +8,7 @@
 import UIKit
 import Lottie
 
-class TransferringKinViewController: UIViewController {
+final class TransferringKinViewController: UIViewController {
     var initialBalance: UInt64!
     var targetBalance: UInt64!
     var finishTapped: (() -> Void)?

@@ -68,9 +68,9 @@ extension AppDelegate {
             pushId = "N/A"
         }
 
-        let event = Events.Analytics.ClickEngagementPush(pushId: pushId,
-                                                         pushText: pushText)
-        Analytics.logEvent(event)
+        Events.Analytics
+            .ClickEngagementPush(pushId: pushId, pushText: pushText)
+            .send()
     }
 }
 

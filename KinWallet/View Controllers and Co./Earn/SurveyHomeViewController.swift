@@ -8,10 +8,14 @@
 import UIKit
 import KinUtil
 
-class SurveyHomeViewController: UIViewController {
-    var showEarnAnimation = true
+final class SurveyHomeViewController: UIViewController {
+    var shouldShowEarnAnimation = true
     var animatingEarn = false
     let linkBag = LinkBag()
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +27,11 @@ class SurveyHomeViewController: UIViewController {
             .add(to: linkBag)
 
         addBalanceLabel()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(splashScreenWillDismiss),
+                                               name: .SplashScreenWillDismiss,
+                                               object: nil)
     }
 
     private func renderCurrentTask(_ taskResult: FetchResult<Task>) {
@@ -40,6 +49,35 @@ class SurveyHomeViewController: UIViewController {
         } else {
             showTaskUnavailable(task, error: nil)
         }
+    }
+
+    private func requestToVerifyPhoneIfNeeded() {
+        #if !targetEnvironment(simulator)
+
+        guard User.current?.phoneNumber == nil,
+            RemoteConfig.current?.phoneVerificationEnabled == true else {
+                return
+        }
+
+        let alertController = UIAlertController(title: "Help us keep your Kin safe",
+                                                message: "Please verify your phone number",
+                                                preferredStyle: .alert)
+        alertController.addAction(.init(title: "Verify my account", style: .default) { [weak self] _ in
+            guard let aSelf = self else {
+                return
+            }
+
+            aSelf.logClickedVerifyPhoneAuthPopup()
+            let phoneVerification = StoryboardScene.Main.phoneVerificationRequestViewController.instantiate()
+            let navController = UINavigationController(rootViewController: phoneVerification)
+            aSelf.present(navController, animated: true, completion: nil)
+            })
+
+        present(alertController, animated: true, completion: nil)
+
+        logViewedPhoneAuthPopup()
+
+        #endif
     }
 
     func showTaskAvailable(_ task: Task) {
@@ -61,27 +99,45 @@ class SurveyHomeViewController: UIViewController {
             addAndFit(surveyInfo)
         }
 
-        if showEarnAnimation && !animatingEarn {
-            let width = view.frame.width
-            showEarnAnimation = false
-            animatingEarn = true
+        showEarnAnimationIfNeeded(surveyInfo: surveyInfo)
+    }
 
-            let earnAnimationViewController = StoryboardScene.Earn.earnKinAnimationViewController.instantiate()
-            addAndFit(earnAnimationViewController)
-
-            surveyInfo.view.transform = .init(translationX: width, y: 0)
-            UIView.animate(withDuration: 0.7,
-                           delay: 1.5,
-                           options: [],
-                           animations: {
-                            earnAnimationViewController.view.transform = .init(translationX: -width, y: 0)
-                            earnAnimationViewController.view.alpha = 0
-                            surveyInfo.view.transform = .identity
-            }, completion: { _ in
-                earnAnimationViewController.remove()
-                self.animatingEarn = false
-            })
+    @objc func splashScreenWillDismiss() {
+        guard let surveyInfo = childViewControllers.first as? SurveyInfoViewController else {
+            return
         }
+
+        showEarnAnimationIfNeeded(surveyInfo: surveyInfo)
+    }
+
+    func showEarnAnimationIfNeeded(surveyInfo: SurveyInfoViewController) {
+        guard
+            !AppDelegate.shared.isShowingSplashScreen,
+            shouldShowEarnAnimation,
+            !animatingEarn else {
+            return
+        }
+
+        let width = view.frame.width
+        shouldShowEarnAnimation = false
+        animatingEarn = true
+
+        let earnAnimationViewController = StoryboardScene.Earn.earnKinAnimationViewController.instantiate()
+        addAndFit(earnAnimationViewController)
+
+        surveyInfo.view.transform = .init(translationX: width, y: 0)
+        UIView.animate(withDuration: 0.7,
+                       delay: 1.5,
+                       options: [],
+                       animations: {
+                        earnAnimationViewController.view.transform = .init(translationX: -width, y: 0)
+                        earnAnimationViewController.view.alpha = 0
+                        surveyInfo.view.transform = .identity
+        }, completion: { _ in
+            earnAnimationViewController.remove()
+            self.animatingEarn = false
+            self.requestToVerifyPhoneIfNeeded()
+        })
     }
 
     func showTaskUnavailable(_ task: Task?, error: Error?) {
@@ -101,5 +157,15 @@ extension SurveyHomeViewController: SurveyViewControllerDelegate {
 
     func surveyViewController(_ viewController: SurveyViewController, didFinishWith results: TaskResults) {
         showTaskUnavailable(nil, error: nil)
+    }
+}
+
+extension SurveyHomeViewController {
+    fileprivate func logViewedPhoneAuthPopup() {
+        Events.Analytics.ViewPhoneAuthPopup().send()
+    }
+
+    fileprivate func logClickedVerifyPhoneAuthPopup() {
+        Events.Analytics.ClickVerifyButtonOnPhoneAuthPopup().send()
     }
 }

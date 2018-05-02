@@ -32,4 +32,8 @@ extension UIDevice {
 
         return hardwareDescription
     }
+
+    static func isiPhone5() -> Bool {
+        return AppDelegate.shared.window?.bounds.height == 568
+    }
 }

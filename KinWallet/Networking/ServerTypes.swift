@@ -91,3 +91,8 @@ struct RedeemedItemsResponse: StatusResponse, Codable {
         case items = "redeemed"
     }
 }
+
+struct RemoteConfigStatusResponse: StatusResponse, Codable {
+    let status: String
+    let config: RemoteConfig?
+}

@@ -110,14 +110,15 @@ extension Kin {
             .withCompletion { success, error in
                 if let error = error {
                     KLogError("Error creating account: \(error)")
-                    let event = Events.Log.StellarAccountCreationFailed(failureReason: error.localizedDescription)
-                    Analytics.logEvent(event)
+                    Events.Log
+                        .StellarAccountCreationFailed(failureReason: error.localizedDescription)
+                        .send()
                     p.signal(false)
                     return
                 }
 
                 KLogVerbose("Success onboarding account? \(success.boolValue)")
-                Analytics.logEvent(Events.Log.StellarAccountCreationSucceeded())
+                Events.Log.StellarAccountCreationSucceeded().send()
                 self.activateAccount().then {
                     p.signal($0)
                 }
@@ -134,15 +135,16 @@ extension Kin {
                 UserDefaults.standard.set(AccountStatus.activated.rawValue,
                                           forKey: accountStatusUserDefaultsKey)
                 KLogVerbose("Account activated")
-                Analytics.logEvent(Events.Business.WalletCreated())
-                Analytics.logEvent(Events.Log.StellarKinTrustlineSetupSucceeded())
+                Events.Business.WalletCreated().send()
+                Events.Log.StellarKinTrustlineSetupSucceeded().send()
                 self.createBalanceWatch(initialBalance: 0)
 
                 p.signal(true)
             }.error { error in
                 KLogError("Error activating account: \(error)")
-                let event = Events.Log.StellarKinTrustlineSetupFailed(failureReason: error.localizedDescription)
-                Analytics.logEvent(event)
+                Events.Log
+                    .StellarKinTrustlineSetupFailed(failureReason: error.localizedDescription)
+                    .send()
 
                 p.signal(false)
             }
@@ -195,8 +197,9 @@ extension Kin {
 
             if let error = error, Kin.shared.accountStatus == .activated {
                 KLogError("Error fetching balance")
-                let logEvent = Events.Log.BalanceUpdateFailed(failureReason: error.localizedDescription)
-                Analytics.logEvent(logEvent)
+                Events.Log
+                    .BalanceUpdateFailed(failureReason: error.localizedDescription)
+                    .send()
 
                 return
             }
@@ -227,19 +230,21 @@ extension Kin {
             completion(txHash, error)
 
             if let error = error {
-                let event = Events.Business.KINTransactionFailed(failureReason: error.localizedDescription,
-                                                                 kinAmount: Float(amount),
-                                                                 transactionType: .spend)
-                Analytics.logEvent(event)
+                Events.Business
+                    .KINTransactionFailed(failureReason: error.localizedDescription,
+                                          kinAmount: Float(amount),
+                                          transactionType: .spend)
+                    .send()
 
                 return
             }
 
             if let txHash = txHash {
-                let event = Events.Business.KINTransactionSucceeded(kinAmount: Float(amount),
-                                                                    transactionId: txHash,
-                                                                    transactionType: .spend)
-                Analytics.logEvent(event)
+                Events.Business
+                    .KINTransactionSucceeded(kinAmount: Float(amount),
+                                             transactionId: txHash,
+                                             transactionType: .spend)
+                    .send()
             }
 
             Analytics.incrementSpendCount()

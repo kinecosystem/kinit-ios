@@ -47,6 +47,10 @@ enum Asset {
   static let buttonStroke = ImageAsset(name: "ButtonStroke")
   static let closeXButton = ImageAsset(name: "CloseXButton")
   static let closeXButtonDarkGray = ImageAsset(name: "CloseXButtonDarkGray")
+  static let confettiDiamond = ImageAsset(name: "ConfettiDiamond")
+  static let confettiNormal = ImageAsset(name: "ConfettiNormal")
+  static let confettiStar = ImageAsset(name: "ConfettiStar")
+  static let confettiTriangle = ImageAsset(name: "ConfettiTriangle")
   static let doneFireworks = ImageAsset(name: "DoneFireworks")
   static let doneSign = ImageAsset(name: "DoneSign")
   static let emptyHistoryCoupon = ImageAsset(name: "EmptyHistoryCoupon")
@@ -90,6 +94,9 @@ enum Asset {
   static let timer = ImageAsset(name: "Timer")
   static let transferFireworks = ImageAsset(name: "TransferFireworks")
   static let walletCreationFailed = ImageAsset(name: "WalletCreationFailed")
+  static let welcomeTutorial1 = ImageAsset(name: "WelcomeTutorial1")
+  static let welcomeTutorial2 = ImageAsset(name: "WelcomeTutorial2")
+  static let welcomeTutorial3 = ImageAsset(name: "WelcomeTutorial3")
 
   // swiftlint:disable trailing_comma
   static let allColors: [ColorAsset] = [
@@ -98,6 +105,10 @@ enum Asset {
     buttonStroke,
     closeXButton,
     closeXButtonDarkGray,
+    confettiDiamond,
+    confettiNormal,
+    confettiStar,
+    confettiTriangle,
     doneFireworks,
     doneSign,
     emptyHistoryCoupon,
@@ -141,6 +152,9 @@ enum Asset {
     timer,
     transferFireworks,
     walletCreationFailed,
+    welcomeTutorial1,
+    welcomeTutorial2,
+    welcomeTutorial3,
   ]
   // swiftlint:enable trailing_comma
   @available(*, deprecated, renamed: "allImages")

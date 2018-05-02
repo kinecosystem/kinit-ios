@@ -10,9 +10,9 @@ import MessageUI
 
 private let supportEmail = "support@kinitapp.com"
 
-class KinSupportViewController: MFMailComposeViewController {
+final class KinSupportViewController: MFMailComposeViewController {
     class func present(from presenter: UIViewController) {
-        Analytics.logEvent(Events.Analytics.ClickSupportButton())
+        Events.Analytics.ClickSupportButton().send()
 
         guard MFMailComposeViewController.canSendMail() else {
             let alertMessage = "Add an email account to your device in order to send email."
@@ -57,11 +57,13 @@ class KinSupportViewController: MFMailComposeViewController {
 }
 
 extension KinSupportViewController: MFMailComposeViewControllerDelegate {
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                               didFinishWith result: MFMailComposeResult,
+                               error: Error?) {
         dismiss(animated: true)
 
         if result == .sent {
-            Analytics.logEvent(Events.Business.SupportRequestSent())
+            Events.Business.SupportRequestSent().send()
         }
     }
 }

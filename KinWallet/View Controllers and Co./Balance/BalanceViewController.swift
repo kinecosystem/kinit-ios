@@ -64,6 +64,6 @@ class BalanceViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        Analytics.logEvent(Events.Analytics.ViewBalancePage())
+        Events.Analytics.ViewBalancePage().send()
     }
 }

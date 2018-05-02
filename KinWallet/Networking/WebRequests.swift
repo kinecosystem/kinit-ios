@@ -14,28 +14,49 @@ private struct WebResourceHandlers {
     static func isJSONStatusOk(response: StatusResponse?) -> Bool? {
         return response?.status == "ok"
     }
+
+    static func isRemoteStatusOk(response: RemoteConfigStatusResponse?) -> RemoteConfig? {
+        guard
+            let response = response,
+            WebResourceHandlers.isJSONStatusOk(response: response).boolValue else {
+                return nil
+        }
+
+        if let config = response.config {
+            RemoteConfig.updateCurrent(with: config)
+        }
+
+        return response.config
+    }
 }
 
 struct WebRequests {}
 
 // MARK: User registration
+
 extension WebRequests {
-    static func userRegistrationRequest(for user: User) -> WebRequest<SimpleStatusResponse, Success> {
-        return WebRequest<SimpleStatusResponse, Success>(POST: "/user/register",
-                                                         body: user,
-                                                         transform: WebResourceHandlers.isJSONStatusOk)
+    static func userRegistrationRequest(for user: User) -> WebRequest<RemoteConfigStatusResponse, RemoteConfig> {
+        return WebRequest<RemoteConfigStatusResponse, RemoteConfig>(POST: "/user/register",
+                                                               body: user,
+                                                               transform: WebResourceHandlers.isRemoteStatusOk)
     }
 
-    static func updateUserToken(_ newToken: String) -> WebRequest<SimpleStatusResponse, Success> {
-        return WebRequest<SimpleStatusResponse, Success>(POST: "/user/update-token",
+    static func updateDeviceToken(_ newToken: String) -> WebRequest<SimpleStatusResponse, Success> {
+        return WebRequest<SimpleStatusResponse, Success>(POST: "/user/push/update-token",
                                                          body: ["token": newToken],
                                                          transform: WebResourceHandlers.isJSONStatusOk)
     }
 
-    static func appLaunch() -> WebRequest<SimpleStatusResponse, Success> {
-        return WebRequest<SimpleStatusResponse, Success>(POST: "/user/app-launch",
-                                                         body: ["app_ver": Bundle.appVersion],
+    static func updateUserIdToken(_ idToken: String, phoneNumber: String) -> WebRequest<SimpleStatusResponse, Success> {
+        return WebRequest<SimpleStatusResponse, Success>(POST: "/user/firebase/update-id-token",
+                                                         body: ["token": idToken, "phone_number": phoneNumber],
                                                          transform: WebResourceHandlers.isJSONStatusOk)
+    }
+
+    static func appLaunch() -> WebRequest<RemoteConfigStatusResponse, RemoteConfig> {
+        return WebRequest<RemoteConfigStatusResponse, RemoteConfig>(POST: "/user/app-launch",
+                                                         body: ["app_ver": Bundle.appVersion],
+                                                         transform: WebResourceHandlers.isRemoteStatusOk)
     }
 }
 

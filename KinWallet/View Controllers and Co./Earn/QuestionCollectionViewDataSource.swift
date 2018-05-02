@@ -12,12 +12,11 @@ enum QuestionnaireSections: Int, AutoCases {
     case answers
 }
 
-class QuestionCollectionViewDataSource: NSObject {
+final class QuestionCollectionViewDataSource: NSObject {
     private struct Constants {
         static let imageQuestionCellSize = CGSize(width: 134, height: 124)
         static let questionCellHeight: CGFloat = 140
         static let textAnswerCellHeight: CGFloat = 46
-        static let compactHeight: CGFloat = 568
         static let textMultipleAnswerCellHeight: CGFloat = 60
         static let textMultipleAnswerCellHeightCompact: CGFloat = 44
         static let collectionViewMinimumSpacing: CGFloat = 15
@@ -55,6 +54,8 @@ class QuestionCollectionViewDataSource: NSObject {
 
     func answerCell(_ collectionView: UICollectionView,
                     indexPath: IndexPath) -> UICollectionViewCell {
+        let answer = question.results[indexPath.item]
+
         let cell: SurveyAnswerCollectionViewCell = {
             switch question.type {
             case .text, .textEmoji:
@@ -64,12 +65,16 @@ class QuestionCollectionViewDataSource: NSObject {
                 return collectionView.dequeueReusableCell(forIndexPath: indexPath)
                     as SurveyMultipleTextAnswerCollectionViewCell
             case .textAndImage:
+                if answer.hasOnlyImage() {
+                    return collectionView.dequeueReusableCell(forIndexPath: indexPath)
+                        as SurveyImageAnswerCollectionViewCell
+                }
+
                 return collectionView.dequeueReusableCell(forIndexPath: indexPath)
                     as SurveyTextImageAnswerCollectionViewCell
             }
         }()
 
-        let answer = question.results[indexPath.item]
         cell.indexPath = indexPath
         cell.delegate = self
         SurveyCellFactory.drawCell(cell, for: answer, questionType: question.type)
@@ -148,7 +153,7 @@ extension QuestionCollectionViewDataSource: UICollectionViewDelegate, UICollecti
             case .text, .textEmoji:
                 return CGSize(width: widthWithLateralInset, height: Constants.textAnswerCellHeight)
             case .multipleText:
-                let height = UIApplication.shared.keyWindow!.frame.height <= Constants.compactHeight
+                let height = UIDevice.isiPhone5()
                     ? Constants.textMultipleAnswerCellHeightCompact
                     : Constants.textMultipleAnswerCellHeight
 

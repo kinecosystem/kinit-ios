@@ -26,3 +26,13 @@ extension Optional where Wrapped == Bool {
         return false
     }
 }
+
+extension Optional where Wrapped == String {
+    var isEmpty: Bool {
+        if let unwrapped = self {
+            return unwrapped.isEmpty
+        }
+
+        return true
+    }
+}

@@ -172,7 +172,7 @@ final class SurveyInfoViewController: UIViewController {
 // MARK: Analytics
 extension SurveyInfoViewController {
     func logViewEvent() {
-        let event = Events.Analytics
+        Events.Analytics
             .ViewTaskPage(creator: task.author.name,
                           estimatedTimeToComplete: task.minutesToComplete,
                           kinReward: Int(task.kinReward),
@@ -180,11 +180,11 @@ extension SurveyInfoViewController {
                           taskId: task.identifier,
                           taskTitle: task.title,
                           taskType: .questionnaire)
-        Analytics.logEvent(event)
+            .send()
     }
 
     func logStartEvents() {
-        let aEvent = Events.Analytics
+        Events.Analytics
             .ClickStartButtonOnTaskPage(alreadyStarted: alreadyStartedTask,
                                         creator: task.author.name,
                                         estimatedTimeToComplete: task.minutesToComplete,
@@ -193,11 +193,10 @@ extension SurveyInfoViewController {
                                         taskId: task.identifier,
                                         taskTitle: task.title,
                                         taskType: .questionnaire)
-
-        Analytics.logEvent(aEvent)
+            .send()
 
         if !alreadyStartedTask {
-            let bEvent = Events.Business
+            Events.Business
                 .EarningTaskStarted(creator: task.author.name,
                                     estimatedTimeToComplete: task.minutesToComplete,
                                     kinReward: Int(task.kinReward),
@@ -205,8 +204,7 @@ extension SurveyInfoViewController {
                                     taskId: task.identifier,
                                     taskTitle: task.title,
                                     taskType: .questionnaire)
-
-            Analytics.logEvent(bEvent)
+            .send()
         }
     }
 }

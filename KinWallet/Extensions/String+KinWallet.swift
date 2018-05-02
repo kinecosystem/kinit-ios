@@ -1,4 +1,4 @@
-    //
+//
 //  String+KinWallet.swift
 //  KinWallet
 //

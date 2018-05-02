@@ -17,7 +17,10 @@ struct KinColors {
     let lightGray = UIColor(red: 215, green: 220, blue: 233)
     let extraLightGray = UIColor(red: 239, green: 238, blue: 240)
 
+    let errorRed = UIColor(red: 219, green: 68, blue: 55)
+
     let cadetBlue = UIColor(red: 164, green: 172, blue: 194)
+    let brightBlue = UIColor(red: 130, green: 255, blue: 238)
 }
 
 extension UIColor {

@@ -24,7 +24,7 @@ private struct Constants {
     static let nextButtonHeight: CGFloat = 66
 }
 
-class QuestionViewController: UIViewController {
+final class QuestionViewController: UIViewController {
     let question: Question
     fileprivate let collectionViewDataSource: QuestionCollectionViewDataSource
     let collectionView: UICollectionView
@@ -53,6 +53,7 @@ class QuestionViewController: UIViewController {
         collectionView.register(nib: SurveyTextAnswerCollectionViewCell.self)
         collectionView.register(nib: SurveyMultipleTextAnswerCollectionViewCell.self)
         collectionView.register(nib: SurveyTextImageAnswerCollectionViewCell.self)
+        collectionView.register(nib: SurveyImageAnswerCollectionViewCell.self)
         collectionViewDataSource = QuestionCollectionViewDataSource(question: question,
                                                                     collectionView: collectionView)
 

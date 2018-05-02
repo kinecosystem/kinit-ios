@@ -9,6 +9,8 @@ import Fabric
 import Crashlytics
 import UIKit
 import KinSDK
+import Firebase
+import FirebaseAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,12 +24,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         if !runningTests() {
             Fabric.with([Crashlytics.self])
+
             #if !TESTS
             if let testFairyKey = Configuration.shared.testFairyKey {
                 TestFairy.begin(testFairyKey)
             }
             #endif
         }
+
+        FirebaseApp.configure()
 
         #if DEBUG
             logLevel = .verbose
@@ -60,31 +65,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func applicationWillResignActive(_ application: UIApplication) {
-
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-
-    }
-
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         User.current?.updateDeviceTokenIfNeeded(deviceToken.hexString)
+
+        let tokenType: AuthAPNSTokenType
+
+        #if DEBUG
+        tokenType = .sandbox
+        #else
+        tokenType = .prod
+        #endif
+
+        Auth.auth().setAPNSToken(deviceToken, type: tokenType)
     }
 
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+    func application(_ application: UIApplication,
+                     didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        if Auth.auth().canHandleNotification(userInfo) {
+            completionHandler(.noData)
+            return
+        }
+
         guard application.applicationState == .inactive else {
             KLogVerbose("Received push while in foreground:\n\(userInfo)")
             return
@@ -95,8 +97,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate {
-    func dismissSplashIfNeeded() {
-        rootViewController.dismissSplashIfNeeded()
+    @discardableResult func dismissSplashIfNeeded() -> Bool {
+        return rootViewController.dismissSplashIfNeeded()
+    }
+
+    var isShowingSplashScreen: Bool {
+        return rootViewController.isShowingSplashScreen
     }
 }
 

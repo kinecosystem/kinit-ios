@@ -321,36 +321,40 @@ private extension OfferDetailsViewController {
     }
 
     func presentErrorAlert(title: String, message: String, errorType: Events.ErrorType) {
-        Analytics.logEvent(Events.Analytics.ViewErrorPopupOnOfferPage(errorType: errorType))
-
         let alertController = UIAlertController(title: title,
                                                 message: message,
                                                 preferredStyle: .alert)
         alertController.addAction(.init(title: "Back to Spend",
                                         style: .default,
                                         handler: { _ in
-                                            let event = Events.Analytics.ClickOkButtonOnErrorPopup(errorType: errorType)
-                                            Analytics.logEvent(event)
+                                            Events.Analytics
+                                                .ClickOkButtonOnErrorPopup(errorType: errorType)
+                                                .send()
                                             self.dismiss(animated: true)
         }))
+
         present(alertController, animated: true)
+
+        Events.Analytics
+            .ViewErrorPopupOnOfferPage(errorType: errorType)
+            .send()
     }
 }
 
 // MARK: Analytics
 extension OfferDetailsViewController {
-    func logViewedPage() {
-        let event = Events.Analytics
+    fileprivate func logViewedPage() {
+        Events.Analytics
             .ViewOfferPage(brandName: offer.author.name,
                            kinPrice: Int(offer.price),
                            offerCategory: offer.domain,
                            offerId: offer.identifier,
                            offerName: offer.title,
                            offerType: offer.type)
-        Analytics.logEvent(event)
+            .send()
     }
 
-    func logTappedBuy() {
+    fileprivate func logTappedBuy() {
         let aEvent = Events.Analytics
             .ClickBuyButtonOnOfferPage(brandName: offer.author.name,
                                        kinPrice: Int(offer.price),
@@ -370,7 +374,7 @@ extension OfferDetailsViewController {
         Analytics.logEvents(aEvent, bEvent)
     }
 
-    func logViewedCode() {
+    fileprivate func logViewedCode() {
         let aEvent = Events.Analytics
             .ViewCodeTextOnOfferPage(brandName: offer.author.name,
                                      kinPrice: Int(offer.price),
@@ -389,14 +393,14 @@ extension OfferDetailsViewController {
         Analytics.logEvents(aEvent, bEvent)
     }
 
-    func logTappedShare() {
-        let event = Events.Analytics
+    fileprivate func logTappedShare() {
+        Events.Analytics
             .ClickShareButtonOnOfferPage(brandName: offer.author.name,
                                          kinPrice: Int(offer.price),
                                          offerCategory: offer.domain,
                                          offerId: offer.identifier,
                                          offerName: offer.title,
                                          offerType: offer.type)
-        Analytics.logEvent(event)
+            .send()
     }
 }
