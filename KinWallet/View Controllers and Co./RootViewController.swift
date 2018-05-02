@@ -10,7 +10,7 @@ import Crashlytics
 
 private let taskFetchTimeout: TimeInterval = 6
 private let creatingAccountTimeout: TimeInterval = 25
-let shownTutorialKey = "ShownTutorial"
+let startedPhoneVerificationKey = "startedPhoneVerification"
 
 extension NSNotification.Name {
     static let SplashScreenWillDismiss = NSNotification.Name(rawValue: "SplashScreenWillDismiss")
@@ -38,7 +38,7 @@ class RootViewController: UIViewController {
             splash.creatingAccount = true
             startWalletCreationTimeout()
         } else {
-            if UserDefaults.standard.bool(forKey: shownTutorialKey) {
+            if UserDefaults.standard.bool(forKey: startedPhoneVerificationKey) {
                 showWelcomeViewController()
             } else {
                 DispatchQueue.main.asyncAfter(deadline: .now() + taskFetchTimeout) {
@@ -118,10 +118,12 @@ class RootViewController: UIViewController {
     }
 
     func appLaunched() {
+        let previouslyActivated = Kin.shared.accountStatus == .activated
+
         if let currentUser = User.current {
             KLogVerbose("User \(currentUser.userId) with device token \(currentUser.deviceToken ?? "No token")")
             Kin.shared.performOnboardingIfNeeded().then {
-                self.onboardSucceeded($0)
+                self.onboardSucceeded($0, previouslyActivated: previouslyActivated)
             }
 
             #if !TESTS
@@ -156,7 +158,7 @@ class RootViewController: UIViewController {
                     KinLoader.shared.loadAllData()
 
                     Kin.shared.performOnboardingIfNeeded().then {
-                        self?.onboardSucceeded($0)
+                        self?.onboardSucceeded($0, previouslyActivated: false)
                     }
 
                     DispatchQueue.main.async {
@@ -166,7 +168,7 @@ class RootViewController: UIViewController {
         }
     }
 
-    func onboardSucceeded(_ success: Bool) {
+    func onboardSucceeded(_ success: Bool, previouslyActivated: Bool) {
         guard success else {
             showWalletCreationFailed()
             return
@@ -180,7 +182,11 @@ class RootViewController: UIViewController {
         user.save()
 
         DispatchQueue.main.async {
-            self.showWelcomeViewController()
+            if UserDefaults.standard.bool(forKey: startedPhoneVerificationKey) || !previouslyActivated {
+                self.showWelcomeViewController()
+            } else {
+                self.dismissSplashIfNeeded()
+            }
         }
     }
 
@@ -197,7 +203,10 @@ class RootViewController: UIViewController {
             return
         }
 
-        UserDefaults.standard.set(true, forKey: shownTutorialKey)
+        if let config = RemoteConfig.current,
+            config.phoneVerificationEnabled.boolValue {
+            UserDefaults.standard.set(true, forKey: startedPhoneVerificationKey)
+        }
 
         let pushWelcome = {
             let welcome = StoryboardScene.Main.welcomeViewController.instantiate()

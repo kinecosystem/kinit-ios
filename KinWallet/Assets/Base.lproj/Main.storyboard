@@ -351,40 +351,51 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQg-52-QvA">
-                                <rect key="frame" x="0.0" y="20" width="375" height="503"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="482"/>
                                 <connections>
                                     <outlet property="delegate" destination="wvP-60-dyh" id="DUs-8y-cnc"/>
                                 </connections>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="jmA-l5-kEJ">
-                                <rect key="frame" x="0.0" y="523" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="502" width="375" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="vZF-JT-B4z"/>
+                                    <constraint firstAttribute="height" constant="25" id="vZF-JT-B4z"/>
                                 </constraints>
                                 <connections>
                                     <action selector="pageControlChangedValue:" destination="wvP-60-dyh" eventType="valueChanged" id="4Qw-pW-jnB"/>
                                 </connections>
                             </pageControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gXJ-jq-GLR">
-                                <rect key="frame" x="0.0" y="567" width="375" height="100"/>
+                                <rect key="frame" x="0.0" y="527" width="375" height="140"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4en-ag-SsL">
-                                        <rect key="frame" x="48" y="28" width="280" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="280" id="0pt-Dl-Ix9"/>
-                                            <constraint firstAttribute="height" constant="44" id="ke5-m1-ndL"/>
-                                        </constraints>
-                                        <state key="normal" title="Start Earning Kin"/>
-                                        <connections>
-                                            <action selector="startEarning:" destination="wvP-60-dyh" eventType="touchUpInside" id="q5Q-ZO-e1M"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Og2-eS-u1O">
+                                        <rect key="frame" x="48" y="26" width="280" height="89"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4en-ag-SsL">
+                                                <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="280" id="0pt-Dl-Ix9"/>
+                                                    <constraint firstAttribute="height" constant="44" id="ke5-m1-ndL"/>
+                                                </constraints>
+                                                <state key="normal" title="Start Earning Kin"/>
+                                                <connections>
+                                                    <action selector="startEarning:" destination="wvP-60-dyh" eventType="touchUpInside" id="q5Q-ZO-e1M"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By clicking “Start earning Kin” you are agreeing  to our Terms of Service and Privacy Policy" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="PwY-UI-CRj">
+                                                <rect key="frame" x="0.0" y="60" width="280" height="29"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="4en-ag-SsL" firstAttribute="centerX" secondItem="gXJ-jq-GLR" secondAttribute="centerX" id="cQ1-7w-HyE"/>
-                                    <constraint firstItem="4en-ag-SsL" firstAttribute="centerY" secondItem="gXJ-jq-GLR" secondAttribute="centerY" id="cU0-bb-Yjr"/>
-                                    <constraint firstAttribute="height" constant="100" id="jTb-wS-uVm"/>
+                                    <constraint firstItem="Og2-eS-u1O" firstAttribute="centerY" secondItem="gXJ-jq-GLR" secondAttribute="centerY" id="Uya-Yb-IsD"/>
+                                    <constraint firstItem="Og2-eS-u1O" firstAttribute="centerX" secondItem="gXJ-jq-GLR" secondAttribute="centerX" id="XPd-4W-pMG"/>
+                                    <constraint firstAttribute="height" constant="140" id="jTb-wS-uVm"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -408,6 +419,7 @@
                         <viewLayoutGuide key="safeArea" id="zFJ-9b-25K"/>
                     </view>
                     <connections>
+                        <outlet property="disclaimerLabel" destination="PwY-UI-CRj" id="n0y-ca-rlM"/>
                         <outlet property="gradientBackgroundView" destination="SIC-m0-0xq" id="iGb-vE-Xpa"/>
                         <outlet property="pageControl" destination="jmA-l5-kEJ" id="mBo-ea-HZn"/>
                         <outlet property="scrollView" destination="jQg-52-QvA" id="6TN-9F-EFX"/>
@@ -416,7 +428,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pIN-zT-QVu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1030" y="2739"/>
+            <point key="canvasLocation" x="-1031.2" y="2737.7811094452777"/>
         </scene>
         <!--Phone Verification Request View Controller-->
         <scene sceneID="wnq-R3-gXw">
