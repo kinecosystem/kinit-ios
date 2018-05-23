@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7AR-IW-RNo" customClass="SurveyQuestionCollectionReusableView" customModule="KinWallet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000596046448" translatesAutoresizingMaskIntoConstraints="NO" id="akM-AX-T9A">
+                    <rect key="frame" x="5" y="185" width="365" height="70"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mfb-rJ-b3w">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="180" id="OpF-8N-LMJ"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="efl-E8-M2x" firstAttribute="bottom" secondItem="akM-AX-T9A" secondAttribute="bottom" constant="5" id="2nf-Kh-gTz"/>
+                <constraint firstItem="mfb-rJ-b3w" firstAttribute="leading" secondItem="efl-E8-M2x" secondAttribute="leading" id="3Er-4f-Vb2"/>
+                <constraint firstItem="akM-AX-T9A" firstAttribute="leading" secondItem="efl-E8-M2x" secondAttribute="leading" constant="5" id="LeT-Pq-gEb"/>
+                <constraint firstItem="efl-E8-M2x" firstAttribute="trailing" secondItem="akM-AX-T9A" secondAttribute="trailing" constant="5" id="TKA-eG-0FB"/>
+                <constraint firstItem="mfb-rJ-b3w" firstAttribute="trailing" secondItem="efl-E8-M2x" secondAttribute="trailing" id="TUo-SU-bFU"/>
+                <constraint firstItem="mfb-rJ-b3w" firstAttribute="top" secondItem="efl-E8-M2x" secondAttribute="top" id="VUR-8x-Zwz"/>
+                <constraint firstItem="akM-AX-T9A" firstAttribute="top" secondItem="mfb-rJ-b3w" secondAttribute="bottom" constant="5" id="xgg-hf-hVb"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="efl-E8-M2x"/>
+            <connections>
+                <outlet property="imageView" destination="mfb-rJ-b3w" id="fkZ-M1-jqp"/>
+                <outlet property="imageViewHeightConstraint" destination="OpF-8N-LMJ" id="0qw-xA-fLx"/>
+                <outlet property="questionLabel" destination="akM-AX-T9A" id="VhC-9f-AvQ"/>
+            </connections>
+            <point key="canvasLocation" x="-1" y="230"/>
+        </collectionReusableView>
+    </objects>
+</document>

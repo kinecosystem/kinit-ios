@@ -16,12 +16,14 @@ enum QuestionType: String, Codable {
 
 struct Question: Codable {
     let identifier: String
+    let imageURL: URL?
     let text: String
     let type: QuestionType
     let results: [Result]
 
     enum CodingKeys: String, CodingKey {
         case identifier = "id"
+        case imageURL = "image_url"
         case text
         case type
         case results

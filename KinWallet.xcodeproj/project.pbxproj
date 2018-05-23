@@ -55,7 +55,7 @@
 		828CB4312056E9E1007C679C /* BalanceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91147440203F1D4100C16279 /* BalanceLabel.swift */; };
 		828CB4322056E9E1007C679C /* KinAmountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D7C030204F11D200D35401 /* KinAmountLabel.swift */; };
 		828CB4332056E9E5007C679C /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91147439203F177500C16279 /* GradientView.swift */; };
-		828CB4342056E9EA007C679C /* SurveyQuestionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D891D22020B43D0090E77C /* SurveyQuestionCollectionViewCell.swift */; };
+		828CB4342056E9EA007C679C /* SurveyQuestionCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D891D22020B43D0090E77C /* SurveyQuestionCollectionReusableView.swift */; };
 		828CB4362056E9EA007C679C /* OfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91908C63204D69F200971F11 /* OfferCollectionViewCell.swift */; };
 		828CB4382056E9F2007C679C /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E6B661203C69EE0080C2FC /* Analytics.swift */; };
 		828CB4392056E9F2007C679C /* FeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E20B8A202B3E3B000CB741 /* FeedbackGenerator.swift */; };
@@ -188,7 +188,6 @@
 		914013DF2019F2BF0066367C /* UITableViewCell+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013D82019F2BF0066367C /* UITableViewCell+KinWallet.swift */; };
 		914013E02019F2BF0066367C /* UICollectionView+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013D92019F2BF0066367C /* UICollectionView+KinWallet.swift */; };
 		914013E12019F2BF0066367C /* UICollectionView+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013D92019F2BF0066367C /* UICollectionView+KinWallet.swift */; };
-		914013E4201A1A6E0066367C /* Sourcery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013E3201A1A6E0066367C /* Sourcery.swift */; };
 		91473FE0201DCDBF0013A530 /* SelectedResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91473FDF201DCDBF0013A530 /* SelectedResult.swift */; };
 		9156A97A205035A500F21C20 /* ServerTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9156A979205035A500F21C20 /* ServerTypes.swift */; };
 		9157F983204C40E000351E2A /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9157F982204C40E000351E2A /* Log.swift */; };
@@ -300,10 +299,10 @@
 		91D891C72020A1A60090E77C /* QuestionCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D891C62020A1A60090E77C /* QuestionCollectionViewDataSource.swift */; };
 		91D891CD2020B3C70090E77C /* TouchUpEffectScalable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D891CC2020B3C70090E77C /* TouchUpEffectScalable.swift */; };
 		91D891CE2020B3C70090E77C /* TouchUpEffectScalable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D891CC2020B3C70090E77C /* TouchUpEffectScalable.swift */; };
-		91D891D82020B43D0090E77C /* SurveyQuestionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D891D12020B43D0090E77C /* SurveyQuestionCollectionViewCell.xib */; };
-		91D891D92020B43D0090E77C /* SurveyQuestionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D891D12020B43D0090E77C /* SurveyQuestionCollectionViewCell.xib */; };
-		91D891DA2020B43D0090E77C /* SurveyQuestionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D891D22020B43D0090E77C /* SurveyQuestionCollectionViewCell.swift */; };
-		91D891DB2020B43D0090E77C /* SurveyQuestionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D891D22020B43D0090E77C /* SurveyQuestionCollectionViewCell.swift */; };
+		91D891D82020B43D0090E77C /* SurveyQuestionCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D891D12020B43D0090E77C /* SurveyQuestionCollectionReusableView.xib */; };
+		91D891D92020B43D0090E77C /* SurveyQuestionCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D891D12020B43D0090E77C /* SurveyQuestionCollectionReusableView.xib */; };
+		91D891DA2020B43D0090E77C /* SurveyQuestionCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D891D22020B43D0090E77C /* SurveyQuestionCollectionReusableView.swift */; };
+		91D891DB2020B43D0090E77C /* SurveyQuestionCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D891D22020B43D0090E77C /* SurveyQuestionCollectionReusableView.swift */; };
 		91D891DC2020B43D0090E77C /* SurveyTextAnswerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D891D32020B43D0090E77C /* SurveyTextAnswerCollectionViewCell.xib */; };
 		91D891DD2020B43D0090E77C /* SurveyTextAnswerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D891D32020B43D0090E77C /* SurveyTextAnswerCollectionViewCell.xib */; };
 		91D891DE2020B43D0090E77C /* SurveyImageAnswerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D891D42020B43D0090E77C /* SurveyImageAnswerCollectionViewCell.xib */; };
@@ -311,6 +310,9 @@
 		91D891E02020B43D0090E77C /* SurveyAnswerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D891D52020B43D0090E77C /* SurveyAnswerCollectionViewCell.swift */; };
 		91D891E22020B43D0090E77C /* AnswersCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D891D72020B43D0090E77C /* AnswersCollectionViewLayout.swift */; };
 		91E20B8B202B3E3B000CB741 /* FeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E20B8A202B3E3B000CB741 /* FeedbackGenerator.swift */; };
+		91E5C6A020B5D20B0024BAA5 /* Sourcery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013E3201A1A6E0066367C /* Sourcery.swift */; };
+		91E5C6A120B5D20B0024BAA5 /* Sourcery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013E3201A1A6E0066367C /* Sourcery.swift */; };
+		91E5C6A220B5D20C0024BAA5 /* Sourcery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013E3201A1A6E0066367C /* Sourcery.swift */; };
 		91E6B5F1203AD0A40080C2FC /* KinSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E6B5EC203AD08E0080C2FC /* KinSDK.framework */; };
 		91E6B5F2203AD0A40080C2FC /* KinSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91E6B5EC203AD08E0080C2FC /* KinSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		91E6B604203AD0D80080C2FC /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E6B5FD203AD0D00080C2FC /* Lottie.framework */; };
@@ -444,8 +446,6 @@
 		91E84AB520862E1400E8B7A6 /* RedeemedGoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF9D31207F4BE100B536E9 /* RedeemedGoodsViewController.swift */; };
 		91E84AB620862E2200E8B7A6 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E84A442085EA3800E8B7A6 /* HistoryViewController.swift */; };
 		91E84AB720862E2300E8B7A6 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E84A442085EA3800E8B7A6 /* HistoryViewController.swift */; };
-		91E84AB820862E3300E8B7A6 /* Sourcery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013E3201A1A6E0066367C /* Sourcery.swift */; };
-		91E84AB920862E3300E8B7A6 /* Sourcery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013E3201A1A6E0066367C /* Sourcery.swift */; };
 		91E84ABA20862E4700E8B7A6 /* TransactionHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F69D1420834A9B00F06181 /* TransactionHistoryCollectionViewCell.swift */; };
 		91E84ABB20862E4700E8B7A6 /* TransactionHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F69D1420834A9B00F06181 /* TransactionHistoryCollectionViewCell.swift */; };
 		91E84ABC20862E6E00E8B7A6 /* RedeemTransactionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F69D4020848C0200F06181 /* RedeemTransactionCollectionViewCell.swift */; };
@@ -726,8 +726,8 @@
 		91D891C32020844B0090E77C /* ImageAssets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAssets.swift; sourceTree = "<group>"; };
 		91D891C62020A1A60090E77C /* QuestionCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		91D891CC2020B3C70090E77C /* TouchUpEffectScalable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchUpEffectScalable.swift; sourceTree = "<group>"; };
-		91D891D12020B43D0090E77C /* SurveyQuestionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SurveyQuestionCollectionViewCell.xib; sourceTree = "<group>"; };
-		91D891D22020B43D0090E77C /* SurveyQuestionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyQuestionCollectionViewCell.swift; sourceTree = "<group>"; };
+		91D891D12020B43D0090E77C /* SurveyQuestionCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SurveyQuestionCollectionReusableView.xib; sourceTree = "<group>"; };
+		91D891D22020B43D0090E77C /* SurveyQuestionCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyQuestionCollectionReusableView.swift; sourceTree = "<group>"; };
 		91D891D32020B43D0090E77C /* SurveyTextAnswerCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SurveyTextAnswerCollectionViewCell.xib; sourceTree = "<group>"; };
 		91D891D42020B43D0090E77C /* SurveyImageAnswerCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SurveyImageAnswerCollectionViewCell.xib; sourceTree = "<group>"; };
 		91D891D52020B43D0090E77C /* SurveyAnswerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyAnswerCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1235,8 +1235,8 @@
 		91D891D02020B43D0090E77C /* UICollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				91D891D22020B43D0090E77C /* SurveyQuestionCollectionViewCell.swift */,
-				91D891D12020B43D0090E77C /* SurveyQuestionCollectionViewCell.xib */,
+				91D891D22020B43D0090E77C /* SurveyQuestionCollectionReusableView.swift */,
+				91D891D12020B43D0090E77C /* SurveyQuestionCollectionReusableView.xib */,
 				91D891D52020B43D0090E77C /* SurveyAnswerCollectionViewCell.swift */,
 				91D891D32020B43D0090E77C /* SurveyTextAnswerCollectionViewCell.xib */,
 				91AC468E207CE6590016B648 /* SurveyMultipleTextAnswerCollectionViewCell.xib */,
@@ -1564,7 +1564,7 @@
 				91E6B65E203C69A90080C2FC /* ComodoRsaCA.der in Resources */,
 				915F495C20430125005C09B3 /* KinK.ttf in Resources */,
 				915F496120430125005C09B3 /* Roboto-LightItalic.ttf in Resources */,
-				91D891D82020B43D0090E77C /* SurveyQuestionCollectionViewCell.xib in Resources */,
+				91D891D82020B43D0090E77C /* SurveyQuestionCollectionReusableView.xib in Resources */,
 				915F495B20430125005C09B3 /* Roboto-Light.ttf in Resources */,
 				91D891DE2020B43D0090E77C /* SurveyImageAnswerCollectionViewCell.xib in Resources */,
 				91B4454720909C5400ED6802 /* TutorialPageView.xib in Resources */,
@@ -1615,7 +1615,7 @@
 				91E90F98209A01C3004B50C8 /* GoogleService-Info-Prod.plist in Resources */,
 				914013A02018B87E0066367C /* InitialTasks.json in Resources */,
 				914013BB2018C68B0066367C /* Earn.storyboard in Resources */,
-				91D891D92020B43D0090E77C /* SurveyQuestionCollectionViewCell.xib in Resources */,
+				91D891D92020B43D0090E77C /* SurveyQuestionCollectionReusableView.xib in Resources */,
 				9182C29B203C6C0C0051F003 /* ComodoCaLimitedRsaCertificationAuthority.der in Resources */,
 				9138BBE8204EF1A700450C97 /* SimpleCollectionReusableView.xib in Resources */,
 				9182C2A5203C6C0C0051F003 /* ComodoRsaCA.der in Resources */,
@@ -1821,7 +1821,7 @@
 				91796BD92028692A00F8C6A0 /* KinWebService.swift in Sources */,
 				910AA2242096F34600CC822A /* AccountReadyViewController.swift in Sources */,
 				9138BBE5204EF1A700450C97 /* SimpleCollectionReusableView.swift in Sources */,
-				91D891DA2020B43D0090E77C /* SurveyQuestionCollectionViewCell.swift in Sources */,
+				91D891DA2020B43D0090E77C /* SurveyQuestionCollectionReusableView.swift in Sources */,
 				9114743D203F17ED00C16279 /* WeakBox.swift in Sources */,
 				91CE3DAD20691FFF009ABDCD /* KinSupportViewController.swift in Sources */,
 				91E6B650203C69A90080C2FC /* AMPUtils.m in Sources */,
@@ -1835,6 +1835,7 @@
 				914013AA2018BC780066367C /* SurveyViewController.swift in Sources */,
 				91E6B65B203C69A90080C2FC /* AMPDeviceInfo.m in Sources */,
 				91392A31208F48330026C2F9 /* WelcomeViewController.swift in Sources */,
+				91E5C6A020B5D20B0024BAA5 /* Sourcery.swift in Sources */,
 				91F69D3B208379F400F06181 /* BarView.swift in Sources */,
 				91AAB92E201DD4020075DAA1 /* KinNavigationController.swift in Sources */,
 				91796BDF2028A3A100F8C6A0 /* Bundle.swift in Sources */,
@@ -1874,7 +1875,6 @@
 				91B575C22046C37300AC3E04 /* UIButton+KinWallet.swift in Sources */,
 				91FF9D2E207F49C800B536E9 /* BalanceViewController.swift in Sources */,
 				914013A72018BC320066367C /* SurveyHomeViewController.swift in Sources */,
-				914013E4201A1A6E0066367C /* Sourcery.swift in Sources */,
 				9140138820187CE90066367C /* Task.swift in Sources */,
 				91E6B654203C69A90080C2FC /* ISPPinnedNSURLConnectionDelegate.m in Sources */,
 				915F497920444C10005C09B3 /* UICountingLabel.m in Sources */,
@@ -1937,6 +1937,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				91D891BF201F30BE0090E77C /* Datastore.swift in Sources */,
+				91E5C6A120B5D20B0024BAA5 /* Sourcery.swift in Sources */,
 				91E84A61208617ED00E8B7A6 /* SurveyHomeViewController.swift in Sources */,
 				82413848206036CC00D7117E /* URL+KinWallet.swift in Sources */,
 				828CB4562056EA92007C679C /* UICountingLabel.m in Sources */,
@@ -1991,7 +1992,6 @@
 				91E84A7A2086186B00E8B7A6 /* PagerTabStripViewController.swift in Sources */,
 				91796BE02028A3A100F8C6A0 /* Bundle.swift in Sources */,
 				914013C22019D0BA0066367C /* UIImage+KinWallet.swift in Sources */,
-				91E84AB820862E3300E8B7A6 /* Sourcery.swift in Sources */,
 				91D891C52020844B0090E77C /* ImageAssets.swift in Sources */,
 				915F496A20430258005C09B3 /* Fonts.swift in Sources */,
 				91E84A53208617A600E8B7A6 /* Storyboards.swift in Sources */,
@@ -2009,7 +2009,7 @@
 				91B4456A2091F98800ED6802 /* PhoneConfirmationViewController.swift in Sources */,
 				9182C29C203C6C0C0051F003 /* AMPRevenue.m in Sources */,
 				91796BD02027578500F8C6A0 /* TimeZone+KinWallet.swift in Sources */,
-				91D891DB2020B43D0090E77C /* SurveyQuestionCollectionViewCell.swift in Sources */,
+				91D891DB2020B43D0090E77C /* SurveyQuestionCollectionReusableView.swift in Sources */,
 				91E84AA420862D8B00E8B7A6 /* ServerTypes.swift in Sources */,
 				91E84A8C2086189500E8B7A6 /* SurveyViewController.swift in Sources */,
 				9182C299203C6C0C0051F003 /* AMPLocationManagerDelegate.m in Sources */,
@@ -2133,13 +2133,14 @@
 				828CB4802056EE27007C679C /* OffersUnavailableViewController.swift in Sources */,
 				91E84A54208617A700E8B7A6 /* Storyboards.swift in Sources */,
 				91E84AB720862E2300E8B7A6 /* HistoryViewController.swift in Sources */,
-				828CB4342056E9EA007C679C /* SurveyQuestionCollectionViewCell.swift in Sources */,
+				828CB4342056E9EA007C679C /* SurveyQuestionCollectionReusableView.swift in Sources */,
 				828CB4142056E913007C679C /* Question.swift in Sources */,
 				828CB43D2056E9F2007C679C /* ResourceDownloader.swift in Sources */,
 				828CB43E2056E9F6007C679C /* NibLoadableView.swift in Sources */,
 				91E84A832086186B00E8B7A6 /* PagerTabStripBehaviour.swift in Sources */,
 				91E84A662086182100E8B7A6 /* SurveyUnavailableViewController.swift in Sources */,
 				828CB4482056EA42007C679C /* Bundle.swift in Sources */,
+				91E5C6A220B5D20C0024BAA5 /* Sourcery.swift in Sources */,
 				828CB4622056EB02007C679C /* AMPUtils.m in Sources */,
 				828CB4282056E9C1007C679C /* AMPConstants.m in Sources */,
 				91E84A60208617DA00E8B7A6 /* OfferWallViewController.swift in Sources */,
@@ -2165,7 +2166,6 @@
 				91E84A852086186B00E8B7A6 /* PagerTabStripViewController.swift in Sources */,
 				91E84AB120862DE300E8B7A6 /* Bool+KinWallet.swift in Sources */,
 				828CB4242056E9C1007C679C /* AMPDatabaseHelper.m in Sources */,
-				91E84AB920862E3300E8B7A6 /* Sourcery.swift in Sources */,
 				8241384D2060373300D7117E /* KinWebService.swift in Sources */,
 				91E84A9F20862D0800E8B7A6 /* KinitTransaction.swift in Sources */,
 				91E84A9D20862CEF00E8B7A6 /* KinSupportViewController.swift in Sources */,

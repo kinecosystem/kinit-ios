@@ -7,15 +7,11 @@
 
 import UIKit
 
-enum QuestionnaireSections: Int, AutoCases {
-    case question = 0
-    case answers
-}
-
 final class QuestionCollectionViewDataSource: NSObject {
     private struct Constants {
         static let imageQuestionCellSize = CGSize(width: 134, height: 124)
-        static let questionCellHeight: CGFloat = 140
+        static let questionViewHeight: CGFloat = 140
+        static let questionViewWithImageHeight: CGFloat = 260
         static let textAnswerCellHeight: CGFloat = 46
         static let textMultipleAnswerCellHeight: CGFloat = 60
         static let textMultipleAnswerCellHeightCompact: CGFloat = 44
@@ -44,14 +40,6 @@ final class QuestionCollectionViewDataSource: NSObject {
         collectionView.delegate = self
     }
 
-    func questionCell(_ collectionView: UICollectionView,
-                      indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as SurveyQuestionCollectionViewCell
-        SurveyCellFactory.drawCell(cell, for: question)
-
-        return cell
-    }
-
     func answerCell(_ collectionView: UICollectionView,
                     indexPath: IndexPath) -> UICollectionViewCell {
         let answer = question.results[indexPath.item]
@@ -77,7 +65,7 @@ final class QuestionCollectionViewDataSource: NSObject {
 
         cell.indexPath = indexPath
         cell.delegate = self
-        SurveyCellFactory.drawCell(cell, for: answer, questionType: question.type)
+        SurveyViewsFactory.drawCell(cell, for: answer, questionType: question.type)
         cell.applySelectedLook(selectedAnswerIds.contains(answer.identifier))
 
         return cell
@@ -113,29 +101,28 @@ final class QuestionCollectionViewDataSource: NSObject {
 
 extension QuestionCollectionViewDataSource: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return QuestionnaireSections.count
+        return 1
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        if section == QuestionnaireSections.question.rawValue {
-            return 1
-        } else if section == QuestionnaireSections.answers.rawValue {
-            return animationIndex
-        } else {
-            fatalError("Section \(section) shouldn't exist.")
-        }
+        return animationIndex
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.section == QuestionnaireSections.question.rawValue {
-            return questionCell(collectionView, indexPath: indexPath)
-        } else if indexPath.section == QuestionnaireSections.answers.rawValue {
-            return answerCell(collectionView, indexPath: indexPath)
-        } else {
-            fatalError("Section \(indexPath.section) shouldn't exist.")
-        }
+        return answerCell(collectionView, indexPath: indexPath)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        let questionView: SurveyQuestionCollectionReusableView =
+            collectionView.dequeueReusableView(ofKind: UICollectionElementKindSectionHeader,
+                                               forIndexPath: indexPath)
+        SurveyViewsFactory.draw(questionView, for: question, size: questionViewSize())
+
+        return questionView
     }
 }
 
@@ -146,34 +133,24 @@ extension QuestionCollectionViewDataSource: UICollectionViewDelegate, UICollecti
         let width = collectionView.bounds.width
         let widthWithLateralInset = width - Constants.collectionViewMinimumSpacing * 2
 
-        if indexPath.section == QuestionnaireSections.question.rawValue {
-            return CGSize(width: widthWithLateralInset, height: Constants.questionCellHeight)
-        } else if indexPath.section == QuestionnaireSections.answers.rawValue {
-            switch question.type {
-            case .text, .textEmoji:
-                return CGSize(width: widthWithLateralInset, height: Constants.textAnswerCellHeight)
-            case .multipleText:
-                let height = UIDevice.isiPhone5()
-                    ? Constants.textMultipleAnswerCellHeightCompact
-                    : Constants.textMultipleAnswerCellHeight
+        switch question.type {
+        case .text, .textEmoji:
+            return CGSize(width: widthWithLateralInset, height: Constants.textAnswerCellHeight)
+        case .multipleText:
+            let height = UIDevice.isiPhone5()
+                ? Constants.textMultipleAnswerCellHeightCompact
+                : Constants.textMultipleAnswerCellHeight
 
-                return CGSize(width: width, height: height)
-            case .textAndImage:
-                return Constants.imageQuestionCellSize
-            }
-        } else {
-            fatalError("Section \(indexPath.section) shouldn't exist.")
+            return CGSize(width: width, height: height)
+        case .textAndImage:
+            return Constants.imageQuestionCellSize
         }
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        if section == QuestionnaireSections.question.rawValue || question.type == .text {
-            return .zero
-        }
-
-        if question.allowsMultipleSelection {
+        if question.type == .text || question.allowsMultipleSelection {
             return .zero
         }
 
@@ -183,14 +160,32 @@ extension QuestionCollectionViewDataSource: UICollectionViewDelegate, UICollecti
 
         return UIEdgeInsets(top: 0,
                             left: widthInsets,
-                            bottom: 0,
+                            bottom: widthInsets,
                             right: widthInsets)
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
+                        referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return questionViewSize()
+    }
+
+    fileprivate func questionViewSize() -> CGSize {
+        let width = collectionView.bounds.width
+
+        if question.imageURL != nil {
+            return CGSize(width: width,
+                          height: Constants.questionViewWithImageHeight)
+        }
+
+        return CGSize(width: width,
+                      height: Constants.questionViewHeight)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        if section == QuestionnaireSections.question.rawValue || question.type == .text {
+        if question.type == .text {
             return Constants.collectionViewMinimumSpacing
         }
 
@@ -199,6 +194,13 @@ extension QuestionCollectionViewDataSource: UICollectionViewDelegate, UICollecti
         }
 
         return spacing(for: collectionView)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplaySupplementaryView view: UICollectionReusableView,
+                        forElementKind elementKind: String,
+                        at indexPath: IndexPath) {
+        view.layer.zPosition = 0
     }
 
     private func spacing(for collectionView: UICollectionView) -> CGFloat {

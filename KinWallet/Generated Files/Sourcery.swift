@@ -3,10 +3,3 @@
 
 
 
-extension QuestionnaireSections {
-  static let count: Int = 2
-  static let allCases: [QuestionnaireSections] = [
-    .question,
-    .answers
-  ]
-}

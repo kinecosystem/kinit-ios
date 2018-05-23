@@ -131,7 +131,7 @@ class SurveyAnswerCollectionViewCell: UICollectionViewCell {
     }
 }
 
-class SurveyCellFactory {
+class SurveyViewsFactory {
     class func drawCell(_ cell: SurveyAnswerCollectionViewCell, for result: Result, questionType: QuestionType) {
         cell.titleLabel?.accessibilityIdentifier = result.identifier
         cell.imageView?.accessibilityIdentifier = result.identifier
@@ -162,7 +162,7 @@ class SurveyCellFactory {
         }
     }
 
-    class func drawCell(_ cell: SurveyQuestionCollectionViewCell, for question: Question) {
+    class func draw(_ view: SurveyQuestionCollectionReusableView, for question: Question, size: CGSize) {
         let questionFont = FontFamily.Roboto.regular.font(size: 22)
         let attributedString = NSMutableAttributedString(string: question.text,
                                                          attributes: [.font: questionFont!,
@@ -176,7 +176,15 @@ class SurveyCellFactory {
             attributedString.append(multipleNote)
         }
 
-        cell.questionLabel.attributedText = attributedString
+        view.questionLabel.attributedText = attributedString
+
+        if let imageURL = question.imageURL {
+            view.imageView.loadImage(url: imageURL.kinImagePathAdjustedForDevice(),
+                placeholderColor: UIColor.kin.lightGray,
+                size: CGSize(width: size.width, height: view.imageViewHeightConstraint.constant))
+        } else {
+            view.imageViewHeightConstraint.constant = 0
+        }
     }
 }
 

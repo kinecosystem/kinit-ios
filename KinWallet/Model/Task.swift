@@ -43,12 +43,20 @@ extension Task {
     }()
 
     func prefetchImages() {
-        let urls = questions
+        let answersImageURLs = questions
             .filter { $0.type == .textAndImage }
             .flatMap { $0.results }
-            .compactMap { $0.imageURL?.kinImagePathAdjustedForDevice() }
+            .compactMap {
+                $0.imageURL
+        }
 
-        urls.forEach(ResourceDownloader.shared.requestResource)
+        let questionsImageURLs = questions.compactMap {
+            $0.imageURL
+        }
+
+        (questionsImageURLs + answersImageURLs).map {
+            $0.kinImagePathAdjustedForDevice()
+        }.forEach(ResourceDownloader.shared.requestResource)
     }
 
     func daysToUnlock() -> UInt {

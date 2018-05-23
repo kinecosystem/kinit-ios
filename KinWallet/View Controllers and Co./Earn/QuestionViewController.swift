@@ -32,12 +32,7 @@ final class QuestionViewController: UIViewController {
     let nextButton: UIButton?
     private(set) weak var questionDelegate: QuestionViewControllerDelegate?
 
-    let layout: UICollectionViewFlowLayout = {
-        let l = AnswersCollectionViewLayout()
-        l.scrollDirection = .vertical
-
-        return l
-    }()
+    let layout = AnswersCollectionViewLayout()
 
     init(question: Question, questionDelegate: QuestionViewControllerDelegate, isInitialQuestion: Bool) {
         self.questionDelegate = questionDelegate
@@ -49,7 +44,7 @@ final class QuestionViewController: UIViewController {
         collectionView.backgroundColor = .white
         collectionView.allowsSelection = true
         collectionView.allowsMultipleSelection = question.allowsMultipleSelection
-        collectionView.register(nib: SurveyQuestionCollectionViewCell.self)
+        collectionView.register(nib: SurveyQuestionCollectionReusableView.self)
         collectionView.register(nib: SurveyTextAnswerCollectionViewCell.self)
         collectionView.register(nib: SurveyMultipleTextAnswerCollectionViewCell.self)
         collectionView.register(nib: SurveyTextImageAnswerCollectionViewCell.self)
@@ -131,7 +126,7 @@ final class QuestionViewController: UIViewController {
         if shouldContinue {
             UIView.animate(withDuration: Constants.answerInsertionAnimationDuration) {
                 let indexPath = IndexPath(item: currentIndex,
-                                          section: QuestionnaireSections.answers.rawValue)
+                                          section: 0)
                 self.collectionView.insertItems(at: [indexPath])
             }
 
