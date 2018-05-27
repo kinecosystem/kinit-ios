@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if
             let launchOptions = launchOptions,
             let notificationUserInfo = launchOptions[.remoteNotification] as? [AnyHashable: Any] {
-            logNotificationOpened(with: notificationUserInfo)
+            PushHandler.handlePush(with: notificationUserInfo)
         }
 
         return true
@@ -90,17 +90,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        KLogVerbose("Received push:\n\(userInfo)")
+
         if Auth.auth().canHandleNotification(userInfo) {
             completionHandler(.noData)
             return
         }
 
-        guard application.applicationState == .inactive else {
-            KLogVerbose("Received push while in foreground:\n\(userInfo)")
-            return
-        }
-
-        logNotificationOpened(with: userInfo)
+        PushHandler.handlePush(with: userInfo)
     }
 }
 

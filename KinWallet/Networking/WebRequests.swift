@@ -47,6 +47,12 @@ extension WebRequests {
                                                          transform: WebResourceHandlers.isJSONStatusOk)
     }
 
+    static func ackAuthToken(_ authToken: String) -> WebRequest<SimpleStatusResponse, Success> {
+        return WebRequest<SimpleStatusResponse, Success>(POST: "/user/auth/ack",
+                                                         body: ["token": authToken],
+                                                         transform: WebResourceHandlers.isJSONStatusOk)
+    }
+
     static func updateUserIdToken(_ idToken: String, phoneNumber: String) -> WebRequest<SimpleStatusResponse, Success> {
         return WebRequest<SimpleStatusResponse, Success>(POST: "/user/firebase/update-id-token",
                                                          body: ["token": idToken, "phone_number": phoneNumber],

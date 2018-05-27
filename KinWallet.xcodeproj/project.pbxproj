@@ -213,6 +213,9 @@
 		915F497920444C10005C09B3 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 915F497220444C0F005C09B3 /* UICountingLabel.m */; };
 		915F497B204452CC005C09B3 /* Loader1.json in Resources */ = {isa = PBXBuildFile; fileRef = 915F497A204452CC005C09B3 /* Loader1.json */; };
 		9163EDFF20553248005F3123 /* UIAlertAction+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9163EDFE20553248005F3123 /* UIAlertAction+KinWallet.swift */; };
+		9170390C20B75175006B01FB /* PushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170390B20B75175006B01FB /* PushHandler.swift */; };
+		9170391320B7517A006B01FB /* PushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170390B20B75175006B01FB /* PushHandler.swift */; };
+		9170391420B7517A006B01FB /* PushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170390B20B75175006B01FB /* PushHandler.swift */; };
 		9170BE92206A5E9A00DC88B4 /* EarnKinAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170BE91206A5E9A00DC88B4 /* EarnKinAnimationViewController.swift */; };
 		91796BC72027261F00F8C6A0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91796BC62027261F00F8C6A0 /* User.swift */; };
 		91796BC92027276000F8C6A0 /* UIDevice+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91796BC82027276000F8C6A0 /* UIDevice+KinWallet.swift */; };
@@ -686,6 +689,7 @@
 		915F497820444C10005C09B3 /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UICountingLabel.h; path = Submodules/UICountingLabel/UICountingLabel.h; sourceTree = SOURCE_ROOT; };
 		915F497A204452CC005C09B3 /* Loader1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Loader1.json; sourceTree = "<group>"; };
 		9163EDFE20553248005F3123 /* UIAlertAction+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertAction+KinWallet.swift"; sourceTree = "<group>"; };
+		9170390B20B75175006B01FB /* PushHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushHandler.swift; sourceTree = "<group>"; };
 		9170BE91206A5E9A00DC88B4 /* EarnKinAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarnKinAnimationViewController.swift; sourceTree = "<group>"; };
 		91796BC62027261F00F8C6A0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		91796BC82027276000F8C6A0 /* UIDevice+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+KinWallet.swift"; sourceTree = "<group>"; };
@@ -1200,6 +1204,7 @@
 				91B575B92045E62B00AC3E04 /* KinLoader.swift */,
 				9157F982204C40E000351E2A /* Log.swift */,
 				91AAB931201E0AC00075DAA1 /* ResourceDownloader.swift */,
+				9170390B20B75175006B01FB /* PushHandler.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1928,6 +1933,7 @@
 				91401372201635760066367C /* Storyboards.swift in Sources */,
 				91FF9D32207F4BE100B536E9 /* RedeemedGoodsViewController.swift in Sources */,
 				910AA22E2096F42F00CC822A /* ConfettiView.swift in Sources */,
+				9170390C20B75175006B01FB /* PushHandler.swift in Sources */,
 				91796BC72027261F00F8C6A0 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2000,6 +2006,7 @@
 				91E84AA920862DAA00E8B7A6 /* QuestionCollectionViewDataSource.swift in Sources */,
 				91E84AA320862D8300E8B7A6 /* WebRequests.swift in Sources */,
 				915F496E20431960005C09B3 /* GradientView.swift in Sources */,
+				9170391320B7517A006B01FB /* PushHandler.swift in Sources */,
 				914013DF2019F2BF0066367C /* UITableViewCell+KinWallet.swift in Sources */,
 				91E84A9020862C5100E8B7A6 /* User.swift in Sources */,
 				824138402060368B00D7117E /* KinWebService.swift in Sources */,
@@ -2105,6 +2112,7 @@
 				91E84A9B20862CE900E8B7A6 /* SplashScreenViewController.swift in Sources */,
 				91E84A802086186B00E8B7A6 /* ButtonBarViewCell.swift in Sources */,
 				91E84A8D2086189500E8B7A6 /* SurveyViewController.swift in Sources */,
+				9170391420B7517A006B01FB /* PushHandler.swift in Sources */,
 				91E84AA220862D8300E8B7A6 /* WebRequests.swift in Sources */,
 				91E84A5B208617CA00E8B7A6 /* BalancePagerTabViewController.swift in Sources */,
 				828CB44F2056EA42007C679C /* Date+Kinit.swift in Sources */,
