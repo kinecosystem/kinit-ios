@@ -66,7 +66,7 @@ final class QuestionCollectionViewDataSource: NSObject {
         cell.indexPath = indexPath
         cell.delegate = self
         SurveyViewsFactory.drawCell(cell, for: answer, questionType: question.type)
-        cell.applySelectedLook(selectedAnswerIds.contains(answer.identifier))
+        cell.isSelected = selectedAnswerIds.contains(answer.identifier)
 
         return cell
     }
@@ -207,6 +207,15 @@ extension QuestionCollectionViewDataSource: UICollectionViewDelegate, UICollecti
         let width = collectionView.frame.width
         let emptySpace = width - Constants.numberOfColumns * Constants.imageQuestionCellSize.width
         return emptySpace/(Constants.numberOfColumns + 1)
+    }
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        collectionView.visibleCells
+            .compactMap {
+                $0 as? SurveyAnswerCollectionViewCell
+            }.forEach {
+                $0.cancelTouchIfNeeded()
+        }
     }
 }
 

@@ -33,10 +33,15 @@ class SurveyAnswerCollectionViewCell: UICollectionViewCell {
     weak var delegate: SurveyAnswerDelegate?
     var didToggleAnswer = false
     var indexPath: IndexPath!
-    var isLookingSelected = false
+    var isTouchHappening = false
+
+    override var isSelected: Bool {
+        didSet {
+            applySelectedLook(isSelected)
+        }
+    }
 
     func applySelectedLook(_ selected: Bool) {
-        isLookingSelected = selected
         titleLabel?.textColor = selected ? Constants.Highlighted.textColor : Constants.Normal.textColor
         backgroundImageView?.image = selected ? selectedBackgroundImage : backgroundImage
     }
@@ -75,12 +80,15 @@ class SurveyAnswerCollectionViewCell: UICollectionViewCell {
         }
 
         commitToggleSelection(sender)
+        isTouchHappening = false
     }
 
     @objc func didStartTouching(_ sender: UIControl) {
         if animatingTouchStart || animatingTouchEnd {
             return
         }
+
+        isTouchHappening = true
 
         applySelectedLook(!isSelected)
 
@@ -103,7 +111,6 @@ class SurveyAnswerCollectionViewCell: UICollectionViewCell {
     func commitToggleSelection(_ sender: UIControl) {
         didEndTouching(sender)
         isSelected.toggle()
-        applySelectedLook(isSelected)
 
         if isSelected {
             delegate?.surveyAnswerCellDidSelect(self)
@@ -115,16 +122,31 @@ class SurveyAnswerCollectionViewCell: UICollectionViewCell {
     }
 
     @objc func didEndTouching(_ sender: UIControl) {
+        isTouchHappening = false
+
         if animatingTouchStart || animatingTouchEnd {
             return
         }
 
+        finishTouching(force: false)
+    }
+
+    func cancelTouchIfNeeded() {
+        guard isTouchHappening else {
+            return
+        }
+
+        finishTouching(force: true)
+    }
+
+    private func finishTouching(force: Bool) {
         animatingTouchEnd = true
         touchUpEffectControl.endTouchUpEffect { [weak self] _ in
             self?.animatingTouchEnd = false
+            self?.isTouchHappening = false
         }
 
-        if !didToggleAnswer {
+        if !didToggleAnswer || force {
             delegate?.surveyAnswerCellDidCancelSelecting(self)
             applySelectedLook(isSelected)
         }
@@ -224,7 +246,7 @@ class SurveyTextAnswerCollectionViewCell: SurveyAnswerCollectionViewCell, NibLoa
     }
 }
 
-//swiftlint:disable:next type_length
+//swiftlint:disable:next type_name
 class SurveyMultipleTextAnswerCollectionViewCell: SurveyAnswerCollectionViewCell, NibLoadableView {
     @IBOutlet weak var textLabel: UILabel!
 

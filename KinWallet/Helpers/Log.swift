@@ -12,6 +12,7 @@ enum KinitLogLevel: Int, Comparable, Equatable {
     case error
     case warn
     case verbose
+    case debug
 }
 
 extension KinitLogLevel: CustomStringConvertible {
@@ -20,6 +21,7 @@ extension KinitLogLevel: CustomStringConvertible {
         case .error: return "ERROR"
         case .warn: return "WARNING"
         case .verbose: return "VERBOSE"
+        case .debug: return "DEBUG"
         default: return ""
         }
     }
@@ -53,6 +55,15 @@ func KLogVerbose(_ message: @autoclosure () -> String, file: StaticString = #fil
     }
 }
 
+func KLogDebug(_ message: @autoclosure () -> String, file: StaticString = #file, line: UInt = #line) {
+    if logLevel >= .debug {
+        KLog(String(describing: logLevel) + " " + message(), file: file, line: line)
+    }
+}
+
 private func KLog(_ message: String, file: StaticString, line: UInt) {
-    print(String(describing: file) + ":" + String(describing: line), message)
+    let aFile = String(describing: file)
+    let lastPath = aFile.components(separatedBy: "/").last ?? ""
+
+    print(lastPath + ":" + String(describing: line), message)
 }

@@ -32,7 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             #endif
         }
 
-
         #if DEBUG
         let firebaseFilename = "GoogleService-Info-Staging"
         #else
@@ -43,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure(options: firebaseOptions)
 
         #if DEBUG
-            logLevel = .verbose
+            logLevel = .debug
         #endif
 
         if #available(iOS 10.0, *) {
