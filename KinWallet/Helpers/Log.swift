@@ -27,6 +27,18 @@ extension KinitLogLevel: CustomStringConvertible {
     }
 }
 
+extension KinitLogLevel {
+    func emoji() -> String {
+        switch self {
+        case .error: return "🛑"
+        case .warn: return "⚠️"
+        case .verbose: return "🔊"
+        case .debug: return "🐛"
+        default: return ""
+        }
+    }
+}
+
 func <<T: RawRepresentable>(lhs: T, rhs: T) -> Bool where T.RawValue: Comparable {
     return lhs.rawValue < rhs.rawValue
 }
@@ -39,31 +51,31 @@ var logLevel = KinitLogLevel.off
 
 func KLogError(_ message: @autoclosure () -> String, file: StaticString = #file, line: UInt = #line) {
     if logLevel >= .error {
-        KLog(String(describing: logLevel) + " " + message(), file: file, line: line)
+        KLog(message(), file: file, line: line, level: .error)
     }
 }
 
 func KLogWarn(_ message: @autoclosure () -> String, file: StaticString = #file, line: UInt = #line) {
     if logLevel >= .warn {
-        KLog(String(describing: logLevel) + " " + message(), file: file, line: line)
+        KLog(message(), file: file, line: line, level: .warn)
     }
 }
 
 func KLogVerbose(_ message: @autoclosure () -> String, file: StaticString = #file, line: UInt = #line) {
     if logLevel >= .verbose {
-        KLog(String(describing: logLevel) + " " + message(), file: file, line: line)
+        KLog(message(), file: file, line: line, level: .verbose)
     }
 }
 
 func KLogDebug(_ message: @autoclosure () -> String, file: StaticString = #file, line: UInt = #line) {
     if logLevel >= .debug {
-        KLog(String(describing: logLevel) + " " + message(), file: file, line: line)
+        KLog(message(), file: file, line: line, level: .debug)
     }
 }
 
-private func KLog(_ message: String, file: StaticString, line: UInt) {
+private func KLog(_ message: String, file: StaticString, line: UInt, level: KinitLogLevel) {
     let aFile = String(describing: file)
     let lastPath = aFile.components(separatedBy: "/").last ?? ""
 
-    print(lastPath + ":" + String(describing: line), message)
+    print(lastPath + ":" + String(describing: line), level.emoji(), level, message)
 }
