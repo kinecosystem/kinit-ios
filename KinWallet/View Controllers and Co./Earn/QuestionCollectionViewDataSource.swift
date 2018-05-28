@@ -10,8 +10,6 @@ import UIKit
 final class QuestionCollectionViewDataSource: NSObject {
     private struct Constants {
         static let imageQuestionCellSize = CGSize(width: 134, height: 124)
-        static let questionViewHeight: CGFloat = 140
-        static let questionViewWithImageHeight: CGFloat = 260
         static let textAnswerCellHeight: CGFloat = 46
         static let textMultipleAnswerCellHeight: CGFloat = 60
         static let textMultipleAnswerCellHeightCompact: CGFloat = 44
@@ -113,17 +111,6 @@ extension QuestionCollectionViewDataSource: UICollectionViewDataSource {
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return answerCell(collectionView, indexPath: indexPath)
     }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        viewForSupplementaryElementOfKind kind: String,
-                        at indexPath: IndexPath) -> UICollectionReusableView {
-        let questionView: SurveyQuestionCollectionReusableView =
-            collectionView.dequeueReusableView(ofKind: UICollectionElementKindSectionHeader,
-                                               forIndexPath: indexPath)
-        SurveyViewsFactory.draw(questionView, for: question, size: questionViewSize())
-
-        return questionView
-    }
 }
 
 extension QuestionCollectionViewDataSource: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -162,24 +149,6 @@ extension QuestionCollectionViewDataSource: UICollectionViewDelegate, UICollecti
                             left: widthInsets,
                             bottom: widthInsets,
                             right: widthInsets)
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return questionViewSize()
-    }
-
-    fileprivate func questionViewSize() -> CGSize {
-        let width = collectionView.bounds.width
-
-        if question.imageURL != nil {
-            return CGSize(width: width,
-                          height: Constants.questionViewWithImageHeight)
-        }
-
-        return CGSize(width: width,
-                      height: Constants.questionViewHeight)
     }
 
     func collectionView(_ collectionView: UICollectionView,

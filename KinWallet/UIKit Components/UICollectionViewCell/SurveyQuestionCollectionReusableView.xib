@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000596046448" translatesAutoresizingMaskIntoConstraints="NO" id="akM-AX-T9A">
-                    <rect key="frame" x="5" y="185" width="365" height="70"/>
+                    <rect key="frame" x="16" y="185" width="343" height="70"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -32,8 +32,8 @@
             <constraints>
                 <constraint firstItem="efl-E8-M2x" firstAttribute="bottom" secondItem="akM-AX-T9A" secondAttribute="bottom" constant="5" id="2nf-Kh-gTz"/>
                 <constraint firstItem="mfb-rJ-b3w" firstAttribute="leading" secondItem="efl-E8-M2x" secondAttribute="leading" id="3Er-4f-Vb2"/>
-                <constraint firstItem="akM-AX-T9A" firstAttribute="leading" secondItem="efl-E8-M2x" secondAttribute="leading" constant="5" id="LeT-Pq-gEb"/>
-                <constraint firstItem="efl-E8-M2x" firstAttribute="trailing" secondItem="akM-AX-T9A" secondAttribute="trailing" constant="5" id="TKA-eG-0FB"/>
+                <constraint firstItem="akM-AX-T9A" firstAttribute="leading" secondItem="efl-E8-M2x" secondAttribute="leading" constant="16" id="LeT-Pq-gEb"/>
+                <constraint firstItem="efl-E8-M2x" firstAttribute="trailing" secondItem="akM-AX-T9A" secondAttribute="trailing" constant="16" id="TKA-eG-0FB"/>
                 <constraint firstItem="mfb-rJ-b3w" firstAttribute="trailing" secondItem="efl-E8-M2x" secondAttribute="trailing" id="TUo-SU-bFU"/>
                 <constraint firstItem="mfb-rJ-b3w" firstAttribute="top" secondItem="efl-E8-M2x" secondAttribute="top" id="VUR-8x-Zwz"/>
                 <constraint firstItem="akM-AX-T9A" firstAttribute="top" secondItem="mfb-rJ-b3w" secondAttribute="bottom" constant="5" id="xgg-hf-hVb"/>
