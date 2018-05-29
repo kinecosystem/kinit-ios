@@ -41,7 +41,7 @@ class TransactionHistoryViewController: HistoryViewController<KinitTransaction, 
 
         items.reversed().forEach {
             lastBalance += $0.amount * ($0.clientReceived ? 1 : -1)
-            balances[$0.txHash] = UInt64(lastBalance)
+            balances[$0.txHash] = UInt64(max(0, lastBalance))
         }
     }
 
