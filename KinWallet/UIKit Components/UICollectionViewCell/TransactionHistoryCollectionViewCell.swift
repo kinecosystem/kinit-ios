@@ -33,9 +33,7 @@ class TransactionHistoryCellFactory {
             ? UIColor.kin.appTint
             : UIColor.kin.gray
 
-        cell.sourceLabel.text = transaction.clientReceived
-            ? "Daily Task"
-            : transaction.title
+        cell.sourceLabel.text = transaction.title
 
         let date = transaction.date
         cell.dateLabel.text = Date().beginningOfDay() < date
