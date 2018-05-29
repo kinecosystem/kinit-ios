@@ -76,6 +76,7 @@ func KLogDebug(_ message: @autoclosure () -> String, file: StaticString = #file,
 private func KLog(_ message: String, file: StaticString, line: UInt, level: KinitLogLevel) {
     let aFile = String(describing: file)
     let lastPath = aFile.components(separatedBy: "/").last ?? ""
+    let emoji = level.emoji()
 
-    print(lastPath + ":" + String(describing: line), level.emoji(), level, message)
+    print(emoji, level, emoji, lastPath + ":" + String(describing: line), message)
 }
