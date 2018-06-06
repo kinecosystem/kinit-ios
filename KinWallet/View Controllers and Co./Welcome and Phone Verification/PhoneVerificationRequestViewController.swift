@@ -124,10 +124,14 @@ class PhoneVerificationRequestViewController: UIViewController {
         guard
             let text = phoneTextField.text,
             let phoneNumber = try? phoneNumberUtility.parse(text, defaultRegion: regionCode),
-            let formattedNumber = try? phoneNumberUtility.format(phoneNumber, numberFormat: .INTERNATIONAL) else {
+            var formattedNumber = try? phoneNumberUtility.format(phoneNumber, numberFormat: .INTERNATIONAL) else {
                 logPhoneFormattingFailed()
                 return
         }
+
+        formattedNumber = formattedNumber
+            .replacingOccurrences(of: " ", with: "")
+            .replacingOccurrences(of: "-", with: "")
 
         accessoryView.isLoading = true
 
@@ -143,7 +147,7 @@ class PhoneVerificationRequestViewController: UIViewController {
                     if UIDevice.isiPhone5() {
                         self.view.endEditing(true)
                     }
-                    
+
                     FeedbackGenerator.notifyErrorIfAvailable()
                     let errorMessage = self.errorMessage(for: error as NSError)
                     self.errorLabel.text = errorMessage
