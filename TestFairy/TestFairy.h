@@ -59,9 +59,16 @@
  * to this method to allow users to provide feedback about the current
  * session. All feedback will appear in your build report page, and in
  * the recorded session page.
- *
  */
-+ (void)pushFeedbackController;
++ (void)pushFeedbackController TF_DEPRECATED("Please refer to showFeedbackForm");
+
+/**
+ * Programmatically display the feedback form to users.
+ * Users can provide feedback about the current session.
+ * All feedback will appear in your build report page,
+ * and in the recorded session page.
+ */
++ (void)showFeedbackForm;
 
 /**
  * Send a feedback on behalf of the user. Call when using a in-house
@@ -84,12 +91,20 @@
 /**
  * Marks a checkpoint in session. Use this text to tag a session
  * with a checkpoint name. Later you can filter sessions where your
- * user passed through this checkpoint, for bettering understanding
- * user experience and behavior.
+ * user passed through this checkpoint.
  *
  * @param name The checkpoint name
  */
-+ (void)checkpoint:(NSString *)name;
++ (void)checkpoint:(NSString *)name TF_DEPRECATED("Please refer to addEvent:");
+
+/**
+ * Marks an event in session timeline. Use this text to tag a session
+ * with an event name. Later you can filter sessions where your
+ * user passed through this event.
+ *
+ * @param name The event name
+ */
++ (void)addEvent:(NSString *)name;
 
 /**
  * Sets a correlation identifier for this session. This value can
@@ -206,6 +221,12 @@
  *
  */
 + (void)attachFile:(NSURL *)file;
+
+/**
+ * Query to see if the previous session crashed. Can be called before or
+ * after calling begin.
+ */
++ (BOOL)didLastSessionCrash;
 
 @end
 
