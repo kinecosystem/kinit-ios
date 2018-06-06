@@ -103,4 +103,16 @@ class KinLoader {
             }
         }.load(with: KinWebService.shared)
     }
+
+    func prependTransaction(_ transaction: KinitTransaction) {
+        guard let fetchResult = transactions.value else {
+            return
+        }
+
+        var newTransactions = [transaction]
+        if case let FetchResult.some(current) = fetchResult {
+            newTransactions.append(contentsOf: current)
+            transactions.next(.some(newTransactions))
+        }
+    }
 }

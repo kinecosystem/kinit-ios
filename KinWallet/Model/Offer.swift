@@ -32,3 +32,56 @@ struct Offer: Codable {
         case price
     }
 }
+
+enum SpecialOffer {
+    case sendKin
+
+    var actionTitle: String {
+        switch self {
+        case .sendKin:
+            return "Send Kin"
+        }
+    }
+
+    var isEnabled: Bool {
+        switch self {
+        case .sendKin:
+            return Analytics.currentEarnCount() >= 4
+        }
+    }
+
+    fileprivate func actionViewController() -> SpendOfferActionViewController {
+        switch self {
+        case .sendKin:
+            return StoryboardScene.Spend.sendKinOfferActionViewController.instantiate()
+        }
+    }
+}
+
+extension Offer {
+    func specialOffer() -> SpecialOffer? {
+        if title == "Send Kin to a friend" {
+            return .sendKin
+        }
+
+        return nil
+    }
+
+    func shouldDisplayPrice() -> Bool {
+        if specialOffer() == .sendKin {
+            return false
+        }
+
+        return true
+    }
+
+    func actionViewController() -> SpendOfferActionViewController {
+        if let specialOffer = specialOffer() {
+            return specialOffer.actionViewController()
+        }
+
+        let standardOfferActionViewController = StoryboardScene.Spend.standardOfferActionViewController.instantiate()
+        standardOfferActionViewController.offer = self
+        return standardOfferActionViewController
+    }
+}

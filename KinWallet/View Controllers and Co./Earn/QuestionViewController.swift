@@ -86,8 +86,6 @@ final class QuestionViewController: UIViewController {
             ? Constants.questionViewWithImageHeight
             : Constants.questionViewHeight
 
-        KLogDebug("Question height: \(questionViewHeight)")
-
         if #available(iOS 11.0, *) {
             viewGuides = view.safeAreaLayoutGuide
         } else {

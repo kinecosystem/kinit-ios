@@ -65,7 +65,12 @@ class OfferCollectionViewCell: UICollectionViewCell {
         authorNameLabel.text = offer.author.name
         let priceString = KinAmountFormatter().string(from: NSNumber(value: offer.price))
             ?? String(describing: offer.price)
-        priceLabel.text = "\(priceString) KIN"
+
+        if offer.shouldDisplayPrice() {
+            priceLabel.text = "\(priceString) KIN"
+        } else {
+            priceLabel.text = nil
+        }
     }
 }
 
