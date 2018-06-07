@@ -77,7 +77,12 @@ class OfferDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupNavigationBar()
+        let xImage = Asset.closeXButtonDarkGray.image
+            .withRenderingMode(.alwaysOriginal)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: xImage,
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(dismissTapped(_:)))
         drawOffer()
 
         addAndFit(actionViewController!, to: actionView)
@@ -87,16 +92,6 @@ class OfferDetailsViewController: UIViewController {
         super.viewDidAppear(animated)
 
         logViewedPage()
-    }
-
-    func setupNavigationBar() {
-        navigationController?.navigationBar.setBackgroundImage(.from(.white), for: .default)
-        let xImage = Asset.closeXButtonDarkGray.image
-            .withRenderingMode(.alwaysOriginal)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: xImage,
-                                                           style: .plain,
-                                                           target: self,
-                                                           action: #selector(dismissTapped(_:)))
     }
 
     @IBAction func dismissTapped(_ sender: UIBarButtonItem) {

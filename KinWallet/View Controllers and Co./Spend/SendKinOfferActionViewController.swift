@@ -17,26 +17,23 @@ class SendKinOfferActionViewController: SpendOfferActionViewController {
         }
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
     @IBAction func sendKin(_ sender: Any) {
-        let contactsViewController = CNContactPickerViewController()
-        contactsViewController.predicateForEnablingContact = NSPredicate(format: "phoneNumbers.@count > 0")
-        contactsViewController.displayedPropertyKeys = [CNContactPhoneNumbersKey]
+        let contactsViewController = KinCNContactPickerViewController()
         contactsViewController.delegate = self
         present(contactsViewController, animated: true)
+        contactsViewController.navigationController?.navigationBar.setBackgroundImage(.from(.white), for: .default)
+    }
+
+    fileprivate func contactNotFound(contactName: String?) {
+        let alertController = UIAlertController(title: "\(contactName ?? "Your friend") Isn't Using Kinit",
+                                                message: "Sorry, you can only send Kin to Kinit users.",
+                                                preferredStyle: .alert)
+        alertController.addAction(.ok())
+        present(alertController, animated: true)
     }
 }
 
 extension SendKinOfferActionViewController: CNContactPickerDelegate {
-    func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
-        KLogDebug("Did cancel CNContactPickerViewController")
-    }
-
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contactProperty: CNContactProperty) {
         guard let cnPhoneNumber = contactProperty.value as? CNPhoneNumber else {
             return
@@ -45,7 +42,7 @@ extension SendKinOfferActionViewController: CNContactPickerDelegate {
         let imageFromContact: UIImage? = contactProperty.contact.imageData != nil
             ? UIImage(data: contactProperty.contact.imageData!)
             : nil
-        let contactImage = imageFromContact ?? Asset.recordsLedger.image
+        let contactImage = imageFromContact ?? UIImage.from(.lightGray)
 
         let contactName = [contactProperty.contact.givenName, contactProperty.contact.familyName]
             .joined(separator: " ")
@@ -68,12 +65,9 @@ extension SendKinOfferActionViewController: CNContactPickerDelegate {
                 self.sendKinButton.setTitle("Send Kin", for: .normal)
 
                 guard let address = address else {
-                    //present alert
-                    KLogDebug("Couldn't find address for user with phone \(phoneNumber)")
+                    self.contactNotFound(contactName: contactName)
                     return
                 }
-
-                KLogDebug("User with phone \(phoneNumber) has address \(address)")
 
                 let sendKinViewController = StoryboardScene.Spend.sendKinViewController.instantiate()
                 sendKinViewController.contactImage = contactImage
@@ -83,5 +77,22 @@ extension SendKinOfferActionViewController: CNContactPickerDelegate {
                 self.navigationController?.pushViewController(sendKinViewController, animated: true)
             }
         }.load(with: KinWebService.shared)
+    }
+}
+
+private class KinCNContactPickerViewController: CNContactPickerViewController {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+
+        predicateForEnablingContact = NSPredicate(format: "phoneNumbers.@count > 0")
+        displayedPropertyKeys = [CNContactPhoneNumbersKey]
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }

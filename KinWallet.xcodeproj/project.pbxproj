@@ -271,6 +271,9 @@
 		91B0667920C8177100CE69A7 /* KinSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667820C8177100CE69A7 /* KinSentViewController.swift */; };
 		91B0667A20C8177100CE69A7 /* KinSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667820C8177100CE69A7 /* KinSentViewController.swift */; };
 		91B0667B20C8177100CE69A7 /* KinSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667820C8177100CE69A7 /* KinSentViewController.swift */; };
+		91B0667E20C929EF00CE69A7 /* NSLayoutConstraintHairline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667D20C929EF00CE69A7 /* NSLayoutConstraintHairline.swift */; };
+		91B0667F20C929EF00CE69A7 /* NSLayoutConstraintHairline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667D20C929EF00CE69A7 /* NSLayoutConstraintHairline.swift */; };
+		91B0668020C929EF00CE69A7 /* NSLayoutConstraintHairline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667D20C929EF00CE69A7 /* NSLayoutConstraintHairline.swift */; };
 		91B4453D20909C4500ED6802 /* TutorialPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B4453C20909C4500ED6802 /* TutorialPageView.swift */; };
 		91B4453E20909C4500ED6802 /* TutorialPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B4453C20909C4500ED6802 /* TutorialPageView.swift */; };
 		91B4453F20909C4500ED6802 /* TutorialPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B4453C20909C4500ED6802 /* TutorialPageView.swift */; };
@@ -723,6 +726,7 @@
 		91B0667420C6CD0100CE69A7 /* SendKinOfferActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendKinOfferActionViewController.swift; sourceTree = "<group>"; };
 		91B0667620C7E47D00CE69A7 /* SendKinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendKinViewController.swift; sourceTree = "<group>"; };
 		91B0667820C8177100CE69A7 /* KinSentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinSentViewController.swift; sourceTree = "<group>"; };
+		91B0667D20C929EF00CE69A7 /* NSLayoutConstraintHairline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintHairline.swift; sourceTree = "<group>"; };
 		91B4453C20909C4500ED6802 /* TutorialPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPageView.swift; sourceTree = "<group>"; };
 		91B4454620909C5400ED6802 /* TutorialPageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialPageView.xib; sourceTree = "<group>"; };
 		91B4454E2090C3B400ED6802 /* PhoneVerificationRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationRequestViewController.swift; sourceTree = "<group>"; };
@@ -1240,9 +1244,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		91B0667C20C929E000CE69A7 /* NSLayoutConstraint */ = {
+			isa = PBXGroup;
+			children = (
+				91B0667D20C929EF00CE69A7 /* NSLayoutConstraintHairline.swift */,
+			);
+			path = NSLayoutConstraint;
+			sourceTree = "<group>";
+		};
 		91D891CF2020B43D0090E77C /* UIKit Components */ = {
 			isa = PBXGroup;
 			children = (
+				91B0667C20C929E000CE69A7 /* NSLayoutConstraint */,
 				91F69D1E208379AE00F06181 /* XLPagerTabStrip */,
 				9138BBE2204EF17700450C97 /* UICollectionReusableView */,
 				9114743F203F1D1E00C16279 /* UILabel */,
@@ -1862,6 +1875,7 @@
 				91F69D3B208379F400F06181 /* BarView.swift in Sources */,
 				91AAB92E201DD4020075DAA1 /* KinNavigationController.swift in Sources */,
 				91796BDF2028A3A100F8C6A0 /* Bundle.swift in Sources */,
+				91B0667E20C929EF00CE69A7 /* NSLayoutConstraintHairline.swift in Sources */,
 				91FF9D15207E365100B536E9 /* KinitTransaction.swift in Sources */,
 				91D891E02020B43D0090E77C /* SurveyAnswerCollectionViewCell.swift in Sources */,
 				91F69D2F208379F400F06181 /* ButtonBarViewCell.swift in Sources */,
@@ -1974,6 +1988,7 @@
 				828CB47F2056EE26007C679C /* OffersUnavailableViewController.swift in Sources */,
 				914013B82018C5D70066367C /* StoryboardInitializable.swift in Sources */,
 				91796BCA2027276000F8C6A0 /* UIDevice+KinWallet.swift in Sources */,
+				91B0667F20C929EF00CE69A7 /* NSLayoutConstraintHairline.swift in Sources */,
 				91E84A752086186B00E8B7A6 /* ButtonBarViewCell.swift in Sources */,
 				910AA22B2096F34800CC822A /* AccountReadyViewController.swift in Sources */,
 				91B445502090C3B400ED6802 /* PhoneVerificationRequestViewController.swift in Sources */,
@@ -2164,6 +2179,7 @@
 				91E84A54208617A700E8B7A6 /* Storyboards.swift in Sources */,
 				91E84AB720862E2300E8B7A6 /* HistoryViewController.swift in Sources */,
 				828CB4342056E9EA007C679C /* SurveyQuestionCollectionReusableView.swift in Sources */,
+				91B0668020C929EF00CE69A7 /* NSLayoutConstraintHairline.swift in Sources */,
 				828CB4142056E913007C679C /* Question.swift in Sources */,
 				828CB43D2056E9F2007C679C /* ResourceDownloader.swift in Sources */,
 				828CB43E2056E9F6007C679C /* NibLoadableView.swift in Sources */,

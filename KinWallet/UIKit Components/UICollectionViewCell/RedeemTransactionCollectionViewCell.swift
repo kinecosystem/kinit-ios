@@ -50,12 +50,6 @@ class RedeemTransactionCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    @IBOutlet weak var separatorHeightConstraint: NSLayoutConstraint! {
-        didSet {
-            separatorHeightConstraint.constant = 1.0 / UIScreen.main.scale
-        }
-    }
-
     @IBOutlet weak var detailsTextView: UITextView! {
         didSet {
             detailsTextView.font = FontFamily.Roboto.regular.font(size: 14)

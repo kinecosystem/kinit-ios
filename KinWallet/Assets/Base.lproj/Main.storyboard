@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -203,7 +203,7 @@
                                 <rect key="frame" x="0.0" y="50" width="375" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="PpW-sK-w45"/>
+                                    <constraint firstAttribute="height" constant="1" id="PpW-sK-w45" customClass="separatorHeightConstraint"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -227,7 +227,6 @@
                     <connections>
                         <outlet property="buttonBarView" destination="LJp-MA-2PU" id="JvO-TN-6c8"/>
                         <outlet property="containerView" destination="uDA-F6-lh2" id="JnU-2d-sAs"/>
-                        <outlet property="separatorHeightConstraint" destination="PpW-sK-w45" id="oBb-OS-zO2"/>
                         <outlet property="separatorView" destination="Z8D-pt-OrT" id="21h-UM-RYp"/>
                     </connections>
                 </viewController>

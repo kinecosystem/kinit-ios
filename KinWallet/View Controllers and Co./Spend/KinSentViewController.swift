@@ -15,8 +15,13 @@ class KinSentViewController: UIViewController {
         super.viewDidLoad()
 
         assert(amount > 0)
-        
-        amountLabel.text = "You’ve succesfully sent    K \(amount).\nYou can see the details under Balance"
+
+        let formattedAmount = KinAmountFormatter().string(from: NSNumber(value: amount))!
+        let message = "You’ve succesfully sent K \(formattedAmount).\nYou can see the details under Balance"
+        let kRange = (message as NSString).range(of: " K ")
+        let attributedMessage = NSMutableAttributedString(string: message)
+        attributedMessage.addAttribute(.font, value: FontFamily.KinK.regular.font(size: 10), range: kRange)
+        amountLabel.attributedText = attributedMessage
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
         view.addGestureRecognizer(tapGesture)
     }
@@ -29,5 +34,9 @@ class KinSentViewController: UIViewController {
 
     @objc func viewTapped() {
         dismiss(animated: true)
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }

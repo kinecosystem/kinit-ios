@@ -12,6 +12,7 @@ private let kinDataPushTypeKey = "push_type"
 
 private enum KinPushType: String {
     case auth
+    case peerToPeerReceived = "p2p_received"
 }
 
 class PushHandler {
@@ -27,6 +28,8 @@ class PushHandler {
         switch pushType {
         case KinPushType.auth.rawValue:
             ackAuthToken(with: kinData)
+        case KinPushType.peerToPeerReceived.rawValue:
+            peerToPeerReceived(with: kinData)
         default:
             break
         }
@@ -79,5 +82,18 @@ class PushHandler {
         }
 
         WebRequests.ackAuthToken(token).load(with: KinWebService.shared)
+    }
+
+    private class func peerToPeerReceived(with kinData: [String: Any]) {
+        guard
+            let tx = kinData["tx"] as? [String: Any],
+            let asData = try? JSONSerialization.data(withJSONObject: tx, options: []),
+            let transaction = try? JSONDecoder().decode(KinitTransaction.self, from: asData)
+            else {
+                KinLoader.shared.loadTransactions()
+                return
+        }
+
+        KinLoader.shared.prependTransaction(transaction)
     }
 }

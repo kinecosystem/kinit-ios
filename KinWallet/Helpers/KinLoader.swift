@@ -109,10 +109,16 @@ class KinLoader {
             return
         }
 
-        var newTransactions = [transaction]
+        var newTransactions = [KinitTransaction]()
         if case let FetchResult.some(current) = fetchResult {
+            if !current.contains(transaction) {
+                newTransactions.append(transaction)
+            }
             newTransactions.append(contentsOf: current)
-            transactions.next(.some(newTransactions))
+        } else {
+            newTransactions.append(transaction)
         }
+
+        transactions.next(.some(newTransactions))
     }
 }
