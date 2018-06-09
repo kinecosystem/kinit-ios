@@ -9,10 +9,10 @@ import UIKit
 
 class SpendOfferActionViewController: UIViewController {
     weak var offerViewController: OfferDetailsViewController?
+    var offer: Offer!
 }
 
 class StandardOfferActionViewController: SpendOfferActionViewController {
-    var offer: Offer!
     var redeemGood: RedeemGood?
 
     @IBOutlet weak var buyActivityIndicator: UIActivityIndicatorView!
@@ -209,8 +209,8 @@ private extension StandardOfferActionViewController {
 }
 
 // MARK: Analytics
-extension StandardOfferActionViewController {
-    fileprivate func logTappedBuy() {
+extension SpendOfferActionViewController {
+    func logTappedBuy() {
         let aEvent = Events.Analytics
             .ClickBuyButtonOnOfferPage(brandName: offer.author.name,
                                        kinPrice: Int(offer.price),
@@ -229,8 +229,10 @@ extension StandardOfferActionViewController {
 
         Analytics.logEvents(aEvent, bEvent)
     }
+}
 
-    fileprivate func logViewedCode() {
+fileprivate extension StandardOfferActionViewController {
+    func logViewedCode() {
         let aEvent = Events.Analytics
             .ViewCodeTextOnOfferPage(brandName: offer.author.name,
                                      kinPrice: Int(offer.price),
@@ -249,7 +251,7 @@ extension StandardOfferActionViewController {
         Analytics.logEvents(aEvent, bEvent)
     }
 
-    fileprivate func logTappedShare() {
+    func logTappedShare() {
         Events.Analytics
             .ClickShareButtonOnOfferPage(brandName: offer.author.name,
                                          kinPrice: Int(offer.price),

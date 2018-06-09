@@ -47,6 +47,7 @@ enum SpecialOffer {
         switch self {
         case .sendKin:
             return Analytics.currentEarnCount() >= 4
+                && User.current?.phoneNumber != nil
         }
     }
 
@@ -77,7 +78,9 @@ extension Offer {
 
     func actionViewController() -> SpendOfferActionViewController {
         if let specialOffer = specialOffer() {
-            return specialOffer.actionViewController()
+            let viewController = specialOffer.actionViewController()
+            viewController.offer = self
+            return viewController
         }
 
         let standardOfferActionViewController = StoryboardScene.Spend.standardOfferActionViewController.instantiate()

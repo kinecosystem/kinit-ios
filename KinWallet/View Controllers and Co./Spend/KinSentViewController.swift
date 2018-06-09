@@ -23,8 +23,6 @@ class KinSentViewController: UIViewController {
         let attributedMessage = NSMutableAttributedString(string: message)
         attributedMessage.addAttribute(.font, value: FontFamily.KinK.regular.font(size: 10), range: kRange)
         amountLabel.attributedText = attributedMessage
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
-        view.addGestureRecognizer(tapGesture)
 
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
 
@@ -43,6 +41,17 @@ class KinSentViewController: UIViewController {
             view.insertSubview(blueOverlayView, at: 0)
             blueOverlayView.fitInSuperview()
         }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
+        view.addGestureRecognizer(tapGesture)
+
+        Events.Analytics
+            .ViewSuccessMessageOnSendKinPage(kinAmount: Float(amount))
+            .send()
     }
 
     override func viewWillAppear(_ animated: Bool) {

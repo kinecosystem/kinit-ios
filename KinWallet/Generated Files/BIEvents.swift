@@ -2,7 +2,7 @@
 // BIEvents.swift
 //
 // Don't edit this file.
-// Generated at 2018-05-01 08:14:14 +0000 by Kik BI-Generator.
+// Generated at 2018-06-07 13:05:48 +0000 by Kik BI-Generator.
 //
 
 protocol BIEvent {
@@ -90,6 +90,7 @@ struct Events {
     
     enum TransactionType: String { 
         case earn = "earn"
+        case p2p = "p2p"
         case spend = "spend"
     }
     
@@ -116,6 +117,9 @@ struct Events {
     
     enum ErrorType: String { 
         case codeNotProvided = "Code not provided"
+        case exceedExistingKin = "Exceed existing Kin"
+        case exceedMaxOrMinKin = "Exceed max/min Kin"
+        case friendNotExists = "Friend not exists"
         case internetConnection = "Internet Connection"
         case offerNotAvailable = "Offer not available"
         case onboarding = "Onboarding"
@@ -1170,6 +1174,110 @@ struct Events {
                         "parent_name": "Phone_Auth",
                         "parent_type": "popup",
                         
+                        ]
+            }
+        } 
+        /// user views the Send Kin page where he sets up the Kin amount he wants to send to a friend. Event name: `view_Send_Kin_page`
+        struct ViewSendKinPage: BIEvent {
+            let name = "view_Send_Kin_page"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Send_Kin",
+                        "item_type": "page",
+                        "action": "view",
+                        "event_type": "analytics",
+                        
+                        ]
+            }
+        } 
+        /// user clicks on the Send button to send Kin to a friend. Event name: `click_Send_button_on_Send_Kin_page`
+        struct ClickSendButtonOnSendKinPage: BIEvent {
+            let name = "click_Send_button_on_Send_Kin_page"
+            let kinAmount: Float
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Send",
+                        "item_type": "button",
+                        "action": "click",
+                        "event_type": "analytics",
+                        "parent_name": "Send_Kin",
+                        "parent_type": "page",
+                        
+                        
+                        "KIN_amount": kinAmount, 
+                        ]
+            }
+        } 
+        /// user views the success message on successful transaction of Kin to a friend. Event name: `view_Success_message_on_Send_Kin_page`
+        struct ViewSuccessMessageOnSendKinPage: BIEvent {
+            let name = "view_Success_message_on_Send_Kin_page"
+            let kinAmount: Float
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Success",
+                        "item_type": "message",
+                        "action": "view",
+                        "event_type": "analytics",
+                        "parent_name": "Send_Kin",
+                        "parent_type": "page",
+                        
+                        
+                        "KIN_amount": kinAmount, 
+                        ]
+            }
+        } 
+        /// user views error message popup on several use cases on Send Kin page. Event name: `view_Error_popup_on_Send_Kin_page`
+        struct ViewErrorPopupOnSendKinPage: BIEvent {
+            let name = "view_Error_popup_on_Send_Kin_page"
+            let errorType: ErrorType
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Error",
+                        "item_type": "popup",
+                        "action": "view",
+                        "event_type": "analytics",
+                        "parent_name": "Send_Kin",
+                        "parent_type": "page",
+                        
+                        
+                        "error_type": errorType.rawValue, 
+                        ]
+            }
+        } 
+        /// user views the Video page as part of a "tip" task . Event name: `view_Video_page`
+        struct ViewVideoPage: BIEvent {
+            let name = "view_Video_page"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Video",
+                        "item_type": "page",
+                        "action": "view",
+                        "event_type": "analytics",
+                        
+                        ]
+            }
+        } 
+        /// user playes the Video page as part of a "tip" task . Event name: `click_Play_button_on_Video_page`
+        struct ClickPlayButtonOnVideoPage: BIEvent {
+            let name = "click_Play_button_on_Video_page"
+            let videoTitle: String
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Play",
+                        "item_type": "button",
+                        "action": "click",
+                        "event_type": "analytics",
+                        "parent_name": "Video",
+                        "parent_type": "page",
+                        
+                        
+                        "video_title": videoTitle, 
                         ]
             }
         } 

@@ -89,6 +89,12 @@ class SendKinViewController: UIViewController {
         }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        Events.Analytics.ViewSendKinPage().send()
+    }
+
     private func reloadContact() {
         contactNameLabel.text = contactName
         contactImageView.image = contactImage
@@ -101,11 +107,11 @@ class SendKinViewController: UIViewController {
 
         let aAmount = UInt64(amount)
 
-        let minBalance: UInt = 500
-        if Kin.shared.balance < minBalance {
-            alertBalanceTooLow(minBalance: minBalance)
-            return
-        }
+        Events.Analytics
+            .ClickSendButtonOnSendKinPage(kinAmount: Float(amount))
+            .send()
+
+        let currentBalance = Kin.shared.balance
 
         if let minKin = RemoteConfig.current?.peerToPeerMinKin, aAmount < minKin {
             alertAmount(higher: false, minOrMaxKin: minKin)
@@ -117,15 +123,36 @@ class SendKinViewController: UIViewController {
             return
         }
 
+        if aAmount > currentBalance {
+            alertBalanceTooLow(minBalance: aAmount)
+            return
+        }
+
         isSendingKin = true
         Kin.shared.send(aAmount, to: publicAddress) { [weak self] txId, error in
             guard let txId = txId else {
                 KLogWarn("Transaction failed in Kin step: \(error?.localizedDescription ?? "No description")")
                 self?.alertTransactionFailed()
+                Events.Business
+                    .KINTransactionFailed(failureReason: error?.localizedDescription ?? "No reason",
+                                          kinAmount: Float(aAmount),
+                                          transactionType: .p2p)
+                    .send()
+
                 return
             }
 
             KLogDebug("Transaction succeeded, will report to server")
+
+            //delay sending the event a little bit, to make sure balance is updated
+            DispatchQueue.global().asyncAfter(deadline: .now() + 2, execute: {
+                Events.Business
+                    .KINTransactionSucceeded(kinAmount: Float(aAmount),
+                                             transactionId: txId,
+                                             transactionType: .p2p)
+                    .send()
+            })
+
             self?.reportKinSent(amount: aAmount, txId: txId)
         }
     }
@@ -159,12 +186,20 @@ class SendKinViewController: UIViewController {
             ? "You can only send \(minOrMaxKin) KIN at a time."
             : "Please send at least \(minOrMaxKin) KIN."
         alert(title: title, message: message)
+
+        Events.Analytics
+            .ViewErrorPopupOnSendKinPage(errorType: .exceedMaxOrMinKin)
+            .send()
     }
 
-    private func alertBalanceTooLow(minBalance: UInt) {
+    private func alertBalanceTooLow(minBalance: UInt64) {
         let title = "Looks Like Your Balance Is a Bit Low"
         let message = "Make sure you have at least \(minBalance) KIN."
         alert(title: title, message: message)
+
+        Events.Analytics
+            .ViewErrorPopupOnSendKinPage(errorType: .exceedExistingKin)
+            .send()
     }
 
     private func alertTransactionFailed() {

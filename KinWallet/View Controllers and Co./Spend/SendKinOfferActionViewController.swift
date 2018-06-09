@@ -18,6 +18,7 @@ class SendKinOfferActionViewController: SpendOfferActionViewController {
     }
 
     @IBAction func sendKin(_ sender: Any) {
+        logTappedBuy()
         let contactsViewController = KinCNContactPickerViewController()
         contactsViewController.delegate = self
         present(contactsViewController, animated: true)
@@ -30,6 +31,10 @@ class SendKinOfferActionViewController: SpendOfferActionViewController {
                                                 preferredStyle: .alert)
         alertController.addAction(.ok())
         present(alertController, animated: true)
+
+        Events.Analytics
+            .ViewErrorPopupOnSendKinPage(errorType: .friendNotExists)
+            .send()
     }
 }
 
