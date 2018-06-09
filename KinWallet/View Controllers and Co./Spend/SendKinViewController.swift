@@ -77,6 +77,16 @@ class SendKinViewController: UIViewController {
         amountTextField.text = "0"
         amountTextField.inputAccessoryView = sendKinContainerView
         amountTextField.becomeFirstResponder()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            self?.navigationController?.delegate = self
+            let screenshot = UIApplication.shared.fullscreenshot
+            self?.isSendingKin = false
+            let sentViewController = StoryboardScene.Spend.kinSentViewController.instantiate()
+            sentViewController.amount = 80
+            sentViewController.sendKinScreenshot = screenshot
+            self?.navigationController?.pushViewController(sentViewController, animated: true)
+        }
     }
 
     private func reloadContact() {
@@ -130,9 +140,12 @@ class SendKinViewController: UIViewController {
                 }
 
                 DispatchQueue.main.async {
+                    self?.navigationController?.delegate = self
+                    let screenshot = UIApplication.shared.fullscreenshot
                     self?.isSendingKin = false
                     let sentViewController = StoryboardScene.Spend.kinSentViewController.instantiate()
                     sentViewController.amount = amount
+                    sentViewController.sendKinScreenshot = screenshot
                     self?.navigationController?.pushViewController(sentViewController, animated: true)
                 }
             }.load(with: KinWebService.shared)
@@ -250,13 +263,20 @@ extension SendKinViewController: UITextFieldDelegate {
                 return false
             }
 
-            if currentAmount == 0 {
-                amountLabel.text = string
-            } else {
-                amountLabel.text = amountText.appending(string)
-            }
+            amountLabel.text = currentAmount == 0
+                ? string
+                : amountText.appending(string)
         }
 
         return false
+    }
+}
+
+extension SendKinViewController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController,
+                              animationControllerFor operation: UINavigationControllerOperation,
+                              from fromVC: UIViewController,
+                              to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return AlphaAnimatedTransitioning()
     }
 }
