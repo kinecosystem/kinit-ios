@@ -77,16 +77,6 @@ class SendKinViewController: UIViewController {
         amountTextField.text = "0"
         amountTextField.inputAccessoryView = sendKinContainerView
         amountTextField.becomeFirstResponder()
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-            self?.navigationController?.delegate = self
-            let screenshot = UIApplication.shared.fullscreenshot
-            self?.isSendingKin = false
-            let sentViewController = StoryboardScene.Spend.kinSentViewController.instantiate()
-            sentViewController.amount = 80
-            sentViewController.sendKinScreenshot = screenshot
-            self?.navigationController?.pushViewController(sentViewController, animated: true)
-        }
     }
 
     override func viewDidAppear(_ animated: Bool) {

@@ -17,6 +17,12 @@ class SendKinOfferActionViewController: SpendOfferActionViewController {
         }
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        sendKinButton.isEnabled = SpecialOffer.sendKin.isEnabled
+    }
+
     @IBAction func sendKin(_ sender: Any) {
         logTappedBuy()
         let contactsViewController = KinCNContactPickerViewController()
