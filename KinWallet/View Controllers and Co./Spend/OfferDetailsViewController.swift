@@ -71,6 +71,8 @@ class OfferDetailsViewController: UIViewController {
             descriptionLabel.numberOfLines = 0
             descriptionLabel.font = FontFamily.Roboto.regular.font(size: 16)
             descriptionLabel.textColor = UIColor.kin.gray
+            descriptionLabel.adjustsFontSizeToFitWidth = true
+            descriptionLabel.minimumScaleFactor = 0.5
         }
     }
 

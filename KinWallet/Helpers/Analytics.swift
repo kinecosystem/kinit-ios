@@ -104,11 +104,6 @@ extension Analytics {
         increment(property: Events.UserProperties.earnCount)
     }
 
-    static func currentEarnCount() -> Int {
-        let key = userDefaultsKey(for: Events.UserProperties.earnCount)
-        return UserDefaults.standard.integer(forKey: key)
-    }
-
     static func incrementSpendCount() {
         increment(property: Events.UserProperties.spendCount)
     }
