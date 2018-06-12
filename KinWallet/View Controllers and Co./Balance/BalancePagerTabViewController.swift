@@ -14,12 +14,6 @@ class BalancePagerTabViewController: ButtonBarPagerTabStripViewController {
         }
     }
 
-    @IBOutlet weak var separatorHeightConstraint: NSLayoutConstraint! {
-        didSet {
-            separatorHeightConstraint.constant = 1.0 / UIScreen.main.scale
-        }
-    }
-
     override func viewDidLoad() {
         settings.style.selectedBarHeight = 2
         settings.style.selectedBarBackgroundColor = UIColor.kin.appTint

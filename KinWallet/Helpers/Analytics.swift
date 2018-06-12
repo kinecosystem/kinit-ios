@@ -85,11 +85,15 @@ extension Analytics {
     }
 
     private static func increment(property: String, by amount: Int = 1) {
-        let key = "Kin-UserProperty-\(property)"
+        let key = userDefaultsKey(for: property)
         let count = UserDefaults.standard.integer(forKey: key) + amount
         setUserProperty(property, with: count)
 
         UserDefaults.standard.set(count, forKey: key)
+    }
+
+    private static func userDefaultsKey(for property: String) -> String {
+        return "Kin-UserProperty-\(property)"
     }
 
     static func incrementTransactionCount() {
@@ -98,6 +102,11 @@ extension Analytics {
 
     static func incrementEarnCount() {
         increment(property: Events.UserProperties.earnCount)
+    }
+
+    static func currentEarnCount() -> Int {
+        let key = userDefaultsKey(for: Events.UserProperties.earnCount)
+        return UserDefaults.standard.integer(forKey: key)
     }
 
     static func incrementSpendCount() {

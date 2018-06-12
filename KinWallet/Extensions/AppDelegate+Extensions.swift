@@ -14,10 +14,15 @@ extension AppDelegate {
     }
 
     func applyAppearance() {
-        window?.tintColor = UIColor.kin.appTint
+        let tintColor = UIColor.kin.appTint
+        window?.tintColor = tintColor
 
         UINavigationBar.appearance().setBackgroundImage(navigationBarGradientImage(), for: .default)
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = .white
+
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [WhiteNavigationBar.self]).tintColor = tintColor
+        WhiteNavigationBar.appearance().setBackgroundImage(nil, for: .default)
+
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white,
                                                             .font: FontFamily.Roboto.regular.font(size: 16)]
     }
@@ -52,3 +57,5 @@ extension AppDelegate: WebServiceProvider {
         return Bundle.appVersion
     }
 }
+
+class WhiteNavigationBar: UINavigationBar { }

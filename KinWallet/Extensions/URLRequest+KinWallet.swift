@@ -8,7 +8,6 @@
 import Foundation
 
 extension URLRequest {
-
     public var curlString: String {
         // Logging URL requests in whole may expose sensitive data,
         // or open up possibility for getting access to your user data,

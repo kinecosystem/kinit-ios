@@ -8,6 +8,7 @@
 import UIKit
 
 class TransactionHistoryCellFactory {
+    static let kinAmountFormatter = KinAmountFormatter()
     static let timeDateFormatter: DateFormatter = {
         let f = DateFormatter()
         f.dateStyle = .none
@@ -28,7 +29,8 @@ class TransactionHistoryCellFactory {
                         isFirst: Bool,
                         isLast: Bool,
                         balanceAfter: UInt64) {
-        cell.amountLabel.text = "\(transaction.clientReceived ? "+" : "-")\(transaction.amount) K"
+        let transactionAmountString = kinAmountFormatter.string(from: NSNumber(value: transaction.amount))!
+        cell.amountLabel.text = "\(transaction.clientReceived ? "+" : "-")\(transactionAmountString) K"
         cell.amountLabel.textColor = transaction.clientReceived
             ? UIColor.kin.appTint
             : UIColor.kin.gray
@@ -43,7 +45,8 @@ class TransactionHistoryCellFactory {
         cell.timelineTopView.isHidden = isFirst
         cell.timelineBottomView.isHidden = isLast
 
-        cell.balanceLabel.text = "\(balanceAfter) K"
+        let amountAfter = kinAmountFormatter.string(from: NSNumber(value: balanceAfter))!
+        cell.balanceLabel.text = "\(amountAfter) K"
 
         let asset = transaction.clientReceived
             ? Asset.historyKinIcon

@@ -28,6 +28,12 @@ struct OffersResponse: Codable {
     let offers: [Offer]
 }
 
+struct ContactSearchStatusResponse: StatusResponse, Codable {
+    let status: String
+    let address: String?
+    let error: String?
+}
+
 struct BookOfferResponse: StatusResponse, Codable {
     let status: String
     let orderId: String?
@@ -70,6 +76,16 @@ struct RedeemGood: Codable {
 struct RedeemResponse: StatusResponse, Codable {
     let status: String
     let goods: [RedeemGood]
+}
+
+struct TransactionReportStatusResponse: StatusResponse, Codable {
+    let status: String
+    let transaction: KinitTransaction
+
+    enum CodingKeys: CodingKey, String {
+        case status
+        case transaction = "tx"
+    }
 }
 
 struct TransactionHistoryResponse: StatusResponse, Codable {

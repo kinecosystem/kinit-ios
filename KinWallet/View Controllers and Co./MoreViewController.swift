@@ -119,6 +119,10 @@ extension MoreViewController {
             })
         }
 
+        alertController.addAction(.init(title: "Enable Notifications", style: .default, handler: { _ in
+            AppDelegate.shared.requestNotifications()
+        }))
+
         alertController.addAction(.cancel())
         present(alertController, animated: true)
     }

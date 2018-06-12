@@ -9,6 +9,7 @@ import Foundation
 
 typealias Success = Bool
 typealias TransactionId = String
+typealias PublicAddress = String
 
 private struct WebResourceHandlers {
     static func isJSONStatusOk(response: StatusResponse?) -> Bool? {
@@ -32,7 +33,7 @@ private struct WebResourceHandlers {
 
 struct WebRequests {}
 
-// MARK: User registration
+// MARK: User methods
 
 extension WebRequests {
     static func userRegistrationRequest(for user: User) -> WebRequest<RemoteConfigStatusResponse, RemoteConfig> {
@@ -63,6 +64,20 @@ extension WebRequests {
         return WebRequest<RemoteConfigStatusResponse, RemoteConfig>(POST: "/user/app-launch",
                                                          body: ["app_ver": Bundle.appVersion],
                                                          transform: WebResourceHandlers.isRemoteStatusOk)
+    }
+
+    static func searchPhoneNumber(_ phoneNumber: String) -> WebRequest<ContactSearchStatusResponse, PublicAddress> {
+        return WebRequest<ContactSearchStatusResponse, PublicAddress>(POST: "/user/contact",
+                                                               body: ["phone_number": phoneNumber],
+                                                               transform: { response -> PublicAddress? in
+            guard let response = response,
+                WebResourceHandlers.isJSONStatusOk(response: response).boolValue,
+                let address = response.address else {
+                    return nil
+            }
+
+            return address
+        })
     }
 }
 
@@ -137,6 +152,34 @@ extension WebRequests {
         return WebRequest<RedeemResponse, [RedeemGood]>(POST: "offer/redeem",
                                                         body: paymentReceipt,
                                                         transform: transform)
+    }
+
+    static func reportTransaction(with txId: String,
+                                  amount: UInt64,
+                                  to address: String) -> WebRequest<TransactionReportStatusResponse, Success> {
+        //swiftlint:disable:next nesting
+        struct PeerToPeerReport: Codable {
+            let tx_hash: String
+            let amount: UInt64
+            let destination_address: String
+        }
+
+        let transform: (TransactionReportStatusResponse?) -> Success? = {
+            guard let response = $0,
+                WebResourceHandlers.isJSONStatusOk(response: response).boolValue else {
+                return false
+            }
+
+            let tx = response.transaction
+            KinLoader.shared.prependTransaction(tx)
+
+            return true
+        }
+
+        let body = PeerToPeerReport(tx_hash: txId, amount: amount, destination_address: address)
+        return WebRequest<TransactionReportStatusResponse, Success>(POST: "/user/transaction/p2p",
+                                                                    body: body,
+                                                                    transform: transform)
     }
 }
 

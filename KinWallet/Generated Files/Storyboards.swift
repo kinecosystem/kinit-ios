@@ -103,9 +103,17 @@ enum StoryboardScene {
   enum Spend: StoryboardType {
     static let storyboardName = "Spend"
 
+    static let kinSentViewController = SceneType<KinSentViewController>(storyboard: Spend.self, identifier: "KinSentViewController")
+
     static let offerDetailsNavigationController = SceneType<UINavigationController>(storyboard: Spend.self, identifier: "OfferDetailsNavigationController")
 
     static let offerDetailsViewController = SceneType<OfferDetailsViewController>(storyboard: Spend.self, identifier: "OfferDetailsViewController")
+
+    static let sendKinOfferActionViewController = SceneType<SendKinOfferActionViewController>(storyboard: Spend.self, identifier: "SendKinOfferActionViewController")
+
+    static let sendKinViewController = SceneType<SendKinViewController>(storyboard: Spend.self, identifier: "SendKinViewController")
+
+    static let standardOfferActionViewController = SceneType<StandardOfferActionViewController>(storyboard: Spend.self, identifier: "StandardOfferActionViewController")
   }
 }
 
