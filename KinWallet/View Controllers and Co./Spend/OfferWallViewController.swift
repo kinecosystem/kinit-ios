@@ -77,7 +77,8 @@ extension OfferWallViewController: UICollectionViewDataSource {
         return subscriber.items.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as OfferCollectionViewCell
         cell.offer = subscriber.items[indexPath.item]
 

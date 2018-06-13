@@ -139,12 +139,27 @@ final class SurveyInfoViewController: UIViewController {
                     surveyComplete.results = results
                     self.present(KinNavigationController(rootViewController: surveyComplete), animated: true)
                 } else {
-                    let surveyNavController = SurveyViewController.embeddedInNavigationController(with: self.task,
-                                                        delegate: self.surveyDelegate!)
-                    self.present(surveyNavController, animated: true)
+                    self.startTask()
                 }
             }
         }
+    }
+
+    private func startTask() {
+        if let videoURL = self.task.videoURL {
+            let videoViewController = VideoTaskViewController()
+            videoViewController.videoURL = videoURL
+            videoViewController.delegate = self
+            present(videoViewController, animated: true)
+        } else {
+            self.presentTaskQuestions()
+        }
+    }
+
+    private func presentTaskQuestions() {
+        let surveyNavController = SurveyViewController.embeddedInNavigationController(with: self.task,
+                                                                                      delegate: self.surveyDelegate!)
+        present(surveyNavController, animated: true)
     }
 
     func format(minutes: Float) -> String? {
@@ -212,5 +227,17 @@ extension SurveyInfoViewController {
 extension SurveyInfoViewController: StoryboardInitializable {
     static func instantiateFromStoryboard() -> SurveyInfoViewController {
         return StoryboardScene.Earn.surveyInfoViewController.instantiate()
+    }
+}
+
+extension SurveyInfoViewController: VideoTaskViewControllerDelegate {
+    func videoTaskDidFinishPlaying() {
+        dismiss(animated: true) {
+            self.presentTaskQuestions()
+        }
+    }
+
+    func videoTaskDidCancelPlaying() {
+        dismiss(animated: true)
     }
 }

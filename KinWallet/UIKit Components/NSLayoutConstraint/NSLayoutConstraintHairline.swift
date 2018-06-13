@@ -24,4 +24,3 @@ class NSLayoutConstraintHairline: NSLayoutConstraint {
         constant = 1.0 / UIScreen.main.scale
     }
 }
-

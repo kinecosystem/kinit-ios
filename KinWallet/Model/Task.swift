@@ -17,6 +17,7 @@ struct Task: Codable {
     let subtitle: String
     let tags: [String]
     let title: String
+    let videoURL: URL?
 
     enum CodingKeys: CodingKey, String {
         case author = "provider"
@@ -28,6 +29,7 @@ struct Task: Codable {
         case subtitle = "desc"
         case tags
         case title
+        case videoURL = "video_url"
     }
 }
 

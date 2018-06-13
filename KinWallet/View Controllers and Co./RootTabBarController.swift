@@ -36,4 +36,8 @@ class RootTabBarController: UITabBarController {
                 .send()
         }
     }
+
+    override var shouldAutorotate: Bool {
+        return false
+    }
 }

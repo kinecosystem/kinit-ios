@@ -250,6 +250,9 @@
 		91908C67204D6A6A00971F11 /* OfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91908C63204D69F200971F11 /* OfferCollectionViewCell.swift */; };
 		9198A2A02062926D0052F343 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9198A29F2062926D0052F343 /* NotificationHandler.swift */; };
 		9199C7442068E39200C733A6 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9199C7432068E39200C733A6 /* RootViewController.swift */; };
+		91A4EA9A20CFE75200C3399F /* VideoTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4EA9920CFE75200C3399F /* VideoTaskViewController.swift */; };
+		91A4EAA120CFE8F600C3399F /* VideoTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4EA9920CFE75200C3399F /* VideoTaskViewController.swift */; };
+		91A4EAA220CFE8F700C3399F /* VideoTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4EA9920CFE75200C3399F /* VideoTaskViewController.swift */; };
 		91AAB92C201DD2A50075DAA1 /* SelectedResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91473FDF201DCDBF0013A530 /* SelectedResult.swift */; };
 		91AAB92E201DD4020075DAA1 /* KinNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AAB92D201DD4020075DAA1 /* KinNavigationController.swift */; };
 		91AAB92F201DD4020075DAA1 /* KinNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AAB92D201DD4020075DAA1 /* KinNavigationController.swift */; };
@@ -724,6 +727,7 @@
 		91908C64204D69F200971F11 /* OfferCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfferCollectionViewCell.xib; sourceTree = "<group>"; };
 		9198A29F2062926D0052F343 /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		9199C7432068E39200C733A6 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		91A4EA9920CFE75200C3399F /* VideoTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTaskViewController.swift; sourceTree = "<group>"; };
 		91AAB92D201DD4020075DAA1 /* KinNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinNavigationController.swift; sourceTree = "<group>"; };
 		91AAB931201E0AC00075DAA1 /* ResourceDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceDownloader.swift; sourceTree = "<group>"; };
 		91AAB934201E0C920075DAA1 /* String+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+KinWallet.swift"; sourceTree = "<group>"; };
@@ -1173,6 +1177,7 @@
 				9170BE91206A5E9A00DC88B4 /* EarnKinAnimationViewController.swift */,
 				914013AC2018BCB80066367C /* SurveyUnavailableViewController.swift */,
 				914013AF2018BD050066367C /* SurveyInfoViewController.swift */,
+				91A4EA9920CFE75200C3399F /* VideoTaskViewController.swift */,
 				914013A92018BC780066367C /* SurveyViewController.swift */,
 				914013B22018C0740066367C /* QuestionViewController.swift */,
 				91D891C62020A1A60090E77C /* QuestionCollectionViewDataSource.swift */,
@@ -1875,6 +1880,7 @@
 				9138BBE5204EF1A700450C97 /* SimpleCollectionReusableView.swift in Sources */,
 				91D891DA2020B43D0090E77C /* SurveyQuestionCollectionReusableView.swift in Sources */,
 				9114743D203F17ED00C16279 /* WeakBox.swift in Sources */,
+				91A4EA9A20CFE75200C3399F /* VideoTaskViewController.swift in Sources */,
 				91B0667920C8177100CE69A7 /* KinSentViewController.swift in Sources */,
 				91CE3DAD20691FFF009ABDCD /* KinSupportViewController.swift in Sources */,
 				91E6B650203C69A90080C2FC /* AMPUtils.m in Sources */,
@@ -2101,6 +2107,7 @@
 				91D7C032204F11D200D35401 /* KinAmountLabel.swift in Sources */,
 				9182C2A7203C6C0C0051F003 /* Amplitude.m in Sources */,
 				9140139A201892640066367C /* AnswerTests.swift in Sources */,
+				91A4EAA120CFE8F600C3399F /* VideoTaskViewController.swift in Sources */,
 				914013DD2019F2BF0066367C /* UICollectionViewCell+KinWallet.swift in Sources */,
 				91E84A9220862C6200E8B7A6 /* RootViewController.swift in Sources */,
 				9182C2A4203C6C0C0051F003 /* AMPURLConnection.m in Sources */,
@@ -2269,6 +2276,7 @@
 				828CB40E2056E8F5007C679C /* SurveyDoneViewController.swift in Sources */,
 				828CB4032056E8EC007C679C /* KinNavigationController.swift in Sources */,
 				91B445512090C3B400ED6802 /* PhoneVerificationRequestViewController.swift in Sources */,
+				91A4EAA220CFE8F700C3399F /* VideoTaskViewController.swift in Sources */,
 				828CB4422056EA08007C679C /* BIEvents.swift in Sources */,
 				828CB4382056E9F2007C679C /* Analytics.swift in Sources */,
 				91E84ABD20862E6F00E8B7A6 /* RedeemTransactionCollectionViewCell.swift in Sources */,
