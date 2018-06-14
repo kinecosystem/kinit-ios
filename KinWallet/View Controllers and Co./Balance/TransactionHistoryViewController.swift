@@ -37,11 +37,11 @@ class TransactionHistoryViewController: HistoryViewController<KinitTransaction, 
             return
         }
         balances.removeAll()
-        var lastBalance = 0
+        var lastBalance = Int(Kin.shared.balance)
 
-        items.reversed().forEach {
-            lastBalance += $0.amount * ($0.clientReceived ? 1 : -1)
+        items.forEach {
             balances[$0.txHash] = UInt64(max(0, lastBalance))
+            lastBalance += $0.amount * ($0.clientReceived ? -1 : 1)
         }
     }
 
