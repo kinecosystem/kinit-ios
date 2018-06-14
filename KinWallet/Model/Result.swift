@@ -9,13 +9,15 @@ import Foundation
 
 struct Result: Codable {
     let identifier: String
-    let text: String?
     let imageURL: URL?
+    let text: String?
+    let tipAmount: Int?
 
     enum CodingKeys: String, CodingKey {
         case identifier = "id"
-        case text
         case imageURL = "image_url"
+        case text
+        case tipAmount = "tip_value"
     }
 }
 
@@ -26,7 +28,11 @@ extension Result: Equatable {
 }
 
 extension Result {
+    func hasImage() -> Bool {
+        return imageURL != nil
+    }
+
     func hasOnlyImage() -> Bool {
-        return imageURL != nil && text.isEmpty
+        return hasImage() && text.isEmpty
     }
 }

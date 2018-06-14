@@ -2,7 +2,7 @@
 // BIEvents.swift
 //
 // Don't edit this file.
-// Generated at 2018-06-07 13:05:48 +0000 by Kik BI-Generator.
+// Generated at 2018-06-14 08:47:50 +0000 by Kik BI-Generator.
 //
 
 protocol BIEvent {
@@ -113,6 +113,7 @@ struct Events {
         case textEmoji = "text-emoji"
         case textImage = "text-image"
         case textMultiple = "text-multiple"
+        case tip = "tip"
     }
     
     enum ErrorType: String { 

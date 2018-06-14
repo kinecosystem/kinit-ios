@@ -326,14 +326,11 @@ fileprivate extension UIView {
 fileprivate extension QuestionType {
     func toBIQuestionType() -> Events.QuestionType {
         switch self {
-        case .multipleText:
-            return .textMultiple
-        case .textAndImage:
-            return .textImage
-        case .textEmoji:
-            return .textEmoji
-        case .text:
-            return .text
+        case .multipleText: return .textMultiple
+        case .textAndImage: return .textImage
+        case .textEmoji: return .textEmoji
+        case .text: return .text
+        case .tip: return .tip
         }
     }
 }

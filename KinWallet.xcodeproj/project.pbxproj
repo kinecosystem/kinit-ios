@@ -213,6 +213,9 @@
 		915F497920444C10005C09B3 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 915F497220444C0F005C09B3 /* UICountingLabel.m */; };
 		915F497B204452CC005C09B3 /* Loader1.json in Resources */ = {isa = PBXBuildFile; fileRef = 915F497A204452CC005C09B3 /* Loader1.json */; };
 		9163EDFF20553248005F3123 /* UIAlertAction+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9163EDFE20553248005F3123 /* UIAlertAction+KinWallet.swift */; };
+		916450CB20D1592400CB7994 /* ParticlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916450CA20D1592400CB7994 /* ParticlesView.swift */; };
+		916450D220D165DE00CB7994 /* ParticlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916450CA20D1592400CB7994 /* ParticlesView.swift */; };
+		916450D320D165DF00CB7994 /* ParticlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916450CA20D1592400CB7994 /* ParticlesView.swift */; };
 		9170390C20B75175006B01FB /* PushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170390B20B75175006B01FB /* PushHandler.swift */; };
 		9170391320B7517A006B01FB /* PushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170390B20B75175006B01FB /* PushHandler.swift */; };
 		9170391420B7517A006B01FB /* PushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170390B20B75175006B01FB /* PushHandler.swift */; };
@@ -712,6 +715,7 @@
 		915F497820444C10005C09B3 /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UICountingLabel.h; path = Submodules/UICountingLabel/UICountingLabel.h; sourceTree = SOURCE_ROOT; };
 		915F497A204452CC005C09B3 /* Loader1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Loader1.json; sourceTree = "<group>"; };
 		9163EDFE20553248005F3123 /* UIAlertAction+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertAction+KinWallet.swift"; sourceTree = "<group>"; };
+		916450CA20D1592400CB7994 /* ParticlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticlesView.swift; sourceTree = "<group>"; };
 		9170390B20B75175006B01FB /* PushHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushHandler.swift; sourceTree = "<group>"; };
 		9170BE91206A5E9A00DC88B4 /* EarnKinAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarnKinAnimationViewController.swift; sourceTree = "<group>"; };
 		91796BC62027261F00F8C6A0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -910,6 +914,7 @@
 			isa = PBXGroup;
 			children = (
 				91147439203F177500C16279 /* GradientView.swift */,
+				916450CA20D1592400CB7994 /* ParticlesView.swift */,
 				91E84A4E2085ED2300E8B7A6 /* EmptyStateView.swift */,
 				910AA22D2096F42F00CC822A /* ConfettiView.swift */,
 				91E84A502085ED3000E8B7A6 /* EmptyStateView.xib */,
@@ -1876,6 +1881,7 @@
 				914013D22019F2300066367C /* ReusableView.swift in Sources */,
 				91E6B64F203C69A90080C2FC /* AMPLocationManagerDelegate.m in Sources */,
 				91796BD92028692A00F8C6A0 /* KinWebService.swift in Sources */,
+				916450CB20D1592400CB7994 /* ParticlesView.swift in Sources */,
 				910AA2242096F34600CC822A /* AccountReadyViewController.swift in Sources */,
 				9138BBE5204EF1A700450C97 /* SimpleCollectionReusableView.swift in Sources */,
 				91D891DA2020B43D0090E77C /* SurveyQuestionCollectionReusableView.swift in Sources */,
@@ -2096,6 +2102,7 @@
 				91E84A782086186B00E8B7A6 /* PagerTabStripBehaviour.swift in Sources */,
 				91311C53204FDBD500618240 /* Optional+KinWallet.swift in Sources */,
 				828CB4742056EDD5007C679C /* NoticeViewController.swift in Sources */,
+				916450D220D165DE00CB7994 /* ParticlesView.swift in Sources */,
 				828CB45D2056EAFC007C679C /* ISPPinnedNSURLSessionDelegate.m in Sources */,
 				91E84AAC20862DB700E8B7A6 /* SurveyAnswerCollectionViewCell.swift in Sources */,
 				91E84A732086186B00E8B7A6 /* ButtonBarPagerTabStripViewController.swift in Sources */,
@@ -2220,6 +2227,7 @@
 				91E5C6A220B5D20C0024BAA5 /* Sourcery.swift in Sources */,
 				828CB4622056EB02007C679C /* AMPUtils.m in Sources */,
 				828CB4282056E9C1007C679C /* AMPConstants.m in Sources */,
+				916450D320D165DF00CB7994 /* ParticlesView.swift in Sources */,
 				91E84A60208617DA00E8B7A6 /* OfferWallViewController.swift in Sources */,
 				91E84A6B2086183A00E8B7A6 /* KinLoader.swift in Sources */,
 				828CB4292056E9C1007C679C /* Amplitude.m in Sources */,

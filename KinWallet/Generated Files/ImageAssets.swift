@@ -62,6 +62,7 @@ enum Asset {
   static let historyShareButton = ImageAsset(name: "HistoryShareButton")
   static let imageAnswerBorder = ImageAsset(name: "ImageAnswerBorder")
   static let imageAnswerBorderSelected = ImageAsset(name: "ImageAnswerBorderSelected")
+  static let kinCoin = ImageAsset(name: "KinCoin")
   static let kinLogoSplash = ImageAsset(name: "KinLogoSplash")
   static let kinReward = ImageAsset(name: "KinReward")
   static let kinTaskReward = ImageAsset(name: "KinTaskReward")
@@ -83,6 +84,7 @@ enum Asset {
   static let progressViewTrack = ImageAsset(name: "ProgressViewTrack")
   static let recordsLedger = ImageAsset(name: "RecordsLedger")
   static let redeemBubble = ImageAsset(name: "RedeemBubble")
+  static let smallHeart = ImageAsset(name: "SmallHeart")
   static let sowingIllustration = ImageAsset(name: "SowingIllustration")
   static let splashScreenBackground = ImageAsset(name: "SplashScreenBackground")
   static let tabBarBalance = ImageAsset(name: "TabBarBalance")
@@ -121,6 +123,7 @@ enum Asset {
     historyShareButton,
     imageAnswerBorder,
     imageAnswerBorderSelected,
+    kinCoin,
     kinLogoSplash,
     kinReward,
     kinTaskReward,
@@ -142,6 +145,7 @@ enum Asset {
     progressViewTrack,
     recordsLedger,
     redeemBubble,
+    smallHeart,
     sowingIllustration,
     splashScreenBackground,
     tabBarBalance,

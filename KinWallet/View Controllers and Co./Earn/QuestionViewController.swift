@@ -171,7 +171,9 @@ final class QuestionViewController: UIViewController {
     }
 
     @objc func questionFinished() {
-        guard !collectionViewDataSource.selectedAnswerIds.isEmpty else {
+        guard
+            let answerId = collectionViewDataSource.selectedAnswerIds.first,
+            let answer = question.results.filter({ $0.identifier == answerId }).first else {
             return
         }
 
@@ -182,10 +184,30 @@ final class QuestionViewController: UIViewController {
         nextButton?.alpha = 0
 
         let answers = collectionViewDataSource.selectedAnswerIds
-        let result = SelectedResult(taskId: question.identifier,
+        let selectedResult = SelectedResult(taskId: question.identifier,
                                     resultIds: Array(answers))
-        qDelegate.questionViewController(self,
-                                         didSelect: result)
+        let updateDelegateSelection = {
+            qDelegate.questionViewController(self,
+                                             didSelect: selectedResult)
+        }
+
+        if shouldCelebrateSelection(for: answer) {
+            guard let answerIndex = question.results.index(of: answer) else {
+                updateDelegateSelection()
+                return
+            }
+
+            let cell = collectionView.visibleCells
+                .compactMap { $0 as? SurveyAnswerCollectionViewCell }
+                .filter { $0.indexPath.item == answerIndex }
+                .first!
+
+            celebrateSelection(from: cell) {
+                updateDelegateSelection()
+            }
+        } else {
+            updateDelegateSelection()
+        }
     }
 
     func surveyAnswerCellDidStartSelecting(_ cell: SurveyAnswerCollectionViewCell) {
@@ -200,5 +222,33 @@ final class QuestionViewController: UIViewController {
     private func enableCellsInteraction(_ enable: Bool) {
         collectionView.visibleCells
             .forEach { $0.isUserInteractionEnabled = enable }
+    }
+
+    private func shouldCelebrateSelection(for result: Result) -> Bool {
+        guard let tipAmount = result.tipAmount, tipAmount > 0 else {
+            return false
+        }
+
+        return true
+    }
+
+    private func celebrateSelection(from originView: UIView, completion: @escaping () -> Void) {
+        let particlesView = ParticlesView()
+        particlesView.images = [Asset.smallHeart.image, Asset.kinCoin.image]
+
+        let originInViewFrame = collectionView
+            .convert(originView.frame, to: view)
+        particlesView.frame = CGRect(x: 0,
+                                     y: 0,
+                                     width: view.frame.width,
+                                     height: originInViewFrame.minY)
+        particlesView.emitterSize = CGSize(width: originInViewFrame.width, height: 1)
+        particlesView.emitterPosition = CGPoint(x: originInViewFrame.minX + originInViewFrame.width/2,
+                                                y: particlesView.frame.height)
+        view.addSubview(particlesView)
+        particlesView.startAndStop()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            completion()
+        }
     }
 }
