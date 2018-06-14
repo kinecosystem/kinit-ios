@@ -2,8 +2,6 @@
 //  KinWalletUITests.swift
 //  KinWalletUITests
 //
-//  Copyright © 2018 KinFoundation. All rights reserved.
-//
 
 import XCTest
 

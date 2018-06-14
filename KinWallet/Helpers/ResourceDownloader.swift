@@ -1,8 +1,6 @@
 //
 //  ResourceDownloader.swift
-//  KinWallet
-//
-//  Copyright © 2018 KinFoundation. All rights reserved.
+//  Kinit
 //
 
 import UIKit

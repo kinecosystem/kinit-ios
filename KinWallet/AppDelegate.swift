@@ -1,8 +1,6 @@
 //
 //  AppDelegate.swift
-//  KinWallet
-//
-//  Copyright © 2018 KinFoundation. All rights reserved.
+//  Kinit
 //
 
 import Fabric

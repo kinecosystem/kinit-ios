@@ -1,8 +1,6 @@
 //
 //  WebService.swift
-//  KinWallet
-//
-//  Copyright © 2018 KinFoundation. All rights reserved.
+//  Kinit
 //
 
 // This networking layer is strongly inspired by:
