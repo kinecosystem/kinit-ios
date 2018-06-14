@@ -31,6 +31,10 @@ extension UIViewController {
         removeFromParentViewController()
         view.removeFromSuperview()
     }
+
+    func setOrientation(_ orientation: UIInterfaceOrientation) {
+        UIDevice.current.setValue(orientation.rawValue, forKey: "orientation")
+    }
 }
 
 extension UIViewController {

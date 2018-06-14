@@ -51,6 +51,10 @@ class RootViewController: UIViewController {
         addAndFit(splashScreenNavigationController!)
     }
 
+    override var shouldAutorotate: Bool {
+        return false
+    }
+
     override var childViewControllerForStatusBarStyle: UIViewController? {
         return childViewControllers.last
     }

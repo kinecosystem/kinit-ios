@@ -44,20 +44,20 @@ final class QuestionCollectionViewDataSource: NSObject {
 
         let cell: SurveyAnswerCollectionViewCell = {
             switch question.type {
-            case .text, .textEmoji:
-                return collectionView.dequeueReusableCell(forIndexPath: indexPath)
-                    as SurveyTextAnswerCollectionViewCell
-            case .multipleText:
-                return collectionView.dequeueReusableCell(forIndexPath: indexPath)
-                    as SurveyMultipleTextAnswerCollectionViewCell
-            case .textAndImage:
+            case .text, .textEmoji, .textAndImage, .tip:
                 if answer.hasOnlyImage() {
                     return collectionView.dequeueReusableCell(forIndexPath: indexPath)
                         as SurveyImageAnswerCollectionViewCell
+                } else if answer.hasImage() {
+                    return collectionView.dequeueReusableCell(forIndexPath: indexPath)
+                        as SurveyTextImageAnswerCollectionViewCell
+                } else {
+                    return collectionView.dequeueReusableCell(forIndexPath: indexPath)
+                        as SurveyTextAnswerCollectionViewCell
                 }
-
+            case .multipleText:
                 return collectionView.dequeueReusableCell(forIndexPath: indexPath)
-                    as SurveyTextImageAnswerCollectionViewCell
+                    as SurveyMultipleTextAnswerCollectionViewCell
             }
         }()
 
@@ -117,11 +117,16 @@ extension QuestionCollectionViewDataSource: UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let answer = question.results[indexPath.item]
         let width = collectionView.bounds.width
         let widthWithLateralInset = width - Constants.collectionViewMinimumSpacing * 2
 
         switch question.type {
-        case .text, .textEmoji:
+        case .text, .textEmoji, .textAndImage, .tip:
+            if answer.hasImage() {
+                return Constants.imageQuestionCellSize
+            }
+
             return CGSize(width: widthWithLateralInset, height: Constants.textAnswerCellHeight)
         case .multipleText:
             let height = UIDevice.isiPhone5()
@@ -129,8 +134,6 @@ extension QuestionCollectionViewDataSource: UICollectionViewDelegate, UICollecti
                 : Constants.textMultipleAnswerCellHeight
 
             return CGSize(width: width, height: height)
-        case .textAndImage:
-            return Constants.imageQuestionCellSize
         }
     }
 

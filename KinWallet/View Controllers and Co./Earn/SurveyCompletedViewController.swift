@@ -32,7 +32,6 @@ final class SurveyCompletedViewController: UIViewController {
         navigationItem.hidesBackButton = true
 
         initialBalance = Kin.shared.balance
-        targetBalance = initialBalance + UInt64(task.kinReward)
 
         submitResults()
 
@@ -91,30 +90,26 @@ final class SurveyCompletedViewController: UIViewController {
         watch = try? Kin.shared.watch(cursor: nil)
         watch?.emitter
             .filter { $0.memoText == memo }
-            .on(next: { [weak self] paymentInfo in
+            .on(queue: DispatchQueue.main, next: { [weak self] paymentInfo in
                 guard let aSelf = self else {
                     return
                 }
 
+                let paymentAmount = (paymentInfo.amount as NSDecimalNumber).uint64Value
+                aSelf.targetBalance = aSelf.initialBalance + paymentAmount
                 KinLoader.shared.loadTransactions()
 
-                KLogVerbose("Transaction succeeded!")
                 aSelf.watch = nil
-
                 aSelf.logEarnTransactionSucceded(with: paymentInfo)
-
                 Analytics.incrementEarnCount()
                 Analytics.incrementTransactionCount()
-                Analytics.incrementTotalEarned(by: Int((paymentInfo.amount as NSDecimalNumber).intValue))
-            })
-            .on(queue: DispatchQueue.main, next: { [weak self] _ in
-                self?.transactionSucceeded()
+                Analytics.incrementTotalEarned(by: Int(paymentAmount))
+
+                aSelf.transactionSucceeded()
             }).add(to: linkBag)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 20) { [weak self] in
-            guard
-                let aSelf = self,
-                aSelf.watch != nil else {
+            guard let aSelf = self, aSelf.watch != nil else {
                 return
             }
 
@@ -148,7 +143,7 @@ final class SurveyCompletedViewController: UIViewController {
         logTransferringKinEvent()
         let transferringViewController = StoryboardScene.Earn.transferringKinViewController.instantiate()
         transferringViewController.initialBalance = initialBalance
-        transferringViewController.targetBalance = targetBalance
+
         transferringViewController.finishTapped = { [weak self] in
             guard let aSelf = self else {
                 return
@@ -180,8 +175,9 @@ final class SurveyCompletedViewController: UIViewController {
             return
         }
 
+        transferringViewController.transactionSucceeded(newBalance: targetBalance)
+
         logKinTransferred()
-        transferringViewController.transactionSucceeded()
     }
 
     private func errorSubmitingResults() {

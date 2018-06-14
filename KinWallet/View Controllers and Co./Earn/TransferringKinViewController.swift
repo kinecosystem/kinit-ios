@@ -10,7 +10,6 @@ import Lottie
 
 final class TransferringKinViewController: UIViewController {
     var initialBalance: UInt64!
-    var targetBalance: UInt64!
     var finishTapped: (() -> Void)?
 
     @IBOutlet weak var balanceExplanationLabel: UILabel!
@@ -68,14 +67,14 @@ final class TransferringKinViewController: UIViewController {
         loaderView.play()
     }
 
-    func transactionSucceeded() {
+    func transactionSucceeded(newBalance: UInt64) {
         UIView.animate(withDuration: 0.75, animations: {
             self.loaderStackView.alpha = 0
         }, completion: { _ in
             self.loaderView.stop()
         })
 
-        balanceLabel.count(from: CGFloat(initialBalance), to: CGFloat(targetBalance))
+        balanceLabel.count(from: CGFloat(initialBalance), to: CGFloat(newBalance))
         balanceLabel.completionBlock = { [weak self] in
             guard let aSelf = self else {
                 return
