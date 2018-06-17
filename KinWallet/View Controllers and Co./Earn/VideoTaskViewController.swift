@@ -145,6 +145,7 @@ class VideoTaskViewController: UIViewController {
         super.viewDidAppear(animated)
 
         setOrientation(.landscapeRight)
+        Events.Analytics.ViewVideoPage().send()
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
