@@ -73,13 +73,21 @@ class PushHandler {
     }
 
     private class func ackAuthToken(with kinData: [String: Any]) {
+        Events.Log.AuthTokenReceived().send()
+
         guard
             let authData = kinData["auth_data"] as? [String: String],
             let token = authData["auth_token"] else {
+                Events.Log.AuthTokenAckFailed(failureReason: "No data in payload").send()
             return
         }
 
-        WebRequests.ackAuthToken(token).load(with: KinWebService.shared)
+        WebRequests.ackAuthToken(token).withCompletion({ _, error in
+            if error != nil {
+                let reason = error?.localizedDescription ?? "No description"
+                Events.Log.AuthTokenAckFailed(failureReason: reason).send()
+            }
+        }).load(with: KinWebService.shared)
     }
 
     private class func peerToPeerReceived(with kinData: [String: Any]) {

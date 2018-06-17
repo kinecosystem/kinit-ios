@@ -2,7 +2,7 @@
 // BIEvents.swift
 //
 // Don't edit this file.
-// Generated at 2018-06-14 08:47:50 +0000 by Kik BI-Generator.
+// Generated at 2018-06-17 14:00:45 +0000 by Kik BI-Generator.
 //
 
 protocol BIEvent {
@@ -1399,6 +1399,31 @@ struct Events {
                 return [
                         "event_type": "log",
                         
+                        ]
+            }
+        } 
+        /// When server sends the auth token via push, and the client receives it.. Event name: `auth_token_received`
+        struct AuthTokenReceived: BIEvent {
+            let name = "auth_token_received"
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
+                        ]
+            }
+        } 
+        /// When asking the auth token to the server fails.. Event name: `auth_token_ack_failed`
+        struct AuthTokenAckFailed: BIEvent {
+            let name = "auth_token_ack_failed"
+            let failureReason: String
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
+                        
+                        "failure_reason": failureReason, 
                         ]
             }
         } 
