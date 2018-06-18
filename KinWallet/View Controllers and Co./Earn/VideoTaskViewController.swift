@@ -120,6 +120,10 @@ class VideoTaskViewController: UIViewController {
                                                selector: #selector(playerDidPlayToEndTime),
                                                name: .AVPlayerItemDidPlayToEndTime,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(willEnterForeground),
+                                               name: .UIApplicationWillEnterForeground,
+                                               object: nil)
 
         activityIndicator.startAnimating()
         view.addSubview(activityIndicator)
@@ -231,6 +235,10 @@ class VideoTaskViewController: UIViewController {
                                                   selector: #selector(hideControlsIfNeeded),
                                                   userInfo: nil,
                                                   repeats: false)
+    }
+
+    @objc private func willEnterForeground() {
+        playerViewController.player?.play()
     }
 
     @objc private func hideControlsIfNeeded() {
