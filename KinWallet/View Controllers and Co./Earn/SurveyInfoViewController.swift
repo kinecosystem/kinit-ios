@@ -137,20 +137,9 @@ final class SurveyInfoViewController: UIViewController {
                     surveyComplete.results = results
                     self.present(KinNavigationController(rootViewController: surveyComplete), animated: true)
                 } else {
-                    self.startTask()
+                    self.presentTaskQuestions()
                 }
             }
-        }
-    }
-
-    private func startTask() {
-        if let videoURL = self.task.videoURL {
-            let videoViewController = VideoTaskViewController()
-            videoViewController.videoURL = videoURL
-            videoViewController.delegate = self
-            present(videoViewController, animated: true)
-        } else {
-            self.presentTaskQuestions()
         }
     }
 

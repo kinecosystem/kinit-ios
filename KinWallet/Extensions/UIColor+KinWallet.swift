@@ -10,7 +10,7 @@ struct KinColors {
     let green = UIColor(red: 71, green: 252, blue: 5)
     let appTint = UIColor(red: 22, green: 147, blue: 243)
 
-    let blackAlphaBackground = UIColor.black.withAlphaComponent(0.25)
+    let blackAlphaBackground = UIColor.black.withAlphaComponent(0.6)
 
     let darkGray = UIColor(red: 92, green: 103, blue: 134)
     let gray = UIColor(red: 120, green: 132, blue: 165)

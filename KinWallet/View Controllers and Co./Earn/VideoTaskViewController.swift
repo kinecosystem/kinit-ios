@@ -58,12 +58,13 @@ class VideoTaskViewController: UIViewController {
     }()
 
     let stackViewContainer: UIView = {
+        let height: CGFloat = 30
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
         v.backgroundColor = UIColor.kin.blackAlphaBackground
-        v.layer.cornerRadius = 5
+        v.layer.cornerRadius = height/2
         v.layer.masksToBounds = true
-        v.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        v.heightAnchor.constraint(equalToConstant: height).isActive = true
 
         return v
     }()

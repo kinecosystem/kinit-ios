@@ -40,6 +40,8 @@ private struct Constants {
 }
 
 final class SurveyViewController: UIViewController {
+    private var finishedVideoReproduction = false
+
     private let task: Task
     private let progressLabel: UILabel = {
         let l = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: 16))
@@ -119,6 +121,14 @@ final class SurveyViewController: UIViewController {
     func showNextQuestion() {
         let numberOfQuestions = task.questions.count
         guard currentQuestionIndex < task.questions.count else {
+            return
+        }
+
+        if let videoURL = self.task.videoURL, currentQuestionIndex == 0 && !finishedVideoReproduction {
+            let videoViewController = VideoTaskViewController()
+            videoViewController.videoURL = videoURL
+            videoViewController.delegate = self
+            present(videoViewController, animated: false)
             return
         }
 
@@ -240,6 +250,20 @@ extension SurveyViewController: QuestionViewControllerDelegate {
                 self.showSurveyComplete(results: results)
             }
             logTaskCompleted()
+        }
+    }
+}
+
+extension SurveyViewController: VideoTaskViewControllerDelegate {
+    func videoTaskDidFinishPlaying() {
+        finishedVideoReproduction = true
+        showNextQuestion()
+        dismiss(animated: true, completion: nil)
+    }
+
+    func videoTaskDidCancelPlaying() {
+        dismiss(animated: false) {
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }
