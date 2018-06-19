@@ -35,7 +35,7 @@ class RootTabBarController: UITabBarController {
         }
     }
 
-    override var shouldAutorotate: Bool {
-        return false
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
     }
 }

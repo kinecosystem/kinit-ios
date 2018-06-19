@@ -16,8 +16,8 @@ extension NSNotification.Name {
 }
 
 class RootViewController: UIViewController {
-    fileprivate var splashScreenNavigationController: UINavigationController? = {
-        return UINavigationController(rootViewController: SplashScreenViewController())
+    fileprivate var splashScreenNavigationController: KinNavigationController? = {
+        return KinNavigationController(rootViewController: SplashScreenViewController())
     }()
 
     fileprivate let rootTabBarController = StoryboardScene.Main.rootTabBarController.instantiate()
@@ -49,8 +49,8 @@ class RootViewController: UIViewController {
         addAndFit(splashScreenNavigationController!)
     }
 
-    override var shouldAutorotate: Bool {
-        return false
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
     }
 
     override var childViewControllerForStatusBarStyle: UIViewController? {

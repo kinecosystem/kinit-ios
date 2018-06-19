@@ -29,7 +29,7 @@ class VideoTaskViewController: UIViewController {
     var statusObserver: Any?
 
     let closeButton: UIButton = {
-        let side: CGFloat = 60
+        let side: CGFloat = 44
         let b = UIButton()
         b.translatesAutoresizingMaskIntoConstraints = false
         b.tintColor = .white
