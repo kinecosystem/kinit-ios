@@ -16,7 +16,7 @@ func timeLabel() -> UILabel {
     let l = UILabel()
     l.textColor = .white
     l.font = FontFamily.Roboto.regular.font(size: 14)
-    l.text = "-:--"
+    l.text = "--:--"
     l.widthAnchor.constraint(equalToConstant: 50).isActive = true
     l.textAlignment = .center
     return l
@@ -213,6 +213,11 @@ class VideoTaskViewController: UIViewController {
 
             let past = Double(CMTimeGetSeconds(time))
             let total = Double(CMTimeGetSeconds(item.duration))
+
+            guard !total.isNaN else {
+                return
+            }
+
             let remaining = total - past
             let progress = past / total
 
