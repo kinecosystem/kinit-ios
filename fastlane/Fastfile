@@ -12,12 +12,24 @@
 default_platform(:ios)
 
 platform :ios do
+
+  before_all do
+    ensure_git_status_clean
+  end
+
   desc "Submits a new build to TestFairy"
   lane :test_fairy do
-    ensure_git_status_clean
     build_ios_app(export_method: 'enterprise')
+    notification(subtitle: "Kinit beta", message: "Finished building v#{get_version_number}; starting upload")
     testfairy(api_key: ENV['testfairy_api_key'],
               auto_update: 'false',
               notify: 'false')
+    notification(subtitle: "Kinit beta", message: "v#{get_version_number} uploaded to testfairy")
+    slack(message: "Kinit v#{get_version_number} uploaded to TestFairy",
+          success: true)
+  end
+
+  error do |lane, exception, options|
+    notification(subtitle: "Error in lane #{lane}", message: exception.to_s)
   end
 end
