@@ -74,10 +74,12 @@ secrets.zip
 
 .DS_Store
 
+# Certificates & Provisioning Profiles
+*.cer
+*.mobileprovision
+
+# Firebase
 KinWallet/GoogleService-Info-Staging.plist
 KinWallet/GoogleService-Info-Prod.plist
 KinWallet/GoogleService-Info-Staging-Beta.plist
 KinWallet/GoogleService-Info-Prod-Beta.plist
-
-# Certificates
-*.cer
