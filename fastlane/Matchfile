@@ -1,0 +1,6 @@
+git_url("https://github.com/kinecosystem/iOS-certificates")
+type("appstore")
+app_identifier(["org.kinecosystem.kinit"])
+
+# username("user@fastlane.tools") # Your Apple Developer Portal username
+# For all available options run `fastlane match --help`

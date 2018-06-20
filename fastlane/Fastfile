@@ -6,8 +6,7 @@
 #     https://docs.fastlane.tools/actions
 #
 
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
+update_fastlane
 
 default_platform(:ios)
 
@@ -19,14 +18,38 @@ platform :ios do
 
   desc "Submits a new build to TestFairy"
   lane :test_fairy do
-    build_ios_app(export_method: 'enterprise')
-    notification(subtitle: "Kinit beta", message: "Finished building v#{get_version_number}; starting upload")
+    update_project_team(teamid: "Z37J743B3H")
+    build_ios_app(scheme: "KinWallet-Beta", export_method: 'enterprise')
+    notification(subtitle: "Kinit Beta",
+                 message: "Finished building v#{get_version_number}; starting upload")
     testfairy(api_key: ENV['testfairy_api_key'],
               auto_update: 'false',
               notify: 'false')
-    notification(subtitle: "Kinit beta", message: "v#{get_version_number} uploaded to testfairy")
+    notification(subtitle: "Kinit Beta", message: "v#{get_version_number} uploaded to testfairy")
     slack(message: "Kinit v#{get_version_number} uploaded to TestFairy",
           success: true)
+  end
+
+  desc "Submits a new build to TestFlight"
+  lane :test_flight do
+    release_build
+    upload_to_testflight(skip_submission: true)
+  end
+
+  desc "Submits a new build to the App Store"
+  lane :app_store do
+    release_build
+  end
+
+  desc "Builds a release build under the Kin Ecosystem account"
+  lane :release_build do
+    update_project_team(teamid: "F879J8YSJ9")
+    disable_automatic_code_signing
+    sync_code_signing
+    get_certificates
+    build_ios_app(scheme: "KinWallet-Prod")
+    enable_automatic_code_signing
+    notification(subtitle: "Kinit", message: "Finished building v#{get_version_number}")
   end
 
   error do |lane, exception, options|

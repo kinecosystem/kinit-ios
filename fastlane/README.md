@@ -21,6 +21,21 @@ or alternatively using `brew cask install fastlane`
 fastlane ios test_fairy
 ```
 Submits a new build to TestFairy
+### ios test_flight
+```
+fastlane ios test_flight
+```
+Submits a new build to TestFlight
+### ios app_store
+```
+fastlane ios app_store
+```
+Submits a new build to the App Store
+### ios release_build
+```
+fastlane ios release_build
+```
+Builds a release build under the Kin Ecosystem account
 
 ----
 
