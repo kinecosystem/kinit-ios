@@ -7,6 +7,7 @@ import UIKit
 
 struct User: Codable {
     let appVersion: String
+    let bundleId = Bundle.main.bundleIdentifier!
     let deviceId: String
     let deviceModel: String
     var deviceToken: String?
@@ -18,6 +19,7 @@ struct User: Codable {
 
     private enum CodingKeys: String, CodingKey {
         case appVersion = "app_ver"
+        case bundleId = "package_id"
         case deviceId = "device_id"
         case deviceModel = "device_model"
         case deviceToken = "token"
