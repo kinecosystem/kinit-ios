@@ -30,8 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             #endif
         }
 
-        KLogVerbose("Initializing firebase at \(firebaseFileName())")
-
         let filePath = Bundle.main.path(forResource: firebaseFileName(), ofType: "plist")!
         let firebaseOptions = FirebaseOptions(contentsOfFile: filePath)!
         FirebaseApp.configure(options: firebaseOptions)

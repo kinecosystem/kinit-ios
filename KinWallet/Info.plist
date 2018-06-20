@@ -25,11 +25,13 @@
 			<array>
 				<string>com.googleusercontent.apps.573775755988-1ca1gme48itno3rra8h505tp61pt97q5</string>
 				<string>com.googleusercontent.apps.22180857750-353t17br11c8c6j795f78t8l57rt18nf</string>
+				<string>com.googleusercontent.apps.22180857750-1nfp54mv7gj5epqq8fbqm3eklm1g24ek</string>
+				<string>com.googleusercontent.apps.573775755988-hul3arovqjtpgi3o8k6gfn38e3fc8ipo</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>31</string>
+	<string>32</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
