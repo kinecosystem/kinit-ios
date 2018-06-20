@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import Crashlytics
 
 enum KinitLogLevel: Int, Comparable, Equatable {
     case off = 0
@@ -45,7 +46,7 @@ public func ==<T: RawRepresentable>(lhs: T, rhs: T) -> Bool where T.RawValue: Eq
     return lhs.rawValue == rhs.rawValue
 }
 
-var logLevel = KinitLogLevel.off
+var logLevel = KinitLogLevel.verbose
 
 func KLogError(_ message: @autoclosure () -> Any, file: StaticString = #file, line: UInt = #line) {
     if logLevel >= .error {
@@ -78,5 +79,6 @@ private func KLog(_ message: Any, file: StaticString, line: UInt, level: KinitLo
         let emoji = level.emoji()
 
         print(emoji, level, emoji, lastPath + ":" + String(describing: line), message)
+        CLSLogv("%@ %@:%@, %@", getVaList([String(describing:level), lastPath, String(describing: line), String(describing: message)]))
     }
 }
