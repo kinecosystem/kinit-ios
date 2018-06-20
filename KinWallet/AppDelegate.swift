@@ -30,12 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             #endif
         }
 
-        #if DEBUG
-        let firebaseFilename = "GoogleService-Info-Staging"
-        #else
-        let firebaseFilename = "GoogleService-Info-Prod"
-        #endif
-        let filePath = Bundle.main.path(forResource: firebaseFilename, ofType: "plist")!
+        let filePath = Bundle.main.path(forResource: firebaseFileName(), ofType: "plist")!
         let firebaseOptions = FirebaseOptions(contentsOfFile: filePath)!
         FirebaseApp.configure(options: firebaseOptions)
 
