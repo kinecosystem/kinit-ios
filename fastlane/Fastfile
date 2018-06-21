@@ -18,22 +18,32 @@ platform :ios do
 
   desc "Submits a new build to TestFairy"
   lane :test_fairy do
-    update_project_team(teamid: "Z37J743B3H")
-    build_ios_app(scheme: "KinWallet-Beta", export_method: 'enterprise')
-    notification(subtitle: "Kinit Beta",
-                 message: "Finished building v#{get_version_number}; starting upload")
-    testfairy(api_key: ENV['testfairy_api_key'],
-              auto_update: 'false',
-              notify: 'false')
-    notification(subtitle: "Kinit Beta", message: "v#{get_version_number} uploaded to testfairy")
-    slack(message: "Kinit v#{get_version_number} uploaded to TestFairy",
-          success: true)
+    update_project_team(teamid: ENV["KIK_ENT_TEAM_ID"])
+    build_ios_app(
+      scheme: "KinWallet-Beta",
+      export_method: 'enterprise'
+    )
+    notification(
+      subtitle: "Kinit Beta",
+      message: "Finished building v#{get_version_number}; starting upload"
+    )
+    testfairy(
+      api_key: ENV['testfairy_api_key'],
+      auto_update: 'false',
+      notify: 'false'
+    )
+    notification(
+      subtitle: "Kinit Beta", message: "v#{get_version_number} uploaded to testfairy")
+    slack(
+      message: "Kinit v#{get_version_number} uploaded to TestFairy",
+      success: true
+    )
   end
 
   desc "Submits a new build to TestFlight"
   lane :test_flight do
     release_build
-    upload_to_testflight(skip_submission: true)
+    upload_ipa_to_testflight
   end
 
   desc "Submits a new build to the App Store"
@@ -43,16 +53,38 @@ platform :ios do
 
   desc "Builds a release build under the Kin Ecosystem account"
   lane :release_build do
-    update_project_team(teamid: "F879J8YSJ9")
+    update_project_team(teamid: ENV["KIN_ECOSYSTEM_TEAM_ID"])
+    sync_code_signing(git_branch: "kin-ecosystem-F879J8YSJ9", username: "fastlane@kinecosystem.com")
+    get_certificates(username: "fastlane@kinecosystem.com")
+    get_provisioning_profile(app_identifier: "org.kinecosystem.kinit", username: "fastlane@kinecosystem.com")
     disable_automatic_code_signing
-    sync_code_signing
-    get_certificates
     build_ios_app(scheme: "KinWallet-Prod")
+    notification(
+      subtitle: "Kinit",
+      message: "Finished building v#{get_version_number}"
+    )
+  end
+
+  desc "Uploads the current (or the latest built) ipa to testflight"
+  lane :upload_ipa_to_testflight do
+    upload_to_testflight(
+      username: "fastlane@kinecosystem.com",
+      skip_waiting_for_build_processing: true,
+      skip_submission: true
+    )
+  end
+
+  after_all do
     enable_automatic_code_signing
-    notification(subtitle: "Kinit", message: "Finished building v#{get_version_number}")
+    update_project_team(teamid: ENV["KIN_ECOSYSTEM_TEAM_ID"])
   end
 
   error do |lane, exception, options|
-    notification(subtitle: "Error in lane #{lane}", message: exception.to_s)
+    enable_automatic_code_signing
+    update_project_team(teamid: ENV["KIN_ECOSYSTEM_TEAM_ID"])
+    notification(
+      subtitle: "Error in lane #{lane}",
+      message: exception.to_s
+    )
   end
 end

@@ -36,6 +36,11 @@ Submits a new build to the App Store
 fastlane ios release_build
 ```
 Builds a release build under the Kin Ecosystem account
+### ios upload_ipa_to_testflight
+```
+fastlane ios upload_ipa_to_testflight
+```
+
 
 ----
 
