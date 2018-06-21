@@ -20,7 +20,7 @@ platform :ios do
   lane :test_fairy do
     update_project_team(teamid: ENV["KIK_ENT_TEAM_ID"])
     build_ios_app(
-      scheme: "KinWallet-Beta",
+      scheme: "Kinit-Beta",
       export_method: 'enterprise'
     )
     notification(
@@ -58,7 +58,7 @@ platform :ios do
     get_certificates(username: "fastlane@kinecosystem.com")
     get_provisioning_profile(app_identifier: "org.kinecosystem.kinit", username: "fastlane@kinecosystem.com")
     disable_automatic_code_signing
-    build_ios_app(scheme: "KinWallet-Prod")
+    build_ios_app(scheme: "Kinit")
     notification(
       subtitle: "Kinit",
       message: "Finished building v#{get_version_number}"
