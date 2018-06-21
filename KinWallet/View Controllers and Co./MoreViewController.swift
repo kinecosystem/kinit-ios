@@ -102,6 +102,8 @@ extension MoreViewController {
         let currentServerIdentifier = KinWebService.shared.identifier
         let message =
         """
+        User ID: \(User.current!.userId)
+        Device Token: \(User.current!.deviceToken ?? "No token")
         Current server is \(currentServerIdentifier) (\(KinWebService.shared.serverURL.absoluteString)).
         Changing servers will delete all user data, including the Stellar account!
         """
@@ -119,6 +121,14 @@ extension MoreViewController {
 
         alertController.addAction(.init(title: "Enable Notifications", style: .default, handler: { _ in
             AppDelegate.shared.requestNotifications()
+        }))
+
+        alertController.addAction(.init(title: "Copy User ID", style: .default, handler: { _ in
+            UIPasteboard.general.string = User.current?.userId
+        }))
+
+        alertController.addAction(.init(title: "Copy Device Token", style: .default, handler: { _ in
+            UIPasteboard.general.string = User.current?.deviceToken
         }))
 
         alertController.addAction(.cancel())

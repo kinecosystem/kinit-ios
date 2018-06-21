@@ -33,6 +33,10 @@ class OfferWallViewController: UIViewController {
         collectionView.flashScrollIndicators()
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
     func configureSubscriber() {
         subscriber = FetchableCollectionViewSubscriber<Offer>
             .init(collectionView: collectionView,

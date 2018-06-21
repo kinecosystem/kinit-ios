@@ -36,6 +36,10 @@ final class SurveyHomeViewController: UIViewController {
                                                object: nil)
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
     private func renderCurrentTask(_ taskResult: FetchResult<Task>) {
         switch taskResult {
         case .none(let error):

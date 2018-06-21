@@ -97,6 +97,10 @@ final class SurveyViewController: UIViewController {
         loadCurrentProgress()
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
     @objc func cancelTapped(_ sender: UIBarButtonItem) {
         logClosedOnQuestion(task.questions[currentQuestionIndex],
                             questionIndex: currentQuestionIndex)

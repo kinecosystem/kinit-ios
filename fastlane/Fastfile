@@ -35,7 +35,7 @@ platform :ios do
     notification(
       subtitle: "Kinit Beta", message: "v#{get_version_number} uploaded to testfairy")
     slack(
-      message: "Kinit v#{get_version_number} uploaded to TestFairy",
+      message: "Kinit-Beta v#{get_version_number} uploaded to TestFairy",
       success: true
     )
   end
@@ -44,11 +44,20 @@ platform :ios do
   lane :test_flight do
     release_build
     upload_ipa_to_testflight
+    slack(
+      message: "Kinit v#{get_version_number} uploaded to TestFlight",
+      success: true
+    )
   end
 
   desc "Submits a new build to the App Store"
   lane :app_store do
     release_build
+    upload_to_app_store
+    slack(
+      message: "Kinit v#{get_version_number} uploaded to the AppStore",
+      success: true
+    )
   end
 
   desc "Builds a release build under the Kin Ecosystem account"
@@ -58,7 +67,7 @@ platform :ios do
     get_certificates(username: "fastlane@kinecosystem.com")
     get_provisioning_profile(app_identifier: "org.kinecosystem.kinit", username: "fastlane@kinecosystem.com")
     disable_automatic_code_signing
-    build_ios_app(scheme: "Kinit")
+    build_ios_app(scheme: "Kinit-Release")
     notification(
       subtitle: "Kinit",
       message: "Finished building v#{get_version_number}"

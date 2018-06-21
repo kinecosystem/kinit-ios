@@ -40,7 +40,7 @@ Builds a release build under the Kin Ecosystem account
 ```
 fastlane ios upload_ipa_to_testflight
 ```
-
+Uploads the current (or the latest built) ipa to testflight
 
 ----
 
