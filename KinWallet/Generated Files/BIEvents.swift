@@ -2,7 +2,7 @@
 // BIEvents.swift
 //
 // Don't edit this file.
-// Generated at 2018-06-17 14:00:45 +0000 by Kik BI-Generator.
+// Generated at 2018-06-27 12:48:38 +0000 by Kik BI-Generator.
 //
 
 protocol BIEvent {
@@ -95,10 +95,11 @@ struct Events {
     }
     
     enum TaskType: String { 
-        case inviteFriend = "invite friend"
+        case inviteFriend = "invite_friend"
         case questionnaire = "questionnaire"
         case quiz = "quiz"
-        case video = "video"
+        case truex = "truex"
+        case videoQuestionnaire = "video_questionnaire"
     }
     
     enum MenuItemName: String { 

@@ -268,7 +268,7 @@
 		91AC4695207CE6590016B648 /* SurveyMultipleTextAnswerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91AC468E207CE6590016B648 /* SurveyMultipleTextAnswerCollectionViewCell.xib */; };
 		91AEBF392029E958007BBBA3 /* WebRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AEBF382029E958007BBBA3 /* WebRequest.swift */; };
 		91AEBF3A2029E9F3007BBBA3 /* WebRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AEBF382029E958007BBBA3 /* WebRequest.swift */; };
-		91AEBF3C202B0554007BBBA3 /* SurveyCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AEBF3B202B0554007BBBA3 /* SurveyCompletedViewController.swift */; };
+		91AEBF3C202B0554007BBBA3 /* TaskCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AEBF3B202B0554007BBBA3 /* TaskCompletedViewController.swift */; };
 		91B0667120C6AF7800CE69A7 /* StandardBuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667020C6AF7800CE69A7 /* StandardBuyViewController.swift */; };
 		91B0667220C6BB7900CE69A7 /* StandardBuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667020C6AF7800CE69A7 /* StandardBuyViewController.swift */; };
 		91B0667320C6BB7900CE69A7 /* StandardBuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667020C6AF7800CE69A7 /* StandardBuyViewController.swift */; };
@@ -317,6 +317,21 @@
 		91B575C32046C48B00AC3E04 /* UIButton+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B575C12046C37300AC3E04 /* UIButton+KinWallet.swift */; };
 		91B575C52046E83200AC3E04 /* Date+Kinit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B575C42046E83200AC3E04 /* Date+Kinit.swift */; };
 		91B575C62046E83200AC3E04 /* Date+Kinit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B575C42046E83200AC3E04 /* Date+Kinit.swift */; };
+		91B57F7F20DFC93F00CE5EE1 /* TrueXActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B57F7E20DFC93F00CE5EE1 /* TrueXActivity.swift */; };
+		91B57F8020DFC93F00CE5EE1 /* TrueXActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B57F7E20DFC93F00CE5EE1 /* TrueXActivity.swift */; };
+		91B57F8120DFC93F00CE5EE1 /* TrueXActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B57F7E20DFC93F00CE5EE1 /* TrueXActivity.swift */; };
+		91B57F8A20E035E900CE5EE1 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B57F8920E035E900CE5EE1 /* WebViewController.swift */; };
+		91B57F8B20E035E900CE5EE1 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B57F8920E035E900CE5EE1 /* WebViewController.swift */; };
+		91B57F8C20E035E900CE5EE1 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B57F8920E035E900CE5EE1 /* WebViewController.swift */; };
+		91B57F8E20E0388100CE5EE1 /* TrueXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B57F8D20E0388100CE5EE1 /* TrueXViewController.swift */; };
+		91B57F8F20E0388100CE5EE1 /* TrueXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B57F8D20E0388100CE5EE1 /* TrueXViewController.swift */; };
+		91B57F9020E0388100CE5EE1 /* TrueXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B57F8D20E0388100CE5EE1 /* TrueXViewController.swift */; };
+		91B57F9220E038E200CE5EE1 /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B57F9120E038E200CE5EE1 /* Bridge.swift */; };
+		91B57F9320E038E200CE5EE1 /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B57F9120E038E200CE5EE1 /* Bridge.swift */; };
+		91B57F9420E038E200CE5EE1 /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B57F9120E038E200CE5EE1 /* Bridge.swift */; };
+		91B57F9620E039E300CE5EE1 /* TrueXIndex.html in Resources */ = {isa = PBXBuildFile; fileRef = 91B57F9520E039E300CE5EE1 /* TrueXIndex.html */; };
+		91B57F9720E039E300CE5EE1 /* TrueXIndex.html in Resources */ = {isa = PBXBuildFile; fileRef = 91B57F9520E039E300CE5EE1 /* TrueXIndex.html */; };
+		91B57F9820E039E300CE5EE1 /* TrueXIndex.html in Resources */ = {isa = PBXBuildFile; fileRef = 91B57F9520E039E300CE5EE1 /* TrueXIndex.html */; };
 		91CB636420597F3C00C65404 /* URL+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CB636320597F3C00C65404 /* URL+KinWallet.swift */; };
 		91CE3DAD20691FFF009ABDCD /* KinSupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CE3DAC20691FFF009ABDCD /* KinSupportViewController.swift */; };
 		91D07529205536DD00CF80D5 /* UIAlertAction+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9163EDFE20553248005F3123 /* UIAlertAction+KinWallet.swift */; };
@@ -385,8 +400,8 @@
 		91E84A512085ED3000E8B7A6 /* EmptyStateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E84A502085ED3000E8B7A6 /* EmptyStateView.xib */; };
 		91E84A53208617A600E8B7A6 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91401371201635760066367C /* Storyboards.swift */; };
 		91E84A54208617A700E8B7A6 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91401371201635760066367C /* Storyboards.swift */; };
-		91E84A55208617B200E8B7A6 /* SurveyCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AEBF3B202B0554007BBBA3 /* SurveyCompletedViewController.swift */; };
-		91E84A56208617B300E8B7A6 /* SurveyCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AEBF3B202B0554007BBBA3 /* SurveyCompletedViewController.swift */; };
+		91E84A55208617B200E8B7A6 /* TaskCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AEBF3B202B0554007BBBA3 /* TaskCompletedViewController.swift */; };
+		91E84A56208617B300E8B7A6 /* TaskCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AEBF3B202B0554007BBBA3 /* TaskCompletedViewController.swift */; };
 		91E84A57208617BB00E8B7A6 /* EarnKinAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170BE91206A5E9A00DC88B4 /* EarnKinAnimationViewController.swift */; };
 		91E84A58208617BC00E8B7A6 /* EarnKinAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170BE91206A5E9A00DC88B4 /* EarnKinAnimationViewController.swift */; };
 		91E84A59208617C200E8B7A6 /* SurveyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013AF2018BD050066367C /* SurveyInfoViewController.swift */; };
@@ -744,7 +759,7 @@
 		91AAB937201E0CB80075DAA1 /* UIImageView+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+KinWallet.swift"; sourceTree = "<group>"; };
 		91AC468E207CE6590016B648 /* SurveyMultipleTextAnswerCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SurveyMultipleTextAnswerCollectionViewCell.xib; sourceTree = "<group>"; };
 		91AEBF382029E958007BBBA3 /* WebRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequest.swift; sourceTree = "<group>"; };
-		91AEBF3B202B0554007BBBA3 /* SurveyCompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCompletedViewController.swift; sourceTree = "<group>"; };
+		91AEBF3B202B0554007BBBA3 /* TaskCompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCompletedViewController.swift; sourceTree = "<group>"; };
 		91B0667020C6AF7800CE69A7 /* StandardBuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardBuyViewController.swift; sourceTree = "<group>"; };
 		91B0667420C6CD0100CE69A7 /* SendKinOfferActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendKinOfferActionViewController.swift; sourceTree = "<group>"; };
 		91B0667620C7E47D00CE69A7 /* SendKinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendKinViewController.swift; sourceTree = "<group>"; };
@@ -764,6 +779,11 @@
 		91B575B92045E62B00AC3E04 /* KinLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinLoader.swift; sourceTree = "<group>"; };
 		91B575C12046C37300AC3E04 /* UIButton+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+KinWallet.swift"; sourceTree = "<group>"; };
 		91B575C42046E83200AC3E04 /* Date+Kinit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Kinit.swift"; sourceTree = "<group>"; };
+		91B57F7E20DFC93F00CE5EE1 /* TrueXActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrueXActivity.swift; sourceTree = "<group>"; };
+		91B57F8920E035E900CE5EE1 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		91B57F8D20E0388100CE5EE1 /* TrueXViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrueXViewController.swift; sourceTree = "<group>"; };
+		91B57F9120E038E200CE5EE1 /* Bridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
+		91B57F9520E039E300CE5EE1 /* TrueXIndex.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TrueXIndex.html; sourceTree = "<group>"; };
 		91CB636320597F3C00C65404 /* URL+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+KinWallet.swift"; sourceTree = "<group>"; };
 		91CE3DAC20691FFF009ABDCD /* KinSupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinSupportViewController.swift; sourceTree = "<group>"; };
 		91D0753820567E6000CF80D5 /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
@@ -935,6 +955,7 @@
 		9114743B203F17E300C16279 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				91B57F9120E038E200CE5EE1 /* Bridge.swift */,
 				9114743C203F17ED00C16279 /* WeakBox.swift */,
 			);
 			path = Foundation;
@@ -1138,6 +1159,7 @@
 			isa = PBXGroup;
 			children = (
 				9140138520187CE90066367C /* Result.swift */,
+				91B57F7E20DFC93F00CE5EE1 /* TrueXActivity.swift */,
 				9140138C20187DEB0066367C /* Author.swift */,
 				9140138320187CE90066367C /* Question.swift */,
 				9140138420187CE90066367C /* Task.swift */,
@@ -1196,9 +1218,11 @@
 				914013A92018BC780066367C /* SurveyViewController.swift */,
 				914013B22018C0740066367C /* QuestionViewController.swift */,
 				91D891C62020A1A60090E77C /* QuestionCollectionViewDataSource.swift */,
-				91AEBF3B202B0554007BBBA3 /* SurveyCompletedViewController.swift */,
+				91AEBF3B202B0554007BBBA3 /* TaskCompletedViewController.swift */,
 				91E6B615203C29B30080C2FC /* SurveyDoneViewController.swift */,
 				91E6B618203C2A0B0080C2FC /* TransferringKinViewController.swift */,
+				91B57F8D20E0388100CE5EE1 /* TrueXViewController.swift */,
+				91B57F9520E039E300CE5EE1 /* TrueXIndex.html */,
 			);
 			path = Earn;
 			sourceTree = "<group>";
@@ -1288,9 +1312,18 @@
 			path = NSLayoutConstraint;
 			sourceTree = "<group>";
 		};
+		91B57F8820E035DD00CE5EE1 /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				91B57F8920E035E900CE5EE1 /* WebViewController.swift */,
+			);
+			path = UIViewController;
+			sourceTree = "<group>";
+		};
 		91D891CF2020B43D0090E77C /* UIKit Components */ = {
 			isa = PBXGroup;
 			children = (
+				91B57F8820E035DD00CE5EE1 /* UIViewController */,
 				91B0667C20C929E000CE69A7 /* NSLayoutConstraint */,
 				91F69D1E208379AE00F06181 /* XLPagerTabStrip */,
 				9138BBE2204EF17700450C97 /* UICollectionReusableView */,
@@ -1632,6 +1665,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				91F69D1720834A9B00F06181 /* TransactionHistoryCollectionViewCell.xib in Resources */,
+				91B57F9620E039E300CE5EE1 /* TrueXIndex.html in Resources */,
 				91E6B65E203C69A90080C2FC /* ComodoRsaCA.der in Resources */,
 				915F495C20430125005C09B3 /* KinK.ttf in Resources */,
 				915F496120430125005C09B3 /* Roboto-LightItalic.ttf in Resources */,
@@ -1686,6 +1720,7 @@
 				9182C29D203C6C0C0051F003 /* api.amplitude.com.der in Resources */,
 				91E84A762086186B00E8B7A6 /* ButtonCell.xib in Resources */,
 				91E90F98209A01C3004B50C8 /* GoogleService-Info-Prod-Beta.plist in Resources */,
+				91B57F9720E039E300CE5EE1 /* TrueXIndex.html in Resources */,
 				914013A02018B87E0066367C /* InitialTasks.json in Resources */,
 				914013BB2018C68B0066367C /* Earn.storyboard in Resources */,
 				91D891D92020B43D0090E77C /* SurveyQuestionCollectionReusableView.xib in Resources */,
@@ -1712,6 +1747,7 @@
 				91B2627E20DA6AB000E8A766 /* GoogleService-Info-Staging.plist in Resources */,
 				91B2627D20DA6AB000E8A766 /* GoogleService-Info-Prod.plist in Resources */,
 				91B4454920909C5400ED6802 /* TutorialPageView.xib in Resources */,
+				91B57F9820E039E300CE5EE1 /* TrueXIndex.html in Resources */,
 				91B445672091EFE700ED6802 /* GoogleService-Info-Staging-Beta.plist in Resources */,
 				91E90F99209A01C3004B50C8 /* GoogleService-Info-Prod-Beta.plist in Resources */,
 			);
@@ -1889,6 +1925,7 @@
 				918893B9205E906E0077CD9A /* URLRequest+KinWallet.swift in Sources */,
 				91AEBF392029E958007BBBA3 /* WebRequest.swift in Sources */,
 				91E6B65D203C69A90080C2FC /* AMPURLConnection.m in Sources */,
+				91B57F9220E038E200CE5EE1 /* Bridge.swift in Sources */,
 				91FF9D30207F4B9A00B536E9 /* TransactionHistoryViewController.swift in Sources */,
 				91CB636420597F3C00C65404 /* URL+KinWallet.swift in Sources */,
 				91B0668B20C969EE00CE69A7 /* UIImage+ImageEffects.m in Sources */,
@@ -1972,10 +2009,12 @@
 				91E6B60C203AD1D30080C2FC /* Kin.swift in Sources */,
 				91796BCC20272A8B00F8C6A0 /* DeviceList.plist in Sources */,
 				91E84A452085EA3800E8B7A6 /* HistoryViewController.swift in Sources */,
-				91AEBF3C202B0554007BBBA3 /* SurveyCompletedViewController.swift in Sources */,
+				91AEBF3C202B0554007BBBA3 /* TaskCompletedViewController.swift in Sources */,
 				91F69D4220848C0200F06181 /* RedeemTransactionCollectionViewCell.swift in Sources */,
 				91E6B658203C69A90080C2FC /* AMPURLSession.m in Sources */,
 				9138BBE1204EE21E00450C97 /* OfferDetailsViewController.swift in Sources */,
+				91B57F7F20DFC93F00CE5EE1 /* TrueXActivity.swift in Sources */,
+				91B57F8E20E0388100CE5EE1 /* TrueXViewController.swift in Sources */,
 				91E6B65C203C69A90080C2FC /* AMPIdentify.m in Sources */,
 				82A12DEC2056B841008841F2 /* Configuration.swift in Sources */,
 				91F69D30208379F400F06181 /* SegmentedPagerTabStripViewController.swift in Sources */,
@@ -2001,6 +2040,7 @@
 				91F69D33208379F400F06181 /* IndicatorInfo.swift in Sources */,
 				91908C65204D69F200971F11 /* OfferCollectionViewCell.swift in Sources */,
 				914013DC2019F2BF0066367C /* UICollectionViewCell+KinWallet.swift in Sources */,
+				91B57F8A20E035E900CE5EE1 /* WebViewController.swift in Sources */,
 				91E6B660203C69A90080C2FC /* Amplitude.m in Sources */,
 				9199C7442068E39200C733A6 /* RootViewController.swift in Sources */,
 				914013662016328F0066367C /* SplashScreenViewController.swift in Sources */,
@@ -2039,6 +2079,7 @@
 				91B0667F20C929EF00CE69A7 /* NSLayoutConstraintHairline.swift in Sources */,
 				91E84A752086186B00E8B7A6 /* ButtonBarViewCell.swift in Sources */,
 				910AA22B2096F34800CC822A /* AccountReadyViewController.swift in Sources */,
+				91B57F8F20E0388100CE5EE1 /* TrueXViewController.swift in Sources */,
 				91B445502090C3B400ED6802 /* PhoneVerificationRequestViewController.swift in Sources */,
 				91401398201892640066367C /* QuestionTests.swift in Sources */,
 				9140138B20187CE90066367C /* Result.swift in Sources */,
@@ -2067,6 +2108,7 @@
 				91E84AA020862D1000E8B7A6 /* FetchableCollectionViewDataSource.swift in Sources */,
 				91E84A9620862CC600E8B7A6 /* Kin.swift in Sources */,
 				9140138E20187DEB0066367C /* Author.swift in Sources */,
+				91B57F9320E038E200CE5EE1 /* Bridge.swift in Sources */,
 				91AAB92C201DD2A50075DAA1 /* SelectedResult.swift in Sources */,
 				91E84A5F208617DA00E8B7A6 /* OfferWallViewController.swift in Sources */,
 				91E84A6C2086185000E8B7A6 /* AppDelegate.swift in Sources */,
@@ -2102,6 +2144,7 @@
 				9182C29C203C6C0C0051F003 /* AMPRevenue.m in Sources */,
 				91796BD02027578500F8C6A0 /* TimeZone+KinWallet.swift in Sources */,
 				91D891DB2020B43D0090E77C /* SurveyQuestionCollectionReusableView.swift in Sources */,
+				91B57F8B20E035E900CE5EE1 /* WebViewController.swift in Sources */,
 				91E84AA420862D8B00E8B7A6 /* ServerTypes.swift in Sources */,
 				91E84A8C2086189500E8B7A6 /* SurveyViewController.swift in Sources */,
 				9182C299203C6C0C0051F003 /* AMPLocationManagerDelegate.m in Sources */,
@@ -2123,6 +2166,7 @@
 				91E84AAC20862DB700E8B7A6 /* SurveyAnswerCollectionViewCell.swift in Sources */,
 				91E84A732086186B00E8B7A6 /* ButtonBarPagerTabStripViewController.swift in Sources */,
 				91E84AB520862E1400E8B7A6 /* RedeemedGoodsViewController.swift in Sources */,
+				91B57F8020DFC93F00CE5EE1 /* TrueXActivity.swift in Sources */,
 				910AA2192095E5FE00CC822A /* UITextField+KinWallet.swift in Sources */,
 				91E84ABA20862E4700E8B7A6 /* TransactionHistoryCollectionViewCell.swift in Sources */,
 				91E84A6A2086183900E8B7A6 /* KinLoader.swift in Sources */,
@@ -2159,7 +2203,7 @@
 				91E84A9820862CCC00E8B7A6 /* QuestionViewController.swift in Sources */,
 				91E84A702086186500E8B7A6 /* BarView.swift in Sources */,
 				91AAB933201E0AC00075DAA1 /* ResourceDownloader.swift in Sources */,
-				91E84A55208617B200E8B7A6 /* SurveyCompletedViewController.swift in Sources */,
+				91E84A55208617B200E8B7A6 /* TaskCompletedViewController.swift in Sources */,
 				91B575C62046E83200AC3E04 /* Date+Kinit.swift in Sources */,
 				91B0667220C6BB7900CE69A7 /* StandardBuyViewController.swift in Sources */,
 				9157F995204D5B4600351E2A /* Offer.swift in Sources */,
@@ -2175,7 +2219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				91E84A9320862C6300E8B7A6 /* RootViewController.swift in Sources */,
-				91E84A56208617B300E8B7A6 /* SurveyCompletedViewController.swift in Sources */,
+				91E84A56208617B300E8B7A6 /* TaskCompletedViewController.swift in Sources */,
 				828CB4252056E9C1007C679C /* AMPDeviceInfo.m in Sources */,
 				828CB4272056E9C1007C679C /* AMPURLConnection.m in Sources */,
 				828CB4532056EA43007C679C /* String+KinWallet.swift in Sources */,
@@ -2208,6 +2252,7 @@
 				828CB44F2056EA42007C679C /* Date+Kinit.swift in Sources */,
 				828CB4432056EA08007C679C /* ImageAssets.swift in Sources */,
 				828CB44B2056EA42007C679C /* UICollectionView+KinWallet.swift in Sources */,
+				91B57F9420E038E200CE5EE1 /* Bridge.swift in Sources */,
 				910AA22F2096F7F800CC822A /* ConfettiView.swift in Sources */,
 				91B4454D2090A91E00ED6802 /* WelcomeViewController.swift in Sources */,
 				91E84A842086186B00E8B7A6 /* PagerTabStripError.swift in Sources */,
@@ -2267,6 +2312,7 @@
 				91E84A5E208617D200E8B7A6 /* BalanceViewController.swift in Sources */,
 				91B0668D20C969EE00CE69A7 /* UIImage+ImageEffects.m in Sources */,
 				828CB44A2056EA42007C679C /* Optional+KinWallet.swift in Sources */,
+				91B57F9020E0388100CE5EE1 /* TrueXViewController.swift in Sources */,
 				91E84A852086186B00E8B7A6 /* PagerTabStripViewController.swift in Sources */,
 				91E84AB120862DE300E8B7A6 /* Bool+KinWallet.swift in Sources */,
 				828CB4242056E9C1007C679C /* AMPDatabaseHelper.m in Sources */,
@@ -2292,6 +2338,7 @@
 				828CB4412056E9F6007C679C /* TouchUpEffectScalable.swift in Sources */,
 				91E84A712086186600E8B7A6 /* BarView.swift in Sources */,
 				828CB4182056E913007C679C /* TaskResults.swift in Sources */,
+				91B57F8C20E035E900CE5EE1 /* WebViewController.swift in Sources */,
 				910AA21A2095E5FE00CC822A /* UITextField+KinWallet.swift in Sources */,
 				828CB44C2056EA42007C679C /* UIAlertAction+KinWallet.swift in Sources */,
 				91E84A64208617FB00E8B7A6 /* OfferDetailsViewController.swift in Sources */,
@@ -2305,6 +2352,7 @@
 				828CB4382056E9F2007C679C /* Analytics.swift in Sources */,
 				91E84ABD20862E6F00E8B7A6 /* RedeemTransactionCollectionViewCell.swift in Sources */,
 				828CB4362056E9EA007C679C /* OfferCollectionViewCell.swift in Sources */,
+				91B57F8120DFC93F00CE5EE1 /* TrueXActivity.swift in Sources */,
 				910AA22C2096F34900CC822A /* AccountReadyViewController.swift in Sources */,
 				828CB4312056E9E1007C679C /* BalanceLabel.swift in Sources */,
 				91E84A892086187200E8B7A6 /* EmptyStateView.swift in Sources */,

@@ -8,18 +8,22 @@ import Foundation
 struct Configuration: Codable {
     let amplitudeKeyDebug: String?
     let amplitudeKeyProd: String?
-    let testFairyKey: String?
+    let moreScreenTapsPassword: String
     let serverEndpointStage: URL
     let serverEndpointProd: URL
-    let moreScreenTapsPassword: String
+    let testFairyKey: String?
+    let trueXConfigHashDebug: String?
+    let trueXConfigHashProd: String?
 
     enum CodingKeys: String, CodingKey {
         case amplitudeKeyDebug = "amplitude-key-debug"
         case amplitudeKeyProd = "amplitude-key-prod"
-        case serverEndpointStage = "server-endpoint-stage"
-        case serverEndpointProd = "server-endpoint-prod"
         case moreScreenTapsPassword = "more-screen-taps-password"
+        case serverEndpointProd = "server-endpoint-prod"
+        case serverEndpointStage = "server-endpoint-stage"
         case testFairyKey = "testfairy-key"
+        case trueXConfigHashDebug = "truex-config-hash-debug"
+        case trueXConfigHashProd = "truex-config-hash-prod"
     }
 
     static let shared: Configuration = {

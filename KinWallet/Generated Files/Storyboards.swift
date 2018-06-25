@@ -58,11 +58,11 @@ enum StoryboardScene {
 
     static let earnKinAnimationViewController = SceneType<EarnKinAnimationViewController>(storyboard: Earn.self, identifier: "EarnKinAnimationViewController")
 
-    static let surveyCompletedViewController = SceneType<SurveyCompletedViewController>(storyboard: Earn.self, identifier: "SurveyCompletedViewController")
-
     static let surveyDoneViewController = SceneType<SurveyDoneViewController>(storyboard: Earn.self, identifier: "SurveyDoneViewController")
 
     static let surveyInfoViewController = SceneType<SurveyInfoViewController>(storyboard: Earn.self, identifier: "SurveyInfoViewController")
+
+    static let taskCompletedViewController = SceneType<TaskCompletedViewController>(storyboard: Earn.self, identifier: "TaskCompletedViewController")
 
     static let transferringKinViewController = SceneType<TransferringKinViewController>(storyboard: Earn.self, identifier: "TransferringKinViewController")
   }

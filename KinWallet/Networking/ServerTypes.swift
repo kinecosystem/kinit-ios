@@ -13,13 +13,13 @@ struct SimpleStatusResponse: StatusResponse, Codable {
     let status: String
 }
 
-struct MemoStatusResponse: StatusResponse, Codable {
-    let status: String
-    let memo: String
-}
-
 struct TasksResponse: Codable {
     let tasks: [Task]
+}
+
+struct TrueXActivityStatusResponse: StatusResponse, Codable {
+    let status: String
+    let activity: TrueXActivity
 }
 
 struct OffersResponse: Codable {

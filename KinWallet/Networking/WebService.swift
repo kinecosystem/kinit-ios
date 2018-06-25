@@ -156,6 +156,7 @@ class WebService: WebServiceProtocol {
                 let decoded = try JSONDecoder().decode(R.self, from: data)
                 completion(request.transform(decoded), nil)
             } catch {
+                print(error)
                 print("Malformed JSON:\n\(String(data: data, encoding: .utf8) ?? "")")
                 completion(nil, WebServiceError.malformedJSON(error, String(data: data, encoding: .utf8)))
             }

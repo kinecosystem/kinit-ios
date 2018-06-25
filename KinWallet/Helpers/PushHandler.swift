@@ -11,6 +11,7 @@ private let kinDataPushTypeKey = "push_type"
 private enum KinPushType: String {
     case auth
     case peerToPeerReceived = "p2p_received"
+    case repeatRegistration = "register"
 }
 
 class PushHandler {
@@ -19,17 +20,18 @@ class PushHandler {
 
         guard
             let kinData = userInfo[kinDataPushKey] as? [String: Any],
-            let pushType = kinData[kinDataPushTypeKey] as? String else {
+            let pushTypeString = kinData[kinDataPushTypeKey] as? String,
+            let pushType = KinPushType(rawValue: pushTypeString) else {
             return
         }
 
         switch pushType {
-        case KinPushType.auth.rawValue:
+        case .auth:
             ackAuthToken(with: kinData)
-        case KinPushType.peerToPeerReceived.rawValue:
+        case .peerToPeerReceived:
             peerToPeerReceived(with: kinData)
-        default:
-            break
+        case .repeatRegistration:
+            repeatRegistration()
         }
     }
 
@@ -101,5 +103,18 @@ class PushHandler {
         }
 
         KinLoader.shared.prependTransaction(transaction)
+    }
+
+    private class func repeatRegistration() {
+        guard let user = User.current?.withUpdatedValues() else {
+            return
+        }
+
+        WebRequests.userRegistrationRequest(for: user)
+            .withCompletion { _, error in
+                if error == nil {
+                    user.save()
+                }
+            }.load(with: KinWebService.shared)
     }
 }

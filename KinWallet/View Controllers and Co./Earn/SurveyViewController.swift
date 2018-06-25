@@ -211,10 +211,10 @@ final class SurveyViewController: UIViewController {
     }
 
     func showSurveyComplete(results: TaskResults) {
-        let surveyComplete = StoryboardScene.Earn.surveyCompletedViewController.instantiate()
-        surveyComplete.task = task
-        surveyComplete.results = results
-        navigationController?.pushViewController(surveyComplete, animated: true)
+        let taskCompleted = StoryboardScene.Earn.taskCompletedViewController.instantiate()
+        taskCompleted.task = task
+        taskCompleted.results = results
+        navigationController?.pushViewController(taskCompleted, animated: true)
     }
 }
 
@@ -331,7 +331,7 @@ extension SurveyViewController {
                                   taskCategory: task.tags.asString,
                                   taskId: task.identifier,
                                   taskTitle: task.title,
-                                  taskType: .questionnaire)
+                                  taskType: task.type.toBITaskType())
             .send()
     }
 }

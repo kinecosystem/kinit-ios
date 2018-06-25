@@ -132,19 +132,27 @@ final class SurveyInfoViewController: UIViewController {
             DispatchQueue.main.async {
                 if let results = tResults,
                     results.results.count == self.task.questions.count {
-                    let surveyComplete = StoryboardScene.Earn.surveyCompletedViewController.instantiate()
-                    surveyComplete.task = self.task
-                    surveyComplete.results = results
-                    self.present(KinNavigationController(rootViewController: surveyComplete), animated: true)
+                    let taskCompleted = StoryboardScene.Earn.taskCompletedViewController.instantiate()
+                    taskCompleted.task = self.task
+                    taskCompleted.results = results
+                    self.present(KinNavigationController(rootViewController: taskCompleted), animated: true)
                 } else {
-                    self.presentTaskQuestions()
+                    self.presentTask()
                 }
             }
         }
     }
 
-    private func presentTaskQuestions() {
-        let surveyNavController = SurveyViewController.embeddedInNavigationController(with: self.task,
+    private func presentTask() {
+        if task.type == .trueX {
+            let trueXVC = TrueXViewController()
+            trueXVC.task = task
+            let navController = KinNavigationController(rootViewController: trueXVC)
+            present(navController, animated: true)
+            return
+        }
+
+        let surveyNavController = SurveyViewController.embeddedInNavigationController(with: task,
                                                                                       delegate: self.surveyDelegate!)
         present(surveyNavController, animated: true)
     }
@@ -181,7 +189,7 @@ extension SurveyInfoViewController {
                           taskCategory: task.tags.asString,
                           taskId: task.identifier,
                           taskTitle: task.title,
-                          taskType: .questionnaire)
+                          taskType: task.type.toBITaskType())
             .send()
     }
 
@@ -194,7 +202,7 @@ extension SurveyInfoViewController {
                                         taskCategory: task.tags.asString,
                                         taskId: task.identifier,
                                         taskTitle: task.title,
-                                        taskType: .questionnaire)
+                                        taskType: task.type.toBITaskType())
             .send()
 
         if !alreadyStartedTask {
@@ -205,7 +213,7 @@ extension SurveyInfoViewController {
                                     taskCategory: task.tags.asString,
                                     taskId: task.identifier,
                                     taskTitle: task.title,
-                                    taskType: .questionnaire)
+                                    taskType: task.type.toBITaskType())
             .send()
         }
     }
@@ -220,7 +228,7 @@ extension SurveyInfoViewController: StoryboardInitializable {
 extension SurveyInfoViewController: VideoTaskViewControllerDelegate {
     func videoTaskDidFinishPlaying() {
         dismiss(animated: true) {
-            self.presentTaskQuestions()
+            self.presentTask()
         }
     }
 

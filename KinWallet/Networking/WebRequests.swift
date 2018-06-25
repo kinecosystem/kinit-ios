@@ -95,20 +95,26 @@ extension WebRequests {
                                                  transform: { $0?.tasks })
     }
 
-    static func submitTaskResults(_ results: TaskResults) -> WebRequest<MemoStatusResponse, String> {
-        let transform: (MemoStatusResponse?) -> String? = { memoStatusResponse -> String? in
+    static func submitTaskResults(_ results: TaskResults) -> WebRequest<SimpleStatusResponse, Success> {
+        return WebRequest<SimpleStatusResponse, Success>(POST: "user/task/results",
+                                                      body: results,
+                                                      transform: WebResourceHandlers.isJSONStatusOk)
+    }
+
+    static func trueXActivity() -> WebRequest<TrueXActivityStatusResponse, TrueXActivity> {
+        let transform: (TrueXActivityStatusResponse?) -> TrueXActivity? = { activityResponse -> TrueXActivity? in
             guard
-                let response = memoStatusResponse,
+                let response = activityResponse,
                 WebResourceHandlers.isJSONStatusOk(response: response).boolValue else {
-                return nil
+                    return nil
             }
 
-            return response.memo
+            return response.activity
         }
 
-        return WebRequest<MemoStatusResponse, String>(POST: "user/task/results",
-                                                      body: results,
-                                                      transform: transform)
+        let userAgent = (User.userAgent?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)) ?? "null"
+        return WebRequest<TrueXActivityStatusResponse, TrueXActivity>(GET: "/truex/activity?user_agent=\(userAgent)",
+                                                                      transform: transform)
     }
 }
 

@@ -71,6 +71,12 @@ final class WelcomeViewController: UIViewController {
         super.viewDidAppear(animated)
 
         logViewedPage()
+
+        #if targetEnvironment(simulator)
+
+        AppDelegate.shared.dismissSplashIfNeeded()
+
+        #endif
     }
 
     override func viewDidLayoutSubviews() {

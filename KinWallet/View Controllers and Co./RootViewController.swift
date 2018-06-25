@@ -144,6 +144,7 @@ class RootViewController: UIViewController {
             KinLoader.shared.loadAllData()
         } else {
             Kin.shared.resetKeyStore()
+            KLogVerbose("User agent is \(User.userAgent ?? "Not yet")")
             let user = User.createNew()
             WebRequests.userRegistrationRequest(for: user)
                 .withCompletion { [weak self] config, error in

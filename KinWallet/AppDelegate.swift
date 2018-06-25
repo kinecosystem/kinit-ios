@@ -12,7 +12,6 @@ import FirebaseAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
     var notificationHandler: NotificationHandler?
 
@@ -29,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             #endif
         }
+
+        generateUserAgent()
 
         let filePath = Bundle.main.path(forResource: firebaseFileName(), ofType: "plist")!
         let firebaseOptions = FirebaseOptions(contentsOfFile: filePath)!
