@@ -40,7 +40,6 @@ struct User: Codable {
 extension User {
     private static let CurrentUserStorageIdentifier = "Current"
     private static var _current: User?
-    static var userAgent: String?
 
     static var current: User? {
         if let currentUser = _current {

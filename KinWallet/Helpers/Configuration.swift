@@ -9,8 +9,8 @@ struct Configuration: Codable {
     let amplitudeKeyDebug: String?
     let amplitudeKeyProd: String?
     let moreScreenTapsPassword: String
-    let serverEndpointStage: URL
-    let serverEndpointProd: URL
+    let serverHostStage: String
+    let serverHostProd: String
     let testFairyKey: String?
     let trueXConfigHashDebug: String?
     let trueXConfigHashProd: String?
@@ -19,8 +19,8 @@ struct Configuration: Codable {
         case amplitudeKeyDebug = "amplitude-key-debug"
         case amplitudeKeyProd = "amplitude-key-prod"
         case moreScreenTapsPassword = "more-screen-taps-password"
-        case serverEndpointProd = "server-endpoint-prod"
-        case serverEndpointStage = "server-endpoint-stage"
+        case serverHostProd = "server-host-prod"
+        case serverHostStage = "server-host-stage"
         case testFairyKey = "testfairy-key"
         case trueXConfigHashDebug = "truex-config-hash-debug"
         case trueXConfigHashProd = "truex-config-hash-prod"

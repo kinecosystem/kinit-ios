@@ -18,9 +18,9 @@ enum WebServiceError: Error {
     case invalidStatusCode(Int)
 }
 
-enum HTTPMethod<Body> {
-    case get
-    case post(Body)
+enum HTTPMethod {
+    case get([String: String]?)
+    case post(Data?)
 }
 
 extension HTTPMethod: CustomStringConvertible {
@@ -34,16 +34,6 @@ extension HTTPMethod: CustomStringConvertible {
     }
 }
 
-extension HTTPMethod {
-    func map<B>(function: (Body) -> B) -> HTTPMethod<B> {
-        switch self {
-        case .get: return .get
-        case .post(let body):
-            return .post(function(body))
-        }
-    }
-}
-
 protocol WebServiceProvider: class {
     func userId() -> String?
     func deviceId() -> String?
@@ -53,12 +43,12 @@ protocol WebServiceProvider: class {
 protocol WebServiceProtocol {
     @discardableResult
     func load<R, T>(_ request: WebRequest<R, T>) -> URLSessionTask
-    var serverURL: URL { get }
+    var serverHost: String { get }
     var provider: WebServiceProvider? { get set }
 }
 
 class WebService: WebServiceProtocol {
-    let serverURL: URL
+    let serverHost: String
     let urlSession: URLSession = {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 20
@@ -68,8 +58,8 @@ class WebService: WebServiceProtocol {
 
     weak var provider: WebServiceProvider?
 
-    init(serverURL: URL) {
-        self.serverURL = serverURL
+    init(serverHost: String) {
+        self.serverHost = serverHost
     }
 
     @discardableResult
@@ -84,7 +74,7 @@ class WebService: WebServiceProtocol {
     }
 
     private func urlRequest<R, T>(for request: WebRequest<R, T>) -> URLRequest {
-        var urlRequest = URLRequest(webRequest: request, serverURL: serverURL)
+        var urlRequest = URLRequest(webRequest: request, host: serverHost)
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-type")
 
         if let userId = provider?.userId() {
@@ -165,10 +155,22 @@ class WebService: WebServiceProtocol {
 }
 
 private extension URLRequest {
-    init<R, T>(webRequest: WebRequest<R, T>, serverURL: URL) {
-        self.init(url: webRequest.requestURL(with: serverURL))
+    init<R, T>(webRequest: WebRequest<R, T>, host: String) {
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = host
+        urlComponents.path = webRequest.path
+
+        if case let .get(parameters) = webRequest.method, let params = parameters {
+            urlComponents.queryItems = params.map {
+                return URLQueryItem(name: $0.key, value: $0.value)
+            }
+        }
+
+        self.init(url: urlComponents.url!)
         httpMethod = String(describing: webRequest.method)
-        if case let .post(data) = webRequest.method {
+
+        if case let .post(body) = webRequest.method, let data = body {
             httpBody = data
         }
     }

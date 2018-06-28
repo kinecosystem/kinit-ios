@@ -4,24 +4,11 @@
 //
 
 import UIKit
-import WebKit
 
 extension AppDelegate {
-    static var webView: WKWebView?
-
     class var shared: AppDelegate {
         //swiftlint:disable:next force_cast
         return UIApplication.shared.delegate as! AppDelegate
-    }
-
-    func generateUserAgent() {
-        AppDelegate.webView = WKWebView(frame: .zero)
-        AppDelegate.webView!.loadHTMLString("<html></html>", baseURL: nil)
-        AppDelegate.webView!.evaluateJavaScript("navigator.userAgent") { result, _ in
-            User.userAgent = result as? String
-            KLogDebug("User agent is \(User.userAgent ?? "nil")")
-            AppDelegate.webView = nil
-        }
     }
 
     func applyAppearance() {

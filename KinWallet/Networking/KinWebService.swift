@@ -40,7 +40,7 @@ final class KinWebService {
 
         service.provider = AppDelegate.shared
 
-        KLogVerbose("Initializing \(service.identifier) service at \(service.serverURL.absoluteString)")
+        KLogVerbose("Initializing \(service.identifier) service at \(service.serverHost)")
 
         return service
     }()
@@ -67,7 +67,7 @@ final class KinStagingService: WebService, IdentifiableWebService {
         return type(of: self).identifier
     }
 
-    static let shared = KinStagingService(serverURL: Configuration.shared.serverEndpointStage)
+    static let shared = KinStagingService(serverHost: Configuration.shared.serverHostStage)
 }
 
 final class KinProductionService: WebService, IdentifiableWebService {
@@ -79,5 +79,5 @@ final class KinProductionService: WebService, IdentifiableWebService {
         return type(of: self).identifier
     }
 
-    static let shared = KinProductionService(serverURL: Configuration.shared.serverEndpointProd)
+    static let shared = KinProductionService(serverHost: Configuration.shared.serverHostProd)
 }
