@@ -82,7 +82,11 @@ final class SurveyHomeViewController: UIViewController {
             #endif
             })
 
-        present(alertController, animated: true, completion: nil)
+        present(alertController, animated: true) {
+            #if targetEnvironment(simulator)
+            self.dismiss(animated: true)
+            #endif
+        }
 
         logViewedPhoneAuthPopup()
     }

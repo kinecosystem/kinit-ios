@@ -1,5 +1,5 @@
 //
-//  SurveyCompletedViewController.swift
+//  TaskCompletedViewController.swift
 //  Kinit
 //
 
@@ -8,9 +8,9 @@ import Lottie
 import KinSDK
 import KinUtil
 
-final class SurveyCompletedViewController: UIViewController {
+final class TaskCompletedViewController: UIViewController {
     var task: Task!
-    var results: TaskResults!
+    var results: TaskResults?
     var watch: PaymentWatch?
     let linkBag = LinkBag()
     var failedToSubmitResults = false
@@ -31,7 +31,11 @@ final class SurveyCompletedViewController: UIViewController {
 
         initialBalance = Kin.shared.balance
 
-        submitResults()
+        if results != nil {
+            submitResults()
+        } else {
+            watchPayment()
+        }
 
         logViewedDone()
         addAndFit(StoryboardScene.Earn.surveyDoneViewController.instantiate())
@@ -58,33 +62,41 @@ final class SurveyCompletedViewController: UIViewController {
     }
 
     private func submitResults() {
+        guard let results = results else {
+            fatalError("submitResults was called when `results` was nil")
+        }
+
         let tResults = results.applyingAddress(Kin.shared.publicAddress)
         WebRequests.submitTaskResults(tResults)
-            .withCompletion { [weak self] memo, error in
-                guard let aSelf = self else {
+            .withCompletion { [weak self] success, error in
+                guard let `self` = self else {
                     return
                 }
 
-                guard let memo = memo, error == nil else {
-                    aSelf.failedToSubmitResults = true
+                guard success.boolValue else {
+                    self.failedToSubmitResults = true
                     KLogError(String(describing: error?.localizedDescription))
                     DispatchQueue.main.async {
-                        aSelf.errorSubmitingResults()
+                        self.errorSubmitingResults()
                     }
 
                     return
                 }
 
-                KLogVerbose("Success submitting results for task. Memo is \(memo)")
+                KLogVerbose("Success submitting results for task.")
 
-                SimpleDatastore.delete(aSelf.results)
-                KinLoader.shared.deleteCachedAndFetchNextTask()
-
-                aSelf.watchPayment(with: memo)
+                self.watchPayment()
             }.load(with: KinWebService.shared)
     }
 
-    private func watchPayment(with memo: String) {
+    private func watchPayment() {
+        if let results = results {
+            SimpleDatastore.delete(results)
+        }
+
+        KinLoader.shared.deleteCachedAndFetchNextTask()
+
+        let memo = task.memo
         watch = try? Kin.shared.watch(cursor: nil)
         watch?.emitter
             .filter { $0.memoText == memo }
@@ -107,30 +119,34 @@ final class SurveyCompletedViewController: UIViewController {
             }).add(to: linkBag)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 20) { [weak self] in
-            guard let aSelf = self, aSelf.watch != nil else {
+            guard let `self` = self, self.watch != nil else {
                 return
             }
 
-            aSelf.logEarnTransactionTimeout()
+            self.transactionTimedOut()
+        }
+    }
 
-            aSelf.watch = nil
-            let message =
-            """
+    private func transactionTimedOut() {
+        logEarnTransactionTimeout()
+
+        watch = nil
+        let message =
+        """
             We have received your results but something got stuck along the way.
 
             Please tap close and check your balance in a few hours. If no change has ocurred, contact support.
             """
-            let buttonConfig = NoticeButtonConfiguration(title: "Close", mode: .stroke)
-            let noticeViewController = StoryboardScene.Main.noticeViewController.instantiate()
-            noticeViewController.delegate = self
-            noticeViewController.notice = Notice(image: Asset.paymentDelay.image,
-                                                 title: "Your Kin is on its way with a brief delay",
-                                                 subtitle: message,
-                                                 buttonConfiguration: buttonConfig,
-                                                 displayType: .imageFirst)
-            aSelf.present(noticeViewController, animated: true)
-            aSelf.logViewedErrorPage(errorType: .reward)
-        }
+        let buttonConfig = NoticeButtonConfiguration(title: "Close", mode: .stroke)
+        let noticeViewController = StoryboardScene.Main.noticeViewController.instantiate()
+        noticeViewController.delegate = self
+        noticeViewController.notice = Notice(image: Asset.paymentDelay.image,
+                                             title: "Your Kin is on its way with a brief delay",
+                                             subtitle: message,
+                                             buttonConfiguration: buttonConfig,
+                                             displayType: .imageFirst)
+        present(noticeViewController, animated: true)
+        logViewedErrorPage(errorType: .reward)
     }
 
     private func moveToTransferring() {
@@ -199,7 +215,7 @@ final class SurveyCompletedViewController: UIViewController {
     }
 }
 
-extension SurveyCompletedViewController {
+extension TaskCompletedViewController {
     fileprivate func logViewedDone() {
         Events.Analytics
             .ViewTaskEndPage(creator: task.author.name,
@@ -208,7 +224,7 @@ extension SurveyCompletedViewController {
                              taskCategory: task.tags.asString,
                              taskId: task.identifier,
                              taskTitle: task.title,
-                             taskType: .questionnaire)
+                             taskType: task.type.toBITaskType())
             .send()
     }
 
@@ -220,7 +236,7 @@ extension SurveyCompletedViewController {
                             taskCategory: task.tags.asString,
                             taskId: task.identifier,
                             taskTitle: task.title,
-                            taskType: .questionnaire)
+                            taskType: task.type.toBITaskType())
             .send()
     }
 
@@ -232,7 +248,7 @@ extension SurveyCompletedViewController {
                                               taskCategory: task.tags.asString,
                                               taskId: task.identifier,
                                               taskTitle: task.title,
-                                              taskType: .questionnaire)
+                                              taskType: task.type.toBITaskType())
             .send()
     }
 
@@ -244,7 +260,7 @@ extension SurveyCompletedViewController {
                                           taskCategory: task.tags.asString,
                                           taskId: task.identifier,
                                           taskTitle: task.title,
-                                          taskType: .questionnaire)
+                                          taskType: task.type.toBITaskType())
             .send()
     }
 
@@ -277,7 +293,7 @@ extension SurveyCompletedViewController {
     }
 }
 
-extension SurveyCompletedViewController: NoticeViewControllerDelegate {
+extension TaskCompletedViewController: NoticeViewControllerDelegate {
     func noticeViewControllerDidTapButton(_ viewController: NoticeViewController) {
         logClickedCloseErrorPage(errorType: failedToSubmitResults ? .taskSubmission : .reward)
         presentingViewController!.dismiss(animated: true)

@@ -9,15 +9,16 @@ class WebRequest<Result: Codable, Transform> {
     typealias WebRequestCompletion = ((Transform?, Error?) -> Void)
 
     let path: String
-    let method: HTTPMethod<Data?>
+    let method: HTTPMethod
     let transform: (Result?) -> Transform?
     var completion: WebRequestCompletion?
 
     init(GET path: String,
+         params: [String: String]? = nil,
          transform: @escaping (Result?) -> Transform?,
          completion: WebRequestCompletion? = nil) {
         self.path = path
-        self.method = .get
+        self.method = .get(params)
         self.transform = transform
         self.completion = completion
     }

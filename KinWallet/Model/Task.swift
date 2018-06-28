@@ -5,28 +5,38 @@
 
 import Foundation
 
+enum TaskType: String, Codable {
+    case questionnaire
+    case videoQuestionnaire = "video_questionnaire"
+    case trueX = "truex"
+}
+
 struct Task: Codable {
     let author: Author
     let identifier: String
     let kinReward: UInt
+    let memo: String
     let minutesToComplete: Float
     let questions: [Question]
     let startAt: TimeInterval
     let subtitle: String
     let tags: [String]
     let title: String
+    let type: TaskType
     let videoURL: URL?
 
     enum CodingKeys: CodingKey, String {
         case author = "provider"
         case identifier = "id"
         case kinReward = "price"
+        case memo = "memo"
         case minutesToComplete = "min_to_complete"
         case questions = "items"
         case startAt = "start_date"
         case subtitle = "desc"
         case tags
         case title
+        case type
         case videoURL = "video_url"
     }
 }
@@ -89,5 +99,18 @@ extension Task {
 extension Task: Equatable {
     static func == (lhs: Task, rhs: Task) -> Bool {
         return lhs.identifier == rhs.identifier
+    }
+}
+
+extension TaskType {
+    func toBITaskType() -> Events.TaskType {
+        switch self {
+        case .questionnaire:
+            return .questionnaire
+        case .videoQuestionnaire:
+            return .videoQuestionnaire
+        case .trueX:
+            return .truex
+        }
     }
 }

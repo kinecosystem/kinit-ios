@@ -12,7 +12,6 @@ import FirebaseAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
     var notificationHandler: NotificationHandler?
 

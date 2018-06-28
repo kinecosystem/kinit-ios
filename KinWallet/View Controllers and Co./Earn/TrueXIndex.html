@@ -1,0 +1,57 @@
+<html>
+    <head>
+    </head>
+    <body style="background-color:white; margin:0">
+        <script type="text/javascript">
+            /* wk.bridge.min.js | v0.2 */
+            /* wk.bridge.min.js | v0.2 */
+              (function(){if(window.isIOS){return}window.isIOS=function(){return navigator&&navigator.userAgent&&(/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent))}}());
+              (function(){if(window.bridge){return}window.bridge=function(){var callbacks=[],callbackID=0,registerHandlers=[];document.addEventListener("PacificDidReceiveNativeCallback",function(e){if(e.detail){var detail=e.detail;var id=isNaN(parseInt(detail.id))?-1:parseInt(detail.id);if(id!=-1){callbacks[id]&&callbacks[id](detail.parameters,detail.error);delete callbacks[id]}}},false);document.addEventListener("PacificDidReceiveNativeBroadcast",function(e){if(e.detail){var detail=e.detail;var name=detail.name;if(name!==undefined&&registerHandlers[name]){var namedListeners=registerHandlers[name];if(namedListeners instanceof Array){var parameters=detail.parameters;namedListeners.forEach(function(handler){handler(parameters)})}}}},false);return{"post":function(action,parameters,callback,print){var id=callbackID++;callbacks[id]=callback;if(window.webkit&&window.webkit.messageHandlers&&window.webkit.messageHandlers.pacific){window.webkit.messageHandlers.pacific.postMessage({"action":action,"parameters":parameters,"callback":id,"print":print||0})}},"on":function(name,callback){var namedListeners=registerHandlers[name];if(!namedListeners){registerHandlers[name]=namedListeners=[]}namedListeners.push(callback);return function(){namedListeners[indexOf(namedListeners,callback)]=null}},"off":function(name){delete registerHandlers[name]}}}()}());
+        </script>
+
+        <script type="text/javascript">
+          function debugPrint(args) {
+            window.bridge.post('print', {'message': args});
+          }
+
+          window.onerror = function(error) {
+            debugPrint("Error: " + error);
+          }
+        </script>
+
+        <script type='text/javascript' src='https://static.truex.com/js/client.js'></script>
+        <script type='text/javascript'>
+            debugPrint("Will register bridge");
+            window.bridge.on('prepareAndShowActivity', (parameters) => {
+                debugPrint("prepareAndShowActivity called. Will start truex client");
+                var activity = parameters['activity'];
+                var userId = parameters['userId'];
+                var config_hash = parameters['configHash'];
+                debugPrint(parameters);
+                debugPrint("Activity is:");
+                debugPrint(activity);
+
+                var options = {
+                    'network_user_id': userId,
+                    'partner_config_hash': config_hash
+                };
+
+                debugPrint(options);
+
+                truex.client(options, function(client) {
+                    debugPrint("Client initialized, will prepare and show activity");
+                    client.prepareActivity(activity);
+
+                    activity.onStart(function(a) { window.bridge.post('trueXActivityStarted'); });
+                    activity.onFinish(function(a) { window.bridge.post('trueXActivityFinished'); });
+                    activity.onCredit(function(e) { window.bridge.post('trueXActivityCredited'); });
+                    activity.onClose(function(a) { window.bridge.post('trueXActivityClosed'); });
+
+                    client.loadActivityIntoContainer(activity, document.body, {'width': window.screen.availWidth, 'height': window.screen.availHeight});
+                });
+            });
+
+            window.bridge.post('bridgeAvailable');
+        </script>
+    </body>
+</html>

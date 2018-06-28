@@ -91,31 +91,36 @@ extension WebRequests {
 // MARK: Earn
 extension WebRequests {
     static func nextTasks() -> WebRequest<TasksResponse, [Task]> {
-        return WebRequest<TasksResponse, [Task]>(GET: "user/tasks",
+        return WebRequest<TasksResponse, [Task]>(GET: "/user/tasks",
                                                  transform: { $0?.tasks })
     }
 
-    static func submitTaskResults(_ results: TaskResults) -> WebRequest<MemoStatusResponse, String> {
-        let transform: (MemoStatusResponse?) -> String? = { memoStatusResponse -> String? in
+    static func submitTaskResults(_ results: TaskResults) -> WebRequest<SimpleStatusResponse, Success> {
+        return WebRequest<SimpleStatusResponse, Success>(POST: "/user/task/results",
+                                                      body: results,
+                                                      transform: WebResourceHandlers.isJSONStatusOk)
+    }
+
+    static func trueXActivity() -> WebRequest<TrueXActivityStatusResponse, TrueXActivity> {
+        let transform: (TrueXActivityStatusResponse?) -> TrueXActivity? = { activityResponse -> TrueXActivity? in
             guard
-                let response = memoStatusResponse,
+                let response = activityResponse,
                 WebResourceHandlers.isJSONStatusOk(response: response).boolValue else {
-                return nil
+                    return nil
             }
 
-            return response.memo
+            return response.activity
         }
 
-        return WebRequest<MemoStatusResponse, String>(POST: "user/task/results",
-                                                      body: results,
-                                                      transform: transform)
+        return WebRequest<TrueXActivityStatusResponse, TrueXActivity>(GET: "/truex/activity",
+                                                                      transform: transform)
     }
 }
 
 // MARK: Spend
 extension WebRequests {
     static func offers() -> WebRequest<OffersResponse, [Offer]> {
-        return WebRequest<OffersResponse, [Offer]>(GET: "user/offers",
+        return WebRequest<OffersResponse, [Offer]>(GET: "/user/offers",
                                                    transform: { $0?.offers })
     }
 
@@ -131,7 +136,7 @@ extension WebRequests {
             return .success(orderId)
         }
 
-        return WebRequest<BookOfferResponse, BookOfferResult>(POST: "offer/book",
+        return WebRequest<BookOfferResponse, BookOfferResult>(POST: "/offer/book",
                                                      body: OfferInfo(identifier: offer.identifier),
                                                      transform: transform)
     }
@@ -147,7 +152,7 @@ extension WebRequests {
             return response.goods
         }
 
-        return WebRequest<RedeemResponse, [RedeemGood]>(POST: "offer/redeem",
+        return WebRequest<RedeemResponse, [RedeemGood]>(POST: "/offer/redeem",
                                                         body: paymentReceipt,
                                                         transform: transform)
     }
@@ -193,7 +198,7 @@ extension WebRequests {
             return response.transactions
         }
 
-        return WebRequest<TransactionHistoryResponse, [KinitTransaction]>(GET: "user/transactions",
+        return WebRequest<TransactionHistoryResponse, [KinitTransaction]>(GET: "/user/transactions",
                                                                           transform: transform)
     }
 
@@ -208,7 +213,7 @@ extension WebRequests {
             return response.items
         }
 
-        return WebRequest<RedeemedItemsResponse, [RedeemTransaction]>(GET: "user/redeemed",
+        return WebRequest<RedeemedItemsResponse, [RedeemTransaction]>(GET: "/user/redeemed",
                                                                           transform: transform)
     }
 }

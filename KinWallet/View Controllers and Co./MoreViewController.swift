@@ -104,7 +104,7 @@ extension MoreViewController {
         """
         User ID: \(User.current!.userId)
         Device Token: \(User.current!.deviceToken ?? "No token")
-        Current server is \(currentServerIdentifier) (\(KinWebService.shared.serverURL.absoluteString)).
+        Current server is \(currentServerIdentifier) (\(KinWebService.shared.serverHost)).
         Changing servers will delete all user data, including the Stellar account!
         """
 
