@@ -29,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             #endif
         }
 
+        generateUserAgent()
+
         let filePath = Bundle.main.path(forResource: firebaseFileName(), ofType: "plist")!
         let firebaseOptions = FirebaseOptions(contentsOfFile: filePath)!
         FirebaseApp.configure(options: firebaseOptions)

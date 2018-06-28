@@ -112,7 +112,15 @@ extension WebRequests {
             return response.activity
         }
 
+        let params: [String: String]?
+        if let userAgent = User.userAgent {
+            params = ["user_agent": userAgent]
+        } else {
+            params = nil
+        }
+
         return WebRequest<TrueXActivityStatusResponse, TrueXActivity>(GET: "/truex/activity",
+                                                                      params: params,
                                                                       transform: transform)
     }
 }
