@@ -131,6 +131,10 @@ extension MoreViewController {
             UIPasteboard.general.string = User.current?.deviceToken
         }))
 
+        alertController.addAction(.init(title: "Delete Kin Account", style: .destructive, handler: { _ in
+            Kin.shared.resetKeyStore()
+        }))
+
         alertController.addAction(.cancel())
         present(alertController, animated: true)
     }
