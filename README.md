@@ -15,7 +15,7 @@ check for balance and create spending transactions (either to pay KIN for an off
 The Kinit private beta is working over the Stellar public testnet. We will move over to the Kin public blockchain 
 (Stellar fork) for our public beta which is planned in mid July.
 
-# Guide
+## Guide
 1 - Install [SwiftGen](https://github.com/SwiftGen/SwiftGen), [SwiftLint](https://github.com/Realm/SwiftLint) and [Sourcery](https://github.com/krzysztofzablocki/Sourcery) via [Homebrew](https://brew.sh):
 `brew install sourcery swiftgen swiftlint`.
 
