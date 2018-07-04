@@ -14,6 +14,7 @@ struct TrueXActivity: Codable {
     let displayText: String?
     let imageURL: URL
     let name: String
+    let networkUserId: String
     let partnerId: Int
     let revenueAmount: String
     let sessionId: String
@@ -28,6 +29,7 @@ struct TrueXActivity: Codable {
         case displayText = "display_text"
         case imageURL = "image_url"
         case name
+        case networkUserId = "network_user_id"
         case partnerId = "partner_id"
         case revenueAmount = "revenue_amount"
         case sessionId = "session_id"

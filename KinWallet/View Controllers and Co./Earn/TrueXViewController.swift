@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol TrueXViewControllerDelegate: class {
+    func trueXLoadingDidFail()
+}
+
 class TrueXViewController: WebViewController {
     var task: Task!
+    weak var delegate: TrueXViewControllerDelegate?
+
     var finished = false
     let configHash: String = {
         #if DEBUG
@@ -50,28 +56,37 @@ class TrueXViewController: WebViewController {
 
     private func loadActivity() {
         activityIndicatorView.startAnimating()
-        let userId = User.current!.userId
 
-        WebRequests.trueXActivity().withCompletion { [weak self] activity, _ in
+        WebRequests.trueXActivity().withCompletion { [weak self] response, _ in
             DispatchQueue.main.async {
                 guard let `self` = self else {
                     return
                 }
 
-                self.activityIndicatorView.stopAnimating()
-
-                guard let activity = activity else {
-                    self.dismiss(animated: true, completion: nil)
+                guard let response = response else {
+                    self.activityIndicatorView.stopAnimating()
+                    self.alertLoadingFailed()
                     return
                 }
 
-                let params: [String: Any] = ["activity": activity.toJSON(),
-                                             "userId": userId,
+                let params: [String: Any] = ["activity": response.toJSON(),
+                                             "userId": response.networkUserId,
                                              "configHash": self.configHash]
                 KLogDebug(params["activity"]!)
                 self.webView.bridge.post(action: "prepareAndShowActivity", parameters: params)
             }
             }.load(with: KinWebService.shared)
+    }
+
+    private func alertLoadingFailed() {
+        let title = "Houston We Have a Problem"
+        let message = "Please try again later. If you continue to see this message, please reach out to support."
+
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(.ok(handler: { _ in
+            self.delegate?.trueXLoadingDidFail()
+        }))
+        present(alertController, animated: true)
     }
 
     private func bridgeDidBecomeAvailable() {
@@ -117,6 +132,7 @@ class TrueXViewController: WebViewController {
     }
 
     private func trueXActivityStarted() {
+        activityIndicatorView.stopAnimating()
         KLogDebug("trueXActivityStarted")
     }
 

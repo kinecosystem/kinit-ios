@@ -18,8 +18,8 @@ struct TasksResponse: Codable {
 }
 
 struct TrueXActivityStatusResponse: StatusResponse, Codable {
-    let status: String
     let activity: TrueXActivity
+    let status: String
 }
 
 struct OffersResponse: Codable {
