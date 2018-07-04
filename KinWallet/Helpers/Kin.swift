@@ -6,11 +6,18 @@
 import Foundation
 import KinSDK
 import StellarErrors
-import KinUtil
+import StellarKit
 
 //swiftlint:disable force_try
 
-private let stellarTestNetURL = URL(string: "https://horizon-testnet.stellar.org")!
+private let kinHorizonStageURL = URL(string: "https://horizon-playground.kininfrastructure.com/")!
+private let kinHorizonStageIssuer = "GBC3SG6NGTSZ2OMH3FFGB7UVRQWILW367U4GSOOF4TFSZONV42UJXUH7"
+private let kinHorizonStageName = "Kin Playground Network ; June 2018"
+
+private let kinHorizonProductionURL = URL(string: "https://horizon-ecosystem.kininfrastructure.com/")!
+private let kinHorizonProductionIssuer = "GDF42M3IPERQCBLWFEZKQRK77JQ65SCKTU3CW36HZVCX7XX5A5QXZIVK"
+private let kinHorizonProductionName = "Public Global Kin Ecosystem Network ; June 2018"
+
 private let balanceUserDefaultsKey = "org.kinfoundation.kinwallet.currentBalance"
 private let accountStatusUserDefaultsKey = "org.kinfoundation.kinwallet.accountStatus"
 
@@ -37,7 +44,19 @@ class Kin {
     }
 
     init() {
-        let client = try! KinClient(with: stellarTestNetURL, networkId: .testNet)
+        let url: URL
+        let kinNetworkId: KinSDK.NetworkId
+
+        #if DEBUG
+        url = kinHorizonStageURL
+        kinNetworkId = .custom(issuer: kinHorizonStageIssuer, stellarNetworkId: .custom(kinHorizonStageName))
+        #else
+        url = kinHorizonProductionURL
+        kinNetworkId = .custom(issuer: kinHorizonProductionIssuer, stellarNetworkId: .custom(kinHorizonProductionName))
+        #endif
+
+        let client = try! KinClient(with: url, networkId: kinNetworkId)
+
         self.account = try! client.accounts.last ?? client.addAccount()
         self.client = client
     }

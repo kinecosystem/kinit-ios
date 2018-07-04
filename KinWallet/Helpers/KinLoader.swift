@@ -42,7 +42,7 @@ class KinLoader {
             return
         }
 
-        loadNextTasks()
+        loadNextTask()
     }
 
     func deleteCachedAndFetchNextTask() {
@@ -50,18 +50,18 @@ class KinLoader {
 
         SimpleDatastore.delete(objectOf: Task.self,
                                with: nextTaskIdentifier).finally {
-            KinLoader.shared.loadNextTasks()
+            KinLoader.shared.loadNextTask()
         }
     }
 
     func loadAllData() {
-        loadNextTasks()
+        loadNextTask()
         loadOffers()
         loadTransactions()
         loadRedeemedItems()
     }
 
-    func loadNextTasks() {
+    func loadNextTask() {
         let completion: ([Task]?, Error?) -> Void = { tasks, error in
             if let tasks = tasks, let task = tasks.first {
                 SimpleDatastore.persist(task, with: nextTaskIdentifier)
