@@ -34,15 +34,11 @@ class KinLoader {
     }
 
     @objc func applicationWillEnterForeground() {
-        loadOffers()
-
-        let task: Task? = SimpleDatastore.loadObject(nextTaskIdentifier)
-
-        guard task == nil else {
+        guard User.current != nil else {
             return
         }
 
-        loadNextTask()
+        loadAllData()
     }
 
     func deleteCachedAndFetchNextTask() {
@@ -62,18 +58,29 @@ class KinLoader {
     }
 
     func loadNextTask() {
+        let cachedTask: Task? = SimpleDatastore.loadObject(nextTaskIdentifier)
+
+        if let task = cachedTask {
+            currentTask.next(.some(task))
+        }
+
         let completion: ([Task]?, Error?) -> Void = { tasks, error in
             if let tasks = tasks, let task = tasks.first {
-                SimpleDatastore.persist(task, with: nextTaskIdentifier)
-                self.currentTask.next(.some(task))
+                let shouldPersistAndUpdate: Bool
+
+                if let cached = cachedTask, cached.identifier == task.identifier {
+                    shouldPersistAndUpdate = task.updatedAt > cached.updatedAt
+                } else {
+                    shouldPersistAndUpdate = true
+                }
+
+                if shouldPersistAndUpdate {
+                    SimpleDatastore.persist(task, with: nextTaskIdentifier)
+                    self.currentTask.next(.some(task))
+                }
             } else {
                 self.currentTask.next(.none(error))
             }
-        }
-
-        if let task: Task = SimpleDatastore.loadObject(nextTaskIdentifier) {
-            completion([task], nil)
-            return
         }
 
         let request = WebRequests.nextTasks().withCompletion(completion)
