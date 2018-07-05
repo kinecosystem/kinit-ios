@@ -2,7 +2,7 @@
 // BIEvents.swift
 //
 // Don't edit this file.
-// Generated at 2018-06-27 12:48:38 +0000 by Kik BI-Generator.
+// Generated at 2018-07-05 13:10:06 +0000 by Kik BI-Generator.
 //
 
 protocol BIEvent {
@@ -110,6 +110,7 @@ struct Events {
     }
     
     enum QuestionType: String { 
+        case dualImage = "dual-image"
         case text = "text"
         case textEmoji = "text-emoji"
         case textImage = "text-image"

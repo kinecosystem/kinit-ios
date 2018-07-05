@@ -7,6 +7,27 @@ import UIKit
 
 typealias SelectedAnswer = SelectedResult
 
+enum AnswerCelebration {
+    case none
+    case particles([UIImage])
+    case centeredEmoji(String)
+}
+
+extension AnswerCelebration: Equatable {
+    static func ==(lhs: AnswerCelebration, rhs: AnswerCelebration) -> Bool {
+        switch (lhs, rhs) {
+        case (.none, .none):
+            return true
+        case (.particles(let imagesLhs), .particles(let imagesRhs)):
+            return imagesLhs == imagesRhs
+        case (.centeredEmoji(let emojiLhs), .centeredEmoji(let emojiRhs)):
+            return emojiLhs == emojiRhs
+        default:
+            return false
+        }
+    }
+}
+
 protocol QuestionViewControllerDelegate: class {
     func questionViewController(_ viewController: QuestionViewController, didSelect selectedAnswer: SelectedAnswer)
 }
@@ -189,22 +210,24 @@ final class QuestionViewController: UIViewController {
                                              didSelect: selectedResult)
         }
 
-        if shouldCelebrateSelection(for: answer) {
-            guard let answerIndex = question.results.index(of: answer) else {
-                updateDelegateSelection()
-                return
-            }
-
-            let cell = collectionView.visibleCells
-                .compactMap { $0 as? SurveyAnswerCollectionViewCell }
-                .filter { $0.indexPath.item == answerIndex }
-                .first!
-
-            celebrateSelection(from: cell) {
-                updateDelegateSelection()
-            }
-        } else {
+        guard let answerIndex = question.results.index(of: answer) else {
             updateDelegateSelection()
+            return
+        }
+
+        let cell = collectionView.visibleCells
+            .compactMap { $0 as? SurveyAnswerCollectionViewCell }
+            .filter { $0.indexPath.item == answerIndex }
+            .first!
+
+        let celebration = celebrationForSelecting(answer)
+        switch celebration {
+            case .centeredEmoji(let emojiString):
+                celebrateCenteredEmoji(from: cell, with: emojiString, completion: updateDelegateSelection)
+            case .particles(let images):
+                celebrateParticles(from: cell, with: images, completion: updateDelegateSelection)
+            default:
+                updateDelegateSelection()
         }
     }
 
@@ -222,15 +245,22 @@ final class QuestionViewController: UIViewController {
             .forEach { $0.isUserInteractionEnabled = enable }
     }
 
-    private func shouldCelebrateSelection(for result: Result) -> Bool {
-        guard let tipAmount = result.tipAmount, tipAmount > 0 else {
-            return false
-        }
+    private func celebrationForSelecting(_ result: Result) -> AnswerCelebration {
+        switch question.type {
+        case .tip:
+            guard let tipAmount = result.tipAmount, tipAmount > 0 else {
+                return .none
+            }
 
-        return true
+            return .particles([Asset.smallHeart.image, Asset.kinCoin.image])
+        case .dualImage:
+            return .centeredEmoji("😍")
+        default:
+            return .none
+        }
     }
 
-    private func celebrateSelection(from originView: UIView, completion: @escaping () -> Void) {
+    private func celebrateParticles(from originView: UIView, with images: [UIImage], completion: @escaping () -> Void) {
         let particlesView = ParticlesView()
         particlesView.images = [Asset.smallHeart.image, Asset.kinCoin.image]
 
@@ -245,8 +275,13 @@ final class QuestionViewController: UIViewController {
                                                 y: particlesView.frame.height)
         view.addSubview(particlesView)
         particlesView.startAndStop()
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
             completion()
         }
+    }
+
+    private func celebrateCenteredEmoji(from originView: UIView, with string: String, completion: @escaping () -> Void) {
+
     }
 }
