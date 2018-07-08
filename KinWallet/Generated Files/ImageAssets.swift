@@ -53,6 +53,7 @@ enum Asset {
   static let confettiTriangle = ImageAsset(name: "ConfettiTriangle")
   static let doneFireworks = ImageAsset(name: "DoneFireworks")
   static let doneSign = ImageAsset(name: "DoneSign")
+  static let dualImageSeparator = ImageAsset(name: "DualImageSeparator")
   static let emptyHistoryCoupon = ImageAsset(name: "EmptyHistoryCoupon")
   static let errorSign = ImageAsset(name: "ErrorSign")
   static let floorShadow = ImageAsset(name: "FloorShadow")
@@ -114,6 +115,7 @@ enum Asset {
     confettiTriangle,
     doneFireworks,
     doneSign,
+    dualImageSeparator,
     emptyHistoryCoupon,
     errorSign,
     floorShadow,

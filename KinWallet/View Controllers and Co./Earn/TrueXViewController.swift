@@ -133,20 +133,20 @@ class TrueXViewController: WebViewController {
 
     private func trueXActivityStarted() {
         activityIndicatorView.stopAnimating()
-        KLogDebug("trueXActivityStarted")
+        KLogVerbose("trueXActivityStarted")
     }
 
     private func trueXActivityClosed() {
-        KLogDebug("trueXActivityClosed")
+        KLogVerbose("trueXActivityClosed")
     }
 
     private func trueXActivityFinished() {
-        KLogDebug("trueXActivityFinished")
+        KLogVerbose("trueXActivityFinished")
         moveOn()
     }
 
     private func trueXActivityCredited() {
-        KLogDebug("trueXActivityCredited")
+        KLogVerbose("trueXActivityCredited")
     }
 
     private func moveOn() {

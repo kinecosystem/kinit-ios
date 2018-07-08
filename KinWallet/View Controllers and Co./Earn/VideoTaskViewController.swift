@@ -257,7 +257,6 @@ class VideoTaskViewController: UIViewController {
 
     @objc private func toggleControlsVisibility() {
         guard tapGestureEnabled else {
-            KLogDebug("Tap gesture not enabled. Doing nothing yet.")
             return
         }
 

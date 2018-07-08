@@ -19,7 +19,6 @@ extension AppDelegate {
         AppDelegate.webView!.loadHTMLString("<html></html>", baseURL: nil)
         AppDelegate.webView!.evaluateJavaScript("navigator.userAgent") { result, _ in
             User.userAgent = result as? String
-            KLogDebug("User agent is \(User.userAgent ?? "nil")")
             AppDelegate.webView = nil
         }
     }

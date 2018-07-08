@@ -11,6 +11,7 @@ final class QuestionCollectionViewDataSource: NSObject {
         static let textAnswerCellHeight: CGFloat = 46
         static let textMultipleAnswerCellHeight: CGFloat = 60
         static let textMultipleAnswerCellHeightCompact: CGFloat = 44
+        static let collectionViewDualImageSpacing: CGFloat = 0
         static let collectionViewMinimumSpacing: CGFloat = 15
         static let numberOfColumns: CGFloat = 2
     }
@@ -27,6 +28,13 @@ final class QuestionCollectionViewDataSource: NSObject {
     }
 
     init(question: Question, collectionView: UICollectionView) {
+        collectionView.register(nib: SurveyQuestionCollectionReusableView.self)
+        collectionView.register(nib: SurveyTextAnswerCollectionViewCell.self)
+        collectionView.register(nib: SurveyMultipleTextAnswerCollectionViewCell.self)
+        collectionView.register(nib: SurveyTextImageAnswerCollectionViewCell.self)
+        collectionView.register(nib: SurveyImageAnswerCollectionViewCell.self)
+        collectionView.register(nib: SurveyFullSizedImageAnswerCollectionViewCell.self)
+
         self.question = question
         self.collectionView = collectionView
 
@@ -56,6 +64,9 @@ final class QuestionCollectionViewDataSource: NSObject {
             case .multipleText:
                 return collectionView.dequeueReusableCell(forIndexPath: indexPath)
                     as SurveyMultipleTextAnswerCollectionViewCell
+            case .dualImage:
+                return collectionView.dequeueReusableCell(forIndexPath: indexPath) as
+                SurveyFullSizedImageAnswerCollectionViewCell
             }
         }()
 
@@ -117,6 +128,7 @@ extension QuestionCollectionViewDataSource: UICollectionViewDelegate, UICollecti
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let answer = question.results[indexPath.item]
         let width = collectionView.bounds.width
+        let height = collectionView.bounds.height
         let widthWithLateralInset = width - Constants.collectionViewMinimumSpacing * 2
 
         switch question.type {
@@ -132,13 +144,17 @@ extension QuestionCollectionViewDataSource: UICollectionViewDelegate, UICollecti
                 : Constants.textMultipleAnswerCellHeight
 
             return CGSize(width: width, height: height)
+        case .dualImage:
+            return CGSize(width: width, height: height/2)
         }
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        if question.type == .text || question.allowsMultipleSelection {
+        if question.type == .text
+            || question.type == .dualImage
+            || question.allowsMultipleSelection {
             return .zero
         }
 
@@ -155,6 +171,10 @@ extension QuestionCollectionViewDataSource: UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if question.type == .dualImage {
+            return Constants.collectionViewDualImageSpacing
+        }
+
         if question.type == .text {
             return Constants.collectionViewMinimumSpacing
         }

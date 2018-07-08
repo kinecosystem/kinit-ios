@@ -14,7 +14,7 @@ enum AnswerCelebration {
 }
 
 extension AnswerCelebration: Equatable {
-    static func ==(lhs: AnswerCelebration, rhs: AnswerCelebration) -> Bool {
+    static func == (lhs: AnswerCelebration, rhs: AnswerCelebration) -> Bool {
         switch (lhs, rhs) {
         case (.none, .none):
             return true
@@ -55,9 +55,10 @@ final class QuestionViewController: UIViewController {
     let questionViewContainer = UIView()
     private(set) weak var questionDelegate: QuestionViewControllerDelegate?
 
-    let layout = AnswersCollectionViewLayout()
+    let layout: AnswersCollectionViewLayout
 
     init(question: Question, questionDelegate: QuestionViewControllerDelegate, isInitialQuestion: Bool) {
+        self.layout = AnswersCollectionViewLayout(question: question)
         self.questionDelegate = questionDelegate
         self.question = question
         self.isInitialQuestion = isInitialQuestion
@@ -67,11 +68,7 @@ final class QuestionViewController: UIViewController {
         collectionView.backgroundColor = .white
         collectionView.allowsSelection = true
         collectionView.allowsMultipleSelection = question.allowsMultipleSelection
-        collectionView.register(nib: SurveyQuestionCollectionReusableView.self)
-        collectionView.register(nib: SurveyTextAnswerCollectionViewCell.self)
-        collectionView.register(nib: SurveyMultipleTextAnswerCollectionViewCell.self)
-        collectionView.register(nib: SurveyTextImageAnswerCollectionViewCell.self)
-        collectionView.register(nib: SurveyImageAnswerCollectionViewCell.self)
+
         collectionViewDataSource = QuestionCollectionViewDataSource(question: question,
                                                                     collectionView: collectionView)
 
@@ -177,6 +174,12 @@ final class QuestionViewController: UIViewController {
             }
         } else {
             collectionView.flashScrollIndicators()
+
+            if question.type == .dualImage {
+                collectionView.performBatchUpdates({
+                    self.layout.shouldInsertDualImageSeparator = true
+                }, completion: nil)
+            }
         }
     }
 
@@ -222,12 +225,12 @@ final class QuestionViewController: UIViewController {
 
         let celebration = celebrationForSelecting(answer)
         switch celebration {
-            case .centeredEmoji(let emojiString):
-                celebrateCenteredEmoji(from: cell, with: emojiString, completion: updateDelegateSelection)
-            case .particles(let images):
-                celebrateParticles(from: cell, with: images, completion: updateDelegateSelection)
-            default:
-                updateDelegateSelection()
+        case .centeredEmoji(let emojiString):
+            celebrateCenteredEmoji(at: cell, with: emojiString, completion: updateDelegateSelection)
+        case .particles(let images):
+            celebrateParticles(from: cell, with: images, completion: updateDelegateSelection)
+        default:
+            updateDelegateSelection()
         }
     }
 
@@ -260,7 +263,9 @@ final class QuestionViewController: UIViewController {
         }
     }
 
-    private func celebrateParticles(from originView: UIView, with images: [UIImage], completion: @escaping () -> Void) {
+    private func celebrateParticles(from originView: UIView,
+                                    with images: [UIImage],
+                                    completion: @escaping () -> Void) {
         let particlesView = ParticlesView()
         particlesView.images = [Asset.smallHeart.image, Asset.kinCoin.image]
 
@@ -281,7 +286,24 @@ final class QuestionViewController: UIViewController {
         }
     }
 
-    private func celebrateCenteredEmoji(from originView: UIView, with string: String, completion: @escaping () -> Void) {
+    private func celebrateCenteredEmoji(at view: UIView,
+                                        with string: String,
+                                        completion: @escaping () -> Void) {
+        let blueAlphaView = UIView()
+        blueAlphaView.backgroundColor = UIColor.kin.appTint.withAlphaComponent(0.5)
+        let emojiLabel = UILabel()
+        emojiLabel.font = UIFont.systemFont(ofSize: 40)
+        emojiLabel.text = string
+        blueAlphaView.addAndCenter(emojiLabel)
+        blueAlphaView.alpha = 0
 
+        view.addAndFit(blueAlphaView)
+        UIView.animate(withDuration: 0.2) {
+            blueAlphaView.alpha = 1
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            completion()
+        }
     }
 }

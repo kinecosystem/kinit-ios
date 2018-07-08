@@ -71,6 +71,15 @@ class SurveyAnswerCollectionViewCell: UICollectionViewCell {
         return nil
     }
 
+    func loadImage(with url: URL) {
+        guard let imageView = imageView else {
+            return
+        }
+
+        imageView.loadImage(url: url,
+                            placeholderColor: UIColor.kin.lightGray)
+    }
+
     @objc func didTouchUpInside(_ sender: UIControl) {
         guard !animatingTouchStart else {
             didToggleAnswer = true
@@ -174,11 +183,8 @@ class SurveyViewsFactory {
                 : .center
         }
 
-        if
-            let imageURL = result.imageURL,
-            let imageView = cell.imageView {
-            imageView.loadImage(url: imageURL.kinImagePathAdjustedForDevice(),
-                                placeholderColor: UIColor.kin.lightGray)
+        if let imageURL = result.imageURL {
+            cell.loadImage(with: imageURL.kinImagePathAdjustedForDevice())
         }
     }
 
@@ -225,6 +231,15 @@ class SurveyImageAnswerCollectionViewCell: SurveyAnswerCollectionViewCell, NibLo
         let maskLayer = CAShapeLayer()
         maskLayer.path = path.cgPath
         aImageView.layer.mask = maskLayer
+    }
+}
+
+//swiftlint:disable:next type_name
+class SurveyFullSizedImageAnswerCollectionViewCell: SurveyAnswerCollectionViewCell, NibLoadableView {
+    @IBOutlet weak var aImageView: UIImageView!
+
+    override var imageView: UIImageView? {
+        return aImageView
     }
 }
 
