@@ -161,7 +161,11 @@ class SurveyAnswerCollectionViewCell: UICollectionViewCell {
 }
 
 class SurveyViewsFactory {
-    class func drawCell(_ cell: SurveyAnswerCollectionViewCell, for result: Result, questionType: QuestionType) {
+    class func drawCell(_ cell: SurveyAnswerCollectionViewCell,
+                        for result: Result,
+                        questionType: QuestionType,
+                        indexPath: IndexPath) {
+        cell.indexPath = indexPath
         cell.titleLabel?.accessibilityIdentifier = result.identifier
         cell.imageView?.accessibilityIdentifier = result.identifier
 
@@ -237,9 +241,23 @@ class SurveyImageAnswerCollectionViewCell: SurveyAnswerCollectionViewCell, NibLo
 //swiftlint:disable:next type_name
 class SurveyFullSizedImageAnswerCollectionViewCell: SurveyAnswerCollectionViewCell, NibLoadableView {
     @IBOutlet weak var aImageView: UIImageView!
+    @IBOutlet weak var emojiPlaceholderLabel: UILabel!
+    override var indexPath: IndexPath! {
+        didSet {
+            emojiPlaceholderLabel.text = indexPath.item == 0 ? "☝️" : "✌️"
+        }
+    }
 
     override var imageView: UIImageView? {
         return aImageView
+    }
+
+    override func loadImage(with url: URL) {
+        aImageView.loadImage(url: url,
+                             placeholderColor: UIColor.kin.lightGray,
+                             transitionDuration: 0.75) { [weak self] in
+                self?.emojiPlaceholderLabel.isHidden = true
+        }
     }
 }
 

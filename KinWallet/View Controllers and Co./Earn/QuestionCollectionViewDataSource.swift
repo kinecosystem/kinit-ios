@@ -70,9 +70,11 @@ final class QuestionCollectionViewDataSource: NSObject {
             }
         }()
 
-        cell.indexPath = indexPath
         cell.delegate = self
-        SurveyViewsFactory.drawCell(cell, for: answer, questionType: question.type)
+        SurveyViewsFactory.drawCell(cell,
+                                    for: answer,
+                                    questionType: question.type,
+                                    indexPath: indexPath)
         cell.isSelected = selectedAnswerIds.contains(answer.identifier)
 
         return cell
