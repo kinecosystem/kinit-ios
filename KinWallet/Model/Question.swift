@@ -11,6 +11,7 @@ enum QuestionType: String, Codable {
     case multipleText = "textmultiple"
     case textEmoji = "textemoji"
     case tip = "tip"
+    case dualImage = "dual_image"
 }
 
 struct Question: Codable {

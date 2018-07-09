@@ -8,12 +8,22 @@ import UIKit
 private var identifierKey = 0
 
 extension UIImageView {
-    func loadImage(url remoteURL: URL, placeholderColor: UIColor, size: CGSize? = nil) {
+    func loadImage(url remoteURL: URL,
+                   placeholderColor: UIColor,
+                   size: CGSize? = nil,
+                   transitionDuration: TimeInterval = 0.25,
+                   completion: (() -> Void)? = nil) {
         let image = UIImage.from(placeholderColor, size: size ?? frame.size)
-        loadImage(url: remoteURL, placeholderImage: image)
+        loadImage(url: remoteURL,
+                  placeholderImage: image,
+                  transitionDuration: transitionDuration,
+                  completion: completion)
     }
 
-    func loadImage(url remoteURL: URL, placeholderImage: UIImage? = nil) {
+    func loadImage(url remoteURL: URL,
+                   placeholderImage: UIImage? = nil,
+                   transitionDuration: TimeInterval = 0.25,
+                   completion: (() -> Void)? = nil) {
         if let placeholder = placeholderImage {
             image = placeholder
         }
@@ -31,11 +41,12 @@ extension UIImageView {
                 if remoteURL == identifier {
                     let applyImage = {
                         self.image = UIImage(contentsOfFile: url.path)
+                        completion?()
                     }
 
                     if origin == .remote {
                         UIView.transition(with: self,
-                                          duration: 0.25,
+                                          duration: transitionDuration,
                                           options: .transitionCrossDissolve,
                                           animations: applyImage,
                                           completion: nil)

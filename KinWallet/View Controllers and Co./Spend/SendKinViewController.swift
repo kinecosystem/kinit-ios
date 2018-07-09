@@ -130,7 +130,7 @@ class SendKinViewController: UIViewController {
                 return
             }
 
-            KLogDebug("Transaction succeeded, will report to server")
+            KLogVerbose("Transaction succeeded, will report to server")
 
             //delay sending the event a little bit, to make sure balance is updated
             DispatchQueue.global().asyncAfter(deadline: .now() + 2, execute: {

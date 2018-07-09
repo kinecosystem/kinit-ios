@@ -56,7 +56,6 @@ extension Task {
 
     func prefetchImages() {
         let answersImageURLs = questions
-            .filter { $0.type == .textAndImage }
             .flatMap { $0.results }
             .compactMap {
                 $0.imageURL

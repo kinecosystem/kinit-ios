@@ -357,6 +357,7 @@ fileprivate extension QuestionType {
         case .textEmoji: return .textEmoji
         case .text: return .text
         case .tip: return .tip
+        case .dualImage: return .dualImage
         }
     }
 }

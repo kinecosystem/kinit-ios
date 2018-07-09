@@ -7,6 +7,27 @@ import UIKit
 
 typealias SelectedAnswer = SelectedResult
 
+enum AnswerCelebration {
+    case none
+    case particles([UIImage])
+    case centeredEmoji(String)
+}
+
+extension AnswerCelebration: Equatable {
+    static func == (lhs: AnswerCelebration, rhs: AnswerCelebration) -> Bool {
+        switch (lhs, rhs) {
+        case (.none, .none):
+            return true
+        case (.particles(let imagesLhs), .particles(let imagesRhs)):
+            return imagesLhs == imagesRhs
+        case (.centeredEmoji(let emojiLhs), .centeredEmoji(let emojiRhs)):
+            return emojiLhs == emojiRhs
+        default:
+            return false
+        }
+    }
+}
+
 protocol QuestionViewControllerDelegate: class {
     func questionViewController(_ viewController: QuestionViewController, didSelect selectedAnswer: SelectedAnswer)
 }
@@ -34,9 +55,10 @@ final class QuestionViewController: UIViewController {
     let questionViewContainer = UIView()
     private(set) weak var questionDelegate: QuestionViewControllerDelegate?
 
-    let layout = AnswersCollectionViewLayout()
+    let layout: AnswersCollectionViewLayout
 
     init(question: Question, questionDelegate: QuestionViewControllerDelegate, isInitialQuestion: Bool) {
+        self.layout = AnswersCollectionViewLayout(question: question)
         self.questionDelegate = questionDelegate
         self.question = question
         self.isInitialQuestion = isInitialQuestion
@@ -46,11 +68,7 @@ final class QuestionViewController: UIViewController {
         collectionView.backgroundColor = .white
         collectionView.allowsSelection = true
         collectionView.allowsMultipleSelection = question.allowsMultipleSelection
-        collectionView.register(nib: SurveyQuestionCollectionReusableView.self)
-        collectionView.register(nib: SurveyTextAnswerCollectionViewCell.self)
-        collectionView.register(nib: SurveyMultipleTextAnswerCollectionViewCell.self)
-        collectionView.register(nib: SurveyTextImageAnswerCollectionViewCell.self)
-        collectionView.register(nib: SurveyImageAnswerCollectionViewCell.self)
+
         collectionViewDataSource = QuestionCollectionViewDataSource(question: question,
                                                                     collectionView: collectionView)
 
@@ -156,6 +174,12 @@ final class QuestionViewController: UIViewController {
             }
         } else {
             collectionView.flashScrollIndicators()
+
+            if question.type == .dualImage {
+                collectionView.performBatchUpdates({
+                    self.layout.shouldInsertDualImageSeparator = true
+                }, completion: nil)
+            }
         }
     }
 
@@ -189,21 +213,23 @@ final class QuestionViewController: UIViewController {
                                              didSelect: selectedResult)
         }
 
-        if shouldCelebrateSelection(for: answer) {
-            guard let answerIndex = question.results.index(of: answer) else {
-                updateDelegateSelection()
-                return
-            }
+        guard let answerIndex = question.results.index(of: answer) else {
+            updateDelegateSelection()
+            return
+        }
 
-            let cell = collectionView.visibleCells
-                .compactMap { $0 as? SurveyAnswerCollectionViewCell }
-                .filter { $0.indexPath.item == answerIndex }
-                .first!
+        let cell = collectionView.visibleCells
+            .compactMap { $0 as? SurveyAnswerCollectionViewCell }
+            .filter { $0.indexPath.item == answerIndex }
+            .first!
 
-            celebrateSelection(from: cell) {
-                updateDelegateSelection()
-            }
-        } else {
+        let celebration = celebrationForSelecting(answer)
+        switch celebration {
+        case .centeredEmoji(let emojiString):
+            celebrateCenteredEmoji(at: cell, with: emojiString, completion: updateDelegateSelection)
+        case .particles(let images):
+            celebrateParticles(from: cell, with: images, completion: updateDelegateSelection)
+        default:
             updateDelegateSelection()
         }
     }
@@ -222,15 +248,24 @@ final class QuestionViewController: UIViewController {
             .forEach { $0.isUserInteractionEnabled = enable }
     }
 
-    private func shouldCelebrateSelection(for result: Result) -> Bool {
-        guard let tipAmount = result.tipAmount, tipAmount > 0 else {
-            return false
-        }
+    private func celebrationForSelecting(_ result: Result) -> AnswerCelebration {
+        switch question.type {
+        case .tip:
+            guard let tipAmount = result.tipAmount, tipAmount > 0 else {
+                return .none
+            }
 
-        return true
+            return .particles([Asset.smallHeart.image, Asset.kinCoin.image])
+        case .dualImage:
+            return .centeredEmoji("😍")
+        default:
+            return .none
+        }
     }
 
-    private func celebrateSelection(from originView: UIView, completion: @escaping () -> Void) {
+    private func celebrateParticles(from originView: UIView,
+                                    with images: [UIImage],
+                                    completion: @escaping () -> Void) {
         let particlesView = ParticlesView()
         particlesView.images = [Asset.smallHeart.image, Asset.kinCoin.image]
 
@@ -245,7 +280,34 @@ final class QuestionViewController: UIViewController {
                                                 y: particlesView.frame.height)
         view.addSubview(particlesView)
         particlesView.startAndStop()
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            completion()
+        }
+    }
+
+    private func celebrateCenteredEmoji(at view: UIView,
+                                        with string: String,
+                                        completion: @escaping () -> Void) {
+        let blueAlphaView = UIView()
+        blueAlphaView.backgroundColor = UIColor.kin.appTint.withAlphaComponent(0.5)
+        let emojiLabel = UILabel()
+        emojiLabel.font = UIFont.systemFont(ofSize: 40)
+        emojiLabel.text = string
+        emojiLabel.transform = .init(scaleX: 0.5, y: 0.5)
+        emojiLabel.alpha = 0.8
+
+        blueAlphaView.addAndCenter(emojiLabel)
+        blueAlphaView.alpha = 0
+
+        view.addAndFit(blueAlphaView)
+        UIView.animate(withDuration: 0.2) {
+            blueAlphaView.alpha = 1
+            emojiLabel.transform = .identity
+            emojiLabel.alpha = 1
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             completion()
         }
     }
