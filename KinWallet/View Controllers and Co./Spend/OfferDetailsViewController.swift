@@ -6,7 +6,7 @@
 import UIKit
 
 let lastOfferGrabbedTitle = "Oops! Someone grabbed the last one"
-let lastOfferGrabbedMessage = "Please try again later"
+let lastOfferGrabbedMessage = "Please check back later"
 let internetErrorTitle = "Oh no! Your internet is MIA"
 let internetErrorMessage = "Please check your internet connection and try again."
 

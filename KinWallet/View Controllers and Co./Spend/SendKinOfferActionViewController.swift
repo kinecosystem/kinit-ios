@@ -29,9 +29,9 @@ class SendKinOfferActionViewController: SpendOfferActionViewController {
         contactsViewController.navigationController?.navigationBar.setBackgroundImage(.from(.white), for: .default)
     }
 
-    fileprivate func contactNotFound(contactName: String?) {
-        let alertController = UIAlertController(title: "\(contactName ?? "Your friend") Isn't Using Kinit",
-                                                message: "Sorry, you can only send Kin to Kinit users.",
+    fileprivate func contactNotFound() {
+        let alertController = UIAlertController(title: "Sorry, you can only send Kin to Kinit users.",
+                                                message: "Maybe send your friends to the app store?",
                                                 preferredStyle: .alert)
         alertController.addAction(.ok())
         present(alertController, animated: true)
@@ -74,7 +74,7 @@ extension SendKinOfferActionViewController: CNContactPickerDelegate {
                 self.sendKinButton.setTitle("Send Kin", for: .normal)
 
                 guard let address = address else {
-                    self.contactNotFound(contactName: contactName)
+                    self.contactNotFound()
                     return
                 }
 

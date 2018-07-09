@@ -8,17 +8,17 @@ import SafariServices
 
 private let firstScreenMessage =
 """
-Earn Kin just for sharing your opinions. Spend Kin on your favorite brands. It takes less than a minute a day.
+Earn Kin by completing fun daily activities, and enjoy it toward brown paper packages tied up with string (aka travel, movies, music, and more).
 """
 
 private let secondScreenMessage =
 """
-Earning Kin is as simple as answering a few questions a day on topics like, music, movies, fashion, apps and more.
+Earning Kin is just like playing a game, only better, because you get rewarded for your time.
 """
 
 private let thirdScreenMessage =
 """
-In no time, you’ll have enough Kin to spend towards your favorite brands (Amazon, Grubhub and more!).
+In no time, you’ll have enough Kin to use towards great experiences or to share with your friends.
 """
 
 final class WelcomeViewController: UIViewController {
