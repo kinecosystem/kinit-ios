@@ -65,6 +65,8 @@ class Kin {
 // MARK: Account cleanup
 extension Kin {
     func resetKeyStore() {
+        UserDefaults.standard.set(AccountStatus.notCreated.rawValue,
+                                  forKey: accountStatusUserDefaultsKey)
         client.deleteKeystore()
         self.account = try! client.addAccount()
     }

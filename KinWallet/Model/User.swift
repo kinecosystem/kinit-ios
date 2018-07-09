@@ -83,6 +83,11 @@ extension User {
         User._current = self
         SimpleDatastore.persist(self, with: User.CurrentUserStorageIdentifier)
     }
+
+    static func reset() {
+        User._current = nil
+        SimpleDatastore.delete(objectOf: User.self, with: CurrentUserStorageIdentifier)
+    }
 }
 
 extension User {
