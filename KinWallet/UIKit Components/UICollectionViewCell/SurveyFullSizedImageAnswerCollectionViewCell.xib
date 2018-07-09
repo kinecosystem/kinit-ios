@@ -25,20 +25,12 @@
                                 <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
                                 <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✌️" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKh-OT-n6E">
-                                <rect key="frame" x="92.5" y="89" width="65" height="72"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xjs-Vs-yFM" firstAttribute="top" secondItem="mq9-v4-DPG" secondAttribute="top" id="4DR-AG-zOW"/>
                             <constraint firstAttribute="bottom" secondItem="xjs-Vs-yFM" secondAttribute="bottom" id="MLH-MU-9du"/>
-                            <constraint firstItem="KKh-OT-n6E" firstAttribute="centerY" secondItem="mq9-v4-DPG" secondAttribute="centerY" id="R3j-NE-DUW"/>
                             <constraint firstAttribute="trailing" secondItem="xjs-Vs-yFM" secondAttribute="trailing" id="R8y-VH-I93"/>
-                            <constraint firstItem="KKh-OT-n6E" firstAttribute="centerX" secondItem="mq9-v4-DPG" secondAttribute="centerX" id="Raj-RX-Fe9"/>
                             <constraint firstItem="xjs-Vs-yFM" firstAttribute="leading" secondItem="mq9-v4-DPG" secondAttribute="leading" id="k0H-2D-uzt"/>
                         </constraints>
                     </view>
@@ -54,7 +46,6 @@
             <size key="customSize" width="243" height="174"/>
             <connections>
                 <outlet property="aImageView" destination="xjs-Vs-yFM" id="cbS-oK-U2J"/>
-                <outlet property="emojiPlaceholderLabel" destination="KKh-OT-n6E" id="S8g-X1-P1Q"/>
                 <outlet property="touchUpEffectControl" destination="mq9-v4-DPG" id="99q-Nk-2YW"/>
             </connections>
             <point key="canvasLocation" x="-152" y="-30"/>

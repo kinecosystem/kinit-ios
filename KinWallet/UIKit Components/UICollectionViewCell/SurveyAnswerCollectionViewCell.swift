@@ -241,23 +241,9 @@ class SurveyImageAnswerCollectionViewCell: SurveyAnswerCollectionViewCell, NibLo
 //swiftlint:disable:next type_name
 class SurveyFullSizedImageAnswerCollectionViewCell: SurveyAnswerCollectionViewCell, NibLoadableView {
     @IBOutlet weak var aImageView: UIImageView!
-    @IBOutlet weak var emojiPlaceholderLabel: UILabel!
-    override var indexPath: IndexPath! {
-        didSet {
-            emojiPlaceholderLabel.text = indexPath.item == 0 ? "☝️" : "✌️"
-        }
-    }
 
     override var imageView: UIImageView? {
         return aImageView
-    }
-
-    override func loadImage(with url: URL) {
-        aImageView.loadImage(url: url,
-                             placeholderColor: UIColor.kin.lightGray,
-                             transitionDuration: 0.75) { [weak self] in
-                self?.emojiPlaceholderLabel.isHidden = true
-        }
     }
 }
 

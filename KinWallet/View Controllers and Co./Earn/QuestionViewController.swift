@@ -294,12 +294,17 @@ final class QuestionViewController: UIViewController {
         let emojiLabel = UILabel()
         emojiLabel.font = UIFont.systemFont(ofSize: 40)
         emojiLabel.text = string
+        emojiLabel.transform = .init(scaleX: 0.5, y: 0.5)
+        emojiLabel.alpha = 0.8
+
         blueAlphaView.addAndCenter(emojiLabel)
         blueAlphaView.alpha = 0
 
         view.addAndFit(blueAlphaView)
         UIView.animate(withDuration: 0.2) {
             blueAlphaView.alpha = 1
+            emojiLabel.transform = .identity
+            emojiLabel.alpha = 1
         }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
