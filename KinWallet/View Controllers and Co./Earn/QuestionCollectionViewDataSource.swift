@@ -160,7 +160,7 @@ extension QuestionCollectionViewDataSource: UICollectionViewDelegate, UICollecti
             return .zero
         }
 
-        let widthInsets = question.type == .textAndImage
+        let widthInsets = question.type == .textAndImage || question.type == .tip
             ? spacing(for: collectionView)
             : Constants.collectionViewMinimumSpacing
 
