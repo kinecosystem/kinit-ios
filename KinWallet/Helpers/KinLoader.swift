@@ -6,7 +6,7 @@
 import Foundation
 import KinUtil
 
-private let nextTaskIdentifier = "Kinit-NextTask"
+let nextTaskIdentifier = "Kinit-NextTask"
 
 enum FetchResult<T> {
     case none(Error?)

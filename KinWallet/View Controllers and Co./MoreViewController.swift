@@ -37,9 +37,13 @@ class MoreViewController: UIViewController {
         super.viewDidLoad()
 
         let fourTapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGestureRecognized))
-
         fourTapGesture.numberOfTapsRequired = 4
+
+        #if DEBUG
+        fourTapGesture.numberOfTouchesRequired = 2
+        #else
         fourTapGesture.numberOfTouchesRequired = 4
+        #endif
 
         view.addGestureRecognizer(fourTapGesture)
     }

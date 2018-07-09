@@ -30,6 +30,23 @@ class RootViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //In some cases, when the user makes a backup in iTunes without encryption,
+        //the keychain is not recovered, and therefore, the keystore is lost.
+        //At every launch, we check if the address stored in the current user matches
+        //the address given by Kin.shared. If they don't match, we currently delete
+        //all data and start like a clean install: Delete user, the cached next task, and task results.
+        if let address = User.current?.publicAddress,
+            address != Kin.shared.publicAddress {
+            User.reset()
+
+            if let task: Task = SimpleDatastore.loadObject(nextTaskIdentifier) {
+                SimpleDatastore.delete(objectOf: Task.self, with: nextTaskIdentifier)
+                SimpleDatastore.delete(objectOf: TaskResults.self, with: task.identifier)
+            }
+
+            Kin.shared.resetKeyStore()
+        }
+
         if Kin.shared.accountStatus != .activated {
             //swiftlint:disable:next force_cast
             let splash = splashScreenNavigationController!.viewControllers.first as! SplashScreenViewController
