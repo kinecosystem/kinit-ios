@@ -61,8 +61,9 @@ enum Asset {
   static let historyCouponLine = ImageAsset(name: "HistoryCouponLine")
   static let historyKinIcon = ImageAsset(name: "HistoryKinIcon")
   static let historyShareButton = ImageAsset(name: "HistoryShareButton")
-  static let imageAnswerBorder = ImageAsset(name: "ImageAnswerBorder")
-  static let imageAnswerBorderSelected = ImageAsset(name: "ImageAnswerBorderSelected")
+  static let imageOnlyAnswerBackground = ImageAsset(name: "ImageOnlyAnswerBackground")
+  static let imageTextAnswerBackground = ImageAsset(name: "ImageTextAnswerBackground")
+  static let imageTextAnswerBackgroundSelected = ImageAsset(name: "ImageTextAnswerBackgroundSelected")
   static let kinCoin = ImageAsset(name: "KinCoin")
   static let kinLogoSplash = ImageAsset(name: "KinLogoSplash")
   static let kinReward = ImageAsset(name: "KinReward")
@@ -123,8 +124,9 @@ enum Asset {
     historyCouponLine,
     historyKinIcon,
     historyShareButton,
-    imageAnswerBorder,
-    imageAnswerBorderSelected,
+    imageOnlyAnswerBackground,
+    imageTextAnswerBackground,
+    imageTextAnswerBackgroundSelected,
     kinCoin,
     kinLogoSplash,
     kinReward,
