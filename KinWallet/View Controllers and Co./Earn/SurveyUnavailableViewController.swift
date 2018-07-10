@@ -51,7 +51,7 @@ final class SurveyUnavailableViewController: UIViewController, AddNoticeViewCont
             displayType = .titleFirst
             assert(toUnlock > 0, "SurveyUnavailableViewController received a task that is ready to be displayed.")
 
-            title = "Next earning experience will be available \(task.nextAvailableDay())"
+            title = "Your next activity will be available \(task.nextAvailableDay())"
             subtitle = "We have planted the seed and your next task is currently growing"
             image = Asset.nextTask.image
 
@@ -65,7 +65,7 @@ final class SurveyUnavailableViewController: UIViewController, AddNoticeViewCont
                 subtitle = noInternetSubtitle
             } else {
                 image = Asset.sowingIllustration.image
-                title = "No tasks at the moment"
+                title = "No activities at the moment"
                 subtitle = "We are laying the groundwork for your next task.\nStay tuned :)"
             }
         }

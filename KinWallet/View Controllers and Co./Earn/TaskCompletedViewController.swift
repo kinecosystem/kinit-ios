@@ -197,15 +197,11 @@ final class TaskCompletedViewController: UIViewController {
     private func errorSubmitingResults() {
         let viewController = StoryboardScene.Main.noticeViewController.instantiate()
         viewController.delegate = self
-        let subtitle =
-        """
-        To receive your Kin, please do the following:
-        Hit close and continue on the next screen so we can make sure you get your Kin.
-        """
+
         let buttonConfig = NoticeButtonConfiguration(title: "Close", mode: .stroke)
         viewController.notice = Notice(image: Asset.errorSign.image,
-                                       title: "Error Submiting Answers",
-                                       subtitle: subtitle,
+                                       title: "There was a problem submitting your answers",
+                                       subtitle: "To make sure you get your Kin, hit close below and continue on the next screen.",
                                        buttonConfiguration: buttonConfig,
                                        displayType: .imageFirst)
 

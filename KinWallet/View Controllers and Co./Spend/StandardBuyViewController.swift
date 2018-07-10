@@ -5,6 +5,17 @@
 
 import UIKit
 
+private let lastOfferGrabbedTitle = "Oops! Someone grabbed the last one... for now"
+private let lastOfferGrabbedMessage = "Please check back later"
+private let internetErrorTitle = "Oh no! Your internet is MIA"
+private let internetErrorMessage = "Please check your internet connection and try again."
+private let transactionIncompleteTitle = "Oops! Transaction incomplete"
+private let transactionIncompleteMessage =
+    """
+    Sorry! We were unable to retrieve your code.
+    Please contact support to resolve this issue.
+    """
+
 class SpendOfferActionViewController: UIViewController {
     weak var offerViewController: OfferDetailsViewController?
     var offer: Offer!
@@ -171,13 +182,8 @@ extension StandardOfferActionViewController {
 // MARK: Error handling
 private extension StandardOfferActionViewController {
     func presentIncompleteTransactionAlert() {
-        let message =
-        """
-        Your reflected balance may not be correct.
-        Please contact support to resolve this issue.
-        """
-        presentErrorAlert(title: "Oops! Transaction incomplete",
-                          message: message,
+        presentErrorAlert(title: transactionIncompleteTitle,
+                          message: transactionIncompleteMessage,
                           errorType: .codeNotProvided)
     }
 
