@@ -73,11 +73,17 @@ extension SimpleDatastore: Datastore {
 
     static func loadObject<T: Codable>(_ identifier: String) -> T? {
         let sourceURL = url(for: T.self, with: identifier)
+        
         guard let data = fileManager.contents(atPath: sourceURL.path) else {
             return nil
         }
 
-        return try? JSONDecoder().decode(T.self, from: data)
+        do {
+            return try JSONDecoder().decode(T.self, from: data)
+        } catch {
+            KLogError("Error decoding \(T.self): \(error)")
+            return nil
+        }
     }
 
     @discardableResult
