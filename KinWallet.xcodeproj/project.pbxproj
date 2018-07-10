@@ -651,6 +651,7 @@
 		03A2ABBBFE591E3F4BD322DF /* Pods-KinWalletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KinWalletTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KinWalletTests/Pods-KinWalletTests.debug.xcconfig"; sourceTree = "<group>"; };
 		14B2F22DB0CB4EBF944E1BC3 /* Pods-KinWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KinWallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-KinWallet/Pods-KinWallet.release.xcconfig"; sourceTree = "<group>"; };
 		25246B587FA0565B0EC72751 /* Pods-KinWalletUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KinWalletUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KinWalletUITests/Pods-KinWalletUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		2731820220EF7EA600FCFB8C /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		3066337B2058FFCE00F9BB45 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		3066337C2058FFCE00F9BB45 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		7B0DD744421168E44BA1A995 /* Pods-KinWalletUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KinWalletUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KinWalletUITests/Pods-KinWalletUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -1160,6 +1161,7 @@
 				91401375201635990066367C /* UIView+KinWallet.swift */,
 				9140137C201748100066367C /* UIViewController+KinWallet.swift */,
 				91AAB934201E0C920075DAA1 /* String+KinWallet.swift */,
+				2731820220EF7EA600FCFB8C /* BridgingHeader.h */,
 				91796BCE2027578500F8C6A0 /* TimeZone+KinWallet.swift */,
 				91796BC82027276000F8C6A0 /* UIDevice+KinWallet.swift */,
 				91CB636320597F3C00C65404 /* URL+KinWallet.swift */,

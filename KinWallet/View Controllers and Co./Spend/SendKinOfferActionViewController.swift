@@ -64,7 +64,7 @@ extension SendKinOfferActionViewController: CNContactPickerDelegate {
         activityIndicatorView.startAnimating()
         sendKinButton.setTitle(nil, for: .normal)
 
-        WebRequests.searchPhoneNumber(phoneNumber).withCompletion { [weak self] address, _ in
+        WebRequests.searchPhoneNumber(phoneNumber.sha256()).withCompletion { [weak self] address, _ in
             DispatchQueue.main.async {
                 guard let `self` = self else {
                     return
