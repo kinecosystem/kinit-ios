@@ -133,7 +133,7 @@ class PhoneConfirmationViewController: UIViewController {
     }
 
     func updateServer(with token: String) {
-        WebRequests.updateUserIdToken(token, phoneNumber: phoneNumber).withCompletion { [weak self] success, _ in
+        WebRequests.updateUserIdToken(token).withCompletion { [weak self] success, _ in
             guard let aSelf = self else {
                 return
             }

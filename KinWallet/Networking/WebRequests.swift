@@ -52,9 +52,9 @@ extension WebRequests {
                                                          transform: WebResourceHandlers.isJSONStatusOk)
     }
 
-    static func updateUserIdToken(_ idToken: String, phoneNumber: String) -> WebRequest<SimpleStatusResponse, Success> {
+    static func updateUserIdToken(_ idToken: String) -> WebRequest<SimpleStatusResponse, Success> {
         return WebRequest<SimpleStatusResponse, Success>(POST: "/user/firebase/update-id-token",
-                                                         body: ["token": idToken, "phone_number": phoneNumber],
+                                                         body: ["token": idToken],
                                                          transform: WebResourceHandlers.isJSONStatusOk)
     }
 
