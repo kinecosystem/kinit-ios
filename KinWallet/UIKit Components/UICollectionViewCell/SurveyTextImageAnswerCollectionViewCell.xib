@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,18 +21,15 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ga1-aW-q0D" customClass="UIControl">
                         <rect key="frame" x="0.0" y="0.0" width="134" height="124"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ImageAnswerBorder" translatesAutoresizingMaskIntoConstraints="NO" id="b0m-r3-pGy">
-                                <rect key="frame" x="0.0" y="84" width="134" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="7Yk-2q-k7P"/>
-                                </constraints>
-                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UKr-eO-CiK">
-                                <rect key="frame" x="0.0" y="0.0" width="134" height="84"/>
-                                <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="0.0" y="0.0" width="134" height="87"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ImageTextAnswerBackground" translatesAutoresizingMaskIntoConstraints="NO" id="b0m-r3-pGy">
+                                <rect key="frame" x="0.0" y="0.0" width="135" height="124"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="02c-rQ-xdE">
-                                <rect key="frame" x="8" y="93.5" width="118" height="21"/>
+                                <rect key="frame" x="8" y="94.5" width="118" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -40,14 +37,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="b0m-r3-pGy" secondAttribute="trailing" id="8dQ-5j-MuS"/>
+                            <constraint firstAttribute="trailing" secondItem="b0m-r3-pGy" secondAttribute="trailing" constant="-1" id="8dQ-5j-MuS"/>
                             <constraint firstItem="02c-rQ-xdE" firstAttribute="centerX" secondItem="Ga1-aW-q0D" secondAttribute="centerX" id="IVe-6z-MQU"/>
                             <constraint firstItem="UKr-eO-CiK" firstAttribute="leading" secondItem="Ga1-aW-q0D" secondAttribute="leading" id="OnY-Wr-GFc"/>
-                            <constraint firstItem="02c-rQ-xdE" firstAttribute="centerY" secondItem="b0m-r3-pGy" secondAttribute="centerY" id="Rj3-rP-wQ9"/>
+                            <constraint firstAttribute="bottom" secondItem="UKr-eO-CiK" secondAttribute="bottom" constant="37" id="TB9-7z-PnA"/>
                             <constraint firstItem="02c-rQ-xdE" firstAttribute="leading" secondItem="Ga1-aW-q0D" secondAttribute="leading" constant="8" id="UkB-NG-qXS"/>
                             <constraint firstAttribute="trailing" secondItem="UKr-eO-CiK" secondAttribute="trailing" id="bd0-HL-YPy"/>
-                            <constraint firstItem="b0m-r3-pGy" firstAttribute="top" secondItem="UKr-eO-CiK" secondAttribute="bottom" id="df2-b7-eAB"/>
+                            <constraint firstAttribute="bottom" secondItem="02c-rQ-xdE" secondAttribute="bottom" constant="8.5" id="hUG-LY-dyK"/>
                             <constraint firstItem="b0m-r3-pGy" firstAttribute="leading" secondItem="Ga1-aW-q0D" secondAttribute="leading" id="kLA-TG-gba"/>
+                            <constraint firstItem="b0m-r3-pGy" firstAttribute="top" secondItem="Ga1-aW-q0D" secondAttribute="top" id="p7j-XL-Lyy"/>
                             <constraint firstItem="UKr-eO-CiK" firstAttribute="top" secondItem="Ga1-aW-q0D" secondAttribute="top" id="smf-eF-HYR"/>
                             <constraint firstAttribute="bottom" secondItem="b0m-r3-pGy" secondAttribute="bottom" id="tcR-PE-EcE"/>
                         </constraints>
@@ -71,6 +69,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="ImageAnswerBorder" width="16" height="40"/>
+        <image name="ImageTextAnswerBackground" width="17" height="46"/>
     </resources>
 </document>

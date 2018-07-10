@@ -2,50 +2,59 @@
   "images" : [
     {
       "resizing" : {
-        "mode" : "3-part-horizontal",
+        "mode" : "9-part",
         "center" : {
           "mode" : "tile",
-          "width" : 1
+          "width" : 1,
+          "height" : 1
         },
         "cap-insets" : {
-          "right" : 8,
+          "bottom" : 38,
+          "top" : 8,
+          "right" : 9,
           "left" : 8
         }
       },
       "idiom" : "universal",
-      "filename" : "ImageAnswerBorderSelected.png",
+      "filename" : "ImageTextAnswerBackgroundSelected.png",
       "scale" : "1x"
     },
     {
       "resizing" : {
-        "mode" : "3-part-horizontal",
+        "mode" : "9-part",
         "center" : {
           "mode" : "tile",
-          "width" : 1
+          "width" : 1,
+          "height" : 1
         },
         "cap-insets" : {
-          "right" : 16,
+          "bottom" : 75,
+          "top" : 16,
+          "right" : 18,
           "left" : 16
         }
       },
       "idiom" : "universal",
-      "filename" : "ImageAnswerBorderSelected@2x.png",
+      "filename" : "ImageTextAnswerBackgroundSelected@2x.png",
       "scale" : "2x"
     },
     {
       "resizing" : {
-        "mode" : "3-part-horizontal",
+        "mode" : "9-part",
         "center" : {
           "mode" : "tile",
-          "width" : 1
+          "width" : 1,
+          "height" : 1
         },
         "cap-insets" : {
-          "right" : 24,
+          "bottom" : 112,
+          "top" : 24,
+          "right" : 27,
           "left" : 24
         }
       },
       "idiom" : "universal",
-      "filename" : "ImageAnswerBorderSelected@3x.png",
+      "filename" : "ImageTextAnswerBackgroundSelected@3x.png",
       "scale" : "3x"
     }
   ],

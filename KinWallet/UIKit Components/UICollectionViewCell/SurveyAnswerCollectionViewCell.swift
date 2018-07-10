@@ -40,8 +40,15 @@ class SurveyAnswerCollectionViewCell: UICollectionViewCell {
     }
 
     func applySelectedLook(_ selected: Bool) {
-        titleLabel?.textColor = selected ? Constants.Highlighted.textColor : Constants.Normal.textColor
-        backgroundImageView?.image = selected ? selectedBackgroundImage : backgroundImage
+        titleLabel?.textColor = selected
+            ? Constants.Highlighted.textColor
+            : Constants.Normal.textColor
+        backgroundImageView?.image = selected
+            ? selectedBackgroundImage
+            : backgroundImage
+        backgroundImageView?.tintColor = selected
+            ? UIColor.kin.appTint
+            : nil
     }
 
     override func awakeFromNib() {
@@ -221,6 +228,14 @@ class SurveyViewsFactory {
 class SurveyImageAnswerCollectionViewCell: SurveyAnswerCollectionViewCell, NibLoadableView {
     @IBOutlet weak var aImageView: UIImageView!
 
+    override var backgroundImage: UIImage? {
+        return Asset.imageOnlyAnswerBackground.image
+    }
+
+    override var selectedBackgroundImage: UIImage? {
+        return Asset.imageOnlyAnswerBackground.image.withRenderingMode(.alwaysTemplate)
+    }
+
     override var imageView: UIImageView? {
         return aImageView
     }
@@ -295,11 +310,11 @@ class SurveyTextImageAnswerCollectionViewCell: SurveyAnswerCollectionViewCell, N
     @IBOutlet weak var aImageView: UIImageView!
 
     override var backgroundImage: UIImage? {
-        return Asset.imageAnswerBorder.image
+        return Asset.imageTextAnswerBackground.image
     }
 
     override var selectedBackgroundImage: UIImage? {
-        return Asset.imageAnswerBorderSelected.image
+        return Asset.imageTextAnswerBackgroundSelected.image
     }
 
     override var titleLabel: UILabel {
