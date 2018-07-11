@@ -53,6 +53,7 @@ final class SurveyViewController: UIViewController {
 
     fileprivate let progressView: UIProgressView = {
         let p = UIProgressView(progressViewStyle: .bar)
+        p.translatesAutoresizingMaskIntoConstraints = false
         p.trackImage = Asset.progressViewTrack.image
         p.progressImage = Asset.progressViewGradient.image
         p.widthAnchor.constraint(equalToConstant: Constants.ProgressView.width).isActive = true

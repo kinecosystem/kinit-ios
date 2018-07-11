@@ -96,16 +96,15 @@ final class QuestionViewController: UIViewController {
     }
 
     func addCollectionView(with button: UIButton?) {
-        let viewGuides: UILayoutGuide
-
         let questionViewHeight = question.imageURL != nil
             ? Constants.questionViewWithImageHeight
             : Constants.questionViewHeight
 
+        let viewGuides: Anchorable
         if #available(iOS 11.0, *) {
             viewGuides = view.safeAreaLayoutGuide
         } else {
-            viewGuides = view.layoutMarginsGuide
+            viewGuides = view
         }
 
         let qViewId = SurveyQuestionCollectionReusableView.reuseIdentifier

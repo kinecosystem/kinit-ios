@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,14 +12,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TutorialPageView" customModule="KinWallet" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
+            <rect key="frame" x="0.0" y="0.0" width="404" height="798"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="7DY-18-h5R">
-                    <rect key="frame" x="0.0" y="186" width="375" height="214"/>
+                    <rect key="frame" x="0.0" y="205" width="404" height="593"/>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6Lq-YT-9Ri">
-                    <rect key="frame" x="143" y="60" width="88" height="106"/>
+                    <rect key="frame" x="158" y="80" width="88" height="125"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="M9z-Qs-crw">
                             <rect key="frame" x="0.0" y="0.0" width="88" height="38.5"/>
@@ -27,11 +27,12 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="khJ-ya-FXc">
-                            <rect key="frame" x="0.0" y="48.5" width="88" height="57.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="khJ-ya-FXc">
+                            <rect key="frame" x="0.0" y="48.5" width="88" height="76.5"/>
                             <string key="text">Label Line 1
 Label Line 2
-Label Line 3</string>
+Label Line 3
+Label Line 4</string>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -45,7 +46,7 @@ Label Line 3</string>
                 <constraint firstItem="6Lq-YT-9Ri" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="40" id="SXF-4E-uxw"/>
                 <constraint firstItem="6Lq-YT-9Ri" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="YM8-cv-b9N"/>
                 <constraint firstItem="7DY-18-h5R" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="bw2-jj-xE3"/>
-                <constraint firstItem="7DY-18-h5R" firstAttribute="top" secondItem="6Lq-YT-9Ri" secondAttribute="bottom" constant="20" id="eEL-FZ-ie9"/>
+                <constraint firstItem="7DY-18-h5R" firstAttribute="top" secondItem="6Lq-YT-9Ri" secondAttribute="bottom" id="eEL-FZ-ie9"/>
                 <constraint firstItem="7DY-18-h5R" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="uJk-Op-Vzs"/>
                 <constraint firstItem="6Lq-YT-9Ri" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="60" id="xvo-pM-elU"/>
             </constraints>
@@ -58,7 +59,7 @@ Label Line 3</string>
                 <outlet property="titleLabel" destination="M9z-Qs-crw" id="Ice-yc-JiA"/>
                 <outlet property="topConstraint" destination="xvo-pM-elU" id="Ork-38-HXc"/>
             </connections>
-            <point key="canvasLocation" x="-204" y="52"/>
+            <point key="canvasLocation" x="37" y="146"/>
         </view>
     </objects>
 </document>
