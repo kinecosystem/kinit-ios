@@ -13,7 +13,7 @@ import StellarKit
 private let kinHorizonStageURL = URL(string: "https://horizon-playground.kininfrastructure.com/")!
 
 private let kinHorizonProductionURL = URL(string: "https://horizon-ecosystem.kininfrastructure.com/")!
-private let kinHorizonProductionIssuer = "GDNM52OBYPX7TAOTFRPEED4DSOE6C7HSWFHCB5G45J2KDNZVUK335FVM"
+private let kinHorizonProductionIssuer = "GDF42M3IPERQCBLWFEZKQRK77JQ65SCKTU3CW36HZVCX7XX5A5QXZIVK"
 private let kinHorizonProductionName = "Public Global Kin Ecosystem Network ; June 2018"
 
 private let balanceUserDefaultsKey = "org.kinfoundation.kinwallet.currentBalance"
