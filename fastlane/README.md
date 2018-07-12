@@ -16,11 +16,6 @@ or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## iOS
-### ios test_fairy
-```
-fastlane ios test_fairy
-```
-Submits a new build to TestFairy
 ### ios test_flight
 ```
 fastlane ios test_flight
