@@ -97,6 +97,8 @@ class PhoneVerificationRequestViewController: UIViewController {
         accessoryView.tapped.on(next: {
             self.verifyPhone()
         })
+
+        TestFairy.hide(phoneTextField)
     }
 
     override func viewWillAppear(_ animated: Bool) {
