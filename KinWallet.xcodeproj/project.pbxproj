@@ -633,6 +633,13 @@
 			remoteGlobalIDString = 62CA59B71E3C173B002D7188;
 			remoteInfo = Lottie_iOS;
 		};
+		91FE7D7920F73DE800EDFB67 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 91E6B5F5203AD0D00080C2FC /* Lottie.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6445B0D5207E0D4D00D84F6A;
+			remoteInfo = LottieLibraryMacOS;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1402,6 +1409,7 @@
 				91E6B5FF203AD0D00080C2FC /* Lottie.framework */,
 				91E6B601203AD0D00080C2FC /* Lottie.framework */,
 				91E6B603203AD0D00080C2FC /* libLottie.a */,
+				91FE7D7A20F73DE800EDFB67 /* libLottie.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1675,6 +1683,13 @@
 			fileType = archive.ar;
 			path = libLottie.a;
 			remoteRef = 91E6B602203AD0D00080C2FC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		91FE7D7A20F73DE800EDFB67 /* libLottie.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libLottie.a;
+			remoteRef = 91FE7D7920F73DE800EDFB67 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

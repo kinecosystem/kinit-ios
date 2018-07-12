@@ -11,8 +11,6 @@ import StellarKit
 //swiftlint:disable force_try
 
 private let kinHorizonStageURL = URL(string: "https://horizon-playground.kininfrastructure.com/")!
-private let kinHorizonStageIssuer = "GBC3SG6NGTSZ2OMH3FFGB7UVRQWILW367U4GSOOF4TFSZONV42UJXUH7"
-private let kinHorizonStageName = "Kin Playground Network ; June 2018"
 
 private let kinHorizonProductionURL = URL(string: "https://horizon-ecosystem.kininfrastructure.com/")!
 private let kinHorizonProductionIssuer = "GDF42M3IPERQCBLWFEZKQRK77JQ65SCKTU3CW36HZVCX7XX5A5QXZIVK"
@@ -49,7 +47,7 @@ class Kin {
 
         #if DEBUG
         url = kinHorizonStageURL
-        kinNetworkId = .custom(issuer: kinHorizonStageIssuer, stellarNetworkId: .custom(kinHorizonStageName))
+        kinNetworkId = .playground
         #else
         url = kinHorizonProductionURL
         kinNetworkId = .custom(issuer: kinHorizonProductionIssuer, stellarNetworkId: .custom(kinHorizonProductionName))
