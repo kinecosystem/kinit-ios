@@ -45,7 +45,6 @@ final class KinSupportViewController: MFMailComposeViewController {
         return """
             App Version: \(Bundle.appVersion)
             iOS \(ProcessInfo().operatingSystemVersionString)
-            Public address: \(Kin.shared.publicAddress)
             User ID: \(User.current?.userId ?? "No user ID")
             Balance: \(Kin.shared.balance)
             Device ID: \(User.current?.deviceId ?? "No device ID")
