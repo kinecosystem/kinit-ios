@@ -44,8 +44,23 @@ enum SpecialOffer {
     var isEnabled: Bool {
         switch self {
         case .sendKin:
-            let fromConfig = RemoteConfig.current?.peerToPeerEnabled
-            return fromConfig.boolValue
+            guard let config = RemoteConfig.current else {
+                return false
+            }
+
+            guard config.peerToPeerEnabled.boolValue else {
+                return false
+            }
+
+            guard let fetchResult = KinLoader.shared.currentTask.value,
+                case let .some(currentTask) = fetchResult,
+                let taskId = Int(currentTask.identifier) else {
+                return true
+            }
+
+            let minTasksRequired = config.peerToPeerMinTasks ?? 0
+
+            return taskId >= minTasksRequired
         }
     }
 
