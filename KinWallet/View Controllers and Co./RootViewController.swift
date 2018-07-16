@@ -102,20 +102,20 @@ class RootViewController: UIViewController {
         let supportAttributes: [NSAttributedStringKey: Any] = [.font: FontFamily.Roboto.regular.font(size: 14),
                                                                .foregroundColor: UIColor.kin.appTint,
                                                                .underlineStyle: NSUnderlineStyle.styleSingle.rawValue]
-        let supportAttributedString = NSMutableAttributedString(string: "or contact support",
+        let supportAttributedString = NSMutableAttributedString(string: L10n.orContactSupport,
                                                                 attributes: supportAttributes)
         let orAttributes: [NSAttributedStringKey: Any] = [.foregroundColor: UIColor.kin.gray,
                                                           .underlineStyle: NSUnderlineStyle.styleNone.rawValue]
         supportAttributedString.addAttributes(orAttributes, range: NSRange(location: 0, length: 3))
 
-        let buttonConfiguration = NoticeButtonConfiguration(title: "Try Again",
+        let buttonConfiguration = NoticeButtonConfiguration(title: L10n.tryAgain,
                                                             mode: .stroke,
                                                             additionalMessage: supportAttributedString)
         let noticeViewController = StoryboardScene.Main.noticeViewController.instantiate()
         noticeViewController.delegate = self
         noticeViewController.notice = Notice(image: Asset.walletCreationFailed.image,
-                                             title: "We were unable to create a wallet for you",
-                                             subtitle: "Please check your internet connection & try again.",
+                                             title: L10n.walletCreationErrorTitle,
+                                             subtitle: L10n.walletCreationErrorSubtitle,
                                              buttonConfiguration: buttonConfiguration,
                                              displayType: .imageFirst)
         present(noticeViewController, animated: true)

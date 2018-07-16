@@ -11,7 +11,7 @@ import KinUtil
 class PhoneVerificationRequestViewController: UIViewController {
     fileprivate let accessoryView: ButtonAcessoryInputView = {
         let b = ButtonAcessoryInputView()
-        b.title = "Next"
+        b.title = L10n.nextAction
         b.translatesAutoresizingMaskIntoConstraints = false
 
         return b
@@ -168,11 +168,11 @@ class PhoneVerificationRequestViewController: UIViewController {
         if error.domain == AuthErrorDomain {
             if error.code == AuthErrorCode.invalidPhoneNumber.rawValue
                 || error.code == AuthErrorCode.missingPhoneNumber.rawValue {
-                return "Invalid phone number"
+                return L10n.phoneVerificationRequestInvalidNumber
             }
         }
 
-        return "Something wrong happened. Please check your internet connection"
+        return L10n.phoneVerificationRequestGeneralError
     }
 
     fileprivate func makeErrorLabelVisible(_ visible: Bool) {

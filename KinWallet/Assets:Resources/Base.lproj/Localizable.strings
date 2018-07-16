@@ -1,0 +1,124 @@
+/* 
+  Localizable.strings
+  KinWallet
+
+  Created by Natan Rolnik on 15/07/2018.
+  Copyright © 2018 KinFoundation. All rights reserved.
+*/
+
+// General
+"NoInternetErrorTitle" = "Your internet is MIA";
+
+"NoInternetErrorSubtitle" = "It seems that something is missing...\nPlease check your internet connection.";
+
+"Cancel" = "Cancel";
+
+"OK" = "OK";
+
+"NextAction" = "Next";
+
+"CloseAction" = "Close";
+
+//Creating wallet
+
+"TryAgain" = "Try Again";
+
+"WalletCreationErrorTitle" = "We were unable to create a wallet for you";
+
+"WalletCreationErrorSubtitle" = "Please check your internet connection & try again.";
+
+"OrContactSupport" = "or contact support";
+
+
+// Welcome Screen
+"Welcome1stScreenTitle" = " Welcome to Kinit";
+
+"Welcome1stScreenMessage" = "Earn Kin by completing fun daily activities, and enjoy it toward brown paper packages tied up with string (aka travel, movies, music, and more).";
+
+"Welcome2ndScreenMessage" = "Earning Kin is just like playing a game, only better, because you get rewarded for your time.";
+
+"Welcome2ndScreenTitle" = "Earn Kin";
+
+"Welcome3rdScreenTitle" = "Enjoy";
+
+"Welcome3rdScreenMessage" = "In no time, you’ll have enough Kin to use towards great experiences or to share with your friends.";
+
+"WelcomeScreenDisclaimer" = "By clicking \"Start earning Kin\" you are agreeing\nto our Terms of Service and Privacy Policy";
+
+// Phone Verification
+
+"PhoneVerificationRequestInvalidNumber" = "Invalid phone number";
+
+"PhoneVerificationRequestGeneralError" = "Something wrong happened. Please check your internet connection";
+
+"PhoneVerificationCodeSent" = "We have sent a verification code to %@. Please type it below:";
+
+// Tasks/Activities
+
+"NextActivityOnTitle" = "Your next activity will be available %@";
+
+"NextActivityOnSubtitle" = "We have planted the seed and your next task is currently growing";
+
+"NoActivitiesTitle" = "No activities at the moment";
+
+"NoActivitiesMessage" = "We are laying the groundwork for your next task.\nStay tuned :)";
+
+"ActivityAuthor" = "by %@";
+
+"ActivityActionStart" = "Start Earning Kin";
+
+"ActivityActionContinue" = "Continue";
+
+"TaskSubmissionFailedErrorTitle" = "There was a problem submitting your answers";
+
+"TaskSubmissionFailedErrorMessage" = "To make sure you get your Kin, hit close below and continue on the next screen.";
+
+"YourNewBalance" = "Your new balance";
+
+// Offers
+
+"LastOfferGrabbedTitle" =  "Oops! Someone grabbed the last one... for now";
+
+"LastOfferGrabbedMessage" = "Please check back later";
+
+"InternetErrorTitle" = "Oh no! Your internet is MIA";
+
+"InternetErrorMessage" = "Please check your internet connection and try again.";
+
+"TransactionIncompleteTitle" = "Oops! Transaction incomplete";
+
+"TransactionIncompleteMessage" = " Sorry! We were unable to retrieve your code.\nPlease contact support to resolve this issue.";
+
+"EmptyOffersTitle" = "No offers at the moment";
+
+"EmptyOffersSubtitle" = "We are hand-picking the best for you!";
+
+"SpendYourKin" = "Spend your Kin";
+
+"BackToSpendAction" = "Back to Spend";
+
+"CouponCodeSaved" = "Code saved to My Vouchers";
+
+//Sending Kin
+
+"SendKinContactNotFoundErrorTitle" = "Sorry, you can only send Kin to Kinit users.";
+
+"SendKinContactNotFoundErrorMessage" = "Maybe send your friends to the app store?";
+
+"SendKinAction" = "Send Kin";
+
+// Support
+
+"MailNotConfiguredErrorTitle" = "Mail Not Configured";
+
+"MailNotConfiguredErrorMessage" = "Add an email account to your device in order to send email.";
+
+// Push notifications
+
+"NotifyMe" = "Notify Me";
+
+"NotificationsDeniedTitle" = "Please Allow Notifications";
+
+"NotificationsDeniedMessage" = "Push notification permissions were previously denied and are currently turned off.\nPlease go to settings to turn on notifications.";
+
+"NotificationsDeniedAction" = "Open Settings";

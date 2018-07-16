@@ -16,12 +16,12 @@ class OffersUnavailableViewController: UIViewController, AddNoticeViewController
         let image: UIImage
 
         if error != nil {
-            title = noInternetTitle
-            subtitle = noInternetSubtitle
+            title = L10n.internetErrorTitle
+            subtitle = L10n.internetErrorMessage
             image = noInternetImage
         } else {
-            title = "No offers at the moment"
-            subtitle = "We are hand-picking the best for you!"
+            title = L10n.emptyOffersTitle
+            subtitle = L10n.emptyOffersSubtitle
             image = Asset.noOffers.image
         }
 

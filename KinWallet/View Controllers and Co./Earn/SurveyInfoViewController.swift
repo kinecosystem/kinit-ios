@@ -92,7 +92,7 @@ final class SurveyInfoViewController: UIViewController {
     }
 
     func fillQuestionnaireInfo() {
-        authorNameLabel.text = "by \(task.author.name)"
+        authorNameLabel.text = L10n.activityAuthor(task.author.name)
         titleLabel.text = task.title
         subtitleLabel.text = task.subtitle
 
@@ -117,7 +117,9 @@ final class SurveyInfoViewController: UIViewController {
                     self.alreadyStartedTask = false
                 }
 
-                let title = self.alreadyStartedTask ? "Continue" : "Start Earning Kin"
+                let title = self.alreadyStartedTask
+                    ? L10n.activityActionContinue
+                    : L10n.activityActionStart
 
                 self.startButton.setTitle(title, for: .normal)
             }

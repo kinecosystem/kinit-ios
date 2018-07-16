@@ -198,10 +198,10 @@ final class TaskCompletedViewController: UIViewController {
         let viewController = StoryboardScene.Main.noticeViewController.instantiate()
         viewController.delegate = self
 
-        let buttonConfig = NoticeButtonConfiguration(title: "Close", mode: .stroke)
+        let buttonConfig = NoticeButtonConfiguration(title: L10n.closeAction, mode: .stroke)
         viewController.notice = Notice(image: Asset.errorSign.image,
-                                       title: "There was a problem submitting your answers",
-                                       subtitle: "To make sure you get your Kin, hit close below and continue on the next screen.",
+                                       title: L10n.taskSubmissionFailedErrorTitle,
+                                       subtitle: L10n.taskSubmissionFailedErrorMessage,
                                        buttonConfiguration: buttonConfig,
                                        displayType: .imageFirst)
 

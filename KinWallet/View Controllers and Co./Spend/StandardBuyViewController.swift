@@ -5,17 +5,6 @@
 
 import UIKit
 
-private let lastOfferGrabbedTitle = "Oops! Someone grabbed the last one... for now"
-private let lastOfferGrabbedMessage = "Please check back later"
-private let internetErrorTitle = "Oh no! Your internet is MIA"
-private let internetErrorMessage = "Please check your internet connection and try again."
-private let transactionIncompleteTitle = "Oops! Transaction incomplete"
-private let transactionIncompleteMessage =
-    """
-    Sorry! We were unable to retrieve your code.
-    Please contact support to resolve this issue.
-    """
-
 class SpendOfferActionViewController: UIViewController {
     weak var offerViewController: OfferDetailsViewController?
     var offer: Offer!
@@ -71,8 +60,8 @@ extension StandardOfferActionViewController {
                 }
 
                 guard let bookOfferResult = bookOfferResult, error == nil else {
-                    aSelf.presentErrorAlert(title: internetErrorTitle,
-                                            message: internetErrorMessage,
+                    aSelf.presentErrorAlert(title: L10n.internetErrorTitle,
+                                            message: L10n.internetErrorMessage,
                                             errorType: .internetConnection)
                     return
                 }
@@ -82,8 +71,8 @@ extension StandardOfferActionViewController {
                     aSelf.payOffer(with: orderId)
                 case .noGoods, .coolDown:
                     KinLoader.shared.loadOffers()
-                    aSelf.presentErrorAlert(title: lastOfferGrabbedTitle,
-                                            message: lastOfferGrabbedMessage,
+                    aSelf.presentErrorAlert(title: L10n.lastOfferGrabbedTitle,
+                                            message: L10n.lastOfferGrabbedMessage,
                                             errorType: .offerNotAvailable)
                 }
             }.load(with: KinWebService.shared)
@@ -97,8 +86,8 @@ extension StandardOfferActionViewController {
 
             guard let txHash = txHash else {
                 KLogError("Error sending to address \(String(describing: error))")
-                aSelf.presentErrorAlert(title: lastOfferGrabbedTitle,
-                                        message: lastOfferGrabbedMessage,
+                aSelf.presentErrorAlert(title: L10n.lastOfferGrabbedTitle,
+                                        message: L10n.lastOfferGrabbedMessage,
                                         errorType: .offerNotAvailable)
                 return
             }
@@ -138,7 +127,7 @@ extension StandardOfferActionViewController {
         buyActivityIndicator.stopAnimating()
         transition(to: exportCodeView) { [weak self] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: { [weak self] in
-                self?.offerViewController?.showToast(with: "Code saved to My Vouchers")
+                self?.offerViewController?.showToast(with: L10n.couponCodeSaved)
             })
         }
         logViewedCode()
@@ -182,8 +171,8 @@ extension StandardOfferActionViewController {
 // MARK: Error handling
 private extension StandardOfferActionViewController {
     func presentIncompleteTransactionAlert() {
-        presentErrorAlert(title: transactionIncompleteTitle,
-                          message: transactionIncompleteMessage,
+        presentErrorAlert(title: L10n.transactionIncompleteTitle,
+                          message: L10n.transactionIncompleteMessage,
                           errorType: .codeNotProvided)
     }
 
@@ -191,7 +180,7 @@ private extension StandardOfferActionViewController {
         let alertController = UIAlertController(title: title,
                                                 message: message,
                                                 preferredStyle: .alert)
-        alertController.addAction(.init(title: "Back to Spend",
+        alertController.addAction(.init(title: L10n.backToSpendAction,
                                         style: .default,
                                         handler: { _ in
                                             Events.Analytics

@@ -82,7 +82,7 @@ final class TransferringKinViewController: UIViewController {
                               duration: 0.1,
                               options: .transitionCrossDissolve,
                               animations: {
-                                aSelf.balanceExplanationLabel.text = "Your new balance"
+                                aSelf.balanceExplanationLabel.text = L10n.yourNewBalance
             }, completion: nil)
 
             aSelf.fireworksImageView.alpha = 0.2

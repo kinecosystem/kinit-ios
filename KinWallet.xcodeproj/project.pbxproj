@@ -537,6 +537,12 @@
 		91FE7D7220F6304B00EDFB67 /* Anchorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FE7D7120F6304B00EDFB67 /* Anchorable.swift */; };
 		91FE7D7320F6304B00EDFB67 /* Anchorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FE7D7120F6304B00EDFB67 /* Anchorable.swift */; };
 		91FE7D7420F6304B00EDFB67 /* Anchorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FE7D7120F6304B00EDFB67 /* Anchorable.swift */; };
+		91FE7F0D20FB745200EDFB67 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 91FE7F0B20FB745200EDFB67 /* Localizable.strings */; };
+		91FE7F0E20FB745200EDFB67 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 91FE7F0B20FB745200EDFB67 /* Localizable.strings */; };
+		91FE7F0F20FB745200EDFB67 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 91FE7F0B20FB745200EDFB67 /* Localizable.strings */; };
+		91FE7F1120FB768700EDFB67 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FE7F1020FB768700EDFB67 /* Strings.swift */; };
+		91FE7F1220FB768700EDFB67 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FE7F1020FB768700EDFB67 /* Strings.swift */; };
+		91FE7F1320FB768700EDFB67 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FE7F1020FB768700EDFB67 /* Strings.swift */; };
 		91FF9CFD207D4A2700B536E9 /* Bool+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF9CFC207D4A2700B536E9 /* Bool+KinWallet.swift */; };
 		91FF9D05207E091500B536E9 /* Array+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF9D04207E091500B536E9 /* Array+KinWallet.swift */; };
 		91FF9D15207E365100B536E9 /* KinitTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF9D14207E365100B536E9 /* KinitTransaction.swift */; };
@@ -892,6 +898,8 @@
 		91FDE1562028B09F003A30FB /* Data+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+KinWallet.swift"; sourceTree = "<group>"; };
 		91FDE1582028B310003A30FB /* KinWallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KinWallet.entitlements; sourceTree = "<group>"; };
 		91FE7D7120F6304B00EDFB67 /* Anchorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Anchorable.swift; sourceTree = "<group>"; };
+		91FE7F0C20FB745200EDFB67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		91FE7F1020FB768700EDFB67 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		91FF9CFC207D4A2700B536E9 /* Bool+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+KinWallet.swift"; sourceTree = "<group>"; };
 		91FF9D04207E091500B536E9 /* Array+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+KinWallet.swift"; sourceTree = "<group>"; };
 		91FF9D14207E365100B536E9 /* KinitTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinitTransaction.swift; sourceTree = "<group>"; };
@@ -1068,7 +1076,7 @@
 				9140138220187CE90066367C /* Model */,
 				91401374201635860066367C /* Extensions */,
 				91401370201635760066367C /* Generated Files */,
-				91401364201632270066367C /* Assets */,
+				91401364201632270066367C /* Assets-Resources */,
 				9140135D201632070066367C /* View Controllers and Co. */,
 				9140133B20162FA90066367C /* Info.plist */,
 				91B445642091EFE700ED6802 /* GoogleService-Info-Staging-Beta.plist */,
@@ -1118,7 +1126,7 @@
 			path = "View Controllers and Co.";
 			sourceTree = "<group>";
 		};
-		91401364201632270066367C /* Assets */ = {
+		91401364201632270066367C /* Assets-Resources */ = {
 			isa = PBXGroup;
 			children = (
 				915F494C20430125005C09B3 /* Fonts */,
@@ -1130,13 +1138,15 @@
 				91D7C028204EFBC400D35401 /* Spend.storyboard */,
 				9140133820162FA90066367C /* LaunchScreen.storyboard */,
 				91796BCB20272A8B00F8C6A0 /* DeviceList.plist */,
+				91FE7F0B20FB745200EDFB67 /* Localizable.strings */,
 			);
-			path = Assets;
+			path = "Assets-Resources";
 			sourceTree = "<group>";
 		};
 		91401370201635760066367C /* Generated Files */ = {
 			isa = PBXGroup;
 			children = (
+				91FE7F1020FB768700EDFB67 /* Strings.swift */,
 				91E6B665203C6AD50080C2FC /* BIEvents.swift */,
 				91D891C32020844B0090E77C /* ImageAssets.swift */,
 				915F49682043022E005C09B3 /* Fonts.swift */,
@@ -1700,6 +1710,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				91F69D1720834A9B00F06181 /* TransactionHistoryCollectionViewCell.xib in Resources */,
+				91FE7F0D20FB745200EDFB67 /* Localizable.strings in Resources */,
 				91B57F9620E039E300CE5EE1 /* TrueXIndex.html in Resources */,
 				91E6B65E203C69A90080C2FC /* ComodoRsaCA.der in Resources */,
 				915F495C20430125005C09B3 /* KinK.ttf in Resources */,
@@ -1754,6 +1765,7 @@
 			files = (
 				91E90F802099B4E2004B50C8 /* SurveyTextImageAnswerCollectionViewCell.xib in Resources */,
 				9182C29E203C6C0C0051F003 /* ComodoRsaDomainValidationCA.der in Resources */,
+				91FE7F0E20FB745200EDFB67 /* Localizable.strings in Resources */,
 				9182C29D203C6C0C0051F003 /* api.amplitude.com.der in Resources */,
 				91E84A762086186B00E8B7A6 /* ButtonCell.xib in Resources */,
 				91E90F98209A01C3004B50C8 /* GoogleService-Info-Prod-Beta.plist in Resources */,
@@ -1783,6 +1795,7 @@
 			files = (
 				91E90F812099B4E2004B50C8 /* SurveyTextImageAnswerCollectionViewCell.xib in Resources */,
 				91E84A812086186B00E8B7A6 /* ButtonCell.xib in Resources */,
+				91FE7F0F20FB745200EDFB67 /* Localizable.strings in Resources */,
 				91B2627E20DA6AB000E8A766 /* GoogleService-Info-Staging.plist in Resources */,
 				91B2627D20DA6AB000E8A766 /* GoogleService-Info-Prod.plist in Resources */,
 				9181983220EE551400E5D523 /* SurveyFullSizedImageAnswerCollectionViewCell.xib in Resources */,
@@ -1879,7 +1892,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftgen >/dev/null; then\n  swiftgen storyboards -t swift4 --output \"KinWallet/Generated Files/Storyboards.swift\" KinWallet\n  sed -i \"\" 's/KinWallet\\.//g' \"KinWallet/Generated Files/Storyboards.swift\"\n  swiftgen xcassets -t swift4 --output \"KinWallet/Generated Files/ImageAssets.swift\" KinWallet/Assets/Assets.xcassets\nswiftgen fonts -t swift4 --output \"KinWallet/Generated Files/Fonts.swift\" KinWallet/Assets/Fonts\nelse\necho \"warning: SwiftGen not installed, install with Homebrew: brew install SwiftGen\"\nfi\n\n";
+			shellScript = "if which swiftgen >/dev/null; then\n  swiftgen storyboards -t swift4 --output \"KinWallet/Generated Files/Storyboards.swift\" KinWallet\n  sed -i \"\" 's/KinWallet\\.//g' \"KinWallet/Generated Files/Storyboards.swift\"\n  swiftgen xcassets -t swift4 --output \"KinWallet/Generated Files/ImageAssets.swift\" KinWallet/Assets-Resources/Assets.xcassets\nswiftgen fonts -t swift4 --output \"KinWallet/Generated Files/Fonts.swift\" KinWallet/Assets-Resources/Fonts\nswiftgen strings -t structured-swift4 --output \"KinWallet/Generated Files/Strings.swift\" KinWallet/Assets-Resources/Base.lproj/Localizable.strings\nelse\necho \"warning: SwiftGen not installed, install with Homebrew: brew install SwiftGen\"\nfi\n\n";
 		};
 		91401378201741630066367C /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2020,6 +2033,7 @@
 				91B0668620C9634B00CE69A7 /* AlphaAnimatedTransitioning.swift in Sources */,
 				91F69D3D208379F400F06181 /* ButtonBarPagerTabStripViewController.swift in Sources */,
 				91F69D32208379F400F06181 /* BarPagerTabStripViewController.swift in Sources */,
+				91FE7F1120FB768700EDFB67 /* Strings.swift in Sources */,
 				91D891BE201F23130090E77C /* Datastore.swift in Sources */,
 				9140138A20187CE90066367C /* Result.swift in Sources */,
 				91F69D39208379F400F06181 /* ButtonBarView.swift in Sources */,
@@ -2189,6 +2203,7 @@
 				91796BD02027578500F8C6A0 /* TimeZone+KinWallet.swift in Sources */,
 				91D891DB2020B43D0090E77C /* SurveyQuestionCollectionReusableView.swift in Sources */,
 				91B57F8B20E035E900CE5EE1 /* WebViewController.swift in Sources */,
+				91FE7F1220FB768700EDFB67 /* Strings.swift in Sources */,
 				91E84AA420862D8B00E8B7A6 /* ServerTypes.swift in Sources */,
 				91E84A8C2086189500E8B7A6 /* SurveyViewController.swift in Sources */,
 				9182C299203C6C0C0051F003 /* AMPLocationManagerDelegate.m in Sources */,
@@ -2293,6 +2308,7 @@
 				91E84A8D2086189500E8B7A6 /* SurveyViewController.swift in Sources */,
 				9170391420B7517A006B01FB /* PushHandler.swift in Sources */,
 				91E84AA220862D8300E8B7A6 /* WebRequests.swift in Sources */,
+				91FE7F1320FB768700EDFB67 /* Strings.swift in Sources */,
 				91E84A5B208617CA00E8B7A6 /* BalancePagerTabViewController.swift in Sources */,
 				828CB44F2056EA42007C679C /* Date+Kinit.swift in Sources */,
 				828CB4432056EA08007C679C /* ImageAssets.swift in Sources */,
@@ -2459,6 +2475,14 @@
 				91D7C029204EFBC400D35401 /* Base */,
 			);
 			name = Spend.storyboard;
+			sourceTree = "<group>";
+		};
+		91FE7F0B20FB745200EDFB67 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91FE7F0C20FB745200EDFB67 /* Base */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

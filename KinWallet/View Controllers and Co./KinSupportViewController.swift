@@ -13,9 +13,8 @@ final class KinSupportViewController: MFMailComposeViewController {
         Events.Analytics.ClickSupportButton().send()
 
         guard MFMailComposeViewController.canSendMail() else {
-            let alertMessage = "Add an email account to your device in order to send email."
-            let alertController = UIAlertController(title: "Mail Not Configured",
-                                                    message: alertMessage,
+            let alertController = UIAlertController(title: L10n.mailNotConfiguredErrorTitle,
+                                                    message: L10n.mailNotConfiguredErrorMessage,
                                                     preferredStyle: .alert)
             alertController.addAction(.ok())
             presenter.present(alertController, animated: true)

@@ -5,8 +5,6 @@
 
 import UIKit
 
-let noInternetTitle = "Your internet is MIA"
-let noInternetSubtitle = "It seems that something is missing...\nPlease check your internet connection."
 let noInternetImage = Asset.noInternetIllustration.image
 
 struct Notice {

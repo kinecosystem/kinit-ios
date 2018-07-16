@@ -54,7 +54,7 @@ class PhoneConfirmationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        descriptionLabel.text = "We have sent a verification code to \(phoneNumber!). Please type it below:"
+        descriptionLabel.text = L10n.phoneVerificationCodeSent(phoneNumber!)
         TestFairy.hide(descriptionLabel)
 
         textFields.forEach {

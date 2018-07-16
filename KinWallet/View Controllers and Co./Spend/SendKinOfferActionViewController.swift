@@ -30,8 +30,8 @@ class SendKinOfferActionViewController: SpendOfferActionViewController {
     }
 
     fileprivate func contactNotFound() {
-        let alertController = UIAlertController(title: "Sorry, you can only send Kin to Kinit users.",
-                                                message: "Maybe send your friends to the app store?",
+        let alertController = UIAlertController(title: L10n.sendKinContactNotFoundErrorTitle,
+                                                message: L10n.sendKinContactNotFoundErrorMessage,
                                                 preferredStyle: .alert)
         alertController.addAction(.ok())
         present(alertController, animated: true)
@@ -71,7 +71,7 @@ extension SendKinOfferActionViewController: CNContactPickerDelegate {
                 }
 
                 self.activityIndicatorView.stopAnimating()
-                self.sendKinButton.setTitle("Send Kin", for: .normal)
+                self.sendKinButton.setTitle(L10n.sendKinAction, for: .normal)
 
                 guard let address = address else {
                     self.contactNotFound()
