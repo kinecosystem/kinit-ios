@@ -10,6 +10,7 @@ final class EarnKinAnimationViewController: UIViewController {
         didSet {
             textLabel.font = FontFamily.Roboto.regular.font(size: 26)
             textLabel.textColor = UIColor.kin.appTint
+            textLabel.text = L10n.readyToEarnKinQuestion
         }
     }
 }

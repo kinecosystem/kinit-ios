@@ -6,34 +6,19 @@
 import UIKit
 import SafariServices
 
-private let firstScreenMessage =
-"""
-Earn Kin by completing fun daily activities, and enjoy it toward brown paper packages tied up with string (aka travel, movies, music, and more).
-"""
-
-private let secondScreenMessage =
-"""
-Earning Kin is just like playing a game, only better, because you get rewarded for your time.
-"""
-
-private let thirdScreenMessage =
-"""
-In no time, you’ll have enough Kin to use towards great experiences or to share with your friends.
-"""
-
 final class WelcomeViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var disclaimerLabel: UILabel!
 
-    let pages: [TutorialPageView] = [.create(with: "Welcome to Kinit",
-                                             message: firstScreenMessage,
+    let pages: [TutorialPageView] = [.create(with: L10n.welcome1stScreenTitle,
+                                             message: L10n.welcome1stScreenMessage,
                                              image: Asset.welcomeTutorial1.image),
-                                     .create(with: "Earn Kin",
-                                             message: secondScreenMessage,
+                                     .create(with: L10n.welcome2ndScreenTitle,
+                                             message: L10n.welcome2ndScreenMessage,
                                              image: Asset.welcomeTutorial2.image),
-                                     .create(with: "Enjoy",
-                                             message: thirdScreenMessage,
+                                     .create(with: L10n.welcome3rdScreenTitle,
+                                             message: L10n.welcome3rdScreenMessage,
                                              image: Asset.welcomeTutorial3.image)]
 
     @IBOutlet weak var startEarningKin: UIButton! {
@@ -108,11 +93,7 @@ final class WelcomeViewController: UIViewController {
             disclaimerLabel.font = FontFamily.Roboto.regular.font(size: 12)
             disclaimerLabel.textColor = UIColor.white
 
-            let string =
-            """
-By clicking "Start earning Kin" you are agreeing
-to our Terms of Service and Privacy Policy
-"""
+            let string = L10n.welcomeScreenDisclaimer
             let attributedString = NSMutableAttributedString(string: string)
             attributedString.addAttributes([.font: FontFamily.Roboto.medium.font(size: 12),
                                             .foregroundColor: UIColor.kin.brightBlue],

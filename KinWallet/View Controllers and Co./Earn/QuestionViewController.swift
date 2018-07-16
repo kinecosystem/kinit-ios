@@ -77,7 +77,7 @@ final class QuestionViewController: UIViewController {
         collectionViewDataSource.questionViewController = self
 
         nextButton?.isEnabled = false
-        nextButton?.setTitle("Next", for: .normal)
+        nextButton?.setTitle(L10n.nextAction, for: .normal)
         nextButton?.titleLabel?.font = FontFamily.Roboto.regular.font(size: 18)
         nextButton?.addTarget(self,
                               action: #selector(questionFinished),

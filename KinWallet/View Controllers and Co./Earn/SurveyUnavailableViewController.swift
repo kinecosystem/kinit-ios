@@ -51,8 +51,8 @@ final class SurveyUnavailableViewController: UIViewController, AddNoticeViewCont
             displayType = .titleFirst
             assert(toUnlock > 0, "SurveyUnavailableViewController received a task that is ready to be displayed.")
 
-            title = "Your next activity will be available \(task.nextAvailableDay())"
-            subtitle = "We have planted the seed and your next task is currently growing"
+            title = L10n.nextActivityOnTitle(task.nextAvailableDay())
+            subtitle = L10n.nextActivityOnSubtitle
             image = Asset.nextTask.image
 
             Events.Analytics
@@ -61,12 +61,12 @@ final class SurveyUnavailableViewController: UIViewController, AddNoticeViewCont
         } else {
             if error != nil {
                 image = noInternetImage
-                title = noInternetTitle
-                subtitle = noInternetSubtitle
+                title = L10n.internetErrorTitle
+                subtitle = L10n.internetErrorMessage
             } else {
                 image = Asset.sowingIllustration.image
-                title = "No activities at the moment"
-                subtitle = "We are laying the groundwork for your next task.\nStay tuned :)"
+                title = L10n.noActivitiesTitle
+                subtitle = L10n.noActivitiesMessage
             }
         }
 
@@ -92,22 +92,17 @@ final class SurveyUnavailableViewController: UIViewController, AddNoticeViewCont
         notificationHandler.arePermissionsGranted { granted in
             let buttonConfiguration = granted
                 ? nil
-                : NoticeButtonConfiguration(title: "Notify Me", mode: .fill)
+                : NoticeButtonConfiguration(title: L10n.notifyMe, mode: .fill)
             completion(buttonConfiguration)
         }
     }
 
     fileprivate func alertNotificationsDenied() {
-        let message =
-        """
-        Push notification permissions were previously denied and are currently turned off.
-        Please go to settings to turn on notifications.
-        """
-        let alertController = UIAlertController(title: "Please Allow Notifications",
-                                                message: message,
+        let alertController = UIAlertController(title: L10n.notificationsDeniedTitle,
+                                                message: L10n.notificationsDeniedMessage,
                                                 preferredStyle: .alert)
         if let url = URL(string: UIApplicationOpenSettingsURLString) {
-            alertController.addAction(UIAlertAction(title: "Open Settings", style: .default) { _ in
+            alertController.addAction(UIAlertAction(title: L10n.notificationsDeniedAction, style: .default) { _ in
                 if #available(iOS 10.0, *) {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 } else {

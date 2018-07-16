@@ -91,7 +91,7 @@ extension OfferWallViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView
             .dequeueReusableView(ofKind: kind, forIndexPath: indexPath) as SimpleCollectionReusableView
-        header.textLabel.text = "Spend your Kin"
+        header.textLabel.text = L10n.spendYourKin
 
         return header
     }

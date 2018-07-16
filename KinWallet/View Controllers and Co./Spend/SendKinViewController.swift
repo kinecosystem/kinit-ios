@@ -16,7 +16,12 @@ class SendKinViewController: UIViewController {
 
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var contactNameLabel: UILabel!
-    @IBOutlet weak var toLabel: UILabel!
+    @IBOutlet weak var toLabel: UILabel! {
+        didSet {
+            toLabel.text = L10n.sendTo
+        }
+    }
+
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
 
     var amount: UInt {
@@ -168,11 +173,11 @@ class SendKinViewController: UIViewController {
 
     private func alertAmount(higher: Bool, minOrMaxKin: UInt) {
         let title = higher
-            ? "That's Very Kind"
-            : "How About a Bit More Love?"
+            ? L10n.sendKinHighAmountErrorTitle
+            : L10n.sendKinLowAmountErrorTitle
         let message = higher
-            ? "You can only send \(minOrMaxKin) KIN at a time."
-            : "Please send at least \(minOrMaxKin) KIN."
+            ? L10n.sendKinHighAmountErrorMessage(Int(minOrMaxKin))
+            : L10n.sendKinLowAmountErrorMessage(Int(minOrMaxKin))
         alert(title: title, message: message)
 
         Events.Analytics
@@ -181,8 +186,8 @@ class SendKinViewController: UIViewController {
     }
 
     private func alertBalanceTooLow(minBalance: UInt64) {
-        let title = "Looks Like Your Balance Is a Bit Low"
-        let message = "Make sure you have at least \(minBalance) KIN."
+        let title = L10n.sendKinLowBalanceErrorTitle
+        let message = L10n.sendKinLowBalanceErrorMessage(Int(minBalance))
         alert(title: title, message: message)
 
         Events.Analytics
@@ -191,9 +196,8 @@ class SendKinViewController: UIViewController {
     }
 
     private func alertTransactionFailed() {
-        let title = "Houston We Have a Server Problem"
-        let message = "Please try again later. If you continue to see this message, please reach out to support."
-        alert(title: title, message: message)
+        alert(title: L10n.sendKinTransactionFailedErrorTitle,
+              message: L10n.sendKinTransactionFailedErrorMessage)
     }
 
     private func alert(title: String?, message: String?) {
@@ -211,8 +215,8 @@ class SendKinViewController: UIViewController {
     fileprivate var isSendingKin: Bool = false {
         didSet {
             let buttonTitle = isSendingKin
-                ? "Sending Kin"
-                : "Send Kin"
+                ? L10n.sendingKin
+                : L10n.sendKinAction
             let buttonTintColor = isSendingKin
                 ? UIColor.white
                 : UIColor.kin.appTint

@@ -12,6 +12,7 @@ class AccountReadyViewController: UIViewController {
         didSet {
             titleLabel.textColor = UIColor.kin.appTint
             titleLabel.font = FontFamily.Roboto.black.font(size: 42)
+            titleLabel.text = L10n.accountReadyTitle
         }
     }
 
@@ -19,6 +20,7 @@ class AccountReadyViewController: UIViewController {
         didSet {
             descriptionLabel.textColor = UIColor.kin.gray
             descriptionLabel.font = FontFamily.Roboto.regular.font(size: 16)
+            descriptionLabel.text = L10n.accountReadyMessage
         }
     }
 

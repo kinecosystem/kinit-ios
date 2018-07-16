@@ -496,6 +496,7 @@ on your phone to redeem</string>
                     </view>
                     <connections>
                         <outlet property="amountLabel" destination="UZX-Zv-dn6" id="fre-kD-xbE"/>
+                        <outlet property="kinDeliveredLabel" destination="dfc-xC-XDo" id="qTB-Z0-Dpu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HbX-c1-48a" userLabel="First Responder" sceneMemberID="firstResponder"/>
