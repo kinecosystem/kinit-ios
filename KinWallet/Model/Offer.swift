@@ -44,8 +44,8 @@ enum SpecialOffer {
     var isEnabled: Bool {
         switch self {
         case .sendKin:
-            return Analytics.currentEarnCount() >= 4
-                && User.current?.phoneNumber != nil
+            let fromConfig = RemoteConfig.current?.peerToPeerEnabled
+            return fromConfig.boolValue
         }
     }
 
