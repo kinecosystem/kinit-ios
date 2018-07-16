@@ -29,6 +29,7 @@ class BalanceViewController: UIViewController {
         didSet {
             balanceTitleLabel.font = FontFamily.Roboto.regular.font(size: 12)
             balanceTitleLabel.textColor = UIColor.white.withAlphaComponent(0.7)
+            balanceTitleLabel.text = L10n.yourKinBalance
         }
     }
 
@@ -38,14 +39,6 @@ class BalanceViewController: UIViewController {
             transactionsHeader.layer.shadowRadius = 3
             transactionsHeader.layer.shadowOpacity = 3
             transactionsHeader.layer.shadowOffset = CGSize(width: 0, height: 1)
-        }
-    }
-
-    @IBOutlet weak var descriptionLabel: UILabel! {
-        didSet {
-            descriptionLabel.numberOfLines = 2
-            descriptionLabel.textColor = UIColor.kin.cadetBlue
-            descriptionLabel.font = FontFamily.Roboto.regular.font(size: 14)
         }
     }
 

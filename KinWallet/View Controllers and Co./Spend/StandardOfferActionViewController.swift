@@ -32,6 +32,7 @@ class StandardOfferActionViewController: SpendOfferActionViewController {
     @IBOutlet weak var buyButton: UIButton! {
         didSet {
             buyButton.makeKinButtonFilled()
+            buyButton.setTitle(L10n.buy, for: .normal)
         }
     }
 

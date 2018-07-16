@@ -10,6 +10,12 @@ final class TransferringKinViewController: UIViewController {
     var initialBalance: UInt64!
     var finishTapped: (() -> Void)?
 
+    @IBOutlet weak var kinOnTheWayLabel: UILabel! {
+        didSet {
+            kinOnTheWayLabel.text = L10n.transferringKinOnItsWay
+        }
+    }
+
     @IBOutlet weak var balanceExplanationLabel: UILabel!
     let amountFormatter = KinAmountFormatter()
     @IBOutlet weak var fireworksImageView: UIImageView! {
@@ -45,6 +51,7 @@ final class TransferringKinViewController: UIViewController {
         didSet {
             tapToFinishLabel.font = FontFamily.Roboto.bold.font(size: 16)
             tapToFinishLabel.alpha = 0
+            tapToFinishLabel.text = L10n.tapToFinish
         }
     }
 
@@ -82,7 +89,7 @@ final class TransferringKinViewController: UIViewController {
                               duration: 0.1,
                               options: .transitionCrossDissolve,
                               animations: {
-                                aSelf.balanceExplanationLabel.text = L10n.yourNewBalance
+                                aSelf.balanceExplanationLabel.text = L10n.transferringKinNewBalance
             }, completion: nil)
 
             aSelf.fireworksImageView.alpha = 0.2

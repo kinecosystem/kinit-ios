@@ -21,6 +21,7 @@ class PhoneConfirmationViewController: UIViewController {
         didSet {
             titleLabel.font = FontFamily.Roboto.medium.font(size: 22)
             titleLabel.textColor = UIColor.kin.appTint
+            titleLabel.text = L10n.phoneConfirmationTitle
         }
     }
 
@@ -28,6 +29,7 @@ class PhoneConfirmationViewController: UIViewController {
         didSet {
             descriptionLabel.font = FontFamily.Roboto.regular.font(size: 16)
             descriptionLabel.textColor = UIColor.kin.gray
+            descriptionLabel.text = L10n.phoneConfirmationMessage
         }
     }
 
@@ -43,6 +45,7 @@ class PhoneConfirmationViewController: UIViewController {
         didSet {
             newCodeButton.isHidden = true
             newCodeButton.titleLabel?.font = FontFamily.Roboto.regular.font(size: 14)
+            newCodeButton.setTitle(L10n.phoneConfirmationAskNewCode, for: .normal)
         }
     }
 
@@ -189,7 +192,7 @@ class PhoneConfirmationViewController: UIViewController {
                 }
             }
 
-            countdownLabel.text = "The code should arrive in \(countdown)s."
+            countdownLabel.text = L10n.phoneConfirmationCountdown(countdown)
         } else {
             smsArrivalTimer?.invalidate()
             smsArrivalTimer = nil

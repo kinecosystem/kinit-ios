@@ -8,6 +8,12 @@ import UIKit
 class KinSentViewController: UIViewController {
     var amount: UInt64 = 0
     @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var kinDeliveredLabel: UILabel! {
+        didSet {
+            kinDeliveredLabel.text = L10n.kinDelivered
+        }
+    }
+    
     var sendKinScreenshot: UIImage?
 
     override func viewDidLoad() {
@@ -16,7 +22,7 @@ class KinSentViewController: UIViewController {
         assert(amount > 0)
 
         let formattedAmount = KinAmountFormatter().string(from: NSNumber(value: amount))!
-        let message = "You’ve succesfully sent K \(formattedAmount).\nYou can see the details under Balance"
+        let message = L10n.kinSentMessage(formattedAmount)
         let kRange = (message as NSString).range(of: " K ")
         let attributedMessage = NSMutableAttributedString(string: message)
         attributedMessage.addAttribute(.font, value: FontFamily.KinK.regular.font(size: 10), range: kRange)

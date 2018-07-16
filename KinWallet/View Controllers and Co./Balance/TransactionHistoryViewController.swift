@@ -45,7 +45,7 @@ class TransactionHistoryViewController: HistoryViewController<KinitTransaction, 
 
     override func createEmptyStateView() -> EmptyStateView {
         let emptyView = super.createEmptyStateView()
-        emptyView.textLabel.text = "Your transactions will appear here!"
+        emptyView.textLabel.text = L10n.transactionsEmptyStateMessage
         emptyView.imageView.image = Asset.recordsLedger.image
 
         return emptyView
@@ -54,6 +54,6 @@ class TransactionHistoryViewController: HistoryViewController<KinitTransaction, 
 
 extension TransactionHistoryViewController: IndicatorInfoProvider {
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Recent Actions")
+        return IndicatorInfo(title: L10n.balanceRecentActions)
     }
 }

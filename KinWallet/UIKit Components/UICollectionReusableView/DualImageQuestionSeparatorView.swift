@@ -14,6 +14,7 @@ class DualImageQuestionSeparatorView: UICollectionReusableView, NibLoadableView 
     @IBOutlet weak var orLabel: UILabel! {
         didSet {
             orLabel.textColor = UIColor.kin.gray
+            orLabel.text = L10n.or
         }
     }
 }

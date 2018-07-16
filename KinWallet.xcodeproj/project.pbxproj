@@ -278,9 +278,9 @@
 		91AEBF392029E958007BBBA3 /* WebRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AEBF382029E958007BBBA3 /* WebRequest.swift */; };
 		91AEBF3A2029E9F3007BBBA3 /* WebRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AEBF382029E958007BBBA3 /* WebRequest.swift */; };
 		91AEBF3C202B0554007BBBA3 /* TaskCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AEBF3B202B0554007BBBA3 /* TaskCompletedViewController.swift */; };
-		91B0667120C6AF7800CE69A7 /* StandardBuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667020C6AF7800CE69A7 /* StandardBuyViewController.swift */; };
-		91B0667220C6BB7900CE69A7 /* StandardBuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667020C6AF7800CE69A7 /* StandardBuyViewController.swift */; };
-		91B0667320C6BB7900CE69A7 /* StandardBuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667020C6AF7800CE69A7 /* StandardBuyViewController.swift */; };
+		91B0667120C6AF7800CE69A7 /* StandardOfferActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667020C6AF7800CE69A7 /* StandardOfferActionViewController.swift */; };
+		91B0667220C6BB7900CE69A7 /* StandardOfferActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667020C6AF7800CE69A7 /* StandardOfferActionViewController.swift */; };
+		91B0667320C6BB7900CE69A7 /* StandardOfferActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667020C6AF7800CE69A7 /* StandardOfferActionViewController.swift */; };
 		91B0667520C6CD0100CE69A7 /* SendKinOfferActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667420C6CD0100CE69A7 /* SendKinOfferActionViewController.swift */; };
 		91B0667720C7E47D00CE69A7 /* SendKinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667620C7E47D00CE69A7 /* SendKinViewController.swift */; };
 		91B0667920C8177100CE69A7 /* KinSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667820C8177100CE69A7 /* KinSentViewController.swift */; };
@@ -788,7 +788,7 @@
 		91AC468E207CE6590016B648 /* SurveyMultipleTextAnswerCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SurveyMultipleTextAnswerCollectionViewCell.xib; sourceTree = "<group>"; };
 		91AEBF382029E958007BBBA3 /* WebRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequest.swift; sourceTree = "<group>"; };
 		91AEBF3B202B0554007BBBA3 /* TaskCompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCompletedViewController.swift; sourceTree = "<group>"; };
-		91B0667020C6AF7800CE69A7 /* StandardBuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardBuyViewController.swift; sourceTree = "<group>"; };
+		91B0667020C6AF7800CE69A7 /* StandardOfferActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardOfferActionViewController.swift; sourceTree = "<group>"; };
 		91B0667420C6CD0100CE69A7 /* SendKinOfferActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendKinOfferActionViewController.swift; sourceTree = "<group>"; };
 		91B0667620C7E47D00CE69A7 /* SendKinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendKinViewController.swift; sourceTree = "<group>"; };
 		91B0667820C8177100CE69A7 /* KinSentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinSentViewController.swift; sourceTree = "<group>"; };
@@ -1234,7 +1234,7 @@
 				914013A22018BC320066367C /* OfferWallViewController.swift */,
 				9138BBE0204EE21E00450C97 /* OfferDetailsViewController.swift */,
 				91D075402056A77100CF80D5 /* OffersUnavailableViewController.swift */,
-				91B0667020C6AF7800CE69A7 /* StandardBuyViewController.swift */,
+				91B0667020C6AF7800CE69A7 /* StandardOfferActionViewController.swift */,
 				91B0667420C6CD0100CE69A7 /* SendKinOfferActionViewController.swift */,
 				91B0667620C7E47D00CE69A7 /* SendKinViewController.swift */,
 				91B0667820C8177100CE69A7 /* KinSentViewController.swift */,
@@ -2090,7 +2090,7 @@
 				91B0668220C9631100CE69A7 /* UIApplication+KinWallet.swift in Sources */,
 				910AA21C209613EA00CC822A /* Shakeable.swift in Sources */,
 				91E20B8B202B3E3B000CB741 /* FeedbackGenerator.swift in Sources */,
-				91B0667120C6AF7800CE69A7 /* StandardBuyViewController.swift in Sources */,
+				91B0667120C6AF7800CE69A7 /* StandardOfferActionViewController.swift in Sources */,
 				914013B02018BD050066367C /* SurveyInfoViewController.swift in Sources */,
 				915F49692043022E005C09B3 /* Fonts.swift in Sources */,
 				91FDE1572028B09F003A30FB /* Data+KinWallet.swift in Sources */,
@@ -2264,7 +2264,7 @@
 				91AAB933201E0AC00075DAA1 /* ResourceDownloader.swift in Sources */,
 				91E84A55208617B200E8B7A6 /* TaskCompletedViewController.swift in Sources */,
 				91B575C62046E83200AC3E04 /* Date+Kinit.swift in Sources */,
-				91B0667220C6BB7900CE69A7 /* StandardBuyViewController.swift in Sources */,
+				91B0667220C6BB7900CE69A7 /* StandardOfferActionViewController.swift in Sources */,
 				9157F995204D5B4600351E2A /* Offer.swift in Sources */,
 				91E84A722086186B00E8B7A6 /* BaseButtonBarPagerTabStripViewController.swift in Sources */,
 				916ACCF620F1FFEF00756EBC /* DualImageQuestionSeparatorView.swift in Sources */,
@@ -2363,7 +2363,7 @@
 				91E84AA520862D8B00E8B7A6 /* ServerTypes.swift in Sources */,
 				828CB4392056E9F2007C679C /* FeedbackGenerator.swift in Sources */,
 				828CB41F2056E97C007C679C /* UIImageView+KinWallet.swift in Sources */,
-				91B0667320C6BB7900CE69A7 /* StandardBuyViewController.swift in Sources */,
+				91B0667320C6BB7900CE69A7 /* StandardOfferActionViewController.swift in Sources */,
 				91FE7D7420F6304B00EDFB67 /* Anchorable.swift in Sources */,
 				828CB41D2056E961007C679C /* UIColor+KinWallet.swift in Sources */,
 				91B4456B2091F98800ED6802 /* PhoneConfirmationViewController.swift in Sources */,

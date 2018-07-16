@@ -34,6 +34,7 @@ class PhoneVerificationRequestViewController: UIViewController {
         didSet {
             titleLabel.font = FontFamily.Roboto.medium.font(size: 22)
             titleLabel.textColor = UIColor.kin.appTint
+            titleLabel.text = L10n.phoneVerificationRequestTitle
         }
     }
 
@@ -41,6 +42,7 @@ class PhoneVerificationRequestViewController: UIViewController {
         didSet {
             descriptionLabel.font = FontFamily.Roboto.regular.font(size: 16)
             descriptionLabel.textColor = UIColor.kin.gray
+            descriptionLabel.text = L10n.phoneVerificationRequestMessage
         }
     }
 
@@ -51,7 +53,7 @@ class PhoneVerificationRequestViewController: UIViewController {
             countryCodeTextField.textColor = UIColor.kin.gray
             countryCodeTextField.setBottomLine(with: UIColor.kin.gray)
             let callingCode = NBPhoneNumberUtil().getCountryCode(forRegion: regionCode) ?? NSNumber(value: 1)
-            countryCodeTextField.text = "+\(callingCode)"
+            countryCodeTextField.text = "+" + callingCode.stringValue
         }
     }
 

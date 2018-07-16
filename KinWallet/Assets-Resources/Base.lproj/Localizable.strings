@@ -7,6 +7,7 @@
 */
 
 // General
+
 "NoInternetErrorTitle" = "Your internet is MIA";
 
 "NoInternetErrorSubtitle" = "It seems that something is missing...\nPlease check your internet connection.";
@@ -18,6 +19,10 @@
 "NextAction" = "Next";
 
 "CloseAction" = "Close";
+
+"Or" = "Or";
+
+"Buy" = "Buy";
 
 //Creating wallet
 
@@ -31,6 +36,7 @@
 
 
 // Welcome Screen
+
 "Welcome1stScreenTitle" = " Welcome to Kinit";
 
 "Welcome1stScreenMessage" = "Earn Kin by completing fun daily activities, and enjoy it toward brown paper packages tied up with string (aka travel, movies, music, and more).";
@@ -53,7 +59,25 @@
 
 "PhoneVerificationCodeSent" = "We have sent a verification code to %@. Please type it below:";
 
+"PhoneVerificationRequestTitle" = "Phone Number";
+
+"PhoneVerificationRequestMessage" = "Your phone number is used to identify your wallet.";
+
+"PhoneConfirmationTitle" = "Verification SMS";
+
+"PhoneConfirmationMessage" = "We have sent you a verification code to your phone. Please type it below:";
+
+"PhoneConfirmationCountdown" = "The code should arrive in %ds.";
+
+"PhoneConfirmationAskNewCode" = "Send me a new code";
+
+"AccountReadyTitle" = "Woohooooo";
+
+"AccountReadyMessage" = "Your account is ready!";
+
 // Tasks/Activities
+
+"ReadyToEarnKinQuestion" = "Hi! 👋\nReady to earn some Kin?";
 
 "NextActivityOnTitle" = "Your next activity will be available %@";
 
@@ -73,11 +97,19 @@
 
 "TaskSubmissionFailedErrorMessage" = "To make sure you get your Kin, hit close below and continue on the next screen.";
 
-"YourNewBalance" = "Your new balance";
+"ActivityDoneTitle" = "Awesome!";
+
+"ActivityDoneMessage" = "You have completed today's activity.";
+
+"TransferringKinOnItsWay" = "Your Kin is on it's way";
+
+"TransferringKinNewBalance" = "Your new balance";
+
+"TapToFinish" = "Tap to finish";
 
 // Offers
 
-"LastOfferGrabbedTitle" =  "Oops! Someone grabbed the last one... for now";
+"LastOfferGrabbedTitle" = "Oops! Someone grabbed the last one... for now";
 
 "LastOfferGrabbedMessage" = "Please check back later";
 
@@ -107,7 +139,47 @@
 
 "SendKinAction" = "Send Kin";
 
+"SendingKin" = "Sending Kin";
+
+"SendKinHighAmountErrorTitle" = "That's Very Kind";
+
+"SendKinHighAmountErrorMessage" = "You can only send %u KIN at a time.";
+
+"SendKinLowAmountErrorTitle" = "How About a Bit More Love?";
+
+"SendKinLowAmountErrorMessage" = "Please send at least %u KIN.";
+
+"SendKinLowBalanceErrorTitle" = "Looks Like Your Balance Is a Bit Low";
+
+"SendKinLowBalanceErrorMessage" = "Make sure you have at least %u KIN.";
+
+"SendKinTransactionFailedErrorTitle" = "Houston We Have a Server Problem";
+
+"SendKinTransactionFailedErrorMessage" = "Please try again later. If you continue to see this message, please reach out to support.";
+
+"KinSentMessage" = "You’ve succesfully sent K %@.\nYou can see the details under Balance";
+
+"SendTo" = "To";
+
+"KinDelivered" = "Kin delivered!";
+
+// Balance
+
+"YourKinBalance" = "Your Kin Balance";
+
+"TransactionsEmptyStateMessage" = "Your transactions will appear here!";
+
+"BalanceRecentActions" = "Recent Actions";
+
+"VouchersEmptyStateMessage" = "Your vouchers will be saved here!";
+
+"BalanceMyVouchers" = "My Vouchers";
+
 // Support
+
+"Support" = "Support";
+
+"EmailUs" = "EmailUs";
 
 "MailNotConfiguredErrorTitle" = "Mail Not Configured";
 

@@ -24,12 +24,14 @@ class MoreViewController: UIViewController {
         didSet {
             supportLabel.font = FontFamily.Roboto.regular.font(size: 18)
             supportLabel.textColor = UIColor.kin.gray
+            supportLabel.text = L10n.support
         }
     }
 
     @IBOutlet weak var emailButton: UIButton! {
         didSet {
             emailButton.makeKinButtonFilled()
+            emailButton.setTitle(L10n.emailUs, for: .normal)
         }
     }
 

@@ -422,9 +422,10 @@ Ready to earn some Kin?</string>
                         <outlet property="coinsImageView" destination="vB3-Tm-CYR" id="unG-Ks-C5S"/>
                         <outlet property="fireworksImageView" destination="3Y0-bP-Esi" id="IP5-ee-vQG"/>
                         <outlet property="gradientView" destination="wkS-bl-NZn" id="HAT-U8-pDX"/>
+                        <outlet property="kinOnTheWayLabel" destination="16u-dP-Bdj" id="FZc-ft-D3J"/>
                         <outlet property="loaderStackView" destination="kUn-2K-1TX" id="xNX-uD-MPC"/>
                         <outlet property="loaderView" destination="fxq-CM-kSL" id="EMz-oG-8da"/>
-                        <outlet property="tapToFinishLabel" destination="mjW-cX-PSS" id="kdh-9A-O0L"/>
+                        <outlet property="tapToFinishLabel" destination="mjW-cX-PSS" id="xz6-nF-EJM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="auY-lN-qb8" userLabel="First Responder" sceneMemberID="firstResponder"/>

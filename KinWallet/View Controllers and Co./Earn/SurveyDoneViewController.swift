@@ -21,12 +21,14 @@ final class SurveyDoneViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.font = FontFamily.Roboto.bold.font(size: 24)
+            titleLabel.text = L10n.activityDoneTitle
         }
     }
 
     @IBOutlet weak var subtitleLabel: UILabel! {
         didSet {
             subtitleLabel.font = FontFamily.Roboto.regular.font(size: 16)
+            subtitleLabel.text = L10n.activityDoneMessage
         }
     }
 
