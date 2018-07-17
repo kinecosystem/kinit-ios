@@ -14,6 +14,14 @@ platform :ios do
 
   before_all do
     ensure_git_status_clean
+    increment_build_number(build_number: number_of_commits)
+  end
+
+  after_all do
+    git_commit(
+      path: ["./KinWallet.xcodeproj/project.pbxproj", "./KinWallet/Info.plist"],
+      message: "Build number bump"
+    )
   end
 
   desc "Submits a new build to TestFlight"
@@ -21,7 +29,7 @@ platform :ios do
     release_build
     upload_ipa_to_testflight
     slack(
-      message: "Kinit v#{get_version_number} uploaded to TestFlight",
+      message: "Kinit v#{get_version_number} (build #{get_build_number}) uploaded to TestFlight",
       success: true
     )
   end
@@ -31,7 +39,7 @@ platform :ios do
     release_build
     upload_to_app_store
     slack(
-      message: "Kinit v#{get_version_number} uploaded to the AppStore",
+      message: "Kinit v#{get_version_number} (build #{get_build_number}) uploaded to the AppStore",
       success: true
     )
   end
@@ -46,7 +54,7 @@ platform :ios do
     build_ios_app(scheme: "Kinit")
     notification(
       subtitle: "Kinit",
-      message: "Finished building v#{get_version_number}"
+      message: "Finished building v#{get_version_number} (build #{get_build_number})"
     )
   end
 

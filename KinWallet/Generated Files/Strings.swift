@@ -35,6 +35,8 @@ internal enum L10n {
   internal static let cancel = L10n.tr("Localizable", "Cancel")
   /// Close
   internal static let closeAction = L10n.tr("Localizable", "CloseAction")
+  /// Contact Support
+  internal static let contactSupport = L10n.tr("Localizable", "ContactSupport")
   /// Code saved to My Vouchers
   internal static let couponCodeSaved = L10n.tr("Localizable", "CouponCodeSaved")
   /// EmailUs

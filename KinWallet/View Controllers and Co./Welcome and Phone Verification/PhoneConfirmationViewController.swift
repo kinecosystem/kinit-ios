@@ -9,11 +9,26 @@ import KinUtil
 
 private var secondsCountDown: TimeInterval = 16
 
+protocol PhoneConfirmationDelegate: class {
+    func phoneConfirmationRequestedNewCode()
+    func phoneConfirmationEnteredWrongCode()
+}
+
 class PhoneConfirmationViewController: UIViewController {
+    weak var delegate: PhoneConfirmationDelegate?
+    var allowContactingSupport = false {
+        didSet {
+            if allowContactingSupport {
+                UIView.animate(withDuration: 0.2) { [weak self] in
+                    self?.supportButton?.isHidden = false
+                }
+            }
+        }
+    }
     let isCodeLengthValid = Observable<Bool>(false)
     let linkBag = LinkBag()
     var smsArrivalTimer: Timer?
-    var didAppearAtDate: Date!
+    var newCodeTimerInitialDate: Date?
 
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
 
@@ -38,6 +53,14 @@ class PhoneConfirmationViewController: UIViewController {
             countdownLabel.font = FontFamily.Roboto.regular.font(size: 14)
             countdownLabel.textColor = UIColor.kin.lightGray
             countdownLabel.alpha = 0
+        }
+    }
+
+    @IBOutlet weak var supportButton: UIButton! {
+        didSet {
+            supportButton.isHidden = !allowContactingSupport
+            supportButton.titleLabel?.font = FontFamily.Roboto.regular.font(size: 14)
+            supportButton.setTitle(L10n.contactSupport, for: .normal)
         }
     }
 
@@ -83,13 +106,20 @@ class PhoneConfirmationViewController: UIViewController {
         super.viewWillAppear(animated)
 
         navigationController?.setNavigationBarHidden(true, animated: animated)
+
+        textFields.forEach { $0.text = " " }
+        textFields.first?.becomeFirstResponder()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         logViewedPage()
-        didAppearAtDate = Date()
+
+        if newCodeTimerInitialDate == nil {
+            newCodeTimerInitialDate = Date()
+        }
+
         smsArrivalTimer = Timer.scheduledTimer(timeInterval: 1,
                                                target: self,
                                                selector: #selector(updateCountdown),
@@ -154,12 +184,13 @@ class PhoneConfirmationViewController: UIViewController {
     }
 
     func validationFailed() {
+        delegate?.phoneConfirmationEnteredWrongCode()
         activityIndicatorView.stopAnimating()
 
         logVerificationError()
         FeedbackGenerator.notifyErrorIfAvailable()
         textFields.forEach {
-            $0.text = ""
+            $0.text = " "
             $0.shake(delta: 20)
         }
 
@@ -183,7 +214,11 @@ class PhoneConfirmationViewController: UIViewController {
     }
 
     @objc func updateCountdown() {
-        let sinceDidAppear = Date().timeIntervalSince(didAppearAtDate)
+        guard let newCodeTimerInitialDate = newCodeTimerInitialDate else {
+            return
+        }
+
+        let sinceDidAppear = Date().timeIntervalSince(newCodeTimerInitialDate)
         let countdown = Int(secondsCountDown - sinceDidAppear)
         if countdown > 0 {
             if countdownLabel.alpha == 0 {
@@ -206,7 +241,11 @@ class PhoneConfirmationViewController: UIViewController {
 
     @IBAction func sendNewCode(_ sender: Any) {
         logRequestedNewCode()
-        navigationController?.popViewController(animated: true)
+        delegate?.phoneConfirmationRequestedNewCode()
+    }
+
+    @IBAction func contactSupport(_ sender: Any) {
+        KinSupportViewController.present(from: self)
     }
 
     func isCurrentCodeValid() -> Bool {

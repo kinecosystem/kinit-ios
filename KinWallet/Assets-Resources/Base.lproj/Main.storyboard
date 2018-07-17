@@ -522,7 +522,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="EhJ-XE-kWj">
-                                <rect key="frame" x="42" y="60" width="290" height="245.5"/>
+                                <rect key="frame" x="42" y="60" width="290" height="294.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="pMu-5H-Aoc">
                                         <rect key="frame" x="0.0" y="0.0" width="290" height="75"/>
@@ -541,8 +541,8 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="0iL-Tv-Jpm">
-                                        <rect key="frame" x="0.0" y="95" width="290" height="150.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="0iL-Tv-Jpm">
+                                        <rect key="frame" x="0.0" y="95" width="290" height="199.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="6Ry-bF-z4J">
                                                 <rect key="frame" x="5" y="0.0" width="280" height="35"/>
@@ -590,20 +590,27 @@
                                                 </constraints>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g6P-18-pdK">
-                                                <rect key="frame" x="124" y="50" width="42" height="20.5"/>
+                                                <rect key="frame" x="124" y="51" width="42" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zak-Wv-gHR">
-                                                <rect key="frame" x="73.5" y="85.5" width="143" height="30"/>
+                                                <rect key="frame" x="73.5" y="87.5" width="143" height="30"/>
                                                 <state key="normal" title="Send me a new code"/>
                                                 <connections>
                                                     <action selector="sendNewCode:" destination="AJp-A6-elY" eventType="touchUpInside" id="RBn-8P-cuU"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSx-zB-Igv">
+                                                <rect key="frame" x="88" y="133.5" width="114" height="30"/>
+                                                <state key="normal" title="Contact Support"/>
+                                                <connections>
+                                                    <action selector="contactSupport:" destination="AJp-A6-elY" eventType="touchUpInside" id="KH6-HD-Ctk"/>
+                                                </connections>
+                                            </button>
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ewV-2F-Vcj">
-                                                <rect key="frame" x="135" y="130.5" width="20" height="20"/>
+                                                <rect key="frame" x="135" y="179.5" width="20" height="20"/>
                                             </activityIndicatorView>
                                         </subviews>
                                     </stackView>
@@ -632,7 +639,8 @@
                         <outlet property="activityIndicatorView" destination="ewV-2F-Vcj" id="OcY-RO-LDi"/>
                         <outlet property="countdownLabel" destination="g6P-18-pdK" id="O1z-gQ-z8m"/>
                         <outlet property="descriptionLabel" destination="B9u-LY-XN1" id="04L-Mk-PYx"/>
-                        <outlet property="newCodeButton" destination="zak-Wv-gHR" id="cVa-Jl-asG"/>
+                        <outlet property="newCodeButton" destination="zak-Wv-gHR" id="vcr-CH-HL6"/>
+                        <outlet property="supportButton" destination="cSx-zB-Igv" id="zZv-E2-y27"/>
                         <outlet property="titleLabel" destination="O8N-up-ehs" id="ry9-7b-2aK"/>
                         <outletCollection property="textFields" destination="7cF-GL-gyK" collectionClass="NSMutableArray" id="9mc-mP-Kxv"/>
                         <outletCollection property="textFields" destination="6Rb-Jz-VEG" collectionClass="NSMutableArray" id="mI3-Ef-OIv"/>

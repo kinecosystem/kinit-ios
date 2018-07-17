@@ -341,6 +341,9 @@
 		91B57F9620E039E300CE5EE1 /* TrueXIndex.html in Resources */ = {isa = PBXBuildFile; fileRef = 91B57F9520E039E300CE5EE1 /* TrueXIndex.html */; };
 		91B57F9720E039E300CE5EE1 /* TrueXIndex.html in Resources */ = {isa = PBXBuildFile; fileRef = 91B57F9520E039E300CE5EE1 /* TrueXIndex.html */; };
 		91B57F9820E039E300CE5EE1 /* TrueXIndex.html in Resources */ = {isa = PBXBuildFile; fileRef = 91B57F9520E039E300CE5EE1 /* TrueXIndex.html */; };
+		91C42AD720FDDD68001E1C05 /* UIControl+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C42AD620FDDD68001E1C05 /* UIControl+KinWallet.swift */; };
+		91C42AD820FDDD68001E1C05 /* UIControl+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C42AD620FDDD68001E1C05 /* UIControl+KinWallet.swift */; };
+		91C42AD920FDDD68001E1C05 /* UIControl+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C42AD620FDDD68001E1C05 /* UIControl+KinWallet.swift */; };
 		91CB636420597F3C00C65404 /* URL+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CB636320597F3C00C65404 /* URL+KinWallet.swift */; };
 		91CE3DAD20691FFF009ABDCD /* KinSupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CE3DAC20691FFF009ABDCD /* KinSupportViewController.swift */; };
 		91D07529205536DD00CF80D5 /* UIAlertAction+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9163EDFE20553248005F3123 /* UIAlertAction+KinWallet.swift */; };
@@ -812,6 +815,7 @@
 		91B57F8D20E0388100CE5EE1 /* TrueXViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrueXViewController.swift; sourceTree = "<group>"; };
 		91B57F9120E038E200CE5EE1 /* Bridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
 		91B57F9520E039E300CE5EE1 /* TrueXIndex.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TrueXIndex.html; sourceTree = "<group>"; };
+		91C42AD620FDDD68001E1C05 /* UIControl+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+KinWallet.swift"; sourceTree = "<group>"; };
 		91CB636320597F3C00C65404 /* URL+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+KinWallet.swift"; sourceTree = "<group>"; };
 		91CE3DAC20691FFF009ABDCD /* KinSupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinSupportViewController.swift; sourceTree = "<group>"; };
 		91D0753820567E6000CF80D5 /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
@@ -1171,6 +1175,7 @@
 				91B0668120C9631100CE69A7 /* UIApplication+KinWallet.swift */,
 				914013D72019F2BF0066367C /* UICollectionViewCell+KinWallet.swift */,
 				914013BD2019D07D0066367C /* UIColor+KinWallet.swift */,
+				91C42AD620FDDD68001E1C05 /* UIControl+KinWallet.swift */,
 				914013C02019D0BA0066367C /* UIImage+KinWallet.swift */,
 				91B575C42046E83200AC3E04 /* Date+Kinit.swift */,
 				91AAB937201E0CB80075DAA1 /* UIImageView+KinWallet.swift */,
@@ -2060,6 +2065,7 @@
 				91147441203F1D4100C16279 /* BalanceLabel.swift in Sources */,
 				914013E02019F2BF0066367C /* UICollectionView+KinWallet.swift in Sources */,
 				9140137D201748100066367C /* UIViewController+KinWallet.swift in Sources */,
+				91C42AD720FDDD68001E1C05 /* UIControl+KinWallet.swift in Sources */,
 				9140136C201632A20066367C /* MoreViewController.swift in Sources */,
 				9163EDFF20553248005F3123 /* UIAlertAction+KinWallet.swift in Sources */,
 				91D891C1201F32B60090E77C /* TaskResults.swift in Sources */,
@@ -2139,6 +2145,7 @@
 				91B57F8F20E0388100CE5EE1 /* TrueXViewController.swift in Sources */,
 				91B445502090C3B400ED6802 /* PhoneVerificationRequestViewController.swift in Sources */,
 				91401398201892640066367C /* QuestionTests.swift in Sources */,
+				91C42AD820FDDD68001E1C05 /* UIControl+KinWallet.swift in Sources */,
 				9140138B20187CE90066367C /* Result.swift in Sources */,
 				914013E12019F2BF0066367C /* UICollectionView+KinWallet.swift in Sources */,
 				9182C2A1203C6C0C0051F003 /* AMPDatabaseHelper.m in Sources */,
@@ -2289,6 +2296,7 @@
 				91E84A6D2086185000E8B7A6 /* AppDelegate.swift in Sources */,
 				828CB41E2056E970007C679C /* UIView+KinWallet.swift in Sources */,
 				91E84A6F2086186300E8B7A6 /* BarPagerTabStripViewController.swift in Sources */,
+				91C42AD920FDDD68001E1C05 /* UIControl+KinWallet.swift in Sources */,
 				91E84AA120862D1000E8B7A6 /* FetchableCollectionViewDataSource.swift in Sources */,
 				828CB42F2056E9DC007C679C /* SimpleCollectionReusableView.swift in Sources */,
 				828CB4262056E9C1007C679C /* AMPIdentify.m in Sources */,
@@ -2605,6 +2613,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = KinWallet/KinWallet.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 39;
 				DEVELOPMENT_TEAM = F879J8YSJ9;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2633,6 +2642,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -2644,6 +2654,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Beta";
 				CODE_SIGN_ENTITLEMENTS = KinWallet/KinWallet.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 39;
 				DEVELOPMENT_TEAM = F879J8YSJ9;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2673,6 +2684,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Beta;
 		};
@@ -2838,6 +2850,7 @@
 				CODE_SIGN_ENTITLEMENTS = KinWallet/KinWallet.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 39;
 				DEVELOPMENT_TEAM = F879J8YSJ9;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2867,6 +2880,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_org.kinecosystem.kinit_appstore_profile-name)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};

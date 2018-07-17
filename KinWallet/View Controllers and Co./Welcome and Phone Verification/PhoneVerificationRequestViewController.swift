@@ -9,6 +9,15 @@ import libPhoneNumber_iOS
 import KinUtil
 
 class PhoneVerificationRequestViewController: UIViewController {
+    var phoneConfirmationViewController: PhoneConfirmationViewController?
+    var requestCodeOrErrorCount = 0 {
+        didSet {
+            if requestCodeOrErrorCount >= 3 {
+                phoneConfirmationViewController?.allowContactingSupport = true
+            }
+        }
+    }
+
     fileprivate let accessoryView: ButtonAcessoryInputView = {
         let b = ButtonAcessoryInputView()
         b.title = L10n.nextAction
@@ -150,6 +159,8 @@ class PhoneVerificationRequestViewController: UIViewController {
                         self.view.endEditing(true)
                     }
 
+                    KLogError((error as NSError).domain)
+                    KLogError((error as NSError).code)
                     FeedbackGenerator.notifyErrorIfAvailable()
                     let errorMessage = self.errorMessage(for: error as NSError)
                     self.errorLabel.text = errorMessage
@@ -159,11 +170,18 @@ class PhoneVerificationRequestViewController: UIViewController {
                     return
                 }
 
-                let confirmCode = StoryboardScene.Main.phoneConfirmationViewController.instantiate()
-                confirmCode.verificationId = verificationID!
-                confirmCode.phoneNumber = formattedNumber
-                self.navigationController?.pushViewController(confirmCode, animated: true)
+                self.showConfirmation(for: formattedNumber, verificationID: verificationID!)
         }
+    }
+
+    fileprivate func showConfirmation(for formattedNumber: String, verificationID: String) {
+        let confirmCode = StoryboardScene.Main.phoneConfirmationViewController.instantiate()
+        confirmCode.delegate = self
+        confirmCode.verificationId = verificationID
+        confirmCode.phoneNumber = formattedNumber
+        confirmCode.allowContactingSupport = self.requestCodeOrErrorCount >= 2
+        navigationController?.pushViewController(confirmCode, animated: true)
+        phoneConfirmationViewController = confirmCode
     }
 
     fileprivate func errorMessage(for error: NSError) -> String {
@@ -294,5 +312,16 @@ private class ButtonAcessoryInputView: UIView {
 
     @objc func buttonTapped() {
         tapped.next(())
+    }
+}
+
+extension PhoneVerificationRequestViewController: PhoneConfirmationDelegate {
+    func phoneConfirmationRequestedNewCode() {
+        requestCodeOrErrorCount += 1
+        navigationController?.popViewController(animated: true)
+    }
+
+    func phoneConfirmationEnteredWrongCode() {
+        requestCodeOrErrorCount += 1
     }
 }
