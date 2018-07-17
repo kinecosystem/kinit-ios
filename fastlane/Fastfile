@@ -17,13 +17,6 @@ platform :ios do
     increment_build_number(build_number: number_of_commits)
   end
 
-  after_all do
-    git_commit(
-      path: ["./KinWallet.xcodeproj/project.pbxproj", "./KinWallet/Info.plist"],
-      message: "Build number bump"
-    )
-  end
-
   desc "Submits a new build to TestFlight"
   lane :test_flight do
     release_build
@@ -68,6 +61,10 @@ platform :ios do
   end
 
   after_all do
+    git_commit(
+      path: ["./KinWallet.xcodeproj/project.pbxproj", "./KinWallet/Info.plist"],
+      message: "Build number bump"
+    )
     enable_automatic_code_signing
     update_project_team(teamid: ENV["KIN_ECOSYSTEM_TEAM_ID"])
   end
