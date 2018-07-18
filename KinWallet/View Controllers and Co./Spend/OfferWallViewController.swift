@@ -19,7 +19,6 @@ class OfferWallViewController: UIViewController {
         let itemWidth = view.frame.width - layout.sectionInset.left  - layout.sectionInset.right
         layout.itemSize = OfferCollectionViewCell.itemSize(for: itemWidth)
 
-        collectionView!.register(nib: SimpleCollectionReusableView.self)
         collectionView!.register(nib: OfferCollectionViewCell.self)
 
         configureSubscriber()
@@ -85,26 +84,6 @@ extension OfferWallViewController: UICollectionViewDataSource {
         cell.offer = subscriber.items[indexPath.item]
 
         return cell
-    }
-
-    //swiftlint:disable:next line_length
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView
-            .dequeueReusableView(ofKind: kind, forIndexPath: indexPath) as SimpleCollectionReusableView
-        header.textLabel.text = L10n.spendYourKin
-
-        return header
-    }
-}
-
-extension OfferWallViewController: UICollectionViewDelegateFlowLayout {
-    //swiftlint:disable:next line_length
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if subscriber.items.isEmpty {
-            return .zero
-        }
-
-        return CGSize(width: collectionView.frame.width, height: 50)
     }
 }
 
