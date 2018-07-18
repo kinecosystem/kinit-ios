@@ -12,6 +12,9 @@ class OfferCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var leadingCornerMaskImageView: UIImageView!
     @IBOutlet weak var trailingCornerMaskImageView: UIImageView!
 
+    var offerImage: UIImage?
+    var authorImage: UIImage?
+
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.font = FontFamily.Roboto.medium.font(size: 16)
@@ -55,10 +58,19 @@ class OfferCollectionViewCell: UICollectionViewCell {
     }
 
     func drawOffer() {
+        offerImage = nil
+        authorImage = nil
+
         offerImageView.loadImage(url: offer.imageURL.kinImagePathAdjustedForDevice(),
-                                 placeholderImage: Asset.patternPlaceholder.image)
+                                 placeholderImage: Asset.patternPlaceholder.image) { [weak self] image in
+                                    self?.offerImage = image
+        }
+
         authorImageView.loadImage(url: offer.author.imageURL.kinImagePathAdjustedForDevice(),
-                                  placeholderColor: UIColor.kin.extraLightGray)
+                                  placeholderColor: UIColor.kin.extraLightGray) { [weak self] image in
+                                    self?.authorImage = image
+        }
+
         titleLabel.text = offer.title
         authorNameLabel.text = offer.author.name
         let priceString = KinAmountFormatter().string(from: NSNumber(value: offer.price))

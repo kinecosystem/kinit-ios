@@ -12,7 +12,7 @@ extension UIImageView {
                    placeholderColor: UIColor,
                    size: CGSize? = nil,
                    transitionDuration: TimeInterval = 0.25,
-                   completion: (() -> Void)? = nil) {
+                   completion: ((UIImage) -> Void)? = nil) {
         let image = UIImage.from(placeholderColor, size: size ?? frame.size)
         loadImage(url: remoteURL,
                   placeholderImage: image,
@@ -23,7 +23,7 @@ extension UIImageView {
     func loadImage(url remoteURL: URL,
                    placeholderImage: UIImage? = nil,
                    transitionDuration: TimeInterval = 0.25,
-                   completion: (() -> Void)? = nil) {
+                   completion: ((UIImage) -> Void)? = nil) {
         if let placeholder = placeholderImage {
             image = placeholder
         }
@@ -40,8 +40,10 @@ extension UIImageView {
 
                 if remoteURL == identifier {
                     let applyImage = {
-                        self.image = UIImage(contentsOfFile: url.path)
-                        completion?()
+                        if let image = UIImage(contentsOfFile: url.path) {
+                            self.image = image
+                            completion?(image)
+                        }
                     }
 
                     if origin == .remote {

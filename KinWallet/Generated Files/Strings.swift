@@ -39,7 +39,7 @@ internal enum L10n {
   internal static let contactSupport = L10n.tr("Localizable", "ContactSupport")
   /// Code saved to My Vouchers
   internal static let couponCodeSaved = L10n.tr("Localizable", "CouponCodeSaved")
-  /// EmailUs
+  /// Email us
   internal static let emailUs = L10n.tr("Localizable", "EmailUs")
   /// We are hand-picking the best for you!
   internal static let emptyOffersSubtitle = L10n.tr("Localizable", "EmptyOffersSubtitle")
