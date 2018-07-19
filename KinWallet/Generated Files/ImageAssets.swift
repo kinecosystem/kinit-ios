@@ -79,7 +79,6 @@ internal enum Asset {
   internal static let noInternetIllustration = ImageAsset(name: "NoInternetIllustration")
   internal static let noOffers = ImageAsset(name: "NoOffers")
   internal static let offerCardShadow = ImageAsset(name: "OfferCardShadow")
-  internal static let offerCardTopLeftCorner = ImageAsset(name: "OfferCardTopLeftCorner")
   internal static let patternPlaceholder = ImageAsset(name: "PatternPlaceholder")
   internal static let paymentDelay = ImageAsset(name: "PaymentDelay")
   internal static let progressViewGradient = ImageAsset(name: "ProgressViewGradient")
@@ -142,7 +141,6 @@ internal enum Asset {
     noInternetIllustration,
     noOffers,
     offerCardShadow,
-    offerCardTopLeftCorner,
     patternPlaceholder,
     paymentDelay,
     progressViewGradient,

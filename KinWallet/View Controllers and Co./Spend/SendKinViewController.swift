@@ -304,6 +304,6 @@ extension SendKinViewController: UINavigationControllerDelegate {
                               animationControllerFor operation: UINavigationControllerOperation,
                               from fromVC: UIViewController,
                               to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return AlphaAnimatedTransitioning()
+        return AlphaTransitionAnimator()
     }
 }

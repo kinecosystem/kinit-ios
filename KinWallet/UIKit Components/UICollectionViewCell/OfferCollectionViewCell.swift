@@ -9,11 +9,9 @@ class OfferCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var offerImageView: UIImageView!
     @IBOutlet weak var authorImageView: UIImageView!
 
-    @IBOutlet weak var leadingCornerMaskImageView: UIImageView!
-    @IBOutlet weak var trailingCornerMaskImageView: UIImageView!
-
     var offerImage: UIImage?
     var authorImage: UIImage?
+    var lastImageViewSize = CGSize.zero
 
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
@@ -51,10 +49,22 @@ class OfferCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        let imageToFlip = isRightToLeft ? leadingCornerMaskImageView : trailingCornerMaskImageView
-        imageToFlip?.transform = CGAffineTransform(scaleX: -1, y: 1)
-
         authorImageView.layer.cornerRadius = 8
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        if lastImageViewSize != offerImageView.bounds.size {
+            let path = UIBezierPath(roundedRect: offerImageView.bounds,
+                                    byRoundingCorners: [.topRight, .topLeft],
+                                    cornerRadii: CGSize(width: 8, height: 8))
+
+            let maskLayer = CAShapeLayer()
+            maskLayer.path = path.cgPath
+            offerImageView.layer.mask = maskLayer
+            lastImageViewSize = offerImageView.bounds.size
+        }
     }
 
     func drawOffer() {

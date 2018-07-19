@@ -1,11 +1,11 @@
 //
-//  AlphaAnimatedTransitioning.swift
+//  AlphaTransitionAnimator.swift
 //  Kinit
 //
 
 import UIKit
 
-class AlphaAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
+class AlphaTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.5
     }

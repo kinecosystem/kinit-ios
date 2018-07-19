@@ -6,6 +6,7 @@
 import UIKit
 
 class OfferDetailsViewController: UIViewController {
+    var interactiveDismissal: SwipeDownInteractiveDismissal?
     var offer: Offer! {
         didSet {
             self.actionViewController = offer.actionViewController()
@@ -81,6 +82,8 @@ class OfferDetailsViewController: UIViewController {
         drawOffer()
 
         addAndFit(actionViewController!, to: actionView)
+
+        interactiveDismissal = SwipeDownInteractiveDismissal(viewController: self)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -90,6 +93,7 @@ class OfferDetailsViewController: UIViewController {
     }
 
     @IBAction func dismissTapped(_ sender: UIBarButtonItem) {
+        interactiveDismissal = nil
         dismiss(animated: true)
     }
 
@@ -171,5 +175,71 @@ extension OfferDetailsViewController {
                            offerName: offer.title,
                            offerType: offer.type)
             .send()
+    }
+}
+
+class SwipeDownInteractiveDismissal: UIPercentDrivenInteractiveTransition {
+    private weak var viewController: OfferDetailsViewController!
+
+    fileprivate let gestureRecognizer = UIPanGestureRecognizer()
+    private var interactionInProgress = false
+    var currentProgress: CGFloat = 0
+    private struct FinishTransitionThreshold {
+        static let progress: CGFloat = 0.5
+        static let yVelocity: CGFloat = 800
+    }
+
+    init(viewController: OfferDetailsViewController) {
+        self.viewController = viewController
+
+        super.init()
+        wireViewController()
+    }
+
+    private func wireViewController() {
+        gestureRecognizer.addTarget(self, action: #selector(handlePan))
+        gestureRecognizer.delegate = self
+        viewController.view.addGestureRecognizer(gestureRecognizer)
+    }
+
+    @objc func handlePan() {
+        let yTranslation = gestureRecognizer.translation(in: gestureRecognizer.view).y
+
+        switch gestureRecognizer.state {
+        case .began, .changed:
+            if !interactionInProgress {
+                viewController.dismiss(animated: true)
+                interactionInProgress = true
+            }
+
+            currentProgress = max(0, yTranslation / viewController.view.frame.height)
+            update(currentProgress)
+        case .cancelled, .failed:
+            cancel()
+        case .ended:
+            let yVelocity = gestureRecognizer.velocity(in: gestureRecognizer.view).y
+
+            if currentProgress > FinishTransitionThreshold.progress
+                || yVelocity > FinishTransitionThreshold.yVelocity {
+                finish()
+            } else {
+                cancel()
+            }
+        default:
+            break
+        }
+    }
+
+    override func cancel() {
+        super.cancel()
+
+        interactionInProgress = false
+    }
+}
+
+extension SwipeDownInteractiveDismissal: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        let velocity = self.gestureRecognizer.velocity(in: gestureRecognizer.view)
+        return velocity.y > 0 && velocity.y > abs(velocity.x)
     }
 }
