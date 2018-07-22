@@ -30,12 +30,17 @@ Submits a new build to the App Store
 ```
 fastlane ios release_build
 ```
-Builds a release build under the Kin Ecosystem account
+Builds a release build
 ### ios upload_ipa_to_testflight
 ```
 fastlane ios upload_ipa_to_testflight
 ```
 Uploads the current (or the latest built) ipa to testflight
+### ios fabric_beta
+```
+fastlane ios fabric_beta
+```
+Builds a release version and distributes (AdHoc) via Beta by Fabric
 
 ----
 

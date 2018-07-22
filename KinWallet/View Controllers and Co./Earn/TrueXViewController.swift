@@ -17,7 +17,7 @@ class TrueXViewController: WebViewController {
 
     var finished = false
     let configHash: String = {
-        #if DEBUG
+        #if DEBUG || RELEASE_STAGE
         return Configuration.shared.trueXConfigHashDebug!
         #else
         return Configuration.shared.trueXConfigHashProd!

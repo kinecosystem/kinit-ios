@@ -6,8 +6,6 @@
 #     https://docs.fastlane.tools/actions
 #
 
-update_fastlane
-
 default_platform(:ios)
 
 platform :ios do
@@ -37,16 +35,24 @@ platform :ios do
     )
   end
 
-  desc "Builds a release build under the Kin Ecosystem account"
-  lane :release_build do
-    update_project_team(teamid: ENV["KIN_ECOSYSTEM_TEAM_ID"])
-    sync_code_signing(git_branch: "kin-ecosystem-F879J8YSJ9", username: "fastlane@kinecosystem.com")
-    get_certificates(username: "fastlane@kinecosystem.com")
-    get_provisioning_profile(app_identifier: "org.kinecosystem.kinit", username: "fastlane@kinecosystem.com")
+  desc "Builds a release build"
+  lane :release_build do |options|
+    adhoc = options[:stage] ? true : false
+    build_scheme = options[:stage] ? "Kinit-ReleaseStage" : "Kinit"
+
     disable_automatic_code_signing
-    build_ios_app(scheme: "Kinit")
+    sync_code_signing(
+      git_branch: "kin-ecosystem-F879J8YSJ9",
+      username: "fastlane@kinecosystem.com",
+      force_for_new_devices: true,
+      type: adhoc ? "adhoc" : "appstore"
+    )
+    build_ios_app(
+      scheme: build_scheme,
+      export_method: adhoc ? "ad-hoc" : "app-store"
+    )
     notification(
-      subtitle: "Kinit",
+      subtitle: build_scheme,
       message: "Finished building v#{get_version_number} (build #{get_build_number})"
     )
   end
@@ -60,18 +66,22 @@ platform :ios do
     )
   end
 
+  desc "Builds a release version and distributes (AdHoc) via Beta by Fabric"
+  lane :fabric_beta do
+    release_build(stage: true)
+    crashlytics(crashlytics_path: "KinWallet/Crashlytics.framework/")
+  end
+
   after_all do
     git_commit(
       path: ["./KinWallet.xcodeproj/project.pbxproj", "./KinWallet/Info.plist"],
       message: "Build number bump"
     )
     enable_automatic_code_signing
-    update_project_team(teamid: ENV["KIN_ECOSYSTEM_TEAM_ID"])
   end
 
   error do |lane, exception, options|
     enable_automatic_code_signing
-    update_project_team(teamid: ENV["KIN_ECOSYSTEM_TEAM_ID"])
     notification(
       subtitle: "Error in lane #{lane}",
       message: exception.to_s

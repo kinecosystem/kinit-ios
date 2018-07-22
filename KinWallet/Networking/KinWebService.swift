@@ -19,7 +19,7 @@ final class KinWebService {
         var service: IdentifiableWebServiceProtocol
 
         func defaultService() -> IdentifiableWebServiceProtocol {
-            #if DEBUG
+            #if DEBUG || RELEASE_STAGE
                 return KinStagingService.shared
             #else
                 return KinProductionService.shared

@@ -23,7 +23,7 @@ struct Analytics {
     }
 
     static func start(userId: String?, deviceId: String?) {
-        #if DEBUG
+        #if DEBUG || RELEASE_STAGE
             guard let key = Configuration.shared.amplitudeKeyDebug else {
                 return
             }

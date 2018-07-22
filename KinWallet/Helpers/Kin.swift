@@ -45,7 +45,7 @@ class Kin {
         let url: URL
         let kinNetworkId: KinSDK.NetworkId
 
-        #if DEBUG
+        #if DEBUG || RELEASE_STAGE
         url = kinHorizonStageURL
         kinNetworkId = .playground
         #else

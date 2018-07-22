@@ -81,5 +81,5 @@ secrets.zip
 # Firebase
 KinWallet/GoogleService-Info-Staging.plist
 KinWallet/GoogleService-Info-Prod.plist
-KinWallet/GoogleService-Info-Staging-Beta.plist
-KinWallet/GoogleService-Info-Prod-Beta.plist
+
+.env.default

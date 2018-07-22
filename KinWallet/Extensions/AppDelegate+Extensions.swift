@@ -54,17 +54,10 @@ extension AppDelegate {
     }
 
     func firebaseFileName() -> String {
-        let fileName: String
-        #if DEBUG
-        fileName = "GoogleService-Info-Staging"
+        #if DEBUG || RELEASE_STAGE
+        return "GoogleService-Info-Staging"
         #else
-        fileName = "GoogleService-Info-Prod"
-        #endif
-
-        #if BETA
-        return fileName.appending("-Beta")
-        #else
-        return fileName
+        return "GoogleService-Info-Prod"
         #endif
     }
 }
