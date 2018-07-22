@@ -74,7 +74,12 @@ platform :ios do
 
   after_all do
     git_commit(
-      path: ["./KinWallet.xcodeproj/project.pbxproj", "./KinWallet/Info.plist"],
+      path: [
+        "./KinWallet.xcodeproj/project.pbxproj",
+        "./KinWallet/Info.plist"
+        "./KinWalletTests/Info.plist"
+        "./KinWalletUITests/Info.plist"
+      ],
       message: "Build number bump"
     )
     enable_automatic_code_signing
