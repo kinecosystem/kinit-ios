@@ -20,7 +20,9 @@ class WebViewController: UIViewController {
         let controller = WKUserContentController()
         controller.addUserScript(viewportScript)
         let config = WKWebViewConfiguration()
+        config.allowsInlineMediaPlayback = true
         config.userContentController = controller
+
         return WKWebView(frame: .zero, configuration: config)
     }()
 
