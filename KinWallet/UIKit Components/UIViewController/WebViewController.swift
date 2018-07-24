@@ -33,8 +33,11 @@ class WebViewController: UIViewController {
         return a
     }()
 
-    override func loadView() {
-        self.view = webView
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.backgroundColor = .white
+        view.addAndFit(webView, layoutReference: .safeArea)
         webView.addAndCenter(activityIndicatorView)
     }
 }

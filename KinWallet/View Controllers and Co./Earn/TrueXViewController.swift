@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import WebKit
+import SafariServices
 
 protocol TrueXViewControllerDelegate: class {
     func trueXLoadingDidFail()
@@ -14,8 +16,11 @@ protocol TrueXViewControllerDelegate: class {
 class TrueXViewController: WebViewController {
     var task: Task!
     weak var delegate: TrueXViewControllerDelegate?
+    var safariViewController: SFSafariViewController?
 
-    var finished = false
+    var pushedTaskCompleted  = false
+    var activityFinished = false
+
     let configHash: String = {
         #if DEBUG || RELEASE_STAGE
         return Configuration.shared.trueXConfigHashDebug!
@@ -37,6 +42,7 @@ class TrueXViewController: WebViewController {
 
         webView.loadHTMLString(htmlString, baseURL: baseURL)
         webView.bridge.printScriptMessageAutomatically = true
+        webView.uiDelegate = self
         registerBridge()
     }
 
@@ -52,6 +58,14 @@ class TrueXViewController: WebViewController {
         super.viewWillAppear(animated)
 
         navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if activityFinished {
+            moveOn()
+        }
     }
 
     private func loadActivity() {
@@ -142,6 +156,7 @@ class TrueXViewController: WebViewController {
 
     private func trueXActivityFinished() {
         KLogVerbose("trueXActivityFinished")
+        activityFinished = true
         moveOn()
     }
 
@@ -150,14 +165,32 @@ class TrueXViewController: WebViewController {
     }
 
     private func moveOn() {
-        guard !finished else {
+        guard !pushedTaskCompleted  else {
             return
         }
 
-        finished = true
+        pushedTaskCompleted  = true
 
         let taskCompleted = StoryboardScene.Earn.taskCompletedViewController.instantiate()
         taskCompleted.task = task
         navigationController?.pushViewController(taskCompleted, animated: true)
+    }
+}
+
+extension TrueXViewController: WKUIDelegate {
+    func webView(_ webView: WKWebView,
+                 createWebViewWith configuration: WKWebViewConfiguration,
+                 for navigationAction: WKNavigationAction,
+                 windowFeatures: WKWindowFeatures) -> WKWebView? {
+        guard let url = navigationAction.request.url else {
+            return nil
+        }
+
+        KLogDebug("WebViewDelegate asking \(navigationAction.request.url?.absoluteString ?? "No URL") with \(navigationAction.navigationType)")
+
+        safariViewController = SFSafariViewController(url: url)
+        navigationController!.present(safariViewController!, animated: true)
+
+        return nil
     }
 }
