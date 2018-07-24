@@ -13,7 +13,7 @@ enum LayoutReference {
 extension UIView {
     func addAndFit(_ subview: UIView, layoutReference: LayoutReference = .superview) {
         addSubview(subview)
-        subview.fitInSuperview()
+        subview.fitInSuperview(with: layoutReference)
     }
 
     func addAndCenter(_ subview: UIView) {
