@@ -143,6 +143,10 @@ internal enum L10n {
   }
   /// Looks Like Your Balance Is a Bit Low
   internal static let sendKinLowBalanceErrorTitle = L10n.tr("Localizable", "SendKinLowBalanceErrorTitle")
+  /// You cannot send Kin to yourself, right? 😉
+  internal static let sendKinToSelfErrorMessage = L10n.tr("Localizable", "SendKinToSelfErrorMessage")
+  /// You chose yourself!
+  internal static let sendKinToSelfErrorTitle = L10n.tr("Localizable", "SendKinToSelfErrorTitle")
   /// Please try again later. If you continue to see this message, please reach out to support.
   internal static let sendKinTransactionFailedErrorMessage = L10n.tr("Localizable", "SendKinTransactionFailedErrorMessage")
   /// Houston We Have a Server Problem

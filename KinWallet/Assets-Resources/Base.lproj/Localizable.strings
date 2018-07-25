@@ -139,6 +139,10 @@
 
 "SendKinContactNotFoundErrorMessage" = "Maybe send your friends to the app store?";
 
+"SendKinToSelfErrorTitle" = "You chose yourself!";
+
+"SendKinToSelfErrorMessage" = "You cannot send Kin to yourself, right? 😉";
+
 "SendKinAction" = "Send Kin";
 
 "SendingKin" = "Sending Kin";

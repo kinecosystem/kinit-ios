@@ -30,14 +30,26 @@ class SendKinOfferActionViewController: SpendOfferActionViewController {
     }
 
     fileprivate func contactNotFound() {
-        let alertController = UIAlertController(title: L10n.sendKinContactNotFoundErrorTitle,
-                                                message: L10n.sendKinContactNotFoundErrorMessage,
+        presentErrorAlert(title: L10n.sendKinContactNotFoundErrorTitle,
+                          message: L10n.sendKinContactNotFoundErrorMessage,
+                          errorType: .friendNotExists)
+    }
+
+    fileprivate func alertCannotSendToSelf() {
+        presentErrorAlert(title: L10n.sendKinToSelfErrorTitle,
+                          message: L10n.sendKinToSelfErrorMessage,
+                          errorType: .sendKinToSelf)
+    }
+
+    func presentErrorAlert(title: String?, message: String?, errorType: Events.ErrorType) {
+        let alertController = UIAlertController(title: title,
+                                                message: message,
                                                 preferredStyle: .alert)
         alertController.addAction(.ok())
         present(alertController, animated: true)
 
         Events.Analytics
-            .ViewErrorPopupOnSendKinPage(errorType: .friendNotExists)
+            .ViewErrorPopupOnSendKinPage(errorType: errorType)
             .send()
     }
 }
@@ -75,6 +87,11 @@ extension SendKinOfferActionViewController: CNContactPickerDelegate {
 
                 guard let address = address else {
                     self.contactNotFound()
+                    return
+                }
+
+                guard address != User.current?.publicAddress else {
+                    self.alertCannotSendToSelf()
                     return
                 }
 

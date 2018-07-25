@@ -2,7 +2,7 @@
 // BIEvents.swift
 //
 // Don't edit this file.
-// Generated at 2018-07-05 13:10:06 +0000 by Kik BI-Generator.
+// Generated at 2018-07-25 09:25:04 +0000 by Kik BI-Generator.
 //
 
 protocol BIEvent {
@@ -127,6 +127,7 @@ struct Events {
         case offerNotAvailable = "Offer not available"
         case onboarding = "Onboarding"
         case reward = "Reward"
+        case sendKinToSelf = "Send Kin to self"
         case taskSubmission = "Task Submission"
     }
     
