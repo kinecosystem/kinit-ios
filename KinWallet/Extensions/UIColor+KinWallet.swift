@@ -21,6 +21,9 @@ struct KinColors {
 
     let cadetBlue = UIColor(red: 164, green: 172, blue: 194)
     let brightBlue = UIColor(red: 130, green: 255, blue: 238)
+
+    let quizAnswerCorrect = UIColor(red: 135, green: 230, blue: 32)
+    let quizAnswerWrong = UIColor(red: 252, green: 98, blue: 79)
 }
 
 extension UIColor {

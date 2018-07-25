@@ -153,6 +153,8 @@ internal enum L10n {
   internal static let spendYourKin = L10n.tr("Localizable", "SpendYourKin")
   /// Support
   internal static let support = L10n.tr("Localizable", "Support")
+  /// Tap to continue
+  internal static let tapToContinue = L10n.tr("Localizable", "TapToContinue")
   /// Tap to finish
   internal static let tapToFinish = L10n.tr("Localizable", "TapToFinish")
   /// To make sure you get your Kin, hit close below and continue on the next screen.

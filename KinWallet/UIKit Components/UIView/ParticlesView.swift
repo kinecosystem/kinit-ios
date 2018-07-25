@@ -16,7 +16,6 @@ class ParticlesView: UIView {
         let intensity = Float(0.5)
 
         emitter = CAEmitterLayer()
-        emitter.backgroundColor = UIColor.green.cgColor
         emitter.emitterShape = kCAEmitterLayerLine
         emitter.emitterCells = (0..<16).map {
             let cell = CAEmitterCell()

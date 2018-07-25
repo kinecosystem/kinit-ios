@@ -95,10 +95,7 @@ final class SurveyInfoViewController: UIViewController {
         authorNameLabel.text = L10n.activityAuthor(task.author.name)
         titleLabel.text = task.title
         subtitleLabel.text = task.subtitle
-
-        let rewardString = KinAmountFormatter().string(from: NSNumber(value: task.kinReward))
-            ?? String(describing: task.kinReward)
-        rewardLabel.text = "+ \(rewardString) KIN"
+        rewardLabel.text = task.formattedReward
 
         averageTimeLabel.text = format(minutes: task.minutesToComplete)
 

@@ -7,6 +7,7 @@ import Foundation
 
 enum TaskType: String, Codable {
     case questionnaire
+    case quiz
     case videoQuestionnaire = "video_questionnaire"
     case trueX = "truex"
 }
@@ -44,15 +45,56 @@ struct Task: Codable {
 }
 
 extension Task {
-    var startDate: Date {
-        return Date(timeIntervalSince1970: startAt)
-    }
-
     private static let dateFormatter: DateFormatter = {
         let f = DateFormatter()
         f.dateFormat = "MMM dd"
         return f
     }()
+
+    var startDate: Date {
+        return Date(timeIntervalSince1970: startAt)
+    }
+
+    var formattedReward: String {
+        let formatter = KinAmountFormatter()
+        let rewardAmount: UInt
+        let prefix: String
+
+        if type == .quiz {
+            rewardAmount = maximumReward
+            prefix = "Up to"
+        } else {
+            rewardAmount = kinReward
+            prefix = "+"
+        }
+
+        let rewardAmountFormatted = formatter.string(from: NSNumber(value: rewardAmount))
+            ?? String(describing: rewardAmount)
+        return "\(prefix) \(rewardAmountFormatted) KIN"
+    }
+
+    var maximumReward: UInt {
+        return kinReward + questions.compactMap({ $0.quizData }).reduce(0) {
+            $0 + $1.reward
+        }
+    }
+
+    func calculateReward(for taskResults: TaskResults) -> UInt {
+        var answersReward: UInt = 0
+        let quizDataByQuestionId = questions.reduce(into: [String: QuizData]()) {
+            $0[$1.identifier] = $1.quizData
+        }
+
+        for result in taskResults.results {
+            if let quizData = quizDataByQuestionId[result.questionId],
+                let selectedAnswer = result.resultIds.first,
+                quizData.correctAnswerId == selectedAnswer {
+                answersReward += quizData.reward
+            }
+        }
+
+        return kinReward + answersReward
+    }
 
     func prefetchImages() {
         let answersImageURLs = questions
@@ -112,6 +154,8 @@ extension TaskType {
             return .videoQuestionnaire
         case .trueX:
             return .truex
+        case .quiz:
+            return .quiz
         }
     }
 }

@@ -11,6 +11,7 @@ enum AnswerCelebration {
     case none
     case particles([UIImage])
     case centeredEmoji(String)
+    case quiz(correctAnswerId: String)
 }
 
 extension AnswerCelebration: Equatable {
@@ -205,7 +206,7 @@ final class QuestionViewController: UIViewController {
         nextButton?.alpha = 0
 
         let answers = collectionViewDataSource.selectedAnswerIds
-        let selectedResult = SelectedResult(taskId: question.identifier,
+        let selectedResult = SelectedResult(questionId: question.identifier,
                                     resultIds: Array(answers))
         let updateDelegateSelection = {
             qDelegate.questionViewController(self,
@@ -222,12 +223,25 @@ final class QuestionViewController: UIViewController {
             .filter { $0.indexPath.item == answerIndex }
             .first!
 
-        let celebration = celebrationForSelecting(answer)
-        switch celebration {
+        let celebrationToUse = celebration(forSelecting: answer)
+        switch celebrationToUse {
         case .centeredEmoji(let emojiString):
             celebrateCenteredEmoji(at: cell, with: emojiString, completion: updateDelegateSelection)
         case .particles(let images):
             celebrateParticles(from: cell, with: images, completion: updateDelegateSelection)
+        case .quiz(let correctAnswerId):
+            let correctAnswerIndex = question.results.index(where: { $0.identifier == correctAnswerId })!
+            let correctAnswerCell: SurveyAnswerCollectionViewCell
+
+            if cell.indexPath.item == correctAnswerIndex {
+                correctAnswerCell = cell
+            } else {
+                let indexPath = IndexPath(item: correctAnswerIndex, section: 0)
+                //swiftlint:disable:next force_cast
+                correctAnswerCell = collectionView.cellForItem(at: indexPath) as! SurveyAnswerCollectionViewCell
+            }
+
+            celebrateQuizAnswer(selected: cell, correct: correctAnswerCell, completion: updateDelegateSelection)
         default:
             updateDelegateSelection()
         }
@@ -245,69 +259,5 @@ final class QuestionViewController: UIViewController {
     private func enableCellsInteraction(_ enable: Bool) {
         collectionView.visibleCells
             .forEach { $0.isUserInteractionEnabled = enable }
-    }
-
-    private func celebrationForSelecting(_ result: Result) -> AnswerCelebration {
-        switch question.type {
-        case .tip:
-            guard let tipAmount = result.tipAmount, tipAmount > 0 else {
-                return .none
-            }
-
-            return .particles([Asset.smallHeart.image, Asset.kinCoin.image])
-        case .dualImage:
-            return .centeredEmoji("😍")
-        default:
-            return .none
-        }
-    }
-
-    private func celebrateParticles(from originView: UIView,
-                                    with images: [UIImage],
-                                    completion: @escaping () -> Void) {
-        let particlesView = ParticlesView()
-        particlesView.images = [Asset.smallHeart.image, Asset.kinCoin.image]
-
-        let originInViewFrame = collectionView
-            .convert(originView.frame, to: view)
-        particlesView.frame = CGRect(x: 0,
-                                     y: 0,
-                                     width: view.frame.width,
-                                     height: originInViewFrame.minY)
-        particlesView.emitterSize = CGSize(width: originInViewFrame.width, height: 1)
-        particlesView.emitterPosition = CGPoint(x: originInViewFrame.minX + originInViewFrame.width/2,
-                                                y: particlesView.frame.height)
-        view.addSubview(particlesView)
-        particlesView.startAndStop()
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-            completion()
-        }
-    }
-
-    private func celebrateCenteredEmoji(at view: UIView,
-                                        with string: String,
-                                        completion: @escaping () -> Void) {
-        let blueAlphaView = UIView()
-        blueAlphaView.backgroundColor = UIColor.kin.appTint.withAlphaComponent(0.5)
-        let emojiLabel = UILabel()
-        emojiLabel.font = UIFont.systemFont(ofSize: 40)
-        emojiLabel.text = string
-        emojiLabel.transform = .init(scaleX: 0.5, y: 0.5)
-        emojiLabel.alpha = 0.8
-
-        blueAlphaView.addAndCenter(emojiLabel)
-        blueAlphaView.alpha = 0
-
-        view.addAndFit(blueAlphaView)
-        UIView.animate(withDuration: 0.2) {
-            blueAlphaView.alpha = 1
-            emojiLabel.transform = .identity
-            emojiLabel.alpha = 1
-        }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            completion()
-        }
     }
 }
