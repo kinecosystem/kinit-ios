@@ -66,6 +66,10 @@ final class SurveyViewController: UIViewController {
     private(set) var currentQuestionIndex = 0
     private var selectedAnswers = [SelectedAnswer]()
 
+    private var currentChildViewController: UIViewController? {
+        return childViewControllers.first
+    }
+
     class func embeddedInNavigationController(with task: Task,
                                               delegate: SurveyViewControllerDelegate) -> UINavigationController {
         let surveyVC = SurveyViewController(task: task, delegate: delegate)
@@ -140,28 +144,11 @@ final class SurveyViewController: UIViewController {
         let question = task.questions[currentQuestionIndex]
         let animateProgress: Bool
 
-        if let current = childViewControllers.first as? QuestionViewController {
+        if let current = currentChildViewController {
             let questionViewController = QuestionViewController(question: question,
                                                                 questionDelegate: self,
                                                                 isInitialQuestion: false)
-            let width = view.frame.width
-            addAndFit(questionViewController)
-            questionViewController.view.applyTransitionAttributes(for: .appearing, width: width)
-
-            UIView.animateKeyframes(withDuration: Constants.QuestionChangeAnimation.duration,
-                                    delay: 0.1,
-                                    options: [],
-                                    animations: {
-                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5) {
-                    current.view.applyTransitionAttributes(for: .disappearing, width: width)
-                }
-                UIView.addKeyframe(withRelativeStartTime: 0.4, relativeDuration: 1.0) {
-                    questionViewController.view.applyTransitionAttributes(for: .showing, width: 0)
-                }
-            }, completion: { _ in
-                current.remove()
-            })
-
+            insertNext(questionViewController, insteadOf: current)
             animateProgress = true
         } else {
             let questionViewController = QuestionViewController(question: question,
@@ -176,7 +163,31 @@ final class SurveyViewController: UIViewController {
         logQuestionShown(question, at: currentQuestionIndex)
     }
 
-    func updateProgress(_ progress: Float, animated: Bool, completion: (() -> Void)? = nil) {
+    fileprivate func insertNext(_ viewController: UIViewController, insteadOf current: UIViewController) {
+        let width = view.frame.width
+        addAndFit(viewController)
+        viewController.view.applyTransitionAttributes(for: .appearing, width: width)
+        let duration = Constants.QuestionChangeAnimation.duration
+
+        UIView.animateKeyframes(withDuration: duration, delay: 0.1, options: [], animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5) {
+                current.view.applyTransitionAttributes(for: .disappearing, width: width)
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.4, relativeDuration: 1.0) {
+                viewController.view.applyTransitionAttributes(for: .showing, width: 0)
+            }
+        }, completion: nil)
+
+        // When calling remove() in a UIViewController in the completion block,
+        // apparently the view's safe area insets are changed immediately.
+        // Doing so makes sure they are removed a few seconds later, which
+        // has no harm and also don't change the safe area insets.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [weak current] in
+            current?.remove()
+        }
+    }
+
+    fileprivate func updateProgress(_ progress: Float, animated: Bool, completion: (() -> Void)? = nil) {
         let percentText = "\(Int(progress*100))%"
 
         if !animated {
@@ -248,14 +259,27 @@ extension SurveyViewController: QuestionViewControllerDelegate {
 
         currentQuestionIndex = selectedAnswers.count
 
-        if currentQuestionIndex < task.questions.count {
-            showNextQuestion()
+        if let quizData = question.quizData {
+            let quizQuestionExplanation = StoryboardScene.Earn.quizQuestionExplanationViewController.instantiate()
+            quizQuestionExplanation.explanation = quizData.explanation
+            quizQuestionExplanation.delegate = self
+            insertNext(quizQuestionExplanation, insteadOf: currentChildViewController!)
         } else {
-            updateProgress(1, animated: true) {
-                self.showSurveyComplete(results: results)
+            if currentQuestionIndex < task.questions.count {
+                showNextQuestion()
+            } else {
+                updateProgress(1, animated: true) {
+                    self.showSurveyComplete(results: results)
+                }
+                logTaskCompleted()
             }
-            logTaskCompleted()
         }
+    }
+}
+
+extension SurveyViewController: QuizQuestionExplanationDelegate {
+    func quizQuestionExplanationDidTapNext() {
+        showNextQuestion()
     }
 }
 

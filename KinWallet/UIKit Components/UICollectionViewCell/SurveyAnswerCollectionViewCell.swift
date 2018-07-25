@@ -33,6 +33,10 @@ class SurveyAnswerCollectionViewCell: UICollectionViewCell {
     var indexPath: IndexPath!
     var isTouchHappening = false
 
+    // this property only has effect when `shouldTintOnSelection` is set to true
+    var shouldRemainTintedAfterSelection = true
+    var shouldTintOnSelection = true
+
     override var isSelected: Bool {
         didSet {
             applySelectedLook(isSelected)
@@ -40,6 +44,10 @@ class SurveyAnswerCollectionViewCell: UICollectionViewCell {
     }
 
     func applySelectedLook(_ selected: Bool) {
+        guard shouldTintOnSelection else {
+            return
+        }
+
         titleLabel?.textColor = selected
             ? Constants.Highlighted.textColor
             : Constants.Normal.textColor
@@ -124,12 +132,17 @@ class SurveyAnswerCollectionViewCell: UICollectionViewCell {
 
     func commitToggleSelection(_ sender: UIControl) {
         didEndTouching(sender)
-        isSelected.toggle()
 
-        if isSelected {
+        if !isSelected {
             delegate?.surveyAnswerCellDidSelect(self)
         } else {
             delegate?.surveyAnswerCellDidDeselect(self)
+        }
+
+        isSelected.toggle()
+
+        if !shouldRemainTintedAfterSelection && isSelected {
+            applySelectedLook(false)
         }
 
         didToggleAnswer = false
@@ -164,6 +177,19 @@ class SurveyAnswerCollectionViewCell: UICollectionViewCell {
             delegate?.surveyAnswerCellDidCancelSelecting(self)
             applySelectedLook(isSelected)
         }
+    }
+}
+
+// Methods for marking quiz answers correct or wrong
+extension SurveyAnswerCollectionViewCell {
+    func markQuizAnswered(correct: Bool) {
+        let color = correct
+            ? UIColor.kin.quizAnswerCorrect
+            : UIColor.kin.quizAnswerWrong
+        titleLabel?.textColor = .white
+
+        backgroundImageView?.tintColor = color
+        backgroundImageView?.image = selectedBackgroundImage?.withRenderingMode(.alwaysTemplate)
     }
 }
 

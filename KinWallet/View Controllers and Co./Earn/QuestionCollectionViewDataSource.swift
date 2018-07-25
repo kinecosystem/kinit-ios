@@ -75,6 +75,9 @@ final class QuestionCollectionViewDataSource: NSObject {
                                     for: answer,
                                     questionType: question.type,
                                     indexPath: indexPath)
+        cell.shouldRemainTintedAfterSelection = question.quizData == nil
+        cell.shouldTintOnSelection = question.quizData == nil
+
         cell.isSelected = selectedAnswerIds.contains(answer.identifier)
 
         return cell

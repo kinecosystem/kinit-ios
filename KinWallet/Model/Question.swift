@@ -17,6 +17,7 @@ enum QuestionType: String, Codable {
 struct Question: Codable {
     let identifier: String
     let imageURL: URL?
+    let quizData: QuizData?
     let text: String
     let type: QuestionType
     let results: [Result]
@@ -24,6 +25,7 @@ struct Question: Codable {
     enum CodingKeys: String, CodingKey {
         case identifier = "id"
         case imageURL = "image_url"
+        case quizData = "quiz_data"
         case text
         case type
         case results

@@ -31,30 +31,32 @@ extension UIImageView {
         objc_setAssociatedObject(self, &identifierKey, remoteURL, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 
         ResourceDownloader.shared.requestResource(url: remoteURL) { (url, origin, _) in
+            guard let url = url else {
+                return
+            }
+
             DispatchQueue.main.async {
-                guard let url = url else {
+                let identifier = objc_getAssociatedObject(self, &identifierKey) as? URL
+
+                guard remoteURL == identifier else {
                     return
                 }
 
-                let identifier = objc_getAssociatedObject(self, &identifierKey) as? URL
-
-                if remoteURL == identifier {
-                    let applyImage = {
-                        if let image = UIImage(contentsOfFile: url.path) {
-                            self.image = image
-                            completion?(image)
-                        }
+                let applyImage = {
+                    if let image = UIImage(contentsOfFile: url.path) {
+                        self.image = image
+                        completion?(image)
                     }
+                }
 
-                    if origin == .remote {
-                        UIView.transition(with: self,
-                                          duration: transitionDuration,
-                                          options: .transitionCrossDissolve,
-                                          animations: applyImage,
-                                          completion: nil)
-                    } else {
-                        applyImage()
-                    }
+                if origin == .remote {
+                    UIView.transition(with: self,
+                                      duration: transitionDuration,
+                                      options: .transitionCrossDissolve,
+                                      animations: applyImage,
+                                      completion: nil)
+                } else {
+                    applyImage()
                 }
             }
         }

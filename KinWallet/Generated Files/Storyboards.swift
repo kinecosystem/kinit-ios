@@ -58,6 +58,8 @@ internal enum StoryboardScene {
 
     internal static let earnKinAnimationViewController = SceneType<EarnKinAnimationViewController>(storyboard: Earn.self, identifier: "EarnKinAnimationViewController")
 
+    internal static let quizQuestionExplanationViewController = SceneType<QuizQuestionExplanationViewController>(storyboard: Earn.self, identifier: "QuizQuestionExplanationViewController")
+
     internal static let surveyDoneViewController = SceneType<SurveyDoneViewController>(storyboard: Earn.self, identifier: "SurveyDoneViewController")
 
     internal static let surveyInfoViewController = SceneType<SurveyInfoViewController>(storyboard: Earn.self, identifier: "SurveyInfoViewController")

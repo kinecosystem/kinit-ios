@@ -83,6 +83,9 @@ internal enum Asset {
   internal static let paymentDelay = ImageAsset(name: "PaymentDelay")
   internal static let progressViewGradient = ImageAsset(name: "ProgressViewGradient")
   internal static let progressViewTrack = ImageAsset(name: "ProgressViewTrack")
+  internal static let quizConfettiOval = ImageAsset(name: "QuizConfettiOval")
+  internal static let quizConfettiRectangle = ImageAsset(name: "QuizConfettiRectangle")
+  internal static let quizConfettiTriangle = ImageAsset(name: "QuizConfettiTriangle")
   internal static let recordsLedger = ImageAsset(name: "RecordsLedger")
   internal static let redeemBubble = ImageAsset(name: "RedeemBubble")
   internal static let smallHeart = ImageAsset(name: "SmallHeart")
@@ -101,6 +104,7 @@ internal enum Asset {
   internal static let welcomeTutorial2 = ImageAsset(name: "WelcomeTutorial2")
   internal static let welcomeTutorial3 = ImageAsset(name: "WelcomeTutorial3")
   internal static let whiteCheckmark = ImageAsset(name: "WhiteCheckmark")
+  internal static let lightbulb = ImageAsset(name: "lightbulb")
 
   // swiftlint:disable trailing_comma
   internal static let allColors: [ColorAsset] = [
@@ -145,6 +149,9 @@ internal enum Asset {
     paymentDelay,
     progressViewGradient,
     progressViewTrack,
+    quizConfettiOval,
+    quizConfettiRectangle,
+    quizConfettiTriangle,
     recordsLedger,
     redeemBubble,
     smallHeart,
@@ -163,6 +170,7 @@ internal enum Asset {
     welcomeTutorial2,
     welcomeTutorial3,
     whiteCheckmark,
+    lightbulb,
   ]
   // swiftlint:enable trailing_comma
   @available(*, deprecated, renamed: "allImages")

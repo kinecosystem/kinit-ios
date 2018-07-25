@@ -6,11 +6,11 @@
 import Foundation
 
 struct SelectedResult: Codable {
-    let taskId: String
+    let questionId: String
     let resultIds: [String]
 
     enum CodingKeys: String, CodingKey {
-        case taskId = "qid"
+        case questionId = "qid"
         case resultIds = "aid"
     }
 }

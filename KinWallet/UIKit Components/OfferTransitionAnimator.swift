@@ -34,7 +34,7 @@ struct AnimationContext<T: UIView> {
 }
 
 class OfferTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
-    private let moveAnimationDuration: TimeInterval = 5
+    private let moveAnimationDuration: TimeInterval = 0.5
     private let delayBetweenMoves: TimeInterval = 0.07
     let isPresenting: Bool
     let animationContexts: [AnimationContext<UIView>]
