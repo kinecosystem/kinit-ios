@@ -76,9 +76,9 @@ platform :ios do
     git_commit(
       path: [
         "./KinWallet.xcodeproj/project.pbxproj",
-        "./KinWallet/Info.plist"
-        "./KinWalletTests/Info.plist"
-        "./KinWalletUITests/Info.plist"
+        "./KinWallet/Info.plist",
+        "./KinWalletTests/Info.plist",
+        "./KinWalletUITests/Info.plist",
       ],
       message: "Build number bump"
     )
