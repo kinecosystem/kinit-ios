@@ -37,22 +37,22 @@ platform :ios do
 
   desc "Builds a release build"
   lane :release_build do |options|
-    adhoc = options[:stage] ? true : false
-    build_scheme = options[:stage] ? "Kinit-ReleaseStage" : "Kinit"
+    adhoc = options[:adhoc] ? true : false
+    build_type = adhoc ? "adhoc" : "appstore"
 
     disable_automatic_code_signing
     sync_code_signing(
       git_branch: "kin-ecosystem-F879J8YSJ9",
       username: "fastlane@kinecosystem.com",
       force_for_new_devices: true,
-      type: adhoc ? "adhoc" : "appstore"
+      type: build_type
     )
     build_ios_app(
-      scheme: build_scheme,
+      scheme: "Kinit",
       export_method: adhoc ? "ad-hoc" : "app-store"
     )
     notification(
-      subtitle: build_scheme,
+      subtitle: build_type,
       message: "Finished building v#{get_version_number} (build #{get_build_number})"
     )
   end
@@ -68,7 +68,7 @@ platform :ios do
 
   desc "Builds a release version and distributes (AdHoc) via Beta by Fabric"
   lane :fabric_beta do
-    release_build(stage: true)
+    release_build(adhoc: true)
     crashlytics(crashlytics_path: "KinWallet/Crashlytics.framework/")
   end
 
