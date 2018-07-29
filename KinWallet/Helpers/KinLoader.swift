@@ -69,7 +69,7 @@ class KinLoader {
                 let shouldPersistAndUpdate: Bool
 
                 if let cached = cachedTask, cached.identifier == task.identifier {
-                    shouldPersistAndUpdate = task.updatedAt > cached.updatedAt
+                    shouldPersistAndUpdate = task.updatedAt > cached.updatedAt || task.startDate != cached.startDate
                 } else {
                     shouldPersistAndUpdate = true
                 }
