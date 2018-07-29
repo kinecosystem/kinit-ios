@@ -232,6 +232,10 @@ final class SurveyViewController: UIViewController {
 
 extension SurveyViewController: QuestionViewControllerDelegate {
     func questionViewController(_ viewController: QuestionViewController, didSelect selectedAnswer: SelectedAnswer) {
+        guard !selectedAnswers.contains(where: { selectedAnswer.questionId == $0.questionId }) else {
+            return
+        }
+
         viewController.view.isUserInteractionEnabled = false
 
         let question = task.questions[currentQuestionIndex]
