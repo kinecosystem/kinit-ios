@@ -222,11 +222,6 @@ class RootViewController: UIViewController {
             return
         }
 
-        if let config = RemoteConfig.current,
-            config.phoneVerificationEnabled.boolValue {
-            UserDefaults.standard.set(true, forKey: startedPhoneVerificationKey)
-        }
-
         let pushWelcome = {
             let welcome = StoryboardScene.Main.welcomeViewController.instantiate()
             splashNavigationController.pushViewController(welcome, animated: true)

@@ -30,10 +30,6 @@ final class SurveyHomeViewController: UIViewController {
                                                selector: #selector(splashScreenWillDismiss),
                                                name: .SplashScreenWillDismiss,
                                                object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(splashScreenDidDismiss),
-                                               name: .SplashScreenDidDismiss,
-                                               object: nil)
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -55,40 +51,6 @@ final class SurveyHomeViewController: UIViewController {
         } else {
             showTaskUnavailable(task, error: nil)
         }
-    }
-
-    private func requestToVerifyPhoneIfNeeded() {
-        guard User.current?.phoneNumber == nil,
-            RemoteConfig.current?.phoneVerificationEnabled == true,
-            !AppDelegate.shared.isShowingSplashScreen,
-            presentedViewController == nil else {
-                return
-        }
-
-        let alertController = UIAlertController(title: "Help us keep your Kin safe",
-                                                message: "Please verify your phone number",
-                                                preferredStyle: .alert)
-        alertController.addAction(.init(title: "Verify my account", style: .default) { [weak self] _ in
-            guard let aSelf = self else {
-                return
-            }
-
-            aSelf.logClickedVerifyPhoneAuthPopup()
-
-            #if !targetEnvironment(simulator)
-            let phoneVerification = StoryboardScene.Main.phoneVerificationRequestViewController.instantiate()
-            let navController = UINavigationController(rootViewController: phoneVerification)
-            aSelf.present(navController, animated: true, completion: nil)
-            #endif
-            })
-
-        present(alertController, animated: true) {
-            #if targetEnvironment(simulator)
-            self.dismiss(animated: true)
-            #endif
-        }
-
-        logViewedPhoneAuthPopup()
     }
 
     func showTaskAvailable(_ task: Task) {
@@ -121,14 +83,6 @@ final class SurveyHomeViewController: UIViewController {
         showEarnAnimationIfNeeded(surveyInfo: surveyInfo)
     }
 
-    @objc func splashScreenDidDismiss() {
-        if (childViewControllers.first as? SurveyInfoViewController) != nil {
-            return
-        }
-
-        requestToVerifyPhoneIfNeeded()
-    }
-
     func showEarnAnimationIfNeeded(surveyInfo: SurveyInfoViewController) {
         guard
             !AppDelegate.shared.isShowingSplashScreen,
@@ -155,7 +109,6 @@ final class SurveyHomeViewController: UIViewController {
         }, completion: { _ in
             earnAnimationViewController.remove()
             self.animatingEarn = false
-            self.requestToVerifyPhoneIfNeeded()
         })
     }
 
@@ -166,10 +119,6 @@ final class SurveyHomeViewController: UIViewController {
         surveyUnavailable.task = task
         surveyUnavailable.error = error
         add(surveyUnavailable) { $0.fitInSuperview(with: .safeArea) }
-
-        if error == nil {
-            requestToVerifyPhoneIfNeeded()
-        }
     }
 }
 
@@ -180,15 +129,5 @@ extension SurveyHomeViewController: SurveyViewControllerDelegate {
 
     func surveyViewController(_ viewController: SurveyViewController, didFinishWith results: TaskResults) {
         showTaskUnavailable(nil, error: nil)
-    }
-}
-
-extension SurveyHomeViewController {
-    fileprivate func logViewedPhoneAuthPopup() {
-        Events.Analytics.ViewPhoneAuthPopup().send()
-    }
-
-    fileprivate func logClickedVerifyPhoneAuthPopup() {
-        Events.Analytics.ClickVerifyButtonOnPhoneAuthPopup().send()
     }
 }

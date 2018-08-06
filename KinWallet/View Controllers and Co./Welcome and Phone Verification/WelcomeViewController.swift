@@ -130,16 +130,13 @@ final class WelcomeViewController: UIViewController {
 
         #if targetEnvironment(simulator)
 
-        AppDelegate.shared.dismissSplashIfNeeded()
+        //AppDelegate.shared.dismissSplashIfNeeded()
+        //create wallet
 
         #else
 
-        if RemoteConfig.current?.phoneVerificationEnabled == true {
-            let phoneVerification = StoryboardScene.Main.phoneVerificationRequestViewController.instantiate()
-            navigationController?.pushViewController(phoneVerification, animated: true)
-        } else {
-            AppDelegate.shared.dismissSplashIfNeeded()
-        }
+        let phoneVerification = StoryboardScene.Main.phoneVerificationRequestViewController.instantiate()
+        navigationController?.pushViewController(phoneVerification, animated: true)
 
         #endif
     }

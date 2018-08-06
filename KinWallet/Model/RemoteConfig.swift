@@ -11,7 +11,6 @@ struct RemoteConfig: Codable {
     let peerToPeerMaxKin: UInt?
     let peerToPeerMinKin: UInt?
     let peerToPeerMinTasks: UInt?
-    let phoneVerificationEnabled: Bool?
     let termsOfService: URL?
 
     enum CodingKeys: CodingKey, String {
@@ -20,7 +19,6 @@ struct RemoteConfig: Codable {
         case peerToPeerMaxKin = "p2p_max_kin"
         case peerToPeerMinKin = "p2p_min_kin"
         case peerToPeerMinTasks = "p2p_min_tasks"
-        case phoneVerificationEnabled = "phone_verification_enabled"
         case termsOfService = "tos"
     }
 
