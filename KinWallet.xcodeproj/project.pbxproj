@@ -127,6 +127,8 @@
 		9120CA86206011E600AFC597 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9120CA85206011E600AFC597 /* OpenGLES.framework */; };
 		91311C4D204FDB4400618240 /* Optional+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91311C4C204FDB4400618240 /* Optional+KinWallet.swift */; };
 		91311C53204FDBD500618240 /* Optional+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91311C4C204FDB4400618240 /* Optional+KinWallet.swift */; };
+		91379A45211744D1002D3EF5 /* BackupIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91379A44211744D1002D3EF5 /* BackupIntroViewController.swift */; };
+		91379A4821174AE1002D3EF5 /* Backup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91379A4621174AE1002D3EF5 /* Backup.storyboard */; };
 		9138BBE1204EE21E00450C97 /* OfferDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9138BBE0204EE21E00450C97 /* OfferDetailsViewController.swift */; };
 		9138BBE5204EF1A700450C97 /* SimpleCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9138BBE3204EF1A700450C97 /* SimpleCollectionReusableView.swift */; };
 		9138BBE6204EF1A700450C97 /* SimpleCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9138BBE3204EF1A700450C97 /* SimpleCollectionReusableView.swift */; };
@@ -691,6 +693,8 @@
 		9120CA83206011E000AFC597 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9120CA85206011E600AFC597 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		91311C4C204FDB4400618240 /* Optional+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+KinWallet.swift"; sourceTree = "<group>"; };
+		91379A44211744D1002D3EF5 /* BackupIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupIntroViewController.swift; sourceTree = "<group>"; };
+		91379A4721174AE1002D3EF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Backup.storyboard; sourceTree = "<group>"; };
 		9138BBE0204EE21E00450C97 /* OfferDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailsViewController.swift; sourceTree = "<group>"; };
 		9138BBE3204EF1A700450C97 /* SimpleCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCollectionReusableView.swift; sourceTree = "<group>"; };
 		9138BBE4204EF1A700450C97 /* SimpleCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleCollectionReusableView.xib; sourceTree = "<group>"; };
@@ -1016,6 +1020,14 @@
 			path = TestFairy;
 			sourceTree = "<group>";
 		};
+		91379A3C21174473002D3EF5 /* Backup */ = {
+			isa = PBXGroup;
+			children = (
+				91379A44211744D1002D3EF5 /* BackupIntroViewController.swift */,
+			);
+			path = Backup;
+			sourceTree = "<group>";
+		};
 		9138BBE2204EF17700450C97 /* UICollectionReusableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1118,11 +1130,12 @@
 				914013652016328F0066367C /* SplashScreenViewController.swift */,
 				91D0753820567E6000CF80D5 /* NoticeViewController.swift */,
 				91CE3DAC20691FFF009ABDCD /* KinSupportViewController.swift */,
+				9140136B201632A20066367C /* MoreViewController.swift */,
 				91392A29208F48240026C2F9 /* Welcome and Phone Verification */,
 				914013A32018BC320066367C /* Earn */,
 				914013A12018BC320066367C /* Spend */,
 				91FF9D2C207F49C700B536E9 /* Balance */,
-				9140136B201632A20066367C /* MoreViewController.swift */,
+				91379A3C21174473002D3EF5 /* Backup */,
 			);
 			name = ViewControllers;
 			path = "View Controllers and Co.";
@@ -1136,6 +1149,7 @@
 				915F497A204452CC005C09B3 /* Loader1.json */,
 				9140133620162FA90066367C /* Assets.xcassets */,
 				9140133320162FA90066367C /* Main.storyboard */,
+				91379A4621174AE1002D3EF5 /* Backup.storyboard */,
 				914013B92018C68B0066367C /* Earn.storyboard */,
 				91D7C028204EFBC400D35401 /* Spend.storyboard */,
 				9140133820162FA90066367C /* LaunchScreen.storyboard */,
@@ -1738,6 +1752,7 @@
 				9140139020187E140066367C /* SampleTask.json in Resources */,
 				9181983020EE551400E5D523 /* SurveyFullSizedImageAnswerCollectionViewCell.xib in Resources */,
 				91D891DC2020B43D0090E77C /* SurveyTextAnswerCollectionViewCell.xib in Resources */,
+				91379A4821174AE1002D3EF5 /* Backup.storyboard in Resources */,
 				91E6B657203C69A90080C2FC /* ComodoRsaDomainValidationCA.der in Resources */,
 				91F69D4320848C0200F06181 /* RedeemTransactionCollectionViewCell.xib in Resources */,
 				91B2627820DA692900E8A766 /* GoogleService-Info-Prod.plist in Resources */,
@@ -2064,6 +2079,7 @@
 				91C42AD720FDDD68001E1C05 /* UIControl+KinWallet.swift in Sources */,
 				9140136C201632A20066367C /* MoreViewController.swift in Sources */,
 				9163EDFF20553248005F3123 /* UIAlertAction+KinWallet.swift in Sources */,
+				91379A45211744D1002D3EF5 /* BackupIntroViewController.swift in Sources */,
 				91D891C1201F32B60090E77C /* TaskResults.swift in Sources */,
 				91E6B60C203AD1D30080C2FC /* Kin.swift in Sources */,
 				91796BCC20272A8B00F8C6A0 /* DeviceList.plist in Sources */,
@@ -2460,6 +2476,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		91379A4621174AE1002D3EF5 /* Backup.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91379A4721174AE1002D3EF5 /* Base */,
+			);
+			name = Backup.storyboard;
+			sourceTree = "<group>";
+		};
 		9140133320162FA90066367C /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -27,6 +27,10 @@ private struct WebResourceHandlers {
 
         return response.config
     }
+
+    static func doNothing<T>(response: T) -> T {
+        return response
+    }
 }
 
 struct WebRequests {}
@@ -171,6 +175,8 @@ extension WebRequests {
     }
 }
 
+// MARK: History
+
 extension WebRequests {
     static func transactionsHistory() -> WebRequest<TransactionHistoryResponse, [KinitTransaction]> {
         let transform: (TransactionHistoryResponse?) -> [KinitTransaction]? = {
@@ -211,5 +217,26 @@ extension WebRequests {
             return WebRequest<BlacklistedAreaCodes, [String]>(GET: "/blacklist/areacodes",
                                                               transform: { $0?.areaCodes })
         }
+    }
+}
+
+// MARK: Backup
+
+extension WebRequests {
+    static func availableBackupHints() -> WebRequest<AvailableBackupHintList, AvailableBackupHintList> {
+        return WebRequest<AvailableBackupHintList, AvailableBackupHintList>(GET: "/backup/hints",
+                                                                            transform: WebResourceHandlers.doNothing)
+    }
+
+    static func submitBackupHints(_ hints: [String]) -> WebRequest<EmptyResponse, EmptyResponse> {
+        let hintsToSubmit = BackupHintSubmission(hints: hints)
+        return WebRequest<EmptyResponse, EmptyResponse>(POST: "/user/backup/hints",
+                                                        body: hintsToSubmit,
+                                                        transform: WebResourceHandlers.doNothing)
+    }
+
+    static func submittedBackupQuestions() -> WebRequest<SubmittedBackupHints, [String]> {
+        return WebRequest<SubmittedBackupHints, [String]>(GET: "/user/backup/hints",
+                                                          transform: { $0?.hints })
     }
 }

@@ -287,15 +287,24 @@
                                     <constraint firstAttribute="height" constant="1" id="reI-Sw-KdX"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aUM-A4-0Ve">
+                                <rect key="frame" x="161" y="304" width="52" height="30"/>
+                                <state key="normal" title="Backup"/>
+                                <connections>
+                                    <action selector="startBackup:" destination="JDK-dh-JLD" eventType="touchUpInside" id="CAP-5x-jnH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="zOO-Io-tQO" secondAttribute="trailing" id="8Bi-im-i27"/>
                             <constraint firstItem="bzK-T4-4rn" firstAttribute="bottom" secondItem="fMM-dH-mod" secondAttribute="bottom" constant="10" id="8jZ-hF-j47"/>
                             <constraint firstItem="riz-5J-f80" firstAttribute="top" secondItem="zOO-Io-tQO" secondAttribute="bottom" id="B5g-0i-eDl"/>
+                            <constraint firstItem="aUM-A4-0Ve" firstAttribute="centerY" secondItem="bzK-T4-4rn" secondAttribute="centerY" id="BwD-cX-XRj"/>
                             <constraint firstItem="zOO-Io-tQO" firstAttribute="leading" secondItem="eV8-hI-Tru" secondAttribute="leading" id="CNj-c3-s9A"/>
                             <constraint firstItem="cab-Ha-BRP" firstAttribute="leading" secondItem="eV8-hI-Tru" secondAttribute="leading" id="Moa-0u-Hqh"/>
                             <constraint firstItem="cab-Ha-BRP" firstAttribute="trailing" secondItem="eV8-hI-Tru" secondAttribute="trailing" id="Vbn-3b-g6G"/>
+                            <constraint firstItem="aUM-A4-0Ve" firstAttribute="centerX" secondItem="bzK-T4-4rn" secondAttribute="centerX" id="cXM-gb-nI3"/>
                             <constraint firstItem="riz-5J-f80" firstAttribute="leading" secondItem="eV8-hI-Tru" secondAttribute="leadingMargin" id="g07-Cz-7UA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="riz-5J-f80" secondAttribute="trailing" id="jRo-Xa-3bO"/>
                             <constraint firstItem="fMM-dH-mod" firstAttribute="centerX" secondItem="bzK-T4-4rn" secondAttribute="centerX" id="jWB-hZ-1eg"/>

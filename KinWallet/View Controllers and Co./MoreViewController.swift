@@ -54,10 +54,22 @@ class MoreViewController: UIViewController {
         super.viewDidAppear(animated)
 
         Events.Analytics.ViewProfilePage().send()
+        KinLoader.shared.fetchAvailableBackupHints()
     }
 
     @IBAction func emailTapped(_ sender: Any) {
         KinSupportViewController.present(from: self)
+    }
+
+    @IBAction func startBackup(_ sender: Any) {
+        KinLoader.shared.fetchAvailableBackupHints { [weak self] hints in
+            DispatchQueue.main.async {
+                let backupIntro = StoryboardScene.Backup.backupIntroViewController.instantiate()
+                backupIntro.hints = hints
+                let navigationController = KinNavigationController(rootViewController: backupIntro)
+                self?.present(navigationController, animated: true)
+            }
+        }
     }
 }
 

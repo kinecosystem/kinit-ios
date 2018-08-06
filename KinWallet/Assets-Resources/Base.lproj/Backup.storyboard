@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Backup Intro View Controller-->
+        <scene sceneID="pmX-Dw-1Wm">
+            <objects>
+                <viewController storyboardIdentifier="BackupIntroViewController" id="fv6-mb-6s9" customClass="BackupIntroViewController" customModule="KinWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gFv-lG-opl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7li-MJ-GI0">
+                                <rect key="frame" x="144" y="350.5" width="86" height="30"/>
+                                <state key="normal" title="Backup Now"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="7li-MJ-GI0" firstAttribute="centerX" secondItem="tvv-Pu-LLJ" secondAttribute="centerX" id="GZa-Qk-M15"/>
+                            <constraint firstItem="7li-MJ-GI0" firstAttribute="centerY" secondItem="tvv-Pu-LLJ" secondAttribute="centerY" id="OPP-Gb-Y42"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tvv-Pu-LLJ"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nBR-Ui-oCc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-162" y="74"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="dwK-Tz-dc8">
+            <objects>
+                <viewController id="7QI-q9-fWN" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8BO-T7-SfD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="mEt-v5-S7s"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wL8-2G-IPN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="628" y="73"/>
+        </scene>
+    </scenes>
+</document>

@@ -113,3 +113,21 @@ struct BlacklistedAreaCodes: Codable {
         case areaCodes = "areacodes"
     }
 }
+
+struct AvailableBackupHint: Codable {
+    let text: String
+}
+
+struct AvailableBackupHintList: Codable {
+    let hints: [String: AvailableBackupHint]
+}
+
+struct BackupHintSubmission: Codable {
+    let hints: [String]
+}
+
+struct SubmittedBackupHints: Codable {
+    let hints: [String]
+}
+
+struct EmptyResponse: Codable { }
