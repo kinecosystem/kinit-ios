@@ -28,13 +28,15 @@
 
 "QRCode" = "QR Code";
 
-//Creating wallet
+//Registering user and Creating Wallet
 
 "TryAgain" = "Try Again";
 
+"UserRegistrationErrorTitle" = "We were unable to create a profile for you";
+
 "WalletCreationErrorTitle" = "We were unable to create a wallet for you";
 
-"WalletCreationErrorSubtitle" = "Please check your internet connection & try again.";
+"WalletOrUserCreationErrorSubtitle" = "Please check your internet connection & try again.";
 
 "OrContactSupport" = "or contact support";
 

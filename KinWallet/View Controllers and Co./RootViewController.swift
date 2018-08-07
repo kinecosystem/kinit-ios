@@ -10,6 +10,25 @@ private let taskFetchTimeout: TimeInterval = 6
 private let creatingAccountTimeout: TimeInterval = 25
 let startedPhoneVerificationKey = "startedPhoneVerification"
 
+private enum RegistrationError {
+    case user
+    case wallet
+
+    var title: String {
+        switch self {
+        case .user: return L10n.userRegistrationErrorTitle
+        case .wallet: return L10n.walletCreationErrorTitle
+        }
+    }
+
+    var image: UIImage {
+        switch self {
+        case .user: return Asset.errorSign.image
+        case .wallet: return Asset.walletCreationFailed.image
+        }
+    }
+}
+
 extension NSNotification.Name {
     static let SplashScreenWillDismiss = NSNotification.Name(rawValue: "SplashScreenWillDismiss")
     static let SplashScreenDidDismiss = NSNotification.Name(rawValue: "SplashScreenDidDismiss")
@@ -21,46 +40,16 @@ class RootViewController: UIViewController {
     }()
 
     fileprivate let rootTabBarController = StoryboardScene.Main.rootTabBarController.instantiate()
-    weak var walletCreationNoticeViewController: NoticeViewController?
+    weak var errorNoticeViewController: NoticeViewController?
 
     var isShowingSplashScreen: Bool {
         return splashScreenNavigationController != nil
     }
 
+    var latestWalletCreationAttempt: String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //In some cases, when the user makes a backup in iTunes without encryption,
-        //the keychain is not recovered, and therefore, the keystore is lost.
-        //At every launch, we check if the address stored in the current user matches
-        //the address given by Kin.shared. If they don't match, we currently delete
-        //all data and start like a clean install: Delete user, the cached next task, and task results.
-        if let address = User.current?.publicAddress,
-            address != Kin.shared.publicAddress {
-            User.reset()
-
-            if let task: Task = SimpleDatastore.loadObject(nextTaskIdentifier) {
-                SimpleDatastore.delete(objectOf: Task.self, with: nextTaskIdentifier)
-                SimpleDatastore.delete(objectOf: TaskResults.self, with: task.identifier)
-            }
-
-            Kin.shared.resetKeyStore()
-        }
-
-        if Kin.shared.accountStatus != .activated {
-            //swiftlint:disable:next force_cast
-            let splash = splashScreenNavigationController!.viewControllers.first as! SplashScreenViewController
-            splash.creatingAccount = true
-            startWalletCreationTimeout()
-        } else {
-            if UserDefaults.standard.bool(forKey: startedPhoneVerificationKey) {
-                showWelcomeViewController()
-            } else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + taskFetchTimeout) {
-                    self.dismissSplashIfNeeded()
-                }
-            }
-        }
 
         addAndFit(rootTabBarController)
         addAndFit(splashScreenNavigationController!)
@@ -94,8 +83,8 @@ class RootViewController: UIViewController {
         return true
     }
 
-    private func showWalletCreationFailed() {
-        guard walletCreationNoticeViewController == nil else {
+    private func showErrorNotice(error: RegistrationError) {
+        guard errorNoticeViewController == nil else {
             return
         }
 
@@ -113,83 +102,146 @@ class RootViewController: UIViewController {
                                                             additionalMessage: supportAttributedString)
         let noticeViewController = StoryboardScene.Main.noticeViewController.instantiate()
         noticeViewController.delegate = self
-        noticeViewController.notice = Notice(image: Asset.walletCreationFailed.image,
-                                             title: L10n.walletCreationErrorTitle,
-                                             subtitle: L10n.walletCreationErrorSubtitle,
+        noticeViewController.notice = Notice(image: error.image,
+                                             title: error.title,
+                                             subtitle: L10n.walletOrUserCreationErrorSubtitle,
                                              buttonConfiguration: buttonConfiguration,
                                              displayType: .imageFirst)
         present(noticeViewController, animated: true)
 
-        walletCreationNoticeViewController = noticeViewController
+        errorNoticeViewController = noticeViewController
 
         logViewedErrorPage()
     }
 
-    func startWalletCreationTimeout() {
+    func startWalletCreationTimeout(with attempt: String) {
         DispatchQueue.main.asyncAfter(deadline: .now() + creatingAccountTimeout) {
-            guard let splashNavigationController = self.splashScreenNavigationController,
-                splashNavigationController.viewControllers.count == 1 else {
+            guard self.latestWalletCreationAttempt == attempt else {
                 return
             }
 
-            self.showWalletCreationFailed()
+            guard let splashNavigationController = self.splashScreenNavigationController,
+                splashNavigationController.topViewController is SplashScreenViewController else {
+                return
+            }
+
+            self.showErrorNotice(error: .wallet)
         }
     }
 
     func appLaunched() {
-        let previouslyActivated = Kin.shared.accountStatus == .activated
+        verifyAccountMatchesUserAddress()
 
-        if let currentUser = User.current {
-            KLogVerbose("User \(currentUser.userId) with device token \(currentUser.deviceToken ?? "No token")")
-            Kin.shared.performOnboardingIfNeeded().then {
-                self.onboardSucceeded($0, previouslyActivated: previouslyActivated)
-            }
-
-            #if !TESTS
-            if Configuration.shared.testFairyKey != nil {
-                TestFairy.setUserId(currentUser.userId)
-            }
-            #endif
-
-            Crashlytics.sharedInstance().setUserIdentifier(currentUser.userId)
-
-            UIApplication.shared.registerForRemoteNotifications()
-            WebRequests.appLaunch().withCompletion { config, _ in
-                KLogVerbose("App Launch: \(config != nil ? String(describing: config!) : "No config")")
-            }.load(with: KinWebService.shared)
-
-            KinLoader.shared.loadAllData()
-        } else {
+        guard let currentUser = User.current else {
             Kin.shared.resetKeyStore()
-            let user = User.createNew()
-            WebRequests.userRegistrationRequest(for: user)
-                .withCompletion { [weak self] config, error in
-                    KLogVerbose("User registration: \(config != nil ? String(describing: config!) : "No config")")
-                    guard config != nil else {
-                        self?.logRegistrationFailed(error: error)
-                        return
-                    }
+            registerUser()
+            return
+        }
 
-                    self?.logRegistrationSucceded(userId: user.userId,
-                                                  deviceId: user.deviceId)
-                    user.save()
+        KLogVerbose("User \(currentUser.userId) with device token \(currentUser.deviceToken ?? "No token")")
 
-                    KinLoader.shared.loadAllData()
+        if currentUser.phoneNumber != nil {
+            //Backup: Show here the two options.
+            //For now, just create the wallet.
+            performOnboarding()
+        } else {
+            showWelcomeViewController()
+        }
 
-                    Kin.shared.performOnboardingIfNeeded().then {
-                        self?.onboardSucceeded($0, previouslyActivated: false)
-                    }
+        #if !TESTS
+        if Configuration.shared.testFairyKey != nil {
+            TestFairy.setUserId(currentUser.userId)
+        }
+        #endif
 
-                    DispatchQueue.main.async {
-                        UIApplication.shared.registerForRemoteNotifications()
-                    }
+        Crashlytics.sharedInstance().setUserIdentifier(currentUser.userId)
+
+        UIApplication.shared.registerForRemoteNotifications()
+        WebRequests.appLaunch().withCompletion { config, _ in
+            KLogVerbose("App Launch: \(config != nil ? String(describing: config!) : "No config")")
             }.load(with: KinWebService.shared)
+
+        KinLoader.shared.loadAllData()
+    }
+
+    private func verifyAccountMatchesUserAddress() {
+        //In some cases, when the user makes a backup in iTunes without encryption,
+        //the keychain is not recovered, and therefore, the keystore is lost.
+        //At every launch, we check if the address stored in the current user matches
+        //the address given by Kin.shared. If they don't match, we currently delete
+        //all data and start like a clean install: Delete user, the cached next task, and task results.
+        if let address = User.current?.publicAddress,
+            address != Kin.shared.publicAddress {
+            User.reset()
+
+            if let task: Task = SimpleDatastore.loadObject(nextTaskIdentifier) {
+                SimpleDatastore.delete(objectOf: Task.self, with: nextTaskIdentifier)
+                SimpleDatastore.delete(objectOf: TaskResults.self, with: task.identifier)
+            }
+
+            Kin.shared.resetKeyStore()
+        }
+
+        if Kin.shared.accountStatus == .activated {
+            DispatchQueue.main.asyncAfter(deadline: .now() + taskFetchTimeout) {
+                self.dismissSplashIfNeeded()
+            }
         }
     }
 
-    func onboardSucceeded(_ success: Bool, previouslyActivated: Bool) {
+    private func registerUser() {
+        let user = User.createNew()
+        WebRequests.userRegistrationRequest(for: user)
+            .withCompletion { [weak self] config, error in
+                KLogVerbose("User registration: \(config != nil ? String(describing: config!) : "No config")")
+                guard config != nil else {
+                    self?.logRegistrationFailed(error: error)
+                    DispatchQueue.main.async {
+                        self?.showErrorNotice(error: .user)
+                    }
+
+                    return
+                }
+
+                self?.logRegistrationSucceded(userId: user.userId,
+                                              deviceId: user.deviceId)
+                user.save()
+
+                KinLoader.shared.loadAllData()
+
+                DispatchQueue.main.async {
+                    self?.showWelcomeViewController()
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            }.load(with: KinWebService.shared)
+    }
+
+    func phoneNumberValidated() {
+        //Backup: Show the two options (create new wallet or restore from backup)
+
+        let splash = SplashScreenViewController()
+        splash.creatingAccount = true
+        splashScreenNavigationController?.pushViewController(splash, animated: true)
+
+        performOnboarding()
+    }
+
+    private func performOnboarding() {
+        let thisAttempt = UUID().uuidString
+        latestWalletCreationAttempt = thisAttempt
+
+        Kin.shared.performOnboardingIfNeeded().then { [weak self] in
+            self?.onboardSucceeded($0)
+        }
+
+        startWalletCreationTimeout(with: thisAttempt)
+    }
+
+    func onboardSucceeded(_ success: Bool) {
         guard success else {
-            showWalletCreationFailed()
+            DispatchQueue.main.async {
+                self.showErrorNotice(error: .wallet)
+            }
             return
         }
 
@@ -201,11 +253,8 @@ class RootViewController: UIViewController {
         user.save()
 
         DispatchQueue.main.async {
-            if UserDefaults.standard.bool(forKey: startedPhoneVerificationKey) || !previouslyActivated {
-                self.showWelcomeViewController()
-            } else {
-                self.dismissSplashIfNeeded()
-            }
+            let accountReady = StoryboardScene.Main.accountReadyViewController.instantiate()
+            self.splashScreenNavigationController?.pushViewController(accountReady, animated: true)
         }
     }
 
@@ -227,7 +276,7 @@ class RootViewController: UIViewController {
             splashNavigationController.pushViewController(welcome, animated: true)
         }
 
-        if let walletCreationNotice = self.walletCreationNoticeViewController {
+        if let walletCreationNotice = self.errorNoticeViewController {
             walletCreationNotice.dismiss(animated: true, completion: pushWelcome)
         } else {
             pushWelcome()
@@ -239,9 +288,14 @@ extension RootViewController: NoticeViewControllerDelegate {
     func noticeViewControllerDidTapButton(_ viewController: NoticeViewController) {
         logClickedRetryOnErrorPage()
 
+        let userExists = User.current != nil
+
         dismiss(animated: true) { [weak self] in
-            self?.startWalletCreationTimeout()
-            self?.appLaunched()
+            if userExists {
+                self?.performOnboarding()
+            } else {
+                self?.registerUser()
+            }
         }
     }
 
