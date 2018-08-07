@@ -177,12 +177,14 @@ internal enum L10n {
   internal static let transferringKinOnItsWay = L10n.tr("Localizable", "TransferringKinOnItsWay")
   /// Try Again
   internal static let tryAgain = L10n.tr("Localizable", "TryAgain")
+  /// We were unable to create a profile for you
+  internal static let userRegistrationErrorTitle = L10n.tr("Localizable", "UserRegistrationErrorTitle")
   /// Your vouchers will be saved here!
   internal static let vouchersEmptyStateMessage = L10n.tr("Localizable", "VouchersEmptyStateMessage")
-  /// Please check your internet connection & try again.
-  internal static let walletCreationErrorSubtitle = L10n.tr("Localizable", "WalletCreationErrorSubtitle")
   /// We were unable to create a wallet for you
   internal static let walletCreationErrorTitle = L10n.tr("Localizable", "WalletCreationErrorTitle")
+  /// Please check your internet connection & try again.
+  internal static let walletOrUserCreationErrorSubtitle = L10n.tr("Localizable", "WalletOrUserCreationErrorSubtitle")
   /// Earn Kin by completing fun daily activities, and enjoy it toward brown paper packages tied up with string (aka travel, movies, music, and more).
   internal static let welcome1stScreenMessage = L10n.tr("Localizable", "Welcome1stScreenMessage")
   ///  Welcome to Kinit

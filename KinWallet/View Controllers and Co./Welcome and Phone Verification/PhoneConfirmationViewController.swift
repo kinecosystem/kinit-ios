@@ -209,8 +209,11 @@ class PhoneConfirmationViewController: UIViewController {
         smsArrivalTimer?.invalidate()
         smsArrivalTimer = nil
 
-        let accountReady = StoryboardScene.Main.accountReadyViewController.instantiate()
-        navigationController?.pushViewController(accountReady, animated: true)
+        guard let rootViewController = navigationController?.parent as? RootViewController else {
+            fatalError("Couldn't find RootViewController when confirming phone number")
+        }
+
+        rootViewController.phoneNumberValidated()
     }
 
     @objc func updateCountdown() {

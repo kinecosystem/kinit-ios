@@ -114,6 +114,9 @@ extension Kin {
                     self.onboardingPromise?.signal($0)
                     self.onboardingPromise = nil
                 }
+            } else {
+                self.onboardingPromise?.signal(false)
+                self.onboardingPromise = nil
             }
         }
 

@@ -56,12 +56,6 @@ final class WelcomeViewController: UIViewController {
         super.viewDidAppear(animated)
 
         logViewedPage()
-
-        #if targetEnvironment(simulator)
-
-        AppDelegate.shared.dismissSplashIfNeeded()
-
-        #endif
     }
 
     override func viewDidLayoutSubviews() {
@@ -127,18 +121,9 @@ final class WelcomeViewController: UIViewController {
 
     @IBAction func startEarning(_ sender: Any) {
         logClickedStart()
-
-        #if targetEnvironment(simulator)
-
-        //AppDelegate.shared.dismissSplashIfNeeded()
-        //create wallet
-
-        #else
-
+        
         let phoneVerification = StoryboardScene.Main.phoneVerificationRequestViewController.instantiate()
         navigationController?.pushViewController(phoneVerification, animated: true)
-
-        #endif
     }
 
     @IBAction func pageControlChangedValue(_ sender: Any) {
