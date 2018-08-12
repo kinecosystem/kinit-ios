@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import KinitDesignables
 
 class BalanceViewController: UIViewController {
     @IBOutlet var headerGradientViews: [GradientView]! {

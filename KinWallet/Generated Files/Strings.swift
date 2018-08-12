@@ -25,6 +25,14 @@ internal enum L10n {
   internal static let activityDoneTitle = L10n.tr("Localizable", "ActivityDoneTitle")
   /// Back to Spend
   internal static let backToSpendAction = L10n.tr("Localizable", "BackToSpendAction")
+  /// Backing up your wallet will allow you to recover your Kin if you get locked out of the app or if your phone is ever lost or stolen.
+  internal static let backupIntroExplanation = L10n.tr("Localizable", "BackupIntroExplanation")
+  /// * minimum 4 characters
+  internal static let backupMinimum4Characters = L10n.tr("Localizable", "BackupMinimum4Characters")
+  /// Type your answer here
+  internal static let backupYourAnswerPlaceholder = L10n.tr("Localizable", "BackupYourAnswerPlaceholder")
+  /// Your Answer
+  internal static let backupYourAnswerTitle = L10n.tr("Localizable", "BackupYourAnswerTitle")
   /// My Vouchers
   internal static let balanceMyVouchers = L10n.tr("Localizable", "BalanceMyVouchers")
   /// Recent Actions
@@ -33,6 +41,8 @@ internal enum L10n {
   internal static let buy = L10n.tr("Localizable", "Buy")
   /// Cancel
   internal static let cancel = L10n.tr("Localizable", "Cancel")
+  /// Choose one...
+  internal static let chooseSecurityQuestion = L10n.tr("Localizable", "ChooseSecurityQuestion")
   /// Close
   internal static let closeAction = L10n.tr("Localizable", "CloseAction")
   /// Contact Support
@@ -45,6 +55,8 @@ internal enum L10n {
   internal static let emptyOffersSubtitle = L10n.tr("Localizable", "EmptyOffersSubtitle")
   /// No offers at the moment
   internal static let emptyOffersTitle = L10n.tr("Localizable", "EmptyOffersTitle")
+  /// First Question
+  internal static let firstSecurityQuestion = L10n.tr("Localizable", "FirstSecurityQuestion")
   /// Please check your internet connection and try again.
   internal static let internetErrorMessage = L10n.tr("Localizable", "InternetErrorMessage")
   /// Oh no! Your internet is MIA
@@ -121,6 +133,12 @@ internal enum L10n {
   internal static let phoneVerificationUnsupportedCountryCodeTitle = L10n.tr("Localizable", "PhoneVerificationUnsupportedCountryCodeTitle")
   /// Hi! 👋\nReady to earn some Kin?
   internal static let readyToEarnKinQuestion = L10n.tr("Localizable", "ReadyToEarnKinQuestion")
+  /// Second Question
+  internal static let secondSecurityQuestion = L10n.tr("Localizable", "SecondSecurityQuestion")
+  /// Choose 2 security questions.
+  internal static let securityQuestionsSubtitle = L10n.tr("Localizable", "SecurityQuestionsSubtitle")
+  /// Security Questions
+  internal static let securityQuestionsTitle = L10n.tr("Localizable", "SecurityQuestionsTitle")
   /// Sending Kin
   internal static let sendingKin = L10n.tr("Localizable", "SendingKin")
   /// Send Kin
@@ -183,6 +201,8 @@ internal enum L10n {
   internal static let tryAgain = L10n.tr("Localizable", "TryAgain")
   /// Your vouchers will be saved here!
   internal static let vouchersEmptyStateMessage = L10n.tr("Localizable", "VouchersEmptyStateMessage")
+  /// Wallet Backup
+  internal static let walletBackup = L10n.tr("Localizable", "WalletBackup")
   /// Please check your internet connection & try again.
   internal static let walletCreationErrorSubtitle = L10n.tr("Localizable", "WalletCreationErrorSubtitle")
   /// We were unable to create a wallet for you

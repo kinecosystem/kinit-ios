@@ -57,6 +57,8 @@ internal enum StoryboardScene {
     internal static let storyboardName = "Backup"
 
     internal static let backupIntroViewController = SceneType<BackupIntroViewController>(storyboard: Backup.self, identifier: "BackupIntroViewController")
+
+    internal static let backupQuestionViewController = SceneType<BackupQuestionViewController>(storyboard: Backup.self, identifier: "BackupQuestionViewController")
   }
   internal enum Earn: StoryboardType {
     internal static let storyboardName = "Earn"

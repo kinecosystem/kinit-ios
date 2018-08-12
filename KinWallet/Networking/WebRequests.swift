@@ -228,15 +228,15 @@ extension WebRequests {
                                                                             transform: WebResourceHandlers.doNothing)
     }
 
-    static func submitBackupHints(_ hints: [String]) -> WebRequest<EmptyResponse, EmptyResponse> {
-        let hintsToSubmit = BackupHintSubmission(hints: hints)
+    static func submitBackupHints(_ hints: [Int]) -> WebRequest<EmptyResponse, EmptyResponse> {
+        let hintsToSubmit = ChosenBackupHints(hints: hints)
         return WebRequest<EmptyResponse, EmptyResponse>(POST: "/user/backup/hints",
                                                         body: hintsToSubmit,
                                                         transform: WebResourceHandlers.doNothing)
     }
 
-    static func submittedBackupQuestions() -> WebRequest<SubmittedBackupHints, [String]> {
-        return WebRequest<SubmittedBackupHints, [String]>(GET: "/user/backup/hints",
+    static func submittedBackupQuestions() -> WebRequest<ChosenBackupHints, [Int]> {
+        return WebRequest<ChosenBackupHints, [Int]>(GET: "/user/backup/hints",
                                                           transform: { $0?.hints })
     }
 }

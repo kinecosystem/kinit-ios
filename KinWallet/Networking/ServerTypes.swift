@@ -116,18 +116,15 @@ struct BlacklistedAreaCodes: Codable {
 
 struct AvailableBackupHint: Codable {
     let text: String
+    let id: Int
 }
 
 struct AvailableBackupHintList: Codable {
-    let hints: [String: AvailableBackupHint]
+    let hints: [AvailableBackupHint]
 }
 
-struct BackupHintSubmission: Codable {
-    let hints: [String]
-}
-
-struct SubmittedBackupHints: Codable {
-    let hints: [String]
+struct ChosenBackupHints: Codable {
+    let hints: [Int]
 }
 
 struct EmptyResponse: Codable { }

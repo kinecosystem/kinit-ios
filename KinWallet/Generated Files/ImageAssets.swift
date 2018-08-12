@@ -44,6 +44,7 @@ internal struct ColorAsset {
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Asset {
+  internal static let backupIntroIllustration = ImageAsset(name: "BackupIntroIllustration")
   internal static let buttonStroke = ImageAsset(name: "ButtonStroke")
   internal static let closeXButton = ImageAsset(name: "CloseXButton")
   internal static let closeXButtonDarkGray = ImageAsset(name: "CloseXButtonDarkGray")
@@ -81,6 +82,7 @@ internal enum Asset {
   internal static let offerCardShadow = ImageAsset(name: "OfferCardShadow")
   internal static let patternPlaceholder = ImageAsset(name: "PatternPlaceholder")
   internal static let paymentDelay = ImageAsset(name: "PaymentDelay")
+  internal static let pickerArrow = ImageAsset(name: "PickerArrow")
   internal static let progressViewGradient = ImageAsset(name: "ProgressViewGradient")
   internal static let progressViewTrack = ImageAsset(name: "ProgressViewTrack")
   internal static let quizConfettiOval = ImageAsset(name: "QuizConfettiOval")
@@ -110,6 +112,7 @@ internal enum Asset {
   internal static let allColors: [ColorAsset] = [
   ]
   internal static let allImages: [ImageAsset] = [
+    backupIntroIllustration,
     buttonStroke,
     closeXButton,
     closeXButtonDarkGray,
@@ -147,6 +150,7 @@ internal enum Asset {
     offerCardShadow,
     patternPlaceholder,
     paymentDelay,
+    pickerArrow,
     progressViewGradient,
     progressViewTrack,
     quizConfettiOval,

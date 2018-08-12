@@ -7,6 +7,7 @@ import UIKit
 import Lottie
 import KinSDK
 import KinUtil
+import KinitDesignables
 
 final class TaskCompletedViewController: UIViewController {
     var task: Task!

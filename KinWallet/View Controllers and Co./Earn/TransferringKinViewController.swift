@@ -5,6 +5,7 @@
 
 import UIKit
 import Lottie
+import KinitDesignables
 
 final class TransferringKinViewController: UIViewController {
     var initialBalance: UInt64!

@@ -5,6 +5,7 @@
 
 import UIKit
 import SafariServices
+import KinitDesignables
 
 final class WelcomeViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!

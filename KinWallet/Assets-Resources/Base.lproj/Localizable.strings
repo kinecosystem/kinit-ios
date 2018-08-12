@@ -205,3 +205,25 @@
 "NotificationsDeniedMessage" = "Push notification permissions were previously denied and are currently turned off.\nPlease go to settings to turn on notifications.";
 
 "NotificationsDeniedAction" = "Open Settings";
+
+// Backup
+
+"BackupIntroExplanation" = "Backing up your wallet will allow you to recover your Kin if you get locked out of the app or if your phone is ever lost or stolen.";
+
+"WalletBackup" = "Wallet Backup";
+
+"SecurityQuestionsTitle" = "Security Questions";
+
+"SecurityQuestionsSubtitle" = "Choose 2 security questions.";
+
+"FirstSecurityQuestion" = "First Question";
+
+"SecondSecurityQuestion" = "Second Question";
+
+"ChooseSecurityQuestion" = "Choose one...";
+
+"BackupYourAnswerTitle" = "Your Answer";
+
+"BackupYourAnswerPlaceholder" = "Type your answer here";
+
+"BackupMinimum4Characters" = "* minimum 4 characters";

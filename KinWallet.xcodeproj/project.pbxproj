@@ -54,7 +54,6 @@
 		828CB42F2056E9DC007C679C /* SimpleCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9138BBE3204EF1A700450C97 /* SimpleCollectionReusableView.swift */; };
 		828CB4312056E9E1007C679C /* BalanceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91147440203F1D4100C16279 /* BalanceLabel.swift */; };
 		828CB4322056E9E1007C679C /* KinAmountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D7C030204F11D200D35401 /* KinAmountLabel.swift */; };
-		828CB4332056E9E5007C679C /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91147439203F177500C16279 /* GradientView.swift */; };
 		828CB4342056E9EA007C679C /* SurveyQuestionCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D891D22020B43D0090E77C /* SurveyQuestionCollectionReusableView.swift */; };
 		828CB4362056E9EA007C679C /* OfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91908C63204D69F200971F11 /* OfferCollectionViewCell.swift */; };
 		828CB4382056E9F2007C679C /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E6B661203C69EE0080C2FC /* Analytics.swift */; };
@@ -113,7 +112,6 @@
 		910AA2322097308000CC822A /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA2312097307F00CC822A /* RemoteConfig.swift */; };
 		910AA2332097308000CC822A /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA2312097307F00CC822A /* RemoteConfig.swift */; };
 		910AA2342097308000CC822A /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA2312097307F00CC822A /* RemoteConfig.swift */; };
-		9114743A203F177500C16279 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91147439203F177500C16279 /* GradientView.swift */; };
 		9114743D203F17ED00C16279 /* WeakBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114743C203F17ED00C16279 /* WeakBox.swift */; };
 		9114743E203F1A5000C16279 /* WeakBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114743C203F17ED00C16279 /* WeakBox.swift */; };
 		91147441203F1D4100C16279 /* BalanceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91147440203F1D4100C16279 /* BalanceLabel.swift */; };
@@ -214,7 +212,6 @@
 		915F496620430125005C09B3 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 915F495920430125005C09B3 /* Roboto-Black.ttf */; };
 		915F49692043022E005C09B3 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915F49682043022E005C09B3 /* Fonts.swift */; };
 		915F496A20430258005C09B3 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915F49682043022E005C09B3 /* Fonts.swift */; };
-		915F496E20431960005C09B3 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91147439203F177500C16279 /* GradientView.swift */; };
 		915F497920444C10005C09B3 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 915F497220444C0F005C09B3 /* UICountingLabel.m */; };
 		915F497B204452CC005C09B3 /* Loader1.json in Resources */ = {isa = PBXBuildFile; fileRef = 915F497A204452CC005C09B3 /* Loader1.json */; };
 		9163EDFF20553248005F3123 /* UIAlertAction+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9163EDFE20553248005F3123 /* UIAlertAction+KinWallet.swift */; };
@@ -546,6 +543,21 @@
 		91FE7F1120FB768700EDFB67 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FE7F1020FB768700EDFB67 /* Strings.swift */; };
 		91FE7F1220FB768700EDFB67 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FE7F1020FB768700EDFB67 /* Strings.swift */; };
 		91FE7F1320FB768700EDFB67 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FE7F1020FB768700EDFB67 /* Strings.swift */; };
+		91FF1231211AF6670098470D /* BackupQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF1230211AF6670098470D /* BackupQuestionViewController.swift */; };
+		91FF1239211AF66C0098470D /* BackupIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91379A44211744D1002D3EF5 /* BackupIntroViewController.swift */; };
+		91FF123A211AF66C0098470D /* BackupQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF1230211AF6670098470D /* BackupQuestionViewController.swift */; };
+		91FF123B211AF66C0098470D /* BackupIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91379A44211744D1002D3EF5 /* BackupIntroViewController.swift */; };
+		91FF123C211AF66C0098470D /* BackupQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF1230211AF6670098470D /* BackupQuestionViewController.swift */; };
+		91FF124A211B18290098470D /* KinitDesignables.h in Headers */ = {isa = PBXBuildFile; fileRef = 91FF1248211B18290098470D /* KinitDesignables.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		91FF124D211B18290098470D /* KinitDesignables.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91FF1246211B18290098470D /* KinitDesignables.framework */; };
+		91FF124E211B18290098470D /* KinitDesignables.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91FF1246211B18290098470D /* KinitDesignables.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		91FF1252211B18390098470D /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91147439203F177500C16279 /* GradientView.swift */; };
+		91FF1253211B18410098470D /* StepsProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF123D211AF7420098470D /* StepsProgressView.swift */; };
+		91FF1254211B195A0098470D /* UIView+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91401375201635990066367C /* UIView+KinWallet.swift */; };
+		91FF1256211B198E0098470D /* UIColor+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013BD2019D07D0066367C /* UIColor+KinWallet.swift */; };
+		91FF14AC211C5FFE0098470D /* ButtonAccessoryInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF14AB211C5FFE0098470D /* ButtonAccessoryInputView.swift */; };
+		91FF14B4211C61290098470D /* ButtonAccessoryInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF14AB211C5FFE0098470D /* ButtonAccessoryInputView.swift */; };
+		91FF14B5211C612A0098470D /* ButtonAccessoryInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF14AB211C5FFE0098470D /* ButtonAccessoryInputView.swift */; };
 		91FF9CFD207D4A2700B536E9 /* Bool+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF9CFC207D4A2700B536E9 /* Bool+KinWallet.swift */; };
 		91FF9D05207E091500B536E9 /* Array+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF9D04207E091500B536E9 /* Array+KinWallet.swift */; };
 		91FF9D15207E365100B536E9 /* KinitTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF9D14207E365100B536E9 /* KinitTransaction.swift */; };
@@ -649,6 +661,13 @@
 			remoteGlobalIDString = 6445B0D5207E0D4D00D84F6A;
 			remoteInfo = LottieLibraryMacOS;
 		};
+		91FF124B211B18290098470D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9140132220162FA90066367C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 91FF1245211B18290098470D;
+			remoteInfo = KinitDesignables;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -658,6 +677,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				91FF124E211B18290098470D /* KinitDesignables.framework in Embed Frameworks */,
 				91E6B5F2203AD0A40080C2FC /* KinSDK.framework in Embed Frameworks */,
 				91E6B605203AD0D80080C2FC /* Lottie.framework in Embed Frameworks */,
 			);
@@ -907,6 +927,12 @@
 		91FE7D7120F6304B00EDFB67 /* Anchorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Anchorable.swift; sourceTree = "<group>"; };
 		91FE7F0C20FB745200EDFB67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		91FE7F1020FB768700EDFB67 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		91FF1230211AF6670098470D /* BackupQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupQuestionViewController.swift; sourceTree = "<group>"; };
+		91FF123D211AF7420098470D /* StepsProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsProgressView.swift; sourceTree = "<group>"; };
+		91FF1246211B18290098470D /* KinitDesignables.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KinitDesignables.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		91FF1248211B18290098470D /* KinitDesignables.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KinitDesignables.h; sourceTree = "<group>"; };
+		91FF1249211B18290098470D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91FF14AB211C5FFE0098470D /* ButtonAccessoryInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonAccessoryInputView.swift; sourceTree = "<group>"; };
 		91FF9CFC207D4A2700B536E9 /* Bool+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+KinWallet.swift"; sourceTree = "<group>"; };
 		91FF9D04207E091500B536E9 /* Array+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+KinWallet.swift"; sourceTree = "<group>"; };
 		91FF9D14207E365100B536E9 /* KinitTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinitTransaction.swift; sourceTree = "<group>"; };
@@ -932,6 +958,7 @@
 				9120CA82206011DA00AFC597 /* CoreMedia.framework in Frameworks */,
 				9120CA7E206011D200AFC597 /* AVFoundation.framework in Frameworks */,
 				91E6B5F1203AD0A40080C2FC /* KinSDK.framework in Frameworks */,
+				91FF124D211B18290098470D /* KinitDesignables.framework in Frameworks */,
 				91E6B604203AD0D80080C2FC /* Lottie.framework in Frameworks */,
 				3066337E2058FFCF00F9BB45 /* Crashlytics.framework in Frameworks */,
 				9120CA7C2060118C00AFC597 /* libTestFairy.a in Frameworks */,
@@ -960,6 +987,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		91FF1242211B18290098470D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -980,12 +1014,14 @@
 			isa = PBXGroup;
 			children = (
 				91147439203F177500C16279 /* GradientView.swift */,
+				91FF14AB211C5FFE0098470D /* ButtonAccessoryInputView.swift */,
 				916450CA20D1592400CB7994 /* ParticlesView.swift */,
 				91E84A4E2085ED2300E8B7A6 /* EmptyStateView.swift */,
 				910AA22D2096F42F00CC822A /* ConfettiView.swift */,
 				91E84A502085ED3000E8B7A6 /* EmptyStateView.xib */,
 				91B4453C20909C4500ED6802 /* TutorialPageView.swift */,
 				91B4454620909C5400ED6802 /* TutorialPageView.xib */,
+				91FF123D211AF7420098470D /* StepsProgressView.swift */,
 			);
 			path = UIView;
 			sourceTree = "<group>";
@@ -1024,6 +1060,7 @@
 			isa = PBXGroup;
 			children = (
 				91379A44211744D1002D3EF5 /* BackupIntroViewController.swift */,
+				91FF1230211AF6670098470D /* BackupQuestionViewController.swift */,
 			);
 			path = Backup;
 			sourceTree = "<group>";
@@ -1059,6 +1096,7 @@
 				9120CA772060118B00AFC597 /* TestFairy */,
 				9140134320162FA90066367C /* KinWalletTests */,
 				9140134E20162FA90066367C /* KinWalletUITests */,
+				91FF1247211B18290098470D /* KinitDesignables */,
 				9140132B20162FA90066367C /* Products */,
 				91AEBF4D202B322D007BBBA3 /* Frameworks */,
 				38F39F46269BA4029BBEA83A /* Pods */,
@@ -1071,6 +1109,7 @@
 				9140132A20162FA90066367C /* KinWallet.app */,
 				9140134020162FA90066367C /* KinWalletTests.xctest */,
 				9140134B20162FA90066367C /* KinWalletUITests.xctest */,
+				91FF1246211B18290098470D /* KinitDesignables.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1514,6 +1553,15 @@
 			path = XLPagerTabStrip;
 			sourceTree = "<group>";
 		};
+		91FF1247211B18290098470D /* KinitDesignables */ = {
+			isa = PBXGroup;
+			children = (
+				91FF1248211B18290098470D /* KinitDesignables.h */,
+				91FF1249211B18290098470D /* Info.plist */,
+			);
+			path = KinitDesignables;
+			sourceTree = "<group>";
+		};
 		91FF9D2C207F49C700B536E9 /* Balance */ = {
 			isa = PBXGroup;
 			children = (
@@ -1527,6 +1575,17 @@
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		91FF1243211B18290098470D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91FF124A211B18290098470D /* KinitDesignables.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		9140132920162FA90066367C /* KinWallet */ = {
@@ -1550,6 +1609,7 @@
 			dependencies = (
 				91E6B5F4203AD0A40080C2FC /* PBXTargetDependency */,
 				91E6B607203AD0D80080C2FC /* PBXTargetDependency */,
+				91FF124C211B18290098470D /* PBXTargetDependency */,
 			);
 			name = KinWallet;
 			productName = KinWallet;
@@ -1594,6 +1654,24 @@
 			productReference = 9140134B20162FA90066367C /* KinWalletUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		91FF1245211B18290098470D /* KinitDesignables */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 91FF124F211B18290098470D /* Build configuration list for PBXNativeTarget "KinitDesignables" */;
+			buildPhases = (
+				91FF1241211B18290098470D /* Sources */,
+				91FF1242211B18290098470D /* Frameworks */,
+				91FF1243211B18290098470D /* Headers */,
+				91FF1244211B18290098470D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KinitDesignables;
+			productName = KinitDesignables;
+			productReference = 91FF1246211B18290098470D /* KinitDesignables.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1626,6 +1704,10 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 9140132920162FA90066367C;
 					};
+					91FF1245211B18290098470D = {
+						CreatedOnToolsVersion = 9.4;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 9140132520162FA90066367C /* Build configuration list for PBXProject "KinWallet" */;
@@ -1654,6 +1736,7 @@
 				9140132920162FA90066367C /* KinWallet */,
 				9140133F20162FA90066367C /* KinWalletTests */,
 				9140134A20162FA90066367C /* KinWalletUITests */,
+				91FF1245211B18290098470D /* KinitDesignables */,
 			);
 		};
 /* End PBXProject section */
@@ -1816,6 +1899,13 @@
 				9181983220EE551400E5D523 /* SurveyFullSizedImageAnswerCollectionViewCell.xib in Resources */,
 				91B4454920909C5400ED6802 /* TutorialPageView.xib in Resources */,
 				916ACCFA20F1FFEF00756EBC /* DualImageQuestionSeparatorView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91FF1244211B18290098470D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2059,7 +2149,6 @@
 				9156A97A205035A500F21C20 /* ServerTypes.swift in Sources */,
 				91E6B653203C69A90080C2FC /* ISPPinnedNSURLSessionDelegate.m in Sources */,
 				91E6B655203C69A90080C2FC /* AMPRevenue.m in Sources */,
-				9114743A203F177500C16279 /* GradientView.swift in Sources */,
 				91796BDC2028699300F8C6A0 /* WebRequests.swift in Sources */,
 				91D891C42020844B0090E77C /* ImageAssets.swift in Sources */,
 				916ACCF520F1FFEF00756EBC /* DualImageQuestionSeparatorView.swift in Sources */,
@@ -2072,6 +2161,7 @@
 				9140138820187CE90066367C /* Task.swift in Sources */,
 				91E6B654203C69A90080C2FC /* ISPPinnedNSURLConnectionDelegate.m in Sources */,
 				915F497920444C10005C09B3 /* UICountingLabel.m in Sources */,
+				91FF1231211AF6670098470D /* BackupQuestionViewController.swift in Sources */,
 				914013AD2018BCB90066367C /* SurveyUnavailableViewController.swift in Sources */,
 				91147441203F1D4100C16279 /* BalanceLabel.swift in Sources */,
 				914013E02019F2BF0066367C /* UICollectionView+KinWallet.swift in Sources */,
@@ -2092,6 +2182,7 @@
 				82A12DEC2056B841008841F2 /* Configuration.swift in Sources */,
 				91F69D30208379F400F06181 /* SegmentedPagerTabStripViewController.swift in Sources */,
 				9198A2A02062926D0052F343 /* NotificationHandler.swift in Sources */,
+				91FF14AC211C5FFE0098470D /* ButtonAccessoryInputView.swift in Sources */,
 				91D891E22020B43D0090E77C /* AnswersCollectionViewLayout.swift in Sources */,
 				914013C12019D0BA0066367C /* UIImage+KinWallet.swift in Sources */,
 				91D7C031204F11D200D35401 /* KinAmountLabel.swift in Sources */,
@@ -2208,7 +2299,6 @@
 				91E84AA920862DAA00E8B7A6 /* QuestionCollectionViewDataSource.swift in Sources */,
 				91AA18E721048AD000044D9C /* QuizData.swift in Sources */,
 				91E84AA320862D8300E8B7A6 /* WebRequests.swift in Sources */,
-				915F496E20431960005C09B3 /* GradientView.swift in Sources */,
 				9170391320B7517A006B01FB /* PushHandler.swift in Sources */,
 				914013DF2019F2BF0066367C /* UITableViewCell+KinWallet.swift in Sources */,
 				91E84A9020862C5100E8B7A6 /* User.swift in Sources */,
@@ -2232,6 +2322,7 @@
 				91E84A9420862C6C00E8B7A6 /* Array+KinWallet.swift in Sources */,
 				91E84A8E208618AB00E8B7A6 /* AppDelegate+Extensions.swift in Sources */,
 				914013D32019F2300066367C /* ReusableView.swift in Sources */,
+				91FF123A211AF66C0098470D /* BackupQuestionViewController.swift in Sources */,
 				91E84A882086187100E8B7A6 /* EmptyStateView.swift in Sources */,
 				91D891CE2020B3C70090E77C /* TouchUpEffectScalable.swift in Sources */,
 				91B4453E20909C4500ED6802 /* TutorialPageView.swift in Sources */,
@@ -2239,6 +2330,7 @@
 				91AEBF3A2029E9F3007BBBA3 /* WebRequest.swift in Sources */,
 				91E84A782086186B00E8B7A6 /* PagerTabStripBehaviour.swift in Sources */,
 				91311C53204FDBD500618240 /* Optional+KinWallet.swift in Sources */,
+				91FF1239211AF66C0098470D /* BackupIntroViewController.swift in Sources */,
 				828CB4742056EDD5007C679C /* NoticeViewController.swift in Sources */,
 				916450D220D165DE00CB7994 /* ParticlesView.swift in Sources */,
 				828CB45D2056EAFC007C679C /* ISPPinnedNSURLSessionDelegate.m in Sources */,
@@ -2252,6 +2344,7 @@
 				91D7C032204F11D200D35401 /* KinAmountLabel.swift in Sources */,
 				9182C2A7203C6C0C0051F003 /* Amplitude.m in Sources */,
 				9140139A201892640066367C /* AnswerTests.swift in Sources */,
+				91FF14B4211C61290098470D /* ButtonAccessoryInputView.swift in Sources */,
 				91A4EAA120CFE8F600C3399F /* VideoTaskViewController.swift in Sources */,
 				914013DD2019F2BF0066367C /* UICollectionViewCell+KinWallet.swift in Sources */,
 				91E84A9220862C6200E8B7A6 /* RootViewController.swift in Sources */,
@@ -2300,6 +2393,7 @@
 			files = (
 				91E84A9320862C6300E8B7A6 /* RootViewController.swift in Sources */,
 				91E84A56208617B300E8B7A6 /* TaskCompletedViewController.swift in Sources */,
+				91FF123C211AF66C0098470D /* BackupQuestionViewController.swift in Sources */,
 				828CB4252056E9C1007C679C /* AMPDeviceInfo.m in Sources */,
 				828CB4272056E9C1007C679C /* AMPURLConnection.m in Sources */,
 				828CB4532056EA43007C679C /* String+KinWallet.swift in Sources */,
@@ -2315,7 +2409,6 @@
 				828CB4262056E9C1007C679C /* AMPIdentify.m in Sources */,
 				824138512060376500D7117E /* URLRequest+KinWallet.swift in Sources */,
 				91E84A7E2086186B00E8B7A6 /* ButtonBarPagerTabStripViewController.swift in Sources */,
-				828CB4332056E9E5007C679C /* GradientView.swift in Sources */,
 				828CB4162056E913007C679C /* Offer.swift in Sources */,
 				828CB4012056E88A007C679C /* Configuration.swift in Sources */,
 				828CB4202056E989007C679C /* WeakBox.swift in Sources */,
@@ -2326,6 +2419,7 @@
 				828CB4572056EA93007C679C /* UICountingLabel.m in Sources */,
 				91E84A9B20862CE900E8B7A6 /* SplashScreenViewController.swift in Sources */,
 				91E84A802086186B00E8B7A6 /* ButtonBarViewCell.swift in Sources */,
+				91FF14B5211C612A0098470D /* ButtonAccessoryInputView.swift in Sources */,
 				91E84A8D2086189500E8B7A6 /* SurveyViewController.swift in Sources */,
 				9170391420B7517A006B01FB /* PushHandler.swift in Sources */,
 				91E84AA220862D8300E8B7A6 /* WebRequests.swift in Sources */,
@@ -2372,6 +2466,7 @@
 				91E5C6A220B5D20C0024BAA5 /* Sourcery.swift in Sources */,
 				828CB4622056EB02007C679C /* AMPUtils.m in Sources */,
 				828CB4282056E9C1007C679C /* AMPConstants.m in Sources */,
+				91FF123B211AF66C0098470D /* BackupIntroViewController.swift in Sources */,
 				916450D320D165DF00CB7994 /* ParticlesView.swift in Sources */,
 				91E84A60208617DA00E8B7A6 /* OfferWallViewController.swift in Sources */,
 				91E84A6B2086183A00E8B7A6 /* KinLoader.swift in Sources */,
@@ -2450,6 +2545,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		91FF1241211B18290098470D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91FF1254211B195A0098470D /* UIView+KinWallet.swift in Sources */,
+				91FF1253211B18410098470D /* StepsProgressView.swift in Sources */,
+				91FF1252211B18390098470D /* GradientView.swift in Sources */,
+				91FF1256211B198E0098470D /* UIColor+KinWallet.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -2472,6 +2578,11 @@
 			isa = PBXTargetDependency;
 			name = Lottie_iOS;
 			targetProxy = 91E6B606203AD0D80080C2FC /* PBXContainerItemProxy */;
+		};
+		91FF124C211B18290098470D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 91FF1245211B18290098470D /* KinitDesignables */;
+			targetProxy = 91FF124B211B18290098470D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2820,6 +2931,64 @@
 			};
 			name = Release;
 		};
+		91FF1250211B18290098470D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = F879J8YSJ9;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = KinitDesignables/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.kinecosystem.kinit.KinitDesignables;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		91FF1251211B18290098470D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = F879J8YSJ9;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = KinitDesignables/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.kinecosystem.kinit.KinitDesignables;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2855,6 +3024,15 @@
 			buildConfigurations = (
 				9140135B20162FA90066367C /* Debug */,
 				91B2626C20DA4A5A00E8A766 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		91FF124F211B18290098470D /* Build configuration list for PBXNativeTarget "KinitDesignables" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91FF1250211B18290098470D /* Debug */,
+				91FF1251211B18290098470D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

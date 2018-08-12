@@ -129,7 +129,7 @@ class KinLoader {
         transactions.next(.some(newTransactions))
     }
 
-    func fetchAvailableBackupHints(skipCache: Bool = false, completion: (([String: AvailableBackupHint]) -> Void)? = nil) {
+    func fetchAvailableBackupHints(skipCache: Bool = false, completion: (([AvailableBackupHint]) -> Void)? = nil) {
         if !skipCache,
             let cachedList: AvailableBackupHintList = SimpleDatastore.loadObject(availableBackupList) {
                 completion?(cachedList.hints)

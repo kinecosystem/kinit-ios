@@ -5,6 +5,7 @@
 
 import UIKit
 import WebKit
+import KinitDesignables
 
 extension AppDelegate {
     static var webView: WKWebView?
