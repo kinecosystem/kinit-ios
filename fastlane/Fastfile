@@ -19,20 +19,24 @@ platform :ios do
   lane :test_flight do
     release_build
     upload_ipa_to_testflight
+    notification_title = "Kinit v#{get_version_number} (build #{get_build_number}) uploaded to TestFlight"
     slack(
-      message: "Kinit v#{get_version_number} (build #{get_build_number}) uploaded to TestFlight",
+      message: notification_title,
       success: true
     )
+    push_me(title: notification_title) if ENV["PUSH_ME_TOKEN"]
   end
 
   desc "Submits a new build to the App Store"
   lane :app_store do
     release_build
     upload_to_app_store
+    notification_title = "Kinit v#{get_version_number} (build #{get_build_number}) uploaded to the AppStore"
     slack(
-      message: "Kinit v#{get_version_number} (build #{get_build_number}) uploaded to the AppStore",
+      message: notification_title,
       success: true
     )
+    push_me(title: notification_title) if ENV["PUSH_ME_TOKEN"]
   end
 
   desc "Builds a release build"

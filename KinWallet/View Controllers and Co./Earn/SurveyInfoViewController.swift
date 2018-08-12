@@ -143,15 +143,6 @@ final class SurveyInfoViewController: UIViewController {
     }
 
     private func presentTask() {
-        if task.type == .trueX {
-            let trueXVC = TrueXViewController()
-            trueXVC.delegate = self
-            trueXVC.task = task
-            let navController = KinNavigationController(rootViewController: trueXVC)
-            present(navController, animated: true)
-            return
-        }
-
         let surveyNavController = SurveyViewController.embeddedInNavigationController(with: task,
                                                                                       delegate: self.surveyDelegate!)
         present(surveyNavController, animated: true)
@@ -233,12 +224,6 @@ extension SurveyInfoViewController: VideoTaskViewControllerDelegate {
     }
 
     func videoTaskDidCancelPlaying() {
-        dismiss(animated: true)
-    }
-}
-
-extension SurveyInfoViewController: TrueXViewControllerDelegate {
-    func trueXLoadingDidFail() {
         dismiss(animated: true)
     }
 }

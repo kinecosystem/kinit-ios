@@ -41,6 +41,11 @@ Uploads the current (or the latest built) ipa to testflight
 fastlane ios fabric_beta
 ```
 Builds a release version and distributes (AdHoc) via Beta by Fabric
+### ios test_push_me
+```
+fastlane ios test_push_me
+```
+
 
 ----
 

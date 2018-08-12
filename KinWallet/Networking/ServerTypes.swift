@@ -17,11 +17,6 @@ struct TasksResponse: Codable {
     let tasks: [Task]
 }
 
-struct TrueXActivityStatusResponse: StatusResponse, Codable {
-    let activity: TrueXActivity
-    let status: String
-}
-
 struct OffersResponse: Codable {
     let offers: [Offer]
 }

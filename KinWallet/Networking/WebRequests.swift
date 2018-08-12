@@ -100,29 +100,6 @@ extension WebRequests {
                                                       body: results,
                                                       transform: WebResourceHandlers.isJSONStatusOk)
     }
-
-    static func trueXActivity() -> WebRequest<TrueXActivityStatusResponse, TrueXActivity> {
-        let transform: (TrueXActivityStatusResponse?) -> TrueXActivity? = { activityResponse -> TrueXActivity? in
-            guard
-                let response = activityResponse,
-                WebResourceHandlers.isJSONStatusOk(response: response).boolValue else {
-                    return nil
-            }
-
-            return response.activity
-        }
-
-        let params: [String: String]?
-        if let userAgent = User.userAgent {
-            params = ["user_agent": userAgent]
-        } else {
-            params = nil
-        }
-
-        return WebRequest<TrueXActivityStatusResponse, TrueXActivity>(GET: "/truex/activity",
-                                                                      params: params,
-                                                                      transform: transform)
-    }
 }
 
 // MARK: Spend

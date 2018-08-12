@@ -12,8 +12,6 @@ struct Configuration: Codable {
     let serverHostStage: String
     let serverHostProd: String
     let testFairyKey: String?
-    let trueXConfigHashDebug: String?
-    let trueXConfigHashProd: String?
 
     enum CodingKeys: String, CodingKey {
         case amplitudeKeyDebug = "amplitude-key-debug"
@@ -22,8 +20,6 @@ struct Configuration: Codable {
         case serverHostProd = "server-host-prod"
         case serverHostStage = "server-host-stage"
         case testFairyKey = "testfairy-key"
-        case trueXConfigHashDebug = "truex-config-hash-debug"
-        case trueXConfigHashProd = "truex-config-hash-prod"
     }
 
     static let shared: Configuration = {
