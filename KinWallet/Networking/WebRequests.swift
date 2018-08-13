@@ -239,4 +239,11 @@ extension WebRequests {
         return WebRequest<ChosenBackupHints, [Int]>(GET: "/user/backup/hints",
                                                           transform: { $0?.hints })
     }
+
+    static func sendBackupEmail(to address: String, encriptedKey: String) -> WebRequest<SimpleStatusResponse, Success> {
+        let body = ["to_address": address, "enc_key": encriptedKey]
+        return WebRequest<SimpleStatusResponse, Success>(POST: "/user/email_backup",
+                                                         body: body,
+                                                         transform: WebResourceHandlers.isJSONStatusOk)
+    }
 }

@@ -6,48 +6,22 @@
 //
 
 import UIKit
-import KinUtil
 import KinitDesignables
 
-class BackupQuestionViewController: UIViewController {
+class BackupQuestionViewController: BackupTextInputViewController {
     var step: BackupStep!
     var chosenHints: [(Int, String)]?
     var availableHints: [AvailableBackupHint]!
     var selectedHintId: Int?
 
     @IBOutlet weak var stepsProgressView: StepsProgressView!
-
-    @IBOutlet weak var titleStackViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var answerStackView: UIStackView!
-
-    @IBOutlet weak var answerTextField: UITextField! {
-        didSet {
-            answerTextField.autocorrectionType = .no
-            answerTextField.clearButtonMode = .never
-            answerTextField.setLeftPaddingPoints(10)
-            answerTextField.setRightPaddingPoints(10)
-            answerTextField.layer.cornerRadius = 2
-            answerTextField.layer.borderWidth = 2
-            answerTextField.layer.borderColor = UIColor.kin.lightGray.cgColor
-            answerTextField.placeholder = L10n.backupYourAnswerPlaceholder
-            answerTextField.font = FontFamily.Roboto.regular.font(size: 16)
-            answerTextField.textColor = UIColor.kin.gray
-        }
-    }
 
     @IBOutlet weak var answerTitleLabel: UILabel! {
         didSet {
             answerTitleLabel.text = L10n.backupYourAnswerTitle
             answerTitleLabel.font = FontFamily.Roboto.medium.font(size: 16)
             answerTitleLabel.textColor = UIColor.kin.darkGray
-        }
-    }
-
-    @IBOutlet weak var answerObservationLabel: UILabel! {
-        didSet {
-            answerObservationLabel.text = L10n.backupMinimum4Characters
-            answerObservationLabel.font = FontFamily.Roboto.regular.font(size: 12)
-            answerObservationLabel.textColor = UIColor.kin.slightlyLightGray
         }
     }
 
@@ -82,14 +56,6 @@ class BackupQuestionViewController: UIViewController {
         }
     }
 
-    fileprivate let accessoryView: ButtonAcessoryInputView = {
-        let b = ButtonAcessoryInputView()
-        b.title = L10n.nextAction
-        b.translatesAutoresizingMaskIntoConstraints = false
-
-        return b
-    }()
-
     @IBOutlet weak var pickerArrow: UIImageView!
 
     @IBOutlet var tableViewHeightConstraint: NSLayoutConstraint!
@@ -113,14 +79,10 @@ class BackupQuestionViewController: UIViewController {
         tableViewHeightConstraint.constant = 0
         NSLayoutConstraint.deactivate([tableViewBottomConstraint])
         questionNumberLabel.text = step.title
+        observationLabel.text = L10n.backupMinimum4Characters
+        textField.placeholder = L10n.backupYourAnswerPlaceholder
 
-        answerTextField.inputAccessoryView = accessoryView
-        accessoryView.tapped.on(next: moveToNextStep)
         stepsProgressView.currentStep = step.rawValue
-    }
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
 
     @IBAction func chooseQuestionTapped(_ sender: Any) {
@@ -163,14 +125,10 @@ class BackupQuestionViewController: UIViewController {
                 self?.setAnswerStackViewHidden(!isOpen)
 
                 if isOpen {
-                    self?.answerTextField.becomeFirstResponder()
+                    self?.textField.becomeFirstResponder()
                     self?.accessoryView.isEnabled = false
                 }
         })
-    }
-
-    fileprivate func isAnswerValid(text: String? = nil) -> Bool {
-        return (text ?? answerTextField.textOrEmpty).count >= 4
     }
 
     fileprivate func setAnswerStackViewHidden(_ hidden: Bool, animated: Bool = true) {
@@ -179,15 +137,19 @@ class BackupQuestionViewController: UIViewController {
         }
     }
 
-    fileprivate func moveToNextStep() {
+    override func isInputTextValid(text: String? = nil) -> Bool {
+        return (text ?? textField.textOrEmpty).count >= 4
+    }
+
+    override func moveToNextStep() {
         guard
             let thisHintId = selectedHintId,
-            isAnswerValid() else {
+            isInputTextValid() else {
                 let e = "BackupQuestionViewController received moveToNextStep without selectedHintId or answerTextField"
                 fatalError(e)
         }
 
-        let answer = answerTextField.textOrEmpty
+        let answer = textField.textOrEmpty
 
         var hints: [(Int, String)] = chosenHints ?? []
         hints.append((thisHintId, answer))
@@ -202,10 +164,29 @@ class BackupQuestionViewController: UIViewController {
             navigationController?.pushViewController(secondQuestion, animated: true)
 
         } else if step == .secondQuestion {
-            print("Hints now is", hints)
+            submitHintIdsAndMoveOn(hints)
         } else {
             fatalError("BackupQuestionViewController can only have step set to .firstQuestion or .secondQuestion")
         }
+    }
+
+    fileprivate func submitHintIdsAndMoveOn(_ hints: [(Int, String)]) {
+        accessoryView.isLoading = true
+
+        WebRequests.submitBackupHints(hints.map { $0.0 })
+            .withCompletion { [weak self] _, error in
+                DispatchQueue.main.async {
+                    self?.accessoryView.isLoading = false
+
+                    guard error == nil else {
+                        return
+                    }
+
+                    let sendEmailViewController = StoryboardScene.Backup.backupSendEmailViewController.instantiate()
+                    sendEmailViewController.encryptedKey = "Minions love bananas!"
+                    self?.navigationController?.pushViewController(sendEmailViewController, animated: true)
+                }
+            }.load(with: KinWebService.shared)
     }
 }
 
@@ -232,7 +213,7 @@ extension BackupQuestionViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selected = availableHints[indexPath.item]
         chooseQuestionLabel.text = selected.text
-        answerTextField.text = nil
+        textField.text = nil
 
         selectedHintId = selected.id
 
@@ -254,23 +235,13 @@ extension BackupQuestionViewController: UITableViewDelegate {
             }
 
             self?.setAnswerStackViewHidden(false)
-            self?.answerTextField.becomeFirstResponder()
+            self?.textField.becomeFirstResponder()
             self?.accessoryView.isEnabled = false
         }
     }
 }
 
-extension BackupQuestionViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if isAnswerValid() {
-            accessoryView.shake()
-        } else {
-            answerObservationLabel.shake()
-        }
-
-        return false
-    }
-
+extension BackupQuestionViewController {
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
@@ -285,7 +256,7 @@ extension BackupQuestionViewController: UITextFieldDelegate {
         if newText.count < currentText.count {
             returnValue = true
         } else if string == " " {
-            returnValue = isAnswerValid()
+            returnValue = isInputTextValid()
         } else if string.rangeOfCharacter(from: .alphanumerics) == nil {
             returnValue = false
         } else {
@@ -293,7 +264,7 @@ extension BackupQuestionViewController: UITextFieldDelegate {
         }
 
         if returnValue {
-            accessoryView.isEnabled = isAnswerValid(text: newText)
+            accessoryView.isEnabled = isInputTextValid(text: newText)
         }
 
         return returnValue

@@ -153,7 +153,7 @@ class SendKinViewController: UIViewController {
     private func reportKinSent(amount: UInt64, txId: String) {
         WebRequests.reportTransaction(with: txId, amount: amount, to: publicAddress)
             .withCompletion { [weak self] success, _ in
-                guard let success = success, success else {
+                guard success.boolValue else {
                     KLogWarn("Transaction failed to be reported to server")
                     self?.alertTransactionFailed()
                     return

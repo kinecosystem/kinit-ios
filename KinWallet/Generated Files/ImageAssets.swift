@@ -55,6 +55,7 @@ internal enum Asset {
   internal static let doneFireworks = ImageAsset(name: "DoneFireworks")
   internal static let doneSign = ImageAsset(name: "DoneSign")
   internal static let dualImageSeparator = ImageAsset(name: "DualImageSeparator")
+  internal static let emailAlert = ImageAsset(name: "EmailAlert")
   internal static let emptyHistoryCoupon = ImageAsset(name: "EmptyHistoryCoupon")
   internal static let errorSign = ImageAsset(name: "ErrorSign")
   internal static let floorShadow = ImageAsset(name: "FloorShadow")
@@ -71,7 +72,9 @@ internal enum Asset {
   internal static let kinTaskReward = ImageAsset(name: "KinTaskReward")
   internal static let kinTaskTime = ImageAsset(name: "KinTaskTime")
   internal static let kinTransactionCoins = ImageAsset(name: "KinTransactionCoins")
+  internal static let moreSupportIcon = ImageAsset(name: "MoreSupportIcon")
   internal static let moreTabIcon = ImageAsset(name: "MoreTabIcon")
+  internal static let moreWalletBackupIcon = ImageAsset(name: "MoreWalletBackupIcon")
   internal static let multipleAnswerBackground = ImageAsset(name: "MultipleAnswerBackground")
   internal static let multipleAnswerBackgroundSelected = ImageAsset(name: "MultipleAnswerBackgroundSelected")
   internal static let multipleAnswerCheckmark = ImageAsset(name: "MultipleAnswerCheckmark")
@@ -123,6 +126,7 @@ internal enum Asset {
     doneFireworks,
     doneSign,
     dualImageSeparator,
+    emailAlert,
     emptyHistoryCoupon,
     errorSign,
     floorShadow,
@@ -139,7 +143,9 @@ internal enum Asset {
     kinTaskReward,
     kinTaskTime,
     kinTransactionCoins,
+    moreSupportIcon,
     moreTabIcon,
+    moreWalletBackupIcon,
     multipleAnswerBackground,
     multipleAnswerBackgroundSelected,
     multipleAnswerCheckmark,

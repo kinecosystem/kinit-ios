@@ -10,6 +10,14 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Black.ttf">
+            <string>Roboto-Black</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Backup Intro View Controller-->
         <scene sceneID="pmX-Dw-1Wm">
@@ -20,7 +28,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7li-MJ-GI0">
-                                <rect key="frame" x="67" y="340.5" width="240" height="50"/>
+                                <rect key="frame" x="67.5" y="340.5" width="240" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="P3Q-gl-AbH"/>
                                     <constraint firstAttribute="height" constant="50" id="d4Q-MV-C6C"/>
@@ -30,8 +38,8 @@
                                     <action selector="backupNow:" destination="fv6-mb-6s9" eventType="touchUpInside" id="eme-j5-Yn9"/>
                                 </connections>
                             </button>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="BackupIntroIllustration" translatesAutoresizingMaskIntoConstraints="NO" id="0Rb-mF-ViJ">
-                                <rect key="frame" x="83" y="477" width="208" height="170"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" verticalCompressionResistancePriority="751" insetsLayoutMarginsFromSafeArea="NO" image="BackupIntroIllustration" translatesAutoresizingMaskIntoConstraints="NO" id="0Rb-mF-ViJ">
+                                <rect key="frame" x="83.5" y="477" width="208" height="170"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="3Q4-mK-lui">
                                 <rect key="frame" x="22" y="145" width="331" height="112"/>
@@ -251,11 +259,10 @@
                         <viewLayoutGuide key="safeArea" id="mEt-v5-S7s"/>
                     </view>
                     <connections>
-                        <outlet property="answerObservationLabel" destination="pgP-Pb-bsN" id="xCJ-ca-YX5"/>
                         <outlet property="answerStackView" destination="MK9-eM-2aK" id="AKx-0E-ki8"/>
-                        <outlet property="answerTextField" destination="sUt-Fp-yZG" id="xKE-rp-bCH"/>
                         <outlet property="answerTitleLabel" destination="TLq-Gv-OMl" id="ydM-ux-hKF"/>
                         <outlet property="chooseQuestionLabel" destination="QlK-ps-iw4" id="K6a-hX-kNX"/>
+                        <outlet property="observationLabel" destination="pgP-Pb-bsN" id="OdS-dY-nOH"/>
                         <outlet property="pickerArrow" destination="qZm-fu-c6J" id="eH0-yP-tbD"/>
                         <outlet property="questionNumberLabel" destination="lah-bA-5bx" id="puw-a9-2LE"/>
                         <outlet property="stepsProgressView" destination="73U-TV-cHT" id="dvN-GO-zkF"/>
@@ -263,6 +270,7 @@
                         <outlet property="tableView" destination="V4f-Je-HOm" id="ajX-Tg-feP"/>
                         <outlet property="tableViewBottomConstraint" destination="PQl-1c-Ijd" id="QvB-G4-EqS"/>
                         <outlet property="tableViewHeightConstraint" destination="gaZ-GB-qwO" id="JBw-sn-4go"/>
+                        <outlet property="textField" destination="sUt-Fp-yZG" id="ZBg-pG-g8P"/>
                         <outlet property="titleLabel" destination="Ae9-ks-pl9" id="3Vf-3U-hXc"/>
                         <outlet property="titleStackViewTopConstraint" destination="MoY-Hy-63b" id="6o3-Aj-Dwe"/>
                     </connections>
@@ -276,9 +284,281 @@
             </objects>
             <point key="canvasLocation" x="628" y="72.413793103448285"/>
         </scene>
+        <!--Backup Done View Controller-->
+        <scene sceneID="SWa-AM-Ff5">
+            <objects>
+                <viewController storyboardIdentifier="BackupDoneViewController" id="Vz1-dX-ziS" customClass="BackupDoneViewController" customModule="KinWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="usL-SC-nwF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="mQc-ft-PzS">
+                                <rect key="frame" x="67.5" y="98" width="240" height="263.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YAY!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2VW-N3-eCd">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="49.5"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="42"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your wallet is backed up!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yj5-d8-fY3">
+                                        <rect key="frame" x="0.0" y="54.5" width="240" height="19"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ACz-nl-P2a">
+                                        <rect key="frame" x="0.0" y="78.5" width="240" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="V6A-84-7dE"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="4qZ-sp-2OT" customClass="LOTAnimationView">
+                                        <rect key="frame" x="0.0" y="113.5" width="240" height="150"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="Odk-62-Gox"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mQc-ft-PzS" firstAttribute="centerX" secondItem="pYF-6H-5ql" secondAttribute="centerX" id="QZk-QJ-vth"/>
+                            <constraint firstItem="mQc-ft-PzS" firstAttribute="centerY" secondItem="pYF-6H-5ql" secondAttribute="centerY" multiplier="2/3" id="TlO-AX-BEY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="pYF-6H-5ql"/>
+                    </view>
+                    <connections>
+                        <outlet property="backupDoneMessageLabel" destination="Yj5-d8-fY3" id="ZQr-rm-Cfs"/>
+                        <outlet property="backupDoneTitleLabel" destination="2VW-N3-eCd" id="yy9-vT-7ix"/>
+                        <outlet property="lockView" destination="4qZ-sp-2OT" id="5E9-6D-544"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UHW-0g-XYu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2924" y="73"/>
+        </scene>
+        <!--Backup Send Email View Controller-->
+        <scene sceneID="EBO-dD-OOx">
+            <objects>
+                <viewController storyboardIdentifier="BackupSendEmailViewController" id="dud-b5-BpM" customClass="BackupSendEmailViewController" customModule="KinWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="INc-Vf-vnH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="s3W-QS-opR">
+                                <rect key="frame" x="18" y="60" width="339" height="231.5"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YBV-fj-pk7" customClass="StepsProgressView" customModule="KinitDesignables">
+                                        <rect key="frame" x="0.0" y="0.0" width="104" height="10"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" red="0.99804836509999995" green="0.77647058820000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="numberOfSteps">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="currentStep">
+                                                <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="trackColor">
+                                                <color key="value" red="0.84313725490000002" green="0.86274509799999999" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7m6-Re-Awq">
+                                        <rect key="frame" x="0.0" y="18" width="240" height="1"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="45r-Ih-MJ4"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QR Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gee-eR-xLp">
+                                        <rect key="frame" x="0.0" y="27" width="69" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To keep your account secure, we’ll generate a unique QR code and send it to you by email." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sgm-bW-iSH">
+                                        <rect key="frame" x="0.0" y="55.5" width="339" height="61"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Email Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDa-At-WYy">
+                                        <rect key="frame" x="0.0" y="124.5" width="147" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ekS-Qq-rXp">
+                                        <rect key="frame" x="0.0" y="153" width="339" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="9IA-mS-IPf"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="dud-b5-BpM" id="OX7-Xn-8OM"/>
+                                        </connections>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*please check your email address carefully" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6pb-rF-Gsv">
+                                        <rect key="frame" x="0.0" y="211" width="326.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="ekS-Qq-rXp" firstAttribute="width" secondItem="s3W-QS-opR" secondAttribute="width" id="DQi-SI-Rdn"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="s3W-QS-opR" firstAttribute="top" secondItem="XtX-4k-cBt" secondAttribute="top" constant="40" id="RnF-ln-Wy8"/>
+                            <constraint firstItem="s3W-QS-opR" firstAttribute="centerX" secondItem="XtX-4k-cBt" secondAttribute="centerX" id="pS1-mK-YKw"/>
+                            <constraint firstItem="s3W-QS-opR" firstAttribute="leading" secondItem="XtX-4k-cBt" secondAttribute="leading" constant="18" id="sue-C1-9Lz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="XtX-4k-cBt"/>
+                    </view>
+                    <connections>
+                        <outlet property="emailAddressLabel" destination="RDa-At-WYy" id="2PN-Wg-QzH"/>
+                        <outlet property="observationLabel" destination="6pb-rF-Gsv" id="yO6-QQ-BGw"/>
+                        <outlet property="subtitleLabel" destination="Sgm-bW-iSH" id="afs-kP-h2W"/>
+                        <outlet property="textField" destination="ekS-Qq-rXp" id="7Kp-Iv-UgY"/>
+                        <outlet property="titleLabel" destination="gee-eR-xLp" id="AsU-9K-DMn"/>
+                        <outlet property="titleStackViewTopConstraint" destination="RnF-ln-Wy8" id="kzl-rh-fvk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0eq-yQ-DgD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1494" y="73"/>
+        </scene>
+        <!--Backup Confirm Email View Controller-->
+        <scene sceneID="geA-6R-39l">
+            <objects>
+                <viewController storyboardIdentifier="BackupConfirmEmailViewController" id="Qof-O8-sry" customClass="BackupConfirmEmailViewController" customModule="KinWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ySf-oM-EhZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rcW-7S-8Hr">
+                                <rect key="frame" x="18" y="60" width="339" height="174.5"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dkL-NC-Wwi" customClass="StepsProgressView" customModule="KinitDesignables">
+                                        <rect key="frame" x="0.0" y="0.0" width="104" height="10"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" red="0.99804836509999995" green="0.77647058820000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="numberOfSteps">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="currentStep">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="trackColor">
+                                                <color key="value" red="0.84313725490000002" green="0.86274509799999999" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hRj-hx-c7d">
+                                        <rect key="frame" x="0.0" y="18" width="240" height="1"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="bFr-OK-sMt"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZ7-3E-Vc6">
+                                        <rect key="frame" x="0.0" y="27" width="106.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ymd-le-iC5">
+                                        <rect key="frame" x="0.0" y="55.5" width="323.5" height="81.5"/>
+                                        <string key="text">Please check your email to make sure you received your QR code.
+
+If you did, click confirm below.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fA9-Bm-o2H">
+                                        <rect key="frame" x="0.0" y="145" width="240" height="1"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="TYA-fk-6U9"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If not, resend or check your spam folder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vr-DD-wJd">
+                                        <rect key="frame" x="0.0" y="154" width="305" height="20.5"/>
+                                        <gestureRecognizers/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="LA0-yn-cjI" appends="YES" id="qpy-za-nyO"/>
+                                        </connections>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="1Np-jA-Kpq">
+                                <rect key="frame" x="18" y="274.5" width="339" height="162.5"/>
+                                <subviews>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="EmailAlert" translatesAutoresizingMaskIntoConstraints="NO" id="7cD-tU-hlg">
+                                        <rect key="frame" x="131.5" y="0.0" width="76" height="67"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make sure to keep the code someplace safe because you’ll need it if you need to recover your account." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1c9-4g-7Ae">
+                                        <rect key="frame" x="29.5" y="81" width="280" height="81.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="280" id="HQY-Ng-6Od"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="1Np-jA-Kpq" firstAttribute="leading" secondItem="rcW-7S-8Hr" secondAttribute="leading" id="6t7-O6-sTf"/>
+                            <constraint firstItem="rcW-7S-8Hr" firstAttribute="centerX" secondItem="6Mu-9q-REJ" secondAttribute="centerX" id="CNR-m7-qYd"/>
+                            <constraint firstItem="rcW-7S-8Hr" firstAttribute="leading" secondItem="6Mu-9q-REJ" secondAttribute="leading" constant="18" id="Krm-ln-zzP"/>
+                            <constraint firstItem="1Np-jA-Kpq" firstAttribute="trailing" secondItem="rcW-7S-8Hr" secondAttribute="trailing" id="f3c-dq-meE"/>
+                            <constraint firstItem="rcW-7S-8Hr" firstAttribute="top" secondItem="6Mu-9q-REJ" secondAttribute="top" constant="40" id="fKo-Nb-s54"/>
+                            <constraint firstItem="1Np-jA-Kpq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="rcW-7S-8Hr" secondAttribute="bottom" constant="40" id="frv-kC-JpZ"/>
+                            <constraint firstItem="1Np-jA-Kpq" firstAttribute="centerY" secondItem="6Mu-9q-REJ" secondAttribute="centerY" priority="500" id="iXF-cH-dXO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Mu-9q-REJ"/>
+                    </view>
+                    <connections>
+                        <outlet property="messageLabel" destination="1c9-4g-7Ae" id="wDO-5x-6sU"/>
+                        <outlet property="messageStackView" destination="1Np-jA-Kpq" id="Pxj-GK-4an"/>
+                        <outlet property="resendEmailLabel" destination="1vr-DD-wJd" id="fAC-GB-9qs"/>
+                        <outlet property="subtitleLabel" destination="Ymd-le-iC5" id="q4H-Sj-BSD"/>
+                        <outlet property="titleLabel" destination="NZ7-3E-Vc6" id="IH8-Yq-CSO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ao2-iv-bI8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="LA0-yn-cjI">
+                    <connections>
+                        <action selector="resendEmail:" destination="Qof-O8-sry" id="vZP-6Q-sf5"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2237.5999999999999" y="71.514242878560722"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BackupIntroIllustration" width="208" height="170"/>
+        <image name="EmailAlert" width="76" height="67"/>
         <image name="PickerArrow" width="8" height="6"/>
     </resources>
 </document>

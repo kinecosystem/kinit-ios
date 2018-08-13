@@ -5,35 +5,63 @@
 
 import UIKit
 
-class MoreViewController: UIViewController {
-    @IBOutlet var separators: [UIView]! {
-        didSet {
-            separators.forEach { $0.backgroundColor = UIColor.kin.lightGray }
+private enum MoreSection {
+    case security
+    case support
+
+    var items: [MoreSectionItem] {
+        switch self {
+        case .security: return [.backup]
+        case .support: return [.supportEmail]
         }
     }
 
-    @IBOutlet weak var versionLabel: UILabel! {
-        didSet {
-            versionLabel.font = FontFamily.Roboto.regular.font(size: 14)
-            versionLabel.textColor = UIColor.kin.gray
-            versionLabel.text = "V. \(Bundle.appVersion) (Build \(Bundle.buildNumber))"
+    var title: String {
+        switch self {
+        case .security: return L10n.security
+        case .support: return L10n.support
         }
     }
 
-    @IBOutlet weak var supportLabel: UILabel! {
-        didSet {
-            supportLabel.font = FontFamily.Roboto.regular.font(size: 18)
-            supportLabel.textColor = UIColor.kin.gray
-            supportLabel.text = L10n.support
+    static var allCases: [MoreSection] {
+        return [MoreSection.security, .support]
+    }
+}
+
+private enum MoreSectionItem: String {
+    case backup
+    case supportEmail
+
+    var title: String {
+        switch self {
+        case .backup: return L10n.walletBackup
+        case .supportEmail: return L10n.emailUs
         }
     }
 
-    @IBOutlet weak var emailButton: UIButton! {
-        didSet {
-            emailButton.makeKinButtonFilled()
-            emailButton.setTitle(L10n.emailUs, for: .normal)
+    var image: UIImage? {
+        switch self {
+        case .backup: return Asset.moreWalletBackupIcon.image
+        case .supportEmail: return Asset.moreSupportIcon.image
         }
     }
+
+    var action: Selector {
+        switch self {
+        case .backup: return #selector(MoreViewController.startBackup)
+        case .supportEmail: return #selector(MoreViewController.presentSupportEmail)
+        }
+    }
+}
+
+class MoreViewController: UITableViewController {
+    let versionLabel: UILabel = {
+        let l = UILabel()
+        l.font = FontFamily.Roboto.regular.font(size: 14)
+        l.textColor = UIColor.kin.gray
+        l.text = "V. \(Bundle.appVersion) (Build \(Bundle.buildNumber))"
+        return l
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +76,7 @@ class MoreViewController: UIViewController {
         #endif
 
         view.addGestureRecognizer(fourTapGesture)
+        tableView.tableFooterView = versionLabel
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -57,11 +86,11 @@ class MoreViewController: UIViewController {
         KinLoader.shared.fetchAvailableBackupHints()
     }
 
-    @IBAction func emailTapped(_ sender: Any) {
+    @objc fileprivate func presentSupportEmail() {
         KinSupportViewController.present(from: self)
     }
 
-    @IBAction func startBackup(_ sender: Any) {
+    @objc fileprivate func startBackup() {
         KinLoader.shared.fetchAvailableBackupHints { [weak self] hints in
             DispatchQueue.main.async {
                 let backupIntro = StoryboardScene.Backup.backupIntroViewController.instantiate()
@@ -70,6 +99,46 @@ class MoreViewController: UIViewController {
                 self?.present(navigationController, animated: true)
             }
         }
+    }
+}
+
+extension MoreViewController {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return MoreSection.allCases.count
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return MoreSection.allCases[section].items.count
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as MoreTableViewCell
+        let item = MoreSection.allCases[indexPath.section].items[indexPath.row]
+        cell.textLabel?.text = item.title
+        cell.imageView?.image = item.image
+
+        return cell
+    }
+}
+
+extension MoreViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = MoreSection.allCases[indexPath.section].items[indexPath.row]
+        perform(item.action)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return MoreSection.allCases[section].title
+    }
+
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let headerView = view as? UITableViewHeaderFooterView else {
+            return
+        }
+
+        headerView.textLabel?.textColor = UIColor.kin.gray
+        headerView.textLabel?.font = FontFamily.Roboto.bold.font(size: 14)
     }
 }
 

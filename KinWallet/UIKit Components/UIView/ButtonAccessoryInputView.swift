@@ -8,7 +8,15 @@
 import UIKit
 import KinUtil
 
-class ButtonAcessoryInputView: UIView {
+class ButtonAccessoryInputView: UIView {
+    class func nextActionButton() -> ButtonAccessoryInputView {
+        let b = ButtonAccessoryInputView()
+        b.title = L10n.nextAction
+        b.translatesAutoresizingMaskIntoConstraints = false
+
+        return b
+    }
+
     private let button: UIButton = {
         let b = UIButton(type: .system)
         b.titleLabel?.font = FontFamily.Roboto.regular.font(size: 18)
@@ -46,7 +54,8 @@ class ButtonAcessoryInputView: UIView {
     }
 
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: 68)
+        let height: CGFloat = UIDevice.isiPhone5() ? 48 : 68
+        return CGSize(width: UIScreen.main.bounds.width, height: height)
     }
 
     override init(frame: CGRect) {

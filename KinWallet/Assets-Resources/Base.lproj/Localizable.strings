@@ -24,6 +24,10 @@
 
 "Buy" = "Buy";
 
+"Confirm" = "Confirm";
+
+"QRCode" = "QR Code";
+
 //Creating wallet
 
 "TryAgain" = "Try Again";
@@ -208,6 +212,8 @@
 
 // Backup
 
+"Security" = "Security";
+
 "BackupIntroExplanation" = "Backing up your wallet will allow you to recover your Kin if you get locked out of the app or if your phone is ever lost or stolen.";
 
 "WalletBackup" = "Wallet Backup";
@@ -227,3 +233,23 @@
 "BackupYourAnswerPlaceholder" = "Type your answer here";
 
 "BackupMinimum4Characters" = "* minimum 4 characters";
+
+"BackupCompleteMessage" = "Your wallet is backed up!";
+
+"BackupQRCodeSubtitle" = "To keep your account secure, we’ll generate a unique QR code and send it to you by email.";
+
+"BackupQRCodeEmailAddress" = "Your Email Address";
+
+"BackupQRCodeEmailPlaceholder" = "Type your email here";
+
+"BackupQRCodeEmailObservation" = "* Make sure your email is written correctly.\nYou don’t want your wallet QR code to get to the hands of someone else.";
+
+"BackupConfirmTitle" = "Confirm Email";
+
+"BackupConfirmSubtitle" = "Please check your email to make sure you received your QR code.\nIf you did, click confirm below.";
+
+"BackupConfirmResendMessage" = "If not, %@ or check your spam folder";
+
+"BackupConfirmResend" = "resend";
+
+"BackupConfirmMessage" = "Make sure to keep the code someplace safe because you’ll need it if you need to recover your account.";

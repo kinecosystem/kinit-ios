@@ -18,8 +18,8 @@ class PhoneVerificationRequestViewController: UIViewController {
         }
     }
 
-    fileprivate let accessoryView: ButtonAcessoryInputView = {
-        let b = ButtonAcessoryInputView()
+    fileprivate let accessoryView: ButtonAccessoryInputView = {
+        let b = ButtonAccessoryInputView()
         b.title = L10n.nextAction
         b.translatesAutoresizingMaskIntoConstraints = false
 

@@ -25,10 +25,32 @@ internal enum L10n {
   internal static let activityDoneTitle = L10n.tr("Localizable", "ActivityDoneTitle")
   /// Back to Spend
   internal static let backToSpendAction = L10n.tr("Localizable", "BackToSpendAction")
+  /// Your wallet is backed up!
+  internal static let backupCompleteMessage = L10n.tr("Localizable", "BackupCompleteMessage")
+  /// Make sure to keep the code someplace safe because you’ll need it if you need to recover your account.
+  internal static let backupConfirmMessage = L10n.tr("Localizable", "BackupConfirmMessage")
+  /// resend
+  internal static let backupConfirmResend = L10n.tr("Localizable", "BackupConfirmResend")
+  /// If not, %@ or check your spam folder
+  internal static func backupConfirmResendMessage(_ p1: String) -> String {
+    return L10n.tr("Localizable", "BackupConfirmResendMessage", p1)
+  }
+  /// Please check your email to make sure you received your QR code.\nIf you did, click confirm below.
+  internal static let backupConfirmSubtitle = L10n.tr("Localizable", "BackupConfirmSubtitle")
+  /// Confirm Email
+  internal static let backupConfirmTitle = L10n.tr("Localizable", "BackupConfirmTitle")
   /// Backing up your wallet will allow you to recover your Kin if you get locked out of the app or if your phone is ever lost or stolen.
   internal static let backupIntroExplanation = L10n.tr("Localizable", "BackupIntroExplanation")
   /// * minimum 4 characters
   internal static let backupMinimum4Characters = L10n.tr("Localizable", "BackupMinimum4Characters")
+  /// Your Email Address
+  internal static let backupQRCodeEmailAddress = L10n.tr("Localizable", "BackupQRCodeEmailAddress")
+  /// * Make sure your email is written correctly.\nYou don’t want your wallet QR code to get to the hands of someone else.
+  internal static let backupQRCodeEmailObservation = L10n.tr("Localizable", "BackupQRCodeEmailObservation")
+  /// Type your email here
+  internal static let backupQRCodeEmailPlaceholder = L10n.tr("Localizable", "BackupQRCodeEmailPlaceholder")
+  /// To keep your account secure, we’ll generate a unique QR code and send it to you by email.
+  internal static let backupQRCodeSubtitle = L10n.tr("Localizable", "BackupQRCodeSubtitle")
   /// Type your answer here
   internal static let backupYourAnswerPlaceholder = L10n.tr("Localizable", "BackupYourAnswerPlaceholder")
   /// Your Answer
@@ -45,6 +67,8 @@ internal enum L10n {
   internal static let chooseSecurityQuestion = L10n.tr("Localizable", "ChooseSecurityQuestion")
   /// Close
   internal static let closeAction = L10n.tr("Localizable", "CloseAction")
+  /// Confirm
+  internal static let confirm = L10n.tr("Localizable", "Confirm")
   /// Contact Support
   internal static let contactSupport = L10n.tr("Localizable", "ContactSupport")
   /// Code saved to My Vouchers
@@ -131,10 +155,14 @@ internal enum L10n {
   internal static let phoneVerificationUnsupportedCountryCodeMessage = L10n.tr("Localizable", "PhoneVerificationUnsupportedCountryCodeMessage")
   /// Oh no!
   internal static let phoneVerificationUnsupportedCountryCodeTitle = L10n.tr("Localizable", "PhoneVerificationUnsupportedCountryCodeTitle")
+  /// QR Code
+  internal static let qrCode = L10n.tr("Localizable", "QRCode")
   /// Hi! 👋\nReady to earn some Kin?
   internal static let readyToEarnKinQuestion = L10n.tr("Localizable", "ReadyToEarnKinQuestion")
   /// Second Question
   internal static let secondSecurityQuestion = L10n.tr("Localizable", "SecondSecurityQuestion")
+  /// Security
+  internal static let security = L10n.tr("Localizable", "Security")
   /// Choose 2 security questions.
   internal static let securityQuestionsSubtitle = L10n.tr("Localizable", "SecurityQuestionsSubtitle")
   /// Security Questions
