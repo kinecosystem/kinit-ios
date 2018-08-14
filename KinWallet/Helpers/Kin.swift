@@ -18,6 +18,7 @@ private let kinHorizonProductionName = "Public Global Kin Ecosystem Network ; Ju
 
 private let balanceUserDefaultsKey = "org.kinfoundation.kinwallet.currentBalance"
 private let accountStatusUserDefaultsKey = "org.kinfoundation.kinwallet.accountStatus"
+private let accountStatusPerformedBackupKey = "org.kinfoundation.kinwallet.performedBackup"
 
 protocol BalanceDelegate: class {
     func balanceDidUpdate(balance: UInt64)
@@ -65,8 +66,17 @@ extension Kin {
     func resetKeyStore() {
         UserDefaults.standard.set(AccountStatus.notCreated.rawValue,
                                   forKey: accountStatusUserDefaultsKey)
+        Kin.setPerformedBackup(false)
         client.deleteKeystore()
         self.account = try! client.addAccount()
+    }
+
+    static func setPerformedBackup(_ performed: Bool = true) {
+        UserDefaults.standard.set(performed, forKey: accountStatusPerformedBackupKey)
+    }
+
+    static func performedBackup() -> Bool {
+        return UserDefaults.standard.bool(forKey: accountStatusPerformedBackupKey)
     }
 }
 
