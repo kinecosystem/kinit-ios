@@ -8,6 +8,8 @@
 import UIKit
 
 class BackupConfirmEmailViewController: UIViewController {
+    var chosenHints: [Int]!
+
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.font = FontFamily.Roboto.medium.font(size: 22)
@@ -87,7 +89,21 @@ class BackupConfirmEmailViewController: UIViewController {
     }
 
     func backupComplete() {
-        let backupDoneViewController = StoryboardScene.Backup.backupDoneViewController.instantiate()
-        navigationController?.pushViewController(backupDoneViewController, animated: true)
+        confirmAccessoryView.isLoading = true
+
+        WebRequests.submitBackupHints(chosenHints)
+            .withCompletion { [weak self] _, error in
+                DispatchQueue.main.async {
+                    self?.confirmAccessoryView.isLoading = false
+
+                    guard error == nil else {
+                        return
+                    }
+
+                    let sendEmailViewController = StoryboardScene.Backup.backupSendEmailViewController.instantiate()
+                    sendEmailViewController.encryptedKey = "Minions love bananas!"
+                    self?.navigationController?.pushViewController(sendEmailViewController, animated: true)
+                }
+            }.load(with: KinWebService.shared)
     }
 }

@@ -56,10 +56,20 @@ extension WebRequests {
                                                          transform: WebResourceHandlers.isJSONStatusOk)
     }
 
-    static func updateUserIdToken(_ idToken: String) -> WebRequest<SimpleStatusResponse, Success> {
-        return WebRequest<SimpleStatusResponse, Success>(POST: "/user/firebase/update-id-token",
-                                                         body: ["token": idToken],
-                                                         transform: WebResourceHandlers.isJSONStatusOk)
+    static func updateUserIdToken(_ idToken: String) -> WebRequest<PhoneVerificationStatusResponse, [Int]> {
+        let transform: (PhoneVerificationStatusResponse?) -> [Int]? = {
+            guard
+                let response = $0,
+                WebResourceHandlers.isJSONStatusOk(response: response).boolValue else {
+                    return nil
+            }
+
+            return response.hints
+        }
+
+        return WebRequest<PhoneVerificationStatusResponse, [Int]>(POST: "/user/firebase/update-id-token",
+                                                                  body: ["token": idToken],
+                                                                  transform: transform)
     }
 
     static func appLaunch() -> WebRequest<RemoteConfigStatusResponse, RemoteConfig> {

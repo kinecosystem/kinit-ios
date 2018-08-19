@@ -127,4 +127,9 @@ struct ChosenBackupHints: Codable {
     let hints: [Int]
 }
 
-struct EmptyResponse: Codable { }
+struct EmptyResponse: Codable {}
+
+struct PhoneVerificationStatusResponse: StatusResponse, Codable {
+    let status: String
+    let hints: [Int]
+}

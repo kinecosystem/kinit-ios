@@ -216,9 +216,7 @@ class RootViewController: UIViewController {
             }.load(with: KinWebService.shared)
     }
 
-    func phoneNumberValidated() {
-        //Backup: Show the two options (create new wallet or restore from backup)
-
+    func phoneNumberValidated(with hintIds: [Int]) {
         let splash = SplashScreenViewController()
         splash.creatingAccount = true
         splashScreenNavigationController?.pushViewController(splash, animated: true)

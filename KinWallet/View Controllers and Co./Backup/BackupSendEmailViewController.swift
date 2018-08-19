@@ -9,6 +9,7 @@ import UIKit
 
 class BackupSendEmailViewController: BackupTextInputViewController {
     var encryptedKey: String!
+    var chosenHints: [Int]!
 
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
@@ -59,7 +60,11 @@ class BackupSendEmailViewController: BackupTextInputViewController {
         WebRequests.sendBackupEmail(to: textField.text!, encriptedKey: encryptedKey)
             .withCompletion { [weak self] success, _ in
                 DispatchQueue.main.async {
-                    self?.accessoryView.isLoading = false
+                    guard let `self` = self else {
+                        return
+                    }
+
+                    self.accessoryView.isLoading = false
 
                     guard success.boolValue else {
                         //handle error
@@ -68,7 +73,8 @@ class BackupSendEmailViewController: BackupTextInputViewController {
                     }
 
                     let confirmEmailReceived = StoryboardScene.Backup.backupConfirmEmailViewController.instantiate()
-                    self?.navigationController?.pushViewController(confirmEmailReceived, animated: true)
+                    confirmEmailReceived.chosenHints = self.chosenHints
+                    self.navigationController?.pushViewController(confirmEmailReceived, animated: true)
                 }
         }.load(with: KinWebService.shared)
     }

@@ -164,29 +164,13 @@ class BackupQuestionViewController: BackupTextInputViewController {
             navigationController?.pushViewController(secondQuestion, animated: true)
 
         } else if step == .secondQuestion {
-            submitHintIdsAndMoveOn(hints)
+            let sendEmailViewController = StoryboardScene.Backup.backupSendEmailViewController.instantiate()
+            sendEmailViewController.chosenHints = hints.map { $0.0 }
+            sendEmailViewController.encryptedKey = "Minions love bananas!"
+            navigationController?.pushViewController(sendEmailViewController, animated: true)
         } else {
             fatalError("BackupQuestionViewController can only have step set to .firstQuestion or .secondQuestion")
         }
-    }
-
-    fileprivate func submitHintIdsAndMoveOn(_ hints: [(Int, String)]) {
-        accessoryView.isLoading = true
-
-        WebRequests.submitBackupHints(hints.map { $0.0 })
-            .withCompletion { [weak self] _, error in
-                DispatchQueue.main.async {
-                    self?.accessoryView.isLoading = false
-
-                    guard error == nil else {
-                        return
-                    }
-
-                    let sendEmailViewController = StoryboardScene.Backup.backupSendEmailViewController.instantiate()
-                    sendEmailViewController.encryptedKey = "Minions love bananas!"
-                    self?.navigationController?.pushViewController(sendEmailViewController, animated: true)
-                }
-            }.load(with: KinWebService.shared)
     }
 }
 
