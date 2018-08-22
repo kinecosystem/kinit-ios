@@ -5,6 +5,8 @@
 
 import Foundation
 
+struct EmptyResponse: Codable {}
+
 protocol StatusResponse: Codable {
     var status: String { get }
 }
@@ -127,9 +129,11 @@ struct ChosenBackupHints: Codable {
     let hints: [Int]
 }
 
-struct EmptyResponse: Codable {}
-
 struct PhoneVerificationStatusResponse: StatusResponse, Codable {
     let status: String
+    let hints: [Int]
+}
+
+struct SelectedHintIds: Codable {
     let hints: [Int]
 }

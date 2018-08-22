@@ -219,11 +219,7 @@ class PhoneConfirmationViewController: UIViewController {
         smsArrivalTimer?.invalidate()
         smsArrivalTimer = nil
 
-        guard let rootViewController = navigationController?.parent as? RootViewController else {
-            fatalError("Couldn't find RootViewController when confirming phone number")
-        }
-
-        rootViewController.phoneNumberValidated(with: hintIds)
+        AppDelegate.shared.rootViewController.phoneNumberValidated(with: hintIds)
     }
 
     @objc func assignFirstResponder() {

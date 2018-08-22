@@ -91,8 +91,6 @@ internal enum StoryboardScene {
   internal enum Main: StoryboardType {
     internal static let storyboardName = "Main"
 
-    internal static let accountReadyViewController = SceneType<AccountReadyViewController>(storyboard: Main.self, identifier: "AccountReadyViewController")
-
     internal static let balancePagerTabViewController = SceneType<BalancePagerTabViewController>(storyboard: Main.self, identifier: "BalancePagerTabViewController")
 
     internal static let balanceViewController = SceneType<BalanceViewController>(storyboard: Main.self, identifier: "BalanceViewController")
@@ -105,17 +103,30 @@ internal enum StoryboardScene {
 
     internal static let offerWallViewController = SceneType<OfferWallViewController>(storyboard: Main.self, identifier: "OfferWallViewController")
 
-    internal static let phoneConfirmationViewController = SceneType<PhoneConfirmationViewController>(storyboard: Main.self, identifier: "PhoneConfirmationViewController")
-
-    internal static let phoneVerificationRequestViewController = SceneType<PhoneVerificationRequestViewController>(storyboard: Main.self, identifier: "PhoneVerificationRequestViewController")
-
     internal static let rootTabBarController = SceneType<RootTabBarController>(storyboard: Main.self, identifier: "RootTabBarController")
 
     internal static let surveyHomeViewController = SceneType<SurveyHomeViewController>(storyboard: Main.self, identifier: "SurveyHomeViewController")
 
     internal static let surveyNavigationController = SceneType<KinNavigationController>(storyboard: Main.self, identifier: "SurveyNavigationController")
+  }
+  internal enum Onboard: StoryboardType {
+    internal static let storyboardName = "Onboard"
 
-    internal static let welcomeViewController = SceneType<WelcomeViewController>(storyboard: Main.self, identifier: "WelcomeViewController")
+    internal static let accountReadyViewController = SceneType<AccountReadyViewController>(storyboard: Onboard.self, identifier: "AccountReadyViewController")
+
+    internal static let accountSourceViewController = SceneType<AccountSourceViewController>(storyboard: Onboard.self, identifier: "AccountSourceViewController")
+
+    internal static let creatingWalletViewController = SceneType<CreatingWalletViewController>(storyboard: Onboard.self, identifier: "CreatingWalletViewController")
+
+    internal static let phoneConfirmationViewController = SceneType<PhoneConfirmationViewController>(storyboard: Onboard.self, identifier: "PhoneConfirmationViewController")
+
+    internal static let phoneVerificationRequestViewController = SceneType<PhoneVerificationRequestViewController>(storyboard: Onboard.self, identifier: "PhoneVerificationRequestViewController")
+
+    internal static let restoreBackupQRScannerViewController = SceneType<RestoreBackupQRScannerViewController>(storyboard: Onboard.self, identifier: "RestoreBackupQRScannerViewController")
+
+    internal static let restoreBackupQuestionsViewController = SceneType<RestoreBackupQuestionsViewController>(storyboard: Onboard.self, identifier: "RestoreBackupQuestionsViewController")
+
+    internal static let welcomeViewController = SceneType<WelcomeViewController>(storyboard: Onboard.self, identifier: "WelcomeViewController")
   }
   internal enum Spend: StoryboardType {
     internal static let storyboardName = "Spend"

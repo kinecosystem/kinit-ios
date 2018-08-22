@@ -114,7 +114,7 @@ final class WelcomeViewController: UIViewController {
 
         let safariViewController = SFSafariViewController(url: tos)
         present(safariViewController, animated: true, completion: nil)
-    }
+    }   
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -122,8 +122,8 @@ final class WelcomeViewController: UIViewController {
 
     @IBAction func startEarning(_ sender: Any) {
         logClickedStart()
-        
-        let phoneVerification = StoryboardScene.Main.phoneVerificationRequestViewController.instantiate()
+
+        let phoneVerification = StoryboardScene.Onboard.phoneVerificationRequestViewController.instantiate()
         navigationController?.pushViewController(phoneVerification, animated: true)
     }
 

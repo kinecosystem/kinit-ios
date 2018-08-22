@@ -28,7 +28,13 @@
 
 "QRCode" = "QR Code";
 
+"StartAction" = "Start";
+
 //Registering user and Creating Wallet
+
+"CreatingYourWallet" = "Creating your wallet";
+
+"CreatingYourWalletBePatient" = "It might take up to 20 sec.";
 
 "TryAgain" = "Try Again";
 
@@ -255,3 +261,23 @@
 "BackupConfirmResend" = "resend";
 
 "BackupConfirmMessage" = "Make sure to keep the code someplace safe because you’ll need it if you need to recover your account.";
+
+"BackupRestoredMessage" = "Your wallet was restored!";
+
+"BackupAvailableTitle" = "Looks like you’ve been here before. What would you like to do?";
+
+"CreateNewWallet" = "Create New Wallet";
+
+"RestoreFromBackup" = "Restore From Backup";
+
+"RestoreBackupScanTitle" = "You're 2 steps away";
+
+"RestoreBackupScanSubtitle" = "You just need to scan the QR code we sent to your email and answer your 2 security questions";
+
+"RestoreBackupQuestionsTitle" = "Security Questions";
+
+"RestoreBackupQuestionsSubtitle" = "Answer your security questions to unlock your account";
+
+"RestoreBackupYourAnswerTitle" = "Your Answer";
+
+"RestoreBackupYourAnswerPlaceholder" = "Type your answer here";

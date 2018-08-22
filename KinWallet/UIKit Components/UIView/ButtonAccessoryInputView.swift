@@ -54,8 +54,12 @@ class ButtonAccessoryInputView: UIView {
     }
 
     override var intrinsicContentSize: CGSize {
-        let height: CGFloat = UIDevice.isiPhone5() ? 48 : 68
-        return CGSize(width: UIScreen.main.bounds.width, height: height)
+        return CGSize(width: UIScreen.main.bounds.width,
+                      height: ButtonAccessoryInputView.intrinsicHeight)
+    }
+
+    static var intrinsicHeight: CGFloat {
+        return UIDevice.isiPhone5() ? 48 : 68
     }
 
     override init(frame: CGRect) {

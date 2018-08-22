@@ -24,6 +24,22 @@ extension UITextField {
         }()
     }
 
+    var textOrEmpty: String {
+        return text ?? ""
+    }
+
+    func makeBackupTextField() {
+        autocorrectionType = .no
+        clearButtonMode = .never
+        setLeftPaddingPoints(10)
+        setRightPaddingPoints(10)
+        layer.cornerRadius = 3
+        layer.borderWidth = 2
+        layer.borderColor = UIColor.kin.lightGray.cgColor
+        font = FontFamily.Roboto.regular.font(size: 16)
+        textColor = UIColor.kin.gray
+    }
+
     func setLeftPaddingPoints(_ amount: CGFloat) {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
         self.leftView = paddingView
@@ -34,9 +50,5 @@ extension UITextField {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
         self.rightView = paddingView
         self.rightViewMode = .always
-    }
-
-    var textOrEmpty: String {
-        return text ?? ""
     }
 }

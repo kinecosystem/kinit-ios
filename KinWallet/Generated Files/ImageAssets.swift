@@ -90,6 +90,7 @@ internal enum Asset {
   internal static let pickerArrow = ImageAsset(name: "PickerArrow")
   internal static let progressViewGradient = ImageAsset(name: "ProgressViewGradient")
   internal static let progressViewTrack = ImageAsset(name: "ProgressViewTrack")
+  internal static let qrScannerOutline = ImageAsset(name: "QRScannerOutline")
   internal static let quizConfettiOval = ImageAsset(name: "QuizConfettiOval")
   internal static let quizConfettiRectangle = ImageAsset(name: "QuizConfettiRectangle")
   internal static let quizConfettiTriangle = ImageAsset(name: "QuizConfettiTriangle")
@@ -107,6 +108,7 @@ internal enum Asset {
   internal static let timer = ImageAsset(name: "Timer")
   internal static let transferFireworks = ImageAsset(name: "TransferFireworks")
   internal static let walletCreationFailed = ImageAsset(name: "WalletCreationFailed")
+  internal static let welcomeBack = ImageAsset(name: "WelcomeBack")
   internal static let welcomeTutorial1 = ImageAsset(name: "WelcomeTutorial1")
   internal static let welcomeTutorial2 = ImageAsset(name: "WelcomeTutorial2")
   internal static let welcomeTutorial3 = ImageAsset(name: "WelcomeTutorial3")
@@ -163,6 +165,7 @@ internal enum Asset {
     pickerArrow,
     progressViewGradient,
     progressViewTrack,
+    qrScannerOutline,
     quizConfettiOval,
     quizConfettiRectangle,
     quizConfettiTriangle,
@@ -180,6 +183,7 @@ internal enum Asset {
     timer,
     transferFireworks,
     walletCreationFailed,
+    welcomeBack,
     welcomeTutorial1,
     welcomeTutorial2,
     welcomeTutorial3,

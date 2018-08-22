@@ -25,6 +25,8 @@ internal enum L10n {
   internal static let activityDoneTitle = L10n.tr("Localizable", "ActivityDoneTitle")
   /// Back to Spend
   internal static let backToSpendAction = L10n.tr("Localizable", "BackToSpendAction")
+  /// Looks like you’ve been here before. What would you like to do?
+  internal static let backupAvailableTitle = L10n.tr("Localizable", "BackupAvailableTitle")
   /// Your wallet is backed up!
   internal static let backupCompleteMessage = L10n.tr("Localizable", "BackupCompleteMessage")
   /// Make sure to keep the code someplace safe because you’ll need it if you need to recover your account.
@@ -51,6 +53,8 @@ internal enum L10n {
   internal static let backupQRCodeEmailPlaceholder = L10n.tr("Localizable", "BackupQRCodeEmailPlaceholder")
   /// To keep your account secure, we’ll generate a unique QR code and send it to you by email.
   internal static let backupQRCodeSubtitle = L10n.tr("Localizable", "BackupQRCodeSubtitle")
+  /// Your wallet was restored!
+  internal static let backupRestoredMessage = L10n.tr("Localizable", "BackupRestoredMessage")
   /// Type your answer here
   internal static let backupYourAnswerPlaceholder = L10n.tr("Localizable", "BackupYourAnswerPlaceholder")
   /// Your Answer
@@ -73,6 +77,12 @@ internal enum L10n {
   internal static let contactSupport = L10n.tr("Localizable", "ContactSupport")
   /// Code saved to My Vouchers
   internal static let couponCodeSaved = L10n.tr("Localizable", "CouponCodeSaved")
+  /// Create New Wallet
+  internal static let createNewWallet = L10n.tr("Localizable", "CreateNewWallet")
+  /// Creating your wallet
+  internal static let creatingYourWallet = L10n.tr("Localizable", "CreatingYourWallet")
+  /// It might take up to 20 sec.
+  internal static let creatingYourWalletBePatient = L10n.tr("Localizable", "CreatingYourWalletBePatient")
   /// Email us
   internal static let emailUs = L10n.tr("Localizable", "EmailUs")
   /// We are hand-picking the best for you!
@@ -159,6 +169,20 @@ internal enum L10n {
   internal static let qrCode = L10n.tr("Localizable", "QRCode")
   /// Hi! 👋\nReady to earn some Kin?
   internal static let readyToEarnKinQuestion = L10n.tr("Localizable", "ReadyToEarnKinQuestion")
+  /// Answer your security questions to unlock your account
+  internal static let restoreBackupQuestionsSubtitle = L10n.tr("Localizable", "RestoreBackupQuestionsSubtitle")
+  /// Security Questions
+  internal static let restoreBackupQuestionsTitle = L10n.tr("Localizable", "RestoreBackupQuestionsTitle")
+  /// You just need to scan the QR code we sent to your email and answer your 2 security questions
+  internal static let restoreBackupScanSubtitle = L10n.tr("Localizable", "RestoreBackupScanSubtitle")
+  /// You're 2 steps away
+  internal static let restoreBackupScanTitle = L10n.tr("Localizable", "RestoreBackupScanTitle")
+  /// Type your answer here
+  internal static let restoreBackupYourAnswerPlaceholder = L10n.tr("Localizable", "RestoreBackupYourAnswerPlaceholder")
+  /// Your Answer
+  internal static let restoreBackupYourAnswerTitle = L10n.tr("Localizable", "RestoreBackupYourAnswerTitle")
+  /// Restore From Backup
+  internal static let restoreFromBackup = L10n.tr("Localizable", "RestoreFromBackup")
   /// Second Question
   internal static let secondSecurityQuestion = L10n.tr("Localizable", "SecondSecurityQuestion")
   /// Security
@@ -205,6 +229,8 @@ internal enum L10n {
   internal static let sendTo = L10n.tr("Localizable", "SendTo")
   /// Spend your Kin
   internal static let spendYourKin = L10n.tr("Localizable", "SpendYourKin")
+  /// Start
+  internal static let startAction = L10n.tr("Localizable", "StartAction")
   /// Support
   internal static let support = L10n.tr("Localizable", "Support")
   /// Tap to continue

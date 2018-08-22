@@ -9,6 +9,7 @@ import Crashlytics
 private let taskFetchTimeout: TimeInterval = 6
 private let creatingAccountTimeout: TimeInterval = 25
 let startedPhoneVerificationKey = "startedPhoneVerification"
+let selectedHintIdsKey = "SelectedHintIds"
 
 private enum RegistrationError {
     case user
@@ -141,9 +142,12 @@ class RootViewController: UIViewController {
         KLogVerbose("User \(currentUser.userId) with device token \(currentUser.deviceToken ?? "No token")")
 
         if currentUser.phoneNumber != nil {
-            //Backup: Show here the two options.
-            //For now, just create the wallet.
-            performOnboarding()
+            if let storedHintIds: SelectedHintIds = SimpleDatastore.loadObject(selectedHintIdsKey),
+                storedHintIds.hints.isNotEmpty {
+                showAccountSourceSelection()
+            } else {
+                performOnboarding()
+            }
         } else {
             showWelcomeViewController()
         }
@@ -217,9 +221,22 @@ class RootViewController: UIViewController {
     }
 
     func phoneNumberValidated(with hintIds: [Int]) {
-        let splash = SplashScreenViewController()
-        splash.creatingAccount = true
-        splashScreenNavigationController?.pushViewController(splash, animated: true)
+        if hintIds.isEmpty {
+            startCreatingWallet()
+        } else {
+            SimpleDatastore.persist(SelectedHintIds(hints: hintIds), with: selectedHintIdsKey)
+            showAccountSourceSelection()
+        }
+    }
+
+    private func showAccountSourceSelection() {
+        let accountSourceViewController = StoryboardScene.Onboard.accountSourceViewController.instantiate()
+        splashScreenNavigationController?.pushViewController(accountSourceViewController, animated: true)
+    }
+
+    func startCreatingWallet() {
+        let creatingWalletViewController = StoryboardScene.Onboard.creatingWalletViewController.instantiate()
+        splashScreenNavigationController?.pushViewController(creatingWalletViewController, animated: true)
 
         performOnboarding()
     }
@@ -251,7 +268,8 @@ class RootViewController: UIViewController {
         user.save()
 
         DispatchQueue.main.async {
-            let accountReady = StoryboardScene.Main.accountReadyViewController.instantiate()
+            let accountReady = StoryboardScene.Onboard.accountReadyViewController.instantiate()
+            accountReady.walletSource = .new
             self.splashScreenNavigationController?.pushViewController(accountReady, animated: true)
         }
     }
@@ -270,7 +288,7 @@ class RootViewController: UIViewController {
         }
 
         let pushWelcome = {
-            let welcome = StoryboardScene.Main.welcomeViewController.instantiate()
+            let welcome = StoryboardScene.Onboard.welcomeViewController.instantiate()
             splashNavigationController.pushViewController(welcome, animated: true)
         }
 

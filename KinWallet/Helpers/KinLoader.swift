@@ -136,7 +136,7 @@ class KinLoader {
                 return
         }
 
-        WebRequests.availableBackupHints().withCompletion { list, error in
+        WebRequests.availableBackupHints().withCompletion { list, _ in
             guard let list = list, list.hints.count > 0 else {
                 return
             }

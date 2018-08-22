@@ -41,7 +41,7 @@ final class TransferringKinViewController: UIViewController {
     @IBOutlet weak var loaderView: LOTAnimationView! {
         didSet {
             loaderView.backgroundColor = .clear
-            loaderView.setAnimation(named: "Loader1.json")
+            loaderView.setAnimation(named: "CirclesLoader.json")
             loaderView.loopAnimation = true
         }
     }

@@ -20,15 +20,7 @@ class BackupTextInputViewController: UIViewController {
 
     @IBOutlet weak var textField: UITextField! {
         didSet {
-            textField.autocorrectionType = .no
-            textField.clearButtonMode = .never
-            textField.setLeftPaddingPoints(10)
-            textField.setRightPaddingPoints(10)
-            textField.layer.cornerRadius = 2
-            textField.layer.borderWidth = 2
-            textField.layer.borderColor = UIColor.kin.lightGray.cgColor
-            textField.font = FontFamily.Roboto.regular.font(size: 16)
-            textField.textColor = UIColor.kin.gray
+            textField.makeBackupTextField()
         }
     }
 

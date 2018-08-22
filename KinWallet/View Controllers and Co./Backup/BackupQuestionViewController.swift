@@ -138,7 +138,7 @@ class BackupQuestionViewController: BackupTextInputViewController {
     }
 
     override func isInputTextValid(text: String? = nil) -> Bool {
-        return (text ?? textField.textOrEmpty).count >= 4
+        return (text ?? textField.textOrEmpty).isBackupStringValid
     }
 
     override func moveToNextStep() {
@@ -239,9 +239,9 @@ extension BackupQuestionViewController {
 
         if newText.count < currentText.count {
             returnValue = true
-        } else if string == " " {
-            returnValue = isInputTextValid()
-        } else if string.rangeOfCharacter(from: .alphanumerics) == nil {
+        } else if newText.hasSpaceBefore(index: 4) {
+            returnValue = false
+        } else if string.rangeOfCharacter(from: CharacterSet.alphanumericsAndWhiteSpace.inverted) != nil {
             returnValue = false
         } else {
             returnValue = true

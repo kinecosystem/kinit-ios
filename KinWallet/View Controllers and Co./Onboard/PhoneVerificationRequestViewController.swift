@@ -190,7 +190,7 @@ class PhoneVerificationRequestViewController: UIViewController {
     }
 
     fileprivate func showConfirmation(for formattedNumber: String, verificationID: String) {
-        let confirmCode = StoryboardScene.Main.phoneConfirmationViewController.instantiate()
+        let confirmCode = StoryboardScene.Onboard.phoneConfirmationViewController.instantiate()
         confirmCode.delegate = self
         confirmCode.verificationId = verificationID
         confirmCode.phoneNumber = formattedNumber
