@@ -241,7 +241,7 @@ Ready to earn some Kin?</string>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lightbulb" translatesAutoresizingMaskIntoConstraints="NO" id="4Lb-0i-RCA">
                                         <rect key="frame" x="0.0" y="0.0" width="44" height="50"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tigers can eat up to 88 pounds of meat at one time. They typically hunt alone and stalk prey." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="HZL-6x-hBS">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Tigers can eat up to 88 pounds of meat at one time. They typically hunt alone and stalk prey." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="HZL-6x-hBS">
                                         <rect key="frame" x="0.0" y="70" width="325" height="134"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                         <nil key="textColor"/>

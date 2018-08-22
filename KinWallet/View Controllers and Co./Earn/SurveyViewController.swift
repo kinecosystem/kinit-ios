@@ -107,7 +107,7 @@ final class SurveyViewController: UIViewController {
     }
 
     @objc func cancelTapped(_ sender: UIBarButtonItem) {
-        logClosedOnQuestion(task.questions[currentQuestionIndex],
+        logClosedOnQuestion(task.questions[min(currentQuestionIndex, task.questions.count - 1)],
                             questionIndex: currentQuestionIndex)
         let results = TaskResults(identifier: task.identifier,
                                   results: selectedAnswers)
@@ -269,21 +269,26 @@ extension SurveyViewController: QuestionViewControllerDelegate {
             quizQuestionExplanation.delegate = self
             insertNext(quizQuestionExplanation, insteadOf: currentChildViewController!)
         } else {
-            if currentQuestionIndex < task.questions.count {
-                showNextQuestion()
-            } else {
-                updateProgress(1, animated: true) {
-                    self.showSurveyComplete(results: results)
-                }
-                logTaskCompleted()
+            moveToNextQuestionOrFinish(results: results)
+        }
+    }
+
+    fileprivate func moveToNextQuestionOrFinish(results: TaskResults? = nil) {
+        if currentQuestionIndex < task.questions.count {
+            showNextQuestion()
+        } else {
+            let resultsToUse = results ?? TaskResults(identifier: task.identifier, results: selectedAnswers)
+            updateProgress(1, animated: true) {
+                self.showSurveyComplete(results: resultsToUse)
             }
+            logTaskCompleted()
         }
     }
 }
 
 extension SurveyViewController: QuizQuestionExplanationDelegate {
     func quizQuestionExplanationDidTapNext() {
-        showNextQuestion()
+        moveToNextQuestionOrFinish()
     }
 }
 
