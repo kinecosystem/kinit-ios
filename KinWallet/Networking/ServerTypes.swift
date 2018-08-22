@@ -110,7 +110,7 @@ struct RemoteConfigStatusResponse: StatusResponse, Codable {
 
 struct BlacklistedAreaCodes: Codable {
     let areaCodes: [String]
-    
+
     enum CodingKeys: CodingKey, String {
         case areaCodes = "areacodes"
     }

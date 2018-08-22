@@ -192,30 +192,37 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
 
         actionCell.actionButton.isLoading = true
 
-        do {
-            try Kin.shared.importWallet(encryptedWallet, with: firstAnswer + secondAnswer)
-            WebRequests.Backup.restoreUserId(with: Kin.shared.publicAddress)
-                .withCompletion { [weak self] userId, _ in
-                    guard let userId = userId else {
-                        //TODO: handle error
-                        return
-                    }
+        DispatchQueue.global().async {
+            do {
+                try Kin.shared.importWallet(self.encryptedWallet, with: firstAnswer + secondAnswer)
+                WebRequests.Backup.restoreUserId(with: Kin.shared.publicAddress)
+                    .withCompletion { [weak self] userId, _ in
+                        guard let userId = userId else {
+                            //TODO: handle error
+                            DispatchQueue.main.async {
+                            }
+                            return
+                        }
 
-                    var user = User.current!
-                    user.userId = userId
-                    user.publicAddress = Kin.shared.publicAddress
-                    user.save()
+                        var user = User.current!
+                        user.userId = userId
+                        user.publicAddress = Kin.shared.publicAddress
+                        user.save()
 
-                    DispatchQueue.main.async {
-                        let accountReadyVC = StoryboardScene.Onboard.accountReadyViewController.instantiate()
-                        accountReadyVC.walletSource = .restored
-                        self?.navigationController?.pushViewController(accountReadyVC, animated: true)
-                    }
-                }.load(with: KinWebService.shared)
-        } catch {
-            //TODO: handle error
-            actionCell.actionButton.isLoading = false
-            KLogError("Could not decrypt wallet with given passphrase")
+                        DispatchQueue.main.async {
+                            let accountReadyVC = StoryboardScene.Onboard.accountReadyViewController.instantiate()
+                            accountReadyVC.walletSource = .restored
+                            self?.navigationController?.pushViewController(accountReadyVC, animated: true)
+                        }
+                    }.load(with: KinWebService.shared)
+            } catch {
+                //TODO: handle error
+                DispatchQueue.main.async {
+                    actionCell.actionButton.isLoading = false
+                }
+
+                KLogError("Could not decrypt wallet with given passphrase")
+            }
         }
     }
 }

@@ -809,13 +809,10 @@
 		914013D92019F2BF0066367C /* UICollectionView+KinWallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+KinWallet.swift"; sourceTree = "<group>"; };
 		914013E3201A1A6E0066367C /* Sourcery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sourcery.swift; sourceTree = "<group>"; };
 		91473FDF201DCDBF0013A530 /* SelectedResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedResult.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		9152E600212EB41D00802040 /* KinErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinErrors.swift; sourceTree = "<group>"; };
-=======
 		9152E5D1212D489800802040 /* KinCoreSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KinCoreSDK.xcodeproj; path = Submodules/KinCore/KinSDK/KinCoreSDK.xcodeproj; sourceTree = "<group>"; };
 		9152E5E8212D505300802040 /* RestoreBackupCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreBackupCells.swift; sourceTree = "<group>"; };
 		9152E5EC212D6C3300802040 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
->>>>>>> Actually export and import account
 		9156A979205035A500F21C20 /* ServerTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerTypes.swift; sourceTree = "<group>"; };
 		9157F982204C40E000351E2A /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		9157F98E204D589100351E2A /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
