@@ -25,6 +25,7 @@ class PhoneConfirmationViewController: UIViewController {
             }
         }
     }
+
     let isCodeLengthValid = Observable<Bool>(false)
     let linkBag = LinkBag()
     var smsArrivalTimer: Timer?
@@ -77,8 +78,17 @@ class PhoneConfirmationViewController: UIViewController {
     var verificationId: String!
     var phoneNumber: String!
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(assignFirstResponder),
+                                               name: .UIApplicationDidBecomeActive,
+                                               object: nil)
 
         descriptionLabel.text = L10n.phoneVerificationCodeSent(phoneNumber!)
         TestFairy.hide(descriptionLabel)
@@ -211,6 +221,10 @@ class PhoneConfirmationViewController: UIViewController {
 
         let accountReady = StoryboardScene.Main.accountReadyViewController.instantiate()
         navigationController?.pushViewController(accountReady, animated: true)
+    }
+
+    @objc func assignFirstResponder() {
+        textFields.first(where: { $0.text == " " })?.becomeFirstResponder()
     }
 
     @objc func updateCountdown() {
