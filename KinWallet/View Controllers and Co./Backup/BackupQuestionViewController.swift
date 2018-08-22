@@ -151,26 +151,36 @@ class BackupQuestionViewController: BackupTextInputViewController {
 
         let answer = textField.textOrEmpty
 
-        var hints: [(Int, String)] = chosenHints ?? []
-        hints.append((thisHintId, answer))
+        chosenHints = chosenHints ?? []
+        chosenHints!.append((thisHintId, answer))
 
         if step == .firstQuestion {
             let secondQuestion = StoryboardScene.Backup.backupQuestionViewController.instantiate()
             secondQuestion.step = .secondQuestion
-            secondQuestion.chosenHints = hints
+            secondQuestion.chosenHints = chosenHints!
             secondQuestion.availableHints = availableHints.filter {
                 $0.id != thisHintId
             }
             navigationController?.pushViewController(secondQuestion, animated: true)
 
         } else if step == .secondQuestion {
+            guard let encryptedWallet = try? encryptWallet() else {
+                //TODO: handle error
+                return
+            }
+
             let sendEmailViewController = StoryboardScene.Backup.backupSendEmailViewController.instantiate()
-            sendEmailViewController.chosenHints = hints.map { $0.0 }
-            sendEmailViewController.encryptedKey = "Minions love bananas!"
+            sendEmailViewController.chosenHints = chosenHints!.map { $0.0 }
+            sendEmailViewController.encryptedWallet = encryptedWallet
             navigationController?.pushViewController(sendEmailViewController, animated: true)
         } else {
             fatalError("BackupQuestionViewController can only have step set to .firstQuestion or .secondQuestion")
         }
+    }
+
+    private func encryptWallet() throws -> String {
+        let passphrase = chosenHints!.map { $1 }.joined()
+        return try Kin.shared.exportWallet(with: passphrase)
     }
 }
 

@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import KinSDK
+import KinCoreSDK
 import StellarErrors
 import StellarKit
 
@@ -44,7 +44,7 @@ class Kin {
 
     init() {
         let url: URL
-        let kinNetworkId: KinSDK.NetworkId
+        let kinNetworkId: KinCoreSDK.NetworkId
 
         #if DEBUG || RELEASE_STAGE
         url = kinHorizonStageURL
@@ -69,6 +69,18 @@ extension Kin {
         Kin.setPerformedBackup(false)
         client.deleteKeystore()
         self.account = try! client.addAccount()
+    }
+}
+
+// MARK: Account backup
+extension Kin {
+    func exportWallet(with passphrase: String) throws -> String {
+        return try account.export(passphrase: passphrase)
+    }
+
+    func importWallet(_ encryptedWallet: String, with passphrase: String) throws {
+        account = try client.importAccount(encryptedWallet, passphrase: passphrase)
+        _ = performOnboardingIfNeeded()
     }
 
     static func setPerformedBackup(_ performed: Bool = true) {
@@ -185,7 +197,7 @@ extension Kin {
 
 // MARK: Watching operations
 extension Kin {
-    func watch(cursor: String?) throws -> KinSDK.PaymentWatch {
+    func watch(cursor: String?) throws -> KinCoreSDK.PaymentWatch {
         return try account.watchPayments(cursor: cursor)
     }
 }
@@ -255,7 +267,7 @@ extension Kin {
     func send(_ amount: UInt64,
               to address: String,
               memo: String? = nil,
-              completion: @escaping KinSDK.TransactionCompletion) {
+              completion: @escaping KinCoreSDK.TransactionCompletion) {
         account.sendTransaction(to: address, kin: Decimal(amount), memo: memo) { txHash, error in
             completion(txHash, error)
 

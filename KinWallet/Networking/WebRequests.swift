@@ -233,27 +233,39 @@ extension WebRequests {
 // MARK: Backup
 
 extension WebRequests {
-    static func availableBackupHints() -> WebRequest<AvailableBackupHintList, AvailableBackupHintList> {
-        return WebRequest<AvailableBackupHintList, AvailableBackupHintList>(GET: "/backup/hints",
-                                                                            transform: WebResourceHandlers.doNothing)
-    }
+    struct Backup {
+        static func availableHints() -> WebRequest<AvailableBackupHintList, AvailableBackupHintList> {
+            return WebRequest<AvailableBackupHintList, AvailableBackupHintList>(GET: "/backup/hints",
+                                                                                transform: WebResourceHandlers.doNothing)
+        }
 
-    static func submitBackupHints(_ hints: [Int]) -> WebRequest<EmptyResponse, EmptyResponse> {
-        let hintsToSubmit = ChosenBackupHints(hints: hints)
-        return WebRequest<EmptyResponse, EmptyResponse>(POST: "/user/backup/hints",
-                                                        body: hintsToSubmit,
-                                                        transform: WebResourceHandlers.doNothing)
-    }
+        static func submitHints(_ hints: [Int]) -> WebRequest<EmptyResponse, EmptyResponse> {
+            let hintsToSubmit = ChosenBackupHints(hints: hints)
+            return WebRequest<EmptyResponse, EmptyResponse>(POST: "/user/backup/hints",
+                                                            body: hintsToSubmit,
+                                                            transform: WebResourceHandlers.doNothing)
+        }
 
-    static func submittedBackupQuestions() -> WebRequest<ChosenBackupHints, [Int]> {
-        return WebRequest<ChosenBackupHints, [Int]>(GET: "/user/backup/hints",
-                                                          transform: { $0?.hints })
-    }
+        static func submittedQuestionsIds() -> WebRequest<ChosenBackupHints, [Int]> {
+            return WebRequest<ChosenBackupHints, [Int]>(GET: "/user/backup/hints",
+                                                        transform: { $0?.hints })
+        }
 
-    static func sendBackupEmail(to address: String, encriptedKey: String) -> WebRequest<SimpleStatusResponse, Success> {
-        let body = ["to_address": address, "enc_key": encriptedKey]
-        return WebRequest<SimpleStatusResponse, Success>(POST: "/user/email_backup",
-                                                         body: body,
-                                                         transform: WebResourceHandlers.isJSONStatusOk)
+        static func sendEmail(to address: String, encryptedKey: String) -> WebRequest<SimpleStatusResponse, Success> {
+            let body = ["to_address": address, "enc_key": encryptedKey]
+            return WebRequest<SimpleStatusResponse, Success>(POST: "/user/email_backup",
+                                                             body: body,
+                                                             transform: WebResourceHandlers.isJSONStatusOk)
+        }
+
+        static func restoreUserId(with address: String) -> WebRequest<RestoreUserIdResponse, String> {
+            let transform: (RestoreUserIdResponse?) -> String? = {
+                return $0?.userId
+            }
+
+            return WebRequest<RestoreUserIdResponse, String>(POST: "/user/restore",
+                                                             body: ["address": address],
+                                                             transform: transform)
+        }
     }
 }

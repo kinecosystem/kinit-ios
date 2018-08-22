@@ -5,7 +5,7 @@
 
 import UIKit
 import Lottie
-import KinSDK
+import KinCoreSDK
 import KinUtil
 import KinitDesignables
 

@@ -40,9 +40,7 @@ final class WelcomeViewController: UIViewController {
         super.viewDidLoad()
 
         pages.forEach(scrollView.addSubview)
-        let backButtonItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
-        backButtonItem.tintColor = UIColor.kin.darkGray
-        navigationItem.backBarButtonItem = backButtonItem
+        navigationItem.backBarButtonItem = UIBarButtonItem.grayBarButtonItem
 
         configureDisclaimerLabel()
     }

@@ -8,7 +8,7 @@
 import UIKit
 
 class BackupSendEmailViewController: BackupTextInputViewController {
-    var encryptedKey: String!
+    var encryptedWallet: String!
     var chosenHints: [Int]!
 
     @IBOutlet weak var titleLabel: UILabel! {
@@ -57,7 +57,7 @@ class BackupSendEmailViewController: BackupTextInputViewController {
     private func submitQRCode() {
         accessoryView.isLoading = true
 
-        WebRequests.sendBackupEmail(to: textField.text!, encriptedKey: encryptedKey)
+        WebRequests.Backup.sendEmail(to: textField.text!, encryptedKey: encryptedWallet)
             .withCompletion { [weak self] success, _ in
                 DispatchQueue.main.async {
                     guard let `self` = self else {
@@ -67,7 +67,7 @@ class BackupSendEmailViewController: BackupTextInputViewController {
                     self.accessoryView.isLoading = false
 
                     guard success.boolValue else {
-                        //handle error
+                        //TODO: handle error
 
                         return
                     }

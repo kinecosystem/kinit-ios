@@ -137,3 +137,11 @@ struct PhoneVerificationStatusResponse: StatusResponse, Codable {
 struct SelectedHintIds: Codable {
     let hints: [Int]
 }
+
+struct RestoreUserIdResponse: Codable {
+    let userId: String?
+
+    enum CodingKeys: String, CodingKey {
+        case userId = "user_id"
+    }
+}

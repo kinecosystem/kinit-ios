@@ -210,6 +210,7 @@ extension MoreViewController {
         let message =
         """
         User ID: \(User.current!.userId)
+        Public Address: \(Kin.shared.publicAddress)
         Device Token: \(User.current!.deviceToken ?? "No token")
         Current server is \(currentServerIdentifier) (\(KinWebService.shared.serverHost)).
         Changing servers will delete all user data, including the Stellar account!
@@ -236,6 +237,10 @@ extension MoreViewController {
 
         alertController.addAction(.init(title: "Copy Device Token", style: .default) { _ in
             UIPasteboard.general.string = User.current?.deviceToken
+        })
+
+        alertController.addAction(.init(title: "Copy Public Address", style: .default) { _ in
+            UIPasteboard.general.string = Kin.shared.publicAddress
         })
 
         alertController.addAction(.init(title: "Mark Backup Not Done", style: .default) { _ in

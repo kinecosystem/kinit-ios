@@ -6,7 +6,7 @@
 import Fabric
 import Crashlytics
 import UIKit
-import KinSDK
+import KinCoreSDK
 import Firebase
 import FirebaseAuth
 

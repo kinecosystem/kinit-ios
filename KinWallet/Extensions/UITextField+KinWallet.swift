@@ -30,6 +30,7 @@ extension UITextField {
 
     func makeBackupTextField() {
         autocorrectionType = .no
+        autocapitalizationType = .none
         clearButtonMode = .never
         setLeftPaddingPoints(10)
         setRightPaddingPoints(10)

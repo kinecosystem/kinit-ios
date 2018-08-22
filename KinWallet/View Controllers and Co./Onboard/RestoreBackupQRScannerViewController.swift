@@ -63,6 +63,8 @@ class RestoreBackupQRScannerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.backBarButtonItem = UIBarButtonItem.grayBarButtonItem
+
         qrCodeScannerViewController.delegate = self
         addAndFit(qrCodeScannerViewController)
         view.sendSubview(toBack: qrCodeScannerViewController.view)
@@ -121,7 +123,7 @@ class RestoreBackupQRScannerViewController: UIViewController {
 extension RestoreBackupQRScannerViewController: QRCodeScannerDelegate {
     func scannerDidFind(code: String) {
         let restoreQuestionsVC = StoryboardScene.Onboard.restoreBackupQuestionsViewController.instantiate()
-        restoreQuestionsVC.backupString = code
+        restoreQuestionsVC.encryptedWallet = code
         navigationController?.pushViewController(restoreQuestionsVC, animated: true)
 
         scanningLine.alpha = 0

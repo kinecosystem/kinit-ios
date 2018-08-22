@@ -5,69 +5,11 @@
 //  Copyright © 2018 KinFoundation. All rights reserved.
 //
 
-import Foundation
-
-class RestoreBackupHeaderCell: UITableViewCell {
-    @IBOutlet weak var titleLabel: UILabel! {
-        didSet {
-            titleLabel.font = FontFamily.Roboto.medium.font(size: 22)
-            titleLabel.textColor = UIColor.kin.darkGray
-            titleLabel.text = L10n.restoreBackupQuestionsTitle
-        }
-    }
-
-    @IBOutlet weak var subtitleLabel: UILabel! {
-        didSet {
-            subtitleLabel.font = FontFamily.Roboto.regular.font(size: 16)
-            subtitleLabel.textColor = UIColor.kin.gray
-            subtitleLabel.text = L10n.restoreBackupQuestionsSubtitle
-        }
-    }
-}
-
-class RestoreBackupQuestionCell: UITableViewCell {
-    static let fontFamily = FontFamily.Roboto.self
-
-    @IBOutlet weak var questionLabel: UILabel! {
-        didSet {
-            questionLabel.font = RestoreBackupQuestionCell.fontFamily.regular.font(size: 14)
-            questionLabel.textColor = UIColor.kin.gray
-        }
-    }
-
-    @IBOutlet weak var titleLabel: UILabel! {
-        didSet {
-            titleLabel.font = FontFamily.Roboto.medium.font(size: 16)
-            titleLabel.textColor = UIColor.kin.darkGray
-            titleLabel.text = L10n.restoreBackupYourAnswerTitle
-        }
-    }
-
-    @IBOutlet weak var textField: UITextField! {
-        didSet {
-            textField.placeholder = L10n.restoreBackupYourAnswerPlaceholder
-            textField.makeBackupTextField()
-        }
-    }
-}
-
-class RestoreBackupActionCell: UITableViewCell {
-    let actionButton = ButtonAccessoryInputView.nextActionButton()
-
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-
-        contentView.addAndCenter(actionButton)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
+import UIKit
 
 class RestoreBackupQuestionsViewController: UITableViewController {
     var questions = [String]()
-    var backupString: String!
+    var encryptedWallet: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,10 +40,6 @@ class RestoreBackupQuestionsViewController: UITableViewController {
         super.viewWillAppear(animated)
 
         navigationController?.setNavigationBarHidden(false, animated: animated)
-    }
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -143,6 +81,7 @@ class RestoreBackupQuestionsViewController: UITableViewController {
         }
 
         let actionCell = tableView.dequeueReusableCell(forIndexPath: indexPath) as RestoreBackupActionCell
+        actionCell.delegate = self
         actionCell.actionButton.isEnabled = areAnswersValid
 
         return actionCell
@@ -213,8 +152,8 @@ extension RestoreBackupQuestionsViewController: UITextFieldDelegate {
     }
 
     func textField(_ textField: UITextField,
-                     shouldChangeCharactersIn range: NSRange,
-                     replacementString string: String) -> Bool {
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
         guard let currentText = textField.text else {
             return false
         }
@@ -232,31 +171,51 @@ extension RestoreBackupQuestionsViewController: UITextFieldDelegate {
     }
 }
 
-extension String {
-    var isBackupStringValid: Bool {
-        guard count >= 4 else {
-            return false
+extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
+    func restoreBackupCellDidTapNext() {
+        guard
+            let firstQuestionCell = tableView.cellForRow(at: IndexPath(row: 0, section: 1))
+                as? RestoreBackupQuestionCell,
+            let secondQuestionCell = tableView.cellForRow(at: IndexPath(row: 1, section: 1))
+                as? RestoreBackupQuestionCell,
+            let actionCell = tableView.cellForRow(at: IndexPath(row: 0, section: 2))
+                as? RestoreBackupActionCell else {
+                    return
         }
 
-        guard rangeOfCharacter(from: CharacterSet.alphanumericsAndWhiteSpace.inverted) == nil else {
-            return false
+        let firstAnswer = firstQuestionCell.textField.textOrEmpty
+        let secondAnswer = secondQuestionCell.textField.textOrEmpty
+
+        guard firstAnswer.isBackupStringValid, secondAnswer.isBackupStringValid else {
+            return
         }
 
-        guard !hasSpaceBefore(index: 4) else {
-            return false
+        actionCell.actionButton.isLoading = true
+
+        do {
+            try Kin.shared.importWallet(encryptedWallet, with: firstAnswer + secondAnswer)
+            WebRequests.Backup.restoreUserId(with: Kin.shared.publicAddress)
+                .withCompletion { [weak self] userId, _ in
+                    guard let userId = userId else {
+                        //TODO: handle error
+                        return
+                    }
+
+                    var user = User.current!
+                    user.userId = userId
+                    user.publicAddress = Kin.shared.publicAddress
+                    user.save()
+
+                    DispatchQueue.main.async {
+                        let accountReadyVC = StoryboardScene.Onboard.accountReadyViewController.instantiate()
+                        accountReadyVC.walletSource = .restored
+                        self?.navigationController?.pushViewController(accountReadyVC, animated: true)
+                    }
+                }.load(with: KinWebService.shared)
+        } catch {
+            //TODO: handle error
+            actionCell.actionButton.isLoading = false
+            KLogError("Could not decrypt wallet with given passphrase")
         }
-
-        return true
-    }
-
-    func hasSpaceBefore(index: Int) -> Bool {
-        let spaceRange = (self as NSString).range(of: " ").location
-        return spaceRange != NSNotFound && spaceRange < index
-    }
-}
-
-extension CharacterSet {
-    static var alphanumericsAndWhiteSpace: CharacterSet {
-        return CharacterSet.alphanumerics.union(.whitespaces)
     }
 }

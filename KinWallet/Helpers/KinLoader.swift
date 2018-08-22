@@ -136,13 +136,14 @@ class KinLoader {
                 return
         }
 
-        WebRequests.availableBackupHints().withCompletion { list, _ in
-            guard let list = list, list.hints.count > 0 else {
-                return
-            }
-
-            SimpleDatastore.persist(list, with: availableBackupList)
-            completion?(list.hints)
+        WebRequests.Backup.availableHints()
+            .withCompletion { list, _ in
+                guard let list = list, list.hints.count > 0 else {
+                    return
+                }
+                
+                SimpleDatastore.persist(list, with: availableBackupList)
+                completion?(list.hints)
             }.load(with: KinWebService.shared)
     }
 }

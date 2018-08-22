@@ -91,7 +91,7 @@ class BackupConfirmEmailViewController: UIViewController {
     func backupComplete() {
         confirmAccessoryView.isLoading = true
 
-        WebRequests.submitBackupHints(chosenHints)
+        WebRequests.Backup.submitHints(chosenHints)
             .withCompletion { [weak self] _, error in
                 DispatchQueue.main.async {
                     self?.confirmAccessoryView.isLoading = false
@@ -100,9 +100,8 @@ class BackupConfirmEmailViewController: UIViewController {
                         return
                     }
 
-                    let sendEmailViewController = StoryboardScene.Backup.backupSendEmailViewController.instantiate()
-                    sendEmailViewController.encryptedKey = "Minions love bananas!"
-                    self?.navigationController?.pushViewController(sendEmailViewController, animated: true)
+                    let backupDoneViewController = StoryboardScene.Backup.backupDoneViewController.instantiate()
+                    self?.navigationController?.pushViewController(backupDoneViewController, animated: true)
                 }
             }.load(with: KinWebService.shared)
     }

@@ -18,7 +18,7 @@ struct User: Codable {
     var phoneNumber: String?
     var publicAddress: String?
     var timeZone: String
-    let userId: String
+    var userId: String
 
     private enum CodingKeys: String, CodingKey {
         case appVersion = "app_ver"
