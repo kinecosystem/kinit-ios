@@ -48,6 +48,21 @@ public func ==<T: RawRepresentable>(lhs: T, rhs: T) -> Bool where T.RawValue: Eq
 
 var logLevel = KinitLogLevel.verbose
 
+func KLogError(_ code: Int, domain: String, file: StaticString = #file, line: UInt = #line) {
+    if logLevel >= .error {
+        let userInfo: [String: Any] = ["file": String(file), "line": line]
+        let error = NSError(domain: domain, code: code, userInfo: userInfo)
+        KLogError(error, file: file, line: line)
+    }
+}
+
+func KLogError(_ error: NSError, file: StaticString = #file, line: UInt = #line) {
+    if logLevel >= .error {
+        Crashlytics.sharedInstance().recordError(error)
+        KLogError("\(error.domain) - \(error.code)", file: file, line: line)
+    }
+}
+
 func KLogError(_ message: @autoclosure () -> Any, file: StaticString = #file, line: UInt = #line) {
     if logLevel >= .error {
         KLog(message(), file: file, line: line, level: .error)
@@ -79,6 +94,7 @@ private func KLog(_ message: Any, file: StaticString, line: UInt, level: KinitLo
         let emoji = level.emoji()
 
         print(emoji, level, emoji, lastPath + ":" + String(describing: line), message)
-        CLSLogv("%@ %@:%@, %@", getVaList([String(describing:level), lastPath, String(describing: line), String(describing: message)]))
+        CLSLogv("%@ %@:%@, %@",
+                getVaList([String(describing: level), lastPath, String(describing: line), String(describing: message)]))
     }
 }

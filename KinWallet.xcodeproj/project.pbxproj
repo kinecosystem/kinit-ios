@@ -189,6 +189,9 @@
 		914013E02019F2BF0066367C /* UICollectionView+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013D92019F2BF0066367C /* UICollectionView+KinWallet.swift */; };
 		914013E12019F2BF0066367C /* UICollectionView+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013D92019F2BF0066367C /* UICollectionView+KinWallet.swift */; };
 		91473FE0201DCDBF0013A530 /* SelectedResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91473FDF201DCDBF0013A530 /* SelectedResult.swift */; };
+		9152E601212EB41D00802040 /* KinErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152E600212EB41D00802040 /* KinErrors.swift */; };
+		9152E602212EB41D00802040 /* KinErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152E600212EB41D00802040 /* KinErrors.swift */; };
+		9152E603212EB41D00802040 /* KinErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152E600212EB41D00802040 /* KinErrors.swift */; };
 		9156A97A205035A500F21C20 /* ServerTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9156A979205035A500F21C20 /* ServerTypes.swift */; };
 		9157F983204C40E000351E2A /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9157F982204C40E000351E2A /* Log.swift */; };
 		9157F984204C41C200351E2A /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9157F982204C40E000351E2A /* Log.swift */; };
@@ -738,6 +741,7 @@
 		914013D92019F2BF0066367C /* UICollectionView+KinWallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+KinWallet.swift"; sourceTree = "<group>"; };
 		914013E3201A1A6E0066367C /* Sourcery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sourcery.swift; sourceTree = "<group>"; };
 		91473FDF201DCDBF0013A530 /* SelectedResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedResult.swift; sourceTree = "<group>"; };
+		9152E600212EB41D00802040 /* KinErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinErrors.swift; sourceTree = "<group>"; };
 		9156A979205035A500F21C20 /* ServerTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerTypes.swift; sourceTree = "<group>"; };
 		9157F982204C40E000351E2A /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		9157F98E204D589100351E2A /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
@@ -1318,6 +1322,7 @@
 				91E6B60B203AD1D30080C2FC /* Kin.swift */,
 				91B575B92045E62B00AC3E04 /* KinLoader.swift */,
 				9157F982204C40E000351E2A /* Log.swift */,
+				9152E600212EB41D00802040 /* KinErrors.swift */,
 				91AAB931201E0AC00075DAA1 /* ResourceDownloader.swift */,
 				9170390B20B75175006B01FB /* PushHandler.swift */,
 			);
@@ -2047,6 +2052,7 @@
 				91B575C22046C37300AC3E04 /* UIButton+KinWallet.swift in Sources */,
 				91FF9D2E207F49C800B536E9 /* BalanceViewController.swift in Sources */,
 				914013A72018BC320066367C /* SurveyHomeViewController.swift in Sources */,
+				9152E601212EB41D00802040 /* KinErrors.swift in Sources */,
 				91FE7D7220F6304B00EDFB67 /* Anchorable.swift in Sources */,
 				9140138820187CE90066367C /* Task.swift in Sources */,
 				91E6B654203C69A90080C2FC /* ISPPinnedNSURLConnectionDelegate.m in Sources */,
@@ -2206,6 +2212,7 @@
 				9182C299203C6C0C0051F003 /* AMPLocationManagerDelegate.m in Sources */,
 				91AAB936201E0C920075DAA1 /* String+KinWallet.swift in Sources */,
 				91E84A7C2086186B00E8B7A6 /* SwipeDirection.swift in Sources */,
+				9152E602212EB41D00802040 /* KinErrors.swift in Sources */,
 				91E84A9420862C6C00E8B7A6 /* Array+KinWallet.swift in Sources */,
 				91E84A8E208618AB00E8B7A6 /* AppDelegate+Extensions.swift in Sources */,
 				914013D32019F2300066367C /* ReusableView.swift in Sources */,
@@ -2378,6 +2385,7 @@
 				91E84A852086186B00E8B7A6 /* PagerTabStripViewController.swift in Sources */,
 				91E84AB120862DE300E8B7A6 /* Bool+KinWallet.swift in Sources */,
 				828CB4242056E9C1007C679C /* AMPDatabaseHelper.m in Sources */,
+				9152E603212EB41D00802040 /* KinErrors.swift in Sources */,
 				8241384D2060373300D7117E /* KinWebService.swift in Sources */,
 				91E84A9F20862D0800E8B7A6 /* KinitTransaction.swift in Sources */,
 				91E84A9D20862CEF00E8B7A6 /* KinSupportViewController.swift in Sources */,

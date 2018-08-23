@@ -196,7 +196,8 @@ final class QuestionViewController: UIViewController {
         guard
             let answerId = collectionViewDataSource.selectedAnswerIds.first,
             let answer = question.results.filter({ $0.identifier == answerId }).first else {
-            return
+                KLogError(KinErrorCodes.noSelectedAnswer.rawValue, domain: KinErrorDomain)
+                return
         }
 
         guard let qDelegate = questionDelegate else {
@@ -218,10 +219,11 @@ final class QuestionViewController: UIViewController {
             return
         }
 
-        let cell = collectionView.visibleCells
-            .compactMap { $0 as? SurveyAnswerCollectionViewCell }
-            .filter { $0.indexPath.item == answerIndex }
-            .first!
+        guard let cell = collectionView.cellForItem(at: IndexPath(item: answerIndex, section: 0))
+            as? SurveyAnswerCollectionViewCell else {
+                KLogError(KinErrorCodes.selectedAnswerCellNotFound.rawValue, domain: KinErrorDomain)
+                return
+        }
 
         let celebrationToUse = celebration(forSelecting: answer)
         switch celebrationToUse {
