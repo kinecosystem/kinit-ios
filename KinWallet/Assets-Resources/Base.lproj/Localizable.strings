@@ -55,9 +55,9 @@
 
 "PhoneVerificationRequestInvalidNumber" = "Invalid phone number";
 
-"PhoneVerificationUnsupportedCountryCodeTitle" = "Country Not Supported Yet";
+"PhoneVerificationUnsupportedCountryCodeTitle" = "Oh no!";
 
-"PhoneVerificationUnsupportedCountryCodeMessage" = "Your country is not supported by Kinit yet!";
+"PhoneVerificationUnsupportedCountryCodeMessage" = "Kinit is currently not available in your country. We are continuing to grow, so check back again soon.";
 
 "PhoneVerificationRequestGeneralError" = "Something wrong happened. Please check your internet connection";
 
