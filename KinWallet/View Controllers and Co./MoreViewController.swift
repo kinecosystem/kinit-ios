@@ -63,6 +63,9 @@ class MoreViewController: UIViewController {
 
 extension MoreViewController {
     @objc func tapGestureRecognized() {
+        #if DEBUG
+        displayConfigPanel()
+        #else
         let alertController = UIAlertController(title: "Config Panel",
                                                 message: "Please insert the password",
                                                 preferredStyle: .alert)
@@ -77,8 +80,8 @@ extension MoreViewController {
                 return
             }
 
-            if password == Configuration.shared.moreScreenTapsPassword {
-                self.displayServerURLChange()
+            if password.md5Hex == Configuration.shared.moreScreenTapsPassword {
+                self.displayConfigPanel()
             } else {
                 self.wrongConfigPassword()
             }
@@ -102,9 +105,10 @@ extension MoreViewController {
 
         alertController.addAction(passwordAction)
         present(alertController, animated: true)
+        #endif
     }
 
-    func displayServerURLChange() {
+    func displayConfigPanel() {
         let currentServerIdentifier = KinWebService.shared.identifier
         let message =
         """
@@ -135,6 +139,13 @@ extension MoreViewController {
 
         alertController.addAction(.init(title: "Copy Device Token", style: .default, handler: { _ in
             UIPasteboard.general.string = User.current?.deviceToken
+        }))
+
+        alertController.addAction(.init(title: "Delete task and results", style: .default, handler: { _ in
+            if let task: Task = SimpleDatastore.loadObject(nextTaskIdentifier) {
+                SimpleDatastore.delete(objectOf: Task.self, with: nextTaskIdentifier)
+                SimpleDatastore.delete(objectOf: TaskResults.self, with: task.identifier)
+            }
         }))
 
         alertController.addAction(.init(title: "Delete Kin Account", style: .destructive, handler: { _ in
