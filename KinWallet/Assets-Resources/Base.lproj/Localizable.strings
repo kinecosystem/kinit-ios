@@ -55,6 +55,10 @@
 
 "PhoneVerificationRequestInvalidNumber" = "Invalid phone number";
 
+"PhoneVerificationUnsupportedCountryCodeTitle" = "Country Not Supported Yet";
+
+"PhoneVerificationUnsupportedCountryCodeMessage" = "Your country is not supported by Kinit yet!";
+
 "PhoneVerificationRequestGeneralError" = "Something wrong happened. Please check your internet connection";
 
 "PhoneVerificationCodeSent" = "We have sent a verification code to %@. Please type it below:";

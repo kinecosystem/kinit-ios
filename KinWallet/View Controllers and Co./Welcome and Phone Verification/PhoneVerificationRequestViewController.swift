@@ -38,6 +38,7 @@ class PhoneVerificationRequestViewController: UIViewController {
     let phoneNumberUtility = NBPhoneNumberUtil()
     let isPhoneNumberValid = Observable<Bool>(false)
     let linkBag = LinkBag()
+    var blacklistedCodes: Set<String> = []
 
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
@@ -61,8 +62,8 @@ class PhoneVerificationRequestViewController: UIViewController {
             countryCodeTextField.font = FontFamily.Roboto.regular.font(size: 16)
             countryCodeTextField.textColor = UIColor.kin.gray
             countryCodeTextField.setBottomLine(with: UIColor.kin.gray)
-            let callingCode = NBPhoneNumberUtil().getCountryCode(forRegion: regionCode) ?? NSNumber(value: 1)
-            countryCodeTextField.text = "+" + callingCode.stringValue
+
+            countryCodeTextField.text = countryCode(for: regionCode)
         }
     }
 
@@ -74,7 +75,7 @@ class PhoneVerificationRequestViewController: UIViewController {
         }
     }
 
-    let regionCode: String = {
+    var regionCode: String {
         let fromCarrier = NBPhoneNumberUtil().countryCodeByCarrier()
 
         guard let codeFromCarrier = fromCarrier, fromCarrier != NB_UNKNOWN_REGION else {
@@ -82,7 +83,12 @@ class PhoneVerificationRequestViewController: UIViewController {
         }
 
         return codeFromCarrier
-    }()
+    }
+
+    private func countryCode(for region: String) -> String {
+        let countryCallingCode = NBPhoneNumberUtil().getCountryCode(forRegion: region) ?? NSNumber(value: 1)
+        return "+" + countryCallingCode.stringValue
+    }
 
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -90,6 +96,12 @@ class PhoneVerificationRequestViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        WebRequests.Blacklists.areaCodes().withCompletion { [weak self] codes, _ in
+            if let codes = codes {
+                self?.blacklistedCodes = Set(codes)
+            }
+        }.load(with: KinWebService.shared)
 
         navigationController?.navigationBar.setBackgroundImage(.from(.white), for: .default)
 
@@ -131,6 +143,11 @@ class PhoneVerificationRequestViewController: UIViewController {
 
     private func verifyPhone() {
         logSubmittedPhone()
+
+        guard !blacklistedCodes.contains(countryCode(for: regionCode)) else {
+            alertCountryCodeNotSupported()
+            return
+        }
 
         guard
             let text = phoneTextField.text,
@@ -193,6 +210,14 @@ class PhoneVerificationRequestViewController: UIViewController {
         }
 
         return L10n.phoneVerificationRequestGeneralError
+    }
+
+    fileprivate func alertCountryCodeNotSupported() {
+        let alertController = UIAlertController(title: L10n.phoneVerificationUnsupportedCountryCodeTitle,
+                                                message: L10n.phoneVerificationUnsupportedCountryCodeMessage,
+                                                preferredStyle: .alert)
+        alertController.addAction(.ok())
+        present(alertController, animated: true, completion: nil)
     }
 
     fileprivate func makeErrorLabelVisible(_ visible: Bool) {

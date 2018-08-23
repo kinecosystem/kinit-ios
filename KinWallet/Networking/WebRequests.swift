@@ -202,3 +202,14 @@ extension WebRequests {
                                                                           transform: transform)
     }
 }
+
+// MARK: Blacklists
+
+extension WebRequests {
+    struct Blacklists {
+        static func areaCodes() -> WebRequest<BlacklistedAreaCodes, [String]> {
+            return WebRequest<BlacklistedAreaCodes, [String]>(GET: "/blacklist/areacodes",
+                                                              transform: { $0?.areaCodes })
+        }
+    }
+}

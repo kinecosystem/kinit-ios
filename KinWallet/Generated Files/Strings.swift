@@ -115,6 +115,10 @@ internal enum L10n {
   internal static let phoneVerificationRequestMessage = L10n.tr("Localizable", "PhoneVerificationRequestMessage")
   /// Phone Number
   internal static let phoneVerificationRequestTitle = L10n.tr("Localizable", "PhoneVerificationRequestTitle")
+  /// Your country is not supported by Kinit yet!
+  internal static let phoneVerificationUnsupportedCountryCodeMessage = L10n.tr("Localizable", "PhoneVerificationUnsupportedCountryCodeMessage")
+  /// Country Not Supported Yet
+  internal static let phoneVerificationUnsupportedCountryCodeTitle = L10n.tr("Localizable", "PhoneVerificationUnsupportedCountryCodeTitle")
   /// Hi! 👋\nReady to earn some Kin?
   internal static let readyToEarnKinQuestion = L10n.tr("Localizable", "ReadyToEarnKinQuestion")
   /// Sending Kin

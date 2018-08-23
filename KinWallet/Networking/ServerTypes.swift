@@ -105,3 +105,11 @@ struct RemoteConfigStatusResponse: StatusResponse, Codable {
     let status: String
     let config: RemoteConfig?
 }
+
+struct BlacklistedAreaCodes: Codable {
+    let areaCodes: [String]
+    
+    enum CodingKeys: CodingKey, String {
+        case areaCodes = "areacodes"
+    }
+}
