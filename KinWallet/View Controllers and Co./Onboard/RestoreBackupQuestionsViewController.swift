@@ -226,6 +226,8 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
                             accountReadyVC.walletSource = .restored
                             self?.navigationController?.pushViewController(accountReadyVC, animated: true)
                         }
+
+                        Events.Business.WalletRestored().send()
                     }.load(with: KinWebService.shared)
             } catch {
                 //TODO: handle error

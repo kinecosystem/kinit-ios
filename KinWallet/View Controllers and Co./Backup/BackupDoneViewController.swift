@@ -40,6 +40,7 @@ class BackupDoneViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
+        Events.Business.WalletBackedUp().send()
         Kin.setPerformedBackup()
 
         UIView.animate(withDuration: 0.8, delay: 0.8, options: [], animations: {
