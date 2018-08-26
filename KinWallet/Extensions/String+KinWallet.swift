@@ -24,10 +24,6 @@ extension String {
             return false
         }
 
-        guard rangeOfCharacter(from: CharacterSet.alphanumericsAndWhiteSpace.inverted) == nil else {
-            return false
-        }
-
         guard !hasSpaceBefore(index: 4) else {
             return false
         }
@@ -93,11 +89,5 @@ extension String {
 
     var md5Base64: String {
         return md5Data.base64EncodedString()
-    }
-}
-
-extension CharacterSet {
-    static var alphanumericsAndWhiteSpace: CharacterSet {
-        return CharacterSet.alphanumerics.union(.whitespaces)
     }
 }

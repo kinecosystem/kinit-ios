@@ -262,8 +262,6 @@ extension BackupQuestionViewController {
             returnValue = true
         } else if newText.hasSpaceBefore(index: 4) {
             returnValue = false
-        } else if string.rangeOfCharacter(from: CharacterSet.alphanumericsAndWhiteSpace.inverted) != nil {
-            returnValue = false
         } else {
             returnValue = true
         }
