@@ -141,7 +141,7 @@ class KinLoader {
                 guard let list = list, list.hints.count > 0 else {
                     return
                 }
-                
+
                 SimpleDatastore.persist(list, with: availableBackupList)
                 completion?(list.hints)
             }.load(with: KinWebService.shared)

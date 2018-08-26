@@ -85,6 +85,14 @@ class BackupQuestionViewController: BackupTextInputViewController {
         stepsProgressView.currentStep = step.rawValue
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        Events.Analytics
+            .ViewBackupFlowPage(backupFlowStep: step.analyticsStep)
+            .send()
+    }
+
     @IBAction func chooseQuestionTapped(_ sender: Any) {
         toggleQuestionsList()
     }
@@ -142,6 +150,10 @@ class BackupQuestionViewController: BackupTextInputViewController {
     }
 
     override func moveToNextStep() {
+        Events.Analytics
+            .ClickCompletedStepButtonOnBackupFlowPage(backupFlowStep: step.analyticsStep)
+            .send()
+
         guard
             let thisHintId = selectedHintId,
             isInputTextValid() else {

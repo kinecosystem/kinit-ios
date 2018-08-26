@@ -93,6 +93,12 @@ class RestoreBackupQRScannerViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        Events.Analytics.ViewScanPage().send()
+    }
+
     @IBAction func cancel(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
@@ -112,6 +118,8 @@ class RestoreBackupQRScannerViewController: UIViewController {
     }
 
     @IBAction func startScanning(_ sender: Any) {
+        Events.Analytics.ClickScanButtonOnScanPage().send()
+
         UIView.animate(withDuration: 0.3, animations: {
             self.introView.alpha = 0
         }, completion: { _ in

@@ -80,6 +80,14 @@ class BackupConfirmEmailViewController: UIViewController {
         confirmAccessoryView.tapped.on(next: backupComplete)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        Events.Analytics
+            .ViewBackupFlowPage(backupFlowStep: .emailConfirmation)
+            .send()
+    }
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -89,6 +97,10 @@ class BackupConfirmEmailViewController: UIViewController {
     }
 
     func backupComplete() {
+        Events.Analytics
+            .ClickCompletedStepButtonOnBackupFlowPage(backupFlowStep: .emailConfirmation)
+            .send()
+
         confirmAccessoryView.isLoading = true
 
         WebRequests.Backup.submitHints(chosenHints)

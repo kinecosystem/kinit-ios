@@ -21,6 +21,14 @@ extension BackupStep {
         case .sendQRCode: return L10n.secondSecurityQuestion
         }
     }
+
+    var analyticsStep: Events.BackupFlowStep {
+        switch self {
+        case .firstQuestion: return .securityQuestion1
+        case .secondQuestion: return .securityQuestion2
+        case .sendQRCode: return .sendEmail
+        }
+    }
 }
 
 class BackupIntroViewController: UIViewController {
@@ -52,12 +60,17 @@ class BackupIntroViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .white
-        KinLoader.shared.fetchAvailableBackupHints(skipCache: true)
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel",
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(cancel))
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        Events.Analytics.ViewBackupIntroPage().send()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -69,6 +82,8 @@ class BackupIntroViewController: UIViewController {
     }
 
     @IBAction func backupNow(_ sender: Any) {
+        Events.Analytics.ClickBackupButtonOnBackupIntroPage().send()
+
         guard let hints = hints else {
             return
         }

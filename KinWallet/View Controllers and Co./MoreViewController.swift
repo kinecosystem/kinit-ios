@@ -102,6 +102,9 @@ class MoreViewController: UITableViewController {
     }
 
     @objc fileprivate func startBackup() {
+        let alreadyBackedUp: Events.AlreadyBackedUp = Kin.performedBackup() ? .yes : .no
+        Events.Analytics.ClickBackupButtonOnMorePage(alreadyBackedUp: alreadyBackedUp).send()
+
         KinLoader.shared.fetchAvailableBackupHints { [weak self] hints in
             DispatchQueue.main.async {
                 let backupIntro = StoryboardScene.Backup.backupIntroViewController.instantiate()

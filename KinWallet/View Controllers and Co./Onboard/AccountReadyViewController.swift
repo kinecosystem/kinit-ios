@@ -63,6 +63,10 @@ class AccountReadyViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
             self?.startUsingApp()
         }
+
+        if walletSource == .restored {
+            Events.Analytics.ViewWalletRestoredPage().send()
+        }
     }
 
     @objc func viewTapped() {

@@ -44,4 +44,10 @@ class CreatingWalletViewController: UIViewController {
 
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        Events.Analytics.ViewCreatingWalletPage().send()
+    }
 }

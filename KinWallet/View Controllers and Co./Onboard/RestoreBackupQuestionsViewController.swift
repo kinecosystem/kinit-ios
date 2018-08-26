@@ -42,6 +42,12 @@ class RestoreBackupQuestionsViewController: UITableViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        Events.Analytics.ViewAnswerSecurityQuestionsPage().send()
+    }
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return questions.isEmpty ? 1 : 3
     }
@@ -182,6 +188,8 @@ extension RestoreBackupQuestionsViewController: UITextFieldDelegate {
 
 extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
     func restoreBackupCellDidTapNext() {
+        Events.Analytics.ClickConfirmButtonOnAnswerSecurityQuestionsPage().send()
+        
         guard
             let firstQuestionCell = tableView.cellForRow(at: IndexPath(row: 0, section: 1))
                 as? RestoreBackupQuestionCell,

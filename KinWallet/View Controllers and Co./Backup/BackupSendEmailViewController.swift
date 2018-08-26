@@ -46,11 +46,22 @@ class BackupSendEmailViewController: BackupTextInputViewController {
         }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        Events.Analytics
+            .ViewBackupFlowPage(backupFlowStep: .sendEmail)
+            .send()
+    }
+
     override func isInputTextValid(text: String?) -> Bool {
         return (text ?? textField.textOrEmpty).isValidEmailAddress
     }
 
     override func moveToNextStep() {
+        Events.Analytics
+            .ClickCompletedStepButtonOnBackupFlowPage(backupFlowStep: .sendEmail)
+            .send()
         submitQRCode()
     }
 

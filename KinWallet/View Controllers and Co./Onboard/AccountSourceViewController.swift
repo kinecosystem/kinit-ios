@@ -30,12 +30,22 @@ class AccountSourceViewController: UIViewController {
         }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        Events.Analytics.ViewWelcomeBackPage().send()
+    }
+
     @IBAction func restoreWallet(_ sender: Any) {
+        Events.Analytics.ClickRestoreWalletButtonOnWelcomeBackPage().send()
+
         let scannerViewController = StoryboardScene.Onboard.restoreBackupQRScannerViewController.instantiate()
         navigationController?.pushViewController(scannerViewController, animated: true)
     }
 
     @IBAction func createWallet(_ sender: Any) {
+        Events.Analytics.ClickCreateNewWalletButtonOnWelcomeBackPage().send()
+
         AppDelegate.shared.rootViewController.startCreatingWallet()
     }
 }
