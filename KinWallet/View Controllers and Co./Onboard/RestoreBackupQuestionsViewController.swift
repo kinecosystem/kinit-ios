@@ -73,6 +73,12 @@ class RestoreBackupQuestionsViewController: UITableViewController {
                                             range: NSRange(location: 0, length: 3))
             cell.questionLabel.attributedText = attributedQuestion
 
+            if indexPath.row == 0 {
+                cell.textField.returnKeyType = .next
+            } else {
+                cell.textField.returnKeyType = .done
+            }
+
             return cell
         }
 
@@ -136,12 +142,15 @@ extension RestoreBackupQuestionsViewController: UITextFieldDelegate {
         if textField == firstQuestionCell.textField {
             if textField.textOrEmpty.isBackupStringValid {
                 secondQuestionCell.textField.becomeFirstResponder()
-                tableView.scrollToRow(at: IndexPath(row: 1, section: 1),
+                tableView.scrollToRow(at: IndexPath(row: 0, section: 2),
                                       at: .bottom,
                                       animated: true)
             }
         } else if textField == secondQuestionCell.textField {
             if textField.textOrEmpty.isBackupStringValid {
+                let actionCell = tableView.cellForRow(at: IndexPath(row: 0, section: 2))
+                    as? RestoreBackupActionCell
+                actionCell?.actionButton.shake()
                 tableView.scrollToRow(at: IndexPath(row: 0, section: 2),
                                       at: .bottom,
                                       animated: true)
