@@ -209,6 +209,9 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
                         user.publicAddress = Kin.shared.publicAddress
                         user.save()
 
+                        KinLoader.shared.loadAllData()
+                        Kin.setPerformedBackup()
+
                         DispatchQueue.main.async {
                             let accountReadyVC = StoryboardScene.Onboard.accountReadyViewController.instantiate()
                             accountReadyVC.walletSource = .restored
