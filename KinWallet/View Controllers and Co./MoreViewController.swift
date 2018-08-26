@@ -210,19 +210,21 @@ extension MoreViewController {
         let message =
         """
         User ID: \(User.current!.userId)
+        Phone Number: \(User.current!.phoneNumber ?? "No number registered")
         Public Address: \(Kin.shared.publicAddress)
         Device Token: \(User.current!.deviceToken ?? "No token")
         Current server is \(currentServerIdentifier) (\(KinWebService.shared.serverHost)).
+
         Changing servers will delete all user data, including the Stellar account!
         """
 
-        let alertController = UIAlertController(title: "Would you like to change the server URL?",
+        let alertController = UIAlertController(title: nil,
                                                 message: message,
                                                 preferredStyle: .actionSheet)
 
         let possibleServices: [IdentifiableWebService.Type] = [KinStagingService.self, KinProductionService.self]
         if let toUse = possibleServices.filter({ $0.identifier != currentServerIdentifier }).first {
-            alertController.addAction(UIAlertAction(title: toUse.identifier, style: .default) { _ in
+            alertController.addAction(.init(title: "Change server to \(toUse.identifier)", style: .default) { _ in
                 KinWebService.setAlternateService(type: toUse)
             })
         }
