@@ -30,6 +30,10 @@
 
 "StartAction" = "Start";
 
+"BackAction" = "Back";
+
+"ContinueAction" = "Continue";
+
 //Registering user and Creating Wallet
 
 "CreatingYourWallet" = "Creating your wallet";
@@ -281,3 +285,17 @@
 "RestoreBackupYourAnswerTitle" = "Your Answer";
 
 "RestoreBackupYourAnswerPlaceholder" = "Type your answer here";
+
+// Backup alerts/errors
+
+"BackupIgnoreAndCreateNewWalletTitle" = "We already know each other!";
+
+"BackupIgnoreAndCreateNewWalletMessage" = "Creating a new wallet will erase your balance, are you sure you don’t want to restore?";
+
+"BackupWrongAnswersTitle" = "Feeling forgetful?";
+
+"BackupWrongAnswersMessage" = "It looks like your answers don’t match. Please contact support for assistance.";
+
+"ExistingBackupOverwriteTitle" = "Are you sure you want to change your back up?";
+
+"ExistingBackupOverwriteMessage" = "Keep in mind that by creating a new backup, the old one will be deleted.";

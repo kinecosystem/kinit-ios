@@ -23,6 +23,8 @@ internal enum L10n {
   internal static let activityDoneMessage = L10n.tr("Localizable", "ActivityDoneMessage")
   /// Awesome!
   internal static let activityDoneTitle = L10n.tr("Localizable", "ActivityDoneTitle")
+  /// Back
+  internal static let backAction = L10n.tr("Localizable", "BackAction")
   /// Back to Spend
   internal static let backToSpendAction = L10n.tr("Localizable", "BackToSpendAction")
   /// Looks like you’ve been here before. What would you like to do?
@@ -41,6 +43,10 @@ internal enum L10n {
   internal static let backupConfirmSubtitle = L10n.tr("Localizable", "BackupConfirmSubtitle")
   /// Confirm Email
   internal static let backupConfirmTitle = L10n.tr("Localizable", "BackupConfirmTitle")
+  /// Creating a new wallet will erase your balance, are you sure you don’t want to restore?
+  internal static let backupIgnoreAndCreateNewWalletMessage = L10n.tr("Localizable", "BackupIgnoreAndCreateNewWalletMessage")
+  /// We already know each other!
+  internal static let backupIgnoreAndCreateNewWalletTitle = L10n.tr("Localizable", "BackupIgnoreAndCreateNewWalletTitle")
   /// Backing up your wallet will allow you to recover your Kin if you get locked out of the app or if your phone is ever lost or stolen.
   internal static let backupIntroExplanation = L10n.tr("Localizable", "BackupIntroExplanation")
   /// * minimum 4 characters
@@ -55,6 +61,10 @@ internal enum L10n {
   internal static let backupQRCodeSubtitle = L10n.tr("Localizable", "BackupQRCodeSubtitle")
   /// Your wallet was restored!
   internal static let backupRestoredMessage = L10n.tr("Localizable", "BackupRestoredMessage")
+  /// It looks like your answers don’t match. Please contact support for assistance.
+  internal static let backupWrongAnswersMessage = L10n.tr("Localizable", "BackupWrongAnswersMessage")
+  /// Feeling forgetful?
+  internal static let backupWrongAnswersTitle = L10n.tr("Localizable", "BackupWrongAnswersTitle")
   /// Type your answer here
   internal static let backupYourAnswerPlaceholder = L10n.tr("Localizable", "BackupYourAnswerPlaceholder")
   /// Your Answer
@@ -75,6 +85,8 @@ internal enum L10n {
   internal static let confirm = L10n.tr("Localizable", "Confirm")
   /// Contact Support
   internal static let contactSupport = L10n.tr("Localizable", "ContactSupport")
+  /// Continue
+  internal static let continueAction = L10n.tr("Localizable", "ContinueAction")
   /// Code saved to My Vouchers
   internal static let couponCodeSaved = L10n.tr("Localizable", "CouponCodeSaved")
   /// Create New Wallet
@@ -89,6 +101,10 @@ internal enum L10n {
   internal static let emptyOffersSubtitle = L10n.tr("Localizable", "EmptyOffersSubtitle")
   /// No offers at the moment
   internal static let emptyOffersTitle = L10n.tr("Localizable", "EmptyOffersTitle")
+  /// Keep in mind that by creating a new backup, the old one will be deleted.
+  internal static let existingBackupOverwriteMessage = L10n.tr("Localizable", "ExistingBackupOverwriteMessage")
+  /// Are you sure you want to change your back up?
+  internal static let existingBackupOverwriteTitle = L10n.tr("Localizable", "ExistingBackupOverwriteTitle")
   /// First Question
   internal static let firstSecurityQuestion = L10n.tr("Localizable", "FirstSecurityQuestion")
   /// Please check your internet connection and try again.
