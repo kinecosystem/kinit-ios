@@ -177,7 +177,7 @@ internal enum L10n {
   internal static let transactionsEmptyStateMessage = L10n.tr("Localizable", "TransactionsEmptyStateMessage")
   /// Your new balance
   internal static let transferringKinNewBalance = L10n.tr("Localizable", "TransferringKinNewBalance")
-  /// Your Kin is on it's way
+  /// Your Kin is on its way
   internal static let transferringKinOnItsWay = L10n.tr("Localizable", "TransferringKinOnItsWay")
   /// Try Again
   internal static let tryAgain = L10n.tr("Localizable", "TryAgain")

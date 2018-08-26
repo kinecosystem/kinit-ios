@@ -34,7 +34,6 @@
 
 "OrContactSupport" = "or contact support";
 
-
 // Welcome Screen
 
 "Welcome1stScreenTitle" = " Welcome to Kinit";
@@ -105,7 +104,7 @@
 
 "ActivityDoneMessage" = "You have completed today's activity.";
 
-"TransferringKinOnItsWay" = "Your Kin is on it's way";
+"TransferringKinOnItsWay" = "Your Kin is on its way";
 
 "TransferringKinNewBalance" = "Your new balance";
 
