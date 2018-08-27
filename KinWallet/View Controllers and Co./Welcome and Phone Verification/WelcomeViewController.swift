@@ -171,8 +171,21 @@ extension WelcomeViewController {
 
 extension WelcomeViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let page = scrollView.contentOffset.x / scrollView.frame.width
-        pageControl.currentPage = Int(page)
+        let pageFloat = scrollView.contentOffset.x / scrollView.frame.width
+        let page = Int(round(pageFloat))
+
+        if page != pageControl.currentPage {
+            pageControl.currentPage = Int(page)
+        }
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         logViewedPage()
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            logViewedPage()
+        }
     }
 }
