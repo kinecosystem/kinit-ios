@@ -38,6 +38,8 @@
 
 "GeneralErrorMessage" = "We are having technical issues. Please try again or contact support.";
 
+"Later" = "Later";
+
 //Registering user and Creating Wallet
 
 "CreatingYourWallet" = "Creating your wallet";
@@ -315,3 +317,21 @@
 "RestoreBackupUserMatchFailedTitle" = "Something went wrong";
 
 "RestoreBackupUserMatchFailedMessage" = "We are having technical issues. Please try again or contact support.";
+
+"BackupNagZeroTitle" = "Back up your Kin";
+
+"BackupNagZeroMessage" = "Now it’s possible to backup your Kin in case your phone is lost";
+
+"BackupNagSevenTitle" = "Your Kin is really rolling in";
+
+"BackupNagSevenMessage" = "Back it up today to make sure it’s always safe";
+
+"BackupNagFourteenTitle" = "We care about your Kin";
+
+"BackupNagFourteenMessage" = "That’s why it’s easy to backup your wallet. Back it up today";
+
+"BackupNagThirtyTitle" = "Knock knock";
+
+"BackupNagThirtyMessage" = "It’s your Kin. It wants to be kept safe. Back it up today.";
+
+"BackUpAction" = "Back Up";

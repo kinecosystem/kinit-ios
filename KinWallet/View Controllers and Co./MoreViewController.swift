@@ -56,6 +56,7 @@ private enum MoreSectionItem: String {
 
 class MoreViewController: UITableViewController {
     var performedBackup = false
+    var backupFlowController: BackupFlowController?
 
     let versionLabel: UILabel = {
         let l = UILabel()
@@ -108,35 +109,9 @@ class MoreViewController: UITableViewController {
     @objc fileprivate func startBackup() {
         let alreadyBackedUp: Events.AlreadyBackedUp = Kin.performedBackup() ? .yes : .no
         Events.Analytics.ClickBackupButtonOnMorePage(alreadyBackedUp: alreadyBackedUp).send()
-        startBackup(confirmedOverwrite: false)
-    }
-
-    private func startBackup(confirmedOverwrite: Bool) {
-        if Kin.performedBackup() && !confirmedOverwrite {
-            alertBackupOverwrites()
-            return
-        }
-
-        KinLoader.shared.fetchAvailableBackupHints { [weak self] hints in
-            DispatchQueue.main.async {
-                let backupIntro = StoryboardScene.Backup.backupIntroViewController.instantiate()
-                backupIntro.delegate = self
-                backupIntro.hints = hints
-                let navigationController = BackupNavigationController(rootViewController: backupIntro)
-                self?.present(navigationController, animated: true)
-            }
-        }
-    }
-
-    private func alertBackupOverwrites() {
-        let alertController = UIAlertController(title: L10n.existingBackupOverwriteTitle,
-                                                message: L10n.existingBackupOverwriteMessage,
-                                                preferredStyle: .alert)
-        alertController.addAction(.init(title: L10n.backAction, style: .cancel, handler: nil))
-        alertController.addAction(.init(title: L10n.continueAction, style: .default, handler: { [weak self] _ in
-            self?.startBackup(confirmedOverwrite: true)
-        }))
-        present(alertController, animated: true)
+        
+        backupFlowController = BackupFlowController(presenter: self, source: .more)
+        backupFlowController!.startBackup()
     }
 }
 
@@ -182,19 +157,5 @@ extension MoreViewController {
 
         headerView.textLabel?.textColor = UIColor.kin.gray
         headerView.textLabel?.font = FontFamily.Roboto.bold.font(size: 14)
-    }
-}
-
-extension MoreViewController: BackupIntroDelegate {
-    func backupIntroDidCancel(with emailConfirmAttempts: Int) {
-        dismissAnimated { [weak self] in
-            if emailConfirmAttempts > 0 {
-                let alertController = UIAlertController(title: L10n.performBackupMissingConfirmationTitle,
-                                                        message: L10n.performBackupMissingConfirmationMessage,
-                                                        preferredStyle: .alert)
-                alertController.addAction(.ok)
-                self?.presentAnimated(alertController)
-            }
-        }
     }
 }

@@ -95,10 +95,10 @@ class OfferTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             toView.alpha = 1
             fromView.alpha = 0
         }, completion: { _ in
-            let completed = !transitionContext.transitionWasCancelled
-            transitionContext.completeTransition(completed)
+            let didComplete = !transitionContext.transitionWasCancelled
+            transitionContext.completeTransition(didComplete)
 
-            if !transitionContext.transitionWasCancelled {
+            if didComplete {
                 fromView.alpha = 1
                 fromView.removeFromSuperview()
             }

@@ -27,6 +27,8 @@ internal enum L10n {
   internal static let backAction = L10n.tr("Localizable", "BackAction")
   /// Back to Spend
   internal static let backToSpendAction = L10n.tr("Localizable", "BackToSpendAction")
+  /// Back Up
+  internal static let backUpAction = L10n.tr("Localizable", "BackUpAction")
   /// Looks like you’ve been here before. What would you like to do?
   internal static let backupAvailableTitle = L10n.tr("Localizable", "BackupAvailableTitle")
   /// Your wallet is backed up!
@@ -51,6 +53,22 @@ internal enum L10n {
   internal static let backupIntroExplanation = L10n.tr("Localizable", "BackupIntroExplanation")
   /// * minimum 4 characters
   internal static let backupMinimum4Characters = L10n.tr("Localizable", "BackupMinimum4Characters")
+  /// That’s why it’s easy to backup your wallet. Back it up today
+  internal static let backupNagFourteenMessage = L10n.tr("Localizable", "BackupNagFourteenMessage")
+  /// We care about your Kin
+  internal static let backupNagFourteenTitle = L10n.tr("Localizable", "BackupNagFourteenTitle")
+  /// Back it up today to make sure it’s always safe
+  internal static let backupNagSevenMessage = L10n.tr("Localizable", "BackupNagSevenMessage")
+  /// Your Kin is really rolling in
+  internal static let backupNagSevenTitle = L10n.tr("Localizable", "BackupNagSevenTitle")
+  /// It’s your Kin. It wants to be kept safe. Back it up today.
+  internal static let backupNagThirtyMessage = L10n.tr("Localizable", "BackupNagThirtyMessage")
+  /// Knock knock
+  internal static let backupNagThirtyTitle = L10n.tr("Localizable", "BackupNagThirtyTitle")
+  /// Now it’s possible to backup your Kin in case your phone is lost
+  internal static let backupNagZeroMessage = L10n.tr("Localizable", "BackupNagZeroMessage")
+  /// Back up your Kin
+  internal static let backupNagZeroTitle = L10n.tr("Localizable", "BackupNagZeroTitle")
   /// Your Email Address
   internal static let backupQRCodeEmailAddress = L10n.tr("Localizable", "BackupQRCodeEmailAddress")
   /// * Make sure your email is written correctly.\nYou don’t want your wallet QR code to get to the hands of someone else.
@@ -129,6 +147,8 @@ internal enum L10n {
   internal static let lastOfferGrabbedMessage = L10n.tr("Localizable", "LastOfferGrabbedMessage")
   /// Oops! Someone grabbed the last one... for now
   internal static let lastOfferGrabbedTitle = L10n.tr("Localizable", "LastOfferGrabbedTitle")
+  /// Later
+  internal static let later = L10n.tr("Localizable", "Later")
   /// Add an email account to your device in order to send email.
   internal static let mailNotConfiguredErrorMessage = L10n.tr("Localizable", "MailNotConfiguredErrorMessage")
   /// Mail Not Configured

@@ -17,6 +17,7 @@ final class TaskCompletedViewController: UIViewController {
     var failedToSubmitResults = false
     var initialBalance: UInt64!
     var targetBalance: UInt64!
+    weak var surveyDelegate: SurveyViewControllerDelegate?
 
     @IBOutlet weak var backgroundGradientView: GradientView! {
         didSet {
@@ -119,7 +120,15 @@ final class TaskCompletedViewController: UIViewController {
                 aSelf.transactionSucceeded()
             }).add(to: linkBag)
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 20) { [weak self] in
+        let timeout: TimeInterval
+
+        #if DEBUG
+        timeout = 8
+        #else
+        timeout = 20
+        #endif
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + timeout) { [weak self] in
             guard let `self` = self, self.watch != nil else {
                 return
             }
@@ -165,7 +174,7 @@ final class TaskCompletedViewController: UIViewController {
             }
 
             aSelf.logClosedEvent()
-            aSelf.dismiss(animated: true)
+            aSelf.surveyDelegate?.surveyViewControllerDidFinish()
         }
 
         addAndFit(transferringViewController) {
@@ -293,6 +302,6 @@ extension TaskCompletedViewController {
 extension TaskCompletedViewController: NoticeViewControllerDelegate {
     func noticeViewControllerDidTapButton(_ viewController: NoticeViewController) {
         logClickedCloseErrorPage(errorType: failedToSubmitResults ? .taskSubmission : .reward)
-        presentingViewController!.dismiss(animated: true)
+        surveyDelegate?.surveyViewControllerDidFinish()
     }
 }

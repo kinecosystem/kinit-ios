@@ -62,6 +62,8 @@ internal enum StoryboardScene {
 
     internal static let backupIntroViewController = SceneType<BackupIntroViewController>(storyboard: Backup.self, identifier: "BackupIntroViewController")
 
+    internal static let backupNagViewController = SceneType<BackupNagViewController>(storyboard: Backup.self, identifier: "BackupNagViewController")
+
     internal static let backupQuestionViewController = SceneType<BackupQuestionViewController>(storyboard: Backup.self, identifier: "BackupQuestionViewController")
 
     internal static let backupSendEmailViewController = SceneType<BackupSendEmailViewController>(storyboard: Backup.self, identifier: "BackupSendEmailViewController")

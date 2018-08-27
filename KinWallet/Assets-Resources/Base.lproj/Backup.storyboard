@@ -85,6 +85,93 @@
             </objects>
             <point key="canvasLocation" x="-162.40000000000001" y="73.313343328335833"/>
         </scene>
+        <!--Backup Nag View Controller-->
+        <scene sceneID="uBj-84-rRe">
+            <objects>
+                <viewController storyboardIdentifier="BackupNagViewController" id="TGr-0C-mzV" customClass="BackupNagViewController" customModule="KinWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4Xk-qZ-ayy">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="366"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" image="BackupNagHeader" translatesAutoresizingMaskIntoConstraints="NO" id="WvU-lg-vcD">
+                                <rect key="frame" x="0.0" y="0.0" width="280" height="141"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="141" id="ET7-o6-gHI"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="76B-PY-9Mc">
+                                <rect key="frame" x="20" y="141" width="240" height="93.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ifb-TG-fCV">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="m3z-aR-RaI">
+                                        <rect key="frame" x="0.0" y="32.5" width="240" height="61"/>
+                                        <string key="text">Message
+Message
+Message</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="q8l-Gj-xHY">
+                                <rect key="frame" x="70" y="246" width="140" height="100"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Dc-80-464">
+                                        <rect key="frame" x="0.0" y="0.0" width="140" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="nQ7-rJ-r3W"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="backupNow" destination="TGr-0C-mzV" eventType="touchUpInside" id="VKT-fA-fDM"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ESw-5v-mgY">
+                                        <rect key="frame" x="0.0" y="70" width="140" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="backupLater" destination="TGr-0C-mzV" eventType="touchUpInside" id="1S7-yc-cGk"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="KBz-Bi-0Fp"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="WvU-lg-vcD" firstAttribute="trailing" secondItem="RJJ-ZV-SiP" secondAttribute="trailing" id="7ch-Wr-HpN"/>
+                            <constraint firstItem="76B-PY-9Mc" firstAttribute="leading" secondItem="RJJ-ZV-SiP" secondAttribute="leading" constant="20" id="BdJ-xr-mGH"/>
+                            <constraint firstItem="76B-PY-9Mc" firstAttribute="centerX" secondItem="RJJ-ZV-SiP" secondAttribute="centerX" id="D6M-bx-3gq"/>
+                            <constraint firstItem="76B-PY-9Mc" firstAttribute="top" secondItem="WvU-lg-vcD" secondAttribute="bottom" id="JHM-QU-OMU"/>
+                            <constraint firstItem="RJJ-ZV-SiP" firstAttribute="bottom" secondItem="q8l-Gj-xHY" secondAttribute="bottom" constant="20" id="NFk-zK-2JX"/>
+                            <constraint firstItem="q8l-Gj-xHY" firstAttribute="top" relation="greaterThanOrEqual" secondItem="76B-PY-9Mc" secondAttribute="bottom" constant="10" id="Pjl-Bc-Jmo"/>
+                            <constraint firstItem="q8l-Gj-xHY" firstAttribute="centerX" secondItem="RJJ-ZV-SiP" secondAttribute="centerX" id="dQk-ys-AZa"/>
+                            <constraint firstItem="WvU-lg-vcD" firstAttribute="leading" secondItem="RJJ-ZV-SiP" secondAttribute="leading" id="hgJ-gh-G6Q"/>
+                            <constraint firstItem="WvU-lg-vcD" firstAttribute="top" secondItem="RJJ-ZV-SiP" secondAttribute="top" id="oAJ-Qt-oMh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="RJJ-ZV-SiP"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="280" height="366"/>
+                    <connections>
+                        <outlet property="backupButton" destination="0Dc-80-464" id="1Tn-vi-mNp"/>
+                        <outlet property="laterButton" destination="ESw-5v-mgY" id="IfD-9i-Wbo"/>
+                        <outlet property="messageLabel" destination="m3z-aR-RaI" id="nzI-wM-0am"/>
+                        <outlet property="titleLabel" destination="Ifb-TG-fCV" id="EGA-mn-g2g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XZL-n8-YuR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-129.59999999999999" y="869.86506746626696"/>
+        </scene>
         <!--Backup Question View Controller-->
         <scene sceneID="dwK-Tz-dc8">
             <objects>
@@ -293,7 +380,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="mQc-ft-PzS">
-                                <rect key="frame" x="67.5" y="98" width="240" height="263.5"/>
+                                <rect key="frame" x="67.5" y="97.5" width="240" height="263.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YAY!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2VW-N3-eCd">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="49.5"/>
@@ -558,6 +645,7 @@ If you did, click confirm below.</string>
     </scenes>
     <resources>
         <image name="BackupIntroIllustration" width="208" height="170"/>
+        <image name="BackupNagHeader" width="280" height="141"/>
         <image name="EmailAlert" width="76" height="67"/>
         <image name="PickerArrow" width="8" height="6"/>
     </resources>

@@ -46,6 +46,7 @@ internal struct ColorAsset {
 internal enum Asset {
   internal static let backupDoneIcon = ImageAsset(name: "BackupDoneIcon")
   internal static let backupIntroIllustration = ImageAsset(name: "BackupIntroIllustration")
+  internal static let backupNagHeader = ImageAsset(name: "BackupNagHeader")
   internal static let backupToDoIcon = ImageAsset(name: "BackupToDoIcon")
   internal static let buttonStroke = ImageAsset(name: "ButtonStroke")
   internal static let closeXButton = ImageAsset(name: "CloseXButton")
@@ -121,6 +122,7 @@ internal enum Asset {
   internal static let allImages: [ImageAsset] = [
     backupDoneIcon,
     backupIntroIllustration,
+    backupNagHeader,
     backupToDoIcon,
     buttonStroke,
     closeXButton,

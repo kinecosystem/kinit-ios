@@ -12,6 +12,7 @@ struct RemoteConfig: Codable {
     let peerToPeerMinKin: UInt?
     let peerToPeerMinTasks: UInt?
     let termsOfService: URL?
+    let backupNag: Bool?
 
     enum CodingKeys: CodingKey, String {
         case authTokenEnabled = "auth_token_enabled"
@@ -20,6 +21,7 @@ struct RemoteConfig: Codable {
         case peerToPeerMinKin = "p2p_min_kin"
         case peerToPeerMinTasks = "p2p_min_tasks"
         case termsOfService = "tos"
+        case backupNag = "backup_nag"
     }
 
     private static var _current: RemoteConfig?

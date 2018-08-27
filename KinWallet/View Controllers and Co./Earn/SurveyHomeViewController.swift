@@ -11,6 +11,8 @@ final class SurveyHomeViewController: UIViewController {
     var animatingEarn = false
     let linkBag = LinkBag()
 
+    var backupFlowController: BackupFlowController?
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -123,11 +125,55 @@ final class SurveyHomeViewController: UIViewController {
 }
 
 extension SurveyHomeViewController: SurveyViewControllerDelegate {
-    func surveyViewController(_ viewController: SurveyViewController, didCancelWith results: TaskResults) {
-        dismiss(animated: true)
+    func surveyViewControllerDidCancel() {
+        dismissAnimated()
     }
 
-    func surveyViewController(_ viewController: SurveyViewController, didFinishWith results: TaskResults) {
-        showTaskUnavailable(nil, error: nil)
+    func surveyViewControllerDidFinish() {
+        dismissAnimated { [weak self] in
+            self?.showBackupNagIfNeeded()
+        }
+    }
+
+    fileprivate func showBackupNagIfNeeded() {
+        guard
+            !Kin.performedBackup(),
+            let backupNagEnabled = RemoteConfig.current?.backupNag,
+            backupNagEnabled else {
+                return
+        }
+
+        defer {
+            BackupNagCounter.increment()
+        }
+
+        let currentNag = BackupNagCounter.count
+
+        guard let nagDay = BackupNagDay(rawValue: currentNag) else {
+            return
+        }
+
+        let backupNagViewController = StoryboardScene.Backup.backupNagViewController.instantiate()
+        backupNagViewController.nagDay = nagDay
+        backupNagViewController.delegate = self
+        presentAnimated(backupNagViewController)
+    }
+}
+
+extension SurveyHomeViewController: BackupNagDelegate {
+    func backupNagDidSelectBackupNow(_ backupNagViewController: BackupNagViewController) {
+        let nagDay = backupNagViewController.nagDay!
+        dismissAnimated { [weak self] in
+            guard let `self` = self else {
+                return
+            }
+
+            self.backupFlowController = BackupFlowController(presenter: self, source: .notificationNag(nagDay))
+            self.backupFlowController!.startBackup()
+        }
+    }
+
+    func backupNagDidSelectBackupLater(_ backupNagViewController: BackupNagViewController) {
+        dismissAnimated()
     }
 }

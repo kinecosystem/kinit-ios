@@ -6,8 +6,8 @@
 import UIKit
 
 protocol SurveyViewControllerDelegate: class {
-    func surveyViewController(_ viewController: SurveyViewController, didCancelWith results: TaskResults)
-    func surveyViewController(_ viewController: SurveyViewController, didFinishWith results: TaskResults)
+    func surveyViewControllerDidCancel()
+    func surveyViewControllerDidFinish()
 }
 
 private enum SurveyTransitionState {
@@ -109,9 +109,7 @@ final class SurveyViewController: UIViewController {
     @objc func cancelTapped(_ sender: UIBarButtonItem) {
         logClosedOnQuestion(task.questions[min(currentQuestionIndex, task.questions.count - 1)],
                             questionIndex: currentQuestionIndex)
-        let results = TaskResults(identifier: task.identifier,
-                                  results: selectedAnswers)
-        surveyDelegate?.surveyViewController(self, didCancelWith: results)
+        surveyDelegate?.surveyViewControllerDidCancel()
     }
 
     func loadCurrentProgress() {
@@ -224,6 +222,7 @@ final class SurveyViewController: UIViewController {
 
     func showSurveyComplete(results: TaskResults) {
         let taskCompleted = StoryboardScene.Earn.taskCompletedViewController.instantiate()
+        taskCompleted.surveyDelegate = surveyDelegate
         taskCompleted.task = task
         taskCompleted.results = results
         navigationController?.pushViewController(taskCompleted, animated: true)
