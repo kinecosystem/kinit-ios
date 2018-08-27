@@ -247,6 +247,9 @@
 		9170391320B7517A006B01FB /* PushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170390B20B75175006B01FB /* PushHandler.swift */; };
 		9170391420B7517A006B01FB /* PushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170390B20B75175006B01FB /* PushHandler.swift */; };
 		9170BE92206A5E9A00DC88B4 /* EarnKinAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170BE91206A5E9A00DC88B4 /* EarnKinAnimationViewController.swift */; };
+		9170CD7F2133F3A0009986A5 /* AMPTrackingOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9170CD7D2133F3A0009986A5 /* AMPTrackingOptions.m */; };
+		9170CD802133F3A0009986A5 /* AMPTrackingOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9170CD7D2133F3A0009986A5 /* AMPTrackingOptions.m */; };
+		9170CD812133F3A0009986A5 /* AMPTrackingOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9170CD7D2133F3A0009986A5 /* AMPTrackingOptions.m */; };
 		91796BC72027261F00F8C6A0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91796BC62027261F00F8C6A0 /* User.swift */; };
 		91796BC92027276000F8C6A0 /* UIDevice+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91796BC82027276000F8C6A0 /* UIDevice+KinWallet.swift */; };
 		91796BCA2027276000F8C6A0 /* UIDevice+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91796BC82027276000F8C6A0 /* UIDevice+KinWallet.swift */; };
@@ -839,6 +842,8 @@
 		916ACCF420F1FFEF00756EBC /* DualImageQuestionSeparatorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DualImageQuestionSeparatorView.xib; sourceTree = "<group>"; };
 		9170390B20B75175006B01FB /* PushHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushHandler.swift; sourceTree = "<group>"; };
 		9170BE91206A5E9A00DC88B4 /* EarnKinAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarnKinAnimationViewController.swift; sourceTree = "<group>"; };
+		9170CD7D2133F3A0009986A5 /* AMPTrackingOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPTrackingOptions.m; sourceTree = "<group>"; };
+		9170CD7E2133F3A0009986A5 /* AMPTrackingOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPTrackingOptions.h; sourceTree = "<group>"; };
 		91796BC62027261F00F8C6A0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		91796BC82027276000F8C6A0 /* UIDevice+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+KinWallet.swift"; sourceTree = "<group>"; };
 		91796BCB20272A8B00F8C6A0 /* DeviceList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DeviceList.plist; sourceTree = "<group>"; };
@@ -1582,6 +1587,8 @@
 				91E6B647203C69A80080C2FC /* AMPUtils.h */,
 				91E6B648203C69A80080C2FC /* AMPURLSession.h */,
 				91E6B649203C69A80080C2FC /* Amplitude.m */,
+				9170CD7E2133F3A0009986A5 /* AMPTrackingOptions.h */,
+				9170CD7D2133F3A0009986A5 /* AMPTrackingOptions.m */,
 			);
 			name = Amplitude;
 			path = Submodules/Amplitude/Amplitude;
@@ -2278,6 +2285,7 @@
 				91FA4A0D212AB75C00513E1D /* QRCodeScannerViewController.swift in Sources */,
 				9198A2A02062926D0052F343 /* NotificationHandler.swift in Sources */,
 				9152E5E9212D505300802040 /* RestoreBackupCells.swift in Sources */,
+				9170CD7F2133F3A0009986A5 /* AMPTrackingOptions.m in Sources */,
 				91FF14AC211C5FFE0098470D /* ButtonAccessoryInputView.swift in Sources */,
 				91D891E22020B43D0090E77C /* AnswersCollectionViewLayout.swift in Sources */,
 				914013C12019D0BA0066367C /* UIImage+KinWallet.swift in Sources */,
@@ -2448,6 +2456,7 @@
 				9182C2A7203C6C0C0051F003 /* Amplitude.m in Sources */,
 				9140139A201892640066367C /* AnswerTests.swift in Sources */,
 				91FF14B4211C61290098470D /* ButtonAccessoryInputView.swift in Sources */,
+				9170CD802133F3A0009986A5 /* AMPTrackingOptions.m in Sources */,
 				91A4EAA120CFE8F600C3399F /* VideoTaskViewController.swift in Sources */,
 				914013DD2019F2BF0066367C /* UICollectionViewCell+KinWallet.swift in Sources */,
 				91E84A9220862C6200E8B7A6 /* RootViewController.swift in Sources */,
@@ -2536,6 +2545,7 @@
 				91FE7F1320FB768700EDFB67 /* Strings.swift in Sources */,
 				91E84A5B208617CA00E8B7A6 /* BalancePagerTabViewController.swift in Sources */,
 				828CB44F2056EA42007C679C /* Date+Kinit.swift in Sources */,
+				9170CD812133F3A0009986A5 /* AMPTrackingOptions.m in Sources */,
 				828CB4432056EA08007C679C /* ImageAssets.swift in Sources */,
 				828CB44B2056EA42007C679C /* UICollectionView+KinWallet.swift in Sources */,
 				91B57F9420E038E200CE5EE1 /* Bridge.swift in Sources */,
