@@ -200,9 +200,6 @@
 		914013E02019F2BF0066367C /* UICollectionView+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013D92019F2BF0066367C /* UICollectionView+KinWallet.swift */; };
 		914013E12019F2BF0066367C /* UICollectionView+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013D92019F2BF0066367C /* UICollectionView+KinWallet.swift */; };
 		91473FE0201DCDBF0013A530 /* SelectedResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91473FDF201DCDBF0013A530 /* SelectedResult.swift */; };
-		9152E601212EB41D00802040 /* KinErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152E600212EB41D00802040 /* KinErrors.swift */; };
-		9152E602212EB41D00802040 /* KinErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152E600212EB41D00802040 /* KinErrors.swift */; };
-		9152E603212EB41D00802040 /* KinErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152E600212EB41D00802040 /* KinErrors.swift */; };
 		9152E5E2212D48D400802040 /* KinCoreSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9152E5DB212D489800802040 /* KinCoreSDK.framework */; };
 		9152E5E3212D48D400802040 /* KinCoreSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9152E5DB212D489800802040 /* KinCoreSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9152E5E9212D505300802040 /* RestoreBackupCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152E5E8212D505300802040 /* RestoreBackupCells.swift */; };
@@ -211,6 +208,9 @@
 		9152E5ED212D6C3300802040 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152E5EC212D6C3300802040 /* UIBarButtonItem.swift */; };
 		9152E5EE212D6C3300802040 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152E5EC212D6C3300802040 /* UIBarButtonItem.swift */; };
 		9152E5EF212D6C3300802040 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152E5EC212D6C3300802040 /* UIBarButtonItem.swift */; };
+		9152E601212EB41D00802040 /* KinErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152E600212EB41D00802040 /* KinErrors.swift */; };
+		9152E602212EB41D00802040 /* KinErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152E600212EB41D00802040 /* KinErrors.swift */; };
+		9152E603212EB41D00802040 /* KinErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152E600212EB41D00802040 /* KinErrors.swift */; };
 		9156A97A205035A500F21C20 /* ServerTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9156A979205035A500F21C20 /* ServerTypes.swift */; };
 		9157F983204C40E000351E2A /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9157F982204C40E000351E2A /* Log.swift */; };
 		9157F984204C41C200351E2A /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9157F982204C40E000351E2A /* Log.swift */; };
@@ -247,6 +247,12 @@
 		9170391320B7517A006B01FB /* PushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170390B20B75175006B01FB /* PushHandler.swift */; };
 		9170391420B7517A006B01FB /* PushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170390B20B75175006B01FB /* PushHandler.swift */; };
 		9170BE92206A5E9A00DC88B4 /* EarnKinAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170BE91206A5E9A00DC88B4 /* EarnKinAnimationViewController.swift */; };
+		9170CD6F2133E7B7009986A5 /* BackupNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170CD6E2133E7B7009986A5 /* BackupNavigationController.swift */; };
+		9170CD702133E7B7009986A5 /* BackupNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170CD6E2133E7B7009986A5 /* BackupNavigationController.swift */; };
+		9170CD712133E7B7009986A5 /* BackupNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170CD6E2133E7B7009986A5 /* BackupNavigationController.swift */; };
+		9170CD7A2133EA47009986A5 /* ConfigPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170CD792133EA47009986A5 /* ConfigPanel.swift */; };
+		9170CD7B2133EA47009986A5 /* ConfigPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170CD792133EA47009986A5 /* ConfigPanel.swift */; };
+		9170CD7C2133EA47009986A5 /* ConfigPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170CD792133EA47009986A5 /* ConfigPanel.swift */; };
 		9170CD7F2133F3A0009986A5 /* AMPTrackingOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9170CD7D2133F3A0009986A5 /* AMPTrackingOptions.m */; };
 		9170CD802133F3A0009986A5 /* AMPTrackingOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9170CD7D2133F3A0009986A5 /* AMPTrackingOptions.m */; };
 		9170CD812133F3A0009986A5 /* AMPTrackingOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9170CD7D2133F3A0009986A5 /* AMPTrackingOptions.m */; };
@@ -812,10 +818,10 @@
 		914013D92019F2BF0066367C /* UICollectionView+KinWallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+KinWallet.swift"; sourceTree = "<group>"; };
 		914013E3201A1A6E0066367C /* Sourcery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sourcery.swift; sourceTree = "<group>"; };
 		91473FDF201DCDBF0013A530 /* SelectedResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedResult.swift; sourceTree = "<group>"; };
-		9152E600212EB41D00802040 /* KinErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinErrors.swift; sourceTree = "<group>"; };
 		9152E5D1212D489800802040 /* KinCoreSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KinCoreSDK.xcodeproj; path = Submodules/KinCore/KinSDK/KinCoreSDK.xcodeproj; sourceTree = "<group>"; };
 		9152E5E8212D505300802040 /* RestoreBackupCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreBackupCells.swift; sourceTree = "<group>"; };
 		9152E5EC212D6C3300802040 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
+		9152E600212EB41D00802040 /* KinErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinErrors.swift; sourceTree = "<group>"; };
 		9156A979205035A500F21C20 /* ServerTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerTypes.swift; sourceTree = "<group>"; };
 		9157F982204C40E000351E2A /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		9157F98E204D589100351E2A /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
@@ -842,6 +848,8 @@
 		916ACCF420F1FFEF00756EBC /* DualImageQuestionSeparatorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DualImageQuestionSeparatorView.xib; sourceTree = "<group>"; };
 		9170390B20B75175006B01FB /* PushHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushHandler.swift; sourceTree = "<group>"; };
 		9170BE91206A5E9A00DC88B4 /* EarnKinAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarnKinAnimationViewController.swift; sourceTree = "<group>"; };
+		9170CD6E2133E7B7009986A5 /* BackupNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupNavigationController.swift; sourceTree = "<group>"; };
+		9170CD792133EA47009986A5 /* ConfigPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigPanel.swift; sourceTree = "<group>"; };
 		9170CD7D2133F3A0009986A5 /* AMPTrackingOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPTrackingOptions.m; sourceTree = "<group>"; };
 		9170CD7E2133F3A0009986A5 /* AMPTrackingOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPTrackingOptions.h; sourceTree = "<group>"; };
 		91796BC62027261F00F8C6A0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -1118,6 +1126,7 @@
 		91379A3C21174473002D3EF5 /* Backup */ = {
 			isa = PBXGroup;
 			children = (
+				9170CD6E2133E7B7009986A5 /* BackupNavigationController.swift */,
 				91379A44211744D1002D3EF5 /* BackupIntroViewController.swift */,
 				910872C22121E96D0095FD45 /* BackupTextInputViewController.swift */,
 				91FF1230211AF6670098470D /* BackupQuestionViewController.swift */,
@@ -1451,6 +1460,7 @@
 			isa = PBXGroup;
 			children = (
 				91E6B661203C69EE0080C2FC /* Analytics.swift */,
+				9170CD792133EA47009986A5 /* ConfigPanel.swift */,
 				82A12DEB2056B841008841F2 /* Configuration.swift */,
 				91D891BD201F23130090E77C /* Datastore.swift */,
 				91E20B8A202B3E3B000CB741 /* FeedbackGenerator.swift */,
@@ -2161,6 +2171,7 @@
 			files = (
 				91AAB938201E0CB80075DAA1 /* UIImageView+KinWallet.swift in Sources */,
 				914013B32018C0740066367C /* QuestionViewController.swift in Sources */,
+				9170CD6F2133E7B7009986A5 /* BackupNavigationController.swift in Sources */,
 				914013D42019F2300066367C /* NibLoadableView.swift in Sources */,
 				91FF9CFD207D4A2700B536E9 /* Bool+KinWallet.swift in Sources */,
 				91796BD6202868E800F8C6A0 /* WebService.swift in Sources */,
@@ -2223,6 +2234,7 @@
 				91D891CD2020B3C70090E77C /* TouchUpEffectScalable.swift in Sources */,
 				91FF9D18207E4C0200B536E9 /* RedeemTransaction.swift in Sources */,
 				914013BE2019D07D0066367C /* UIColor+KinWallet.swift in Sources */,
+				9170CD7A2133EA47009986A5 /* ConfigPanel.swift in Sources */,
 				9140137A201743640066367C /* RootTabBarController.swift in Sources */,
 				91E6B662203C69EF0080C2FC /* Analytics.swift in Sources */,
 				9157F983204C40E000351E2A /* Log.swift in Sources */,
@@ -2353,6 +2365,7 @@
 				91B445502090C3B400ED6802 /* PhoneVerificationRequestViewController.swift in Sources */,
 				91401398201892640066367C /* QuestionTests.swift in Sources */,
 				91C42AD820FDDD68001E1C05 /* UIControl+KinWallet.swift in Sources */,
+				9170CD7B2133EA47009986A5 /* ConfigPanel.swift in Sources */,
 				9140138B20187CE90066367C /* Result.swift in Sources */,
 				914013E12019F2BF0066367C /* UICollectionView+KinWallet.swift in Sources */,
 				9182C2A1203C6C0C0051F003 /* AMPDatabaseHelper.m in Sources */,
@@ -2360,6 +2373,7 @@
 				9140138920187CE90066367C /* Task.swift in Sources */,
 				91FE7D7320F6304B00EDFB67 /* Anchorable.swift in Sources */,
 				91E84A772086186B00E8B7A6 /* IndicatorInfo.swift in Sources */,
+				9170CD702133E7B7009986A5 /* BackupNavigationController.swift in Sources */,
 				91AAB92F201DD4020075DAA1 /* KinNavigationController.swift in Sources */,
 				9182C2A3203C6C0C0051F003 /* AMPIdentify.m in Sources */,
 				9138BBE6204EF1A700450C97 /* SimpleCollectionReusableView.swift in Sources */,
@@ -2507,6 +2521,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9170CD7C2133EA47009986A5 /* ConfigPanel.swift in Sources */,
 				91E84A9320862C6300E8B7A6 /* RootViewController.swift in Sources */,
 				91E84A56208617B300E8B7A6 /* TaskCompletedViewController.swift in Sources */,
 				91FF123C211AF66C0098470D /* BackupQuestionViewController.swift in Sources */,
@@ -2515,6 +2530,7 @@
 				828CB4532056EA43007C679C /* String+KinWallet.swift in Sources */,
 				828CB43C2056E9F2007C679C /* Log.swift in Sources */,
 				91E84AAE20862DCD00E8B7A6 /* AnswersCollectionViewLayout.swift in Sources */,
+				9170CD712133E7B7009986A5 /* BackupNavigationController.swift in Sources */,
 				91FA4A0B212AA90500513E1D /* RestoreBackupQRScannerViewController.swift in Sources */,
 				91E84A9920862CCD00E8B7A6 /* QuestionViewController.swift in Sources */,
 				91E84A6D2086185000E8B7A6 /* AppDelegate.swift in Sources */,

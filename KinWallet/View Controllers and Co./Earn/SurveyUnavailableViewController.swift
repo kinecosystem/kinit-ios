@@ -110,7 +110,7 @@ final class SurveyUnavailableViewController: UIViewController, AddNoticeViewCont
                 }
             })
         } else {
-            alertController.addAction(.ok())
+            alertController.addAction(.ok)
         }
 
         present(alertController, animated: true)

@@ -16,7 +16,7 @@ final class KinSupportViewController: MFMailComposeViewController {
             let alertController = UIAlertController(title: L10n.mailNotConfiguredErrorTitle,
                                                     message: L10n.mailNotConfiguredErrorMessage,
                                                     preferredStyle: .alert)
-            alertController.addAction(.ok())
+            alertController.addAction(.ok)
             presenter.present(alertController, animated: true)
 
             return

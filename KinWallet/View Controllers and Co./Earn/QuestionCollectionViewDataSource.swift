@@ -28,7 +28,6 @@ final class QuestionCollectionViewDataSource: NSObject {
     }
 
     init(question: Question, collectionView: UICollectionView) {
-        collectionView.register(nib: SurveyQuestionCollectionReusableView.self)
         collectionView.register(nib: SurveyTextAnswerCollectionViewCell.self)
         collectionView.register(nib: SurveyMultipleTextAnswerCollectionViewCell.self)
         collectionView.register(nib: SurveyTextImageAnswerCollectionViewCell.self)

@@ -83,9 +83,20 @@ class BackupConfirmEmailViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
+        (navigationController as? BackupNavigationController)?.confirmEmailAppearCount += 1
+
         Events.Analytics
             .ViewBackupFlowPage(backupFlowStep: .emailConfirmation)
             .send()
+
+        if let navController = navigationController as? BackupNavigationController,
+            navController.sendEmailAppearCount >= 3 {
+            let alertController = UIAlertController(title: L10n.performBackupTooManyEmailAttemptsTitle,
+                                                    message: L10n.performBackupTooManyEmailAttemptsMessage,
+                                                    preferredStyle: .alert)
+            alertController.addAction(.ok)
+            presentAnimated(alertController)
+        }
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -105,15 +116,24 @@ class BackupConfirmEmailViewController: UIViewController {
 
         WebRequests.Backup.submitHints(chosenHints)
             .withCompletion { [weak self] _, error in
+                guard let `self` = self else {
+                    return
+                }
+
                 DispatchQueue.main.async {
-                    self?.confirmAccessoryView.isLoading = false
+                    self.confirmAccessoryView.isLoading = false
 
                     guard error == nil else {
+                        let alertController = UIAlertController(title: L10n.generalServerErrorTitle,
+                                                                message: L10n.generalServerErrorMessage,
+                                                                preferredStyle: .alert)
+                        alertController.addAction(.ok)
+                        self.present(alertController, animated: true)
                         return
                     }
 
                     let backupDoneViewController = StoryboardScene.Backup.backupDoneViewController.instantiate()
-                    self?.navigationController?.pushViewController(backupDoneViewController, animated: true)
+                    self.navigationController?.pushViewController(backupDoneViewController, animated: true)
                 }
             }.load(with: KinWebService.shared)
     }

@@ -107,6 +107,14 @@ internal enum L10n {
   internal static let existingBackupOverwriteTitle = L10n.tr("Localizable", "ExistingBackupOverwriteTitle")
   /// First Question
   internal static let firstSecurityQuestion = L10n.tr("Localizable", "FirstSecurityQuestion")
+  /// We are having technical issues. Please try again or contact support.
+  internal static let generalErrorMessage = L10n.tr("Localizable", "GeneralErrorMessage")
+  /// Something went wrong
+  internal static let generalErrorTitle = L10n.tr("Localizable", "GeneralErrorTitle")
+  /// Please try again later. If you continue to see this message, please reach out to support.
+  internal static let generalServerErrorMessage = L10n.tr("Localizable", "GeneralServerErrorMessage")
+  /// Houston We Have a Server Problem
+  internal static let generalServerErrorTitle = L10n.tr("Localizable", "GeneralServerErrorTitle")
   /// Please check your internet connection and try again.
   internal static let internetErrorMessage = L10n.tr("Localizable", "InternetErrorMessage")
   /// Oh no! Your internet is MIA
@@ -155,6 +163,14 @@ internal enum L10n {
   internal static let or = L10n.tr("Localizable", "Or")
   /// or contact support
   internal static let orContactSupport = L10n.tr("Localizable", "OrContactSupport")
+  /// It looks like the backup process wasn’t successful. Please try again, and confirm that you received the email.
+  internal static let performBackupMissingConfirmationMessage = L10n.tr("Localizable", "PerformBackupMissingConfirmationMessage")
+  /// Well this is awkward
+  internal static let performBackupMissingConfirmationTitle = L10n.tr("Localizable", "PerformBackupMissingConfirmationTitle")
+  /// Sorry, it looks like there’s a problem with the email confirmation. Please try starting the backup process again in a little while. 
+  internal static let performBackupTooManyEmailAttemptsMessage = L10n.tr("Localizable", "PerformBackupTooManyEmailAttemptsMessage")
+  /// Huh, that doesn’t seem right
+  internal static let performBackupTooManyEmailAttemptsTitle = L10n.tr("Localizable", "PerformBackupTooManyEmailAttemptsTitle")
   /// Send me a new code
   internal static let phoneConfirmationAskNewCode = L10n.tr("Localizable", "PhoneConfirmationAskNewCode")
   /// The code should arrive in %ds.
@@ -193,6 +209,10 @@ internal enum L10n {
   internal static let restoreBackupScanSubtitle = L10n.tr("Localizable", "RestoreBackupScanSubtitle")
   /// You're 2 steps away
   internal static let restoreBackupScanTitle = L10n.tr("Localizable", "RestoreBackupScanTitle")
+  /// We are having technical issues. Please try again or contact support.
+  internal static let restoreBackupUserMatchFailedMessage = L10n.tr("Localizable", "RestoreBackupUserMatchFailedMessage")
+  /// Something went wrong
+  internal static let restoreBackupUserMatchFailedTitle = L10n.tr("Localizable", "RestoreBackupUserMatchFailedTitle")
   /// Type your answer here
   internal static let restoreBackupYourAnswerPlaceholder = L10n.tr("Localizable", "RestoreBackupYourAnswerPlaceholder")
   /// Your Answer
@@ -237,10 +257,6 @@ internal enum L10n {
   internal static let sendKinToSelfErrorMessage = L10n.tr("Localizable", "SendKinToSelfErrorMessage")
   /// You chose yourself!
   internal static let sendKinToSelfErrorTitle = L10n.tr("Localizable", "SendKinToSelfErrorTitle")
-  /// Please try again later. If you continue to see this message, please reach out to support.
-  internal static let sendKinTransactionFailedErrorMessage = L10n.tr("Localizable", "SendKinTransactionFailedErrorMessage")
-  /// Houston We Have a Server Problem
-  internal static let sendKinTransactionFailedErrorTitle = L10n.tr("Localizable", "SendKinTransactionFailedErrorTitle")
   /// To
   internal static let sendTo = L10n.tr("Localizable", "SendTo")
   /// Spend your Kin

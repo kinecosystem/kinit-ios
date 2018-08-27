@@ -46,6 +46,14 @@ class AccountSourceViewController: UIViewController {
     @IBAction func createWallet(_ sender: Any) {
         Events.Analytics.ClickCreateNewWalletButtonOnWelcomeBackPage().send()
 
-        AppDelegate.shared.rootViewController.startCreatingWallet()
+        let confirmAlertController = UIAlertController(title: L10n.backupIgnoreAndCreateNewWalletTitle,
+                                                       message: L10n.backupIgnoreAndCreateNewWalletMessage,
+                                                       preferredStyle: .alert)
+        confirmAlertController.addAction(.init(title: L10n.backAction, style: .cancel, handler: nil))
+        confirmAlertController.addAction(.init(title: L10n.continueAction, style: .default) { _ in
+            AppDelegate.shared.rootViewController.startCreatingWallet()
+        })
+        
+        present(confirmAlertController, animated: true, completion: nil)
     }
 }

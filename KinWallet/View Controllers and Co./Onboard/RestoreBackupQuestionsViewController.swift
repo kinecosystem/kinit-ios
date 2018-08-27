@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KinCoreSDK
 
 class RestoreBackupQuestionsViewController: UITableViewController {
     var questions = [String]()
@@ -189,7 +190,7 @@ extension RestoreBackupQuestionsViewController: UITextFieldDelegate {
 extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
     func restoreBackupCellDidTapNext() {
         Events.Analytics.ClickConfirmButtonOnAnswerSecurityQuestionsPage().send()
-        
+
         guard
             let firstQuestionCell = tableView.cellForRow(at: IndexPath(row: 0, section: 1))
                 as? RestoreBackupQuestionCell,
@@ -212,39 +213,48 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
         DispatchQueue.global().async {
             do {
                 try Kin.shared.importWallet(self.encryptedWallet, with: firstAnswer + secondAnswer)
-                WebRequests.Backup.restoreUserId(with: Kin.shared.publicAddress)
-                    .withCompletion { [weak self] userId, _ in
-                        guard let userId = userId else {
-                            //TODO: handle error
-                            DispatchQueue.main.async {
-                            }
-                            return
-                        }
-
-                        var user = User.current!
-                        user.userId = userId
-                        user.publicAddress = Kin.shared.publicAddress
-                        user.save()
-
-                        KinLoader.shared.loadAllData()
-                        Kin.setPerformedBackup()
-
-                        DispatchQueue.main.async {
-                            let accountReadyVC = StoryboardScene.Onboard.accountReadyViewController.instantiate()
-                            accountReadyVC.walletSource = .restored
-                            self?.navigationController?.pushViewController(accountReadyVC, animated: true)
-                        }
-
-                        Events.Business.WalletRestored().send()
-                    }.load(with: KinWebService.shared)
+                WebRequests.Backup
+                    .restoreUserId(with: Kin.shared.publicAddress)
+                    .withCompletion(self.backRestoreCompletion)
+                    .load(with: KinWebService.shared)
             } catch {
-                //TODO: handle error
                 DispatchQueue.main.async {
                     actionCell.actionButton.isLoading = false
+                    self.presentSupportAlert(title: L10n.backupWrongAnswersTitle,
+                                             message: L10n.backupWrongAnswersMessage)
                 }
 
                 KLogError("Could not decrypt wallet with given passphrase")
             }
         }
+    }
+
+    private func backRestoreCompletion(userId: String?, error: Error?) {
+        guard let userId = userId else {
+            Kin.shared.resetKeyStore()
+
+            DispatchQueue.main.async {
+                self.presentSupportAlert(title: L10n.restoreBackupUserMatchFailedTitle,
+                                         message: L10n.restoreBackupUserMatchFailedMessage)
+            }
+
+            return
+        }
+
+        var user = User.current!
+        user.userId = userId
+        user.publicAddress = Kin.shared.publicAddress
+        user.save()
+
+        KinLoader.shared.loadAllData()
+        Kin.setPerformedBackup()
+
+        DispatchQueue.main.async {
+            let accountReadyVC = StoryboardScene.Onboard.accountReadyViewController.instantiate()
+            accountReadyVC.walletSource = .restored
+            self.navigationController?.pushViewController(accountReadyVC, animated: true)
+        }
+
+        Events.Business.WalletRestored().send()
     }
 }

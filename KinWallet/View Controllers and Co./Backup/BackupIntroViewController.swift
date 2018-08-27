@@ -31,8 +31,13 @@ extension BackupStep {
     }
 }
 
+protocol BackupIntroDelegate: class {
+    func backupIntroDidCancel(with emailConfirmAttempts: Int)
+}
+
 class BackupIntroViewController: UIViewController {
     var hints: [AvailableBackupHint]?
+    weak var delegate: BackupIntroDelegate?
 
     @IBOutlet weak var backupNowButton: UIButton! {
         didSet {
@@ -78,7 +83,8 @@ class BackupIntroViewController: UIViewController {
     }
 
     @objc func cancel() {
-        dismiss(animated: true, completion: nil)
+        let attempsCount = (navigationController as? BackupNavigationController)?.confirmEmailAppearCount ?? 0
+        delegate?.backupIntroDidCancel(with: attempsCount)
     }
 
     @IBAction func backupNow(_ sender: Any) {

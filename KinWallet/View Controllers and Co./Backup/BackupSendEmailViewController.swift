@@ -49,6 +49,10 @@ class BackupSendEmailViewController: BackupTextInputViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
+        if textField.textOrEmpty.isValidEmailAddress {
+            (navigationController as? BackupNavigationController)?.sendEmailAppearCount += 1
+        }
+
         Events.Analytics
             .ViewBackupFlowPage(backupFlowStep: .sendEmail)
             .send()
@@ -78,7 +82,8 @@ class BackupSendEmailViewController: BackupTextInputViewController {
                     self.accessoryView.isLoading = false
 
                     guard success.boolValue else {
-                        //TODO: handle error
+                        self.presentSupportAlert(title: L10n.generalServerErrorTitle,
+                                                 message: L10n.generalServerErrorMessage)
 
                         return
                     }

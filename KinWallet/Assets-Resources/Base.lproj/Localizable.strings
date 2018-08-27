@@ -34,6 +34,10 @@
 
 "ContinueAction" = "Continue";
 
+"GeneralErrorTitle" = "Something went wrong";
+
+"GeneralErrorMessage" = "We are having technical issues. Please try again or contact support.";
+
 //Registering user and Creating Wallet
 
 "CreatingYourWallet" = "Creating your wallet";
@@ -178,9 +182,9 @@
 
 "SendKinLowBalanceErrorMessage" = "Make sure you have at least %u KIN.";
 
-"SendKinTransactionFailedErrorTitle" = "Houston We Have a Server Problem";
+"GeneralServerErrorTitle" = "Houston We Have a Server Problem";
 
-"SendKinTransactionFailedErrorMessage" = "Please try again later. If you continue to see this message, please reach out to support.";
+"GeneralServerErrorMessage" = "Please try again later. If you continue to see this message, please reach out to support.";
 
 "KinSentMessage" = "You’ve succesfully sent K %@.\nYou can see the details under Balance";
 
@@ -299,3 +303,15 @@
 "ExistingBackupOverwriteTitle" = "Are you sure you want to change your back up?";
 
 "ExistingBackupOverwriteMessage" = "Keep in mind that by creating a new backup, the old one will be deleted.";
+
+"PerformBackupMissingConfirmationTitle" = "Well this is awkward";
+
+"PerformBackupMissingConfirmationMessage" = "It looks like the backup process wasn’t successful. Please try again, and confirm that you received the email.";
+
+"PerformBackupTooManyEmailAttemptsTitle" = "Huh, that doesn’t seem right";
+
+"PerformBackupTooManyEmailAttemptsMessage" = "Sorry, it looks like there’s a problem with the email confirmation. Please try starting the backup process again in a little while. ";
+
+"RestoreBackupUserMatchFailedTitle" = "Something went wrong";
+
+"RestoreBackupUserMatchFailedMessage" = "We are having technical issues. Please try again or contact support.";
