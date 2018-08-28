@@ -30,7 +30,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         AuthToken.prepare()
-        generateUserAgent()
 
         let filePath = Bundle.main.path(forResource: firebaseFileName(), ofType: "plist")!
         let firebaseOptions = FirebaseOptions(contentsOfFile: filePath)!

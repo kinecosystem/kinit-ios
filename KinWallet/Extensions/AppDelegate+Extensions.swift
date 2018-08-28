@@ -8,20 +8,9 @@ import WebKit
 import KinitDesignables
 
 extension AppDelegate {
-    static var webView: WKWebView?
-
     class var shared: AppDelegate {
         //swiftlint:disable:next force_cast
         return UIApplication.shared.delegate as! AppDelegate
-    }
-
-    func generateUserAgent() {
-        AppDelegate.webView = WKWebView(frame: .zero)
-        AppDelegate.webView!.loadHTMLString("<html></html>", baseURL: nil)
-        AppDelegate.webView!.evaluateJavaScript("navigator.userAgent") { result, _ in
-            User.userAgent = result as? String
-            AppDelegate.webView = nil
-        }
     }
 
     func applyAppearance() {
