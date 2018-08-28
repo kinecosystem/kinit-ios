@@ -35,9 +35,7 @@ extension HTTPMethod: CustomStringConvertible {
 }
 
 protocol WebServiceProvider: class {
-    func userId() -> String?
-    func deviceId() -> String?
-    func appVersion() -> String?
+    func headers() -> [String: String]?
 }
 
 protocol WebServiceProtocol {
@@ -77,16 +75,8 @@ class WebService: WebServiceProtocol {
         var urlRequest = URLRequest(webRequest: request, host: serverHost)
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-type")
 
-        if let userId = provider?.userId() {
-            urlRequest.addValue(userId, forHTTPHeaderField: "X-USERID")
-        }
-
-        if let deviceId = provider?.deviceId() {
-            urlRequest.addValue(deviceId, forHTTPHeaderField: "X-DEVICEID")
-        }
-
-        if let appVersion = provider?.appVersion() {
-            urlRequest.addValue(appVersion, forHTTPHeaderField: "X-APPVERSION")
+        provider?.headers()?.forEach { (headerName, value) in
+            urlRequest.addValue(value, forHTTPHeaderField: headerName)
         }
 
         return urlRequest

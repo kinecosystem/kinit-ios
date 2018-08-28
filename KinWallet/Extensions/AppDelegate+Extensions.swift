@@ -64,16 +64,24 @@ extension AppDelegate {
 }
 
 extension AppDelegate: WebServiceProvider {
-    func userId() -> String? {
-        return User.current?.userId
-    }
+    func headers() -> [String: String]? {
+        var headers = [String: String]()
 
-    func deviceId() -> String? {
-        return User.current?.deviceId
-    }
+        headers["X-APPVERSION"] = Bundle.appVersion
 
-    func appVersion() -> String? {
-        return Bundle.appVersion
+        if let userId = User.current?.userId {
+            headers["X-USERID"] = userId
+        }
+
+        if let deviceId = User.current?.deviceId {
+            headers["X-DEVICEID"] = deviceId
+        }
+
+        if let authToken = AuthToken.current {
+            headers["X-AUTH-TOKEN"] = authToken
+        }
+
+        return headers
     }
 }
 

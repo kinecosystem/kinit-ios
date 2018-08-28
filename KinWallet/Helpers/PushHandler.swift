@@ -84,6 +84,8 @@ class PushHandler {
             return
         }
 
+        AuthToken.setCurrent(token)
+
         WebRequests.ackAuthToken(token).withCompletion({ _, error in
             if error != nil {
                 let reason = error?.localizedDescription ?? "No description"
