@@ -27,9 +27,9 @@ class ConfigPanel {
             }
 
             if password.md5Hex == Configuration.shared.moreScreenTapsPassword {
-                self.displayConfigPanel()
+                self.displayConfigPanel(from: presenter)
             } else {
-                self.wrongConfigPassword()
+                self.wrongConfigPassword(from: presenter)
             }
         }
 
@@ -38,7 +38,7 @@ class ConfigPanel {
             observer = NotificationCenter.default.addObserver(forName: .UITextFieldTextDidChange,
                                                               object: nil,
                                                               queue: nil) { _ in
-                                                                passwordAction.isEnabled = !(textField.text?.isEmpty ?? false)
+                passwordAction.isEnabled = !(textField.text?.isEmpty ?? false)
             }
         }
         passwordAction.isEnabled = false
