@@ -219,6 +219,9 @@
 		915995472134491600E4E840 /* FormsheetPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915995462134491600E4E840 /* FormsheetPresentationController.swift */; };
 		915995482134491600E4E840 /* FormsheetPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915995462134491600E4E840 /* FormsheetPresentationController.swift */; };
 		915995492134491600E4E840 /* FormsheetPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915995462134491600E4E840 /* FormsheetPresentationController.swift */; };
+		9159955E2135457A00E4E840 /* BackupFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159955D2135457A00E4E840 /* BackupFlowController.swift */; };
+		9159955F2135457A00E4E840 /* BackupFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159955D2135457A00E4E840 /* BackupFlowController.swift */; };
+		915995602135457A00E4E840 /* BackupFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159955D2135457A00E4E840 /* BackupFlowController.swift */; };
 		915F495A20430125005C09B3 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 915F494D20430125005C09B3 /* Roboto-Medium.ttf */; };
 		915F495B20430125005C09B3 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 915F494E20430125005C09B3 /* Roboto-Light.ttf */; };
 		915F495C20430125005C09B3 /* KinK.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 915F494F20430125005C09B3 /* KinK.ttf */; };
@@ -835,6 +838,7 @@
 		9157F982204C40E000351E2A /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		9157F98E204D589100351E2A /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
 		915995462134491600E4E840 /* FormsheetPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormsheetPresentationController.swift; sourceTree = "<group>"; };
+		9159955D2135457A00E4E840 /* BackupFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupFlowController.swift; sourceTree = "<group>"; };
 		915F494D20430125005C09B3 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		915F494E20430125005C09B3 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		915F494F20430125005C09B3 /* KinK.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KinK.ttf; sourceTree = "<group>"; };
@@ -1475,6 +1479,7 @@
 				91E6B661203C69EE0080C2FC /* Analytics.swift */,
 				9170CD792133EA47009986A5 /* ConfigPanel.swift */,
 				9170CD9521343121009986A5 /* BackupNagCounter.swift */,
+				9159955D2135457A00E4E840 /* BackupFlowController.swift */,
 				82A12DEB2056B841008841F2 /* Configuration.swift */,
 				91D891BD201F23130090E77C /* Datastore.swift */,
 				91E20B8A202B3E3B000CB741 /* FeedbackGenerator.swift */,
@@ -2345,6 +2350,7 @@
 				915995472134491600E4E840 /* FormsheetPresentationController.swift in Sources */,
 				91AAB932201E0AC00075DAA1 /* ResourceDownloader.swift in Sources */,
 				91AA18EA2104C01900044D9C /* QuizQuestionExplanationViewController.swift in Sources */,
+				9159955E2135457A00E4E840 /* BackupFlowController.swift in Sources */,
 				9140138620187CE90066367C /* Question.swift in Sources */,
 				91F69D1620834A9B00F06181 /* TransactionHistoryCollectionViewCell.swift in Sources */,
 				91F69D36208379F400F06181 /* BaseButtonBarPagerTabStripViewController.swift in Sources */,
@@ -2391,6 +2397,7 @@
 				91E84AB320862E0F00E8B7A6 /* TransactionHistoryViewController.swift in Sources */,
 				9140138920187CE90066367C /* Task.swift in Sources */,
 				91FE7D7320F6304B00EDFB67 /* Anchorable.swift in Sources */,
+				9159955F2135457A00E4E840 /* BackupFlowController.swift in Sources */,
 				91E84A772086186B00E8B7A6 /* IndicatorInfo.swift in Sources */,
 				9170CD702133E7B7009986A5 /* BackupNavigationController.swift in Sources */,
 				91AAB92F201DD4020075DAA1 /* KinNavigationController.swift in Sources */,
@@ -2565,6 +2572,7 @@
 				824138512060376500D7117E /* URLRequest+KinWallet.swift in Sources */,
 				91E84A7E2086186B00E8B7A6 /* ButtonBarPagerTabStripViewController.swift in Sources */,
 				828CB4162056E913007C679C /* Offer.swift in Sources */,
+				915995602135457A00E4E840 /* BackupFlowController.swift in Sources */,
 				828CB4012056E88A007C679C /* Configuration.swift in Sources */,
 				828CB4202056E989007C679C /* WeakBox.swift in Sources */,
 				828CB4152056E913007C679C /* Task.swift in Sources */,

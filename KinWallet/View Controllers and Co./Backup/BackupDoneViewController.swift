@@ -8,6 +8,10 @@
 import UIKit
 import Lottie
 
+extension Notification.Name {
+     static let KinitBackupCompleted = Notification.Name.init("org.kinecosystem.kinit.backupCompleted")
+}
+
 class BackupDoneViewController: UIViewController {
     @IBOutlet weak var backupDoneTitleLabel: UILabel! {
         didSet {
@@ -52,7 +56,7 @@ class BackupDoneViewController: UIViewController {
             self.lockView.play { _ in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                     self.navigationController?.transitioningDelegate = self
-                    self.dismiss(animated: true, completion: nil)
+                    NotificationCenter.default.post(name: .KinitBackupCompleted, object: nil)
                 }
             }
         })

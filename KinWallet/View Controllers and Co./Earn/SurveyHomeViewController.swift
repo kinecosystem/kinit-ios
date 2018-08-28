@@ -169,11 +169,22 @@ extension SurveyHomeViewController: BackupNagDelegate {
             }
 
             self.backupFlowController = BackupFlowController(presenter: self, source: .notificationNag(nagDay))
+            self.backupFlowController?.delegate = self
             self.backupFlowController!.startBackup()
         }
     }
 
     func backupNagDidSelectBackupLater(_ backupNagViewController: BackupNagViewController) {
         dismissAnimated()
+    }
+}
+
+extension SurveyHomeViewController: BackupFlowDelegate {
+    func backupFlowDidCancel() {
+        backupFlowController = nil
+    }
+
+    func backupFlowDidFinish() {
+        backupFlowController = nil
     }
 }

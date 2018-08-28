@@ -109,8 +109,9 @@ class MoreViewController: UITableViewController {
     @objc fileprivate func startBackup() {
         let alreadyBackedUp: Events.AlreadyBackedUp = Kin.performedBackup() ? .yes : .no
         Events.Analytics.ClickBackupButtonOnMorePage(alreadyBackedUp: alreadyBackedUp).send()
-        
+
         backupFlowController = BackupFlowController(presenter: self, source: .more)
+        backupFlowController?.delegate = self
         backupFlowController!.startBackup()
     }
 }
@@ -157,5 +158,15 @@ extension MoreViewController {
 
         headerView.textLabel?.textColor = UIColor.kin.gray
         headerView.textLabel?.font = FontFamily.Roboto.bold.font(size: 14)
+    }
+}
+
+extension MoreViewController: BackupFlowDelegate {
+    func backupFlowDidCancel() {
+        backupFlowController = nil
+    }
+
+    func backupFlowDidFinish() {
+        backupFlowController = nil
     }
 }
