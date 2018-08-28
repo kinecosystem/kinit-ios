@@ -43,11 +43,11 @@ class ConfigPanel {
         }
         passwordAction.isEnabled = false
 
-        alertController.addAction(UIAlertAction.cancel { _ in
+        alertController.addCancelAction {
             if let observer = observer {
                 NotificationCenter.default.removeObserver(observer)
             }
-        })
+        }
 
         alertController.addAction(passwordAction)
         presenter.present(alertController, animated: true)
@@ -69,38 +69,38 @@ class ConfigPanel {
                                                 message: message,
                                                 preferredStyle: .actionSheet)
 
-        alertController.addAction(.init(title: "Enable Notifications", style: .default) { _ in
+        alertController.addAction(title: "Enable Notifications", style: .default) {
             AppDelegate.shared.requestNotifications()
-            })
+        }
 
-        alertController.addAction(.init(title: "Copy User ID", style: .default) { _ in
+        alertController.addAction(title: "Copy User ID", style: .default) {
             UIPasteboard.general.string = User.current?.userId
-            })
+        }
 
-        alertController.addAction(.init(title: "Copy Device Token", style: .default) { _ in
+        alertController.addAction(title: "Copy Device Token", style: .default) {
             UIPasteboard.general.string = User.current?.deviceToken
-            })
+        }
 
-        alertController.addAction(.init(title: "Copy Public Address", style: .default) { _ in
+        alertController.addAction(title: "Copy Public Address", style: .default) {
             UIPasteboard.general.string = Kin.shared.publicAddress
-            })
+        }
 
-        alertController.addAction(.init(title: "Mark Backup Not Done", style: .default) { _ in
+        alertController.addAction(title: "Mark Backup Not Done", style: .default) {
             Kin.setPerformedBackup(false)
-            })
+        }
 
-        alertController.addAction(.init(title: "Delete task and results", style: .destructive, handler: { _ in
+        alertController.addAction(title: "Delete task and results", style: .destructive) {
             if let task: Task = SimpleDatastore.loadObject(nextTaskIdentifier) {
                 SimpleDatastore.delete(objectOf: Task.self, with: nextTaskIdentifier)
                 SimpleDatastore.delete(objectOf: TaskResults.self, with: task.identifier)
             }
-        }))
+        }
 
-        alertController.addAction(.init(title: "Delete Kin Account", style: .destructive) { _ in
+        alertController.addAction(title: "Delete Kin Account", style: .destructive) {
             Kin.shared.resetKeyStore()
-            })
+        }
 
-        alertController.addAction(.cancel())
+        alertController.addCancelAction()
         presenter.present(alertController, animated: true)
     }
 

@@ -207,7 +207,7 @@ class SendKinViewController: UIViewController {
             }
 
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alertController.addAction(.ok)
+            alertController.addOkAction()
             self.present(alertController, animated: true)
         }
     }

@@ -57,15 +57,15 @@ extension UIViewController {
         let alertController = UIAlertController(title: title,
                                                 message: message,
                                                 preferredStyle: .alert)
-        alertController.addAction(.init(title: L10n.support, style: .default, handler: { [weak self] _ in
+        alertController.addAction(title: L10n.support, style: .default) { [weak self] in
             guard let `self` = self else {
                 return
             }
 
             KinSupportViewController.present(from: self)
-        }))
+        }
 
-        alertController.addAction(.init(title: L10n.tryAgain, style: .default, handler: nil))
+        alertController.addAction(title: L10n.tryAgain, style: .default)
 
         presentAnimated(alertController)
     }

@@ -49,11 +49,11 @@ class AccountSourceViewController: UIViewController {
         let confirmAlertController = UIAlertController(title: L10n.backupIgnoreAndCreateNewWalletTitle,
                                                        message: L10n.backupIgnoreAndCreateNewWalletMessage,
                                                        preferredStyle: .alert)
-        confirmAlertController.addAction(.init(title: L10n.backAction, style: .cancel, handler: nil))
-        confirmAlertController.addAction(.init(title: L10n.continueAction, style: .default) { _ in
+        confirmAlertController.addAction(title: L10n.backAction, style: .cancel)
+        confirmAlertController.addAction(title: L10n.continueAction, style: .default) {
             AppDelegate.shared.rootViewController.startCreatingWallet()
-        })
-        
+        }
+
         present(confirmAlertController, animated: true, completion: nil)
     }
 }

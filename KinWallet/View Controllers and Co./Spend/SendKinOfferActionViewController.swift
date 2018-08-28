@@ -45,7 +45,7 @@ class SendKinOfferActionViewController: SpendOfferActionViewController {
         let alertController = UIAlertController(title: title,
                                                 message: message,
                                                 preferredStyle: .alert)
-        alertController.addAction(.ok)
+        alertController.addOkAction()
         present(alertController, animated: true)
 
         Events.Analytics

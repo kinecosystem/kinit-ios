@@ -94,7 +94,7 @@ class BackupConfirmEmailViewController: UIViewController {
             let alertController = UIAlertController(title: L10n.performBackupTooManyEmailAttemptsTitle,
                                                     message: L10n.performBackupTooManyEmailAttemptsMessage,
                                                     preferredStyle: .alert)
-            alertController.addAction(.ok)
+            alertController.addOkAction()
             presentAnimated(alertController)
         }
     }
@@ -127,7 +127,7 @@ class BackupConfirmEmailViewController: UIViewController {
                         let alertController = UIAlertController(title: L10n.generalServerErrorTitle,
                                                                 message: L10n.generalServerErrorMessage,
                                                                 preferredStyle: .alert)
-                        alertController.addAction(.ok)
+                        alertController.addOkAction()
                         self.present(alertController, animated: true)
                         return
                     }

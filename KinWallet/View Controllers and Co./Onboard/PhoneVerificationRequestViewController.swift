@@ -214,7 +214,7 @@ class PhoneVerificationRequestViewController: UIViewController {
         let alertController = UIAlertController(title: L10n.phoneVerificationUnsupportedCountryCodeTitle,
                                                 message: L10n.phoneVerificationUnsupportedCountryCodeMessage,
                                                 preferredStyle: .alert)
-        alertController.addAction(.ok)
+        alertController.addOkAction()
         present(alertController, animated: true, completion: nil)
     }
 

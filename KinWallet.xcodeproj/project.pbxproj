@@ -222,6 +222,9 @@
 		9159955E2135457A00E4E840 /* BackupFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159955D2135457A00E4E840 /* BackupFlowController.swift */; };
 		9159955F2135457A00E4E840 /* BackupFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159955D2135457A00E4E840 /* BackupFlowController.swift */; };
 		915995602135457A00E4E840 /* BackupFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159955D2135457A00E4E840 /* BackupFlowController.swift */; };
+		9159956921354E3A00E4E840 /* UIAlertController+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159956821354E3A00E4E840 /* UIAlertController+KinWallet.swift */; };
+		9159956A21354E3A00E4E840 /* UIAlertController+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159956821354E3A00E4E840 /* UIAlertController+KinWallet.swift */; };
+		9159956B21354E3A00E4E840 /* UIAlertController+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159956821354E3A00E4E840 /* UIAlertController+KinWallet.swift */; };
 		915F495A20430125005C09B3 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 915F494D20430125005C09B3 /* Roboto-Medium.ttf */; };
 		915F495B20430125005C09B3 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 915F494E20430125005C09B3 /* Roboto-Light.ttf */; };
 		915F495C20430125005C09B3 /* KinK.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 915F494F20430125005C09B3 /* KinK.ttf */; };
@@ -839,6 +842,7 @@
 		9157F98E204D589100351E2A /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
 		915995462134491600E4E840 /* FormsheetPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormsheetPresentationController.swift; sourceTree = "<group>"; };
 		9159955D2135457A00E4E840 /* BackupFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupFlowController.swift; sourceTree = "<group>"; };
+		9159956821354E3A00E4E840 /* UIAlertController+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+KinWallet.swift"; sourceTree = "<group>"; };
 		915F494D20430125005C09B3 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		915F494E20430125005C09B3 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		915F494F20430125005C09B3 /* KinK.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KinK.ttf; sourceTree = "<group>"; };
@@ -1320,6 +1324,7 @@
 				91311C4C204FDB4400618240 /* Optional+KinWallet.swift */,
 				914013D92019F2BF0066367C /* UICollectionView+KinWallet.swift */,
 				9163EDFE20553248005F3123 /* UIAlertAction+KinWallet.swift */,
+				9159956821354E3A00E4E840 /* UIAlertController+KinWallet.swift */,
 				91B0668120C9631100CE69A7 /* UIApplication+KinWallet.swift */,
 				914013D72019F2BF0066367C /* UICollectionViewCell+KinWallet.swift */,
 				914013BD2019D07D0066367C /* UIColor+KinWallet.swift */,
@@ -2196,6 +2201,7 @@
 				91FF9CFD207D4A2700B536E9 /* Bool+KinWallet.swift in Sources */,
 				91796BD6202868E800F8C6A0 /* WebService.swift in Sources */,
 				91401376201635990066367C /* UIView+KinWallet.swift in Sources */,
+				9159956921354E3A00E4E840 /* UIAlertController+KinWallet.swift in Sources */,
 				914013A52018BC320066367C /* OfferWallViewController.swift in Sources */,
 				91D075412056A77100CF80D5 /* OffersUnavailableViewController.swift in Sources */,
 				917ECFDF2100C41800EB82E1 /* OfferTransitionAnimator.swift in Sources */,
@@ -2389,6 +2395,7 @@
 				910AA22B2096F34800CC822A /* AccountReadyViewController.swift in Sources */,
 				91B445502090C3B400ED6802 /* PhoneVerificationRequestViewController.swift in Sources */,
 				91401398201892640066367C /* QuestionTests.swift in Sources */,
+				9159956A21354E3A00E4E840 /* UIAlertController+KinWallet.swift in Sources */,
 				91C42AD820FDDD68001E1C05 /* UIControl+KinWallet.swift in Sources */,
 				9170CD7B2133EA47009986A5 /* ConfigPanel.swift in Sources */,
 				9140138B20187CE90066367C /* Result.swift in Sources */,
@@ -2557,6 +2564,7 @@
 				828CB4272056E9C1007C679C /* AMPURLConnection.m in Sources */,
 				828CB4532056EA43007C679C /* String+KinWallet.swift in Sources */,
 				828CB43C2056E9F2007C679C /* Log.swift in Sources */,
+				9159956B21354E3A00E4E840 /* UIAlertController+KinWallet.swift in Sources */,
 				91E84AAE20862DCD00E8B7A6 /* AnswersCollectionViewLayout.swift in Sources */,
 				9170CD712133E7B7009986A5 /* BackupNavigationController.swift in Sources */,
 				91FA4A0B212AA90500513E1D /* RestoreBackupQRScannerViewController.swift in Sources */,

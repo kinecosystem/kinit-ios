@@ -61,13 +61,13 @@ class BackupFlowController {
         let alertController = UIAlertController(title: L10n.existingBackupOverwriteTitle,
                                                 message: L10n.existingBackupOverwriteMessage,
                                                 preferredStyle: .alert)
-        alertController.addAction(.init(title: L10n.backAction, style: .cancel) { [weak self] _ in
+        alertController.addAction(title: L10n.backAction, style: .cancel) { [weak self] in
             self?.delegate?.backupFlowDidCancel()
-        })
+        }
 
-        alertController.addAction(.init(title: L10n.continueAction, style: .default) { [weak self] _ in
+        alertController.addAction(title: L10n.continueAction, style: .default) { [weak self] in
             self?.startBackup(confirmedOverwrite: true)
-        })
+        }
 
         presenter.present(alertController, animated: true)
     }
