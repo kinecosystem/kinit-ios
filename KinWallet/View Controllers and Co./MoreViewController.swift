@@ -54,17 +54,24 @@ private enum MoreSectionItem: String {
     }
 }
 
-class MoreViewController: UITableViewController {
+class MoreViewController: UIViewController {
     var performedBackup = false
     var backupFlowController: BackupFlowController?
 
-    let versionLabel: UILabel = {
-        let l = UILabel()
-        l.font = FontFamily.Roboto.regular.font(size: 14)
-        l.textColor = UIColor.kin.gray
-        l.text = "V. \(Bundle.appVersion) (Build \(Bundle.buildNumber))"
-        return l
-    }()
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.register(class: MoreTableViewCell.self)
+            tableView.rowHeight = 60
+        }
+    }
+
+    @IBOutlet weak var versionLabel: UILabel! {
+        didSet {
+            versionLabel.font = FontFamily.Roboto.regular.font(size: 14)
+            versionLabel.textColor = UIColor.kin.gray
+            versionLabel.text = "V. \(Bundle.appVersion) (Build \(Bundle.buildNumber))"
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,8 +87,8 @@ class MoreViewController: UITableViewController {
         fourTapGesture.numberOfTouchesRequired = 4
         #endif
 
+        tableView.tableFooterView = UIView()
         view.addGestureRecognizer(fourTapGesture)
-        tableView.tableFooterView = versionLabel
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -116,16 +123,16 @@ class MoreViewController: UITableViewController {
     }
 }
 
-extension MoreViewController {
-    override func numberOfSections(in tableView: UITableView) -> Int {
+extension MoreViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return MoreSection.allCases.count
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return MoreSection.allCases[section].items.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as MoreTableViewCell
         let item = MoreSection.allCases[indexPath.section].items[indexPath.row]
         cell.textLabel?.text = item.title
@@ -140,18 +147,18 @@ extension MoreViewController {
     }
 }
 
-extension MoreViewController {
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+extension MoreViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = MoreSection.allCases[indexPath.section].items[indexPath.row]
         perform(item.action)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return MoreSection.allCases[section].title
     }
 
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let headerView = view as? UITableViewHeaderFooterView else {
             return
         }
