@@ -9,6 +9,7 @@ import UIKit
 
 class BackupConfirmEmailViewController: UIViewController {
     var chosenHints: [Int]!
+    var disablePopNavigation = true
 
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
@@ -88,15 +89,6 @@ class BackupConfirmEmailViewController: UIViewController {
         Events.Analytics
             .ViewBackupFlowPage(backupFlowStep: .emailConfirmation)
             .send()
-
-        if let navController = navigationController as? BackupNavigationController,
-            navController.sendEmailAppearCount >= 3 {
-            let alertController = UIAlertController(title: L10n.performBackupTooManyEmailAttemptsTitle,
-                                                    message: L10n.performBackupTooManyEmailAttemptsMessage,
-                                                    preferredStyle: .alert)
-            alertController.addOkAction()
-            presentAnimated(alertController)
-        }
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -104,6 +96,7 @@ class BackupConfirmEmailViewController: UIViewController {
     }
 
     @IBAction func resendEmail(_ sender: Any) {
+        disablePopNavigation = false
         navigationController?.popViewController(animated: true)
     }
 
@@ -136,5 +129,28 @@ class BackupConfirmEmailViewController: UIViewController {
                     self.navigationController?.pushViewController(backupDoneViewController, animated: true)
                 }
             }.load(with: KinWebService.shared)
+    }
+}
+
+extension BackupConfirmEmailViewController: BackupNavigationDelegate {
+    func shouldPopViewController() -> Bool {
+        if disablePopNavigation {
+            let alertController = UIAlertController(title: L10n.performBackupMissingConfirmationTitle,
+                                                    message: L10n.performBackupMissingConfirmationMessage,
+                                                    preferredStyle: .alert)
+            alertController.addAction(title: L10n.performBackupMissingConfirmationContinueBackup, style: .default)
+            
+            let cancelTitle = L10n.performBackupMissingConfirmationCancelBackup
+            alertController.addAction(title: cancelTitle, style: .default) { [weak self] in
+                self?.disablePopNavigation = false
+                self?.navigationController?.popToRootViewController(animated: true)
+            }
+
+            presentAnimated(alertController)
+
+            return false
+        }
+
+        return true
     }
 }

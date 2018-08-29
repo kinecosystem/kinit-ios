@@ -228,6 +228,8 @@
 		9159956D21356A0F00E4E840 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159956C21356A0F00E4E840 /* AuthToken.swift */; };
 		9159956E21356A0F00E4E840 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159956C21356A0F00E4E840 /* AuthToken.swift */; };
 		9159956F21356A0F00E4E840 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159956C21356A0F00E4E840 /* AuthToken.swift */; };
+		915995962136BC0200E4E840 /* BackupConfirmEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910872BE21218E5F0095FD45 /* BackupConfirmEmailViewController.swift */; };
+		9159959E2136BC0300E4E840 /* BackupConfirmEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910872BE21218E5F0095FD45 /* BackupConfirmEmailViewController.swift */; };
 		915F495A20430125005C09B3 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 915F494D20430125005C09B3 /* Roboto-Medium.ttf */; };
 		915F495B20430125005C09B3 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 915F494E20430125005C09B3 /* Roboto-Light.ttf */; };
 		915F495C20430125005C09B3 /* KinK.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 915F494F20430125005C09B3 /* KinK.ttf */; };
@@ -2400,6 +2402,7 @@
 				91E84A752086186B00E8B7A6 /* ButtonBarViewCell.swift in Sources */,
 				910AA22B2096F34800CC822A /* AccountReadyViewController.swift in Sources */,
 				91B445502090C3B400ED6802 /* PhoneVerificationRequestViewController.swift in Sources */,
+				915995962136BC0200E4E840 /* BackupConfirmEmailViewController.swift in Sources */,
 				91401398201892640066367C /* QuestionTests.swift in Sources */,
 				9159956A21354E3A00E4E840 /* UIAlertController+KinWallet.swift in Sources */,
 				91C42AD820FDDD68001E1C05 /* UIControl+KinWallet.swift in Sources */,
@@ -2692,6 +2695,7 @@
 				828CB47B2056EDD6007C679C /* NoticeViewController.swift in Sources */,
 				828CB4492056EA42007C679C /* Data+KinWallet.swift in Sources */,
 				9140135020162FA90066367C /* KinWalletUITests.swift in Sources */,
+				9159959E2136BC0300E4E840 /* BackupConfirmEmailViewController.swift in Sources */,
 				91E84A5A208617C200E8B7A6 /* SurveyInfoViewController.swift in Sources */,
 				828CB4322056E9E1007C679C /* KinAmountLabel.swift in Sources */,
 				91E84A822086186B00E8B7A6 /* IndicatorInfo.swift in Sources */,

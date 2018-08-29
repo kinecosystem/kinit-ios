@@ -121,7 +121,7 @@ internal enum L10n {
   internal static let emptyOffersTitle = L10n.tr("Localizable", "EmptyOffersTitle")
   /// Keep in mind that by creating a new backup, the old one will be deleted.
   internal static let existingBackupOverwriteMessage = L10n.tr("Localizable", "ExistingBackupOverwriteMessage")
-  /// Are you sure you want to change your back up?
+  /// Are you sure you want to create a new backup?
   internal static let existingBackupOverwriteTitle = L10n.tr("Localizable", "ExistingBackupOverwriteTitle")
   /// First Question
   internal static let firstSecurityQuestion = L10n.tr("Localizable", "FirstSecurityQuestion")
@@ -183,9 +183,13 @@ internal enum L10n {
   internal static let or = L10n.tr("Localizable", "Or")
   /// or contact support
   internal static let orContactSupport = L10n.tr("Localizable", "OrContactSupport")
-  /// It looks like the backup process wasn’t successful. Please try again, and confirm that you received the email.
+  /// Cancel Backup
+  internal static let performBackupMissingConfirmationCancelBackup = L10n.tr("Localizable", "PerformBackupMissingConfirmationCancelBackup")
+  /// Continue Backup
+  internal static let performBackupMissingConfirmationContinueBackup = L10n.tr("Localizable", "PerformBackupMissingConfirmationContinueBackup")
+  /// Skipping this process will result in your information not being backed up.
   internal static let performBackupMissingConfirmationMessage = L10n.tr("Localizable", "PerformBackupMissingConfirmationMessage")
-  /// Well this is awkward
+  /// Hang On, You're Almost There 🙂
   internal static let performBackupMissingConfirmationTitle = L10n.tr("Localizable", "PerformBackupMissingConfirmationTitle")
   /// Sorry, it looks like there’s a problem with the email confirmation. Please try starting the backup process again in a little while. 
   internal static let performBackupTooManyEmailAttemptsMessage = L10n.tr("Localizable", "PerformBackupTooManyEmailAttemptsMessage")

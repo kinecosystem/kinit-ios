@@ -11,6 +11,10 @@ class BackupSendEmailViewController: BackupTextInputViewController {
     var encryptedWallet: String!
     var chosenHints: [Int]!
 
+    var insertedEmailAddress: String {
+        return textField.textOrEmpty.trimmingCharacters(in: .whitespaces)
+    }
+
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.font = FontFamily.Roboto.medium.font(size: 22)
@@ -49,8 +53,16 @@ class BackupSendEmailViewController: BackupTextInputViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if textField.textOrEmpty.isValidEmailAddress {
-            (navigationController as? BackupNavigationController)?.sendEmailAppearCount += 1
+        if let navController = navigationController as? BackupNavigationController {
+            navController.sendEmailAppearCount += 1
+
+            if navController.sendEmailAppearCount >= 3 {
+                let alertController = UIAlertController(title: L10n.performBackupTooManyEmailAttemptsTitle,
+                                                        message: L10n.performBackupTooManyEmailAttemptsMessage,
+                                                        preferredStyle: .alert)
+                alertController.addOkAction()
+                presentAnimated(alertController)
+            }
         }
 
         Events.Analytics
@@ -59,7 +71,7 @@ class BackupSendEmailViewController: BackupTextInputViewController {
     }
 
     override func isInputTextValid(text: String?) -> Bool {
-        return (text ?? textField.textOrEmpty).isValidEmailAddress
+        return (text ?? insertedEmailAddress).isValidEmailAddress
     }
 
     override func moveToNextStep() {
@@ -72,7 +84,7 @@ class BackupSendEmailViewController: BackupTextInputViewController {
     private func submitQRCode() {
         accessoryView.isLoading = true
 
-        WebRequests.Backup.sendEmail(to: textField.text!, encryptedKey: encryptedWallet)
+        WebRequests.Backup.sendEmail(to: insertedEmailAddress, encryptedKey: encryptedWallet)
             .withCompletion { [weak self] success, _ in
                 DispatchQueue.main.async {
                     guard let `self` = self else {
@@ -113,7 +125,9 @@ extension BackupSendEmailViewController {
             return false
         }
 
-        let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        let newText = (currentText as NSString)
+            .replacingCharacters(in: range, with: string)
+            .trimmingCharacters(in: .whitespaces)
         accessoryView.isEnabled = isInputTextValid(text: newText)
 
         return true

@@ -82,14 +82,6 @@ class BackupFlowController {
 extension BackupFlowController: BackupIntroDelegate {
     func backupIntroDidCancel(with emailConfirmAttempts: Int) {
         presenter.dismissAnimated { [weak self] in
-            if emailConfirmAttempts > 0 {
-                let alertController = UIAlertController(title: L10n.performBackupMissingConfirmationTitle,
-                                                        message: L10n.performBackupMissingConfirmationMessage,
-                                                        preferredStyle: .alert)
-                alertController.addAction(.ok)
-                self?.presenter.presentAnimated(alertController)
-            }
-
             self?.delegate?.backupFlowDidCancel()
         }
     }

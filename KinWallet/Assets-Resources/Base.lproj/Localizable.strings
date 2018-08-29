@@ -302,13 +302,17 @@
 
 "BackupWrongAnswersMessage" = "It looks like your answers don’t match. Please contact support for assistance.";
 
-"ExistingBackupOverwriteTitle" = "Are you sure you want to change your back up?";
+"ExistingBackupOverwriteTitle" = "Are you sure you want to create a new backup?";
 
 "ExistingBackupOverwriteMessage" = "Keep in mind that by creating a new backup, the old one will be deleted.";
 
-"PerformBackupMissingConfirmationTitle" = "Well this is awkward";
+"PerformBackupMissingConfirmationTitle" = "Hang On, You're Almost There 🙂";
 
-"PerformBackupMissingConfirmationMessage" = "It looks like the backup process wasn’t successful. Please try again, and confirm that you received the email.";
+"PerformBackupMissingConfirmationMessage" = "Skipping this process will result in your information not being backed up.";
+
+"PerformBackupMissingConfirmationCancelBackup" = "Cancel Backup";
+
+"PerformBackupMissingConfirmationContinueBackup" = "Continue Backup";
 
 "PerformBackupTooManyEmailAttemptsTitle" = "Huh, that doesn’t seem right";
 

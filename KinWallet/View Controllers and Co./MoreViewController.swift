@@ -76,6 +76,8 @@ class MoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        KinLoader.shared.fetchAvailableBackupHints(skipCache: true)
+        
         performedBackup = Kin.performedBackup()
 
         let fourTapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGestureRecognized))
