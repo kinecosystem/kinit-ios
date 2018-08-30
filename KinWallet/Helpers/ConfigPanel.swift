@@ -89,6 +89,10 @@ class ConfigPanel {
             Kin.setPerformedBackup(false)
         }
 
+        alertController.addAction(title: "Reset Backup Nag Counter", style: .default) {
+            BackupNagCounter.reset()
+        }
+
         alertController.addAction(title: "Delete task and results", style: .destructive) {
             if let task: Task = SimpleDatastore.loadObject(nextTaskIdentifier) {
                 SimpleDatastore.delete(objectOf: Task.self, with: nextTaskIdentifier)

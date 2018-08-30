@@ -28,4 +28,9 @@ class BackupNagCounter {
         UserDefaults.standard.set(Date(), forKey: backupNagCountLastIncrementDateKey)
         UserDefaults.standard.set(count + 1, forKey: currentBackupNagCountKey)
     }
+
+    static func reset() {
+        UserDefaults.standard.set(nil, forKey: backupNagCountLastIncrementDateKey)
+        UserDefaults.standard.set(nil, forKey: currentBackupNagCountKey)
+    }
 }
