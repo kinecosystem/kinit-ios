@@ -124,17 +124,21 @@ class BackupQuestionViewController: BackupTextInputViewController {
             self?.view.layoutIfNeeded()
             }, completion: { [weak self] _ in
                 completion?()
-                self?.animatingTableView = false
-
-                guard self?.selectedHintId != nil  else {
+                guard let `self` = self else {
                     return
                 }
 
-                self?.setAnswerStackViewHidden(!isOpen)
+                self.animatingTableView = false
+
+                guard self.selectedHintId != nil  else {
+                    return
+                }
+
+                self.setAnswerStackViewHidden(!isOpen)
 
                 if isOpen {
-                    self?.textField.becomeFirstResponder()
-                    self?.accessoryView.isEnabled = false
+                    self.textField.becomeFirstResponder()
+                    self.accessoryView.isEnabled = self.isInputTextValid()
                 }
         })
     }
@@ -253,9 +257,13 @@ extension BackupQuestionViewController: UITableViewDelegate {
                 }
             }
 
-            self?.setAnswerStackViewHidden(false)
-            self?.textField.becomeFirstResponder()
-            self?.accessoryView.isEnabled = false
+            guard let `self` = self else {
+                return
+            }
+
+            self.setAnswerStackViewHidden(false)
+            self.textField.becomeFirstResponder()
+            self.accessoryView.isEnabled = self.isInputTextValid()
         }
     }
 }
