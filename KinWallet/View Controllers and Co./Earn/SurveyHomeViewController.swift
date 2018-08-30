@@ -48,7 +48,7 @@ final class SurveyHomeViewController: UIViewController {
     }
 
     private func renderTask(_ task: Task) {
-        if task.daysToUnlock() == 0 {
+        if task.isAvailable {
             showTaskAvailable(task)
         } else {
             showTaskUnavailable(task, error: nil)
@@ -56,7 +56,7 @@ final class SurveyHomeViewController: UIViewController {
     }
 
     func showTaskAvailable(_ task: Task) {
-        assert(task.daysToUnlock() == 0,
+        assert(task.daysToUnlock == 0,
                "SurveyUnavailableViewController received a task that is ready to be displayed.")
         if let surveryUnavailable = childViewControllers.first as? SurveyUnavailableViewController {
             surveryUnavailable.remove()
@@ -139,9 +139,14 @@ extension SurveyHomeViewController: SurveyViewControllerDelegate {
         guard
             !Kin.performedBackup(),
             let backupNagEnabled = RemoteConfig.current?.backupNag,
-            backupNagEnabled,
-            (childViewControllers.first as? SurveyUnavailableViewController) != nil else {
+            backupNagEnabled else {
                 return
+        }
+
+        let taskAvailable = KinLoader.shared.currentTask.value?.isTaskAvailable ?? false
+
+        guard !taskAvailable else {
+            return
         }
 
         defer {

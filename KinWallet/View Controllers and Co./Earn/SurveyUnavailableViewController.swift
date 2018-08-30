@@ -47,7 +47,7 @@ final class SurveyUnavailableViewController: UIViewController, AddNoticeViewCont
         var displayType = Notice.DisplayType.imageFirst
 
         if let task = task {
-            let toUnlock = task.daysToUnlock()
+            let toUnlock = task.daysToUnlock
             displayType = .titleFirst
             assert(toUnlock > 0, "SurveyUnavailableViewController received a task that is ready to be displayed.")
 

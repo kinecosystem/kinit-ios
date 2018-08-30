@@ -112,7 +112,7 @@ extension Task {
         }.forEach(ResourceDownloader.shared.requestResource)
     }
 
-    func daysToUnlock() -> UInt {
+    var daysToUnlock: UInt {
         let now = Date()
 
         if now > startDate {
@@ -123,8 +123,12 @@ extension Task {
         return UInt(1 + (startDate - midnight).timeIntervalSince1970 / secondsInADay)
     }
 
+    var isAvailable: Bool {
+        return daysToUnlock == 0
+    }
+
     func nextAvailableDay() -> String {
-        let toUnlock = daysToUnlock()
+        let toUnlock = daysToUnlock
         guard toUnlock > 0 else {
             assertionFailure("nextAvailableDay should never be called in a Task whose daysToUnlock equals to 0")
             return "Now"
@@ -156,6 +160,17 @@ extension TaskType {
             return .truex
         case .quiz:
             return .quiz
+        }
+    }
+}
+
+extension FetchResult where T == Task {
+    var isTaskAvailable: Bool {
+        switch self {
+        case .none(_):
+            return false
+        case .some(let task):
+            return task.isAvailable
         }
     }
 }
