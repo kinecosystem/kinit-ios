@@ -8,6 +8,27 @@
 import UIKit
 import KinitDesignables
 
+private class BackupQuestionCell: UITableViewCell {
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        commonInit()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+
+        commonInit()
+    }
+
+    func commonInit() {
+        textLabel?.textColor = UIColor.kin.gray
+        textLabel?.font = FontFamily.Roboto.regular.font(size: 16)
+        textLabel?.adjustsFontSizeToFitWidth = true
+        textLabel?.minimumScaleFactor = 0.5
+    }
+}
+
 class BackupQuestionViewController: BackupTextInputViewController {
     var step: BackupStep!
     var chosenHints: [(Int, String)]?
@@ -74,6 +95,8 @@ class BackupQuestionViewController: BackupTextInputViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableView.register(class: BackupQuestionCell.self)
 
         setAnswerStackViewHidden(true, animated: false)
         tableViewHeightConstraint.constant = 0
@@ -223,9 +246,7 @@ extension BackupQuestionViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BackupQuestionCellIdentifier", for: indexPath)
-        cell.textLabel?.textColor = UIColor.kin.gray
-        cell.textLabel?.font = FontFamily.Roboto.regular.font(size: 16)
+        let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as BackupQuestionCell
         cell.textLabel?.text = availableHints[indexPath.item].text
 
         return cell
