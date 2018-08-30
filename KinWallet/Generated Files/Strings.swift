@@ -187,7 +187,7 @@ internal enum L10n {
   internal static let performBackupMissingConfirmationCancelBackup = L10n.tr("Localizable", "PerformBackupMissingConfirmationCancelBackup")
   /// Continue Backup
   internal static let performBackupMissingConfirmationContinueBackup = L10n.tr("Localizable", "PerformBackupMissingConfirmationContinueBackup")
-  /// Skipping this process will result in your information not being backed up.
+  /// Skipping this process will result in your kin not being backed up.
   internal static let performBackupMissingConfirmationMessage = L10n.tr("Localizable", "PerformBackupMissingConfirmationMessage")
   /// Hang On, You're Almost There 🙂
   internal static let performBackupMissingConfirmationTitle = L10n.tr("Localizable", "PerformBackupMissingConfirmationTitle")

@@ -308,7 +308,7 @@
 
 "PerformBackupMissingConfirmationTitle" = "Hang On, You're Almost There 🙂";
 
-"PerformBackupMissingConfirmationMessage" = "Skipping this process will result in your information not being backed up.";
+"PerformBackupMissingConfirmationMessage" = "Skipping this process will result in your kin not being backed up.";
 
 "PerformBackupMissingConfirmationCancelBackup" = "Cancel Backup";
 
