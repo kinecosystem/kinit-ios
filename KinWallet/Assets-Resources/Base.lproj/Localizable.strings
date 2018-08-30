@@ -218,6 +218,14 @@
 
 "MailNotConfiguredErrorMessage" = "Add an email account to your device in order to send email.";
 
+// Camera permissions
+
+"CameraDeniedTitle" = "Please Allow Camera Access";
+
+"QRScannerCameraDeniedMessage" = "In order to scan the QR code, Kinit needs camera access on this device.";
+
+"CameraDeniedAction" = "Open Settings";
+
 // Push notifications
 
 "NotifyMe" = "Notify Me";

@@ -93,6 +93,10 @@ internal enum L10n {
   internal static let balanceRecentActions = L10n.tr("Localizable", "BalanceRecentActions")
   /// Buy
   internal static let buy = L10n.tr("Localizable", "Buy")
+  /// Open Settings
+  internal static let cameraDeniedAction = L10n.tr("Localizable", "CameraDeniedAction")
+  /// Please Allow Camera Access
+  internal static let cameraDeniedTitle = L10n.tr("Localizable", "CameraDeniedTitle")
   /// Cancel
   internal static let cancel = L10n.tr("Localizable", "Cancel")
   /// Choose one...
@@ -223,6 +227,8 @@ internal enum L10n {
   internal static let phoneVerificationUnsupportedCountryCodeTitle = L10n.tr("Localizable", "PhoneVerificationUnsupportedCountryCodeTitle")
   /// QR Code
   internal static let qrCode = L10n.tr("Localizable", "QRCode")
+  /// In order to scan the QR code, Kinit needs camera access on this device.
+  internal static let qrScannerCameraDeniedMessage = L10n.tr("Localizable", "QRScannerCameraDeniedMessage")
   /// Hi! 👋\nReady to earn some Kin?
   internal static let readyToEarnKinQuestion = L10n.tr("Localizable", "ReadyToEarnKinQuestion")
   /// Answer your security questions to unlock your account

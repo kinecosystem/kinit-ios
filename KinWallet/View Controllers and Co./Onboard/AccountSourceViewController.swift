@@ -30,6 +30,12 @@ class AccountSourceViewController: UIViewController {
         }
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        navigationController?.navigationBar.setBackgroundImage(.from(.white), for: .default)
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 

@@ -88,7 +88,6 @@ class RestoreBackupQRScannerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        qrCodeScannerViewController.start()
         introView.alpha = 1
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
@@ -141,6 +140,25 @@ extension RestoreBackupQRScannerViewController: QRCodeScannerDelegate {
     }
 
     func scannerDidFail() {
-        //show alert
+
+    }
+
+    func scannerDidFailWithPermissionsRejected() {
+        let alertController = UIAlertController(title: L10n.cameraDeniedTitle,
+                                                message: L10n.qrScannerCameraDeniedMessage,
+                                                preferredStyle: .alert)
+        if let url = URL(string: UIApplicationOpenSettingsURLString) {
+            alertController.addAction(title: L10n.cameraDeniedAction, style: .default) { _ in
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                } else {
+                    UIApplication.shared.openURL(url)
+                }
+            }
+        } else {
+            alertController.addOkAction()
+        }
+
+        present(alertController, animated: true)
     }
 }

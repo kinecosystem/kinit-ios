@@ -10,18 +10,46 @@ import AVFoundation
 
 protocol QRCodeScannerDelegate: class {
     func scannerDidFind(code: String)
+    func scannerDidFailWithPermissionsRejected()
     func scannerDidFail()
 }
 
 class QRCodeScannerViewController: UIViewController {
-    private var captureSession: AVCaptureSession!
-    private var previewLayer: AVCaptureVideoPreviewLayer!
+    private var captureSession: AVCaptureSession?
+    private var previewLayer: AVCaptureVideoPreviewLayer?
     weak var delegate: QRCodeScannerDelegate?
+    var foundCode = false
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
-        configureCaptureSession()
+        requestPermissionsAndConfigureInput()
+    }
+
+    private func requestPermissionsAndConfigureInput() {
+        if let session = captureSession {
+            if session.isRunning {
+                return
+            }
+
+            startIfNeeded()
+        }
+
+        AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in
+            guard let `self` = self else {
+                return
+            }
+
+            DispatchQueue.main.async {
+                guard granted else {
+                    self.delegate?.scannerDidFailWithPermissionsRejected()
+
+                    return
+                }
+
+                self.configureCaptureSession()
+            }
+        }
     }
 
     private func configureCaptureSession() {
@@ -45,6 +73,10 @@ class QRCodeScannerViewController: UIViewController {
     }
 
     private func configureInput(with device: AVCaptureDevice) -> Bool {
+        guard let session = captureSession else {
+            return false
+        }
+
         let videoInput: AVCaptureDeviceInput
 
         do {
@@ -53,22 +85,26 @@ class QRCodeScannerViewController: UIViewController {
             return false
         }
 
-        guard captureSession.canAddInput(videoInput) else {
+        guard session.canAddInput(videoInput) else {
             return false
         }
 
-        captureSession.addInput(videoInput)
+        session.addInput(videoInput)
         return true
     }
 
     private func configureOutput() -> Bool {
-        let metadataOutput = AVCaptureMetadataOutput()
-
-        guard captureSession.canAddOutput(metadataOutput) else {
+        guard let session = captureSession else {
             return false
         }
 
-        captureSession.addOutput(metadataOutput)
+        let metadataOutput = AVCaptureMetadataOutput()
+
+        guard session.canAddOutput(metadataOutput) else {
+            return false
+        }
+
+        session.addOutput(metadataOutput)
         metadataOutput.setMetadataObjectsDelegate(self, queue: .main)
         metadataOutput.metadataObjectTypes = [.qr]
 
@@ -76,21 +112,31 @@ class QRCodeScannerViewController: UIViewController {
     }
 
     private func configurePreview() {
-        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.frame = view.layer.bounds
-        previewLayer.videoGravity = .resizeAspectFill
-        view.layer.addSublayer(previewLayer)
+        guard let session = captureSession, previewLayer == nil else {
+            return
+        }
 
-        start()
+        previewLayer = AVCaptureVideoPreviewLayer(session: session)
+        previewLayer!.frame = view.layer.bounds
+        previewLayer!.videoGravity = .resizeAspectFill
+        view.layer.addSublayer(previewLayer!)
+
+        startIfNeeded()
     }
 
     private func setupFailed() {
         delegate?.scannerDidFail()
     }
 
-    func start() {
-        if !captureSession.isRunning {
-            captureSession.startRunning()
+    func startIfNeeded() {
+        foundCode = false
+
+        guard let session = captureSession else {
+            return
+        }
+
+        if !session.isRunning {
+            session.startRunning()
         }
     }
 }
@@ -99,12 +145,17 @@ extension QRCodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput,
                         didOutput metadataObjects: [AVMetadataObject],
                         from connection: AVCaptureConnection) {
-        captureSession.stopRunning()
+        guard !foundCode, let session = captureSession else {
+            return
+        }
+
+        session.stopRunning()
 
         if let metadataObject = metadataObjects.first {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
-            AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+            foundCode = true
+            FeedbackGenerator.notifySuccessIfAvailable()
             delegate?.scannerDidFind(code: stringValue)
         }
     }
