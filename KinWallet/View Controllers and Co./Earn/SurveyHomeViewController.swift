@@ -139,12 +139,13 @@ extension SurveyHomeViewController: SurveyViewControllerDelegate {
         guard
             !Kin.performedBackup(),
             let backupNagEnabled = RemoteConfig.current?.backupNag,
-            backupNagEnabled else {
+            backupNagEnabled,
+            (childViewControllers.first as? SurveyUnavailableViewController) != nil else {
                 return
         }
 
         defer {
-            BackupNagCounter.increment()
+            BackupNagCounter.incrementIfNeeded()
         }
 
         let currentNag = BackupNagCounter.count
