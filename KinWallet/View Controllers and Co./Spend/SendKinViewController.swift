@@ -153,7 +153,7 @@ class SendKinViewController: UIViewController {
     private func reportKinSent(amount: UInt64, txId: String) {
         WebRequests.reportTransaction(with: txId, amount: amount, to: publicAddress)
             .withCompletion { [weak self] success, _ in
-                guard let success = success, success else {
+                guard success.boolValue else {
                     KLogWarn("Transaction failed to be reported to server")
                     self?.alertTransactionFailed()
                     return
@@ -196,8 +196,8 @@ class SendKinViewController: UIViewController {
     }
 
     private func alertTransactionFailed() {
-        alert(title: L10n.sendKinTransactionFailedErrorTitle,
-              message: L10n.sendKinTransactionFailedErrorMessage)
+        alert(title: L10n.generalServerErrorTitle,
+              message: L10n.generalServerErrorMessage)
     }
 
     private func alert(title: String?, message: String?) {
@@ -207,7 +207,7 @@ class SendKinViewController: UIViewController {
             }
 
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alertController.addAction(.ok())
+            alertController.addOkAction()
             self.present(alertController, animated: true)
         }
     }

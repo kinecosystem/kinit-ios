@@ -2,7 +2,7 @@
 // BIEvents.swift
 //
 // Don't edit this file.
-// Generated at 2018-07-25 09:25:04 +0000 by Kik BI-Generator.
+// Generated at 2018-08-26 09:41:27 +0000 by Kik BI-Generator.
 //
 
 protocol BIEvent {
@@ -129,6 +129,26 @@ struct Events {
         case reward = "Reward"
         case sendKinToSelf = "Send Kin to self"
         case taskSubmission = "Task Submission"
+    }
+    
+    enum BackupFlowStep: String { 
+        case emailConfirmation = "Email confirmation"
+        case securityQuestion1 = "Security question 1"
+        case securityQuestion2 = "Security question 2"
+        case securityQuestionsConfirmation = "Security questions confirmation"
+        case sendEmail = "Send Email"
+    }
+    
+    enum BackupNotificationType: String { 
+        case day1 = "Day 1"
+        case day14 = "Day 14"
+        case day30 = "Day 30"
+        case day7 = "Day 7"
+    }
+    
+    enum AlreadyBackedUp: String { 
+        case no = "No"
+        case yes = "Yes"
     }
     
     
@@ -305,6 +325,28 @@ struct Events {
         /// user was successfully verified (completed phone verification). Event name: `user_verified`
         struct UserVerified: BIEvent {
             let name = "user_verified"
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "business",
+                        
+                        ]
+            }
+        } 
+        /// user successfully completed the wallet backup process. Event name: `wallet_backed_up`
+        struct WalletBackedUp: BIEvent {
+            let name = "wallet_backed_up"
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "business",
+                        
+                        ]
+            }
+        } 
+        /// user successfully restored his/her wallet. Event name: `wallet_restored`
+        struct WalletRestored: BIEvent {
+            let name = "wallet_restored"
             
             var properties: [String: Any] {
                 return [
@@ -604,6 +646,35 @@ struct Events {
                         ]
             }
         } 
+        /// user views earning task end page (Yay!). Event name: `view_Task_End_page`
+        struct ViewTaskEndPage: BIEvent {
+            let name = "view_Task_End_page"
+            let creator: String
+            let estimatedTimeToComplete: Float
+            let kinReward: Int
+            let taskCategory: String
+            let taskId: String
+            let taskTitle: String
+            let taskType: TaskType
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Task_End",
+                        "item_type": "page",
+                        "action": "view",
+                        "event_type": "analytics",
+                        
+                        
+                        "creator": creator,
+                        "estimated_time_to_complete": estimatedTimeToComplete,
+                        "KIN_reward": kinReward,
+                        "task_category": taskCategory,
+                        "task_id": taskId,
+                        "task_title": taskTitle,
+                        "task_type": taskType.rawValue, 
+                        ]
+            }
+        } 
         /// user views earning task info (intro) page . Event name: `view_Task_page`
         struct ViewTaskPage: BIEvent {
             let name = "view_Task_page"
@@ -630,35 +701,6 @@ struct Events {
                         "task_id": taskId,
                         "task_title": taskTitle,
                         "task_type": taskType.rawValue, 
-                        ]
-            }
-        } 
-        /// user clicks to purchase a spending offer. Event name: `click_Buy_button_on_Offer_page`
-        struct ClickBuyButtonOnOfferPage: BIEvent {
-            let name = "click_Buy_button_on_Offer_page"
-            let brandName: String
-            let kinPrice: Int
-            let offerCategory: String
-            let offerId: String
-            let offerName: String
-            let offerType: String
-            
-            var properties: [String: Any] {
-                return [
-                        "item_name": "Buy",
-                        "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Offer",
-                        "parent_type": "page",
-                        
-                        
-                        "brand_name": brandName,
-                        "KIN_price": kinPrice,
-                        "offer_category": offerCategory,
-                        "offer_id": offerId,
-                        "offer_name": offerName,
-                        "offer_type": offerType, 
                         ]
             }
         } 
@@ -1285,32 +1327,301 @@ struct Events {
                         ]
             }
         } 
-        /// user views earning task end page (Yay!). Event name: `view_Task_End_page`
-        struct ViewTaskEndPage: BIEvent {
-            let name = "view_Task_End_page"
-            let creator: String
-            let estimatedTimeToComplete: Float
-            let kinReward: Int
-            let taskCategory: String
-            let taskId: String
-            let taskTitle: String
-            let taskType: TaskType
+        /// user views the backup intro page. Event name: `view_Backup_Intro_page`
+        struct ViewBackupIntroPage: BIEvent {
+            let name = "view_Backup_Intro_page"
             
             var properties: [String: Any] {
                 return [
-                        "item_name": "Task_End",
+                        "item_name": "Backup_Intro",
+                        "item_type": "page",
+                        "action": "view",
+                        "event_type": "analytics",
+                        
+                        ]
+            }
+        } 
+        /// user clicks the button on the backup intro page to start the backup flow. Event name: `click_Backup_button_on_Backup_Intro_page`
+        struct ClickBackupButtonOnBackupIntroPage: BIEvent {
+            let name = "click_Backup_button_on_Backup_Intro_page"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Backup",
+                        "item_type": "button",
+                        "action": "click",
+                        "event_type": "analytics",
+                        "parent_name": "Backup_Intro",
+                        "parent_type": "page",
+                        
+                        ]
+            }
+        } 
+        /// user views any of the steps on the backup flow (total of 5 steps). Event name: `view_Backup_Flow_page`
+        struct ViewBackupFlowPage: BIEvent {
+            let name = "view_Backup_Flow_page"
+            let backupFlowStep: BackupFlowStep
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Backup_Flow",
                         "item_type": "page",
                         "action": "view",
                         "event_type": "analytics",
                         
                         
-                        "creator": creator,
-                        "estimated_time_to_complete": estimatedTimeToComplete,
-                        "KIN_reward": kinReward,
-                        "task_category": taskCategory,
-                        "task_id": taskId,
-                        "task_title": taskTitle,
-                        "task_type": taskType.rawValue, 
+                        "backup_flow_step": backupFlowStep.rawValue, 
+                        ]
+            }
+        } 
+        /// user clicks the complete button on each step to move to next step / finish the flow. Event name: `click_Completed_Step_button_on_Backup_Flow_page`
+        struct ClickCompletedStepButtonOnBackupFlowPage: BIEvent {
+            let name = "click_Completed_Step_button_on_Backup_Flow_page"
+            let backupFlowStep: BackupFlowStep
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Completed_Step",
+                        "item_type": "button",
+                        "action": "click",
+                        "event_type": "analytics",
+                        "parent_name": "Backup_Flow",
+                        "parent_type": "page",
+                        
+                        
+                        "backup_flow_step": backupFlowStep.rawValue, 
+                        ]
+            }
+        } 
+        /// user views the completion message after successfully completed backup flow. Event name: `view_Backup_Completed_page`
+        struct ViewBackupCompletedPage: BIEvent {
+            let name = "view_Backup_Completed_page"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Backup_Completed",
+                        "item_type": "page",
+                        "action": "view",
+                        "event_type": "analytics",
+                        
+                        ]
+            }
+        } 
+        /// user views the backup notification popup after completing last earn activity for day 1/7/14/30. Event name: `view_Backup_Notification_popup`
+        struct ViewBackupNotificationPopup: BIEvent {
+            let name = "view_Backup_Notification_popup"
+            let backupNotificationType: BackupNotificationType
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Backup_Notification",
+                        "item_type": "popup",
+                        "action": "view",
+                        "event_type": "analytics",
+                        
+                        
+                        "backup_notification_type": backupNotificationType.rawValue, 
+                        ]
+            }
+        } 
+        /// user clicks the backup button to start the backup flow (navigates to backup intro page). Event name: `click_Backup_button_on_Backup_Notification_popup`
+        struct ClickBackupButtonOnBackupNotificationPopup: BIEvent {
+            let name = "click_Backup_button_on_Backup_Notification_popup"
+            let backupNotificationType: BackupNotificationType
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Backup",
+                        "item_type": "button",
+                        "action": "click",
+                        "event_type": "analytics",
+                        "parent_name": "Backup_Notification",
+                        "parent_type": "popup",
+                        
+                        
+                        "backup_notification_type": backupNotificationType.rawValue, 
+                        ]
+            }
+        } 
+        /// existing user views welcome back page after completing phone verification. Event name: `view_Welcome_Back_page`
+        struct ViewWelcomeBackPage: BIEvent {
+            let name = "view_Welcome_Back_page"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Welcome_Back",
+                        "item_type": "page",
+                        "action": "view",
+                        "event_type": "analytics",
+                        
+                        ]
+            }
+        } 
+        /// user chooses to restore wallet on welcome back page. Event name: `click_Restore_Wallet_button_on_Welcome_Back_page`
+        struct ClickRestoreWalletButtonOnWelcomeBackPage: BIEvent {
+            let name = "click_Restore_Wallet_button_on_Welcome_Back_page"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Restore_Wallet",
+                        "item_type": "button",
+                        "action": "click",
+                        "event_type": "analytics",
+                        "parent_name": "Welcome_Back",
+                        "parent_type": "page",
+                        
+                        ]
+            }
+        } 
+        /// user chooses to create new wallet on welcome back page. Event name: `click_Create_New_Wallet_button_on_Welcome_Back_page`
+        struct ClickCreateNewWalletButtonOnWelcomeBackPage: BIEvent {
+            let name = "click_Create_New_Wallet_button_on_Welcome_Back_page"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Create_New_Wallet",
+                        "item_type": "button",
+                        "action": "click",
+                        "event_type": "analytics",
+                        "parent_name": "Welcome_Back",
+                        "parent_type": "page",
+                        
+                        ]
+            }
+        } 
+        /// user views the scan page after staring the restore flow. Event name: `view_Scan_page`
+        struct ViewScanPage: BIEvent {
+            let name = "view_Scan_page"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Scan",
+                        "item_type": "page",
+                        "action": "view",
+                        "event_type": "analytics",
+                        
+                        ]
+            }
+        } 
+        /// user clicks the scan button to start scanning the process of the QR code. Event name: `click_Scan_button_on_Scan_page`
+        struct ClickScanButtonOnScanPage: BIEvent {
+            let name = "click_Scan_button_on_Scan_page"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Scan",
+                        "item_type": "button",
+                        "action": "click",
+                        "event_type": "analytics",
+                        "parent_name": "Scan",
+                        "parent_type": "page",
+                        
+                        ]
+            }
+        } 
+        /// user views the security questions page as part of the restore flow. Event name: `view_Answer_Security_Questions_page`
+        struct ViewAnswerSecurityQuestionsPage: BIEvent {
+            let name = "view_Answer_Security_Questions_page"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Answer_Security_Questions",
+                        "item_type": "page",
+                        "action": "view",
+                        "event_type": "analytics",
+                        
+                        ]
+            }
+        } 
+        /// user confirms the answers entered for security questions as part of the restore flow. Event name: `click_Confirm_button_on_Answer_Security_Questions_page`
+        struct ClickConfirmButtonOnAnswerSecurityQuestionsPage: BIEvent {
+            let name = "click_Confirm_button_on_Answer_Security_Questions_page"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Confirm",
+                        "item_type": "button",
+                        "action": "click",
+                        "event_type": "analytics",
+                        "parent_name": "Answer_Security_Questions",
+                        "parent_type": "page",
+                        
+                        ]
+            }
+        } 
+        /// user views the completion message after successfully restoring the wallet. Event name: `view_Wallet_Restored_page`
+        struct ViewWalletRestoredPage: BIEvent {
+            let name = "view_Wallet_Restored_page"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Wallet_Restored",
+                        "item_type": "page",
+                        "action": "view",
+                        "event_type": "analytics",
+                        
+                        ]
+            }
+        } 
+        /// user views the creating wallet page (animation) when creating new wallet. Event name: `view_Creating_Wallet_page`
+        struct ViewCreatingWalletPage: BIEvent {
+            let name = "view_Creating_Wallet_page"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Creating_Wallet",
+                        "item_type": "page",
+                        "action": "view",
+                        "event_type": "analytics",
+                        
+                        ]
+            }
+        } 
+        /// user clicks on backup button on More page. Event name: `click_Backup_button_on_More_page`
+        struct ClickBackupButtonOnMorePage: BIEvent {
+            let name = "click_Backup_button_on_More_page"
+            let alreadyBackedUp: AlreadyBackedUp
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Backup",
+                        "item_type": "button",
+                        "action": "click",
+                        "event_type": "analytics",
+                        "parent_name": "More",
+                        "parent_type": "page",
+                        
+                        
+                        "already_backed_up": alreadyBackedUp.rawValue, 
+                        ]
+            }
+        } 
+        /// user clicks to purchase a spending offer. Event name: `click_Buy_button_on_Offer_page`
+        struct ClickBuyButtonOnOfferPage: BIEvent {
+            let name = "click_Buy_button_on_Offer_page"
+            let brandName: String
+            let kinPrice: Int
+            let offerCategory: String
+            let offerId: String
+            let offerName: String
+            let offerType: String
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Buy",
+                        "item_type": "button",
+                        "action": "click",
+                        "event_type": "analytics",
+                        "parent_name": "Offer",
+                        "parent_type": "page",
+                        
+                        
+                        "brand_name": brandName,
+                        "KIN_price": kinPrice,
+                        "offer_category": offerCategory,
+                        "offer_id": offerId,
+                        "offer_name": offerName,
+                        "offer_type": offerType, 
                         ]
             }
         } 

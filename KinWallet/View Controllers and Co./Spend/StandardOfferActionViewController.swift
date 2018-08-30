@@ -181,14 +181,12 @@ private extension StandardOfferActionViewController {
         let alertController = UIAlertController(title: title,
                                                 message: message,
                                                 preferredStyle: .alert)
-        alertController.addAction(.init(title: L10n.backToSpendAction,
-                                        style: .default,
-                                        handler: { _ in
-                                            Events.Analytics
-                                                .ClickOkButtonOnErrorPopup(errorType: errorType)
-                                                .send()
-                                            self.dismiss(animated: true)
-        }))
+        alertController.addAction(title: L10n.backToSpendAction, style: .default) {
+            Events.Analytics
+                .ClickOkButtonOnErrorPopup(errorType: errorType)
+                .send()
+            self.dismiss(animated: true)
+        }
 
         present(alertController, animated: true)
 

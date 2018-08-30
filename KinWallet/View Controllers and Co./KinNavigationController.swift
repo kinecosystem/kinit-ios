@@ -13,4 +13,8 @@ class KinNavigationController: UINavigationController {
     override var childViewControllerForStatusBarStyle: UIViewController? {
         return topViewController
     }
+
+    override var prefersStatusBarHidden: Bool {
+        return topViewController?.prefersStatusBarHidden ?? false
+    }
 }

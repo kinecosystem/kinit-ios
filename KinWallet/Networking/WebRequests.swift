@@ -27,6 +27,10 @@ private struct WebResourceHandlers {
 
         return response.config
     }
+
+    static func doNothing<T>(response: T) -> T {
+        return response
+    }
 }
 
 struct WebRequests {}
@@ -52,10 +56,20 @@ extension WebRequests {
                                                          transform: WebResourceHandlers.isJSONStatusOk)
     }
 
-    static func updateUserIdToken(_ idToken: String) -> WebRequest<SimpleStatusResponse, Success> {
-        return WebRequest<SimpleStatusResponse, Success>(POST: "/user/firebase/update-id-token",
-                                                         body: ["token": idToken],
-                                                         transform: WebResourceHandlers.isJSONStatusOk)
+    static func updateUserIdToken(_ idToken: String) -> WebRequest<PhoneVerificationStatusResponse, [Int]> {
+        let transform: (PhoneVerificationStatusResponse?) -> [Int]? = {
+            guard
+                let response = $0,
+                WebResourceHandlers.isJSONStatusOk(response: response).boolValue else {
+                    return nil
+            }
+
+            return response.hints
+        }
+
+        return WebRequest<PhoneVerificationStatusResponse, [Int]>(POST: "/user/firebase/update-id-token",
+                                                                  body: ["token": idToken],
+                                                                  transform: transform)
     }
 
     static func appLaunch() -> WebRequest<RemoteConfigStatusResponse, RemoteConfig> {
@@ -171,6 +185,8 @@ extension WebRequests {
     }
 }
 
+// MARK: History
+
 extension WebRequests {
     static func transactionsHistory() -> WebRequest<TransactionHistoryResponse, [KinitTransaction]> {
         let transform: (TransactionHistoryResponse?) -> [KinitTransaction]? = {
@@ -210,6 +226,46 @@ extension WebRequests {
         static func areaCodes() -> WebRequest<BlacklistedAreaCodes, [String]> {
             return WebRequest<BlacklistedAreaCodes, [String]>(GET: "/blacklist/areacodes",
                                                               transform: { $0?.areaCodes })
+        }
+    }
+}
+
+// MARK: Backup
+
+extension WebRequests {
+    struct Backup {
+        static func availableHints() -> WebRequest<AvailableBackupHintList, AvailableBackupHintList> {
+            return WebRequest<AvailableBackupHintList, AvailableBackupHintList>(GET: "/backup/hints",
+                                                                                transform: WebResourceHandlers.doNothing)
+        }
+
+        static func submitHints(_ hints: [Int]) -> WebRequest<EmptyResponse, EmptyResponse> {
+            let hintsToSubmit = ChosenBackupHints(hints: hints)
+            return WebRequest<EmptyResponse, EmptyResponse>(POST: "/user/backup/hints",
+                                                            body: hintsToSubmit,
+                                                            transform: WebResourceHandlers.doNothing)
+        }
+
+        static func submittedQuestionsIds() -> WebRequest<ChosenBackupHints, [Int]> {
+            return WebRequest<ChosenBackupHints, [Int]>(GET: "/user/backup/hints",
+                                                        transform: { $0?.hints })
+        }
+
+        static func sendEmail(to address: String, encryptedKey: String) -> WebRequest<SimpleStatusResponse, Success> {
+            let body = ["to_address": address, "enc_key": encryptedKey]
+            return WebRequest<SimpleStatusResponse, Success>(POST: "/user/email_backup",
+                                                             body: body,
+                                                             transform: WebResourceHandlers.isJSONStatusOk)
+        }
+
+        static func restoreUserId(with address: String) -> WebRequest<RestoreUserIdResponse, String> {
+            let transform: (RestoreUserIdResponse?) -> String? = {
+                return $0?.userId
+            }
+
+            return WebRequest<RestoreUserIdResponse, String>(POST: "/user/restore",
+                                                             body: ["address": address],
+                                                             transform: transform)
         }
     }
 }

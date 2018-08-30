@@ -24,13 +24,35 @@
 
 "Buy" = "Buy";
 
-//Creating wallet
+"Confirm" = "Confirm";
+
+"QRCode" = "QR Code";
+
+"StartAction" = "Start";
+
+"BackAction" = "Back";
+
+"ContinueAction" = "Continue";
+
+"GeneralErrorTitle" = "Something went wrong";
+
+"GeneralErrorMessage" = "We are having technical issues. Please try again or contact support.";
+
+"Later" = "Later";
+
+//Registering user and Creating Wallet
+
+"CreatingYourWallet" = "Creating your wallet";
+
+"CreatingYourWalletBePatient" = "It might take up to 20 sec.";
 
 "TryAgain" = "Try Again";
 
+"UserRegistrationErrorTitle" = "We were unable to create a profile for you";
+
 "WalletCreationErrorTitle" = "We were unable to create a wallet for you";
 
-"WalletCreationErrorSubtitle" = "Please check your internet connection & try again.";
+"WalletOrUserCreationErrorSubtitle" = "Please check your internet connection & try again.";
 
 "OrContactSupport" = "or contact support";
 
@@ -162,9 +184,9 @@
 
 "SendKinLowBalanceErrorMessage" = "Make sure you have at least %u KIN.";
 
-"SendKinTransactionFailedErrorTitle" = "Houston We Have a Server Problem";
+"GeneralServerErrorTitle" = "Houston We Have a Server Problem";
 
-"SendKinTransactionFailedErrorMessage" = "Please try again later. If you continue to see this message, please reach out to support.";
+"GeneralServerErrorMessage" = "Please try again later. If you continue to see this message, please reach out to support.";
 
 "KinSentMessage" = "You’ve succesfully sent K %@.\nYou can see the details under Balance";
 
@@ -196,6 +218,14 @@
 
 "MailNotConfiguredErrorMessage" = "Add an email account to your device in order to send email.";
 
+// Camera permissions
+
+"CameraDeniedTitle" = "Please Allow Camera Access";
+
+"QRScannerCameraDeniedMessage" = "In order to scan the QR code, Kinit needs camera access on this device.";
+
+"CameraDeniedAction" = "Open Settings";
+
 // Push notifications
 
 "NotifyMe" = "Notify Me";
@@ -205,3 +235,115 @@
 "NotificationsDeniedMessage" = "Push notification permissions were previously denied and are currently turned off.\nPlease go to settings to turn on notifications.";
 
 "NotificationsDeniedAction" = "Open Settings";
+
+// Backup
+
+"Security" = "Security";
+
+"BackupIntroExplanation" = "Backing up your wallet will allow you to recover your Kin if you get locked out of the app or if your phone is ever lost or stolen.";
+
+"WalletBackup" = "Wallet Backup";
+
+"SecurityQuestionsTitle" = "Security Questions";
+
+"SecurityQuestionsSubtitle" = "Choose 2 security questions.";
+
+"FirstSecurityQuestion" = "First Question";
+
+"SecondSecurityQuestion" = "Second Question";
+
+"ChooseSecurityQuestion" = "Choose one...";
+
+"BackupYourAnswerTitle" = "Your Answer";
+
+"BackupYourAnswerPlaceholder" = "Type your answer here";
+
+"BackupMinimum4Characters" = "* minimum 4 characters";
+
+"BackupCompleteMessage" = "Your wallet is backed up!";
+
+"BackupQRCodeSubtitle" = "To keep your account secure, we’ll generate a unique QR code and send it to you by email.";
+
+"BackupQRCodeEmailAddress" = "Your Email Address";
+
+"BackupQRCodeEmailPlaceholder" = "Type your email here";
+
+"BackupQRCodeEmailObservation" = "* Make sure your email is written correctly.\nYou don’t want your wallet QR code to get to the hands of someone else.";
+
+"BackupConfirmTitle" = "Confirm Email";
+
+"BackupConfirmSubtitle" = "Please check your email to make sure you received your QR code.\nIf you did, click confirm below.";
+
+"BackupConfirmResendMessage" = "If not, %@ or check your spam folder";
+
+"BackupConfirmResend" = "resend";
+
+"BackupConfirmMessage" = "Make sure to keep the code someplace safe because you’ll need it if you need to recover your account.";
+
+"BackupRestoredMessage" = "Your wallet was restored!";
+
+"BackupAvailableTitle" = "Looks like you’ve been here before. What would you like to do?";
+
+"CreateNewWallet" = "Create New Wallet";
+
+"RestoreFromBackup" = "Restore From Backup";
+
+"RestoreBackupScanTitle" = "You're 2 steps away";
+
+"RestoreBackupScanSubtitle" = "You just need to scan the QR code we sent to your email and answer your 2 security questions";
+
+"RestoreBackupQuestionsTitle" = "Security Questions";
+
+"RestoreBackupQuestionsSubtitle" = "Answer your security questions to unlock your account";
+
+"RestoreBackupYourAnswerTitle" = "Your Answer";
+
+"RestoreBackupYourAnswerPlaceholder" = "Type your answer here";
+
+// Backup alerts/errors
+
+"BackupIgnoreAndCreateNewWalletTitle" = "We already know each other!";
+
+"BackupIgnoreAndCreateNewWalletMessage" = "Creating a new wallet will erase your balance, are you sure you don’t want to restore?";
+
+"BackupWrongAnswersTitle" = "Feeling forgetful?";
+
+"BackupWrongAnswersMessage" = "It looks like your answers don’t match. Please contact support for assistance.";
+
+"ExistingBackupOverwriteTitle" = "Are you sure you want to create a new backup?";
+
+"ExistingBackupOverwriteMessage" = "Keep in mind that by creating a new backup, the old one will be deleted.";
+
+"PerformBackupMissingConfirmationTitle" = "Hang On, You're Almost There 🙂";
+
+"PerformBackupMissingConfirmationMessage" = "Skipping this process will result in your kin not being backed up.";
+
+"PerformBackupMissingConfirmationCancelBackup" = "Cancel Backup";
+
+"PerformBackupMissingConfirmationContinueBackup" = "Continue Backup";
+
+"PerformBackupTooManyEmailAttemptsTitle" = "Huh, that doesn’t seem right";
+
+"PerformBackupTooManyEmailAttemptsMessage" = "Sorry, it looks like there’s a problem with the email confirmation. Please try starting the backup process again in a little while. ";
+
+"RestoreBackupUserMatchFailedTitle" = "Something went wrong";
+
+"RestoreBackupUserMatchFailedMessage" = "We are having technical issues. Please try again or contact support.";
+
+"BackupNagZeroTitle" = "Back up your Kin";
+
+"BackupNagZeroMessage" = "Now it’s possible to backup your Kin in case your phone is lost";
+
+"BackupNagSevenTitle" = "Your Kin is really rolling in";
+
+"BackupNagSevenMessage" = "Back it up today to make sure it’s always safe";
+
+"BackupNagFourteenTitle" = "We care about your Kin";
+
+"BackupNagFourteenMessage" = "That’s why it’s easy to backup your wallet. Back it up today";
+
+"BackupNagThirtyTitle" = "Knock knock";
+
+"BackupNagThirtyMessage" = "It’s your Kin. It wants to be kept safe. Back it up today.";
+
+"BackUpAction" = "Back Up";

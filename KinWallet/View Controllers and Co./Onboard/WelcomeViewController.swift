@@ -5,6 +5,7 @@
 
 import UIKit
 import SafariServices
+import KinitDesignables
 
 final class WelcomeViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
@@ -39,9 +40,7 @@ final class WelcomeViewController: UIViewController {
         super.viewDidLoad()
 
         pages.forEach(scrollView.addSubview)
-        let backButtonItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
-        backButtonItem.tintColor = UIColor.kin.darkGray
-        navigationItem.backBarButtonItem = backButtonItem
+        navigationItem.backBarButtonItem = UIBarButtonItem.grayBarButtonItem
 
         configureDisclaimerLabel()
     }
@@ -56,12 +55,6 @@ final class WelcomeViewController: UIViewController {
         super.viewDidAppear(animated)
 
         logViewedPage()
-
-        #if targetEnvironment(simulator)
-
-        AppDelegate.shared.dismissSplashIfNeeded()
-
-        #endif
     }
 
     override func viewDidLayoutSubviews() {
@@ -119,7 +112,7 @@ final class WelcomeViewController: UIViewController {
 
         let safariViewController = SFSafariViewController(url: tos)
         present(safariViewController, animated: true, completion: nil)
-    }
+    }   
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -128,20 +121,8 @@ final class WelcomeViewController: UIViewController {
     @IBAction func startEarning(_ sender: Any) {
         logClickedStart()
 
-        #if targetEnvironment(simulator)
-
-        AppDelegate.shared.dismissSplashIfNeeded()
-
-        #else
-
-        if RemoteConfig.current?.phoneVerificationEnabled == true {
-            let phoneVerification = StoryboardScene.Main.phoneVerificationRequestViewController.instantiate()
-            navigationController?.pushViewController(phoneVerification, animated: true)
-        } else {
-            AppDelegate.shared.dismissSplashIfNeeded()
-        }
-
-        #endif
+        let phoneVerification = StoryboardScene.Onboard.phoneVerificationRequestViewController.instantiate()
+        navigationController?.pushViewController(phoneVerification, animated: true)
     }
 
     @IBAction func pageControlChangedValue(_ sender: Any) {

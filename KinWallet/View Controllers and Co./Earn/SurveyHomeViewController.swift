@@ -11,6 +11,8 @@ final class SurveyHomeViewController: UIViewController {
     var animatingEarn = false
     let linkBag = LinkBag()
 
+    var backupFlowController: BackupFlowController?
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -30,10 +32,6 @@ final class SurveyHomeViewController: UIViewController {
                                                selector: #selector(splashScreenWillDismiss),
                                                name: .SplashScreenWillDismiss,
                                                object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(splashScreenDidDismiss),
-                                               name: .SplashScreenDidDismiss,
-                                               object: nil)
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -50,49 +48,15 @@ final class SurveyHomeViewController: UIViewController {
     }
 
     private func renderTask(_ task: Task) {
-        if task.daysToUnlock() == 0 {
+        if task.isAvailable {
             showTaskAvailable(task)
         } else {
             showTaskUnavailable(task, error: nil)
         }
     }
 
-    private func requestToVerifyPhoneIfNeeded() {
-        guard User.current?.phoneNumber == nil,
-            RemoteConfig.current?.phoneVerificationEnabled == true,
-            !AppDelegate.shared.isShowingSplashScreen,
-            presentedViewController == nil else {
-                return
-        }
-
-        let alertController = UIAlertController(title: "Help us keep your Kin safe",
-                                                message: "Please verify your phone number",
-                                                preferredStyle: .alert)
-        alertController.addAction(.init(title: "Verify my account", style: .default) { [weak self] _ in
-            guard let aSelf = self else {
-                return
-            }
-
-            aSelf.logClickedVerifyPhoneAuthPopup()
-
-            #if !targetEnvironment(simulator)
-            let phoneVerification = StoryboardScene.Main.phoneVerificationRequestViewController.instantiate()
-            let navController = UINavigationController(rootViewController: phoneVerification)
-            aSelf.present(navController, animated: true, completion: nil)
-            #endif
-            })
-
-        present(alertController, animated: true) {
-            #if targetEnvironment(simulator)
-            self.dismiss(animated: true)
-            #endif
-        }
-
-        logViewedPhoneAuthPopup()
-    }
-
     func showTaskAvailable(_ task: Task) {
-        assert(task.daysToUnlock() == 0,
+        assert(task.daysToUnlock == 0,
                "SurveyUnavailableViewController received a task that is ready to be displayed.")
         if let surveryUnavailable = childViewControllers.first as? SurveyUnavailableViewController {
             surveryUnavailable.remove()
@@ -121,14 +85,6 @@ final class SurveyHomeViewController: UIViewController {
         showEarnAnimationIfNeeded(surveyInfo: surveyInfo)
     }
 
-    @objc func splashScreenDidDismiss() {
-        if (childViewControllers.first as? SurveyInfoViewController) != nil {
-            return
-        }
-
-        requestToVerifyPhoneIfNeeded()
-    }
-
     func showEarnAnimationIfNeeded(surveyInfo: SurveyInfoViewController) {
         guard
             !AppDelegate.shared.isShowingSplashScreen,
@@ -155,7 +111,6 @@ final class SurveyHomeViewController: UIViewController {
         }, completion: { _ in
             earnAnimationViewController.remove()
             self.animatingEarn = false
-            self.requestToVerifyPhoneIfNeeded()
         })
     }
 
@@ -166,29 +121,76 @@ final class SurveyHomeViewController: UIViewController {
         surveyUnavailable.task = task
         surveyUnavailable.error = error
         add(surveyUnavailable) { $0.fitInSuperview(with: .safeArea) }
-
-        if error == nil {
-            requestToVerifyPhoneIfNeeded()
-        }
     }
 }
 
 extension SurveyHomeViewController: SurveyViewControllerDelegate {
-    func surveyViewController(_ viewController: SurveyViewController, didCancelWith results: TaskResults) {
-        dismiss(animated: true)
+    func surveyViewControllerDidCancel() {
+        dismissAnimated()
     }
 
-    func surveyViewController(_ viewController: SurveyViewController, didFinishWith results: TaskResults) {
-        showTaskUnavailable(nil, error: nil)
+    func surveyViewControllerDidFinish() {
+        dismissAnimated { [weak self] in
+            self?.showBackupNagIfNeeded()
+        }
+    }
+
+    fileprivate func showBackupNagIfNeeded() {
+        guard
+            !Kin.performedBackup(),
+            let backupNagEnabled = RemoteConfig.current?.backupNag,
+            backupNagEnabled else {
+                return
+        }
+
+        let taskAvailable = KinLoader.shared.currentTask.value?.isTaskAvailable ?? false
+
+        guard !taskAvailable else {
+            return
+        }
+
+        defer {
+            BackupNagCounter.incrementIfNeeded()
+        }
+
+        let currentNag = BackupNagCounter.count
+
+        guard let nagDay = BackupNagDay(rawValue: currentNag) else {
+            return
+        }
+
+        let backupNagViewController = StoryboardScene.Backup.backupNagViewController.instantiate()
+        backupNagViewController.nagDay = nagDay
+        backupNagViewController.delegate = self
+        presentAnimated(backupNagViewController)
     }
 }
 
-extension SurveyHomeViewController {
-    fileprivate func logViewedPhoneAuthPopup() {
-        Events.Analytics.ViewPhoneAuthPopup().send()
+extension SurveyHomeViewController: BackupNagDelegate {
+    func backupNagDidSelectBackupNow(_ backupNagViewController: BackupNagViewController) {
+        let nagDay = backupNagViewController.nagDay!
+        dismissAnimated { [weak self] in
+            guard let `self` = self else {
+                return
+            }
+
+            self.backupFlowController = BackupFlowController(presenter: self, source: .notificationNag(nagDay))
+            self.backupFlowController?.delegate = self
+            self.backupFlowController!.startBackup()
+        }
     }
 
-    fileprivate func logClickedVerifyPhoneAuthPopup() {
-        Events.Analytics.ClickVerifyButtonOnPhoneAuthPopup().send()
+    func backupNagDidSelectBackupLater(_ backupNagViewController: BackupNagViewController) {
+        dismissAnimated()
+    }
+}
+
+extension SurveyHomeViewController: BackupFlowDelegate {
+    func backupFlowDidCancel() {
+        backupFlowController = nil
+    }
+
+    func backupFlowDidFinish() {
+        backupFlowController = nil
     }
 }

@@ -127,11 +127,16 @@ final class SurveyInfoViewController: UIViewController {
         logStartEvents()
         task.prefetchImages()
 
-        SimpleDatastore.loadObject(task.identifier) { (tResults: TaskResults?) in
+        SimpleDatastore.loadObject(task.identifier) { [weak self] (tResults: TaskResults?) in
+            guard let `self` = self else {
+                return
+            }
+
             DispatchQueue.main.async {
                 if let results = tResults,
                     results.results.count == self.task.questions.count {
                     let taskCompleted = StoryboardScene.Earn.taskCompletedViewController.instantiate()
+                    taskCompleted.surveyDelegate = self.surveyDelegate
                     taskCompleted.task = self.task
                     taskCompleted.results = results
                     self.present(KinNavigationController(rootViewController: taskCompleted), animated: true)

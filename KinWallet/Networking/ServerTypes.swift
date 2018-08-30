@@ -5,6 +5,8 @@
 
 import Foundation
 
+struct EmptyResponse: Codable {}
+
 protocol StatusResponse: Codable {
     var status: String { get }
 }
@@ -108,8 +110,38 @@ struct RemoteConfigStatusResponse: StatusResponse, Codable {
 
 struct BlacklistedAreaCodes: Codable {
     let areaCodes: [String]
-    
+
     enum CodingKeys: CodingKey, String {
         case areaCodes = "areacodes"
+    }
+}
+
+struct AvailableBackupHint: Codable {
+    let text: String
+    let id: Int
+}
+
+struct AvailableBackupHintList: Codable {
+    let hints: [AvailableBackupHint]
+}
+
+struct ChosenBackupHints: Codable {
+    let hints: [Int]
+}
+
+struct PhoneVerificationStatusResponse: StatusResponse, Codable {
+    let status: String
+    let hints: [Int]
+}
+
+struct SelectedHintIds: Codable {
+    let hints: [Int]
+}
+
+struct RestoreUserIdResponse: Codable {
+    let userId: String?
+
+    enum CodingKeys: String, CodingKey {
+        case userId = "user_id"
     }
 }

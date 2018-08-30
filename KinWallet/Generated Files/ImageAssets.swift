@@ -44,6 +44,10 @@ internal struct ColorAsset {
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Asset {
+  internal static let backupDoneIcon = ImageAsset(name: "BackupDoneIcon")
+  internal static let backupIntroIllustration = ImageAsset(name: "BackupIntroIllustration")
+  internal static let backupNagHeader = ImageAsset(name: "BackupNagHeader")
+  internal static let backupToDoIcon = ImageAsset(name: "BackupToDoIcon")
   internal static let buttonStroke = ImageAsset(name: "ButtonStroke")
   internal static let closeXButton = ImageAsset(name: "CloseXButton")
   internal static let closeXButtonDarkGray = ImageAsset(name: "CloseXButtonDarkGray")
@@ -54,6 +58,7 @@ internal enum Asset {
   internal static let doneFireworks = ImageAsset(name: "DoneFireworks")
   internal static let doneSign = ImageAsset(name: "DoneSign")
   internal static let dualImageSeparator = ImageAsset(name: "DualImageSeparator")
+  internal static let emailAlert = ImageAsset(name: "EmailAlert")
   internal static let emptyHistoryCoupon = ImageAsset(name: "EmptyHistoryCoupon")
   internal static let errorSign = ImageAsset(name: "ErrorSign")
   internal static let floorShadow = ImageAsset(name: "FloorShadow")
@@ -70,7 +75,9 @@ internal enum Asset {
   internal static let kinTaskReward = ImageAsset(name: "KinTaskReward")
   internal static let kinTaskTime = ImageAsset(name: "KinTaskTime")
   internal static let kinTransactionCoins = ImageAsset(name: "KinTransactionCoins")
+  internal static let moreSupportIcon = ImageAsset(name: "MoreSupportIcon")
   internal static let moreTabIcon = ImageAsset(name: "MoreTabIcon")
+  internal static let moreWalletBackupIcon = ImageAsset(name: "MoreWalletBackupIcon")
   internal static let multipleAnswerBackground = ImageAsset(name: "MultipleAnswerBackground")
   internal static let multipleAnswerBackgroundSelected = ImageAsset(name: "MultipleAnswerBackgroundSelected")
   internal static let multipleAnswerCheckmark = ImageAsset(name: "MultipleAnswerCheckmark")
@@ -81,8 +88,10 @@ internal enum Asset {
   internal static let offerCardShadow = ImageAsset(name: "OfferCardShadow")
   internal static let patternPlaceholder = ImageAsset(name: "PatternPlaceholder")
   internal static let paymentDelay = ImageAsset(name: "PaymentDelay")
+  internal static let pickerArrow = ImageAsset(name: "PickerArrow")
   internal static let progressViewGradient = ImageAsset(name: "ProgressViewGradient")
   internal static let progressViewTrack = ImageAsset(name: "ProgressViewTrack")
+  internal static let qrScannerOutline = ImageAsset(name: "QRScannerOutline")
   internal static let quizConfettiOval = ImageAsset(name: "QuizConfettiOval")
   internal static let quizConfettiRectangle = ImageAsset(name: "QuizConfettiRectangle")
   internal static let quizConfettiTriangle = ImageAsset(name: "QuizConfettiTriangle")
@@ -100,6 +109,7 @@ internal enum Asset {
   internal static let timer = ImageAsset(name: "Timer")
   internal static let transferFireworks = ImageAsset(name: "TransferFireworks")
   internal static let walletCreationFailed = ImageAsset(name: "WalletCreationFailed")
+  internal static let welcomeBack = ImageAsset(name: "WelcomeBack")
   internal static let welcomeTutorial1 = ImageAsset(name: "WelcomeTutorial1")
   internal static let welcomeTutorial2 = ImageAsset(name: "WelcomeTutorial2")
   internal static let welcomeTutorial3 = ImageAsset(name: "WelcomeTutorial3")
@@ -110,6 +120,10 @@ internal enum Asset {
   internal static let allColors: [ColorAsset] = [
   ]
   internal static let allImages: [ImageAsset] = [
+    backupDoneIcon,
+    backupIntroIllustration,
+    backupNagHeader,
+    backupToDoIcon,
     buttonStroke,
     closeXButton,
     closeXButtonDarkGray,
@@ -120,6 +134,7 @@ internal enum Asset {
     doneFireworks,
     doneSign,
     dualImageSeparator,
+    emailAlert,
     emptyHistoryCoupon,
     errorSign,
     floorShadow,
@@ -136,7 +151,9 @@ internal enum Asset {
     kinTaskReward,
     kinTaskTime,
     kinTransactionCoins,
+    moreSupportIcon,
     moreTabIcon,
+    moreWalletBackupIcon,
     multipleAnswerBackground,
     multipleAnswerBackgroundSelected,
     multipleAnswerCheckmark,
@@ -147,8 +164,10 @@ internal enum Asset {
     offerCardShadow,
     patternPlaceholder,
     paymentDelay,
+    pickerArrow,
     progressViewGradient,
     progressViewTrack,
+    qrScannerOutline,
     quizConfettiOval,
     quizConfettiRectangle,
     quizConfettiTriangle,
@@ -166,6 +185,7 @@ internal enum Asset {
     timer,
     transferFireworks,
     walletCreationFailed,
+    welcomeBack,
     welcomeTutorial1,
     welcomeTutorial2,
     welcomeTutorial3,

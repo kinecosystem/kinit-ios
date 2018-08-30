@@ -13,6 +13,28 @@ extension String {
         return self.addingPercentEncoding(withAllowedCharacters: allowedQueryParamAndKey)
     }
 
+    var isValidEmailAddress: Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: self)
+    }
+
+    var isBackupStringValid: Bool {
+        guard count >= 4 else {
+            return false
+        }
+
+        guard !hasSpaceBefore(index: 4) else {
+            return false
+        }
+
+        return true
+    }
+
+    func hasSpaceBefore(index: Int) -> Bool {
+        let spaceRange = (self as NSString).range(of: " ").location
+        return spaceRange != NSNotFound && spaceRange < index
+    }
 }
 
 extension String {

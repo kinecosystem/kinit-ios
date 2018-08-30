@@ -9,7 +9,7 @@ import Foundation
 
 let KinErrorDomain = "KinErrorDomain"
 
-enum KinErrorCodes: Int {
+enum KinitErrorCodes: Int {
     case noSelectedAnswer
     case selectedAnswerCellNotFound
 }

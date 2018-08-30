@@ -196,7 +196,7 @@ final class QuestionViewController: UIViewController {
         guard
             let answerId = collectionViewDataSource.selectedAnswerIds.first,
             let answer = question.results.filter({ $0.identifier == answerId }).first else {
-                KLogError(KinErrorCodes.noSelectedAnswer.rawValue, domain: KinErrorDomain)
+                KLogError(KinitErrorCodes.noSelectedAnswer.rawValue, domain: KinErrorDomain)
                 return
         }
 
@@ -221,7 +221,7 @@ final class QuestionViewController: UIViewController {
 
         guard let cell = collectionView.cellForItem(at: IndexPath(item: answerIndex, section: 0))
             as? SurveyAnswerCollectionViewCell else {
-                KLogError(KinErrorCodes.selectedAnswerCellNotFound.rawValue, domain: KinErrorDomain)
+                KLogError(KinitErrorCodes.selectedAnswerCellNotFound.rawValue, domain: KinErrorDomain)
                 return
         }
 

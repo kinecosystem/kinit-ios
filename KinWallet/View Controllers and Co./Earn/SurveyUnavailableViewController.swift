@@ -47,7 +47,7 @@ final class SurveyUnavailableViewController: UIViewController, AddNoticeViewCont
         var displayType = Notice.DisplayType.imageFirst
 
         if let task = task {
-            let toUnlock = task.daysToUnlock()
+            let toUnlock = task.daysToUnlock
             displayType = .titleFirst
             assert(toUnlock > 0, "SurveyUnavailableViewController received a task that is ready to be displayed.")
 
@@ -102,15 +102,15 @@ final class SurveyUnavailableViewController: UIViewController, AddNoticeViewCont
                                                 message: L10n.notificationsDeniedMessage,
                                                 preferredStyle: .alert)
         if let url = URL(string: UIApplicationOpenSettingsURLString) {
-            alertController.addAction(UIAlertAction(title: L10n.notificationsDeniedAction, style: .default) { _ in
+            alertController.addAction(title: L10n.notificationsDeniedAction, style: .default) { _ in
                 if #available(iOS 10.0, *) {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 } else {
                     UIApplication.shared.openURL(url)
                 }
-            })
+            }
         } else {
-            alertController.addAction(.ok())
+            alertController.addOkAction()
         }
 
         present(alertController, animated: true)

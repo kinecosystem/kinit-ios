@@ -41,3 +41,32 @@ extension UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: label)
     }
 }
+
+extension UIViewController {
+    func presentAnimated(_ viewController: UIViewController, completion: (() -> Void)? = nil) {
+        present(viewController, animated: true, completion: completion)
+    }
+
+    func dismissAnimated(completion: (() -> Void)? = nil) {
+        dismiss(animated: true, completion: completion)
+    }
+}
+
+extension UIViewController {
+    func presentSupportAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title,
+                                                message: message,
+                                                preferredStyle: .alert)
+        alertController.addAction(title: L10n.support, style: .default) { [weak self] in
+            guard let `self` = self else {
+                return
+            }
+
+            KinSupportViewController.present(from: self)
+        }
+
+        alertController.addAction(title: L10n.tryAgain, style: .default)
+
+        presentAnimated(alertController)
+    }
+}

@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import KinSDK
+import KinCoreSDK
 import StellarErrors
 import StellarKit
 
@@ -18,6 +18,7 @@ private let kinHorizonProductionName = "Public Global Kin Ecosystem Network ; Ju
 
 private let balanceUserDefaultsKey = "org.kinfoundation.kinwallet.currentBalance"
 private let accountStatusUserDefaultsKey = "org.kinfoundation.kinwallet.accountStatus"
+private let accountStatusPerformedBackupKey = "org.kinfoundation.kinwallet.performedBackup"
 
 protocol BalanceDelegate: class {
     func balanceDidUpdate(balance: UInt64)
@@ -43,7 +44,7 @@ class Kin {
 
     init() {
         let url: URL
-        let kinNetworkId: KinSDK.NetworkId
+        let kinNetworkId: KinCoreSDK.NetworkId
 
         #if DEBUG || RELEASE_STAGE
         url = kinHorizonStageURL
@@ -65,8 +66,33 @@ extension Kin {
     func resetKeyStore() {
         UserDefaults.standard.set(AccountStatus.notCreated.rawValue,
                                   forKey: accountStatusUserDefaultsKey)
+        Kin.setPerformedBackup(false)
         client.deleteKeystore()
         self.account = try! client.addAccount()
+    }
+}
+
+enum MyError: Error {
+    case meh
+}
+
+// MARK: Account backup
+extension Kin {
+    func exportWallet(with passphrase: String) throws -> String {
+        return try account.export(passphrase: passphrase)
+    }
+
+    func importWallet(_ encryptedWallet: String, with passphrase: String) throws {
+        account = try client.importAccount(encryptedWallet, passphrase: passphrase)
+        _ = performOnboardingIfNeeded()
+    }
+
+    static func setPerformedBackup(_ performed: Bool = true) {
+        UserDefaults.standard.set(performed, forKey: accountStatusPerformedBackupKey)
+    }
+
+    static func performedBackup() -> Bool {
+        return UserDefaults.standard.bool(forKey: accountStatusPerformedBackupKey)
     }
 }
 
@@ -114,6 +140,9 @@ extension Kin {
                     self.onboardingPromise?.signal($0)
                     self.onboardingPromise = nil
                 }
+            } else {
+                self.onboardingPromise?.signal(false)
+                self.onboardingPromise = nil
             }
         }
 
@@ -172,7 +201,7 @@ extension Kin {
 
 // MARK: Watching operations
 extension Kin {
-    func watch(cursor: String?) throws -> KinSDK.PaymentWatch {
+    func watch(cursor: String?) throws -> KinCoreSDK.PaymentWatch {
         return try account.watchPayments(cursor: cursor)
     }
 }
@@ -242,7 +271,7 @@ extension Kin {
     func send(_ amount: UInt64,
               to address: String,
               memo: String? = nil,
-              completion: @escaping KinSDK.TransactionCompletion) {
+              completion: @escaping KinCoreSDK.TransactionCompletion) {
         account.sendTransaction(to: address, kin: Decimal(amount), memo: memo) { txHash, error in
             completion(txHash, error)
 

@@ -23,28 +23,120 @@ internal enum L10n {
   internal static let activityDoneMessage = L10n.tr("Localizable", "ActivityDoneMessage")
   /// Awesome!
   internal static let activityDoneTitle = L10n.tr("Localizable", "ActivityDoneTitle")
+  /// Back
+  internal static let backAction = L10n.tr("Localizable", "BackAction")
   /// Back to Spend
   internal static let backToSpendAction = L10n.tr("Localizable", "BackToSpendAction")
+  /// Back Up
+  internal static let backUpAction = L10n.tr("Localizable", "BackUpAction")
+  /// Looks like you’ve been here before. What would you like to do?
+  internal static let backupAvailableTitle = L10n.tr("Localizable", "BackupAvailableTitle")
+  /// Your wallet is backed up!
+  internal static let backupCompleteMessage = L10n.tr("Localizable", "BackupCompleteMessage")
+  /// Make sure to keep the code someplace safe because you’ll need it if you need to recover your account.
+  internal static let backupConfirmMessage = L10n.tr("Localizable", "BackupConfirmMessage")
+  /// resend
+  internal static let backupConfirmResend = L10n.tr("Localizable", "BackupConfirmResend")
+  /// If not, %@ or check your spam folder
+  internal static func backupConfirmResendMessage(_ p1: String) -> String {
+    return L10n.tr("Localizable", "BackupConfirmResendMessage", p1)
+  }
+  /// Please check your email to make sure you received your QR code.\nIf you did, click confirm below.
+  internal static let backupConfirmSubtitle = L10n.tr("Localizable", "BackupConfirmSubtitle")
+  /// Confirm Email
+  internal static let backupConfirmTitle = L10n.tr("Localizable", "BackupConfirmTitle")
+  /// Creating a new wallet will erase your balance, are you sure you don’t want to restore?
+  internal static let backupIgnoreAndCreateNewWalletMessage = L10n.tr("Localizable", "BackupIgnoreAndCreateNewWalletMessage")
+  /// We already know each other!
+  internal static let backupIgnoreAndCreateNewWalletTitle = L10n.tr("Localizable", "BackupIgnoreAndCreateNewWalletTitle")
+  /// Backing up your wallet will allow you to recover your Kin if you get locked out of the app or if your phone is ever lost or stolen.
+  internal static let backupIntroExplanation = L10n.tr("Localizable", "BackupIntroExplanation")
+  /// * minimum 4 characters
+  internal static let backupMinimum4Characters = L10n.tr("Localizable", "BackupMinimum4Characters")
+  /// That’s why it’s easy to backup your wallet. Back it up today
+  internal static let backupNagFourteenMessage = L10n.tr("Localizable", "BackupNagFourteenMessage")
+  /// We care about your Kin
+  internal static let backupNagFourteenTitle = L10n.tr("Localizable", "BackupNagFourteenTitle")
+  /// Back it up today to make sure it’s always safe
+  internal static let backupNagSevenMessage = L10n.tr("Localizable", "BackupNagSevenMessage")
+  /// Your Kin is really rolling in
+  internal static let backupNagSevenTitle = L10n.tr("Localizable", "BackupNagSevenTitle")
+  /// It’s your Kin. It wants to be kept safe. Back it up today.
+  internal static let backupNagThirtyMessage = L10n.tr("Localizable", "BackupNagThirtyMessage")
+  /// Knock knock
+  internal static let backupNagThirtyTitle = L10n.tr("Localizable", "BackupNagThirtyTitle")
+  /// Now it’s possible to backup your Kin in case your phone is lost
+  internal static let backupNagZeroMessage = L10n.tr("Localizable", "BackupNagZeroMessage")
+  /// Back up your Kin
+  internal static let backupNagZeroTitle = L10n.tr("Localizable", "BackupNagZeroTitle")
+  /// Your Email Address
+  internal static let backupQRCodeEmailAddress = L10n.tr("Localizable", "BackupQRCodeEmailAddress")
+  /// * Make sure your email is written correctly.\nYou don’t want your wallet QR code to get to the hands of someone else.
+  internal static let backupQRCodeEmailObservation = L10n.tr("Localizable", "BackupQRCodeEmailObservation")
+  /// Type your email here
+  internal static let backupQRCodeEmailPlaceholder = L10n.tr("Localizable", "BackupQRCodeEmailPlaceholder")
+  /// To keep your account secure, we’ll generate a unique QR code and send it to you by email.
+  internal static let backupQRCodeSubtitle = L10n.tr("Localizable", "BackupQRCodeSubtitle")
+  /// Your wallet was restored!
+  internal static let backupRestoredMessage = L10n.tr("Localizable", "BackupRestoredMessage")
+  /// It looks like your answers don’t match. Please contact support for assistance.
+  internal static let backupWrongAnswersMessage = L10n.tr("Localizable", "BackupWrongAnswersMessage")
+  /// Feeling forgetful?
+  internal static let backupWrongAnswersTitle = L10n.tr("Localizable", "BackupWrongAnswersTitle")
+  /// Type your answer here
+  internal static let backupYourAnswerPlaceholder = L10n.tr("Localizable", "BackupYourAnswerPlaceholder")
+  /// Your Answer
+  internal static let backupYourAnswerTitle = L10n.tr("Localizable", "BackupYourAnswerTitle")
   /// My Vouchers
   internal static let balanceMyVouchers = L10n.tr("Localizable", "BalanceMyVouchers")
   /// Recent Actions
   internal static let balanceRecentActions = L10n.tr("Localizable", "BalanceRecentActions")
   /// Buy
   internal static let buy = L10n.tr("Localizable", "Buy")
+  /// Open Settings
+  internal static let cameraDeniedAction = L10n.tr("Localizable", "CameraDeniedAction")
+  /// Please Allow Camera Access
+  internal static let cameraDeniedTitle = L10n.tr("Localizable", "CameraDeniedTitle")
   /// Cancel
   internal static let cancel = L10n.tr("Localizable", "Cancel")
+  /// Choose one...
+  internal static let chooseSecurityQuestion = L10n.tr("Localizable", "ChooseSecurityQuestion")
   /// Close
   internal static let closeAction = L10n.tr("Localizable", "CloseAction")
+  /// Confirm
+  internal static let confirm = L10n.tr("Localizable", "Confirm")
   /// Contact Support
   internal static let contactSupport = L10n.tr("Localizable", "ContactSupport")
+  /// Continue
+  internal static let continueAction = L10n.tr("Localizable", "ContinueAction")
   /// Code saved to My Vouchers
   internal static let couponCodeSaved = L10n.tr("Localizable", "CouponCodeSaved")
+  /// Create New Wallet
+  internal static let createNewWallet = L10n.tr("Localizable", "CreateNewWallet")
+  /// Creating your wallet
+  internal static let creatingYourWallet = L10n.tr("Localizable", "CreatingYourWallet")
+  /// It might take up to 20 sec.
+  internal static let creatingYourWalletBePatient = L10n.tr("Localizable", "CreatingYourWalletBePatient")
   /// Email us
   internal static let emailUs = L10n.tr("Localizable", "EmailUs")
   /// We are hand-picking the best for you!
   internal static let emptyOffersSubtitle = L10n.tr("Localizable", "EmptyOffersSubtitle")
   /// No offers at the moment
   internal static let emptyOffersTitle = L10n.tr("Localizable", "EmptyOffersTitle")
+  /// Keep in mind that by creating a new backup, the old one will be deleted.
+  internal static let existingBackupOverwriteMessage = L10n.tr("Localizable", "ExistingBackupOverwriteMessage")
+  /// Are you sure you want to create a new backup?
+  internal static let existingBackupOverwriteTitle = L10n.tr("Localizable", "ExistingBackupOverwriteTitle")
+  /// First Question
+  internal static let firstSecurityQuestion = L10n.tr("Localizable", "FirstSecurityQuestion")
+  /// We are having technical issues. Please try again or contact support.
+  internal static let generalErrorMessage = L10n.tr("Localizable", "GeneralErrorMessage")
+  /// Something went wrong
+  internal static let generalErrorTitle = L10n.tr("Localizable", "GeneralErrorTitle")
+  /// Please try again later. If you continue to see this message, please reach out to support.
+  internal static let generalServerErrorMessage = L10n.tr("Localizable", "GeneralServerErrorMessage")
+  /// Houston We Have a Server Problem
+  internal static let generalServerErrorTitle = L10n.tr("Localizable", "GeneralServerErrorTitle")
   /// Please check your internet connection and try again.
   internal static let internetErrorMessage = L10n.tr("Localizable", "InternetErrorMessage")
   /// Oh no! Your internet is MIA
@@ -59,6 +151,8 @@ internal enum L10n {
   internal static let lastOfferGrabbedMessage = L10n.tr("Localizable", "LastOfferGrabbedMessage")
   /// Oops! Someone grabbed the last one... for now
   internal static let lastOfferGrabbedTitle = L10n.tr("Localizable", "LastOfferGrabbedTitle")
+  /// Later
+  internal static let later = L10n.tr("Localizable", "Later")
   /// Add an email account to your device in order to send email.
   internal static let mailNotConfiguredErrorMessage = L10n.tr("Localizable", "MailNotConfiguredErrorMessage")
   /// Mail Not Configured
@@ -93,6 +187,18 @@ internal enum L10n {
   internal static let or = L10n.tr("Localizable", "Or")
   /// or contact support
   internal static let orContactSupport = L10n.tr("Localizable", "OrContactSupport")
+  /// Cancel Backup
+  internal static let performBackupMissingConfirmationCancelBackup = L10n.tr("Localizable", "PerformBackupMissingConfirmationCancelBackup")
+  /// Continue Backup
+  internal static let performBackupMissingConfirmationContinueBackup = L10n.tr("Localizable", "PerformBackupMissingConfirmationContinueBackup")
+  /// Skipping this process will result in your kin not being backed up.
+  internal static let performBackupMissingConfirmationMessage = L10n.tr("Localizable", "PerformBackupMissingConfirmationMessage")
+  /// Hang On, You're Almost There 🙂
+  internal static let performBackupMissingConfirmationTitle = L10n.tr("Localizable", "PerformBackupMissingConfirmationTitle")
+  /// Sorry, it looks like there’s a problem with the email confirmation. Please try starting the backup process again in a little while. 
+  internal static let performBackupTooManyEmailAttemptsMessage = L10n.tr("Localizable", "PerformBackupTooManyEmailAttemptsMessage")
+  /// Huh, that doesn’t seem right
+  internal static let performBackupTooManyEmailAttemptsTitle = L10n.tr("Localizable", "PerformBackupTooManyEmailAttemptsTitle")
   /// Send me a new code
   internal static let phoneConfirmationAskNewCode = L10n.tr("Localizable", "PhoneConfirmationAskNewCode")
   /// The code should arrive in %ds.
@@ -119,8 +225,38 @@ internal enum L10n {
   internal static let phoneVerificationUnsupportedCountryCodeMessage = L10n.tr("Localizable", "PhoneVerificationUnsupportedCountryCodeMessage")
   /// Oh no!
   internal static let phoneVerificationUnsupportedCountryCodeTitle = L10n.tr("Localizable", "PhoneVerificationUnsupportedCountryCodeTitle")
+  /// QR Code
+  internal static let qrCode = L10n.tr("Localizable", "QRCode")
+  /// In order to scan the QR code, Kinit needs camera access on this device.
+  internal static let qrScannerCameraDeniedMessage = L10n.tr("Localizable", "QRScannerCameraDeniedMessage")
   /// Hi! 👋\nReady to earn some Kin?
   internal static let readyToEarnKinQuestion = L10n.tr("Localizable", "ReadyToEarnKinQuestion")
+  /// Answer your security questions to unlock your account
+  internal static let restoreBackupQuestionsSubtitle = L10n.tr("Localizable", "RestoreBackupQuestionsSubtitle")
+  /// Security Questions
+  internal static let restoreBackupQuestionsTitle = L10n.tr("Localizable", "RestoreBackupQuestionsTitle")
+  /// You just need to scan the QR code we sent to your email and answer your 2 security questions
+  internal static let restoreBackupScanSubtitle = L10n.tr("Localizable", "RestoreBackupScanSubtitle")
+  /// You're 2 steps away
+  internal static let restoreBackupScanTitle = L10n.tr("Localizable", "RestoreBackupScanTitle")
+  /// We are having technical issues. Please try again or contact support.
+  internal static let restoreBackupUserMatchFailedMessage = L10n.tr("Localizable", "RestoreBackupUserMatchFailedMessage")
+  /// Something went wrong
+  internal static let restoreBackupUserMatchFailedTitle = L10n.tr("Localizable", "RestoreBackupUserMatchFailedTitle")
+  /// Type your answer here
+  internal static let restoreBackupYourAnswerPlaceholder = L10n.tr("Localizable", "RestoreBackupYourAnswerPlaceholder")
+  /// Your Answer
+  internal static let restoreBackupYourAnswerTitle = L10n.tr("Localizable", "RestoreBackupYourAnswerTitle")
+  /// Restore From Backup
+  internal static let restoreFromBackup = L10n.tr("Localizable", "RestoreFromBackup")
+  /// Second Question
+  internal static let secondSecurityQuestion = L10n.tr("Localizable", "SecondSecurityQuestion")
+  /// Security
+  internal static let security = L10n.tr("Localizable", "Security")
+  /// Choose 2 security questions.
+  internal static let securityQuestionsSubtitle = L10n.tr("Localizable", "SecurityQuestionsSubtitle")
+  /// Security Questions
+  internal static let securityQuestionsTitle = L10n.tr("Localizable", "SecurityQuestionsTitle")
   /// Sending Kin
   internal static let sendingKin = L10n.tr("Localizable", "SendingKin")
   /// Send Kin
@@ -151,14 +287,12 @@ internal enum L10n {
   internal static let sendKinToSelfErrorMessage = L10n.tr("Localizable", "SendKinToSelfErrorMessage")
   /// You chose yourself!
   internal static let sendKinToSelfErrorTitle = L10n.tr("Localizable", "SendKinToSelfErrorTitle")
-  /// Please try again later. If you continue to see this message, please reach out to support.
-  internal static let sendKinTransactionFailedErrorMessage = L10n.tr("Localizable", "SendKinTransactionFailedErrorMessage")
-  /// Houston We Have a Server Problem
-  internal static let sendKinTransactionFailedErrorTitle = L10n.tr("Localizable", "SendKinTransactionFailedErrorTitle")
   /// To
   internal static let sendTo = L10n.tr("Localizable", "SendTo")
   /// Spend your Kin
   internal static let spendYourKin = L10n.tr("Localizable", "SpendYourKin")
+  /// Start
+  internal static let startAction = L10n.tr("Localizable", "StartAction")
   /// Support
   internal static let support = L10n.tr("Localizable", "Support")
   /// Tap to continue
@@ -181,12 +315,16 @@ internal enum L10n {
   internal static let transferringKinOnItsWay = L10n.tr("Localizable", "TransferringKinOnItsWay")
   /// Try Again
   internal static let tryAgain = L10n.tr("Localizable", "TryAgain")
+  /// We were unable to create a profile for you
+  internal static let userRegistrationErrorTitle = L10n.tr("Localizable", "UserRegistrationErrorTitle")
   /// Your vouchers will be saved here!
   internal static let vouchersEmptyStateMessage = L10n.tr("Localizable", "VouchersEmptyStateMessage")
-  /// Please check your internet connection & try again.
-  internal static let walletCreationErrorSubtitle = L10n.tr("Localizable", "WalletCreationErrorSubtitle")
+  /// Wallet Backup
+  internal static let walletBackup = L10n.tr("Localizable", "WalletBackup")
   /// We were unable to create a wallet for you
   internal static let walletCreationErrorTitle = L10n.tr("Localizable", "WalletCreationErrorTitle")
+  /// Please check your internet connection & try again.
+  internal static let walletOrUserCreationErrorSubtitle = L10n.tr("Localizable", "WalletOrUserCreationErrorSubtitle")
   /// Earn Kin by completing fun daily activities, and enjoy it toward brown paper packages tied up with string (aka travel, movies, music, and more).
   internal static let welcome1stScreenMessage = L10n.tr("Localizable", "Welcome1stScreenMessage")
   ///  Welcome to Kinit

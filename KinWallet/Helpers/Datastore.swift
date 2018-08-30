@@ -73,7 +73,7 @@ extension SimpleDatastore: Datastore {
 
     static func loadObject<T: Codable>(_ identifier: String) -> T? {
         let sourceURL = url(for: T.self, with: identifier)
-        
+
         guard let data = fileManager.contents(atPath: sourceURL.path) else {
             return nil
         }

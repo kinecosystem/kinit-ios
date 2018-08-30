@@ -177,18 +177,18 @@ class PhoneConfirmationViewController: UIViewController {
     }
 
     func updateServer(with token: String) {
-        WebRequests.updateUserIdToken(token).withCompletion { [weak self] success, _ in
+        WebRequests.updateUserIdToken(token).withCompletion { [weak self] hints, _ in
             guard let aSelf = self else {
                 return
             }
 
             DispatchQueue.main.async {
-                if !success.boolValue {
+                guard let hints = hints else {
                     aSelf.validationFailed()
                     return
                 }
 
-                aSelf.validationSucceeded()
+                aSelf.validationSucceeded(with: hints)
             }
         }.load(with: KinWebService.shared)
     }
@@ -207,7 +207,7 @@ class PhoneConfirmationViewController: UIViewController {
         textFields.first?.becomeFirstResponder()
     }
 
-    func validationSucceeded() {
+    func validationSucceeded(with hintIds: [Int]) {
         KinLoader.shared.deleteCachedAndFetchNextTask()
 
         activityIndicatorView.stopAnimating()
@@ -219,8 +219,7 @@ class PhoneConfirmationViewController: UIViewController {
         smsArrivalTimer?.invalidate()
         smsArrivalTimer = nil
 
-        let accountReady = StoryboardScene.Main.accountReadyViewController.instantiate()
-        navigationController?.pushViewController(accountReady, animated: true)
+        AppDelegate.shared.rootViewController.phoneNumberValidated(with: hintIds)
     }
 
     @objc func assignFirstResponder() {

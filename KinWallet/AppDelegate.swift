@@ -6,7 +6,7 @@
 import Fabric
 import Crashlytics
 import UIKit
-import KinSDK
+import KinCoreSDK
 import Firebase
 import FirebaseAuth
 
@@ -15,7 +15,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var notificationHandler: NotificationHandler?
 
-    fileprivate let rootViewController = RootViewController()
+    let rootViewController = RootViewController()
 
     //swiftlint:disable:next line_length
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -29,7 +29,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             #endif
         }
 
-        generateUserAgent()
+        AuthToken.prepare()
 
         let filePath = Bundle.main.path(forResource: firebaseFileName(), ofType: "plist")!
         let firebaseOptions = FirebaseOptions(contentsOfFile: filePath)!

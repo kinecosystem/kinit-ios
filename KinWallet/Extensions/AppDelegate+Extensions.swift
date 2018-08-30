@@ -5,22 +5,12 @@
 
 import UIKit
 import WebKit
+import KinitDesignables
 
 extension AppDelegate {
-    static var webView: WKWebView?
-
     class var shared: AppDelegate {
         //swiftlint:disable:next force_cast
         return UIApplication.shared.delegate as! AppDelegate
-    }
-
-    func generateUserAgent() {
-        AppDelegate.webView = WKWebView(frame: .zero)
-        AppDelegate.webView!.loadHTMLString("<html></html>", baseURL: nil)
-        AppDelegate.webView!.evaluateJavaScript("navigator.userAgent") { result, _ in
-            User.userAgent = result as? String
-            AppDelegate.webView = nil
-        }
     }
 
     func applyAppearance() {
@@ -63,16 +53,24 @@ extension AppDelegate {
 }
 
 extension AppDelegate: WebServiceProvider {
-    func userId() -> String? {
-        return User.current?.userId
-    }
+    func headers() -> [String: String]? {
+        var headers = [String: String]()
 
-    func deviceId() -> String? {
-        return User.current?.deviceId
-    }
+        headers["X-APPVERSION"] = Bundle.appVersion
 
-    func appVersion() -> String? {
-        return Bundle.appVersion
+        if let userId = User.current?.userId {
+            headers["X-USERID"] = userId
+        }
+
+        if let deviceId = User.current?.deviceId {
+            headers["X-DEVICEID"] = deviceId
+        }
+
+        if let authToken = AuthToken.current {
+            headers["X-AUTH-TOKEN"] = authToken
+        }
+
+        return headers
     }
 }
 

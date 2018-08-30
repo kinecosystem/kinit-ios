@@ -5,8 +5,21 @@
 
 import UIKit
 
+enum WalletSource {
+    case new
+    case restored
+
+    var message: String {
+        switch self {
+        case .new: return L10n.accountReadyMessage
+        case .restored: return L10n.backupRestoredMessage
+        }
+    }
+}
+
 class AccountReadyViewController: UIViewController {
     @IBOutlet weak var confettiView: ConfettiView!
+    var walletSource: WalletSource!
 
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
@@ -20,12 +33,14 @@ class AccountReadyViewController: UIViewController {
         didSet {
             descriptionLabel.textColor = UIColor.kin.gray
             descriptionLabel.font = FontFamily.Roboto.regular.font(size: 16)
-            descriptionLabel.text = L10n.accountReadyMessage
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        descriptionLabel.text = walletSource.message
+        SimpleDatastore.delete(objectOf: SelectedHintIds.self, with: selectedHintIdsKey)
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
         view.addGestureRecognizer(tapGesture)
@@ -34,6 +49,7 @@ class AccountReadyViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        navigationController?.setNavigationBarHidden(true, animated: animated)
         confettiView.start()
     }
 
@@ -46,6 +62,10 @@ class AccountReadyViewController: UIViewController {
         FeedbackGenerator.notifySuccessIfAvailable()
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
             self?.startUsingApp()
+        }
+
+        if walletSource == .restored {
+            Events.Analytics.ViewWalletRestoredPage().send()
         }
     }
 

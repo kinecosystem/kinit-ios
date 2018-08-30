@@ -6,8 +6,14 @@
 import UIKit
 
 class AlphaTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+    let duration: TimeInterval
+
+    init(duration: TimeInterval = 0.5) {
+        self.duration = duration
+    }
+
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.5
+        return duration
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -17,13 +23,11 @@ class AlphaTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                 return
         }
 
-        toView.alpha = 0
         let containerView = transitionContext.containerView
-        containerView.addSubview(toView)
+        containerView.insertSubview(toView, at: 0)
 
         UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
             fromView.alpha = 0
-            toView.alpha = 1
         }, completion: { _ in
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         })
