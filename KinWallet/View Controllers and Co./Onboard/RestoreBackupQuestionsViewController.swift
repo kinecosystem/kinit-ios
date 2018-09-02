@@ -246,6 +246,8 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
         user.publicAddress = Kin.shared.publicAddress
         user.save()
 
+        Analytics.userId = userId
+        
         KinLoader.shared.loadAllData()
         Kin.setPerformedBackup()
 
