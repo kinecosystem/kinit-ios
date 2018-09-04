@@ -12,19 +12,7 @@ import WebKit
 let viewportScriptString = "var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); meta.setAttribute('initial-scale', '1.0'); meta.setAttribute('maximum-scale', '1.0'); meta.setAttribute('minimum-scale', '1.0'); meta.setAttribute('user-scalable', 'no'); document.getElementsByTagName('head')[0].appendChild(meta);"
 
 class WebViewController: UIViewController {
-    let webView: WKWebView = {
-        let viewportScript = WKUserScript(source: viewportScriptString,
-                                          injectionTime: .atDocumentEnd,
-                                          forMainFrameOnly: true)
-
-        let controller = WKUserContentController()
-        controller.addUserScript(viewportScript)
-        let config = WKWebViewConfiguration()
-        config.allowsInlineMediaPlayback = true
-        config.userContentController = controller
-
-        return WKWebView(frame: .zero, configuration: config)
-    }()
+    var webView: WKWebView!
 
     let activityIndicatorView: UIActivityIndicatorView = {
         let a = UIActivityIndicatorView(style: .gray)
@@ -33,11 +21,49 @@ class WebViewController: UIViewController {
         return a
     }()
 
+    init() {
+        super.init(nibName: nil, bundle: nil)
+
+        let viewportScript = WKUserScript(source: viewportScriptString,
+                                          injectionTime: .atDocumentEnd,
+                                          forMainFrameOnly: true)
+
+        let controller = WKUserContentController()
+        controller.addUserScript(viewportScript)
+        self.setupUserContentController(controller)
+
+        let config = WKWebViewConfiguration()
+        self.setupWebViewConfiguration(config)
+        config.userContentController = controller
+
+        webView = WKWebView(frame: .zero, configuration: config)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .white
         view.addAndFit(webView, layoutReference: .safeArea)
         webView.addAndCenter(activityIndicatorView)
+    }
+
+    func setupUserContentController(_ controller: WKUserContentController) {
+
+    }
+
+    func setupWebViewConfiguration(_ configuration: WKWebViewConfiguration) {
+
+    }
+
+    func loadURL(_ url: URL) {
+        webView.load(URLRequest(url: url))
+    }
+
+    func loadHTMLString(_ string: String, baseURL: URL?) {
+        webView.loadHTMLString(string, baseURL: baseURL)
     }
 }

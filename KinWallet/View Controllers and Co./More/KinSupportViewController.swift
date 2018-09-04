@@ -40,15 +40,19 @@ final class KinSupportViewController: MFMailComposeViewController {
         return nil
     }
 
-    private class func attachmentData() -> Data {
+    private class func attachmentString() -> String {
         return """
-            App Version: \(Bundle.appVersion)
-            iOS \(ProcessInfo().operatingSystemVersionString)
-            User ID: \(User.current?.userId ?? "No user ID")
-            Balance: \(Kin.shared.balance)
-            Device ID: \(User.current?.deviceId ?? "No device ID")
-            Device Token: \(User.current?.deviceToken ?? "No device Token")
-            """.data(using: .utf8) ?? Data()
+        App Version: \(Bundle.appVersion)
+        iOS \(ProcessInfo().operatingSystemVersionString)
+        User ID: \(User.current?.userId ?? "No user ID")
+        Balance: \(Kin.shared.balance)
+        Device ID: \(User.current?.deviceId ?? "No device ID")
+        Device Token: \(User.current?.deviceToken ?? "No device Token")
+        """
+    }
+
+    private class func attachmentData() -> Data {
+        return attachmentString().data(using: .utf8) ?? Data()
     }
 }
 

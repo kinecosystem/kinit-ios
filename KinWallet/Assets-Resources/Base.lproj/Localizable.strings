@@ -212,11 +212,19 @@
 
 "ContactSupport" = "Contact Support";
 
-"EmailUs" = "Email us";
+"GiveUsFeedback" = "Give Us Feedback";
+
+"HelpCenter" = "Help Center";
 
 "MailNotConfiguredErrorTitle" = "Mail Not Configured";
 
 "MailNotConfiguredErrorMessage" = "Add an email account to your device in order to send email.";
+
+"FeedbackNotSupportAlertTitle" = "";
+
+"FeedbackNotSupportAlertMessage" = "We can’t respond to feedbacks individually. If you have a question or need help resolving a problem, you’ll find answers in our help center.";
+
+"SendFeedback" = "Send Feedback";
 
 // Camera permissions
 

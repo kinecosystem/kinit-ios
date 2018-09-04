@@ -94,5 +94,12 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>googlemail</string>
+		<string>readdle-spark</string>
+		<string>inbox-gmail</string>
+		<string>ms-outlook</string>
+	</array>
 </dict>
 </plist>

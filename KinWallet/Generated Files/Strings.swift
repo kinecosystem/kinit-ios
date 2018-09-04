@@ -123,8 +123,6 @@ internal enum L10n {
   internal static let creatingYourWallet = L10n.tr("Localizable", "CreatingYourWallet")
   /// It might take up to 20 sec.
   internal static let creatingYourWalletBePatient = L10n.tr("Localizable", "CreatingYourWalletBePatient")
-  /// Email us
-  internal static let emailUs = L10n.tr("Localizable", "EmailUs")
   /// We are hand-picking the best for you!
   internal static let emptyOffersSubtitle = L10n.tr("Localizable", "EmptyOffersSubtitle")
   /// No offers at the moment
@@ -133,6 +131,10 @@ internal enum L10n {
   internal static let existingBackupOverwriteMessage = L10n.tr("Localizable", "ExistingBackupOverwriteMessage")
   /// Are you sure you want to create a new backup?
   internal static let existingBackupOverwriteTitle = L10n.tr("Localizable", "ExistingBackupOverwriteTitle")
+  /// We can’t respond to feedbacks individually. If you have a question or need help resolving a problem, you’ll find answers in our help center.
+  internal static let feedbackNotSupportAlertMessage = L10n.tr("Localizable", "FeedbackNotSupportAlertMessage")
+  /// 
+  internal static let feedbackNotSupportAlertTitle = L10n.tr("Localizable", "FeedbackNotSupportAlertTitle")
   /// First Question
   internal static let firstSecurityQuestion = L10n.tr("Localizable", "FirstSecurityQuestion")
   /// We are having technical issues. Please try again or contact support.
@@ -143,6 +145,10 @@ internal enum L10n {
   internal static let generalServerErrorMessage = L10n.tr("Localizable", "GeneralServerErrorMessage")
   /// Houston We Have a Server Problem
   internal static let generalServerErrorTitle = L10n.tr("Localizable", "GeneralServerErrorTitle")
+  /// Give Us Feedback
+  internal static let giveUsFeedback = L10n.tr("Localizable", "GiveUsFeedback")
+  /// Help Center
+  internal static let helpCenter = L10n.tr("Localizable", "HelpCenter")
   /// Please check your internet connection and try again.
   internal static let internetErrorMessage = L10n.tr("Localizable", "InternetErrorMessage")
   /// Oh no! Your internet is MIA
@@ -263,6 +269,8 @@ internal enum L10n {
   internal static let securityQuestionsSubtitle = L10n.tr("Localizable", "SecurityQuestionsSubtitle")
   /// Security Questions
   internal static let securityQuestionsTitle = L10n.tr("Localizable", "SecurityQuestionsTitle")
+  /// Send Feedback
+  internal static let sendFeedback = L10n.tr("Localizable", "SendFeedback")
   /// Sending Kin
   internal static let sendingKin = L10n.tr("Localizable", "SendingKin")
   /// Send Kin
