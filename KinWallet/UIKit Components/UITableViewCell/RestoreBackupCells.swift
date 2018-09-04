@@ -48,6 +48,7 @@ class RestoreBackupQuestionCell: UITableViewCell {
         didSet {
             textField.placeholder = L10n.restoreBackupYourAnswerPlaceholder
             textField.makeBackupTextField()
+            TestFairy.hide(textField)
         }
     }
 }

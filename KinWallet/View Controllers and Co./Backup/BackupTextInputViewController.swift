@@ -21,6 +21,7 @@ class BackupTextInputViewController: UIViewController {
     @IBOutlet weak var textField: UITextField! {
         didSet {
             textField.makeBackupTextField()
+            TestFairy.hide(textField)
         }
     }
 
