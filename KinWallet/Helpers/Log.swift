@@ -48,10 +48,18 @@ public func ==<T: RawRepresentable>(lhs: T, rhs: T) -> Bool where T.RawValue: Eq
 
 var logLevel = KinitLogLevel.verbose
 
-func KLogError(_ code: Int, domain: String, file: StaticString = #file, line: UInt = #line) {
+func KLogError(_ code: Int,
+               domain: String,
+               userInfo: [String: Any]? = nil,
+               file: StaticString = #file,
+               line: UInt = #line) {
     if logLevel >= .error {
-        let userInfo: [String: Any] = ["file": String(file), "line": line]
-        let error = NSError(domain: domain, code: code, userInfo: userInfo)
+        var userInfoToSend: [String: Any] = ["file": String(file), "line": line]
+        userInfo?.forEach {
+            userInfoToSend[$0.key] = $0.value
+        }
+
+        let error = NSError(domain: domain, code: code, userInfo: userInfoToSend)
         KLogError(error, file: file, line: line)
     }
 }

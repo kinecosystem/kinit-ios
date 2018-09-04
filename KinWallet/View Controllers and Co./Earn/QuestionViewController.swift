@@ -221,7 +221,15 @@ final class QuestionViewController: UIViewController {
 
         guard let cell = collectionView.cellForItem(at: IndexPath(item: answerIndex, section: 0))
             as? SurveyAnswerCollectionViewCell else {
-                KLogError(KinitErrorCodes.selectedAnswerCellNotFound.rawValue, domain: KinErrorDomain)
+                let userInfo: [String: Any] = [
+                    "answerId": answerId,
+                    "selectedAnswers": answers.joined(separator: ","),
+                    "results": question.results.map({ $0.identifier }).joined(separator: ","),
+                    "answerIndex": answerIndex
+                ]
+                KLogError(KinitErrorCodes.selectedAnswerCellNotFound.rawValue,
+                          domain: KinErrorDomain,
+                          userInfo: userInfo)
                 return
         }
 
