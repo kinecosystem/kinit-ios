@@ -127,6 +127,16 @@ final class SurveyInfoViewController: UIViewController {
         logStartEvents()
         task.prefetchImages()
 
+        guard UIApplication.shared.backgroundRefreshStatus == .available else {
+            let alertController = UIAlertController(title: L10n.backgroundAppRefreshRequiredTitle,
+                                                    message: L10n.backgroundAppRefreshRequiredMessage,
+                                                    preferredStyle: .alert)
+            alertController.addOkAction()
+            presentAnimated(alertController)
+
+            return
+        }
+
         SimpleDatastore.loadObject(task.identifier) { [weak self] (tResults: TaskResults?) in
             guard let `self` = self else {
                 return

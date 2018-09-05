@@ -25,6 +25,12 @@ internal enum L10n {
   internal static let activityDoneTitle = L10n.tr("Localizable", "ActivityDoneTitle")
   /// Back
   internal static let backAction = L10n.tr("Localizable", "BackAction")
+  /// Open Settings
+  internal static let backgroundAppRefreshRequiredAction = L10n.tr("Localizable", "BackgroundAppRefreshRequiredAction")
+  /// In order to reward you with Kin for completing tasks, we require you to turn on the "Background App Refresh" setting. Please go to "Settings -> General -> Background App Refresh" and make sure that it is turned on for Kinit.
+  internal static let backgroundAppRefreshRequiredMessage = L10n.tr("Localizable", "BackgroundAppRefreshRequiredMessage")
+  /// Please Enable Background App Refresh for Kinit
+  internal static let backgroundAppRefreshRequiredTitle = L10n.tr("Localizable", "BackgroundAppRefreshRequiredTitle")
   /// Back to Spend
   internal static let backToSpendAction = L10n.tr("Localizable", "BackToSpendAction")
   /// Back Up

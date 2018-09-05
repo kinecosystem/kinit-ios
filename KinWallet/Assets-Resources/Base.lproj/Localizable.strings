@@ -236,6 +236,14 @@
 
 "NotificationsDeniedAction" = "Open Settings";
 
+// Permissions
+
+"BackgroundAppRefreshRequiredTitle" = "Please Enable Background App Refresh for Kinit";
+
+"BackgroundAppRefreshRequiredMessage" = "In order to reward you with Kin for completing tasks, we require you to turn on the \"Background App Refresh\" setting. Please go to \"Settings -> General -> Background App Refresh\" and make sure that it is turned on for Kinit.";
+
+"BackgroundAppRefreshRequiredAction" = "Open Settings";
+
 // Backup
 
 "Security" = "Security";

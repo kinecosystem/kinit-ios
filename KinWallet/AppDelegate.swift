@@ -14,6 +14,7 @@ import FirebaseAuth
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var notificationHandler: NotificationHandler?
+    var lastBackgroundRefreshStatus: UIBackgroundRefreshStatus!
 
     let rootViewController = RootViewController()
 
@@ -29,6 +30,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             #endif
         }
 
+        lastBackgroundRefreshStatus = application.backgroundRefreshStatus
         AuthToken.prepare()
 
         let filePath = Bundle.main.path(forResource: firebaseFileName(), ofType: "plist")!
@@ -64,6 +66,17 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         return true
+    }
+
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        let newBackgroundRefreshStatus = application.backgroundRefreshStatus
+
+        if lastBackgroundRefreshStatus != .available && newBackgroundRefreshStatus == .available {
+            application.registerForRemoteNotifications()
+            WebRequests.appLaunch().load(with: KinWebService.shared)
+        }
+
+        lastBackgroundRefreshStatus = newBackgroundRefreshStatus
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
