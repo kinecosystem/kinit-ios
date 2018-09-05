@@ -6,30 +6,146 @@
 import UIKit
 import MessageUI
 
-private let supportEmail = "support@kinitapp.com"
+private let emailDomain = "@kinitapp.com"
+
+enum EmailClient {
+    case gmail
+    case inbox
+    case spark
+    case outlook
+}
+
+extension EmailClient {
+    static var allCases: [EmailClient] = [.gmail, .inbox, .spark, .outlook]
+
+    var urlSchemeHost: String {
+        switch self {
+        case .gmail: return "googlegmail"
+        case .inbox: return "inbox-gmail"
+        case .outlook: return "ms-outlook"
+        case .spark: return "readdle-spark"
+        }
+    }
+
+    var urlScheme: String {
+        return urlSchemeHost + "://"
+    }
+
+    var composePath: String {
+        switch self {
+        case .gmail, .inbox: return "co"
+        case .outlook, .spark: return "compose"
+        }
+    }
+
+    var schemeRecipientString: String {
+        switch self {
+        case .gmail, .inbox, .outlook: return "to"
+        case .spark: return "recipient"
+        }
+    }
+
+    func composeURLString(to recipient: String, subject: String, body: String) -> String {
+        let encodedSubject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed).orEmpty
+        let encodedBody = body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed).orEmpty
+
+        return urlScheme
+            + composePath + "?"
+            + schemeRecipientString + "="
+            + recipient + "&"
+            + "subject="
+            + encodedSubject + "&"
+            + "body="
+            + encodedBody
+    }
+}
+
+enum ContactOption: String {
+    case feedback
+    case support
+}
+
+extension ContactOption {
+    var emailAddress: String {
+        return rawValue + emailDomain
+    }
+
+    var emailSubject: String {
+        switch self {
+        case .support: return L10n.supportEmailSubject
+        case .feedback: return L10n.feedbackEmailSubject
+        }
+    }
+
+    var emailBody: String {
+        switch self {
+        case .support: return KinSupportViewController.attachmentString()
+        case .feedback: return L10n.feedbackEmailBody
+        }
+    }
+}
 
 final class KinSupportViewController: MFMailComposeViewController {
-    class func present(from presenter: UIViewController) {
+    class func present(_ option: ContactOption, from presenter: UIViewController) {
         Events.Analytics.ClickSupportButton().send()
 
+        let recipient = option.emailAddress
+        let subject = option.emailSubject
+
         guard MFMailComposeViewController.canSendMail() else {
-            let alertController = UIAlertController(title: L10n.mailNotConfiguredErrorTitle,
-                                                    message: L10n.mailNotConfiguredErrorMessage,
-                                                    preferredStyle: .alert)
-            alertController.addOkAction()
-            presenter.present(alertController, animated: true)
+            mailNotConfigured(option: option, recipient: recipient, subject: subject, from: presenter)
 
             return
         }
 
         let mailController = KinSupportViewController()
-        mailController.setToRecipients([supportEmail])
-        mailController.setSubject("Kin Support Request")
+        mailController.setToRecipients([recipient])
+        mailController.setSubject(subject)
+
+        if option == .feedback {
+            mailController.setMessageBody(option.emailBody, isHTML: false)
+        }
+
         mailController.addAttachmentData(attachmentData(),
                                          mimeType: "txt",
                                          fileName: "Info.txt")
         mailController.mailComposeDelegate = mailController
         presenter.present(mailController, animated: true)
+    }
+
+    private class func mailNotConfigured(option: ContactOption,
+                                         recipient: String,
+                                         subject: String,
+                                         from presenter: UIViewController) {
+        let body = option.emailBody
+
+        var foundMailClient = false
+        for mailClient in EmailClient.allCases {
+            if let clientURL = URL(string: mailClient.urlScheme),
+                UIApplication.shared.canOpenURL(clientURL),
+                let composeURL = mailClient.composeURLString(to: recipient, subject: subject, body: body).toURL() {
+                foundMailClient = true
+
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(composeURL, completionHandler: nil)
+                } else {
+                    UIApplication.shared.openURL(composeURL)
+                }
+
+                break
+            }
+        }
+
+        if !foundMailClient {
+            let alertController = UIAlertController(title: L10n.mailNotConfiguredTitle,
+                                                    message: L10n.mailNotConfiguredMessage(recipient),
+                                                    preferredStyle: .alert)
+            alertController.addAction(title: L10n.mailNotConfiguredCopyInformation, style: .default) {
+                UIPasteboard.general.string = recipient + "\n\n" + body
+            }
+
+            presenter.present(alertController, animated: true)
+        }
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -40,14 +156,11 @@ final class KinSupportViewController: MFMailComposeViewController {
         return nil
     }
 
-    private class func attachmentString() -> String {
+    fileprivate class func attachmentString() -> String {
         return """
         App Version: \(Bundle.appVersion)
         iOS \(ProcessInfo().operatingSystemVersionString)
         User ID: \(User.current?.userId ?? "No user ID")
-        Balance: \(Kin.shared.balance)
-        Device ID: \(User.current?.deviceId ?? "No device ID")
-        Device Token: \(User.current?.deviceToken ?? "No device Token")
         """
     }
 

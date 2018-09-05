@@ -40,6 +40,6 @@ extension HelpCenterViewController: WKScriptMessageHandler {
             return
         }
 
-        KinSupportViewController.present(from: self)
+        KinSupportViewController.present(.support, from: self)
     }
 }

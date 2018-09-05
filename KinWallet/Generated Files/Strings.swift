@@ -131,6 +131,10 @@ internal enum L10n {
   internal static let existingBackupOverwriteMessage = L10n.tr("Localizable", "ExistingBackupOverwriteMessage")
   /// Are you sure you want to create a new backup?
   internal static let existingBackupOverwriteTitle = L10n.tr("Localizable", "ExistingBackupOverwriteTitle")
+  /// We really appreciate your input. Please enter your feedback here:
+  internal static let feedbackEmailBody = L10n.tr("Localizable", "FeedbackEmailBody")
+  /// Kinit Feedback
+  internal static let feedbackEmailSubject = L10n.tr("Localizable", "FeedbackEmailSubject")
   /// We can’t respond to feedbacks individually. If you have a question or need help resolving a problem, you’ll find answers in our help center.
   internal static let feedbackNotSupportAlertMessage = L10n.tr("Localizable", "FeedbackNotSupportAlertMessage")
   /// 
@@ -165,10 +169,14 @@ internal enum L10n {
   internal static let lastOfferGrabbedTitle = L10n.tr("Localizable", "LastOfferGrabbedTitle")
   /// Later
   internal static let later = L10n.tr("Localizable", "Later")
-  /// Add an email account to your device in order to send email.
-  internal static let mailNotConfiguredErrorMessage = L10n.tr("Localizable", "MailNotConfiguredErrorMessage")
+  /// Copy Message
+  internal static let mailNotConfiguredCopyInformation = L10n.tr("Localizable", "MailNotConfiguredCopyInformation")
+  /// The Mail app is not configured with an email account, and we could not find a popular email app installed.\nPlease copy the message and paste it in an email to %@
+  internal static func mailNotConfiguredMessage(_ p1: String) -> String {
+    return L10n.tr("Localizable", "MailNotConfiguredMessage", p1)
+  }
   /// Mail Not Configured
-  internal static let mailNotConfiguredErrorTitle = L10n.tr("Localizable", "MailNotConfiguredErrorTitle")
+  internal static let mailNotConfiguredTitle = L10n.tr("Localizable", "MailNotConfiguredTitle")
   /// Next
   internal static let nextAction = L10n.tr("Localizable", "NextAction")
   /// We have planted the seed and your next task is currently growing
@@ -309,6 +317,8 @@ internal enum L10n {
   internal static let startAction = L10n.tr("Localizable", "StartAction")
   /// Support
   internal static let support = L10n.tr("Localizable", "Support")
+  /// Kinit Support Request
+  internal static let supportEmailSubject = L10n.tr("Localizable", "SupportEmailSubject")
   /// Tap to continue
   internal static let tapToContinue = L10n.tr("Localizable", "TapToContinue")
   /// Tap to finish

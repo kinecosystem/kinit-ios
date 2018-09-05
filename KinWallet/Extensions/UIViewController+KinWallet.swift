@@ -62,7 +62,7 @@ extension UIViewController {
                 return
             }
 
-            KinSupportViewController.present(from: self)
+            KinSupportViewController.present(.support, from: self)
         }
 
         alertController.addAction(title: L10n.tryAgain, style: .default)

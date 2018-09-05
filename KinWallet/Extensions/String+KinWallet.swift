@@ -22,6 +22,10 @@ extension String {
     var isBackupStringValid: Bool {
         return trimmingCharacters(in: .whitespacesAndNewlines).count >= 4
     }
+
+    func toURL() -> URL? {
+        return URL(string: self)
+    }
 }
 
 extension String {
@@ -76,5 +80,11 @@ extension String {
 
     var md5Base64: String {
         return md5Data.base64EncodedString()
+    }
+}
+
+extension Optional where Wrapped == String {
+    var orEmpty: String {
+        return self ?? ""
     }
 }

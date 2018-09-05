@@ -133,7 +133,7 @@ final class MoreViewController: UIViewController {
         alertController.addAction(title: L10n.helpCenter, style: .default, handler: showHelpCenter)
 
         alertController.addAction(title: L10n.sendFeedback, style: .default) { [unowned self] in
-            KinSupportViewController.present(from: self)
+            KinSupportViewController.present(.feedback, from: self)
         }
 
         presentAnimated(alertController)

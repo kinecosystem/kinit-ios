@@ -96,7 +96,7 @@
 	</array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>googlemail</string>
+		<string>googlegmail</string>
 		<string>readdle-spark</string>
 		<string>inbox-gmail</string>
 		<string>ms-outlook</string>
