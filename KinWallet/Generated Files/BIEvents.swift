@@ -2,7 +2,7 @@
 // BIEvents.swift
 //
 // Don't edit this file.
-// Generated at 2018-08-26 09:41:27 +0000 by Kik BI-Generator.
+// Generated at 2018-09-06 09:47:43 +0000 by Kik BI-Generator.
 //
 
 protocol BIEvent {
@@ -347,6 +347,17 @@ struct Events {
         /// user successfully restored his/her wallet. Event name: `wallet_restored`
         struct WalletRestored: BIEvent {
             let name = "wallet_restored"
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "business",
+                        
+                        ]
+            }
+        } 
+        /// user submits a feedback email. Event name: `feedback_sent`
+        struct FeedbackSent: BIEvent {
+            let name = "feedback_sent"
             
             var properties: [String: Any] {
                 return [
@@ -867,9 +878,11 @@ struct Events {
                         ]
             }
         } 
-        /// users clicks on support button (opens email). Event name: `click_Support_button`
+        /// users clicks on support button (opens email), on specific FAQ page. Event name: `click_Support_button`
         struct ClickSupportButton: BIEvent {
             let name = "click_Support_button"
+            let faqCategory: String
+            let faqTitle: String
             
             var properties: [String: Any] {
                 return [
@@ -878,6 +891,9 @@ struct Events {
                         "action": "click",
                         "event_type": "analytics",
                         
+                        
+                        "FAQ_category": faqCategory,
+                        "FAQ_title": faqTitle, 
                         ]
             }
         } 
@@ -1593,6 +1609,76 @@ struct Events {
                         
                         
                         "already_backed_up": alreadyBackedUp.rawValue, 
+                        ]
+            }
+        } 
+        /// user views the FAQ main page (with all the categories). Event name: `view_FAQ_Main_page`
+        struct ViewFaqMainPage: BIEvent {
+            let name = "view_FAQ_Main_page"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "FAQ_Main",
+                        "item_type": "page",
+                        "action": "view",
+                        "event_type": "analytics",
+                        
+                        ]
+            }
+        } 
+        /// user views a FAQ specific page . Event name: `view_FAQ_page`
+        struct ViewFaqPage: BIEvent {
+            let name = "view_FAQ_page"
+            let faqCategory: String
+            let faqTitle: String
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "FAQ",
+                        "item_type": "page",
+                        "action": "view",
+                        "event_type": "analytics",
+                        
+                        
+                        "FAQ_category": faqCategory,
+                        "FAQ_title": faqTitle, 
+                        ]
+            }
+        } 
+        /// user clicks the feedback button on the More page. Event name: `click_Feedback_button`
+        struct ClickFeedbackButton: BIEvent {
+            let name = "click_Feedback_button"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Feedback",
+                        "item_type": "button",
+                        "action": "click",
+                        "event_type": "analytics",
+                        
+                        ]
+            }
+        } 
+        /// user clicks the Yes/No buttons on FAQ page, to share if the page info was helpful or not. Event name: `click_Page_Helpful_button_on_FAQ_page`
+        struct ClickPageHelpfulButtonOnFaqPage: BIEvent {
+            let name = "click_Page_Helpful_button_on_FAQ_page"
+            let faqCategory: String
+            let faqTitle: String
+            let helpful: Bool
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Page_Helpful",
+                        "item_type": "button",
+                        "action": "click",
+                        "event_type": "analytics",
+                        "parent_name": "FAQ",
+                        "parent_type": "page",
+                        
+                        
+                        "FAQ_category": faqCategory,
+                        "FAQ_title": faqTitle,
+                        "Helpful": helpful, 
                         ]
             }
         } 

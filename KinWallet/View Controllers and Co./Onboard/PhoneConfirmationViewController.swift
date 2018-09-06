@@ -258,7 +258,7 @@ class PhoneConfirmationViewController: UIViewController {
     }
 
     @IBAction func contactSupport(_ sender: Any) {
-        KinSupportViewController.present(.support, from: self)
+        KinSupportViewController.presentSupport(from: self)
     }
 
     func isCurrentCodeValid() -> Bool {

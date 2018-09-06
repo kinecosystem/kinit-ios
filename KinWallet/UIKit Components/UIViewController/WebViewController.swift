@@ -13,6 +13,7 @@ let viewportScriptString = "var meta = document.createElement('meta'); meta.setA
 
 class WebViewController: UIViewController {
     var webView: WKWebView!
+    var isLoadingObservationToken: NSKeyValueObservation?
 
     let activityIndicatorView: UIActivityIndicatorView = {
         let a = UIActivityIndicatorView(style: .gray)
@@ -20,6 +21,10 @@ class WebViewController: UIViewController {
 
         return a
     }()
+
+    deinit {
+        isLoadingObservationToken?.invalidate()
+    }
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -37,6 +42,13 @@ class WebViewController: UIViewController {
         config.userContentController = controller
 
         webView = WKWebView(frame: .zero, configuration: config)
+        isLoadingObservationToken = webView.observe(\WKWebView.isLoading, options: .new) { [weak self] _, value in
+            guard let isLoading = value.newValue else {
+                return
+            }
+
+            self?.loadingStateChanged(isLoading)
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -48,7 +60,6 @@ class WebViewController: UIViewController {
 
         view.backgroundColor = .white
         view.addAndFit(webView, layoutReference: .safeArea)
-        webView.addAndCenter(activityIndicatorView)
     }
 
     func setupUserContentController(_ controller: WKUserContentController) {
@@ -56,6 +67,10 @@ class WebViewController: UIViewController {
     }
 
     func setupWebViewConfiguration(_ configuration: WKWebViewConfiguration) {
+
+    }
+
+    func loadingStateChanged(_ isLoading: Bool) {
 
     }
 

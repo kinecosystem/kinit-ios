@@ -86,9 +86,31 @@ extension ContactOption {
 }
 
 final class KinSupportViewController: MFMailComposeViewController {
-    class func present(_ option: ContactOption, from presenter: UIViewController) {
-        Events.Analytics.ClickSupportButton().send()
+    let option: ContactOption
 
+    init(option: ContactOption) {
+        self.option = option
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    class func presentFeedback(from presenter: UIViewController) {
+        Events.Analytics.ClickFeedbackButton().send()
+        present(.feedback, from: presenter)
+    }
+
+    class func presentSupport(from presenter: UIViewController, faqCategory: String = "", faqTitle: String = "") {
+        Events.Analytics
+            .ClickSupportButton(faqCategory: faqCategory, faqTitle: faqTitle)
+            .send()
+        present(.feedback, from: presenter)
+    }
+
+    private class func present(_ option: ContactOption, from presenter: UIViewController) {
         let recipient = option.emailAddress
         let subject = option.emailSubject
 
@@ -98,7 +120,7 @@ final class KinSupportViewController: MFMailComposeViewController {
             return
         }
 
-        let mailController = KinSupportViewController()
+        let mailController = KinSupportViewController(option: option)
         mailController.setToRecipients([recipient])
         mailController.setSubject(subject)
 
@@ -175,7 +197,16 @@ extension KinSupportViewController: MFMailComposeViewControllerDelegate {
                                error: Error?) {
         dismiss(animated: true)
 
-        if result == .sent {
+        guard
+            let controller = controller as? KinSupportViewController,
+            result == .sent else {
+            return
+        }
+
+        switch controller.option {
+        case .feedback:
+            Events.Business.FeedbackSent().send()
+        case .support:
             Events.Business.SupportRequestSent().send()
         }
     }

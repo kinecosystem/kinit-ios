@@ -317,7 +317,7 @@ extension RootViewController: NoticeViewControllerDelegate {
 
     func noticeViewControllerDidTapAdditionalMessage(_ viewController: NoticeViewController) {
         logClickedSupportOnErrorPage()
-        KinSupportViewController.present(.support, from: viewController)
+        KinSupportViewController.presentSupport(from: viewController)
     }
 }
 
