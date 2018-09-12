@@ -43,6 +43,8 @@ final class HelpCenterViewController: WebViewController {
 
     override func setupUserContentController(_ controller: WKUserContentController) {
         controller.add(self, name: MessageNames.contactSupport)
+        controller.add(self, name: MessageNames.isPageHelpfulSelection)
+        controller.add(self, name: MessageNames.pageLoaded)
     }
 
     private func contactSupport(category: String, pageTitle: String) {
@@ -78,13 +80,26 @@ final class HelpCenterViewController: WebViewController {
 
 extension HelpCenterViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        guard
+            let body = message.body as? [String: Any],
+            let category = body["faqCategory"] as? String,
+            let title = body["faqTitle"] as? String else {
+            return
+        }
+
         switch message.name {
         case MessageNames.contactSupport:
-            contactSupport(category: "", pageTitle: "") //TODO: get category and page title
+            contactSupport(category: category, pageTitle: title)
         case MessageNames.isPageHelpfulSelection:
-            isPageHelpfulSelection(category: "", pageTitle: "", isHelpful: true)
+            if let isHelpful = body["helpful"] as? Bool {
+                isPageHelpfulSelection(category: category, pageTitle: title, isHelpful: isHelpful)
+            }
         case MessageNames.pageLoaded:
-            pageLoaded(category: "", pageTitle: "")
+            if category == "Main Page" {
+                mainPageLoaded()
+            } else {
+                pageLoaded(category: category, pageTitle: title)
+            }
         default:
             break
         }
