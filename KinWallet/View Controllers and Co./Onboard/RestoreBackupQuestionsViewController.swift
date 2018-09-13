@@ -12,6 +12,10 @@ class RestoreBackupQuestionsViewController: UITableViewController {
     var questions = [String]()
     var encryptedWallet: String!
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -118,11 +122,11 @@ class RestoreBackupQuestionsViewController: UITableViewController {
                 return false
         }
 
-        return firstQuestionCell.textField.textOrEmpty.count >= 4
-            && secondQuestionCell.textField.textOrEmpty.count >= 4
+        return firstQuestionCell.textField.textOrEmpty.isBackupStringValid
+            && secondQuestionCell.textField.textOrEmpty.isBackupStringValid
     }
 
-    @objc func textDidChangeNotification(_ sender: Any) {
+    @objc private func textDidChangeNotification(_ sender: Any) {
         verifyActionButtonState()
     }
 
@@ -165,25 +169,6 @@ extension RestoreBackupQuestionsViewController: UITextFieldDelegate {
         }
 
         return false
-    }
-
-    func textField(_ textField: UITextField,
-                   shouldChangeCharactersIn range: NSRange,
-                   replacementString string: String) -> Bool {
-        guard let currentText = textField.text else {
-            return false
-        }
-
-        let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
-        if newText.count < currentText.count {
-            return true
-        } else if string == " " {
-            return currentText.count >= 4
-        } else if newText.hasSpaceBefore(index: 4) {
-            return false
-        }
-
-        return true
     }
 }
 

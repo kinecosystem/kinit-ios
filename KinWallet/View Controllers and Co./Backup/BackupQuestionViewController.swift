@@ -93,6 +93,10 @@ class BackupQuestionViewController: BackupTextInputViewController {
         return tableViewBottomConstraint.isActive
     }
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -106,6 +110,11 @@ class BackupQuestionViewController: BackupTextInputViewController {
         textField.placeholder = L10n.backupYourAnswerPlaceholder
 
         stepsProgressView.currentStep = step.rawValue
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(textDidChangeNotification(_:)),
+                                               name: .UITextFieldTextDidChange,
+                                               object: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -170,6 +179,14 @@ class BackupQuestionViewController: BackupTextInputViewController {
         UIView.animate(withDuration: animated ? 0.3 : 0) { [weak self] in
             self?.answerStackView.arrangedSubviews.forEach { $0.alpha = hidden ? 0 : 1 }
         }
+    }
+
+    @objc private func textDidChangeNotification(_ sender: Any) {
+        verifyActionButtonState()
+    }
+
+    private func verifyActionButtonState() {
+        accessoryView.isEnabled = isInputTextValid()
     }
 
     override func isInputTextValid(text: String? = nil) -> Bool {
@@ -288,33 +305,5 @@ extension BackupQuestionViewController: UITableViewDelegate {
             self.textField.becomeFirstResponder()
             self.accessoryView.isEnabled = self.isInputTextValid()
         }
-    }
-}
-
-extension BackupQuestionViewController {
-    func textField(_ textField: UITextField,
-                   shouldChangeCharactersIn range: NSRange,
-                   replacementString string: String) -> Bool {
-        guard let currentText = textField.text else {
-            return false
-        }
-
-        let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
-
-        let returnValue: Bool
-
-        if newText.count < currentText.count {
-            returnValue = true
-        } else if newText.hasSpaceBefore(index: 4) {
-            returnValue = false
-        } else {
-            returnValue = true
-        }
-
-        if returnValue {
-            accessoryView.isEnabled = isInputTextValid(text: newText)
-        }
-
-        return returnValue
     }
 }
