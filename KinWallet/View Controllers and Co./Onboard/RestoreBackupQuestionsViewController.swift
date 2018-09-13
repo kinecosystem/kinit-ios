@@ -195,9 +195,7 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
             let firstQuestionCell = tableView.cellForRow(at: IndexPath(row: 0, section: 1))
                 as? RestoreBackupQuestionCell,
             let secondQuestionCell = tableView.cellForRow(at: IndexPath(row: 1, section: 1))
-                as? RestoreBackupQuestionCell,
-            let actionCell = tableView.cellForRow(at: IndexPath(row: 0, section: 2))
-                as? RestoreBackupActionCell else {
+                as? RestoreBackupQuestionCell else {
                     return
         }
 
@@ -208,7 +206,24 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
             return
         }
 
-        actionCell.actionButton.isLoading = true
+        attemptRestore(with: (firstAnswer, secondAnswer))
+    }
+
+    private func attemptRestore(with answers: (String, String), isRetryingWithoutTrimming: Bool = false) {
+        let actionCell = tableView.cellForRow(at: IndexPath(row: 0, section: 2))
+            as? RestoreBackupActionCell
+        actionCell?.actionButton.isLoading = true
+
+        let firstAnswer: String
+        let secondAnswer: String
+
+        if isRetryingWithoutTrimming {
+            firstAnswer = answers.0
+            secondAnswer = answers.1
+        } else {
+            firstAnswer = answers.0.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            secondAnswer = answers.1.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        }
 
         DispatchQueue.global().async {
             do {
@@ -219,9 +234,15 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
                     .load(with: KinWebService.shared)
             } catch {
                 DispatchQueue.main.async {
-                    actionCell.actionButton.isLoading = false
-                    self.presentSupportAlert(title: L10n.backupWrongAnswersTitle,
-                                             message: L10n.backupWrongAnswersMessage)
+                    let shouldRetry = firstAnswer != answers.0 || secondAnswer != answers.1
+
+                    if shouldRetry {
+                        self.attemptRestore(with: answers, isRetryingWithoutTrimming: true)
+                    } else {
+                        actionCell?.actionButton.isLoading = false
+                        self.presentSupportAlert(title: L10n.backupWrongAnswersTitle,
+                                                 message: L10n.backupWrongAnswersMessage)
+                    }
                 }
 
                 KLogError("Could not decrypt wallet with given passphrase")
