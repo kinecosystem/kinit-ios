@@ -188,7 +188,9 @@ class BackupQuestionViewController: BackupTextInputViewController {
                 fatalError(e)
         }
 
-        let answer = textField.textOrEmpty
+        let answer = textField
+            .textOrEmpty
+            .trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 
         chosenHints = chosenHints ?? []
         chosenHints!.append((thisHintId, answer))
