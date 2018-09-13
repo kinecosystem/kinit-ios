@@ -5,6 +5,8 @@
 
 import Foundation
 
+let defaultTosURL = URL(string: "http://www.kinitapp.com/terms-and-privacy-policy")!
+
 struct RemoteConfig: Codable {
     let authTokenEnabled: Bool?
     let peerToPeerEnabled: Bool?
