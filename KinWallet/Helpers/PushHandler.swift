@@ -12,6 +12,7 @@ private enum KinPushType: String {
     case auth
     case peerToPeerReceived = "p2p_received"
     case repeatRegistration = "register"
+    case txCompleted = "tx_completed"
 }
 
 class PushHandler {
@@ -26,12 +27,10 @@ class PushHandler {
         }
 
         switch pushType {
-        case .auth:
-            ackAuthToken(with: kinData)
-        case .peerToPeerReceived:
-            peerToPeerReceived(with: kinData)
-        case .repeatRegistration:
-            repeatRegistration()
+        case .auth: ackAuthToken(with: kinData)
+        case .peerToPeerReceived: peerToPeerReceived(with: kinData)
+        case .repeatRegistration: repeatRegistration()
+        case .txCompleted: transactionCompleted(with: kinData)
         }
     }
 
@@ -118,5 +117,11 @@ class PushHandler {
                     user.save()
                 }
             }.load(with: KinWebService.shared)
+    }
+
+    private class func transactionCompleted(with kinData: [String: Any]) {
+        NotificationCenter.default.post(name: .transactionCompleted,
+                                        object: nil,
+                                        userInfo: kinData)
     }
 }
