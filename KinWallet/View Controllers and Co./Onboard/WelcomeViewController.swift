@@ -82,37 +82,30 @@ final class WelcomeViewController: UIViewController {
     }
 
     private func configureDisclaimerLabel() {
-        if RemoteConfig.current?.termsOfService != nil {
-            disclaimerLabel.font = FontFamily.Roboto.regular.font(size: 12)
-            disclaimerLabel.textColor = UIColor.white
+        disclaimerLabel.font = FontFamily.Roboto.regular.font(size: 12)
+        disclaimerLabel.textColor = UIColor.white
 
-            let string = L10n.welcomeScreenDisclaimer
-            let attributedString = NSMutableAttributedString(string: string)
-            attributedString.addAttributes([.font: FontFamily.Roboto.medium.font(size: 12),
-                                            .foregroundColor: UIColor.kin.brightBlue],
-                                           range: NSRange(location: 56, length: 16))
-            attributedString.addAttributes([.font: FontFamily.Roboto.medium.font(size: 12),
-                                            .foregroundColor: UIColor.kin.brightBlue],
-                                           range: NSRange(location: 77, length: 14))
-            disclaimerLabel.attributedText = attributedString
-            disclaimerLabel.isUserInteractionEnabled = true
+        let string = L10n.welcomeScreenDisclaimer
+        let attributedString = NSMutableAttributedString(string: string)
+        attributedString.addAttributes([.font: FontFamily.Roboto.medium.font(size: 12),
+                                        .foregroundColor: UIColor.kin.brightBlue],
+                                       range: NSRange(location: 56, length: 16))
+        attributedString.addAttributes([.font: FontFamily.Roboto.medium.font(size: 12),
+                                        .foregroundColor: UIColor.kin.brightBlue],
+                                       range: NSRange(location: 77, length: 14))
+        disclaimerLabel.attributedText = attributedString
+        disclaimerLabel.isUserInteractionEnabled = true
 
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openTermsOfService))
-            disclaimerLabel.addGestureRecognizer(tapGesture)
-        } else {
-            disclaimerLabel.text = nil
-            disclaimerLabel.isHidden = true
-        }
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openTermsOfService))
+        disclaimerLabel.addGestureRecognizer(tapGesture)
     }
 
     @objc func openTermsOfService() {
-        guard let tos = RemoteConfig.current?.termsOfService else {
-            return
-        }
+        let tos = RemoteConfig.current?.termsOfService ?? defaultTosURL
 
         let safariViewController = SFSafariViewController(url: tos)
         present(safariViewController, animated: true, completion: nil)
-    }   
+    }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent

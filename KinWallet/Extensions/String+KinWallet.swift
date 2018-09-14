@@ -20,20 +20,7 @@ extension String {
     }
 
     var isBackupStringValid: Bool {
-        guard count >= 4 else {
-            return false
-        }
-
-        guard !hasSpaceBefore(index: 4) else {
-            return false
-        }
-
-        return true
-    }
-
-    func hasSpaceBefore(index: Int) -> Bool {
-        let spaceRange = (self as NSString).range(of: " ").location
-        return spaceRange != NSNotFound && spaceRange < index
+        return trimmingCharacters(in: .whitespacesAndNewlines).count >= 4
     }
 }
 

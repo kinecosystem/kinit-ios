@@ -230,6 +230,7 @@ final class QuestionViewController: UIViewController {
                 KLogError(KinitErrorCodes.selectedAnswerCellNotFound.rawValue,
                           domain: KinErrorDomain,
                           userInfo: userInfo)
+                updateDelegateSelection()
                 return
         }
 

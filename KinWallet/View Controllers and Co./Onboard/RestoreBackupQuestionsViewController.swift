@@ -12,6 +12,10 @@ class RestoreBackupQuestionsViewController: UITableViewController {
     var questions = [String]()
     var encryptedWallet: String!
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -118,11 +122,11 @@ class RestoreBackupQuestionsViewController: UITableViewController {
                 return false
         }
 
-        return firstQuestionCell.textField.textOrEmpty.count >= 4
-            && secondQuestionCell.textField.textOrEmpty.count >= 4
+        return firstQuestionCell.textField.textOrEmpty.isBackupStringValid
+            && secondQuestionCell.textField.textOrEmpty.isBackupStringValid
     }
 
-    @objc func textDidChangeNotification(_ sender: Any) {
+    @objc private func textDidChangeNotification(_ sender: Any) {
         verifyActionButtonState()
     }
 
@@ -166,25 +170,6 @@ extension RestoreBackupQuestionsViewController: UITextFieldDelegate {
 
         return false
     }
-
-    func textField(_ textField: UITextField,
-                   shouldChangeCharactersIn range: NSRange,
-                   replacementString string: String) -> Bool {
-        guard let currentText = textField.text else {
-            return false
-        }
-
-        let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
-        if newText.count < currentText.count {
-            return true
-        } else if string == " " {
-            return currentText.count >= 4
-        } else if newText.hasSpaceBefore(index: 4) {
-            return false
-        }
-
-        return true
-    }
 }
 
 extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
@@ -195,9 +180,7 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
             let firstQuestionCell = tableView.cellForRow(at: IndexPath(row: 0, section: 1))
                 as? RestoreBackupQuestionCell,
             let secondQuestionCell = tableView.cellForRow(at: IndexPath(row: 1, section: 1))
-                as? RestoreBackupQuestionCell,
-            let actionCell = tableView.cellForRow(at: IndexPath(row: 0, section: 2))
-                as? RestoreBackupActionCell else {
+                as? RestoreBackupQuestionCell else {
                     return
         }
 
@@ -208,7 +191,24 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
             return
         }
 
-        actionCell.actionButton.isLoading = true
+        attemptRestore(with: (firstAnswer, secondAnswer))
+    }
+
+    private func attemptRestore(with answers: (String, String), isRetryingWithoutTrimming: Bool = false) {
+        let actionCell = tableView.cellForRow(at: IndexPath(row: 0, section: 2))
+            as? RestoreBackupActionCell
+        actionCell?.actionButton.isLoading = true
+
+        let firstAnswer: String
+        let secondAnswer: String
+
+        if isRetryingWithoutTrimming {
+            firstAnswer = answers.0
+            secondAnswer = answers.1
+        } else {
+            firstAnswer = answers.0.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            secondAnswer = answers.1.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        }
 
         DispatchQueue.global().async {
             do {
@@ -219,9 +219,15 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
                     .load(with: KinWebService.shared)
             } catch {
                 DispatchQueue.main.async {
-                    actionCell.actionButton.isLoading = false
-                    self.presentSupportAlert(title: L10n.backupWrongAnswersTitle,
-                                             message: L10n.backupWrongAnswersMessage)
+                    let shouldRetry = firstAnswer != answers.0 || secondAnswer != answers.1
+
+                    if shouldRetry {
+                        self.attemptRestore(with: answers, isRetryingWithoutTrimming: true)
+                    } else {
+                        actionCell?.actionButton.isLoading = false
+                        self.presentSupportAlert(title: L10n.backupWrongAnswersTitle,
+                                                 message: L10n.backupWrongAnswersMessage)
+                    }
                 }
 
                 KLogError("Could not decrypt wallet with given passphrase")
@@ -247,7 +253,7 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
         user.save()
 
         Analytics.userId = userId
-        
+
         KinLoader.shared.loadAllData()
         Kin.setPerformedBackup()
 
