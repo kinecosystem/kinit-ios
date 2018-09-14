@@ -9,14 +9,20 @@ import KinCoreSDK
 import KinUtil
 import KinitDesignables
 
+extension Notification.Name {
+    static var transactionCompleted = Notification.Name(rawValue: "org.kinecosystem.txCompleted")
+}
+
 final class TaskCompletedViewController: UIViewController {
     var task: Task!
     var results: TaskResults?
     var watch: PaymentWatch?
+    var notificationObserver: NSObjectProtocol?
     let linkBag = LinkBag()
     var failedToSubmitResults = false
     var initialBalance: UInt64!
     var targetBalance: UInt64!
+    var processedSuccess = false
     weak var surveyDelegate: SurveyViewControllerDelegate?
 
     @IBOutlet weak var backgroundGradientView: GradientView! {
@@ -24,6 +30,11 @@ final class TaskCompletedViewController: UIViewController {
             backgroundGradientView.direction = .vertical
             backgroundGradientView.colors = UIColor.blueGradientColors1
         }
+    }
+
+    deinit {
+        watch = nil
+        notificationObserver = nil
     }
 
     override func viewDidLoad() {
@@ -99,25 +110,35 @@ final class TaskCompletedViewController: UIViewController {
         KinLoader.shared.deleteCachedAndFetchNextTask()
 
         let memo = task.memo
+
+        notificationObserver = NotificationCenter.default.addObserver(forName: .transactionCompleted,
+                                                                      object: nil,
+                                                                      queue: nil) { [weak self] note in
+            guard let `self` = self,
+                let kinData = note.userInfo as? [String: Any],
+                let txData = kinData["tx_data"] as? [String: Any],
+                let amount = txData["kin"] as? UInt64,
+                let pushMemo = txData["memo"] as? String,
+                pushMemo == memo,
+                let txHash = txData["tx_hash"] as? String else {
+                    return
+            }
+
+            self.transactionSucceeded(with: amount, txId: txHash)
+        }
+
         watch = try? Kin.shared.watch(cursor: nil)
         watch?.emitter
             .filter { $0.memoText == memo }
             .on(queue: DispatchQueue.main, next: { [weak self] paymentInfo in
-                guard let aSelf = self else {
+                guard let `self` = self else {
                     return
                 }
 
+                Kin.shared.refreshBalance()
+
                 let paymentAmount = (paymentInfo.amount as NSDecimalNumber).uint64Value
-                aSelf.targetBalance = aSelf.initialBalance + paymentAmount
-                KinLoader.shared.loadTransactions()
-
-                aSelf.watch = nil
-                aSelf.logEarnTransactionSucceded(with: paymentInfo)
-                Analytics.incrementEarnCount()
-                Analytics.incrementTransactionCount()
-                Analytics.incrementTotalEarned(by: Int(paymentAmount))
-
-                aSelf.transactionSucceeded()
+                self.transactionSucceeded(with: paymentAmount, txId: paymentInfo.hash)
             }).add(to: linkBag)
 
         let timeout: TimeInterval
@@ -125,7 +146,7 @@ final class TaskCompletedViewController: UIViewController {
         #if DEBUG
         timeout = 8
         #else
-        timeout = 20
+        timeout = 30
         #endif
 
         DispatchQueue.main.asyncAfter(deadline: .now() + timeout) { [weak self] in
@@ -140,7 +161,12 @@ final class TaskCompletedViewController: UIViewController {
     private func transactionTimedOut() {
         logEarnTransactionTimeout()
 
+        Kin.shared.refreshBalance()
+        KinLoader.shared.loadTransactions()
+
+        notificationObserver = nil
         watch = nil
+
         let message =
         """
             We have received your results but something got stuck along the way.
@@ -191,13 +217,30 @@ final class TaskCompletedViewController: UIViewController {
         })
     }
 
-    private func transactionSucceeded() {
+    private func transactionSucceeded(with paymentAmount: UInt64, txId: String) {
+        notificationObserver = nil
+        watch = nil
+
         guard let transferringViewController = childViewControllers.first as? TransferringKinViewController else {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.transactionSucceeded()
+                self.transactionSucceeded(with: paymentAmount, txId: txId)
             }
             return
         }
+
+        guard !processedSuccess else {
+            return
+        }
+
+        processedSuccess = true
+
+        targetBalance = initialBalance + paymentAmount
+        KinLoader.shared.loadTransactions()
+
+        logEarnTransactionSucceded(with: paymentAmount, txId: txId)
+        Analytics.incrementEarnCount()
+        Analytics.incrementTransactionCount()
+        Analytics.incrementTotalEarned(by: Int(paymentAmount))
 
         transferringViewController.transactionSucceeded(newBalance: targetBalance)
 
@@ -278,11 +321,11 @@ extension TaskCompletedViewController {
             .send()
     }
 
-    fileprivate func logEarnTransactionSucceded(with payment: PaymentInfo) {
+    fileprivate func logEarnTransactionSucceded(with amount: UInt64, txId: String) {
         Events.Business
-            .KINTransactionSucceeded(kinAmount: Float(task.kinReward),
-                                                            transactionId: payment.hash,
-                                                            transactionType: .earn)
+            .KINTransactionSucceeded(kinAmount: Float(amount),
+                                     transactionId: txId,
+                                     transactionType: .earn)
             .send()
     }
 

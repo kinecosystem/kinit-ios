@@ -30,7 +30,6 @@ class Kin {
 
     private(set) var account: KinAccount
     let linkBag = LinkBag()
-    var balanceWatch: BalanceWatch?
     private var onboardingPromise: Promise<Bool>?
     var accountStatus: AccountStatus = {
         let fromDefaults = UserDefaults.standard.integer(forKey: accountStatusUserDefaultsKey)
@@ -40,6 +39,10 @@ class Kin {
     fileprivate var balanceDelegates = [WeakBox]()
     var publicAddress: String {
         return account.publicAddress
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     init() {
@@ -58,6 +61,15 @@ class Kin {
 
         self.account = try! client.accounts.last ?? client.addAccount()
         self.client = client
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applicationWillEnterForeground),
+                                               name: .UIApplicationWillEnterForeground,
+                                               object: nil)
+    }
+
+    @objc func applicationWillEnterForeground() {
+        Kin.shared.refreshBalance()
     }
 }
 
@@ -110,7 +122,6 @@ extension Kin {
                 UserDefaults.standard.set(AccountStatus.activated.rawValue,
                                           forKey: accountStatusUserDefaultsKey)
                 KLogVerbose("Already on-boarded account \(self.account.publicAddress). Balance is \(balance) KIN")
-                self.createBalanceWatch(initialBalance: balance)
                 self.onboardingPromise?.signal(true)
                 self.onboardingPromise = nil
                 return
@@ -183,7 +194,7 @@ extension Kin {
                 KLogVerbose("Account activated")
                 Events.Business.WalletCreated().send()
                 Events.Log.StellarKinTrustlineSetupSucceeded().send()
-                self.createBalanceWatch(initialBalance: 0)
+                self.balanceUpdated(0)
 
                 p.signal(true)
             }.error { error in
@@ -220,19 +231,6 @@ extension Kin {
         if let index = balanceDelegates.index(where: { $0.value === delegate }) {
             balanceDelegates.remove(at: index)
         }
-    }
-
-    private func createBalanceWatch(initialBalance: Decimal) {
-        guard let watch = try? account.watchBalance(initialBalance) else {
-            return
-        }
-
-        watch.emitter
-            .on(next: { [weak self] balance in
-                self?.balanceUpdated(balance)
-            }).add(to: linkBag)
-
-        balanceWatch = watch
     }
 
     func refreshBalance(completion: BalanceCompletion? = nil) {
@@ -292,6 +290,8 @@ extension Kin {
                                              transactionType: .spend)
                     .send()
             }
+
+            Kin.shared.refreshBalance()
 
             Analytics.incrementSpendCount()
             Analytics.incrementTransactionCount()
