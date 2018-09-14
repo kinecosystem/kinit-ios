@@ -161,6 +161,8 @@ final class TaskCompletedViewController: UIViewController {
     private func transactionTimedOut() {
         logEarnTransactionTimeout()
 
+        Kin.shared.refreshBalance()
+        KinLoader.shared.loadTransactions()
 
         notificationObserver = nil
         watch = nil

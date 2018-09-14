@@ -94,6 +94,8 @@ class PushHandler {
     }
 
     private class func peerToPeerReceived(with kinData: [String: Any]) {
+        Kin.shared.refreshBalance()
+
         guard
             let tx = kinData["tx"] as? [String: Any],
             let asData = try? JSONSerialization.data(withJSONObject: tx, options: []),
@@ -120,6 +122,7 @@ class PushHandler {
     }
 
     private class func transactionCompleted(with kinData: [String: Any]) {
+        Kin.shared.refreshBalance()
         NotificationCenter.default.post(name: .transactionCompleted,
                                         object: nil,
                                         userInfo: kinData)

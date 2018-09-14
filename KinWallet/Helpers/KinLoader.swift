@@ -27,7 +27,6 @@ class KinLoader {
         .stateful()
 
     init() {
-
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(applicationWillEnterForeground),
                                                name: .UIApplicationWillEnterForeground,
