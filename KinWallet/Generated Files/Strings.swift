@@ -51,6 +51,12 @@ internal enum L10n {
   internal static let backupConfirmSubtitle = L10n.tr("Localizable", "BackupConfirmSubtitle")
   /// Confirm Email
   internal static let backupConfirmTitle = L10n.tr("Localizable", "BackupConfirmTitle")
+  /// I understand, continue
+  internal static let backupExactAnswerContinueAction = L10n.tr("Localizable", "BackupExactAnswerContinueAction")
+  /// It is important to remember your answers. You will be required to provide exactly the same answers when restoring your account and will not be able to restore your account without them. The only way to reset your answers is by creating a new backup.
+  internal static let backupExactAnswersAlertMessage = L10n.tr("Localizable", "BackupExactAnswersAlertMessage")
+  /// Notice!
+  internal static let backupExactAnswersAlertTitle = L10n.tr("Localizable", "BackupExactAnswersAlertTitle")
   /// Creating a new wallet will erase your balance, are you sure you don’t want to restore?
   internal static let backupIgnoreAndCreateNewWalletMessage = L10n.tr("Localizable", "BackupIgnoreAndCreateNewWalletMessage")
   /// We already know each other!

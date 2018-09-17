@@ -222,30 +222,44 @@ class BackupQuestionViewController: BackupTextInputViewController {
             navigationController?.pushViewController(secondQuestion, animated: true)
 
         } else if step == .secondQuestion {
-            accessoryView.isLoading = true
-
-            DispatchQueue.global().async {
-                guard let encryptedWallet = try? self.encryptWallet() else {
-                    DispatchQueue.main.async {
-                        self.presentSupportAlert(title: L10n.generalErrorTitle,
-                                                 message: L10n.generalErrorMessage)
-
-                        self.accessoryView.isLoading = false
-                    }
-
-                    return
-                }
-
-                DispatchQueue.main.async {
-                    self.accessoryView.isLoading = false
-                    let sendEmailViewController = StoryboardScene.Backup.backupSendEmailViewController.instantiate()
-                    sendEmailViewController.chosenHints = self.chosenHints!.map { $0.0 }
-                    sendEmailViewController.encryptedWallet = encryptedWallet
-                    self.navigationController?.pushViewController(sendEmailViewController, animated: true)
-                }
-            }
+            alertExactAnswersNeeded()
         } else {
             fatalError("BackupQuestionViewController can only have step set to .firstQuestion or .secondQuestion")
+        }
+    }
+
+    private func alertExactAnswersNeeded() {
+        let alertController = UIAlertController(title: L10n.backupExactAnswersAlertTitle,
+                                                message: L10n.backupExactAnswersAlertMessage,
+                                                preferredStyle: .alert)
+        alertController.addAction(title: L10n.backupExactAnswerContinueAction,
+                                  style: .default,
+                                  handler: acknowledgedExactAnswersNeeded)
+        presentAnimated(alertController)
+    }
+
+    private func acknowledgedExactAnswersNeeded() {
+        accessoryView.isLoading = true
+
+        DispatchQueue.global().async {
+            guard let encryptedWallet = try? self.encryptWallet() else {
+                DispatchQueue.main.async {
+                    self.presentSupportAlert(title: L10n.generalErrorTitle,
+                                             message: L10n.generalErrorMessage)
+
+                    self.accessoryView.isLoading = false
+                }
+
+                return
+            }
+
+            DispatchQueue.main.async {
+                self.accessoryView.isLoading = false
+                let sendEmailViewController = StoryboardScene.Backup.backupSendEmailViewController.instantiate()
+                sendEmailViewController.chosenHints = self.chosenHints!.map { $0.0 }
+                sendEmailViewController.encryptedWallet = encryptedWallet
+                self.navigationController?.pushViewController(sendEmailViewController, animated: true)
+            }
         }
     }
 
