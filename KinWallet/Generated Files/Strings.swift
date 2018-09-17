@@ -131,8 +131,10 @@ internal enum L10n {
   internal static let existingBackupOverwriteMessage = L10n.tr("Localizable", "ExistingBackupOverwriteMessage")
   /// Are you sure you want to create a new backup?
   internal static let existingBackupOverwriteTitle = L10n.tr("Localizable", "ExistingBackupOverwriteTitle")
-  /// We really appreciate your input. Please enter your feedback here:
-  internal static let feedbackEmailBody = L10n.tr("Localizable", "FeedbackEmailBody")
+  /// We really appreciate your input. Please enter your feedback for Kinit %@ here:
+  internal static func feedbackEmailBody(_ p1: String) -> String {
+    return L10n.tr("Localizable", "FeedbackEmailBody", p1)
+  }
   /// Kinit Feedback
   internal static let feedbackEmailSubject = L10n.tr("Localizable", "FeedbackEmailSubject")
   /// We can’t respond to feedbacks individually. If you have a question or need help resolving a problem, you’ll find answers in our help center.

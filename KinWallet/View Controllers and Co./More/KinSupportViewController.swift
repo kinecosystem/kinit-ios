@@ -80,7 +80,7 @@ extension ContactOption {
     var emailBody: String {
         switch self {
         case .support: return KinSupportViewController.attachmentString()
-        case .feedback: return L10n.feedbackEmailBody
+        case .feedback: return L10n.feedbackEmailBody(Bundle.appVersion)
         }
     }
 }
