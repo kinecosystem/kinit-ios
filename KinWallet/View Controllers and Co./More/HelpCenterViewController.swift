@@ -13,7 +13,7 @@ private struct MessageNames {
 }
 
 final class HelpCenterViewController: WebViewController {
-    private let helpCenterURL = URL(string: "https://cdn.kinitapp.com/faq/faq.html")!
+    private let helpCenterURL = URL(string: "https://cdn.kinitapp.com/faq/index.html")!
     private let activityIndicatorView: UIActivityIndicatorView = {
         let aView = UIActivityIndicatorView(style: .white)
         aView.hidesWhenStopped = true
