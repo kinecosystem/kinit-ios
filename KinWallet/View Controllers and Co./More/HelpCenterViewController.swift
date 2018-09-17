@@ -15,7 +15,7 @@ private struct MessageNames {
 final class HelpCenterViewController: WebViewController {
     private let helpCenterURL = URL(string: "https://cdn.kinitapp.com/faq/faq.html")!
     private let activityIndicatorView: UIActivityIndicatorView = {
-        let aView = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        let aView = UIActivityIndicatorView(style: .white)
         aView.hidesWhenStopped = true
 
         return aView

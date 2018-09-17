@@ -15,13 +15,6 @@ class WebViewController: UIViewController {
     var webView: WKWebView!
     var isLoadingObservationToken: NSKeyValueObservation?
 
-    let activityIndicatorView: UIActivityIndicatorView = {
-        let a = UIActivityIndicatorView(style: .gray)
-        a.hidesWhenStopped = true
-
-        return a
-    }()
-
     deinit {
         isLoadingObservationToken?.invalidate()
     }
