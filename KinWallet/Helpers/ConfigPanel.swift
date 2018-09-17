@@ -12,6 +12,11 @@ class ConfigPanel {
         #if DEBUG
         displayConfigPanel(from: presenter)
         #else
+        displayConfigPanelAuthentication(from: presenter)
+        #endif
+    }
+
+    private class func displayConfigPanelAuthentication(from presenter: UIViewController) {
         let alertController = UIAlertController(title: "Config Panel",
                                                 message: "Please insert the password",
                                                 preferredStyle: .alert)
@@ -35,10 +40,10 @@ class ConfigPanel {
 
         alertController.addTextField { textField in
             textField.isSecureTextEntry = true
-            observer = NotificationCenter.default.addObserver(forName: .UITextFieldTextDidChange,
+            observer = NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification,
                                                               object: nil,
                                                               queue: nil) { _ in
-                passwordAction.isEnabled = !(textField.text?.isEmpty ?? false)
+                                                                passwordAction.isEnabled = !(textField.text?.isEmpty ?? false)
             }
         }
         passwordAction.isEnabled = false
@@ -51,7 +56,6 @@ class ConfigPanel {
 
         alertController.addAction(passwordAction)
         presenter.present(alertController, animated: true)
-        #endif
     }
 
     class func displayConfigPanel(from presenter: UIViewController) {
