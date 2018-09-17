@@ -301,7 +301,7 @@ extension SendKinViewController: UITextFieldDelegate {
 
 extension SendKinViewController: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController,
-                              animationControllerFor operation: UINavigationControllerOperation,
+                              animationControllerFor operation: UINavigationController.Operation,
                               from fromVC: UIViewController,
                               to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return AlphaTransitionAnimator()

@@ -16,7 +16,7 @@ class ParticlesView: UIView {
         let intensity = Float(0.5)
 
         emitter = CAEmitterLayer()
-        emitter.emitterShape = kCAEmitterLayerLine
+        emitter.emitterShape = .line
         emitter.emitterCells = (0..<16).map {
             let cell = CAEmitterCell()
             cell.birthRate = 10.0 * intensity

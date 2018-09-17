@@ -27,7 +27,7 @@ class WebViewController: UIViewController {
     }()
 
     let activityIndicatorView: UIActivityIndicatorView = {
-        let a = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        let a = UIActivityIndicatorView(style: .gray)
         a.hidesWhenStopped = true
 
         return a

@@ -36,7 +36,7 @@ final class KinSupportViewController: MFMailComposeViewController {
         return .lightContent
     }
 
-    override var childViewControllerForStatusBarStyle: UIViewController? {
+    override var childForStatusBarStyle: UIViewController? {
         return nil
     }
 

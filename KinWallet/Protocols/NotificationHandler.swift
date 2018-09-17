@@ -19,6 +19,7 @@ extension NotificationAuthorizationStatus {
         case .notDetermined: self = .notDetermined
         case .authorized: self = .authorized
         case .denied: self = .denied
+        case .provisional: self = .authorized
         }
     }
 }

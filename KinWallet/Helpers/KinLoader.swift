@@ -29,7 +29,7 @@ class KinLoader {
     init() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(applicationWillEnterForeground),
-                                               name: .UIApplicationWillEnterForeground,
+                                               name: UIApplication.willEnterForegroundNotification,
                                                object: nil)
     }
 

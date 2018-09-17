@@ -107,7 +107,7 @@ class PhoneVerificationRequestViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(numberTextDidChange),
-                                               name: .UITextFieldTextDidChange,
+                                               name: UITextField.textDidChangeNotification,
                                                object: nil)
 
         isPhoneNumberValid

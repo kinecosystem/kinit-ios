@@ -12,7 +12,7 @@ struct QuizData: Codable {
     let explanation: String
     let reward: UInt
 
-    enum CodingKeys: CodingKey, String {
+    enum CodingKeys: String, CodingKey {
         case correctAnswerId = "answer_id"
         case explanation
         case reward

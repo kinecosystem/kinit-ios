@@ -17,7 +17,7 @@ struct Offer: Codable {
     let typeImageUrl: URL
     let price: UInt64
 
-    enum CodingKeys: CodingKey, String {
+    enum CodingKeys: String, CodingKey {
         case address
         case author = "provider"
         case description = "desc"

@@ -24,7 +24,7 @@ class ButtonAccessoryInputView: UIView {
         return b
     }()
 
-    lazy var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    lazy var activityIndicator = UIActivityIndicatorView(style: .gray)
 
     let tapped = Observable<Void>()
 

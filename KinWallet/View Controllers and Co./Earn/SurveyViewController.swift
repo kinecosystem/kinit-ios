@@ -67,7 +67,7 @@ final class SurveyViewController: UIViewController {
     private var selectedAnswers = [SelectedAnswer]()
 
     private var currentChildViewController: UIViewController? {
-        return childViewControllers.first
+        return children.first
     }
 
     class func embeddedInNavigationController(with task: Task,

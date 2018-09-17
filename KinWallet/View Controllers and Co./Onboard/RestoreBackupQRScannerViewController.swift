@@ -67,7 +67,7 @@ class RestoreBackupQRScannerViewController: UIViewController {
 
         qrCodeScannerViewController.delegate = self
         addAndFit(qrCodeScannerViewController)
-        view.sendSubview(toBack: qrCodeScannerViewController.view)
+        view.sendSubviewToBack(qrCodeScannerViewController.view)
 
         scanningLine.alpha = 0
         view.addSubview(scanningLine)
@@ -147,7 +147,7 @@ extension RestoreBackupQRScannerViewController: QRCodeScannerDelegate {
         let alertController = UIAlertController(title: L10n.cameraDeniedTitle,
                                                 message: L10n.qrScannerCameraDeniedMessage,
                                                 preferredStyle: .alert)
-        if let url = URL(string: UIApplicationOpenSettingsURLString) {
+        if let url = URL(string: UIApplication.openSettingsURLString) {
             alertController.addAction(title: L10n.cameraDeniedAction, style: .default) { _ in
                 if #available(iOS 10.0, *) {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)

@@ -16,7 +16,7 @@ struct RemoteConfig: Codable {
     let termsOfService: URL?
     let backupNag: Bool?
 
-    enum CodingKeys: CodingKey, String {
+    enum CodingKeys: String, CodingKey {
         case authTokenEnabled = "auth_token_enabled"
         case peerToPeerEnabled = "p2p_enabled"
         case peerToPeerMaxKin = "p2p_max_kin"

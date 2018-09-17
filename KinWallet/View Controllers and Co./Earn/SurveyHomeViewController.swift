@@ -58,13 +58,13 @@ final class SurveyHomeViewController: UIViewController {
     func showTaskAvailable(_ task: Task) {
         assert(task.daysToUnlock == 0,
                "SurveyUnavailableViewController received a task that is ready to be displayed.")
-        if let surveryUnavailable = childViewControllers.first as? SurveyUnavailableViewController {
+        if let surveryUnavailable = children.first as? SurveyUnavailableViewController {
             surveryUnavailable.remove()
         }
 
         let surveyInfo: SurveyInfoViewController
 
-        if let existingSurveyInfo = childViewControllers.first as? SurveyInfoViewController {
+        if let existingSurveyInfo = children.first as? SurveyInfoViewController {
             surveyInfo = existingSurveyInfo
             surveyInfo.task = task
         } else {
@@ -78,7 +78,7 @@ final class SurveyHomeViewController: UIViewController {
     }
 
     @objc func splashScreenWillDismiss() {
-        guard let surveyInfo = childViewControllers.first as? SurveyInfoViewController else {
+        guard let surveyInfo = children.first as? SurveyInfoViewController else {
             return
         }
 
@@ -115,7 +115,7 @@ final class SurveyHomeViewController: UIViewController {
     }
 
     func showTaskUnavailable(_ task: Task?, error: Error?) {
-        childViewControllers.forEach { $0.remove() }
+        children.forEach { $0.remove() }
 
         let surveyUnavailable = SurveyUnavailableViewController()
         surveyUnavailable.task = task

@@ -31,7 +31,7 @@ class BackupConfirmEmailViewController: UIViewController {
 
             let attributedString = NSMutableAttributedString(string: resendMessage)
             attributedString.addAttribute(.foregroundColor, value: UIColor.kin.appTint, range: range)
-            attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.styleSingle.rawValue, range: range)
+            attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
             resendEmailLabel.attributedText = attributedString
         }
     }

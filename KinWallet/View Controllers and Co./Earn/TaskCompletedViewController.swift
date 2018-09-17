@@ -186,7 +186,7 @@ final class TaskCompletedViewController: UIViewController {
     }
 
     private func moveToTransferring() {
-        guard let doneViewController = childViewControllers.first else {
+        guard let doneViewController = children.first else {
             return
         }
 
@@ -221,7 +221,7 @@ final class TaskCompletedViewController: UIViewController {
         notificationObserver = nil
         watch = nil
 
-        guard let transferringViewController = childViewControllers.first as? TransferringKinViewController else {
+        guard let transferringViewController = children.first as? TransferringKinViewController else {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.transactionSucceeded(with: paymentAmount, txId: txId)
             }

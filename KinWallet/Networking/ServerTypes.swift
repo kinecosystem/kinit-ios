@@ -34,7 +34,7 @@ struct BookOfferResponse: StatusResponse, Codable {
     let orderId: String?
     let reason: String?
 
-    enum CodingKeys: CodingKey, String {
+    enum CodingKeys: String, CodingKey {
         case status
         case orderId = "order_id"
         case reason
@@ -50,7 +50,7 @@ enum BookOfferResult {
 struct OfferInfo: Codable {
     let identifier: String
 
-    enum CodingKeys: CodingKey, String {
+    enum CodingKeys: String, CodingKey {
         case identifier = "id"
     }
 }
@@ -58,7 +58,7 @@ struct OfferInfo: Codable {
 struct PaymentReceipt: Codable {
     let txHash: String
 
-    enum CodingKeys: CodingKey, String {
+    enum CodingKeys: String, CodingKey {
         case txHash = "tx_hash"
     }
 }
@@ -77,7 +77,7 @@ struct TransactionReportStatusResponse: StatusResponse, Codable {
     let status: String
     let transaction: KinitTransaction
 
-    enum CodingKeys: CodingKey, String {
+    enum CodingKeys: String, CodingKey {
         case status
         case transaction = "tx"
     }
@@ -87,7 +87,7 @@ struct TransactionHistoryResponse: StatusResponse, Codable {
     let status: String
     let transactions: [KinitTransaction]
 
-    enum CodingKeys: CodingKey, String {
+    enum CodingKeys: String, CodingKey {
         case status
         case transactions = "txs"
     }
@@ -97,7 +97,7 @@ struct RedeemedItemsResponse: StatusResponse, Codable {
     let status: String
     let items: [RedeemTransaction]
 
-    enum CodingKeys: CodingKey, String {
+    enum CodingKeys: String, CodingKey {
         case status
         case items = "redeemed"
     }
@@ -111,7 +111,7 @@ struct RemoteConfigStatusResponse: StatusResponse, Codable {
 struct BlacklistedAreaCodes: Codable {
     let areaCodes: [String]
 
-    enum CodingKeys: CodingKey, String {
+    enum CodingKeys: String, CodingKey {
         case areaCodes = "areacodes"
     }
 }

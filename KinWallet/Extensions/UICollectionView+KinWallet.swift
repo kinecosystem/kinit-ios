@@ -18,20 +18,20 @@ extension UICollectionView {
 
     func register<T: UICollectionReusableView>(class: T.Type) {
         register(T.self,
-                 forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                  withReuseIdentifier: T.reuseIdentifier)
         register(T.self,
-                 forSupplementaryViewOfKind: UICollectionElementKindSectionFooter,
+                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
                  withReuseIdentifier: T.reuseIdentifier)
     }
 
     func register<T: UICollectionReusableView>(nib: T.Type) where T: NibLoadableView {
         let nib = UINib(nibName: T.nibName, bundle: nil)
         register(nib,
-                 forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                  withReuseIdentifier: T.reuseIdentifier)
         register(nib,
-                 forSupplementaryViewOfKind: UICollectionElementKindSectionFooter,
+                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
                  withReuseIdentifier: T.reuseIdentifier)
     }
 

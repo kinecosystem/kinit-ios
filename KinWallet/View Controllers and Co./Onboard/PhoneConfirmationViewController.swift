@@ -87,7 +87,7 @@ class PhoneConfirmationViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(assignFirstResponder),
-                                               name: .UIApplicationDidBecomeActive,
+                                               name: UIApplication.didBecomeActiveNotification,
                                                object: nil)
 
         descriptionLabel.text = L10n.phoneVerificationCodeSent(phoneNumber!)

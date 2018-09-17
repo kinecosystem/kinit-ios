@@ -14,10 +14,10 @@ extension UIViewController {
     }
 
     func add(_ child: UIViewController, to view: UIView? = nil, viewConfiguration: (UIView) -> Void) {
-        addChildViewController(child)
+        addChild(child)
         (view ?? self.view).addSubview(child.view)
         viewConfiguration(child.view)
-        child.didMove(toParentViewController: self)
+        child.didMove(toParent: self)
     }
 
     func remove() {
@@ -25,8 +25,8 @@ extension UIViewController {
             return
         }
 
-        willMove(toParentViewController: nil)
-        removeFromParentViewController()
+        willMove(toParent: nil)
+        removeFromParent()
         view.removeFromSuperview()
     }
 

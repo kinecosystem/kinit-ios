@@ -14,7 +14,7 @@ struct RedeemTransaction: Codable {
     let type: String
     let value: String
 
-    enum CodingKeys: CodingKey, String {
+    enum CodingKeys: String, CodingKey {
         case date
         case description = "desc"
         case identifier = "offer_id"

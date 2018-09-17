@@ -75,7 +75,7 @@ class RestoreBackupQuestionsViewController: UITableViewController {
             cell.textField.delegate = self
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(textDidChangeNotification(_:)),
-                                                   name: .UITextFieldTextDidChange,
+                                                   name: UITextField.textDidChangeNotification,
                                                    object: nil)
             let question = questions[indexPath.row]
             let attributedQuestion = NSMutableAttributedString(string: "Q\(indexPath.row + 1): \(question)")

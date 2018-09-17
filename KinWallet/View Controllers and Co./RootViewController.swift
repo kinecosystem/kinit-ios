@@ -60,8 +60,8 @@ class RootViewController: UIViewController {
         return .portrait
     }
 
-    override var childViewControllerForStatusBarStyle: UIViewController? {
-        return childViewControllers.last
+    override var childForStatusBarStyle: UIViewController? {
+        return children.last
     }
 
     @discardableResult func dismissSplashIfNeeded() -> Bool {
@@ -89,13 +89,13 @@ class RootViewController: UIViewController {
             return
         }
 
-        let supportAttributes: [NSAttributedStringKey: Any] = [.font: FontFamily.Roboto.regular.font(size: 14),
+        let supportAttributes: [NSAttributedString.Key: Any] = [.font: FontFamily.Roboto.regular.font(size: 14),
                                                                .foregroundColor: UIColor.kin.appTint,
-                                                               .underlineStyle: NSUnderlineStyle.styleSingle.rawValue]
+                                                               .underlineStyle: NSUnderlineStyle.single.rawValue]
         let supportAttributedString = NSMutableAttributedString(string: L10n.orContactSupport,
                                                                 attributes: supportAttributes)
-        let orAttributes: [NSAttributedStringKey: Any] = [.foregroundColor: UIColor.kin.gray,
-                                                          .underlineStyle: NSUnderlineStyle.styleNone.rawValue]
+        let orAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.kin.gray,
+                                                           .underlineStyle: []]
         supportAttributedString.addAttributes(orAttributes, range: NSRange(location: 0, length: 3))
 
         let buttonConfiguration = NoticeButtonConfiguration(title: L10n.tryAgain,

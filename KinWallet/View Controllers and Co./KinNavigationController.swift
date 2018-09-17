@@ -10,7 +10,7 @@ class KinNavigationController: UINavigationController {
         return .portrait
     }
 
-    override var childViewControllerForStatusBarStyle: UIViewController? {
+    override var childForStatusBarStyle: UIViewController? {
         return topViewController
     }
 

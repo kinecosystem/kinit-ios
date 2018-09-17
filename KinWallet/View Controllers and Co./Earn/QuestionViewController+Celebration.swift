@@ -207,7 +207,7 @@ private class QuizConfettiView: UIView {
             let e = CAEmitterLayer()
             e.birthRate = 0.2
             e.emitterPosition = CGPoint(x: bounds.midX, y: bounds.midY)
-            e.emitterShape = kCAEmitterLayerRectangle
+            e.emitterShape = .rectangle
             e.emitterSize = CGSize(width: bounds.width / 2, height: bounds.height / 2)
             e.emitterCells = confettiCells()
             e.beginTime = CACurrentMediaTime()

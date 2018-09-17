@@ -20,7 +20,7 @@ final class SurveyUnavailableViewController: UIViewController, AddNoticeViewCont
         displayUnavailabilityReason()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(displayUnavailabilityReason),
-                                               name: .UIApplicationWillEnterForeground,
+                                               name: UIApplication.willEnterForegroundNotification,
                                                object: nil)
     }
 
@@ -71,7 +71,7 @@ final class SurveyUnavailableViewController: UIViewController, AddNoticeViewCont
         }
 
         notifyButtonIfNeeded { [weak self] buttonConfiguration in
-            self?.childViewControllers.first?.remove()
+            self?.children.first?.remove()
             self?.noticeViewController = self?.addNoticeViewController(with: title,
                                                                        subtitle: subtitle,
                                                                        image: image,
@@ -101,7 +101,7 @@ final class SurveyUnavailableViewController: UIViewController, AddNoticeViewCont
         let alertController = UIAlertController(title: L10n.notificationsDeniedTitle,
                                                 message: L10n.notificationsDeniedMessage,
                                                 preferredStyle: .alert)
-        if let url = URL(string: UIApplicationOpenSettingsURLString) {
+        if let url = URL(string: UIApplication.openSettingsURLString) {
             alertController.addAction(title: L10n.notificationsDeniedAction, style: .default) { _ in
                 if #available(iOS 10.0, *) {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)

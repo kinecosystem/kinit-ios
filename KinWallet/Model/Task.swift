@@ -27,7 +27,7 @@ struct Task: Codable {
     let updatedAt: TimeInterval
     let videoURL: URL?
 
-    enum CodingKeys: CodingKey, String {
+    enum CodingKeys: String, CodingKey {
         case author = "provider"
         case identifier = "id"
         case kinReward = "price"

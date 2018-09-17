@@ -48,7 +48,7 @@ class OfferWallViewController: UIViewController {
     }
 
     func availabilityChanged(items: [Offer]?, error: Error?) {
-        childViewControllers.first?.remove()
+        children.first?.remove()
         if items == nil {
             let offersUnavailableViewController = OffersUnavailableViewController()
             offersUnavailableViewController.error = error

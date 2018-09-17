@@ -86,7 +86,7 @@ class VideoTaskViewController: UIViewController {
     }()
 
     let activityIndicator: UIActivityIndicatorView = {
-        let a = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        let a = UIActivityIndicatorView(style: .white)
         a.translatesAutoresizingMaskIntoConstraints = false
         a.hidesWhenStopped = true
         return a
@@ -123,7 +123,7 @@ class VideoTaskViewController: UIViewController {
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(willEnterForeground),
-                                               name: .UIApplicationWillEnterForeground,
+                                               name: UIApplication.willEnterForegroundNotification,
                                                object: nil)
 
         activityIndicator.startAnimating()
@@ -229,7 +229,7 @@ class VideoTaskViewController: UIViewController {
             }
         }
 
-        timeObserverToken = playerViewController.player?.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 60),
+        timeObserverToken = playerViewController.player?.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 1, timescale: 60),
                                                                                  queue: .main,
                                                                                  using: timeBlock)
     }

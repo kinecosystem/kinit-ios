@@ -9,7 +9,7 @@ import UIKit
 import KinitDesignables
 
 private class BackupQuestionCell: UITableViewCell {
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         commonInit()
@@ -113,7 +113,7 @@ class BackupQuestionViewController: BackupTextInputViewController {
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(textDidChangeNotification(_:)),
-                                               name: .UITextFieldTextDidChange,
+                                               name: UITextField.textDidChangeNotification,
                                                object: nil)
     }
 

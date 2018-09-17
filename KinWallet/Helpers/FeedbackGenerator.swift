@@ -7,30 +7,35 @@ import UIKit
 
 class FeedbackGenerator {
     class func notifySuccessIfAvailable() {
-        notifyIfAvailable(.success)
+        if #available(iOS 10.0, *) {
+            notify(.success)
+        }
     }
 
     class func notifyWarningIfAvailable() {
-        notifyIfAvailable(.warning)
+        if #available(iOS 10.0, *) {
+            notify(.warning)
+        }
     }
 
     class func notifyErrorIfAvailable() {
-        notifyIfAvailable(.error)
-    }
-
-    private class func notifyIfAvailable(_ type: UINotificationFeedbackType) {
         if #available(iOS 10.0, *) {
-            let feedbackGenerator = UINotificationFeedbackGenerator()
-            feedbackGenerator.prepare()
-            feedbackGenerator.notificationOccurred(type)
+            notify(.error)
         }
     }
 
-    class func notifySelectionChangedIfAvailable() {
-        if #available(iOS 10.0, *) {
-            let feedbackGenerator = UISelectionFeedbackGenerator()
-            feedbackGenerator.prepare()
-            feedbackGenerator.selectionChanged()
-        }
+    @available(iOS 10.0, *)
+    private class func notify(_ type: UINotificationFeedbackGenerator.FeedbackType) {
+        let feedbackGenerator = UINotificationFeedbackGenerator()
+        feedbackGenerator.prepare()
+        feedbackGenerator.notificationOccurred(type)
+    }
+
+    @available(iOS 10.0, *)
+    class func notifySelectionChanged() {
+        let feedbackGenerator = UISelectionFeedbackGenerator()
+        feedbackGenerator.prepare()
+        feedbackGenerator.selectionChanged()
     }
 }
+

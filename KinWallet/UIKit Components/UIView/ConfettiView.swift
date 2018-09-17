@@ -49,7 +49,7 @@ class ConfettiView: UIView {
             let e = CAEmitterLayer()
             e.birthRate = 0.6
             e.emitterPosition = CGPoint(x: frame.size.width / 2.0, y: 0)
-            e.emitterShape = kCAEmitterLayerLine
+            e.emitterShape = .line
             e.emitterSize = CGSize(width: frame.size.width, height: 1)
             e.emitterCells = confettiCells()
 

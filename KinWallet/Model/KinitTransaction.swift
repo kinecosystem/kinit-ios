@@ -14,7 +14,7 @@ struct KinitTransaction: Codable {
     let txHash: String
     let type: String
 
-    enum CodingKeys: CodingKey, String {
+    enum CodingKeys: String, CodingKey {
         case amount
         case author = "provider"
         case _date = "date"
