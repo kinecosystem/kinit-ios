@@ -12,7 +12,7 @@ private enum MoreSection {
     var items: [MoreSectionItem] {
         switch self {
         case .security: return [.backup]
-        case .support: return [.supportEmail]
+        case .support: return [.helpCenter, .feedback]
         }
     }
 
@@ -30,31 +30,35 @@ private enum MoreSection {
 
 private enum MoreSectionItem: String {
     case backup
-    case supportEmail
+    case helpCenter
+    case feedback
 
     var title: String {
         switch self {
         case .backup: return L10n.walletBackup
-        case .supportEmail: return L10n.emailUs
+        case .helpCenter: return L10n.helpCenter
+        case .feedback: return L10n.giveUsFeedback
         }
     }
 
     var image: UIImage? {
         switch self {
         case .backup: return Asset.moreWalletBackupIcon.image
-        case .supportEmail: return Asset.moreSupportIcon.image
+        case .helpCenter: return Asset.moreHelpCenterIcon.image
+        case .feedback: return Asset.moreFeedbackIcon.image
         }
     }
 
     var action: Selector {
         switch self {
         case .backup: return #selector(MoreViewController.startBackup)
-        case .supportEmail: return #selector(MoreViewController.presentSupportEmail)
+        case .helpCenter: return #selector(MoreViewController.showHelpCenter)
+        case .feedback: return #selector(MoreViewController.feedbackTapped)
         }
     }
 }
 
-class MoreViewController: UIViewController {
+final class MoreViewController: UIViewController {
     var performedBackup = false
     var backupFlowController: BackupFlowController?
 
@@ -107,12 +111,32 @@ class MoreViewController: UIViewController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
     @objc func tapGestureRecognized() {
         ConfigPanel.show(from: self)
     }
 
-    @objc fileprivate func presentSupportEmail() {
-        KinSupportViewController.present(from: self)
+    @objc fileprivate func showHelpCenter() {
+        let helpCenterViewController = HelpCenterViewController()
+        navigationController?.pushViewController(helpCenterViewController, animated: true)
+    }
+
+    @objc fileprivate func feedbackTapped() {
+        let alertController = UIAlertController(title: L10n.feedbackNotSupportAlertTitle,
+                                                message: L10n.feedbackNotSupportAlertMessage,
+                                                preferredStyle: .alert)
+        alertController.addAction(title: L10n.helpCenter, style: .default, handler: showHelpCenter)
+
+        alertController.addAction(title: L10n.sendFeedback, style: .default) { [unowned self] in
+            KinSupportViewController.presentFeedback(from: self)
+        }
+
+        presentAnimated(alertController)
     }
 
     @objc fileprivate func startBackup() {

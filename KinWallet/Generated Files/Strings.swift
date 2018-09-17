@@ -123,8 +123,6 @@ internal enum L10n {
   internal static let creatingYourWallet = L10n.tr("Localizable", "CreatingYourWallet")
   /// It might take up to 20 sec.
   internal static let creatingYourWalletBePatient = L10n.tr("Localizable", "CreatingYourWalletBePatient")
-  /// Email us
-  internal static let emailUs = L10n.tr("Localizable", "EmailUs")
   /// We are hand-picking the best for you!
   internal static let emptyOffersSubtitle = L10n.tr("Localizable", "EmptyOffersSubtitle")
   /// No offers at the moment
@@ -133,6 +131,16 @@ internal enum L10n {
   internal static let existingBackupOverwriteMessage = L10n.tr("Localizable", "ExistingBackupOverwriteMessage")
   /// Are you sure you want to create a new backup?
   internal static let existingBackupOverwriteTitle = L10n.tr("Localizable", "ExistingBackupOverwriteTitle")
+  /// We really appreciate your input. Please enter your feedback for Kinit %@ here:
+  internal static func feedbackEmailBody(_ p1: String) -> String {
+    return L10n.tr("Localizable", "FeedbackEmailBody", p1)
+  }
+  /// Kinit Feedback
+  internal static let feedbackEmailSubject = L10n.tr("Localizable", "FeedbackEmailSubject")
+  /// We can’t respond to feedbacks individually. If you have a question or need help resolving a problem, you’ll find answers in our help center.
+  internal static let feedbackNotSupportAlertMessage = L10n.tr("Localizable", "FeedbackNotSupportAlertMessage")
+  /// 
+  internal static let feedbackNotSupportAlertTitle = L10n.tr("Localizable", "FeedbackNotSupportAlertTitle")
   /// First Question
   internal static let firstSecurityQuestion = L10n.tr("Localizable", "FirstSecurityQuestion")
   /// We are having technical issues. Please try again or contact support.
@@ -143,6 +151,10 @@ internal enum L10n {
   internal static let generalServerErrorMessage = L10n.tr("Localizable", "GeneralServerErrorMessage")
   /// Houston We Have a Server Problem
   internal static let generalServerErrorTitle = L10n.tr("Localizable", "GeneralServerErrorTitle")
+  /// Give Us Feedback
+  internal static let giveUsFeedback = L10n.tr("Localizable", "GiveUsFeedback")
+  /// Help Center
+  internal static let helpCenter = L10n.tr("Localizable", "HelpCenter")
   /// Please check your internet connection and try again.
   internal static let internetErrorMessage = L10n.tr("Localizable", "InternetErrorMessage")
   /// Oh no! Your internet is MIA
@@ -159,10 +171,14 @@ internal enum L10n {
   internal static let lastOfferGrabbedTitle = L10n.tr("Localizable", "LastOfferGrabbedTitle")
   /// Later
   internal static let later = L10n.tr("Localizable", "Later")
-  /// Add an email account to your device in order to send email.
-  internal static let mailNotConfiguredErrorMessage = L10n.tr("Localizable", "MailNotConfiguredErrorMessage")
+  /// Copy Message
+  internal static let mailNotConfiguredCopyInformation = L10n.tr("Localizable", "MailNotConfiguredCopyInformation")
+  /// The Mail app is not configured with an email account, and we could not find a popular email app installed.\nPlease copy the message and paste it in an email to %@
+  internal static func mailNotConfiguredMessage(_ p1: String) -> String {
+    return L10n.tr("Localizable", "MailNotConfiguredMessage", p1)
+  }
   /// Mail Not Configured
-  internal static let mailNotConfiguredErrorTitle = L10n.tr("Localizable", "MailNotConfiguredErrorTitle")
+  internal static let mailNotConfiguredTitle = L10n.tr("Localizable", "MailNotConfiguredTitle")
   /// Next
   internal static let nextAction = L10n.tr("Localizable", "NextAction")
   /// We have planted the seed and your next task is currently growing
@@ -263,6 +279,8 @@ internal enum L10n {
   internal static let securityQuestionsSubtitle = L10n.tr("Localizable", "SecurityQuestionsSubtitle")
   /// Security Questions
   internal static let securityQuestionsTitle = L10n.tr("Localizable", "SecurityQuestionsTitle")
+  /// Send Feedback
+  internal static let sendFeedback = L10n.tr("Localizable", "SendFeedback")
   /// Sending Kin
   internal static let sendingKin = L10n.tr("Localizable", "SendingKin")
   /// Send Kin
@@ -301,6 +319,8 @@ internal enum L10n {
   internal static let startAction = L10n.tr("Localizable", "StartAction")
   /// Support
   internal static let support = L10n.tr("Localizable", "Support")
+  /// Kinit Support Request
+  internal static let supportEmailSubject = L10n.tr("Localizable", "SupportEmailSubject")
   /// Tap to continue
   internal static let tapToContinue = L10n.tr("Localizable", "TapToContinue")
   /// Tap to finish

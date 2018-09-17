@@ -75,7 +75,8 @@ internal enum Asset {
   internal static let kinTaskReward = ImageAsset(name: "KinTaskReward")
   internal static let kinTaskTime = ImageAsset(name: "KinTaskTime")
   internal static let kinTransactionCoins = ImageAsset(name: "KinTransactionCoins")
-  internal static let moreSupportIcon = ImageAsset(name: "MoreSupportIcon")
+  internal static let moreFeedbackIcon = ImageAsset(name: "MoreFeedbackIcon")
+  internal static let moreHelpCenterIcon = ImageAsset(name: "MoreHelpCenterIcon")
   internal static let moreTabIcon = ImageAsset(name: "MoreTabIcon")
   internal static let moreWalletBackupIcon = ImageAsset(name: "MoreWalletBackupIcon")
   internal static let multipleAnswerBackground = ImageAsset(name: "MultipleAnswerBackground")
@@ -151,7 +152,8 @@ internal enum Asset {
     kinTaskReward,
     kinTaskTime,
     kinTransactionCoins,
-    moreSupportIcon,
+    moreFeedbackIcon,
+    moreHelpCenterIcon,
     moreTabIcon,
     moreWalletBackupIcon,
     multipleAnswerBackground,

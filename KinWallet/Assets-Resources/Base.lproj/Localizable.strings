@@ -212,11 +212,27 @@
 
 "ContactSupport" = "Contact Support";
 
-"EmailUs" = "Email us";
+"SupportEmailSubject" = "Kinit Support Request";
 
-"MailNotConfiguredErrorTitle" = "Mail Not Configured";
+"FeedbackEmailSubject" = "Kinit Feedback";
 
-"MailNotConfiguredErrorMessage" = "Add an email account to your device in order to send email.";
+"GiveUsFeedback" = "Give Us Feedback";
+
+"HelpCenter" = "Help Center";
+
+"MailNotConfiguredTitle" = "Mail Not Configured";
+
+"MailNotConfiguredMessage" = "The Mail app is not configured with an email account, and we could not find a popular email app installed.\nPlease copy the message and paste it in an email to %@";
+
+"MailNotConfiguredCopyInformation" = "Copy Message";
+
+"FeedbackEmailBody" = "We really appreciate your input. Please enter your feedback for Kinit %@ here:";
+
+"FeedbackNotSupportAlertTitle" = "";
+
+"FeedbackNotSupportAlertMessage" = "We can’t respond to feedbacks individually. If you have a question or need help resolving a problem, you’ll find answers in our help center.";
+
+"SendFeedback" = "Send Feedback";
 
 // Camera permissions
 

@@ -84,10 +84,6 @@ extension Kin {
     }
 }
 
-enum MyError: Error {
-    case meh
-}
-
 // MARK: Account backup
 extension Kin {
     func exportWallet(with passphrase: String) throws -> String {

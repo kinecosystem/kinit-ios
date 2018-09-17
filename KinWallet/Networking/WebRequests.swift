@@ -74,13 +74,13 @@ extension WebRequests {
 
     static func appLaunch() -> WebRequest<RemoteConfigStatusResponse, RemoteConfig> {
         return WebRequest<RemoteConfigStatusResponse, RemoteConfig>(POST: "/user/app-launch",
-                                                         body: ["app_ver": Bundle.appVersion],
-                                                         transform: WebResourceHandlers.isRemoteStatusOk)
+                                                                    body: ["app_ver": Bundle.appVersion],
+                                                                    transform: WebResourceHandlers.isRemoteStatusOk)
     }
 
     static func searchPhoneNumber(_ phoneNumber: String) -> WebRequest<ContactSearchStatusResponse, PublicAddress> {
         return WebRequest<ContactSearchStatusResponse, PublicAddress>(POST: "/user/contact",
-                                                               body: ["phone_number": phoneNumber],
+                                                                      body: ["phone_number": phoneNumber],
                                                                transform: { response -> PublicAddress? in
             guard let response = response,
                 WebResourceHandlers.isJSONStatusOk(response: response).boolValue,
