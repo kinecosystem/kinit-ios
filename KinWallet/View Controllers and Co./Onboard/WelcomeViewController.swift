@@ -114,8 +114,12 @@ final class WelcomeViewController: UIViewController {
     @IBAction func startEarning(_ sender: Any) {
         logClickedStart()
 
+        #if targetEnvironment(simulator)
+        AppDelegate.shared.dismissSplashIfNeeded()
+        #else
         let phoneVerification = StoryboardScene.Onboard.phoneVerificationRequestViewController.instantiate()
         navigationController?.pushViewController(phoneVerification, animated: true)
+        #endif
     }
 
     @IBAction func pageControlChangedValue(_ sender: Any) {
