@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1.2</string>
+	<string>1.1.3</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -50,6 +50,13 @@
 	<false/>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>googlegmail</string>
+		<string>readdle-spark</string>
+		<string>inbox-gmail</string>
+		<string>ms-outlook</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -93,13 +100,6 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>googlegmail</string>
-		<string>readdle-spark</string>
-		<string>inbox-gmail</string>
-		<string>ms-outlook</string>
 	</array>
 </dict>
 </plist>
