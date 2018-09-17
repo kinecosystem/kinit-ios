@@ -8,8 +8,17 @@
 import UIKit
 import WebKit
 
-//swiftlint:disable:next line_length
-let viewportScriptString = "var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); meta.setAttribute('initial-scale', '1.0'); meta.setAttribute('maximum-scale', '1.0'); meta.setAttribute('minimum-scale', '1.0'); meta.setAttribute('user-scalable', 'no'); document.getElementsByTagName('head')[0].appendChild(meta);"
+let viewportScriptString =
+    """
+    var meta = document.createElement('meta');
+    meta.setAttribute('name', 'viewport');
+    meta.setAttribute('content', 'width=device-width');
+    meta.setAttribute('initial-scale', '1.0');
+    meta.setAttribute('maximum-scale', '1.0');
+    meta.setAttribute('minimum-scale', '1.0');
+    meta.setAttribute('user-scalable', 'no');
+    document.getElementsByTagName('head')[0].appendChild(meta);
+    """
 
 class WebViewController: UIViewController {
     var webView: WKWebView!
@@ -35,6 +44,8 @@ class WebViewController: UIViewController {
         config.userContentController = controller
 
         webView = WKWebView(frame: .zero, configuration: config)
+        webView.navigationDelegate = self
+        webView.uiDelegate = self
         isLoadingObservationToken = webView.observe(\WKWebView.isLoading, options: .new) { [weak self] _, value in
             guard let isLoading = value.newValue else {
                 return
@@ -75,3 +86,6 @@ class WebViewController: UIViewController {
         webView.loadHTMLString(string, baseURL: baseURL)
     }
 }
+
+extension WebViewController: WKNavigationDelegate {}
+extension WebViewController: WKUIDelegate {}

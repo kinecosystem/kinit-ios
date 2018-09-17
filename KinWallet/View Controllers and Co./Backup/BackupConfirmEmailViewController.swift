@@ -132,7 +132,7 @@ class BackupConfirmEmailViewController: UIViewController {
     }
 }
 
-extension BackupConfirmEmailViewController: BackupNavigationDelegate {
+extension BackupConfirmEmailViewController: KinNavigationControllerDelegate {
     func shouldPopViewController() -> Bool {
         if disablePopNavigation {
             let alertController = UIAlertController(title: L10n.performBackupMissingConfirmationTitle,
