@@ -13,7 +13,12 @@ private struct MessageNames {
 }
 
 final class HelpCenterViewController: WebViewController {
-    private let helpCenterURL = URL(string: "https://cdn.kinitapp.com/faq/index.html")!
+    private let fallbackHelpCenterURL = URL(string: "https://cdn.kinitapp.com/faq/index.html")!
+
+    fileprivate lazy var helpCenterURL: URL = {
+        return RemoteConfig.current?.faqUrl ?? fallbackHelpCenterURL
+    }()
+
     private let activityIndicatorView: UIActivityIndicatorView = {
         let aView = UIActivityIndicatorView(style: .white)
         aView.hidesWhenStopped = true
@@ -27,8 +32,8 @@ final class HelpCenterViewController: WebViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicatorView)
 
         title = L10n.helpCenter
-        let url = RemoteConfig.current?.faqUrl ?? helpCenterURL
-        loadURL(url)
+
+        loadMainPage()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -61,12 +66,16 @@ final class HelpCenterViewController: WebViewController {
             activityIndicatorView.stopAnimating()
         }
     }
+
+    fileprivate func loadMainPage() {
+        loadURL(helpCenterURL)
+    }
 }
 
 extension HelpCenterViewController: KinNavigationControllerDelegate {
     func shouldPopViewController() -> Bool {
-        if webView.canGoBack {
-            webView.goBack()
+        if webView.canGoBack && webView.url != helpCenterURL {
+            loadMainPage()
             return false
         }
 
