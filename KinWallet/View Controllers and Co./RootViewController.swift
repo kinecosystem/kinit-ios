@@ -95,7 +95,7 @@ class RootViewController: UIViewController {
         let supportAttributedString = NSMutableAttributedString(string: L10n.orContactSupport,
                                                                 attributes: supportAttributes)
         let orAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.kin.gray,
-                                                           .underlineStyle: []]
+                                                           .underlineStyle: 0]
         supportAttributedString.addAttributes(orAttributes, range: NSRange(location: 0, length: 3))
 
         let buttonConfiguration = NoticeButtonConfiguration(title: L10n.tryAgain,
