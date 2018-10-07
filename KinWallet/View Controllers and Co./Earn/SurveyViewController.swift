@@ -7,7 +7,7 @@ import UIKit
 
 protocol SurveyViewControllerDelegate: class {
     func surveyViewControllerDidCancel()
-    func surveyViewControllerDidFinish()
+    func surveyViewControllerDidFinish(task: Task?)
 }
 
 private enum SurveyTransitionState {

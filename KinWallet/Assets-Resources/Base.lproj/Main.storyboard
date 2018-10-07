@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -123,13 +123,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="K 0 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h3N-xt-b49" customClass="BalanceLabel" customModule="KinWallet" customModuleProvider="target">
-                                <rect key="frame" x="172.5" y="103.5" width="30" height="20.5"/>
+                                <rect key="frame" x="172.5" y="103" width="30" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Kin Balance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tgf-N6-HWb">
-                                <rect key="frame" x="123.5" y="83" width="128.5" height="20.5"/>
+                                <rect key="frame" x="123.5" y="82.5" width="128.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -286,7 +286,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zzj-Gn-dKY">
-                                <rect key="frame" x="166" y="588" width="42" height="30"/>
+                                <rect key="frame" x="166.5" y="588" width="42" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="zEF-4P-uPY"/>
                                 </constraints>
@@ -405,8 +405,95 @@
             </objects>
             <point key="canvasLocation" x="1792" y="1881"/>
         </scene>
+        <!--Internal Kin Alert Controller-->
+        <scene sceneID="aX1-be-3uB">
+            <objects>
+                <viewController storyboardIdentifier="InternalKinAlertController" id="Ir2-KS-dxH" customClass="InternalKinAlertController" customModule="KinWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bNc-FY-Td0">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="366"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" image="BackupNagHeader" translatesAutoresizingMaskIntoConstraints="NO" id="s4L-jD-h9O">
+                                <rect key="frame" x="0.0" y="0.0" width="280" height="141"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="141" id="3nf-tn-pEN"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="YSy-eQ-vN3">
+                                <rect key="frame" x="20" y="141" width="240" height="93.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Qjy-yK-7Yq">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lps-cG-pyP">
+                                        <rect key="frame" x="0.0" y="32.5" width="240" height="61"/>
+                                        <string key="text">Message
+Message
+Message</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="c49-NF-UtE">
+                                <rect key="frame" x="20" y="246" width="240" height="100"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4oa-zQ-Xgc">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="fYJ-mf-AgC"/>
+                                        </constraints>
+                                        <state key="normal" title="Primary Button"/>
+                                        <connections>
+                                            <action selector="primaryButtonTapped" destination="Ir2-KS-dxH" eventType="touchUpInside" id="qc9-0p-Q5j"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="97w-gn-gbF">
+                                        <rect key="frame" x="0.0" y="70" width="240" height="30"/>
+                                        <state key="normal" title="Secondary"/>
+                                        <connections>
+                                            <action selector="secondaryButtonTapped" destination="Ir2-KS-dxH" eventType="touchUpInside" id="PKf-Ow-RX1"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="YSy-eQ-vN3" firstAttribute="top" secondItem="s4L-jD-h9O" secondAttribute="bottom" id="2iv-uv-JZc"/>
+                            <constraint firstItem="YSy-eQ-vN3" firstAttribute="leading" secondItem="755-ya-gMF" secondAttribute="leading" constant="20" id="6n7-ZJ-7BZ"/>
+                            <constraint firstItem="c49-NF-UtE" firstAttribute="leading" secondItem="755-ya-gMF" secondAttribute="leading" constant="20" id="Bmo-u3-9k5"/>
+                            <constraint firstItem="YSy-eQ-vN3" firstAttribute="centerX" secondItem="755-ya-gMF" secondAttribute="centerX" id="MAQ-DL-zND"/>
+                            <constraint firstItem="s4L-jD-h9O" firstAttribute="top" secondItem="755-ya-gMF" secondAttribute="top" id="SdY-V6-rhU"/>
+                            <constraint firstItem="755-ya-gMF" firstAttribute="bottom" secondItem="c49-NF-UtE" secondAttribute="bottom" constant="20" id="Z6X-sh-iCY"/>
+                            <constraint firstItem="c49-NF-UtE" firstAttribute="centerX" secondItem="755-ya-gMF" secondAttribute="centerX" id="aJZ-uo-WQR"/>
+                            <constraint firstItem="s4L-jD-h9O" firstAttribute="leading" secondItem="755-ya-gMF" secondAttribute="leading" id="amN-9k-JaT"/>
+                            <constraint firstItem="s4L-jD-h9O" firstAttribute="trailing" secondItem="755-ya-gMF" secondAttribute="trailing" id="dGs-bT-VUD"/>
+                            <constraint firstItem="c49-NF-UtE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="YSy-eQ-vN3" secondAttribute="bottom" constant="10" id="yG2-gw-vi7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="755-ya-gMF"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="280" height="366"/>
+                    <connections>
+                        <outlet property="messageLabel" destination="lps-cG-pyP" id="cWo-j3-bAQ"/>
+                        <outlet property="primaryActionButton" destination="4oa-zQ-Xgc" id="0nd-4q-I7m"/>
+                        <outlet property="secondaryButton" destination="97w-gn-gbF" id="7De-mM-nAe"/>
+                        <outlet property="titleImageView" destination="s4L-jD-h9O" id="6NI-ur-4eS"/>
+                        <outlet property="titleLabel" destination="Qjy-yK-7Yq" id="IQn-1x-PZc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Ka-LK-DUW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2616" y="1862"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="BackupNagHeader" width="280" height="141"/>
         <image name="NextTask" width="193" height="171"/>
     </resources>
 </document>

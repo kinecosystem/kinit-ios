@@ -49,20 +49,36 @@ class ResourceDownloader {
         requestResource(url: url, completion: nil)
     }
 
+    func downloadedResource(url: URL) -> URL? {
+        guard let rID = requestIdentifier(for: url) else {
+            return nil
+        }
+
+        let destination = destinationURL(for: rID)
+
+        if !fileManager.fileExists(atPath: destination.path) {
+            return nil
+        }
+
+        return destination
+    }
+
     func requestResource(url: URL, completion: ResourceCompletion?) {
         if !createDirectoryIfNeeded() {
             completion?(nil, nil, ResourceError.directoryCreationFailed)
             return
         }
 
-        guard let rID = url.absoluteString.urlEncoded else {
+        guard let rID = requestIdentifier(for: url) else {
             completion?(nil, nil, ResourceError.encodingFailed)
 
             return
         }
 
-        if fileManager.fileExists(atPath: cacheURL.appendingPathComponent(rID).path) {
-            completion?(cacheURL.appendingPathComponent(rID), .localCache, nil)
+        let destination = destinationURL(for: rID)
+
+        if fileManager.fileExists(atPath: destination.path) {
+            completion?(destination, .localCache, nil)
 
             return
         }
@@ -102,11 +118,9 @@ class ResourceDownloader {
                     }
 
                     do {
-                        let to = self.cacheURL.appendingPathComponent(rID)
+                        try self.fileManager.copyItem(at: tempURL, to: destination)
 
-                        try self.fileManager.copyItem(at: tempURL, to: to)
-
-                        box?.completions.forEach { $0(to, .remote, nil) }
+                        box?.completions.forEach { $0(destination, .remote, nil) }
                     } catch {
                         box?.completions.forEach { $0(nil, nil, ResourceError.copyFailed) }
                     }
@@ -115,7 +129,15 @@ class ResourceDownloader {
         }
     }
 
-    func issueRequest(url: URL, completion: @escaping ResourceRequestCompletion) {
+    private func requestIdentifier(for url: URL) -> String? {
+        return url.absoluteString.urlEncoded
+    }
+
+    private func destinationURL(for requestId: String) -> URL {
+        return cacheURL.appendingPathComponent(requestId)
+    }
+
+    private func issueRequest(url: URL, completion: @escaping ResourceRequestCompletion) {
         URLSession.shared.downloadTask(with: url, completionHandler: { url, response, error in
             guard error == nil else {
                 completion(nil, error)

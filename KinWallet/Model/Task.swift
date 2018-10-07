@@ -26,6 +26,7 @@ struct Task: Codable {
     let type: TaskType
     let updatedAt: TimeInterval
     let videoURL: URL?
+    let actions: [PostTaskAction]?
 
     enum CodingKeys: String, CodingKey {
         case author = "provider"
@@ -41,6 +42,7 @@ struct Task: Codable {
         case type
         case updatedAt = "updated_at"
         case videoURL = "video_url"
+        case actions = "post_task_actions"
     }
 }
 
@@ -103,11 +105,10 @@ extension Task {
                 $0.imageURL
         }
 
-        let questionsImageURLs = questions.compactMap {
-            $0.imageURL
-        }
+        let questionsImageURLs = questions.compactMap { $0.imageURL }
+        let postTaskIcons = (actions?.compactMap { $0.iconURL }) ?? []
 
-        (questionsImageURLs + answersImageURLs).map {
+        (questionsImageURLs + answersImageURLs + postTaskIcons).map {
             $0.kinImagePathAdjustedForDevice()
         }.forEach(ResourceDownloader.shared.requestResource)
     }
@@ -167,7 +168,7 @@ extension TaskType {
 extension FetchResult where T == Task {
     var isTaskAvailable: Bool {
         switch self {
-        case .none(_):
+        case .none:
             return false
         case .some(let task):
             return task.isAvailable
