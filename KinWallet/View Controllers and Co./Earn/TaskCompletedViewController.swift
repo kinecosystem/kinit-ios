@@ -200,7 +200,7 @@ final class TaskCompletedViewController: UIViewController {
             }
 
             aSelf.logClosedEvent()
-            aSelf.surveyDelegate?.surveyViewControllerDidFinish()
+            aSelf.surveyDelegate?.surveyViewControllerDidFinish(task: aSelf.task)
         }
 
         addAndFit(transferringViewController) {
@@ -345,6 +345,6 @@ extension TaskCompletedViewController {
 extension TaskCompletedViewController: NoticeViewControllerDelegate {
     func noticeViewControllerDidTapButton(_ viewController: NoticeViewController) {
         logClickedCloseErrorPage(errorType: failedToSubmitResults ? .taskSubmission : .reward)
-        surveyDelegate?.surveyViewControllerDidFinish()
+        surveyDelegate?.surveyViewControllerDidFinish(task: failedToSubmitResults ? nil : task)
     }
 }

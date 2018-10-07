@@ -13,7 +13,7 @@ class KinSentViewController: UIViewController {
             kinDeliveredLabel.text = L10n.kinDelivered
         }
     }
-    
+
     var sendKinScreenshot: UIImage?
 
     override func viewDidLoad() {

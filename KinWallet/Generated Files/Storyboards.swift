@@ -62,8 +62,6 @@ internal enum StoryboardScene {
 
     internal static let backupIntroViewController = SceneType<BackupIntroViewController>(storyboard: Backup.self, identifier: "BackupIntroViewController")
 
-    internal static let backupNagViewController = SceneType<BackupNagViewController>(storyboard: Backup.self, identifier: "BackupNagViewController")
-
     internal static let backupQuestionViewController = SceneType<BackupQuestionViewController>(storyboard: Backup.self, identifier: "BackupQuestionViewController")
 
     internal static let backupSendEmailViewController = SceneType<BackupSendEmailViewController>(storyboard: Backup.self, identifier: "BackupSendEmailViewController")
@@ -96,6 +94,8 @@ internal enum StoryboardScene {
     internal static let balancePagerTabViewController = SceneType<BalancePagerTabViewController>(storyboard: Main.self, identifier: "BalancePagerTabViewController")
 
     internal static let balanceViewController = SceneType<BalanceViewController>(storyboard: Main.self, identifier: "BalanceViewController")
+
+    internal static let internalKinAlertController = SceneType<InternalKinAlertController>(storyboard: Main.self, identifier: "InternalKinAlertController")
 
     internal static let moreViewController = SceneType<MoreViewController>(storyboard: Main.self, identifier: "MoreViewController")
 

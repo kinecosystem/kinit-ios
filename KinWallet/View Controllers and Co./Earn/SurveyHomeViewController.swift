@@ -5,6 +5,7 @@
 
 import UIKit
 import KinUtil
+import SafariServices
 
 final class SurveyHomeViewController: UIViewController {
     var shouldShowEarnAnimation = true
@@ -129,9 +130,22 @@ extension SurveyHomeViewController: SurveyViewControllerDelegate {
         dismissAnimated()
     }
 
-    func surveyViewControllerDidFinish() {
+    func surveyViewControllerDidFinish(task: Task?) {
+        if let actionIconURL = task?.actions?.first?.iconURL {
+            ResourceDownloader.shared.requestResource(url: actionIconURL.kinImagePathAdjustedForDevice())
+        }
+
         dismissAnimated { [weak self] in
-            self?.showBackupNagIfNeeded()
+            guard let task = task else {
+                return
+            }
+
+            if let action = task.actions?.first,
+                action.url != nil && action.type == .externalURL {
+                self?.showPostTaskAction(action)
+            } else {
+                self?.showBackupNagIfNeeded()
+            }
         }
     }
 
@@ -159,16 +173,44 @@ extension SurveyHomeViewController: SurveyViewControllerDelegate {
             return
         }
 
-        let backupNagViewController = StoryboardScene.Backup.backupNagViewController.instantiate()
-        backupNagViewController.nagDay = nagDay
-        backupNagViewController.delegate = self
+        let backupNagViewController = BackupNagViewController(nagDay: nagDay) { [weak self] in
+            self?.backupNagDidSelectBackupNow(nagDay: nagDay)
+        }
         presentAnimated(backupNagViewController)
+    }
+
+    fileprivate func showPostTaskAction(_ action: PostTaskAction) {
+        let iconImage: UIImage?
+
+        if
+            let iconURL = action.iconURL?.kinImagePathAdjustedForDevice(),
+            let downloadedIconURL = ResourceDownloader.shared.downloadedResource(url: iconURL),
+            let image = UIImage(contentsOfFile: downloadedIconURL.path) {
+            iconImage = image
+        } else {
+            iconImage = nil
+        }
+
+        let primaryAction = KinAlertAction(title: action.textPositive) { [weak self] in
+            self?.dismissAnimated { [weak self] in
+                if let `self` = self, let url = action.url, action.type == .externalURL {
+                    let safariViewController = SFSafariViewController(url: url)
+                    self.presentAnimated(safariViewController)
+                }
+            }
+        }
+
+        let alertController = KinAlertController(title: action.title,
+                                                 titleImage: iconImage,
+                                                 message: action.message,
+                                                 primaryAction: primaryAction,
+                                                 secondaryAction: KinAlertAction(title: action.textNegative))
+        presentAnimated(alertController)
     }
 }
 
-extension SurveyHomeViewController: BackupNagDelegate {
-    func backupNagDidSelectBackupNow(_ backupNagViewController: BackupNagViewController) {
-        let nagDay = backupNagViewController.nagDay!
+extension SurveyHomeViewController {
+    func backupNagDidSelectBackupNow(nagDay: BackupNagDay) {
         dismissAnimated { [weak self] in
             guard let `self` = self else {
                 return
@@ -180,7 +222,7 @@ extension SurveyHomeViewController: BackupNagDelegate {
         }
     }
 
-    func backupNagDidSelectBackupLater(_ backupNagViewController: BackupNagViewController) {
+    func backupNagDidSelectBackupLater() {
         dismissAnimated()
     }
 }
