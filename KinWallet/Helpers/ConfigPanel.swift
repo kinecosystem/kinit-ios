@@ -43,7 +43,7 @@ class ConfigPanel {
             observer = NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification,
                                                               object: nil,
                                                               queue: nil) { _ in
-                                                                passwordAction.isEnabled = !(textField.text?.isEmpty ?? false)
+                passwordAction.isEnabled = !(textField.text?.isEmpty ?? false)
             }
         }
         passwordAction.isEnabled = false

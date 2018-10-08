@@ -107,7 +107,7 @@ final class KinSupportViewController: MFMailComposeViewController {
         Events.Analytics
             .ClickSupportButton(faqCategory: faqCategory, faqTitle: faqTitle)
             .send()
-        present(.feedback, from: presenter)
+        present(.support, from: presenter)
     }
 
     private class func present(_ option: ContactOption, from presenter: UIViewController) {
