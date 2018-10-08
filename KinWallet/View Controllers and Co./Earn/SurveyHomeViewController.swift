@@ -193,7 +193,7 @@ extension SurveyHomeViewController: SurveyViewControllerDelegate {
 
         let primaryAction = KinAlertAction(title: action.textPositive) { [weak self] in
             self?.dismissAnimated { [weak self] in
-                if let `self` = self, let url = action.url, action.type == .externalURL {
+                if let self = self, let url = action.url, action.type == .externalURL {
                     let safariViewController = SFSafariViewController(url: url)
                     self.presentAnimated(safariViewController)
                 }
@@ -212,7 +212,7 @@ extension SurveyHomeViewController: SurveyViewControllerDelegate {
 extension SurveyHomeViewController {
     func backupNagDidSelectBackupNow(nagDay: BackupNagDay) {
         dismissAnimated { [weak self] in
-            guard let `self` = self else {
+            guard let self = self else {
                 return
             }
 

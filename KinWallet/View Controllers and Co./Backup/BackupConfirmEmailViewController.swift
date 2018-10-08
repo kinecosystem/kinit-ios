@@ -109,7 +109,7 @@ class BackupConfirmEmailViewController: UIViewController {
 
         WebRequests.Backup.submitHints(chosenHints)
             .withCompletion { [weak self] _, error in
-                guard let `self` = self else {
+                guard let self = self else {
                     return
                 }
 

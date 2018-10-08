@@ -36,7 +36,7 @@ class QRCodeScannerViewController: UIViewController {
         }
 
         AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in
-            guard let `self` = self else {
+            guard let self = self else {
                 return
             }
 

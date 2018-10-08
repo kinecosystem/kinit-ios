@@ -138,7 +138,7 @@ final class SurveyInfoViewController: UIViewController {
         }
 
         SimpleDatastore.loadObject(task.identifier) { [weak self] (tResults: TaskResults?) in
-            guard let `self` = self else {
+            guard let self = self else {
                 return
             }
 

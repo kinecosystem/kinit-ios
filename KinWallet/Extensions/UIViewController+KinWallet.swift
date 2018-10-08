@@ -58,7 +58,7 @@ extension UIViewController {
                                                 message: message,
                                                 preferredStyle: .alert)
         alertController.addAction(title: L10n.support, style: .default) { [weak self] in
-            guard let `self` = self else {
+            guard let self = self else {
                 return
             }
 

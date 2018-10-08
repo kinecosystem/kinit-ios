@@ -78,7 +78,7 @@ extension SendKinOfferActionViewController: CNContactPickerDelegate {
 
         WebRequests.searchPhoneNumber(phoneNumber).withCompletion { [weak self] address, _ in
             DispatchQueue.main.async {
-                guard let `self` = self else {
+                guard let self = self else {
                     return
                 }
 

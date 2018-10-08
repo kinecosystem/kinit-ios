@@ -82,7 +82,7 @@ final class TaskCompletedViewController: UIViewController {
         let tResults = results.applyingAddress(Kin.shared.publicAddress)
         WebRequests.submitTaskResults(tResults)
             .withCompletion { [weak self] success, error in
-                guard let `self` = self else {
+                guard let self = self else {
                     return
                 }
 
@@ -114,7 +114,7 @@ final class TaskCompletedViewController: UIViewController {
         notificationObserver = NotificationCenter.default.addObserver(forName: .transactionCompleted,
                                                                       object: nil,
                                                                       queue: nil) { [weak self] note in
-            guard let `self` = self,
+            guard let self = self,
                 let kinData = note.userInfo as? [String: Any],
                 let txData = kinData["tx_data"] as? [String: Any],
                 let amount = txData["kin"] as? UInt64,
@@ -131,7 +131,7 @@ final class TaskCompletedViewController: UIViewController {
         watch?.emitter
             .filter { $0.memoText == memo }
             .on(queue: DispatchQueue.main, next: { [weak self] paymentInfo in
-                guard let `self` = self else {
+                guard let self = self else {
                     return
                 }
 
@@ -150,7 +150,7 @@ final class TaskCompletedViewController: UIViewController {
         #endif
 
         DispatchQueue.main.asyncAfter(deadline: .now() + timeout) { [weak self] in
-            guard let `self` = self, self.watch != nil else {
+            guard let self = self, self.watch != nil else {
                 return
             }
 

@@ -156,7 +156,7 @@ class BackupQuestionViewController: BackupTextInputViewController {
             self?.view.layoutIfNeeded()
             }, completion: { [weak self] _ in
                 completion?()
-                guard let `self` = self else {
+                guard let self = self else {
                     return
                 }
 
@@ -300,7 +300,7 @@ extension BackupQuestionViewController: UITableViewDelegate {
 
         toggleQuestionsList { [weak self] in
             UIView.animate(withDuration: 0.3) { [weak self] in
-                guard let `self` = self else {
+                guard let self = self else {
                     return
                 }
 
@@ -311,7 +311,7 @@ extension BackupQuestionViewController: UITableViewDelegate {
                 }
             }
 
-            guard let `self` = self else {
+            guard let self = self else {
                 return
             }
 

@@ -87,7 +87,7 @@ class BackupSendEmailViewController: BackupTextInputViewController {
         WebRequests.Backup.sendEmail(to: insertedEmailAddress, encryptedKey: encryptedWallet)
             .withCompletion { [weak self] success, _ in
                 DispatchQueue.main.async {
-                    guard let `self` = self else {
+                    guard let self = self else {
                         return
                     }
 

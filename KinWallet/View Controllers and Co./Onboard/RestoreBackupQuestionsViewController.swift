@@ -28,7 +28,7 @@ class RestoreBackupQuestionsViewController: UITableViewController {
 
         KinLoader.shared.fetchAvailableBackupHints { [weak self] hints in
             DispatchQueue.main.async {
-                guard let `self` = self else {
+                guard let self = self else {
                     return
                 }
 

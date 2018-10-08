@@ -163,7 +163,7 @@ class PhoneVerificationRequestViewController: UIViewController {
 
         PhoneAuthProvider.provider()
             .verifyPhoneNumber(formattedNumber, uiDelegate: nil) { [weak self] verificationID, error in
-                guard let `self` = self else {
+                guard let self = self else {
                     return
                 }
 
