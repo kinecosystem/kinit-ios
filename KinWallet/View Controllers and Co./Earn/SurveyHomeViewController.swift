@@ -142,7 +142,7 @@ extension SurveyHomeViewController: SurveyViewControllerDelegate {
 
             if let action = task.actions?.first,
                 action.url != nil && action.type == .externalURL {
-                self?.showPostTaskAction(action)
+                self?.showPostTaskAction(action, taskId: task.identifier)
             } else {
                 self?.showBackupNagIfNeeded()
             }
@@ -179,7 +179,7 @@ extension SurveyHomeViewController: SurveyViewControllerDelegate {
         presentAnimated(backupNagViewController)
     }
 
-    fileprivate func showPostTaskAction(_ action: PostTaskAction) {
+    fileprivate func showPostTaskAction(_ action: PostTaskAction, taskId: String) {
         let iconImage: UIImage?
 
         if
@@ -191,9 +191,14 @@ extension SurveyHomeViewController: SurveyViewControllerDelegate {
             iconImage = nil
         }
 
+        let actionName = action.actionName
+
         let primaryAction = KinAlertAction(title: action.textPositive) { [weak self] in
             self?.dismissAnimated { [weak self] in
                 if let self = self, let url = action.url, action.type == .externalURL {
+                    Events.Analytics
+                        .ClickLinkButtonOnCampaignPopup(campaignName: actionName, taskId: taskId)
+                        .send()
                     let safariViewController = SFSafariViewController(url: url)
                     self.presentAnimated(safariViewController)
                 }
@@ -206,6 +211,9 @@ extension SurveyHomeViewController: SurveyViewControllerDelegate {
                                                  primaryAction: primaryAction,
                                                  secondaryAction: KinAlertAction(title: action.textNegative))
         presentAnimated(alertController)
+        Events.Analytics
+            .ViewCampaignPopup(campaignName: actionName, taskId: taskId)
+            .send()
     }
 }
 

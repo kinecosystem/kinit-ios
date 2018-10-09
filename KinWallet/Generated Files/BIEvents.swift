@@ -2,7 +2,7 @@
 // BIEvents.swift
 //
 // Don't edit this file.
-// Generated at 2018-09-06 09:47:43 +0000 by Kik BI-Generator.
+// Generated at 2018-10-09 14:30:35 +0000 by Kik BI-Generator.
 //
 
 protocol BIEvent {
@@ -1010,6 +1010,7 @@ struct Events {
         struct ViewEmptyStatePage: BIEvent {
             let name = "view_Empty_State_page"
             let menuItemName: MenuItemName
+            let taskCategory: String
             
             var properties: [String: Any] {
                 return [
@@ -1019,7 +1020,8 @@ struct Events {
                         "event_type": "analytics",
                         
                         
-                        "menu_item_name": menuItemName.rawValue, 
+                        "menu_item_name": menuItemName.rawValue,
+                        "task_category": taskCategory, 
                         ]
             }
         } 
@@ -1682,6 +1684,93 @@ struct Events {
                         ]
             }
         } 
+        /// User views captcha popup. Event name: `view_Captcha_popup`
+        struct ViewCaptchaPopup: BIEvent {
+            let name = "view_Captcha_popup"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Captcha",
+                        "item_type": "popup",
+                        "action": "view",
+                        "event_type": "analytics",
+                        
+                        ]
+            }
+        } 
+        /// User views a campaign popup after completing a task with a campaign related. Event name: `view_Campaign_popup`
+        struct ViewCampaignPopup: BIEvent {
+            let name = "view_Campaign_popup"
+            let campaignName: String
+            let taskId: String
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Campaign",
+                        "item_type": "popup",
+                        "action": "view",
+                        "event_type": "analytics",
+                        
+                        
+                        "campaign_name": campaignName,
+                        "task_id": taskId, 
+                        ]
+            }
+        } 
+        /// User clicks on a button that open a campaign link, opens a web browser . Event name: `click_Link_button_on_Campaign_popup`
+        struct ClickLinkButtonOnCampaignPopup: BIEvent {
+            let name = "click_Link_button_on_Campaign_popup"
+            let campaignName: String
+            let taskId: String
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Link",
+                        "item_type": "button",
+                        "action": "click",
+                        "event_type": "analytics",
+                        "parent_name": "Campaign",
+                        "parent_type": "popup",
+                        
+                        
+                        "campaign_name": campaignName,
+                        "task_id": taskId, 
+                        ]
+            }
+        } 
+        /// User views the task category page with all tasks options. Event name: `view_Task_Categories_page`
+        struct ViewTaskCategoriesPage: BIEvent {
+            let name = "view_Task_Categories_page"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Task_Categories",
+                        "item_type": "page",
+                        "action": "view",
+                        "event_type": "analytics",
+                        
+                        ]
+            }
+        } 
+        /// User clicks a specific task category. Event name: `click_Category_button_on_Task_Categories_page`
+        struct ClickCategoryButtonOnTaskCategoriesPage: BIEvent {
+            let name = "click_Category_button_on_Task_Categories_page"
+            let taskCategory: String
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Category",
+                        "item_type": "button",
+                        "action": "click",
+                        "event_type": "analytics",
+                        "parent_name": "Task_Categories",
+                        "parent_type": "page",
+                        
+                        
+                        "task_category": taskCategory, 
+                        ]
+            }
+        } 
         /// user clicks to purchase a spending offer. Event name: `click_Buy_button_on_Offer_page`
         struct ClickBuyButtonOnOfferPage: BIEvent {
             let name = "click_Buy_button_on_Offer_page"
@@ -1816,6 +1905,20 @@ struct Events {
         /// When asking the auth token to the server fails.. Event name: `auth_token_ack_failed`
         struct AuthTokenAckFailed: BIEvent {
             let name = "auth_token_ack_failed"
+            let failureReason: String
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
+                        
+                        "failure_reason": failureReason, 
+                        ]
+            }
+        } 
+        /// When captcha fails or is cancelled . Event name: `captcha_failed`
+        struct CaptchaFailed: BIEvent {
+            let name = "captcha_failed"
             let failureReason: String
             
             var properties: [String: Any] {
