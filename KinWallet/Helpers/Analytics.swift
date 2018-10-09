@@ -119,3 +119,9 @@ extension Analytics {
         increment(property: Events.UserProperties.totalKinSpent, by: amount)
     }
 }
+
+extension Events.Analytics.ViewErrorPage {
+    init(errorType: Events.ErrorType) {
+        self.init(errorType: errorType, failureReason: "")
+    }
+}

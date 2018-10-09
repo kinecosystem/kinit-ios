@@ -84,7 +84,7 @@ class RootViewController: UIViewController {
         return true
     }
 
-    private func showErrorNotice(error: RegistrationError) {
+    private func showErrorNotice(error: RegistrationError, failureReason: String) {
         guard errorNoticeViewController == nil else {
             return
         }
@@ -112,7 +112,7 @@ class RootViewController: UIViewController {
 
         errorNoticeViewController = noticeViewController
 
-        logViewedErrorPage()
+        logViewedErrorPage(failureReason: failureReason)
     }
 
     func startWalletCreationTimeout(with attempt: String) {
@@ -126,7 +126,7 @@ class RootViewController: UIViewController {
                 return
             }
 
-            self.showErrorNotice(error: .wallet)
+            self.showErrorNotice(error: .wallet, failureReason: "Wallet creation timeout")
         }
     }
 
@@ -199,9 +199,11 @@ class RootViewController: UIViewController {
             .withCompletion { [weak self] config, error in
                 KLogVerbose("User registration: \(config != nil ? String(describing: config!) : "No config")")
                 guard config != nil else {
-                    self?.logRegistrationFailed(error: error)
+                    let reason = error?.localizedDescription ?? "Unknown User Registration Error"
+
+                    self?.logRegistrationFailed(error: error, reason: reason)
                     DispatchQueue.main.async {
-                        self?.showErrorNotice(error: .user)
+                        self?.showErrorNotice(error: .user, failureReason: reason)
                     }
 
                     return
@@ -246,16 +248,16 @@ class RootViewController: UIViewController {
         latestWalletCreationAttempt = thisAttempt
 
         Kin.shared.performOnboardingIfNeeded().then { [weak self] in
-            self?.onboardSucceeded($0)
+            self?.performedOnboarding($0)
         }
 
         startWalletCreationTimeout(with: thisAttempt)
     }
 
-    func onboardSucceeded(_ success: Bool) {
-        guard success else {
+    func performedOnboarding(_ result: OnboardingResult) {
+        if case let OnboardingResult.failure(reason) = result {
             DispatchQueue.main.async {
-                self.showErrorNotice(error: .wallet)
+                self.showErrorNotice(error: .wallet, failureReason: reason)
             }
             return
         }
@@ -328,16 +330,15 @@ extension RootViewController {
         Events.Business.UserRegistered().send()
     }
 
-    fileprivate func logRegistrationFailed(error: Error?) {
-        let reason = error?.localizedDescription ?? "Unknown error"
+    fileprivate func logRegistrationFailed(error: Error?, reason: String) {
         Events.Log
             .UserRegistrationFailed(failureReason: reason)
             .send()
     }
 
-    fileprivate func logViewedErrorPage() {
+    fileprivate func logViewedErrorPage(failureReason: String) {
         Events.Analytics
-            .ViewErrorPage(errorType: .onboarding)
+            .ViewErrorPage(errorType: .onboarding, failureReason: failureReason)
             .send()
     }
 

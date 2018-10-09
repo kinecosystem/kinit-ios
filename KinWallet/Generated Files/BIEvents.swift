@@ -2,7 +2,7 @@
 // BIEvents.swift
 //
 // Don't edit this file.
-// Generated at 2018-10-09 14:30:35 +0000 by Kik BI-Generator.
+// Generated at 2018-10-09 14:59:49 +0000 by Kik BI-Generator.
 //
 
 protocol BIEvent {
@@ -955,6 +955,7 @@ struct Events {
         struct ViewErrorPage: BIEvent {
             let name = "view_Error_page"
             let errorType: ErrorType
+            let failureReason: String
             
             var properties: [String: Any] {
                 return [
@@ -964,7 +965,8 @@ struct Events {
                         "event_type": "analytics",
                         
                         
-                        "error_type": errorType.rawValue, 
+                        "error_type": errorType.rawValue,
+                        "failure_reason": failureReason, 
                         ]
             }
         } 
@@ -1010,7 +1012,6 @@ struct Events {
         struct ViewEmptyStatePage: BIEvent {
             let name = "view_Empty_State_page"
             let menuItemName: MenuItemName
-            let taskCategory: String
             
             var properties: [String: Any] {
                 return [
@@ -1021,7 +1022,6 @@ struct Events {
                         
                         
                         "menu_item_name": menuItemName.rawValue,
-                        "task_category": taskCategory, 
                         ]
             }
         } 

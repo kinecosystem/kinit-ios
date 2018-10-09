@@ -30,7 +30,7 @@ class Kin {
 
     private(set) var account: KinAccount
     let linkBag = LinkBag()
-    private var onboardingPromise: Promise<Bool>?
+    private var onboardingPromise: Promise<OnboardingResult>?
     var accountStatus: AccountStatus = {
         let fromDefaults = UserDefaults.standard.integer(forKey: accountStatusUserDefaultsKey)
         return AccountStatus(rawValue: fromDefaults) ?? .notCreated
@@ -104,30 +104,38 @@ extension Kin {
     }
 }
 
+enum OnboardingResult {
+    case success
+    case failure(String)
+}
+
 // MARK: Account activation
 extension Kin {
-    func performOnboardingIfNeeded() -> Promise<Bool> {
+    func performOnboardingIfNeeded() -> Promise<OnboardingResult> {
         if let onboardingPromise = onboardingPromise {
             return onboardingPromise
         }
 
-        onboardingPromise = Promise<Bool>()
+        onboardingPromise = Promise<OnboardingResult>()
 
-        refreshBalance { balance, error in
+        refreshBalance { balance, rError in
             if let balance = balance {
                 UserDefaults.standard.set(AccountStatus.activated.rawValue,
                                           forKey: accountStatusUserDefaultsKey)
                 KLogVerbose("Already on-boarded account \(self.account.publicAddress). Balance is \(balance) KIN")
-                self.onboardingPromise?.signal(true)
+                self.onboardingPromise?.signal(.success)
                 self.onboardingPromise = nil
                 return
             }
 
             guard
-                let error = error as? KinError,
+                let error = rError as? KinError,
                 case let KinError.balanceQueryFailed(stellarError) = error
                 else {
-                    self.onboardingPromise?.signal(false)
+                    let errorDescription = rError != nil
+                        ? String(describing: rError!)
+                        : "Unknown Error"
+                    self.onboardingPromise?.signal(.failure(errorDescription))
                     self.onboardingPromise = nil
 
                     return
@@ -148,7 +156,7 @@ extension Kin {
                     self.onboardingPromise = nil
                 }
             } else {
-                self.onboardingPromise?.signal(false)
+                self.onboardingPromise?.signal(.failure("Unknown Stellar Error"))
                 self.onboardingPromise = nil
             }
         }
@@ -156,8 +164,8 @@ extension Kin {
         return onboardingPromise!
     }
 
-    private func onboardAndActivateAccount() -> Promise<Bool> {
-        let p = Promise<Bool>()
+    private func onboardAndActivateAccount() -> Promise<OnboardingResult> {
+        let p = Promise<OnboardingResult>()
 
         WebRequests.createAccount(with: account.publicAddress)
             .withCompletion { success, error in
@@ -166,7 +174,7 @@ extension Kin {
                     Events.Log
                         .StellarAccountCreationFailed(failureReason: error.localizedDescription)
                         .send()
-                    p.signal(false)
+                    p.signal(.failure(error.localizedDescription))
                     return
                 }
 
@@ -180,8 +188,8 @@ extension Kin {
         return p
     }
 
-    private func activateAccount() -> Promise<Bool> {
-        let p = Promise<Bool>()
+    private func activateAccount() -> Promise<OnboardingResult> {
+        let p = Promise<OnboardingResult>()
 
         account.activate()
             .then { _ in
@@ -192,14 +200,14 @@ extension Kin {
                 Events.Log.StellarKinTrustlineSetupSucceeded().send()
                 self.balanceUpdated(0)
 
-                p.signal(true)
+                p.signal(.success)
             }.error { error in
                 KLogError("Error activating account: \(error)")
                 Events.Log
                     .StellarKinTrustlineSetupFailed(failureReason: error.localizedDescription)
                     .send()
 
-                p.signal(false)
+                p.signal(.failure(error.localizedDescription))
             }
 
         return p
