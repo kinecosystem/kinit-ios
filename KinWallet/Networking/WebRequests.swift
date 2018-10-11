@@ -104,6 +104,16 @@ extension WebRequests {
 
 // MARK: Earn
 extension WebRequests {
+    static func taskCategories() -> WebRequest<TaskCategoriesResponse, [TaskCategory]> {
+        return WebRequest<TaskCategoriesResponse, [TaskCategory]>(GET: "/user/categories",
+                                                                  transform: { $0?.categories })
+    }
+
+    static func tasks(for categoryId: String) -> WebRequest<TasksResponse, [Task]> {
+        return WebRequest<TasksResponse, [Task]>(GET: "/user/category/\(categoryId)/tasks",
+                                                 transform: { $0?.tasks })
+    }
+
     static func nextTasks() -> WebRequest<TasksResponse, [Task]> {
         return WebRequest<TasksResponse, [Task]>(GET: "/user/tasks",
                                                  transform: { $0?.tasks })

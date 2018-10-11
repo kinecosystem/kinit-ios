@@ -15,6 +15,10 @@ struct SimpleStatusResponse: StatusResponse, Codable {
     let status: String
 }
 
+struct TaskCategoriesResponse: Codable {
+    let categories: [TaskCategory]
+}
+
 struct TasksResponse: Codable {
     let tasks: [Task]
 }

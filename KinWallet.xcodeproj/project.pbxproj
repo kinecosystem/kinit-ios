@@ -192,6 +192,9 @@
 		914013E02019F2BF0066367C /* UICollectionView+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013D92019F2BF0066367C /* UICollectionView+KinWallet.swift */; };
 		914013E12019F2BF0066367C /* UICollectionView+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013D92019F2BF0066367C /* UICollectionView+KinWallet.swift */; };
 		91473FE0201DCDBF0013A530 /* SelectedResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91473FDF201DCDBF0013A530 /* SelectedResult.swift */; };
+		9149BC68216F3CB0009DFFE9 /* TaskCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9149BC67216F3CB0009DFFE9 /* TaskCategory.swift */; };
+		9149BC70216F8010009DFFE9 /* TaskCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9149BC67216F3CB0009DFFE9 /* TaskCategory.swift */; };
+		9149BC71216F8010009DFFE9 /* TaskCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9149BC67216F3CB0009DFFE9 /* TaskCategory.swift */; };
 		9152E5E2212D48D400802040 /* KinCoreSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9152E5DB212D489800802040 /* KinCoreSDK.framework */; };
 		9152E5E3212D48D400802040 /* KinCoreSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9152E5DB212D489800802040 /* KinCoreSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9152E5E9212D505300802040 /* RestoreBackupCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152E5E8212D505300802040 /* RestoreBackupCells.swift */; };
@@ -843,6 +846,7 @@
 		914013D92019F2BF0066367C /* UICollectionView+KinWallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+KinWallet.swift"; sourceTree = "<group>"; };
 		914013E3201A1A6E0066367C /* Sourcery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sourcery.swift; sourceTree = "<group>"; };
 		91473FDF201DCDBF0013A530 /* SelectedResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedResult.swift; sourceTree = "<group>"; };
+		9149BC67216F3CB0009DFFE9 /* TaskCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCategory.swift; sourceTree = "<group>"; };
 		9152E5D1212D489800802040 /* KinCoreSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KinCoreSDK.xcodeproj; path = Submodules/KinCore/KinSDK/KinCoreSDK.xcodeproj; sourceTree = "<group>"; };
 		9152E5E8212D505300802040 /* RestoreBackupCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreBackupCells.swift; sourceTree = "<group>"; };
 		9152E5EC212D6C3300802040 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
@@ -1365,6 +1369,7 @@
 				9140138C20187DEB0066367C /* Author.swift */,
 				9140138320187CE90066367C /* Question.swift */,
 				9140138420187CE90066367C /* Task.swift */,
+				9149BC67216F3CB0009DFFE9 /* TaskCategory.swift */,
 				9189277721664E3400E0EE8C /* PostTaskAction.swift */,
 				91FF9D14207E365100B536E9 /* KinitTransaction.swift */,
 				91FF9D17207E4C0200B536E9 /* RedeemTransaction.swift */,
@@ -2386,6 +2391,7 @@
 				915995472134491600E4E840 /* FormsheetPresentationController.swift in Sources */,
 				91AAB932201E0AC00075DAA1 /* ResourceDownloader.swift in Sources */,
 				91AA18EA2104C01900044D9C /* QuizQuestionExplanationViewController.swift in Sources */,
+				9149BC68216F3CB0009DFFE9 /* TaskCategory.swift in Sources */,
 				9159955E2135457A00E4E840 /* BackupFlowController.swift in Sources */,
 				9140138620187CE90066367C /* Question.swift in Sources */,
 				91F69D1620834A9B00F06181 /* TransactionHistoryCollectionViewCell.swift in Sources */,
@@ -2571,6 +2577,7 @@
 				91E84A63208617FB00E8B7A6 /* OfferDetailsViewController.swift in Sources */,
 				91E84A692086183000E8B7A6 /* UIViewController+KinWallet.swift in Sources */,
 				91AA18EB2104C01900044D9C /* QuizQuestionExplanationViewController.swift in Sources */,
+				9149BC70216F8010009DFFE9 /* TaskCategory.swift in Sources */,
 				91E84A9820862CCC00E8B7A6 /* QuestionViewController.swift in Sources */,
 				91E84A702086186500E8B7A6 /* BarView.swift in Sources */,
 				91AAB933201E0AC00075DAA1 /* ResourceDownloader.swift in Sources */,
@@ -2656,6 +2663,7 @@
 				91AA18E821048AD000044D9C /* QuizData.swift in Sources */,
 				91E84AB220862E0F00E8B7A6 /* TransactionHistoryViewController.swift in Sources */,
 				91A427672129BEAC0078B589 /* CreatingWalletViewController.swift in Sources */,
+				9149BC71216F8010009DFFE9 /* TaskCategory.swift in Sources */,
 				828CB4122056E913007C679C /* Result.swift in Sources */,
 				91E84A8B2086188000E8B7A6 /* NotificationHandler.swift in Sources */,
 				91E84AAB20862DB700E8B7A6 /* SurveyAnswerCollectionViewCell.swift in Sources */,
