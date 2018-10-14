@@ -104,6 +104,8 @@
 
 "ReadyToEarnKinQuestion" = "Hi! 👋\nReady to earn some Kin?";
 
+"AvailableActivitesCount" = "%d activities";
+
 "NextActivityOnTitle" = "Your next activity will be available %@";
 
 "NextActivityOnSubtitle" = "We have planted the seed and your next task is currently growing";

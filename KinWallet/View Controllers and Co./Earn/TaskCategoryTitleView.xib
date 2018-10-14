@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TaskCategoryTitleView" customModule="KinWallet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="135" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="llc-GC-zPZ">
+                    <rect key="frame" x="0.0" y="0.0" width="135" height="44"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aep-7K-DU6">
+                            <rect key="frame" x="46.5" y="0.0" width="42" height="22"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ne3-o6-rER">
+                            <rect key="frame" x="37.5" y="22" width="60" height="22"/>
+                            <subviews>
+                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="MultipleTasksIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ykK-GA-pL9">
+                                    <rect key="frame" x="0.0" y="4" width="14" height="14"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bU0-7U-w8y">
+                                    <rect key="frame" x="18" y="1" width="42" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="llc-GC-zPZ" secondAttribute="bottom" id="9Ih-QV-LSr"/>
+                <constraint firstItem="llc-GC-zPZ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="AJV-bH-hR6"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="llc-GC-zPZ" secondAttribute="trailing" id="c9a-XF-NcN"/>
+                <constraint firstItem="llc-GC-zPZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ysp-9U-ncl"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="iconImageView" destination="ykK-GA-pL9" id="Ywo-kQ-4TX"/>
+                <outlet property="tasksCountLabel" destination="bU0-7U-w8y" id="9qs-U8-bvG"/>
+                <outlet property="tasksCountStackView" destination="ne3-o6-rER" id="o56-sE-APw"/>
+                <outlet property="titleLabel" destination="Aep-7K-DU6" id="jCY-4i-vtM"/>
+            </connections>
+            <point key="canvasLocation" x="-68" y="283"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="MultipleTasksIcon" width="14" height="14"/>
+    </resources>
+</document>

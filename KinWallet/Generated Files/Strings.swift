@@ -27,6 +27,10 @@ internal enum L10n {
   internal static let activityDoneMessage = L10n.tr("Localizable", "ActivityDoneMessage")
   /// Awesome!
   internal static let activityDoneTitle = L10n.tr("Localizable", "ActivityDoneTitle")
+  /// %d activities
+  internal static func availableActivitesCount(_ p1: Int) -> String {
+    return L10n.tr("Localizable", "AvailableActivitesCount", p1)
+  }
   /// Back
   internal static let backAction = L10n.tr("Localizable", "BackAction")
   /// Open Settings

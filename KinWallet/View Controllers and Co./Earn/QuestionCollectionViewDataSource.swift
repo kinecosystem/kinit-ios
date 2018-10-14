@@ -13,7 +13,7 @@ final class QuestionCollectionViewDataSource: NSObject {
         static let textMultipleAnswerCellHeightCompact: CGFloat = 44
         static let collectionViewDualImageSpacing: CGFloat = 0
         static let collectionViewMinimumSpacing: CGFloat = 15
-        static let numberOfColumns: CGFloat = 2
+        static let numberOfColumns: UInt = 2
     }
 
     let question: Question
@@ -163,7 +163,8 @@ extension QuestionCollectionViewDataSource: UICollectionViewDelegate, UICollecti
         }
 
         let widthInsets = question.type == .textAndImage || question.type == .tip
-            ? spacing(for: collectionView)
+            ? collectionView.equalSpacing(forColumns: Constants.numberOfColumns,
+                                          cellWidth: Constants.imageQuestionCellSize.width)
             : Constants.collectionViewMinimumSpacing
 
         return UIEdgeInsets(top: 0,
@@ -187,7 +188,8 @@ extension QuestionCollectionViewDataSource: UICollectionViewDelegate, UICollecti
             return 0
         }
 
-        return spacing(for: collectionView)
+        return collectionView.equalSpacing(forColumns: Constants.numberOfColumns,
+                                           cellWidth: Constants.imageQuestionCellSize.width)
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -195,12 +197,6 @@ extension QuestionCollectionViewDataSource: UICollectionViewDelegate, UICollecti
                         forElementKind elementKind: String,
                         at indexPath: IndexPath) {
         view.layer.zPosition = 0
-    }
-
-    private func spacing(for collectionView: UICollectionView) -> CGFloat {
-        let width = collectionView.frame.width
-        let emptySpace = width - Constants.numberOfColumns * Constants.imageQuestionCellSize.width
-        return emptySpace/(Constants.numberOfColumns + 1)
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

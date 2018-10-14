@@ -10,23 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Earn-->
-        <scene sceneID="hNz-n2-bh7">
-            <objects>
-                <viewController storyboardIdentifier="SurveyHomeViewController" id="9pv-A4-QxB" customClass="SurveyHomeViewController" customModule="KinWallet" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Earn" id="acW-dT-cKf"/>
-                    <navigationItem key="navigationItem" id="hsD-kV-l1h"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1593" y="-349"/>
-        </scene>
         <!--Spend-->
         <scene sceneID="ypf-gB-1eh">
             <objects>
@@ -96,12 +79,63 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="p8c-bs-GuZ"/>
+                        <segue destination="b8g-mE-F7b" kind="relationship" relationship="rootViewController" id="GTd-ud-MfB"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lHC-GR-EwN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="-349"/>
+        </scene>
+        <!--Earn Home View Controller-->
+        <scene sceneID="HHS-LM-23Z">
+            <objects>
+                <viewController storyboardIdentifier="EarnHomeViewController" id="b8g-mE-F7b" customClass="EarnHomeViewController" customModule="KinWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5in-NL-lk3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OrB-Rf-X1u">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="VV6-q4-wyM">
+                                    <size key="itemSize" width="150" height="150"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="hth-L7-ipY">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="b8g-mE-F7b" id="rOz-qZ-SVr"/>
+                                    <outlet property="delegate" destination="b8g-mE-F7b" id="vdS-XC-S0A"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="OrB-Rf-X1u" firstAttribute="leading" secondItem="BuK-jB-uhN" secondAttribute="leading" id="70c-kx-H9r"/>
+                            <constraint firstItem="OrB-Rf-X1u" firstAttribute="trailing" secondItem="BuK-jB-uhN" secondAttribute="trailing" id="Url-6L-7ev"/>
+                            <constraint firstAttribute="bottom" secondItem="OrB-Rf-X1u" secondAttribute="bottom" id="VLg-9L-Je1"/>
+                            <constraint firstItem="OrB-Rf-X1u" firstAttribute="top" secondItem="5in-NL-lk3" secondAttribute="top" id="v5q-XO-XtO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="BuK-jB-uhN"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="YvM-3d-GUD"/>
+                    <connections>
+                        <outlet property="collectionView" destination="OrB-Rf-X1u" id="e3t-E0-4M7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YTR-c2-SaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1528.8" y="-349.47526236881561"/>
         </scene>
         <!--Balance-->
         <scene sceneID="oS3-Ga-UFw">

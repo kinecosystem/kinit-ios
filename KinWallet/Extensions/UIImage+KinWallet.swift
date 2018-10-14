@@ -36,4 +36,34 @@ extension UIImage {
 
         return newImage!.resizableImage(withCapInsets: capInsets, resizingMode: resizingMode)
     }
+
+    static func applyingBlackAndWhite(to sourceImage: UIImage) -> UIImage {
+        return sourceImage.applyingBlackAndWhite()
+    }
+
+    func applyingBlackAndWhite() -> UIImage {
+        guard
+            let currentCGImage = cgImage,
+            let filter = CIFilter(name: "CIColorMonochrome") else {
+            return self
+        }
+
+        let currentCIImage = CIImage(cgImage: currentCGImage)
+
+        filter.setValue(currentCIImage, forKey: "inputImage")
+        filter.setValue(CIColor(red: 0.7, green: 0.7, blue: 0.7), forKey: "inputColor")
+        filter.setValue(1.0, forKey: "inputIntensity")
+
+        guard let outputImage = filter.outputImage else {
+            return self
+        }
+
+        let context = CIContext()
+
+        guard let cgimg = context.createCGImage(outputImage, from: outputImage.extent) else {
+            return self
+        }
+
+        return UIImage(cgImage: cgimg)
+    }
 }

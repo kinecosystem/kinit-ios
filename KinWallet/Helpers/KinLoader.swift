@@ -25,6 +25,8 @@ class KinLoader {
         .stateful()
     let redeemedItems = Observable<FetchResult<[RedeemTransaction]>>(.none(nil))
         .stateful()
+    let taskCategories = Observable<FetchResult<[TaskCategory]>>()
+        .stateful()
 
     init() {
         NotificationCenter.default.addObserver(self,
@@ -51,11 +53,22 @@ class KinLoader {
     }
 
     func loadAllData() {
+        loadTaskCategories()
         loadNextTask()
         loadOffers()
         loadTransactions()
         loadRedeemedItems()
         fetchAvailableBackupHints()
+    }
+
+    func loadTaskCategories() {
+        WebRequests.taskCategories().withCompletion { categories, error in
+            if let categories = categories, categories.isNotEmpty {
+                self.taskCategories.next(.some(categories))
+            } else {
+                self.taskCategories.next(.none(error))
+            }
+        }.load(with: KinWebService.shared)
     }
 
     func loadNextTask() {
@@ -84,8 +97,9 @@ class KinLoader {
             }
         }
 
-        let request = WebRequests.nextTasks().withCompletion(completion)
-        KinWebService.shared.load(request)
+        WebRequests.nextTasks()
+            .withCompletion(completion)
+            .load(with: KinWebService.shared)
     }
 
     func loadOffers() {

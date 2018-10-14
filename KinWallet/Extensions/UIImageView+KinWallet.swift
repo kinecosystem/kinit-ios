@@ -12,6 +12,7 @@ extension UIImageView {
                    placeholderColor: UIColor,
                    size: CGSize? = nil,
                    transitionDuration: TimeInterval = 0.25,
+                   applying imageTransform: ((UIImage) -> UIImage)? = nil,
                    completion: ((UIImage) -> Void)? = nil) {
         let image = UIImage.from(placeholderColor, size: size ?? frame.size)
         loadImage(url: remoteURL,
@@ -23,6 +24,7 @@ extension UIImageView {
     func loadImage(url remoteURL: URL,
                    placeholderImage: UIImage? = nil,
                    transitionDuration: TimeInterval = 0.25,
+                   applying imageTransform: ((UIImage) -> UIImage)? = nil,
                    completion: ((UIImage) -> Void)? = nil) {
         if let placeholder = placeholderImage {
             image = placeholder
@@ -44,8 +46,9 @@ extension UIImageView {
 
                 let applyImage = {
                     if let image = UIImage(contentsOfFile: url.path) {
-                        self.image = image
-                        completion?(image)
+                        let imageToUse = imageTransform?(image) ?? image
+                        self.image = imageToUse
+                        completion?(imageToUse)
                     }
                 }
 

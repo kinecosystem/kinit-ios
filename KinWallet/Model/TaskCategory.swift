@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 //swiftlint:disable type_name
 //swiftlint:disable nesting
@@ -26,13 +27,21 @@ struct TaskCategory: Codable {
     let identifier: String
     let availableTasksCount: Int
     let title: String
+    let ui: UI
 
     enum CodingKeys: String, CodingKey {
         case identifier = "id"
         case availableTasksCount = "available_tasks_count"
         case title
+        case ui = "ui_data"
     }
 }
 
 //swiftlint:enable type_name
 //swiftlint:enable nesting
+
+extension TaskCategory.UI {
+    var color: UIColor? {
+        return UIColor(hexString: hexColor)
+    }
+}

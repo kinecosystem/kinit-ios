@@ -5,6 +5,8 @@
 
 import UIKit
 
+// MARK: Registering cells and reusable views
+
 extension UICollectionView {
     func register<T: UICollectionViewCell>(class: T.Type) {
         register(T.self, forCellWithReuseIdentifier: T.reuseIdentifier)
@@ -51,5 +53,14 @@ extension UICollectionView {
         }
 
         return reusableView
+    }
+}
+
+// MARK: Layout calculations
+
+extension UICollectionView {
+    func equalSpacing(forColumns columns: UInt, cellWidth: CGFloat) -> CGFloat {
+        let emptySpace = frame.width - CGFloat(columns) * cellWidth
+        return floor(emptySpace/CGFloat(columns + 1))
     }
 }
