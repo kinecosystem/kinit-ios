@@ -57,7 +57,7 @@ class Kin {
         kinNetworkId = .custom(issuer: kinHorizonProductionIssuer, stellarNetworkId: .custom(kinHorizonProductionName))
         #endif
 
-        let client = try! KinClient(with: url, networkId: kinNetworkId)
+        let client = KinClient(with: url, networkId: kinNetworkId)
 
         self.account = try! client.accounts.last ?? client.addAccount()
         self.client = client
@@ -118,6 +118,12 @@ extension Kin {
 
         onboardingPromise = Promise<OnboardingResult>()
 
+        if accountStatus == .activated {
+            refreshBalance()
+            onboardingPromise!.signal(.success)
+            return onboardingPromise!
+        }
+
         refreshBalance { balance, rError in
             if let balance = balance {
                 UserDefaults.standard.set(AccountStatus.activated.rawValue,
@@ -156,7 +162,7 @@ extension Kin {
                     self.onboardingPromise = nil
                 }
             } else {
-                self.onboardingPromise?.signal(.failure("Unknown Stellar Error"))
+                self.onboardingPromise?.signal(.failure(stellarError.localizedDescription))
                 self.onboardingPromise = nil
             }
         }
@@ -245,8 +251,16 @@ extension Kin {
 
             if let error = error, Kin.shared.accountStatus == .activated {
                 KLogError("Error fetching balance")
+                let errorDescription: String
+
+                if case let KinError.balanceQueryFailed(underlyingStellarError) = error {
+                    errorDescription = underlyingStellarError.localizedDescription
+                } else {
+                    errorDescription = error.localizedDescription
+                }
+
                 Events.Log
-                    .BalanceUpdateFailed(failureReason: error.localizedDescription)
+                    .BalanceUpdateFailed(failureReason: errorDescription)
                     .send()
 
                 return
