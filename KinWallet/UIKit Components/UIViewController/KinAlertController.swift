@@ -17,7 +17,25 @@ class KinAlertAction {
     }
 }
 
+private class KinAlertControllerPresenter: UIViewController {
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+}
+
 class KinAlertController: UIViewController {
+    func showInNewWindow() {
+        let presenter = KinAlertControllerPresenter()
+        presenter.view.backgroundColor = .clear
+
+        let alertWindow = UIWindow()
+        alertWindow.backgroundColor = .clear
+        alertWindow.rootViewController = presenter
+        alertWindow.makeKeyAndVisible()
+
+        presenter.presentAnimated(self)
+    }
+
     init(title: String,
          titleImage: UIImage?,
          message: String,
