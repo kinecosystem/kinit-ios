@@ -57,7 +57,8 @@ class Kin {
         kinNetworkId = .custom(issuer: kinHorizonProductionIssuer, stellarNetworkId: .custom(kinHorizonProductionName))
         #endif
 
-        let client = KinClient(with: url, networkId: kinNetworkId)
+        let appId = try! AppId("KI18")
+        let client = KinClient(with: url, networkId: kinNetworkId, appId: appId)
 
         self.account = try! client.accounts.last ?? client.addAccount()
         self.client = client
