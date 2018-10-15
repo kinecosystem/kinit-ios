@@ -244,17 +244,18 @@ class RootViewController: UIViewController {
     }
 
     private func performOnboarding() {
+        let alreadyActivated = Kin.shared.accountStatus == .activated
         let thisAttempt = UUID().uuidString
         latestWalletCreationAttempt = thisAttempt
 
         Kin.shared.performOnboardingIfNeeded().then { [weak self] in
-            self?.performedOnboarding($0)
+            self?.performedOnboarding($0, previouslyActivated: alreadyActivated)
         }
 
         startWalletCreationTimeout(with: thisAttempt)
     }
 
-    func performedOnboarding(_ result: OnboardingResult) {
+    func performedOnboarding(_ result: OnboardingResult, previouslyActivated: Bool) {
         if case let OnboardingResult.failure(reason) = result {
             DispatchQueue.main.async {
                 self.showErrorNotice(error: .wallet, failureReason: reason)
@@ -262,17 +263,23 @@ class RootViewController: UIViewController {
             return
         }
 
-        guard var user = User.current else {
-            return
-        }
+        if previouslyActivated {
+            DispatchQueue.main.async {
+                self.dismissSplashIfNeeded()
+            }
+        } else {
+            guard var user = User.current else {
+                return
+            }
 
-        user.publicAddress = Kin.shared.publicAddress
-        user.save()
+            user.publicAddress = Kin.shared.publicAddress
+            user.save()
 
-        DispatchQueue.main.async {
-            let accountReady = StoryboardScene.Onboard.accountReadyViewController.instantiate()
-            accountReady.walletSource = .new
-            self.splashScreenNavigationController?.pushViewController(accountReady, animated: true)
+            DispatchQueue.main.async {
+                let accountReady = StoryboardScene.Onboard.accountReadyViewController.instantiate()
+                accountReady.walletSource = .new
+                self.splashScreenNavigationController?.pushViewController(accountReady, animated: true)
+            }
         }
     }
 
