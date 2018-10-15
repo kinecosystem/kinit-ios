@@ -109,6 +109,7 @@ internal enum Asset {
   internal static let textAnswerShapeSelected = ImageAsset(name: "TextAnswerShapeSelected")
   internal static let timer = ImageAsset(name: "Timer")
   internal static let transferFireworks = ImageAsset(name: "TransferFireworks")
+  internal static let updateAvailableHeaderImage = ImageAsset(name: "UpdateAvailableHeaderImage")
   internal static let walletCreationFailed = ImageAsset(name: "WalletCreationFailed")
   internal static let welcomeBack = ImageAsset(name: "WelcomeBack")
   internal static let welcomeTutorial1 = ImageAsset(name: "WelcomeTutorial1")
@@ -186,6 +187,7 @@ internal enum Asset {
     textAnswerShapeSelected,
     timer,
     transferFireworks,
+    updateAvailableHeaderImage,
     walletCreationFailed,
     welcomeBack,
     welcomeTutorial1,

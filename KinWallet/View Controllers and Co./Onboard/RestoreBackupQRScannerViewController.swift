@@ -150,7 +150,7 @@ extension RestoreBackupQRScannerViewController: QRCodeScannerDelegate {
         if let url = URL(string: UIApplication.openSettingsURLString) {
             alertController.addAction(title: L10n.cameraDeniedAction, style: .default) { _ in
                 if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    UIApplication.shared.open(url)
                 } else {
                     UIApplication.shared.openURL(url)
                 }

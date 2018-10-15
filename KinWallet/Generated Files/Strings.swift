@@ -349,6 +349,8 @@ internal enum L10n {
   internal static let tryAgain = L10n.tr("Localizable", "TryAgain")
   /// We were unable to create a profile for you
   internal static let userRegistrationErrorTitle = L10n.tr("Localizable", "UserRegistrationErrorTitle")
+  /// Version
+  internal static let version = L10n.tr("Localizable", "Version")
   /// Your vouchers will be saved here!
   internal static let vouchersEmptyStateMessage = L10n.tr("Localizable", "VouchersEmptyStateMessage")
   /// Wallet Backup
@@ -373,6 +375,22 @@ internal enum L10n {
   internal static let welcomeScreenDisclaimer = L10n.tr("Localizable", "WelcomeScreenDisclaimer")
   /// Your Kin Balance
   internal static let yourKinBalance = L10n.tr("Localizable", "YourKinBalance")
+
+  internal enum MoreUpdate {
+    /// Update now
+    internal static let updateNow = L10n.tr("Localizable", "More_Update.UpdateNow")
+    /// Up to date
+    internal static let upToDate = L10n.tr("Localizable", "More_Update.UpToDate")
+  }
+
+  internal enum UpdateAlert {
+    /// Update Now
+    internal static let action = L10n.tr("Localizable", "Update_Alert.Action")
+    /// Update to the newest version to keep the kin rolling in
+    internal static let message = L10n.tr("Localizable", "Update_Alert.Message")
+    /// New version available
+    internal static let title = L10n.tr("Localizable", "Update_Alert.Title")
+  }
 }
 // swiftlint:enable explicit_type_interface identifier_name line_length nesting type_body_length type_name
 

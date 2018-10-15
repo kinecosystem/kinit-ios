@@ -149,7 +149,7 @@ final class KinSupportViewController: MFMailComposeViewController {
                 foundMailClient = true
 
                 if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(composeURL, completionHandler: nil)
+                    UIApplication.shared.open(composeURL)
                 } else {
                     UIApplication.shared.openURL(composeURL)
                 }

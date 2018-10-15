@@ -16,6 +16,8 @@ struct RemoteConfig: Codable {
     let termsOfService: URL?
     let backupNag: Bool?
     let faqUrl: URL?
+    let isUpdateAvailable: Bool?
+    var forceUpdate: Bool?
 
     enum CodingKeys: String, CodingKey {
         case authTokenEnabled = "auth_token_enabled"
@@ -26,9 +28,15 @@ struct RemoteConfig: Codable {
         case termsOfService = "tos"
         case backupNag = "backup_nag"
         case faqUrl = "faq_url"
+        case isUpdateAvailable = "is_update_available"
+        case forceUpdate = "force_update"
     }
 
     private static var _current: RemoteConfig?
+}
+
+extension NSNotification.Name {
+    static let RemoteConfigUpdated = NSNotification.Name(rawValue: "RemoteConfigUpdated")
 }
 
 extension RemoteConfig {
@@ -43,6 +51,14 @@ extension RemoteConfig {
 
     static func updateCurrent(with config: RemoteConfig) {
         _current = config
-        SimpleDatastore.persist(config, with: currentConfigIdentifier)
+
+        //do not store the forceUpdate bool
+        var configCopy = config
+        configCopy.forceUpdate = nil
+        SimpleDatastore.persist(configCopy, with: currentConfigIdentifier)
+
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: .RemoteConfigUpdated, object: nil)
+        }
     }
 }

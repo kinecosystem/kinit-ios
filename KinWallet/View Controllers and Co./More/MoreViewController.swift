@@ -73,8 +73,14 @@ final class MoreViewController: UIViewController {
         didSet {
             versionLabel.font = FontFamily.Roboto.regular.font(size: 14)
             versionLabel.textColor = UIColor.kin.gray
-            versionLabel.text = "V. \(Bundle.appVersion) (Build \(Bundle.buildNumber))"
+            versionLabel.text = "\(L10n.version) \(Bundle.appVersion) (Build \(Bundle.buildNumber))"
         }
+    }
+
+    @IBOutlet weak var updateButton: UIButton!
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func viewDidLoad() {
@@ -95,6 +101,12 @@ final class MoreViewController: UIViewController {
 
         tableView.tableFooterView = UIView()
         view.addGestureRecognizer(fourTapGesture)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reloadUpdateButton),
+                                               name: .RemoteConfigUpdated,
+                                               object: nil)
+        reloadUpdateButton()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -115,6 +127,28 @@ final class MoreViewController: UIViewController {
         super.viewWillAppear(animated)
 
         navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    @objc func reloadUpdateButton() {
+        if RemoteConfig.current?.isUpdateAvailable == true {
+            let attributedTitle = NSAttributedString(string: L10n.MoreUpdate.updateNow,
+                                                     attributes: [.foregroundColor: UIColor.kin.errorRed,
+                                                                  .underlineStyle: NSUnderlineStyle.single.rawValue])
+            updateButton.setAttributedTitle(attributedTitle, for: .normal)
+            updateButton.isUserInteractionEnabled = true
+        } else {
+            updateButton.tintColor = UIColor.kin.gray
+            updateButton.setTitle(L10n.MoreUpdate.upToDate, for: .normal)
+            updateButton.isUserInteractionEnabled = false
+        }
+    }
+
+    @IBAction func updateTapped() {
+        guard RemoteConfig.current?.isUpdateAvailable == true else {
+            return
+        }
+
+        UIApplication.update()
     }
 
     @objc func tapGestureRecognized() {
