@@ -18,8 +18,8 @@ class KinAlertAction {
 }
 
 private class KinAlertControllerPresenter: UIViewController {
-    override var prefersStatusBarHidden: Bool {
-        return true
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
 
