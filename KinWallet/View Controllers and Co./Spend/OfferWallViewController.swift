@@ -16,7 +16,8 @@ class OfferWallViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        layout = collectionView!.collectionViewLayout as! UICollectionViewFlowLayout //swiftlint:disable:this force_cast
+        //swiftlint:disable:next force_cast
+        layout = (collectionView!.collectionViewLayout as! UICollectionViewFlowLayout)
         let itemWidth = view.frame.width - layout.sectionInset.left  - layout.sectionInset.right
         layout.itemSize = OfferCollectionViewCell.itemSize(for: itemWidth)
 
@@ -40,7 +41,7 @@ class OfferWallViewController: UIViewController {
     func configureSubscriber() {
         subscriber = FetchableCollectionViewSubscriber<Offer>
             .init(collectionView: collectionView,
-                  observable: KinLoader.shared.offers,
+                  observable: DataLoaders.kinit.offers,
                   linkBag: linkBag,
                   itemsAvailabilityChanged: { [weak self] items, error in
                     self?.availabilityChanged(items: items, error: error)
@@ -97,7 +98,7 @@ extension OfferWallViewController: UICollectionViewDataSource {
 // MARK: Analytics
 extension OfferWallViewController {
     func logViewPage() {
-        switch KinLoader.shared.offers.value! {
+        switch DataLoaders.kinit.offers.value! {
         case .none(let error):
             if error != nil {
                 Events.Analytics

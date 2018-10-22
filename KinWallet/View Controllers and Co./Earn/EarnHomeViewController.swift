@@ -8,12 +8,14 @@
 import UIKit
 import KinUtil
 
-final class EarnHomeViewController: UIViewController {
+final class EarnHomeViewController: UIViewController, AddNoticeViewController {
     fileprivate struct Constants {
         static let numberOfColumns: UInt = 2
         static let itemSide: CGFloat = 155
         static let compactItemSide: CGFloat = 135
     }
+
+    private let activityIndicator = UIActivityIndicatorView(style: .white)
 
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
@@ -30,24 +32,45 @@ final class EarnHomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
         addBalanceLabel()
-        KinLoader.shared.taskCategories
-            .on(queue: .main, next: renderTaskCategories)
-            .add(to: linkBag)
+        bindObservables()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
 
+    private func bindObservables() {
+        DataLoaders.tasks.categories
+            .on(queue: .main, next: renderTaskCategories)
+            .add(to: linkBag)
+        DataLoaders.tasks.isLoadingCategories
+            .on(queue: .main, next: { [weak self] isLoading in
+                if isLoading {
+                    self?.activityIndicator.startAnimating()
+                } else {
+                    self?.activityIndicator.stopAnimating()
+                }
+            }).add(to: linkBag)
+    }
+
     func renderTaskCategories(_ result: FetchResult<[TaskCategory]>) {
         switch result {
-        case .none://(let error):
-            print("Meh")
+        case .none(let error):
+            showCategoriesUnavailable(error: error)
         case .some(let categories):
             self.categories = categories
-            self.collectionView.reloadData()
+            collectionView.reloadData()
         }
+    }
+
+    func showCategoriesUnavailable(error: Error?) {
+        children.forEach { $0.remove() }
+
+        addNoticeViewController(with: L10n.noInternetErrorTitle,
+                                subtitle: L10n.internetErrorMessage,
+                                image: Asset.noInternetIllustration.image)
     }
 }
 
@@ -80,7 +103,8 @@ extension EarnHomeViewController: UICollectionViewDelegate {
         let category = categories[indexPath.item]
 
         let viewController = TaskCategoryViewController()
-        viewController.category = category
+        viewController.navBarColor = category.ui.color
+        viewController.categoryId = category.identifier
 
         let headerURL = category.ui.headerImageURL.kinImagePathAdjustedForDevice()
         if let headerLocalURL = ResourceDownloader.shared.downloadedResource(url: headerURL) {

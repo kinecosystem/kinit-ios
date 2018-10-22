@@ -86,7 +86,7 @@ final class MoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        KinLoader.shared.fetchAvailableBackupHints(skipCache: true)
+        DataLoaders.kinit.fetchAvailableBackupHints(skipCache: true)
 
         performedBackup = Kin.performedBackup()
 
@@ -113,7 +113,7 @@ final class MoreViewController: UIViewController {
         super.viewDidAppear(animated)
 
         Events.Analytics.ViewProfilePage().send()
-        KinLoader.shared.fetchAvailableBackupHints()
+        DataLoaders.kinit.fetchAvailableBackupHints()
 
         if performedBackup != Kin.performedBackup() {
             performedBackup.toggle()

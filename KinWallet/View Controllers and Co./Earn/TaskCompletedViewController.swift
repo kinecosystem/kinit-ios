@@ -10,7 +10,7 @@ import KinUtil
 import KinitDesignables
 
 extension Notification.Name {
-    static var transactionCompleted = Notification.Name(rawValue: "org.kinecosystem.txCompleted")
+    static let transactionCompleted = Notification.Name(rawValue: "org.kinecosystem.txCompleted")
 }
 
 final class TaskCompletedViewController: UIViewController {
@@ -107,7 +107,8 @@ final class TaskCompletedViewController: UIViewController {
             SimpleDatastore.delete(results)
         }
 
-        KinLoader.shared.deleteCachedAndFetchNextTask()
+        DataLoaders.tasks.markTaskFinished(taskId: task.identifier, categoryId: task.categoryId)
+        DataLoaders.tasks.loadTasks(for: task.categoryId)
 
         let memo = task.memo
 
@@ -162,7 +163,7 @@ final class TaskCompletedViewController: UIViewController {
         logEarnTransactionTimeout()
 
         Kin.shared.refreshBalance()
-        KinLoader.shared.loadTransactions()
+        DataLoaders.kinit.loadTransactions()
 
         notificationObserver = nil
         watch = nil
@@ -235,7 +236,7 @@ final class TaskCompletedViewController: UIViewController {
         processedSuccess = true
 
         targetBalance = initialBalance + paymentAmount
-        KinLoader.shared.loadTransactions()
+        DataLoaders.kinit.loadTransactions()
 
         logEarnTransactionSucceded(with: paymentAmount, txId: txId)
         Analytics.incrementEarnCount()

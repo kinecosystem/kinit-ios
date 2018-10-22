@@ -88,7 +88,6 @@ class VideoTaskViewController: UIViewController {
     let activityIndicator: UIActivityIndicatorView = {
         let a = UIActivityIndicatorView(style: .white)
         a.translatesAutoresizingMaskIntoConstraints = false
-        a.hidesWhenStopped = true
         return a
     }()
 
@@ -229,7 +228,8 @@ class VideoTaskViewController: UIViewController {
             }
         }
 
-        timeObserverToken = playerViewController.player?.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 1, timescale: 60),
+        let time = CMTimeMake(value: 1, timescale: 60)
+        timeObserverToken = playerViewController.player?.addPeriodicTimeObserver(forInterval: time,
                                                                                  queue: .main,
                                                                                  using: timeBlock)
     }

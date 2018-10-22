@@ -165,7 +165,7 @@ class RootViewController: UIViewController {
             KLogVerbose("App Launch: \(config != nil ? String(describing: config!) : "No config")")
             }.load(with: KinWebService.shared)
 
-        KinLoader.shared.loadAllData()
+        DataLoaders.loadAllData()
     }
 
     private func verifyAccountMatchesUserAddress() {
@@ -213,7 +213,7 @@ class RootViewController: UIViewController {
                                               deviceId: user.deviceId)
                 user.save()
 
-                KinLoader.shared.loadAllData()
+                DataLoaders.loadAllData()
 
                 DispatchQueue.main.async {
                     self?.showWelcomeViewController()

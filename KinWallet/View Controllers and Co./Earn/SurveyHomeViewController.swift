@@ -22,11 +22,12 @@ final class SurveyHomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        renderCurrentTask(KinLoader.shared.currentTask.value ?? .none(nil))
-
-        KinLoader.shared.currentTask
-            .on(queue: .main, next: renderCurrentTask)
-            .add(to: linkBag)
+        //TODO: Fetchers refactor
+//        renderCurrentTask(DataLoaders.kinit.currentTask.value ?? .none(nil))
+//
+//        DataLoaders.kinit.currentTask
+//            .on(queue: .main, next: renderCurrentTask)
+//            .add(to: linkBag)
 
         addBalanceLabel()
 
@@ -184,11 +185,12 @@ extension SurveyHomeViewController: SurveyViewControllerDelegate {
                 return
         }
 
-        let taskAvailable = KinLoader.shared.currentTask.value?.isTaskAvailable ?? false
-
-        guard !taskAvailable else {
-            return
-        }
+        //TODO: Fetchers refactor
+//        let taskAvailable = DataLoaders.kinit.currentTask.value?.isTaskAvailable ?? false
+//
+//        guard !taskAvailable else {
+//            return
+//        }
 
         defer {
             BackupNagCounter.incrementIfNeeded()

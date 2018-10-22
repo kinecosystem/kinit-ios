@@ -114,8 +114,8 @@ extension WebRequests {
                                                  transform: { $0?.tasks })
     }
 
-    static func nextTasks() -> WebRequest<TasksResponse, [Task]> {
-        return WebRequest<TasksResponse, [Task]>(GET: "/user/tasks",
+    static func nextTasks() -> WebRequest<TasksByCategoryResponse, [String: [Task]]> {
+        return WebRequest<TasksByCategoryResponse, [String: [Task]]>(GET: "/user/tasks",
                                                  transform: { $0?.tasks })
     }
 
@@ -183,7 +183,7 @@ extension WebRequests {
             }
 
             let tx = response.transaction
-            KinLoader.shared.prependTransaction(tx)
+            DataLoaders.kinit.prependTransaction(tx)
 
             return true
         }

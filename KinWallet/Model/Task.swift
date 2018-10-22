@@ -13,6 +13,7 @@ enum TaskType: String, Codable {
 }
 
 struct Task: Codable {
+    let categoryId: String
     let author: Author
     let identifier: String
     let kinReward: UInt
@@ -30,6 +31,7 @@ struct Task: Codable {
 
     enum CodingKeys: String, CodingKey {
         case author = "provider"
+        case categoryId = "cat_id"
         case identifier = "id"
         case kinReward = "price"
         case memo = "memo"

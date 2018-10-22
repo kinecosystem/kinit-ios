@@ -208,7 +208,7 @@ class PhoneConfirmationViewController: UIViewController {
     }
 
     func validationSucceeded(with hintIds: [Int]) {
-        KinLoader.shared.deleteCachedAndFetchNextTask()
+        DataLoaders.tasks.loadAllData()
 
         activityIndicatorView.stopAnimating()
 

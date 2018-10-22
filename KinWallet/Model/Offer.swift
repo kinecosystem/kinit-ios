@@ -52,15 +52,18 @@ enum SpecialOffer {
                 return false
             }
 
-            guard let fetchResult = KinLoader.shared.currentTask.value,
-                case let .some(currentTask) = fetchResult,
-                let taskId = Int(currentTask.identifier) else {
-                return true
-            }
+            //TODO: Fetchers refactor
+//            guard let fetchResult = DataLoaders.kinit.currentTask.value,
+//                case let .some(currentTask) = fetchResult,
+//                let taskId = Int(currentTask.identifier) else {
+//                return true
+//            }
 
             let minTasksRequired = config.peerToPeerMinTasks ?? 0
 
-            return taskId >= minTasksRequired
+            //TODO: Fetchers refactor
+//            return taskId >= minTasksRequired
+            return true
         }
     }
 

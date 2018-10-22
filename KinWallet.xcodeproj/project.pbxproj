@@ -166,7 +166,6 @@
 		9140139A201892640066367C /* AnswerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91401396201892640066367C /* AnswerTests.swift */; };
 		914013A02018B87E0066367C /* InitialTasks.json in Resources */ = {isa = PBXBuildFile; fileRef = 9140139F2018B87E0066367C /* InitialTasks.json */; };
 		914013A52018BC320066367C /* OfferWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013A22018BC320066367C /* OfferWallViewController.swift */; };
-		914013A72018BC320066367C /* SurveyHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013A42018BC320066367C /* SurveyHomeViewController.swift */; };
 		914013AA2018BC780066367C /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013A92018BC780066367C /* SurveyViewController.swift */; };
 		914013AD2018BCB90066367C /* SurveyUnavailableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013AC2018BCB80066367C /* SurveyUnavailableViewController.swift */; };
 		914013B02018BD050066367C /* SurveyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013AF2018BD050066367C /* SurveyInfoViewController.swift */; };
@@ -355,6 +354,15 @@
 		91AE22D821761E060024B8BF /* TaskCategoryTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91AE22D721761E060024B8BF /* TaskCategoryTitleView.xib */; };
 		91AE22D921761E060024B8BF /* TaskCategoryTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91AE22D721761E060024B8BF /* TaskCategoryTitleView.xib */; };
 		91AE22DA21761E060024B8BF /* TaskCategoryTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91AE22D721761E060024B8BF /* TaskCategoryTitleView.xib */; };
+		91AE22F821775E930024B8BF /* TaskLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE22F721775E930024B8BF /* TaskLoader.swift */; };
+		91AE230021775E970024B8BF /* TaskLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE22F721775E930024B8BF /* TaskLoader.swift */; };
+		91AE230121775E980024B8BF /* TaskLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE22F721775E930024B8BF /* TaskLoader.swift */; };
+		91AE230221776A0E0024B8BF /* SurveyHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013A42018BC320066367C /* SurveyHomeViewController.swift */; };
+		91AE230321776A0E0024B8BF /* SurveyHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013A42018BC320066367C /* SurveyHomeViewController.swift */; };
+		91AE230421776A0F0024B8BF /* SurveyHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013A42018BC320066367C /* SurveyHomeViewController.swift */; };
+		91AE230621776C4E0024B8BF /* DataLoaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE230521776C4E0024B8BF /* DataLoaders.swift */; };
+		91AE230721776CB50024B8BF /* DataLoaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE230521776C4E0024B8BF /* DataLoaders.swift */; };
+		91AE230821776CB50024B8BF /* DataLoaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE230521776C4E0024B8BF /* DataLoaders.swift */; };
 		91AEBF392029E958007BBBA3 /* WebRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AEBF382029E958007BBBA3 /* WebRequest.swift */; };
 		91AEBF3A2029E9F3007BBBA3 /* WebRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AEBF382029E958007BBBA3 /* WebRequest.swift */; };
 		91AEBF3C202B0554007BBBA3 /* TaskCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AEBF3B202B0554007BBBA3 /* TaskCompletedViewController.swift */; };
@@ -407,7 +415,7 @@
 		91B445692091F98800ED6802 /* PhoneConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B445682091F98800ED6802 /* PhoneConfirmationViewController.swift */; };
 		91B4456A2091F98800ED6802 /* PhoneConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B445682091F98800ED6802 /* PhoneConfirmationViewController.swift */; };
 		91B4456B2091F98800ED6802 /* PhoneConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B445682091F98800ED6802 /* PhoneConfirmationViewController.swift */; };
-		91B575BA2045E62B00AC3E04 /* KinLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B575B92045E62B00AC3E04 /* KinLoader.swift */; };
+		91B575BA2045E62B00AC3E04 /* KinitLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B575B92045E62B00AC3E04 /* KinitLoader.swift */; };
 		91B575C22046C37300AC3E04 /* UIButton+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B575C12046C37300AC3E04 /* UIButton+KinWallet.swift */; };
 		91B575C32046C48B00AC3E04 /* UIButton+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B575C12046C37300AC3E04 /* UIButton+KinWallet.swift */; };
 		91B575C52046E83200AC3E04 /* Date+Kinit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B575C42046E83200AC3E04 /* Date+Kinit.swift */; };
@@ -497,16 +505,14 @@
 		91E84A5E208617D200E8B7A6 /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF9D2D207F49C700B536E9 /* BalanceViewController.swift */; };
 		91E84A5F208617DA00E8B7A6 /* OfferWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013A22018BC320066367C /* OfferWallViewController.swift */; };
 		91E84A60208617DA00E8B7A6 /* OfferWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013A22018BC320066367C /* OfferWallViewController.swift */; };
-		91E84A61208617ED00E8B7A6 /* SurveyHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013A42018BC320066367C /* SurveyHomeViewController.swift */; };
-		91E84A62208617ED00E8B7A6 /* SurveyHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013A42018BC320066367C /* SurveyHomeViewController.swift */; };
 		91E84A63208617FB00E8B7A6 /* OfferDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9138BBE0204EE21E00450C97 /* OfferDetailsViewController.swift */; };
 		91E84A64208617FB00E8B7A6 /* OfferDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9138BBE0204EE21E00450C97 /* OfferDetailsViewController.swift */; };
 		91E84A652086182000E8B7A6 /* SurveyUnavailableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013AC2018BCB80066367C /* SurveyUnavailableViewController.swift */; };
 		91E84A662086182100E8B7A6 /* SurveyUnavailableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013AC2018BCB80066367C /* SurveyUnavailableViewController.swift */; };
 		91E84A682086183000E8B7A6 /* UIViewController+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140137C201748100066367C /* UIViewController+KinWallet.swift */; };
 		91E84A692086183000E8B7A6 /* UIViewController+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140137C201748100066367C /* UIViewController+KinWallet.swift */; };
-		91E84A6A2086183900E8B7A6 /* KinLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B575B92045E62B00AC3E04 /* KinLoader.swift */; };
-		91E84A6B2086183A00E8B7A6 /* KinLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B575B92045E62B00AC3E04 /* KinLoader.swift */; };
+		91E84A6A2086183900E8B7A6 /* KinitLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B575B92045E62B00AC3E04 /* KinitLoader.swift */; };
+		91E84A6B2086183A00E8B7A6 /* KinitLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B575B92045E62B00AC3E04 /* KinitLoader.swift */; };
 		91E84A6C2086185000E8B7A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140132D20162FA90066367C /* AppDelegate.swift */; };
 		91E84A6D2086185000E8B7A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140132D20162FA90066367C /* AppDelegate.swift */; };
 		91E84A6E2086186300E8B7A6 /* BarPagerTabStripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F69D22208379F300F06181 /* BarPagerTabStripViewController.swift */; };
@@ -935,6 +941,8 @@
 		91AE1D2E2175EB120024B8BF /* TaskCategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskCategoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		91AE200821760D2D0024B8BF /* TaskCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCategoryViewController.swift; sourceTree = "<group>"; };
 		91AE22D721761E060024B8BF /* TaskCategoryTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskCategoryTitleView.xib; sourceTree = "<group>"; };
+		91AE22F721775E930024B8BF /* TaskLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskLoader.swift; sourceTree = "<group>"; };
+		91AE230521776C4E0024B8BF /* DataLoaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoaders.swift; sourceTree = "<group>"; };
 		91AEBF382029E958007BBBA3 /* WebRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequest.swift; sourceTree = "<group>"; };
 		91AEBF3B202B0554007BBBA3 /* TaskCompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCompletedViewController.swift; sourceTree = "<group>"; };
 		91B0667020C6AF7800CE69A7 /* StandardOfferActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardOfferActionViewController.swift; sourceTree = "<group>"; };
@@ -955,7 +963,7 @@
 		91B4454620909C5400ED6802 /* TutorialPageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialPageView.xib; sourceTree = "<group>"; };
 		91B4454E2090C3B400ED6802 /* PhoneVerificationRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationRequestViewController.swift; sourceTree = "<group>"; };
 		91B445682091F98800ED6802 /* PhoneConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneConfirmationViewController.swift; sourceTree = "<group>"; };
-		91B575B92045E62B00AC3E04 /* KinLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinLoader.swift; sourceTree = "<group>"; };
+		91B575B92045E62B00AC3E04 /* KinitLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinitLoader.swift; sourceTree = "<group>"; };
 		91B575C12046C37300AC3E04 /* UIButton+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+KinWallet.swift"; sourceTree = "<group>"; };
 		91B575C42046E83200AC3E04 /* Date+Kinit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Kinit.swift"; sourceTree = "<group>"; };
 		91B57F8920E035E900CE5EE1 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -1528,7 +1536,9 @@
 				91E20B8A202B3E3B000CB741 /* FeedbackGenerator.swift */,
 				9159956C21356A0F00E4E840 /* AuthToken.swift */,
 				91E6B60B203AD1D30080C2FC /* Kin.swift */,
-				91B575B92045E62B00AC3E04 /* KinLoader.swift */,
+				91AE230521776C4E0024B8BF /* DataLoaders.swift */,
+				91B575B92045E62B00AC3E04 /* KinitLoader.swift */,
+				91AE22F721775E930024B8BF /* TaskLoader.swift */,
 				9157F982204C40E000351E2A /* Log.swift */,
 				9152E600212EB41D00802040 /* KinErrors.swift */,
 				91AAB931201E0AC00075DAA1 /* ResourceDownloader.swift */,
@@ -2360,7 +2370,6 @@
 				91E84A4F2085ED2300E8B7A6 /* EmptyStateView.swift in Sources */,
 				91B575C22046C37300AC3E04 /* UIButton+KinWallet.swift in Sources */,
 				91FF9D2E207F49C800B536E9 /* BalanceViewController.swift in Sources */,
-				914013A72018BC320066367C /* SurveyHomeViewController.swift in Sources */,
 				9152E601212EB41D00802040 /* KinErrors.swift in Sources */,
 				91FE7D7220F6304B00EDFB67 /* Anchorable.swift in Sources */,
 				9140138820187CE90066367C /* Task.swift in Sources */,
@@ -2373,6 +2382,7 @@
 				914013E02019F2BF0066367C /* UICollectionView+KinWallet.swift in Sources */,
 				9140137D201748100066367C /* UIViewController+KinWallet.swift in Sources */,
 				9152E5ED212D6C3300802040 /* UIBarButtonItem.swift in Sources */,
+				91AE22F821775E930024B8BF /* TaskLoader.swift in Sources */,
 				91C42AD720FDDD68001E1C05 /* UIControl+KinWallet.swift in Sources */,
 				91F877EA216A011B00E91C03 /* RootViewController.swift in Sources */,
 				9163EDFF20553248005F3123 /* UIAlertAction+KinWallet.swift in Sources */,
@@ -2388,6 +2398,7 @@
 				9138BBE1204EE21E00450C97 /* OfferDetailsViewController.swift in Sources */,
 				91E6B65C203C69A90080C2FC /* AMPIdentify.m in Sources */,
 				82A12DEC2056B841008841F2 /* Configuration.swift in Sources */,
+				91AE230421776A0F0024B8BF /* SurveyHomeViewController.swift in Sources */,
 				91F69D30208379F400F06181 /* SegmentedPagerTabStripViewController.swift in Sources */,
 				91FA4A0D212AB75C00513E1D /* QRCodeScannerViewController.swift in Sources */,
 				9198A2A02062926D0052F343 /* NotificationHandler.swift in Sources */,
@@ -2398,7 +2409,7 @@
 				91D891E22020B43D0090E77C /* AnswersCollectionViewLayout.swift in Sources */,
 				914013C12019D0BA0066367C /* UIImage+KinWallet.swift in Sources */,
 				91D7C031204F11D200D35401 /* KinAmountLabel.swift in Sources */,
-				91B575BA2045E62B00AC3E04 /* KinLoader.swift in Sources */,
+				91B575BA2045E62B00AC3E04 /* KinitLoader.swift in Sources */,
 				91B4454F2090C3B400ED6802 /* PhoneVerificationRequestViewController.swift in Sources */,
 				9140138D20187DEB0066367C /* Author.swift in Sources */,
 				91F69D38208379F400F06181 /* SwipeDirection.swift in Sources */,
@@ -2435,6 +2446,7 @@
 				91E6B616203C29B30080C2FC /* SurveyDoneViewController.swift in Sources */,
 				91473FE0201DCDBF0013A530 /* SelectedResult.swift in Sources */,
 				91401372201635760066367C /* Storyboards.swift in Sources */,
+				91AE230621776C4E0024B8BF /* DataLoaders.swift in Sources */,
 				91FF9D32207F4BE100B536E9 /* RedeemedGoodsViewController.swift in Sources */,
 				910AA22E2096F42F00CC822A /* ConfettiView.swift in Sources */,
 				9170390C20B75175006B01FB /* PushHandler.swift in Sources */,
@@ -2449,7 +2461,6 @@
 				91D891BF201F30BE0090E77C /* Datastore.swift in Sources */,
 				91FA4A0A212AA90500513E1D /* RestoreBackupQRScannerViewController.swift in Sources */,
 				91E5C6A120B5D20B0024BAA5 /* Sourcery.swift in Sources */,
-				91E84A61208617ED00E8B7A6 /* SurveyHomeViewController.swift in Sources */,
 				82413848206036CC00D7117E /* URL+KinWallet.swift in Sources */,
 				91B40AAE213D54F800DD035B /* KinSupportViewController.swift in Sources */,
 				828CB4562056EA92007C679C /* UICountingLabel.m in Sources */,
@@ -2562,6 +2573,7 @@
 				91AEBF3A2029E9F3007BBBA3 /* WebRequest.swift in Sources */,
 				91E84A782086186B00E8B7A6 /* PagerTabStripBehaviour.swift in Sources */,
 				91311C53204FDBD500618240 /* Optional+KinWallet.swift in Sources */,
+				91AE230021775E970024B8BF /* TaskLoader.swift in Sources */,
 				91FF1239211AF66C0098470D /* BackupIntroViewController.swift in Sources */,
 				91F877EB216A011B00E91C03 /* RootViewController.swift in Sources */,
 				916450D220D165DE00CB7994 /* ParticlesView.swift in Sources */,
@@ -2574,9 +2586,10 @@
 				910AA2192095E5FE00CC822A /* UITextField+KinWallet.swift in Sources */,
 				91E84ABA20862E4700E8B7A6 /* TransactionHistoryCollectionViewCell.swift in Sources */,
 				91F877F1216A011C00E91C03 /* SplashScreenViewController.swift in Sources */,
-				91E84A6A2086183900E8B7A6 /* KinLoader.swift in Sources */,
+				91E84A6A2086183900E8B7A6 /* KinitLoader.swift in Sources */,
 				91B575C32046C48B00AC3E04 /* UIButton+KinWallet.swift in Sources */,
 				91D7C032204F11D200D35401 /* KinAmountLabel.swift in Sources */,
+				91AE230321776A0E0024B8BF /* SurveyHomeViewController.swift in Sources */,
 				9152E5EA212D505300802040 /* RestoreBackupCells.swift in Sources */,
 				9182C2A7203C6C0C0051F003 /* Amplitude.m in Sources */,
 				9140139A201892640066367C /* AnswerTests.swift in Sources */,
@@ -2624,6 +2637,7 @@
 				9157F995204D5B4600351E2A /* Offer.swift in Sources */,
 				91E84A722086186B00E8B7A6 /* BaseButtonBarPagerTabStripViewController.swift in Sources */,
 				916ACCF620F1FFEF00756EBC /* DualImageQuestionSeparatorView.swift in Sources */,
+				91AE230721776CB50024B8BF /* DataLoaders.swift in Sources */,
 				91E84A8A2086187F00E8B7A6 /* NotificationHandler.swift in Sources */,
 				91E84A742086186B00E8B7A6 /* ButtonBarView.swift in Sources */,
 				9131A0BC212C055F000203DC /* RestoreBackupQuestionsViewController.swift in Sources */,
@@ -2654,6 +2668,7 @@
 				91AE200B21760D2D0024B8BF /* TaskCategoryViewController.swift in Sources */,
 				91E84A6F2086186300E8B7A6 /* BarPagerTabStripViewController.swift in Sources */,
 				91FF14DB212057550098470D /* BackupDoneViewController.swift in Sources */,
+				91AE230121775E980024B8BF /* TaskLoader.swift in Sources */,
 				91C42AD920FDDD68001E1C05 /* UIControl+KinWallet.swift in Sources */,
 				91E84AA120862D1000E8B7A6 /* FetchableCollectionViewDataSource.swift in Sources */,
 				828CB42F2056E9DC007C679C /* SimpleCollectionReusableView.swift in Sources */,
@@ -2731,12 +2746,13 @@
 				91FF123B211AF66C0098470D /* BackupIntroViewController.swift in Sources */,
 				916450D320D165DF00CB7994 /* ParticlesView.swift in Sources */,
 				91E84A60208617DA00E8B7A6 /* OfferWallViewController.swift in Sources */,
-				91E84A6B2086183A00E8B7A6 /* KinLoader.swift in Sources */,
+				91E84A6B2086183A00E8B7A6 /* KinitLoader.swift in Sources */,
 				828CB4292056E9C1007C679C /* Amplitude.m in Sources */,
 				91E84AB420862E1400E8B7A6 /* RedeemedGoodsViewController.swift in Sources */,
 				828CB4402056E9F6007C679C /* StoryboardInitializable.swift in Sources */,
 				91B0668820C9634B00CE69A7 /* AlphaTransitionAnimator.swift in Sources */,
 				910AA21E2096149F00CC822A /* Shakeable.swift in Sources */,
+				91AE230821776CB50024B8BF /* DataLoaders.swift in Sources */,
 				828CB41C2056E94F007C679C /* Fonts.swift in Sources */,
 				915995492134491600E4E840 /* FormsheetPresentationController.swift in Sources */,
 				8241384C2060372400D7117E /* URL+KinWallet.swift in Sources */,
@@ -2779,7 +2795,6 @@
 				9131A0C6212C084B000203DC /* AccountSourceViewController.swift in Sources */,
 				91E84A9720862CC600E8B7A6 /* Kin.swift in Sources */,
 				828CB4222056E9C1007C679C /* AMPRevenue.m in Sources */,
-				91E84A62208617ED00E8B7A6 /* SurveyHomeViewController.swift in Sources */,
 				828CB44D2056EA42007C679C /* UICollectionViewCell+KinWallet.swift in Sources */,
 				8241384B2060370900D7117E /* WebService.swift in Sources */,
 				91B0667B20C8177100CE69A7 /* KinSentViewController.swift in Sources */,
@@ -2798,6 +2813,7 @@
 				828CB43F2056E9F6007C679C /* ReusableView.swift in Sources */,
 				828CB40E2056E8F5007C679C /* SurveyDoneViewController.swift in Sources */,
 				91B445512090C3B400ED6802 /* PhoneVerificationRequestViewController.swift in Sources */,
+				91AE230221776A0E0024B8BF /* SurveyHomeViewController.swift in Sources */,
 				91A4EAA220CFE8F700C3399F /* VideoTaskViewController.swift in Sources */,
 				828CB4422056EA08007C679C /* BIEvents.swift in Sources */,
 				828CB4382056E9F2007C679C /* Analytics.swift in Sources */,

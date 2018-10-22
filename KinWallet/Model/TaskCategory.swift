@@ -25,7 +25,7 @@ struct TaskCategory: Codable {
     }
 
     let identifier: String
-    let availableTasksCount: Int
+    var availableTasksCount: Int
     let title: String
     let ui: UI
 

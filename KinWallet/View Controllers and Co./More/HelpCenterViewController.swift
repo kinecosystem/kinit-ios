@@ -19,12 +19,7 @@ final class HelpCenterViewController: WebViewController {
         return RemoteConfig.current?.faqUrl ?? fallbackHelpCenterURL
     }()
 
-    private let activityIndicatorView: UIActivityIndicatorView = {
-        let aView = UIActivityIndicatorView(style: .white)
-        aView.hidesWhenStopped = true
-
-        return aView
-    }()
+    private let activityIndicatorView = UIActivityIndicatorView(style: .white)
 
     override func viewDidLoad() {
         super.viewDidLoad()

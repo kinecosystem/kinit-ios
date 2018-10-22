@@ -6,11 +6,11 @@
 import UIKit
 
 protocol NibLoadableView: class {
-    static func loadNib(from bundle: Bundle) -> Self
+    static func loadFromNib(from bundle: Bundle) -> Self
 }
 
 extension NibLoadableView where Self: UIView {
-    static func loadNib(from bundle: Bundle = .main) -> Self {
+    static func loadFromNib(from bundle: Bundle = .main) -> Self {
         let nib = bundle.loadNibNamed(nibName, owner: nil, options: nil)
         guard let view = nib?.first as? Self else {
             fatalError("NibLoadableView \(nibName) doesn't have a view from the expected type.")

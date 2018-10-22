@@ -23,6 +23,10 @@ struct TasksResponse: Codable {
     let tasks: [Task]
 }
 
+struct TasksByCategoryResponse: Codable {
+    let tasks: [String: [Task]]
+}
+
 struct OffersResponse: Codable {
     let offers: [Offer]
 }
