@@ -48,22 +48,7 @@ enum SpecialOffer {
                 return false
             }
 
-            guard config.peerToPeerEnabled.boolValue else {
-                return false
-            }
-
-            //TODO: Fetchers refactor
-//            guard let fetchResult = DataLoaders.kinit.currentTask.value,
-//                case let .some(currentTask) = fetchResult,
-//                let taskId = Int(currentTask.identifier) else {
-//                return true
-//            }
-
-            let minTasksRequired = config.peerToPeerMinTasks ?? 0
-
-            //TODO: Fetchers refactor
-//            return taskId >= minTasksRequired
-            return true
+            return config.peerToPeerEnabled.boolValue
         }
     }
 

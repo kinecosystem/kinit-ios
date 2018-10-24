@@ -9,28 +9,6 @@ import UIKit
 import KinUtil
 import SafariServices
 
-class TaskCategoryTitleView: UIView {
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var tasksCountStackView: UIStackView!
-    @IBOutlet weak var tasksCountLabel: UILabel!
-    @IBOutlet weak var iconImageView: UIImageView!
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-
-        let textColor = UIColor.white
-        let font = FontFamily.Roboto.regular
-
-        titleLabel.textColor = textColor
-        titleLabel.font = font.font(size: 20)
-
-        tasksCountLabel.textColor = textColor
-        tasksCountLabel.font = font.font(size: 12)
-    }
-}
-
-extension TaskCategoryTitleView: NibLoadableView {}
-
 class TaskCategoryViewController: UIViewController {
     var categoryId: CategoryId!
     var navBarColor: UIColor?
@@ -38,6 +16,7 @@ class TaskCategoryViewController: UIViewController {
     private let linkBag = LinkBag()
     private let titleView = TaskCategoryTitleView.loadFromNib()
     fileprivate var previousNavigationBarImage: UIImage!
+    fileprivate var backupFlowController: BackupFlowController?
 
     deinit {
         DataLoaders.tasks.releaseObservables(categoryId: categoryId)
@@ -146,7 +125,28 @@ class TaskCategoryViewController: UIViewController {
     }
 
     fileprivate func showBackupNagIfNeeded() {
+        guard
+            !Kin.performedBackup(),
+            let backupNagEnabled = RemoteConfig.current?.backupNag,
+            backupNagEnabled else {
+                return
+        }
 
+        defer {
+            BackupNagCounter.incrementIfNeeded()
+        }
+
+        let currentNag = BackupNagCounter.count
+
+        guard let nagDay = BackupNagDay(rawValue: currentNag) else {
+            return
+        }
+
+        let backupNagViewController = BackupNagViewController(nagDay: nagDay) { [weak self] in
+            self?.backupNagDidSelectBackupNow(nagDay: nagDay)
+        }
+
+        presentAnimated(backupNagViewController)
     }
 
     fileprivate func showPostTaskAction(_ action: PostTaskAction, taskId: String) {
@@ -240,3 +240,32 @@ private extension UIImage {
         return newImage
     }
 }
+
+extension TaskCategoryViewController {
+    func backupNagDidSelectBackupNow(nagDay: BackupNagDay) {
+        dismissAnimated { [weak self] in
+            guard let self = self else {
+                return
+            }
+
+            self.backupFlowController = BackupFlowController(presenter: self, source: .notificationNag(nagDay))
+            self.backupFlowController?.delegate = self
+            self.backupFlowController!.startBackup()
+        }
+    }
+
+    func backupNagDidSelectBackupLater() {
+        dismissAnimated()
+    }
+}
+
+extension TaskCategoryViewController: BackupFlowDelegate {
+    func backupFlowDidCancel() {
+        backupFlowController = nil
+    }
+
+    func backupFlowDidFinish() {
+        backupFlowController = nil
+    }
+}
+

@@ -432,6 +432,9 @@
 		91CB636420597F3C00C65404 /* URL+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CB636320597F3C00C65404 /* URL+KinWallet.swift */; };
 		91D07529205536DD00CF80D5 /* UIAlertAction+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9163EDFE20553248005F3123 /* UIAlertAction+KinWallet.swift */; };
 		91D075412056A77100CF80D5 /* OffersUnavailableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D075402056A77100CF80D5 /* OffersUnavailableViewController.swift */; };
+		91D1E286218078AC00F9AF4F /* TaskCategoryTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D1E285218078AC00F9AF4F /* TaskCategoryTitleView.swift */; };
+		91D1E287218078AC00F9AF4F /* TaskCategoryTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D1E285218078AC00F9AF4F /* TaskCategoryTitleView.swift */; };
+		91D1E288218078AC00F9AF4F /* TaskCategoryTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D1E285218078AC00F9AF4F /* TaskCategoryTitleView.swift */; };
 		91D7C02A204EFBC400D35401 /* Spend.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91D7C028204EFBC400D35401 /* Spend.storyboard */; };
 		91D7C031204F11D200D35401 /* KinAmountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D7C030204F11D200D35401 /* KinAmountLabel.swift */; };
 		91D7C032204F11D200D35401 /* KinAmountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D7C030204F11D200D35401 /* KinAmountLabel.swift */; };
@@ -971,6 +974,7 @@
 		91C42AD620FDDD68001E1C05 /* UIControl+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+KinWallet.swift"; sourceTree = "<group>"; };
 		91CB636320597F3C00C65404 /* URL+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+KinWallet.swift"; sourceTree = "<group>"; };
 		91D075402056A77100CF80D5 /* OffersUnavailableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersUnavailableViewController.swift; sourceTree = "<group>"; };
+		91D1E285218078AC00F9AF4F /* TaskCategoryTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCategoryTitleView.swift; sourceTree = "<group>"; };
 		91D7C029204EFBC400D35401 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Spend.storyboard; sourceTree = "<group>"; };
 		91D7C030204F11D200D35401 /* KinAmountLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinAmountLabel.swift; sourceTree = "<group>"; };
 		91D891BD201F23130090E77C /* Datastore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datastore.swift; sourceTree = "<group>"; };
@@ -1451,6 +1455,7 @@
 				9170BE91206A5E9A00DC88B4 /* EarnKinAnimationViewController.swift */,
 				914013AC2018BCB80066367C /* SurveyUnavailableViewController.swift */,
 				91AE200821760D2D0024B8BF /* TaskCategoryViewController.swift */,
+				91D1E285218078AC00F9AF4F /* TaskCategoryTitleView.swift */,
 				91AE22D721761E060024B8BF /* TaskCategoryTitleView.xib */,
 				914013AF2018BD050066367C /* SurveyInfoViewController.swift */,
 				91A4EA9920CFE75200C3399F /* VideoTaskViewController.swift */,
@@ -2305,6 +2310,7 @@
 				91A4EA9A20CFE75200C3399F /* VideoTaskViewController.swift in Sources */,
 				91B0667920C8177100CE69A7 /* KinSentViewController.swift in Sources */,
 				91E6B650203C69A90080C2FC /* AMPUtils.m in Sources */,
+				91D1E286218078AC00F9AF4F /* TaskCategoryTitleView.swift in Sources */,
 				91AA18EE2104D67300044D9C /* QuestionViewController+Celebration.swift in Sources */,
 				91E6B65A203C69A90080C2FC /* AMPDatabaseHelper.m in Sources */,
 				910AA2122095C34600CC822A /* UITextField+KinWallet.swift in Sources */,
@@ -2496,6 +2502,7 @@
 				9182C29F203C6C0C0051F003 /* AMPURLSession.m in Sources */,
 				91908C67204D6A6A00971F11 /* OfferCollectionViewCell.swift in Sources */,
 				9182C2A6203C6C0C0051F003 /* AMPConstants.m in Sources */,
+				91D1E287218078AC00F9AF4F /* TaskCategoryTitleView.swift in Sources */,
 				91AA18EF2104D67300044D9C /* QuestionViewController+Celebration.swift in Sources */,
 				828CB45C2056EAFC007C679C /* ISPCertificatePinning.m in Sources */,
 				9157F984204C41C200351E2A /* Log.swift in Sources */,
@@ -2735,6 +2742,7 @@
 				916ACCF720F1FFEF00756EBC /* DualImageQuestionSeparatorView.swift in Sources */,
 				828CB4142056E913007C679C /* Question.swift in Sources */,
 				828CB43D2056E9F2007C679C /* ResourceDownloader.swift in Sources */,
+				91D1E288218078AC00F9AF4F /* TaskCategoryTitleView.swift in Sources */,
 				828CB43E2056E9F6007C679C /* NibLoadableView.swift in Sources */,
 				91E84A832086186B00E8B7A6 /* PagerTabStripBehaviour.swift in Sources */,
 				91E84A662086182100E8B7A6 /* SurveyUnavailableViewController.swift in Sources */,

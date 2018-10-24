@@ -22,7 +22,6 @@ final class SurveyHomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //TODO: Fetchers refactor
 //        renderCurrentTask(DataLoaders.kinit.currentTask.value ?? .none(nil))
 //
 //        DataLoaders.kinit.currentTask
@@ -184,13 +183,6 @@ extension SurveyHomeViewController: SurveyViewControllerDelegate {
             backupNagEnabled else {
                 return
         }
-
-        //TODO: Fetchers refactor
-//        let taskAvailable = DataLoaders.kinit.currentTask.value?.isTaskAvailable ?? false
-//
-//        guard !taskAvailable else {
-//            return
-//        }
 
         defer {
             BackupNagCounter.incrementIfNeeded()
