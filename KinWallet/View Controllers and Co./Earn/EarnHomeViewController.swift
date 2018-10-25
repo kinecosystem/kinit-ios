@@ -15,7 +15,26 @@ final class EarnHomeViewController: UIViewController, AddNoticeViewController {
         static let compactItemSide: CGFloat = 135
     }
 
+    private var shouldShowEarnAnimation = true
+    private var animatingEarn = false
+
     private let activityIndicator = UIActivityIndicatorView(style: .white)
+
+    @IBOutlet weak var categoriesViewContainer: UIView!
+
+    @IBOutlet weak var headerLabelsLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var headerTitleLabel: UILabel! {
+        didSet {
+            headerTitleLabel.font = FontFamily.Roboto.medium.font(size: 16)
+        }
+    }
+
+    @IBOutlet weak var headerMessageLabel: UILabel! {
+        didSet {
+            headerMessageLabel.font = FontFamily.Roboto.regular.font(size: 14)
+            headerMessageLabel.textColor = UIColor.kin.gray
+        }
+    }
 
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
@@ -32,6 +51,11 @@ final class EarnHomeViewController: UIViewController, AddNoticeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(splashScreenWillDismiss),
+                                               name: .SplashScreenWillDismiss,
+                                               object: nil)
+
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
         addBalanceLabel()
         bindObservables()
@@ -39,6 +63,12 @@ final class EarnHomeViewController: UIViewController, AddNoticeViewController {
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        headerLabelsLeadingConstraint.constant = collectionViewSpacing(for: collectionView.collectionViewLayout)
     }
 
     private func bindObservables() {
@@ -62,6 +92,19 @@ final class EarnHomeViewController: UIViewController, AddNoticeViewController {
         case .some(let categories):
             self.categories = categories
             collectionView.reloadData()
+            self.showEarnAnimationIfNeeded()
+
+            let isAnyTaskAvailable = categories.reduce(into: 0, { $0 += $1.availableTasksCount }) > 0
+
+            if isAnyTaskAvailable {
+                headerTitleLabel.textColor = UIColor.kin.darkGray
+                headerTitleLabel.text = L10n.EarnHome.tasksAvailableTitle
+                headerMessageLabel.text = L10n.EarnHome.tasksAvailableMessage
+            } else {
+                headerTitleLabel.textColor = UIColor.kin.appTint
+                headerTitleLabel.text = L10n.EarnHome.noTasksAvailableTitle
+                headerMessageLabel.text = L10n.EarnHome.noTasksAvailableMessage
+            }
         }
     }
 
@@ -71,6 +114,49 @@ final class EarnHomeViewController: UIViewController, AddNoticeViewController {
         addNoticeViewController(with: L10n.noInternetErrorTitle,
                                 subtitle: L10n.internetErrorMessage,
                                 image: Asset.noInternetIllustration.image)
+    }
+
+    @objc func splashScreenWillDismiss() {
+        showEarnAnimationIfNeeded()
+    }
+
+    func showEarnAnimationIfNeeded() {
+        guard
+            categories.reduce(into: 0, { $0 += $1.availableTasksCount }) > 0,
+            !AppDelegate.shared.isShowingSplashScreen,
+            shouldShowEarnAnimation,
+            !animatingEarn else {
+                return
+        }
+
+        let width = view.frame.width
+        shouldShowEarnAnimation = false
+        animatingEarn = true
+
+        let earnAnimationViewController = StoryboardScene.Earn.earnKinAnimationViewController.instantiate()
+        addAndFit(earnAnimationViewController)
+
+        categoriesViewContainer.transform = .init(translationX: width, y: 0)
+        UIView.animate(withDuration: 0.7,
+                       delay: 1.5,
+                       options: [],
+                       animations: {
+                        earnAnimationViewController.view.transform = .init(translationX: -width, y: 0)
+                        earnAnimationViewController.view.alpha = 0
+                        self.categoriesViewContainer.transform = .identity
+        }, completion: { _ in
+            earnAnimationViewController.remove()
+            self.animatingEarn = false
+        })
+    }
+
+    fileprivate func collectionViewSpacing(for layout: UICollectionViewLayout) -> CGFloat {
+        guard let layout = layout as? UICollectionViewFlowLayout else {
+            return 0
+        }
+
+        return collectionView.equalSpacing(forColumns: Constants.numberOfColumns,
+                                           cellWidth: layout.itemSize.width)
     }
 }
 
@@ -119,12 +205,8 @@ extension EarnHomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else {
-            return .zero
-        }
+        let spacing = collectionViewSpacing(for: collectionViewLayout)
 
-        let spacing = collectionView.equalSpacing(forColumns: Constants.numberOfColumns,
-                                                  cellWidth: layout.itemSize.width)
         return UIEdgeInsets(top: spacing,
                             left: spacing,
                             bottom: spacing,
