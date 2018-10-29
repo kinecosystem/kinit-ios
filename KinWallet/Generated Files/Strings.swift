@@ -384,17 +384,6 @@ internal enum L10n {
   /// Your Kin Balance
   internal static let yourKinBalance = L10n.tr("Localizable", "YourKinBalance")
 
-  internal enum EarnHome {
-    /// You're all done for today
-    internal static let noTasksAvailableMessage = L10n.tr("Localizable", "Earn_Home.NoTasksAvailableMessage")
-    /// Sweet 🤘
-    internal static let noTasksAvailableTitle = L10n.tr("Localizable", "Earn_Home.NoTasksAvailableTitle")
-    /// Here are today’s activities
-    internal static let tasksAvailableMessage = L10n.tr("Localizable", "Earn_Home.TasksAvailableMessage")
-    /// Hi there,
-    internal static let tasksAvailableTitle = L10n.tr("Localizable", "Earn_Home.TasksAvailableTitle")
-  }
-
   internal enum MoreUpdate {
     /// Update now
     internal static let updateNow = L10n.tr("Localizable", "More_Update.UpdateNow")

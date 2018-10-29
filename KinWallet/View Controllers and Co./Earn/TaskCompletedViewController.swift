@@ -109,6 +109,7 @@ final class TaskCompletedViewController: UIViewController {
 
         DataLoaders.tasks.markTaskFinished(taskId: task.identifier, categoryId: task.categoryId)
         DataLoaders.tasks.loadTasks(for: task.categoryId)
+        DataLoaders.tasks.loadCategories()
 
         let memo = task.memo
 

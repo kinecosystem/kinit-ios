@@ -104,14 +104,14 @@ extension WebRequests {
 
 // MARK: Earn
 extension WebRequests {
-    static func taskCategories() -> WebRequest<TaskCategoriesResponse, [TaskCategory]> {
-        return WebRequest<TaskCategoriesResponse, [TaskCategory]>(GET: "/user/categories",
-                                                                  transform: { $0?.categories })
+    static func taskCategories() -> WebRequest<TaskCategoriesResponse, TaskCategoriesResponse> {
+        return WebRequest<TaskCategoriesResponse, TaskCategoriesResponse>(GET: "/user/categories",
+                                                                          transform: WebResourceHandlers.doNothing)
     }
 
-    static func tasks(for categoryId: String) -> WebRequest<TasksResponse, [Task]> {
-        return WebRequest<TasksResponse, [Task]>(GET: "/user/category/\(categoryId)/tasks",
-                                                 transform: { $0?.tasks })
+    static func tasks(for categoryId: String) -> WebRequest<CategoryTasksResponse, CategoryTasksResponse> {
+        return WebRequest<CategoryTasksResponse, CategoryTasksResponse>(GET: "/user/category/\(categoryId)/tasks",
+            transform: WebResourceHandlers.doNothing)
     }
 
     static func nextTasks() -> WebRequest<TasksByCategoryResponse, [String: [Task]]> {
@@ -243,10 +243,11 @@ extension WebRequests {
 // MARK: Backup
 
 extension WebRequests {
+    typealias BackupHintListRequest = WebRequest<AvailableBackupHintList, AvailableBackupHintList>
+
     struct Backup {
-        static func availableHints() -> WebRequest<AvailableBackupHintList, AvailableBackupHintList> {
-            return WebRequest<AvailableBackupHintList, AvailableBackupHintList>(GET: "/backup/hints",
-                                                                                transform: WebResourceHandlers.doNothing)
+        static func availableHints() -> BackupHintListRequest {
+            return BackupHintListRequest(GET: "/backup/hints", transform: WebResourceHandlers.doNothing)
         }
 
         static func submitHints(_ hints: [Int]) -> WebRequest<EmptyResponse, EmptyResponse> {

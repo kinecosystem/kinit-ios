@@ -26,6 +26,7 @@ final class EarnHomeViewController: UIViewController, AddNoticeViewController {
     @IBOutlet weak var headerTitleLabel: UILabel! {
         didSet {
             headerTitleLabel.font = FontFamily.Roboto.medium.font(size: 16)
+            headerTitleLabel.textColor = UIColor.kin.darkGray
         }
     }
 
@@ -83,6 +84,12 @@ final class EarnHomeViewController: UIViewController, AddNoticeViewController {
                     self?.activityIndicator.stopAnimating()
                 }
             }).add(to: linkBag)
+
+        DataLoaders.tasks.headerMessage
+        .on(queue: .main, next: { [weak self] in
+            self?.headerTitleLabel.text = $0.title
+            self?.headerMessageLabel.text = $0.subtitle
+        }).add(to: linkBag)
     }
 
     func renderTaskCategories(_ result: FetchResult<[TaskCategory]>) {
@@ -93,18 +100,6 @@ final class EarnHomeViewController: UIViewController, AddNoticeViewController {
             self.categories = categories
             collectionView.reloadData()
             self.showEarnAnimationIfNeeded()
-
-            let isAnyTaskAvailable = categories.reduce(into: 0, { $0 += $1.availableTasksCount }) > 0
-
-            if isAnyTaskAvailable {
-                headerTitleLabel.textColor = UIColor.kin.darkGray
-                headerTitleLabel.text = L10n.EarnHome.tasksAvailableTitle
-                headerMessageLabel.text = L10n.EarnHome.tasksAvailableMessage
-            } else {
-                headerTitleLabel.textColor = UIColor.kin.appTint
-                headerTitleLabel.text = L10n.EarnHome.noTasksAvailableTitle
-                headerMessageLabel.text = L10n.EarnHome.noTasksAvailableMessage
-            }
         }
     }
 

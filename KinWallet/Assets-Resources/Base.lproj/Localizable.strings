@@ -104,12 +104,6 @@
 
 "ReadyToEarnKinQuestion" = "Hi! 👋\nReady to earn some Kin?";
 
-"Earn_Home.TasksAvailableTitle" = "Hi there,";
-"Earn_Home.TasksAvailableMessage" = "Here are today’s activities";
-
-"Earn_Home.NoTasksAvailableTitle" = "Sweet 🤘";
-"Earn_Home.NoTasksAvailableMessage" = "You're all done for today";
-
 "AvailableActivitesCount" = "%d activities";
 
 "NextActivityOnTitle" = "Your next activity will be available %@";
