@@ -99,7 +99,11 @@ final class EarnHomeViewController: UIViewController, AddNoticeViewController {
         case .some(let categories):
             self.categories = categories
             collectionView.reloadData()
-            self.showEarnAnimationIfNeeded()
+            showEarnAnimationIfNeeded()
+
+            if categoriesViewContainer.isHidden {
+                categoriesViewContainer.isHidden = false
+            }
         }
     }
 
