@@ -45,7 +45,9 @@ class TaskCategoryViewController: UIViewController {
             navBar.setBackgroundImage(backgroundColorImage, for: .default)
 
             if let headerImage = headerImage {
-                let categoryNavBarImage = backgroundColorImage.addingAnotherToBottomLeftCorner(headerImage)
+                let maxHeight = navigationController?.navigationBar.frame.maxY
+                let categoryNavBarImage = backgroundColorImage.addingAnotherToBottomLeftCorner(headerImage,
+                                                                                               maxHeight: maxHeight)
                 navBar.setBackgroundImage(categoryNavBarImage, for: .default)
             }
         }
@@ -219,10 +221,20 @@ extension TaskCategoryViewController: SurveyViewControllerDelegate {
 }
 
 private extension UIImage {
-    func addingAnotherToBottomLeftCorner(_ another: UIImage, padding: CGFloat = 5) -> UIImage {
+    func addingAnotherToBottomLeftCorner(_ another: UIImage,
+                                         padding: CGFloat = 1,
+                                         maxHeight: CGFloat? = nil) -> UIImage {
         let scale = UIScreen.main.scale
-        let anotherImageSize = CGSize(width: another.size.width/scale,
+        var anotherImageSize = CGSize(width: another.size.width/scale,
                                       height: another.size.height/scale)
+
+        if let maxHeight = maxHeight,
+            anotherImageSize.height > maxHeight {
+            let scale = anotherImageSize.height/maxHeight
+            anotherImageSize.height = maxHeight
+            anotherImageSize.width /= scale
+        }
+
         let contextSize = CGSize(width: anotherImageSize.width + padding,
                                  height: anotherImageSize.height + padding)
 
