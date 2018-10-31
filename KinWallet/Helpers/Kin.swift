@@ -121,7 +121,6 @@ extension Kin {
 
         if accountStatus == .activated {
             refreshBalance()
-            onboardingPromise!.signal(.success)
             return onboardingPromise!
         }
 
