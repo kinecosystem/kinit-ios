@@ -93,6 +93,10 @@ class OfferDetailsViewController: UIViewController {
     }
 
     @IBAction func dismissTapped(_ sender: UIBarButtonItem) {
+        dismiss()
+    }
+
+    @IBAction func dismiss() {
         interactiveDismissal = nil
         dismiss(animated: true)
     }
