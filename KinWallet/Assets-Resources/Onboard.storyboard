@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,7 +40,7 @@
                                 <rect key="frame" x="0.0" y="537" width="375" height="130"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="QtT-Zh-m4s">
-                                        <rect key="frame" x="48" y="10.5" width="280" height="89"/>
+                                        <rect key="frame" x="47.5" y="10.5" width="280" height="89"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1Z-bV-l9O">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
@@ -208,7 +206,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We have sent you a verification code to your phone. Please type it below:" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iZr-BE-hk0">
-                                                <rect key="frame" x="0.0" y="36.5" width="290" height="38.5"/>
+                                                <rect key="frame" x="0.0" y="36.5" width="288" height="38.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -337,7 +335,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qHe-9m-nfY">
-                                <rect key="frame" x="47" y="125.5" width="280" height="196"/>
+                                <rect key="frame" x="47.5" y="125.5" width="280" height="196"/>
                                 <subviews>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="WelcomeBack" translatesAutoresizingMaskIntoConstraints="NO" id="Cr9-MW-TYL">
                                         <rect key="frame" x="14" y="0.0" width="252" height="155"/>
@@ -356,7 +354,7 @@ What would you like to do?</string>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Pet-j9-BvC">
-                                <rect key="frame" x="48" y="453.5" width="280" height="124"/>
+                                <rect key="frame" x="47.5" y="453.5" width="280" height="124"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xsR-cA-G1H">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="52"/>
@@ -410,7 +408,7 @@ What would you like to do?</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="QRScannerOutline" translatesAutoresizingMaskIntoConstraints="NO" id="qe3-2G-c6Q">
-                                <rect key="frame" x="91" y="243.5" width="192" height="200"/>
+                                <rect key="frame" x="91.5" y="243.5" width="192" height="200"/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A1p-4r-C0J">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
@@ -452,7 +450,7 @@ What would you like to do?</string>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aWz-dT-iQc">
-                                            <rect key="frame" x="47" y="105" width="280.5" height="91.5"/>
+                                            <rect key="frame" x="47.5" y="105" width="280" height="91.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You're 2 steps away" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Th9-Kt-caf">
                                                     <rect key="frame" x="64.5" y="0.0" width="151.5" height="20.5"/>
@@ -461,7 +459,7 @@ What would you like to do?</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You just need to scan the QR code we sent to your email and answer your 2 security questions " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9iV-Ks-f3o">
-                                                    <rect key="frame" x="0.0" y="30.5" width="280.5" height="61"/>
+                                                    <rect key="frame" x="0.0" y="30.5" width="280" height="61"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="280" id="ahT-bW-Dpj"/>
                                                     </constraints>
@@ -503,7 +501,7 @@ What would you like to do?</string>
                             <constraint firstItem="qe3-2G-c6Q" firstAttribute="centerY" secondItem="Kc7-7c-oao" secondAttribute="centerY" id="max-Sz-cu5"/>
                             <constraint firstItem="qe3-2G-c6Q" firstAttribute="centerX" secondItem="Kc7-7c-oao" secondAttribute="centerX" id="n4P-yD-IFc"/>
                             <constraint firstItem="e5G-fI-NrK" firstAttribute="leading" secondItem="Kc7-7c-oao" secondAttribute="leading" id="pHK-6Y-obc"/>
-                            <constraint firstItem="Mwb-at-4ep" firstAttribute="bottom" secondItem="Kc7-7c-oao" secondAttribute="bottom" id="prf-eJ-86E"/>
+                            <constraint firstItem="Mwb-at-4ep" firstAttribute="bottom" secondItem="89i-FF-Say" secondAttribute="bottom" id="prf-eJ-86E"/>
                             <constraint firstItem="A1p-4r-C0J" firstAttribute="top" secondItem="89i-FF-Say" secondAttribute="top" id="tQQ-C6-PbZ"/>
                             <constraint firstItem="e5G-fI-NrK" firstAttribute="top" secondItem="Kc7-7c-oao" secondAttribute="top" id="wT3-Gq-ab8"/>
                             <constraint firstItem="A1p-4r-C0J" firstAttribute="trailing" secondItem="Kc7-7c-oao" secondAttribute="trailing" id="yIA-EE-XBZ"/>
@@ -640,7 +638,7 @@ What would you like to do?</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="XwC-qn-zta" customClass="LOTAnimationView">
-                                <rect key="frame" x="127" y="303.5" width="120" height="80"/>
+                                <rect key="frame" x="127.5" y="303.5" width="120" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="gcg-VQ-cc1"/>
@@ -648,7 +646,7 @@ What would you like to do?</string>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creating your wallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3n-jJ-QGo">
-                                <rect key="frame" x="110.5" y="403.5" width="153" height="21"/>
+                                <rect key="frame" x="111" y="403.5" width="153" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

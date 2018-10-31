@@ -178,17 +178,19 @@ private extension StandardOfferActionViewController {
     }
 
     func presentErrorAlert(title: String, message: String, errorType: Events.ErrorType) {
-        let alertController = UIAlertController(title: title,
-                                                message: message,
-                                                preferredStyle: .alert)
-        alertController.addAction(title: L10n.backToSpendAction, style: .default) {
-            Events.Analytics
-                .ClickOkButtonOnErrorPopup(errorType: errorType)
-                .send()
-            self.dismiss(animated: true)
-        }
+        DispatchQueue.main.async {
+            let alertController = UIAlertController(title: title,
+                                                    message: message,
+                                                    preferredStyle: .alert)
+            alertController.addAction(title: L10n.backToSpendAction, style: .default) {
+                Events.Analytics
+                    .ClickOkButtonOnErrorPopup(errorType: errorType)
+                    .send()
+                self.offerViewController?.dismiss()
+            }
 
-        present(alertController, animated: true)
+            self.present(alertController, animated: true)
+        }
 
         Events.Analytics
             .ViewErrorPopupOnOfferPage(errorType: errorType)

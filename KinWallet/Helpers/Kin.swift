@@ -57,7 +57,7 @@ class Kin {
         kinNetworkId = .custom(issuer: kinHorizonProductionIssuer, stellarNetworkId: .custom(kinHorizonProductionName))
         #endif
 
-        let appId = try! AppId("KI18")
+        let appId = try! AppId("kit")
         let client = KinClient(with: url, networkId: kinNetworkId, appId: appId)
 
         self.account = try! client.accounts.last ?? client.addAccount()
@@ -121,7 +121,6 @@ extension Kin {
 
         if accountStatus == .activated {
             refreshBalance()
-            onboardingPromise!.signal(.success)
             return onboardingPromise!
         }
 
