@@ -252,7 +252,9 @@ class RootViewController: UIViewController {
             self?.performedOnboarding($0, previouslyActivated: alreadyActivated)
         }
 
-        startWalletCreationTimeout(with: thisAttempt)
+        if !alreadyActivated {
+            startWalletCreationTimeout(with: thisAttempt)
+        }
     }
 
     func performedOnboarding(_ result: OnboardingResult, previouslyActivated: Bool) {
@@ -263,11 +265,7 @@ class RootViewController: UIViewController {
             return
         }
 
-        if previouslyActivated {
-            DispatchQueue.main.async {
-                self.dismissSplashIfNeeded()
-            }
-        } else {
+        if !previouslyActivated {
             guard var user = User.current else {
                 return
             }
