@@ -40,7 +40,7 @@ final class EarnHomeViewController: UIViewController, AddNoticeViewController {
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
             collectionView.register(nib: TaskCategoryCollectionViewCell.self)
-            let side = UIDevice.isiPhone5() ? Constants.compactItemSide : Constants.compactItemSide
+            let side = UIDevice.isiPhone5() ? Constants.compactItemSide : Constants.itemSide
             let itemSize = CGSize(width: side, height: side)
             (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize = itemSize
         }
