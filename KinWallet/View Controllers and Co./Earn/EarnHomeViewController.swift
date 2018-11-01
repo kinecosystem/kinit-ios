@@ -17,6 +17,7 @@ final class EarnHomeViewController: UIViewController, AddNoticeViewController {
 
     private var shouldShowEarnAnimation = true
     private var animatingEarn = false
+    fileprivate var cachedCells = [String: TaskCategoryCollectionViewCell]()
 
     private let activityIndicator = UIActivityIndicatorView(style: .white)
 
@@ -97,6 +98,10 @@ final class EarnHomeViewController: UIViewController, AddNoticeViewController {
         case .none(let error):
             showCategoriesUnavailable(error: error)
         case .some(let categories):
+            children
+                .compactMap { $0 as? NoticeViewController }
+                .forEach { $0.remove() }
+
             self.categories = categories
             collectionView.reloadData()
             showEarnAnimationIfNeeded()
@@ -167,10 +172,27 @@ extension EarnHomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let category = categories[indexPath.item]
-        let cell: TaskCategoryCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        let cell: TaskCategoryCollectionViewCell
+
+        if let existing = cachedCells[category.identifier] {
+            cell = existing
+        } else {
+            cell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            cachedCells[category.identifier] = cell
+        }
+
         let imageURL = category.ui.iconImageURL.kinImagePathAdjustedForDevice()
-        cell.imageView.loadImage(url: imageURL,
-                                 applying: category.availableTasksCount == 0 ? UIImage.applyingBlackAndWhite : nil)
+        let shouldApplyBlackAndWhite = category.availableTasksCount == 0
+
+        let imageIdentifier = shouldApplyBlackAndWhite
+            ? imageURL.absoluteString + "-B&W"
+            : imageURL.absoluteString
+
+        if cell.currentImageIdentifier != imageIdentifier {
+            cell.currentImageIdentifier = imageIdentifier
+            cell.imageView.loadImage(url: imageURL,
+                                     applying: shouldApplyBlackAndWhite ? UIImage.applyingBlackAndWhite : nil)
+        }
 
         DispatchQueue.global().async {
             let headerURL = category.ui.headerImageURL.kinImagePathAdjustedForDevice()

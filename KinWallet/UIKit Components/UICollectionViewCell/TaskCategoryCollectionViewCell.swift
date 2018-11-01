@@ -9,6 +9,7 @@ import UIKit
 
 class TaskCategoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
+    var currentImageIdentifier = ""
 
     override func prepareForReuse() {
         super.prepareForReuse()

@@ -29,34 +29,34 @@ class TaskLoader {
 
     func loadCategories() {
         self.isLoadingCategories.next(true)
-            WebRequests.taskCategories().withCompletion { [weak self] response, error in
-                guard let self = self else {
-                    return
-                }
+        WebRequests.taskCategories().withCompletion { [weak self] response, error in
+            guard let self = self else {
+                return
+            }
 
-                self.isLoadingCategories.next(false)
+            self.isLoadingCategories.next(false)
 
-                if let categories = response?.categories, categories.isNotEmpty {
-                    self._categories = categories
-                    self.categories.next(.some(categories))
+            if let categories = response?.categories, categories.isNotEmpty {
+                self._categories = categories
+                self.categories.next(.some(categories))
 
-                    if let currentObservable = self.currentCategoryObservable {
-                        if let observedCategory = categories.first(where: { currentObservable.0 == $0.identifier }) {
-                            currentObservable.1.next(.some(observedCategory))
-                        } else {
-                            currentObservable.1.next(.none(nil))
-                        }
+                if let currentObservable = self.currentCategoryObservable {
+                    if let observedCategory = categories.first(where: { currentObservable.0 == $0.identifier }) {
+                        currentObservable.1.next(.some(observedCategory))
+                    } else {
+                        currentObservable.1.next(.none(nil))
                     }
-                } else {
-                    self._categories = []
-                    self.categories.next(.none(error))
-                    self.currentCategoryObservable?.1.next(.none(error))
                 }
+            } else {
+                self._categories = []
+                self.categories.next(.none(error))
+                self.currentCategoryObservable?.1.next(.none(error))
+            }
 
-                if let headerMessage = response?.headerMessage {
-                    self.headerMessage.next(headerMessage)
-                }
-                }.load(with: KinWebService.shared)
+            if let headerMessage = response?.headerMessage {
+                self.headerMessage.next(headerMessage)
+            }
+            }.load(with: KinWebService.shared)
     }
 
     func loadAllTasks() {

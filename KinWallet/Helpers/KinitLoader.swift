@@ -23,21 +23,6 @@ class KinitLoader {
     let redeemedItems = Observable<FetchResult<[RedeemTransaction]>>(.none(nil))
         .stateful()
 
-    init() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(applicationWillEnterForeground),
-                                               name: UIApplication.willEnterForegroundNotification,
-                                               object: nil)
-    }
-
-    @objc func applicationWillEnterForeground() {
-        guard User.current != nil else {
-            return
-        }
-
-        loadAllData()
-    }
-
     func loadAllData() {
         loadOffers()
         loadTransactions()
