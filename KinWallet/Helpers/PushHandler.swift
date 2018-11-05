@@ -113,12 +113,7 @@ class PushHandler {
             return
         }
 
-        WebRequests.userRegistrationRequest(for: user)
-            .withCompletion { _, error in
-                if error == nil {
-                    user.save()
-                }
-            }.load(with: KinWebService.shared)
+        user.repeatRegistrationIfNeeded()
     }
 
     private class func transactionCompleted(with kinData: [String: Any]) {

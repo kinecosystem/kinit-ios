@@ -10,9 +10,6 @@ struct User: Codable {
     let bundleId = Bundle.main.bundleIdentifier!
     let deviceId: String
     let deviceModel: String
-    var deviceScreenHeight: CGFloat?
-    var deviceScreenScale: CGFloat?
-    var deviceScreenWidth: CGFloat?
     var deviceToken: String?
     let os = "iOS"
     var phoneNumber: String?
@@ -25,9 +22,6 @@ struct User: Codable {
         case bundleId = "package_id"
         case deviceId = "device_id"
         case deviceModel = "device_model"
-        case deviceScreenHeight = "screen_h"
-        case deviceScreenScale = "screen_d"
-        case deviceScreenWidth = "screen_w"
         case deviceToken = "token"
         case os
         case phoneNumber
@@ -59,9 +53,6 @@ extension User {
         return User(appVersion: Bundle.appVersion,
                     deviceId: (UIDevice.current.identifierForVendor ?? UUID()).uuidString,
                     deviceModel: UIDevice.current.modelMarketingName,
-                    deviceScreenHeight: nil,
-                    deviceScreenScale: nil,
-                    deviceScreenWidth: nil,
                     deviceToken: nil,
                     phoneNumber: nil,
                     publicAddress: nil,
@@ -70,11 +61,23 @@ extension User {
             .withUpdatedValues()
     }
 
+    func repeatRegistrationIfNeeded() {
+        let copy = self.withUpdatedValues()
+        if copy.timeZone == timeZone {
+            return
+        }
+
+        WebRequests.userRegistrationRequest(for: copy)
+            .withCompletion { _, error in
+                if error == nil {
+                    copy.save()
+                }
+            }.load(with: KinWebService.shared)
+    }
+
     func withUpdatedValues() -> User {
         var updatedUser = self
-        updatedUser.deviceScreenHeight = UIScreen.main.bounds.height
-        updatedUser.deviceScreenScale = UIScreen.main.scale
-        updatedUser.deviceScreenWidth = UIScreen.main.bounds.width
+        updatedUser.timeZone = TimeZone.current.fromGMT
 
         return updatedUser
     }
