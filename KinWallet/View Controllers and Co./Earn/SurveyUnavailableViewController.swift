@@ -49,7 +49,6 @@ final class SurveyUnavailableViewController: UIViewController, AddNoticeViewCont
         if let task = task {
             let toUnlock = task.daysToUnlock
             displayType = .titleFirst
-            assert(toUnlock > 0, "SurveyUnavailableViewController received a task that is ready to be displayed.")
 
             title = L10n.nextActivityOnTitle(task.nextAvailableDay())
             subtitle = L10n.nextActivityOnSubtitle

@@ -11,6 +11,7 @@ final class SurveyHomeViewController: UIViewController {
     var shouldShowEarnAnimation = true
     var animatingEarn = false
     let linkBag = LinkBag()
+    var task: Task?
 
     var backupFlowController: BackupFlowController?
 
@@ -33,6 +34,17 @@ final class SurveyHomeViewController: UIViewController {
                                                selector: #selector(splashScreenWillDismiss),
                                                name: .SplashScreenWillDismiss,
                                                object: nil)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applicationWillEnterForeground),
+                                               name: UIApplication.willEnterForegroundNotification,
+                                               object: nil)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        showTaskIfAvailable()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -42,8 +54,10 @@ final class SurveyHomeViewController: UIViewController {
     private func renderCurrentTask(_ taskResult: FetchResult<Task>) {
         switch taskResult {
         case .none(let error):
+            self.task = nil
             showTaskUnavailable(nil, error: error)
         case .some(let task):
+            self.task = task
             renderTask(task)
         }
     }
@@ -56,12 +70,25 @@ final class SurveyHomeViewController: UIViewController {
         }
     }
 
-    func showTaskAvailable(_ task: Task) {
-        assert(task.daysToUnlock == 0,
-               "SurveyUnavailableViewController received a task that is ready to be displayed.")
-        if let surveryUnavailable = children.first as? SurveyUnavailableViewController {
-            surveryUnavailable.remove()
+    @objc func applicationWillEnterForeground() {
+        showTaskIfAvailable()
+    }
+
+    func showTaskIfAvailable() {
+        guard
+            let task = task,
+            children.first(where: { $0 is SurveyUnavailableViewController }) != nil,
+            task.isAvailable else {
+            return
         }
+
+        renderTask(task)
+    }
+
+    func showTaskAvailable(_ task: Task) {
+        assert(task.isAvailable, "showTaskAvailable received a task that is not ready to be displayed.")
+
+        (children.first as? SurveyUnavailableViewController)?.remove()
 
         let surveyInfo: SurveyInfoViewController
 

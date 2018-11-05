@@ -125,17 +125,13 @@ extension Task {
     }
 
     var isAvailable: Bool {
-        return daysToUnlock == 0
+        return Date().timeIntervalSince1970 > startAt
     }
 
     func nextAvailableDay() -> String {
         let toUnlock = daysToUnlock
-        guard toUnlock > 0 else {
-            assertionFailure("nextAvailableDay should never be called in a Task whose daysToUnlock equals to 0")
-            return "Now"
-        }
 
-        if toUnlock == 1 {
+        if toUnlock <= 1 {
             return "tomorrow"
         }
 
