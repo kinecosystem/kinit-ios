@@ -141,8 +141,6 @@ class RootViewController: UIViewController {
 
         KLogVerbose("User \(currentUser.userId) with device token \(currentUser.deviceToken ?? "No token")")
 
-        currentUser.repeatRegistrationIfNeeded()
-
         if currentUser.phoneNumber != nil {
             if let storedHintIds: SelectedHintIds = SimpleDatastore.loadObject(selectedHintIdsKey),
                 storedHintIds.hints.isNotEmpty {
