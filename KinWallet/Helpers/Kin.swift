@@ -70,7 +70,7 @@ class Kin {
     }
 
     @objc func applicationWillEnterForeground() {
-        Kin.shared.refreshBalance()
+        refreshBalance()
     }
 }
 
