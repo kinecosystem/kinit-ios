@@ -61,8 +61,8 @@ extension StandardOfferActionViewController {
                 }
 
                 guard let bookOfferResult = bookOfferResult, error == nil else {
-                    aSelf.presentErrorAlert(title: L10n.internetErrorTitle,
-                                            message: L10n.internetErrorMessage,
+                    aSelf.presentErrorAlert(title: L10n.NoInternetError.title,
+                                            message: L10n.NoInternetError.message,
                                             errorType: .internetConnection)
                     return
                 }

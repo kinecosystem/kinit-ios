@@ -143,13 +143,7 @@ final class TaskCompletedViewController: UIViewController {
                 self.transactionSucceeded(with: paymentAmount, txId: paymentInfo.hash)
             }).add(to: linkBag)
 
-        let timeout: TimeInterval
-
-        #if DEBUG
-        timeout = 8
-        #else
-        timeout = 30
-        #endif
+        let timeout: TimeInterval = 30
 
         DispatchQueue.main.asyncAfter(deadline: .now() + timeout) { [weak self] in
             guard let self = self, self.watch != nil else {
@@ -169,18 +163,15 @@ final class TaskCompletedViewController: UIViewController {
         notificationObserver = nil
         watch = nil
 
-        let message =
-        """
-            We have received your results but something got stuck along the way.
-
-            Please tap close and check your balance in a few hours. If no change has ocurred, contact support.
-            """
         let buttonConfig = NoticeButtonConfiguration(title: "Close", mode: .stroke)
         let noticeViewController = StoryboardScene.Main.noticeViewController.instantiate()
         noticeViewController.delegate = self
-        noticeViewController.notice = Notice(image: Asset.paymentDelay.image,
-                                             title: "Your Kin is on its way with a brief delay",
-                                             subtitle: message,
+
+        let noticeContent = NoticeContent(title: L10n.TaskSubmissionPaymentTimeout.title,
+                                          message: L10n.TaskSubmissionPaymentTimeout.message,
+                                          image: Asset.paymentDelay.image)
+
+        noticeViewController.notice = Notice(content: noticeContent,
                                              buttonConfiguration: buttonConfig,
                                              displayType: .imageFirst)
         present(noticeViewController, animated: true)
@@ -254,9 +245,11 @@ final class TaskCompletedViewController: UIViewController {
         viewController.delegate = self
 
         let buttonConfig = NoticeButtonConfiguration(title: L10n.closeAction, mode: .stroke)
-        viewController.notice = Notice(image: Asset.errorSign.image,
-                                       title: L10n.taskSubmissionFailedErrorTitle,
-                                       subtitle: L10n.taskSubmissionFailedErrorMessage,
+
+        let noticeContent = NoticeContent(title: L10n.TaskSubmissionFailedError.title,
+                                          message: L10n.TaskSubmissionFailedError.message,
+                                          image: Asset.errorSign.image)
+        viewController.notice = Notice(content: noticeContent,
                                        buttonConfiguration: buttonConfig,
                                        displayType: .imageFirst)
 

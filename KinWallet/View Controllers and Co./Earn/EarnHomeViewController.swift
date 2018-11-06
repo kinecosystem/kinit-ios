@@ -115,9 +115,15 @@ final class EarnHomeViewController: UIViewController, AddNoticeViewController {
     func showCategoriesUnavailable(error: Error?) {
         children.forEach { $0.remove() }
 
-        addNoticeViewController(with: L10n.noInternetErrorTitle,
-                                subtitle: L10n.internetErrorMessage,
-                                image: Asset.noInternetIllustration.image)
+        let noticeContent: NoticeContent
+
+        if let error = error {
+            noticeContent = .fromError(error)
+        } else {
+            noticeContent = NoticeContent.generalServerError
+        }
+
+        addNoticeViewController(with: noticeContent)
     }
 
     @objc func splashScreenWillDismiss() {
