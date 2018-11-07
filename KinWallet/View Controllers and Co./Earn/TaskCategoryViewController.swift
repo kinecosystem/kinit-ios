@@ -13,6 +13,7 @@ class TaskCategoryViewController: UIViewController {
     var categoryId: CategoryId!
     var navBarColor: UIColor?
     var headerImage: UIImage?
+    var task: Task?
     private let linkBag = LinkBag()
     private let titleView = TaskCategoryTitleView.loadFromNib()
     fileprivate var previousNavigationBarImage: UIImage!
@@ -29,6 +30,11 @@ class TaskCategoryViewController: UIViewController {
         navigationItem.titleView = titleView
 
         bindObservables()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applicationWillEnterForeground),
+                                               name: UIApplication.willEnterForegroundNotification,
+                                               object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +59,12 @@ class TaskCategoryViewController: UIViewController {
         }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        showTaskIfAvailable()
+    }
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -69,7 +81,7 @@ class TaskCategoryViewController: UIViewController {
             }).add(to: linkBag)
 
         DataLoaders.tasks.taskObservable(for: categoryId)
-            .on(queue: .main, next: { [weak self] result in self?.renderCurrentTask(result) })
+            .on(queue: .main, next: { [weak self] result in self?.renderTask(result) })
             .add(to: linkBag)
     }
 
@@ -80,11 +92,24 @@ class TaskCategoryViewController: UIViewController {
         titleView.tasksCountStackView.isHidden = count <= 1
     }
 
-    private func renderCurrentTask(_ taskResult: FetchResult<Task>) {
+    func showTaskIfAvailable() {
+        guard
+            let task = task,
+            children.first(where: { $0 is SurveyUnavailableViewController }) != nil,
+            task.isAvailable else {
+                return
+        }
+
+        renderTask(task)
+    }
+
+    private func renderTask(_ taskResult: FetchResult<Task>) {
         switch taskResult {
         case .none(let error):
+            self.task = nil
             showTaskUnavailable(nil, error: error)
         case .some(let task):
+            self.task = task
             renderTask(task)
         }
     }
@@ -97,9 +122,12 @@ class TaskCategoryViewController: UIViewController {
         }
     }
 
+    @objc func applicationWillEnterForeground() {
+        showTaskIfAvailable()
+    }
+
     func showTaskAvailable(_ task: Task) {
-        assert(task.daysToUnlock == 0,
-               "SurveyUnavailableViewController received a task that is ready to be displayed.")
+        assert(task.isAvailable, "TaskCategoryViewController received a task that is not ready to be displayed.")
         if let surveryUnavailable = children.first as? SurveyUnavailableViewController {
             surveryUnavailable.remove()
         }
