@@ -230,15 +230,3 @@ extension SurveyInfoViewController: StoryboardInitializable {
         return StoryboardScene.Earn.surveyInfoViewController.instantiate()
     }
 }
-
-extension SurveyInfoViewController: VideoTaskViewControllerDelegate {
-    func videoTaskDidFinishPlaying() {
-        dismiss(animated: true) {
-            self.presentTask()
-        }
-    }
-
-    func videoTaskDidCancelPlaying() {
-        dismiss(animated: true)
-    }
-}

@@ -322,9 +322,6 @@
 		91A4276D2129C7BD0078B589 /* Onboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91A4276C2129C7BD0078B589 /* Onboard.storyboard */; };
 		91A4276E2129C7BD0078B589 /* Onboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91A4276C2129C7BD0078B589 /* Onboard.storyboard */; };
 		91A4276F2129C7BD0078B589 /* Onboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91A4276C2129C7BD0078B589 /* Onboard.storyboard */; };
-		91A4EA9A20CFE75200C3399F /* VideoTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4EA9920CFE75200C3399F /* VideoTaskViewController.swift */; };
-		91A4EAA120CFE8F600C3399F /* VideoTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4EA9920CFE75200C3399F /* VideoTaskViewController.swift */; };
-		91A4EAA220CFE8F700C3399F /* VideoTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4EA9920CFE75200C3399F /* VideoTaskViewController.swift */; };
 		91AA18E621048AD000044D9C /* QuizData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AA18E521048AD000044D9C /* QuizData.swift */; };
 		91AA18E721048AD000044D9C /* QuizData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AA18E521048AD000044D9C /* QuizData.swift */; };
 		91AA18E821048AD000044D9C /* QuizData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AA18E521048AD000044D9C /* QuizData.swift */; };
@@ -357,9 +354,6 @@
 		91AE22F821775E930024B8BF /* TaskLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE22F721775E930024B8BF /* TaskLoader.swift */; };
 		91AE230021775E970024B8BF /* TaskLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE22F721775E930024B8BF /* TaskLoader.swift */; };
 		91AE230121775E980024B8BF /* TaskLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE22F721775E930024B8BF /* TaskLoader.swift */; };
-		91AE230221776A0E0024B8BF /* SurveyHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013A42018BC320066367C /* SurveyHomeViewController.swift */; };
-		91AE230321776A0E0024B8BF /* SurveyHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013A42018BC320066367C /* SurveyHomeViewController.swift */; };
-		91AE230421776A0F0024B8BF /* SurveyHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013A42018BC320066367C /* SurveyHomeViewController.swift */; };
 		91AE230621776C4E0024B8BF /* DataLoaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE230521776C4E0024B8BF /* DataLoaders.swift */; };
 		91AE230721776CB50024B8BF /* DataLoaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE230521776C4E0024B8BF /* DataLoaders.swift */; };
 		91AE230821776CB50024B8BF /* DataLoaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE230521776C4E0024B8BF /* DataLoaders.swift */; };
@@ -853,7 +847,6 @@
 		91401396201892640066367C /* AnswerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerTests.swift; sourceTree = "<group>"; };
 		9140139F2018B87E0066367C /* InitialTasks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InitialTasks.json; sourceTree = "<group>"; };
 		914013A22018BC320066367C /* OfferWallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferWallViewController.swift; sourceTree = "<group>"; };
-		914013A42018BC320066367C /* SurveyHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyHomeViewController.swift; sourceTree = "<group>"; };
 		914013A92018BC780066367C /* SurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
 		914013AC2018BCB80066367C /* SurveyUnavailableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyUnavailableViewController.swift; sourceTree = "<group>"; };
 		914013AF2018BD050066367C /* SurveyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyInfoViewController.swift; sourceTree = "<group>"; };
@@ -932,7 +925,6 @@
 		91A4275D2129BD830078B589 /* CreatingWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatingWalletViewController.swift; sourceTree = "<group>"; };
 		91A427682129BFF20078B589 /* WalletLoader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WalletLoader.json; sourceTree = "<group>"; };
 		91A4276C2129C7BD0078B589 /* Onboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboard.storyboard; sourceTree = "<group>"; };
-		91A4EA9920CFE75200C3399F /* VideoTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTaskViewController.swift; sourceTree = "<group>"; };
 		91AA18E521048AD000044D9C /* QuizData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizData.swift; sourceTree = "<group>"; };
 		91AA18E92104C01900044D9C /* QuizQuestionExplanationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestionExplanationViewController.swift; sourceTree = "<group>"; };
 		91AA18ED2104D67300044D9C /* QuestionViewController+Celebration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestionViewController+Celebration.swift"; sourceTree = "<group>"; };
@@ -1450,7 +1442,6 @@
 		914013A32018BC320066367C /* Earn */ = {
 			isa = PBXGroup;
 			children = (
-				914013A42018BC320066367C /* SurveyHomeViewController.swift */,
 				9149C4CD2173407B009DFFE9 /* EarnHomeViewController.swift */,
 				9170BE91206A5E9A00DC88B4 /* EarnKinAnimationViewController.swift */,
 				914013AC2018BCB80066367C /* SurveyUnavailableViewController.swift */,
@@ -1458,7 +1449,6 @@
 				91D1E285218078AC00F9AF4F /* TaskCategoryTitleView.swift */,
 				91AE22D721761E060024B8BF /* TaskCategoryTitleView.xib */,
 				914013AF2018BD050066367C /* SurveyInfoViewController.swift */,
-				91A4EA9920CFE75200C3399F /* VideoTaskViewController.swift */,
 				914013A92018BC780066367C /* SurveyViewController.swift */,
 				914013B22018C0740066367C /* QuestionViewController.swift */,
 				91AA18ED2104D67300044D9C /* QuestionViewController+Celebration.swift */,
@@ -2307,7 +2297,6 @@
 				9138BBE5204EF1A700450C97 /* SimpleCollectionReusableView.swift in Sources */,
 				91D891DA2020B43D0090E77C /* SurveyQuestionCollectionReusableView.swift in Sources */,
 				9114743D203F17ED00C16279 /* WeakBox.swift in Sources */,
-				91A4EA9A20CFE75200C3399F /* VideoTaskViewController.swift in Sources */,
 				91B0667920C8177100CE69A7 /* KinSentViewController.swift in Sources */,
 				91E6B650203C69A90080C2FC /* AMPUtils.m in Sources */,
 				91D1E286218078AC00F9AF4F /* TaskCategoryTitleView.swift in Sources */,
@@ -2404,7 +2393,6 @@
 				9138BBE1204EE21E00450C97 /* OfferDetailsViewController.swift in Sources */,
 				91E6B65C203C69A90080C2FC /* AMPIdentify.m in Sources */,
 				82A12DEC2056B841008841F2 /* Configuration.swift in Sources */,
-				91AE230421776A0F0024B8BF /* SurveyHomeViewController.swift in Sources */,
 				91F69D30208379F400F06181 /* SegmentedPagerTabStripViewController.swift in Sources */,
 				91FA4A0D212AB75C00513E1D /* QRCodeScannerViewController.swift in Sources */,
 				9198A2A02062926D0052F343 /* NotificationHandler.swift in Sources */,
@@ -2596,14 +2584,12 @@
 				91E84A6A2086183900E8B7A6 /* KinitLoader.swift in Sources */,
 				91B575C32046C48B00AC3E04 /* UIButton+KinWallet.swift in Sources */,
 				91D7C032204F11D200D35401 /* KinAmountLabel.swift in Sources */,
-				91AE230321776A0E0024B8BF /* SurveyHomeViewController.swift in Sources */,
 				9152E5EA212D505300802040 /* RestoreBackupCells.swift in Sources */,
 				9182C2A7203C6C0C0051F003 /* Amplitude.m in Sources */,
 				9140139A201892640066367C /* AnswerTests.swift in Sources */,
 				91FF14B4211C61290098470D /* ButtonAccessoryInputView.swift in Sources */,
 				91F877F5216A012C00E91C03 /* KinAlertController.swift in Sources */,
 				9170CD802133F3A0009986A5 /* AMPTrackingOptions.m in Sources */,
-				91A4EAA120CFE8F600C3399F /* VideoTaskViewController.swift in Sources */,
 				914013DD2019F2BF0066367C /* UICollectionViewCell+KinWallet.swift in Sources */,
 				9182C2A4203C6C0C0051F003 /* AMPURLConnection.m in Sources */,
 				91AAB939201E0CB80075DAA1 /* UIImageView+KinWallet.swift in Sources */,
@@ -2821,8 +2807,6 @@
 				828CB43F2056E9F6007C679C /* ReusableView.swift in Sources */,
 				828CB40E2056E8F5007C679C /* SurveyDoneViewController.swift in Sources */,
 				91B445512090C3B400ED6802 /* PhoneVerificationRequestViewController.swift in Sources */,
-				91AE230221776A0E0024B8BF /* SurveyHomeViewController.swift in Sources */,
-				91A4EAA220CFE8F700C3399F /* VideoTaskViewController.swift in Sources */,
 				828CB4422056EA08007C679C /* BIEvents.swift in Sources */,
 				828CB4382056E9F2007C679C /* Analytics.swift in Sources */,
 				91E84ABD20862E6F00E8B7A6 /* RedeemTransactionCollectionViewCell.swift in Sources */,

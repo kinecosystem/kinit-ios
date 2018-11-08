@@ -26,7 +26,6 @@ struct Task: Codable {
     let title: String
     let type: TaskType
     let updatedAt: TimeInterval
-    let videoURL: URL?
     let actions: [PostTaskAction]?
 
     enum CodingKeys: String, CodingKey {
@@ -43,7 +42,6 @@ struct Task: Codable {
         case title
         case type
         case updatedAt = "updated_at"
-        case videoURL = "video_url"
         case actions = "post_task_actions"
     }
 }

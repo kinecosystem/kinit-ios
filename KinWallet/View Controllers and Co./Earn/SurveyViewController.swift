@@ -131,14 +131,6 @@ final class SurveyViewController: UIViewController {
             return
         }
 
-        if let videoURL = self.task.videoURL, currentQuestionIndex == 0 && !finishedVideoReproduction {
-            let videoViewController = VideoTaskViewController()
-            videoViewController.videoURL = videoURL
-            videoViewController.delegate = self
-            present(videoViewController, animated: false)
-            return
-        }
-
         let question = task.questions[currentQuestionIndex]
         let animateProgress: Bool
 
@@ -288,20 +280,6 @@ extension SurveyViewController: QuestionViewControllerDelegate {
 extension SurveyViewController: QuizQuestionExplanationDelegate {
     func quizQuestionExplanationDidTapNext() {
         moveToNextQuestionOrFinish()
-    }
-}
-
-extension SurveyViewController: VideoTaskViewControllerDelegate {
-    func videoTaskDidFinishPlaying() {
-        finishedVideoReproduction = true
-        showNextQuestion()
-        dismiss(animated: true, completion: nil)
-    }
-
-    func videoTaskDidCancelPlaying() {
-        dismiss(animated: false) {
-            self.dismiss(animated: true, completion: nil)
-        }
     }
 }
 
