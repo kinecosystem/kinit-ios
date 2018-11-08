@@ -294,7 +294,7 @@ extension SurveyViewController {
                 questionId: question.identifier,
                 questionOrder: questionIndex + 1,
                 questionType: question.type == .text ? .text : .textImage,
-                taskCategory: task.tags.asString,
+                taskCategory: task.categoryNameOrId,
                 taskId: task.identifier,
                 taskTitle: task.title)
             .send()
@@ -312,7 +312,7 @@ extension SurveyViewController {
                                              questionId: question.identifier,
                                              questionOrder: questionIndex + 1,
                                              questionType: question.type.toBIQuestionType(),
-                                             taskCategory: task.tags.asString,
+                                             taskCategory: task.categoryNameOrId,
                                              taskId: task.identifier,
                                              taskTitle: task.title)
             .send()
@@ -328,7 +328,7 @@ extension SurveyViewController {
                                             questionId: question.identifier,
                                             questionOrder: questionIndex + 1,
                                             questionType: question.type == .text ? .text : .textImage,
-                                            taskCategory: task.tags.asString,
+                                            taskCategory: task.categoryNameOrId,
                                             taskId: task.identifier,
                                             taskTitle: task.title)
             .send()
@@ -339,7 +339,7 @@ extension SurveyViewController {
             .EarningTaskCompleted(creator: task.author.name,
                                   estimatedTimeToComplete: task.minutesToComplete,
                                   kinReward: Int(task.kinReward),
-                                  taskCategory: task.tags.asString,
+                                  taskCategory: task.categoryNameOrId,
                                   taskId: task.identifier,
                                   taskTitle: task.title,
                                   taskType: task.type.toBITaskType())

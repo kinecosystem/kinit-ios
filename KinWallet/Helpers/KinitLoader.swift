@@ -9,9 +9,19 @@ import KinUtil
 let nextTaskIdentifier = "Kinit-NextTask"
 let availableBackupList = "Kinit-AvailableBackupList"
 
-enum FetchResult<T> {
+enum FetchResult<Value> {
     case none(Error?)
-    case some(T)
+    case some(Value)
+}
+
+extension FetchResult {
+    var value: Value? {
+        guard case let FetchResult.some(value) = self else {
+            return nil
+        }
+
+        return value
+    }
 }
 
 class KinitLoader {

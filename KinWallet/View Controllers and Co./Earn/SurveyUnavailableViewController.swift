@@ -7,6 +7,7 @@ import UIKit
 
 final class SurveyUnavailableViewController: UIViewController, AddNoticeViewController {
     var task: Task?
+    var taskCategory: String!
     var error: Error?
     var noticeViewController: NoticeViewController?
 
@@ -34,7 +35,8 @@ final class SurveyUnavailableViewController: UIViewController, AddNoticeViewCont
                     .send()
             } else {
                 Events.Analytics
-                    .ViewEmptyStatePage(menuItemName: .earn)
+                    .ViewEmptyStatePage(menuItemName: .earn,
+                                        taskCategory: taskCategory)
                     .send()
             }
         }

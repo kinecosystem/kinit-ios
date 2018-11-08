@@ -63,6 +63,16 @@ final class EarnHomeViewController: UIViewController, AddNoticeViewController {
         bindObservables()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if !AppDelegate.shared.rootViewController.isShowingSplashScreen {
+            Events.Analytics
+                .ViewTaskCategoriesPage()
+                .send()
+        }
+    }
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -127,6 +137,10 @@ final class EarnHomeViewController: UIViewController, AddNoticeViewController {
     }
 
     @objc func splashScreenWillDismiss() {
+        Events.Analytics
+            .ViewTaskCategoriesPage()
+            .send()
+
         showEarnAnimationIfNeeded()
     }
 
@@ -225,6 +239,10 @@ extension EarnHomeViewController: UICollectionViewDelegate {
         }
 
         navigationController?.pushViewController(viewController, animated: true)
+
+        Events.Analytics
+            .ClickCategoryButtonOnTaskCategoriesPage(taskCategory: category.title)
+            .send()
     }
 }
 

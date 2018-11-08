@@ -106,7 +106,8 @@ extension OfferWallViewController {
                     .send()
             } else {
                 Events.Analytics
-                    .ViewEmptyStatePage(menuItemName: .earn)
+                    .ViewEmptyStatePage(menuItemName: .earn,
+                                        taskCategory: "")
                     .send()
             }
         case .some(let offers):

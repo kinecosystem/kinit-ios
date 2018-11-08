@@ -14,6 +14,7 @@ class TaskCategoryViewController: UIViewController {
     var navBarColor: UIColor?
     var headerImage: UIImage?
     var task: Task?
+    var categoryName: String?
     private let linkBag = LinkBag()
     private let titleView = TaskCategoryTitleView.loadFromNib()
     fileprivate var previousNavigationBarImage: UIImage!
@@ -86,6 +87,8 @@ class TaskCategoryViewController: UIViewController {
     }
 
     private func reloadTitleView(with category: TaskCategory) {
+        categoryName = category.title
+
         let count = category.availableTasksCount
         titleView.titleLabel.text = category.title.capitalized
         titleView.tasksCountLabel.text = L10n.availableActivitesCount(count)
@@ -150,6 +153,7 @@ class TaskCategoryViewController: UIViewController {
 
         let surveyUnavailable = SurveyUnavailableViewController()
         surveyUnavailable.task = task
+        surveyUnavailable.taskCategory = categoryName ?? categoryId
         surveyUnavailable.error = error
         add(surveyUnavailable) { $0.fitInSuperview(with: .safeArea) }
     }

@@ -265,7 +265,7 @@ extension TaskCompletedViewController {
             .ViewTaskEndPage(creator: task.author.name,
                              estimatedTimeToComplete: task.minutesToComplete,
                              kinReward: Int(task.kinReward),
-                             taskCategory: task.tags.asString,
+                             taskCategory: task.categoryNameOrId,
                              taskId: task.identifier,
                              taskTitle: task.title,
                              taskType: task.type.toBITaskType())
@@ -277,7 +277,7 @@ extension TaskCompletedViewController {
             .ViewRewardPage(creator: task.author.name,
                             estimatedTimeToComplete: task.minutesToComplete,
                             kinReward: Int(task.kinReward),
-                            taskCategory: task.tags.asString,
+                            taskCategory: task.categoryNameOrId,
                             taskId: task.identifier,
                             taskTitle: task.title,
                             taskType: task.type.toBITaskType())
@@ -289,7 +289,7 @@ extension TaskCompletedViewController {
             .ViewKinProvidedImageOnRewardPage(creator: task.author.name,
                                               estimatedTimeToComplete: task.minutesToComplete,
                                               kinReward: Int(task.kinReward),
-                                              taskCategory: task.tags.asString,
+                                              taskCategory: task.categoryNameOrId,
                                               taskId: task.identifier,
                                               taskTitle: task.title,
                                               taskType: task.type.toBITaskType())
@@ -301,7 +301,7 @@ extension TaskCompletedViewController {
             .ClickCloseButtonOnRewardPage(creator: task.author.name,
                                           estimatedTimeToComplete: task.minutesToComplete,
                                           kinReward: Int(task.kinReward),
-                                          taskCategory: task.tags.asString,
+                                          taskCategory: task.categoryNameOrId,
                                           taskId: task.identifier,
                                           taskTitle: task.title,
                                           taskType: task.type.toBITaskType())

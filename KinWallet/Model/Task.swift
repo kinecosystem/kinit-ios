@@ -161,7 +161,7 @@ extension TaskType {
     }
 }
 
-extension FetchResult where T == Task {
+extension FetchResult where Value == Task {
     var isTaskAvailable: Bool {
         switch self {
         case .none:

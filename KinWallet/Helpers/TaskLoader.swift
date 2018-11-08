@@ -191,3 +191,21 @@ class TaskLoader {
         }
     }
 }
+
+extension Task {
+    var categoryName: String? {
+        guard let category = DataLoaders.tasks
+            .categories
+            .value?
+            .value?
+            .first(where: { $0.identifier == self.categoryId }) else {
+                return nil
+        }
+
+        return category.title
+    }
+
+    var categoryNameOrId: String {
+        return categoryName ?? categoryId
+    }
+}
