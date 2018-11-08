@@ -12,7 +12,8 @@ protocol RedeemTransactionCellDelegate: class {
 
 class RedeemTransactionCellFactory {
     class func drawCell(_ cell: RedeemTransactionCollectionViewCell, for transaction: RedeemTransaction) {
-        cell.iconImageView.loadImage(url: transaction.provider.imageURL.kinImagePathAdjustedForDevice())
+        cell.iconImageView.loadImage(url: transaction.provider.imageURL.kinImagePathAdjustedForDevice(),
+                                     useInMemoryCache: true)
         cell.titleLabel.text = transaction.title
         cell.detailsTextView.text = transaction.description
         cell.couponCodeLabel.text = transaction.value

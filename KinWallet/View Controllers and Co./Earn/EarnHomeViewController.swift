@@ -17,7 +17,6 @@ final class EarnHomeViewController: UIViewController, AddNoticeViewController {
 
     private var shouldShowEarnAnimation = true
     private var animatingEarn = false
-    fileprivate var cachedCells = [String: TaskCategoryCollectionViewCell]()
 
     private let activityIndicator = UIActivityIndicatorView(style: .white)
 
@@ -192,14 +191,7 @@ extension EarnHomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let category = categories[indexPath.item]
-        let cell: TaskCategoryCollectionViewCell
-
-        if let existing = cachedCells[category.identifier] {
-            cell = existing
-        } else {
-            cell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cachedCells[category.identifier] = cell
-        }
+        let cell: TaskCategoryCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
 
         let imageURL = category.ui.iconImageURL.kinImagePathAdjustedForDevice()
         let shouldApplyBlackAndWhite = category.availableTasksCount == 0
@@ -211,6 +203,7 @@ extension EarnHomeViewController: UICollectionViewDataSource {
         if cell.currentImageIdentifier != imageIdentifier {
             cell.currentImageIdentifier = imageIdentifier
             cell.imageView.loadImage(url: imageURL,
+                                     useInMemoryCache: true,
                                      applying: shouldApplyBlackAndWhite ? UIImage.applyingBlackAndWhite : nil)
         }
 

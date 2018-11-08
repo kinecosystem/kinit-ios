@@ -28,8 +28,9 @@ struct NoticeContent {
                                                   image: Asset.serverErrorIllustration.image)
 
     static func fromError(_ error: Error) -> NoticeContent {
-        if let aError = error as? NSError,
-            aError.domain == NSURLErrorDomain,
+        let aError = error as NSError
+
+        if aError.domain == NSURLErrorDomain,
             internetErrorCodes.contains(aError.code) {
             return NoticeContent(title: L10n.NoInternetError.title,
                                  message: L10n.NoInternetError.message,

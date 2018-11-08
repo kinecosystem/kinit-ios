@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import UIKit
 
 class DataLoaders {
     private static let instance = DataLoaders()
 
     let kinit = KinitLoader()
     let tasks = TaskLoader()
+    var didEnterBackground = false
 
     static var kinit: KinitLoader {
         return instance.kinit
@@ -23,16 +25,25 @@ class DataLoaders {
 
     init() {
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(applicationWillEnterForeground),
-                                               name: UIApplication.willEnterForegroundNotification,
+                                               selector: #selector(applicationDidBecomeActive),
+                                               name: UIApplication.didBecomeActiveNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applicationDidEnterBackground),
+                                               name: UIApplication.didEnterBackgroundNotification,
                                                object: nil)
     }
 
-    @objc func applicationWillEnterForeground() {
-        guard User.current != nil else {
+    @objc func applicationDidEnterBackground() {
+        didEnterBackground = true
+    }
+
+    @objc func applicationDidBecomeActive() {
+        guard User.current != nil, didEnterBackground else {
             return
         }
 
+        didEnterBackground = false
         loadAllData()
     }
 
