@@ -46,7 +46,7 @@ class BackupFlowController {
             return
         }
 
-        KinLoader.shared.fetchAvailableBackupHints { [weak presenter] hints in
+        DataLoaders.kinit.fetchAvailableBackupHints { [weak presenter] hints in
             DispatchQueue.main.async {
                 let backupIntro = StoryboardScene.Backup.backupIntroViewController.instantiate()
                 backupIntro.delegate = self

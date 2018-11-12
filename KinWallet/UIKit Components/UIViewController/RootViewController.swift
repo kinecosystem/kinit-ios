@@ -103,9 +103,12 @@ class RootViewController: UIViewController {
                                                             additionalMessage: supportAttributedString)
         let noticeViewController = StoryboardScene.Main.noticeViewController.instantiate()
         noticeViewController.delegate = self
-        noticeViewController.notice = Notice(image: error.image,
-                                             title: error.title,
-                                             subtitle: L10n.walletOrUserCreationErrorSubtitle,
+        
+        let noticeContent = NoticeContent(title: error.title,
+                                          message: L10n.walletOrUserCreationErrorSubtitle,
+                                          image: error.image)
+
+        noticeViewController.notice = Notice(content: noticeContent,
                                              buttonConfiguration: buttonConfiguration,
                                              displayType: .imageFirst)
         present(noticeViewController, animated: true)
@@ -165,7 +168,7 @@ class RootViewController: UIViewController {
             KLogVerbose("App Launch: \(config != nil ? String(describing: config!) : "No config")")
             }.load(with: KinWebService.shared)
 
-        KinLoader.shared.loadAllData()
+        DataLoaders.loadAllData()
     }
 
     private func verifyAccountMatchesUserAddress() {
@@ -213,7 +216,7 @@ class RootViewController: UIViewController {
                                               deviceId: user.deviceId)
                 user.save()
 
-                KinLoader.shared.loadAllData()
+                DataLoaders.loadAllData()
 
                 DispatchQueue.main.async {
                     self?.showWelcomeViewController()

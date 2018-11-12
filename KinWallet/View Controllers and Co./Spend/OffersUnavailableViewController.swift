@@ -11,22 +11,16 @@ class OffersUnavailableViewController: UIViewController, AddNoticeViewController
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let title: String
-        let subtitle: String?
-        let image: UIImage
+        let noticeContent: NoticeContent
 
-        if error != nil {
-            title = L10n.internetErrorTitle
-            subtitle = L10n.internetErrorMessage
-            image = noInternetImage
+        if let error = error {
+            noticeContent = .fromError(error)
         } else {
-            title = L10n.emptyOffersTitle
-            subtitle = L10n.emptyOffersSubtitle
-            image = Asset.noOffers.image
+            noticeContent = .init(title: L10n.emptyOffersTitle,
+                                  message: L10n.emptyOffersSubtitle,
+                                  image: Asset.noOffers.image)
         }
 
-        addNoticeViewController(with: title,
-                                subtitle: subtitle,
-                                image: image)
+        addNoticeViewController(with: noticeContent)
     }
 }

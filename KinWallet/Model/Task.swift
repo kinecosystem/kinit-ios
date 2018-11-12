@@ -13,6 +13,7 @@ enum TaskType: String, Codable {
 }
 
 struct Task: Codable {
+    let categoryId: String
     let author: Author
     let identifier: String
     let kinReward: UInt
@@ -25,11 +26,11 @@ struct Task: Codable {
     let title: String
     let type: TaskType
     let updatedAt: TimeInterval
-    let videoURL: URL?
     let actions: [PostTaskAction]?
 
     enum CodingKeys: String, CodingKey {
         case author = "provider"
+        case categoryId = "cat_id"
         case identifier = "id"
         case kinReward = "price"
         case memo = "memo"
@@ -41,7 +42,6 @@ struct Task: Codable {
         case title
         case type
         case updatedAt = "updated_at"
-        case videoURL = "video_url"
         case actions = "post_task_actions"
     }
 }
@@ -161,7 +161,7 @@ extension TaskType {
     }
 }
 
-extension FetchResult where T == Task {
+extension FetchResult where Value == Task {
     var isTaskAvailable: Bool {
         switch self {
         case .none:

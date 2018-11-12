@@ -142,15 +142,20 @@ extension OfferWallViewController: UIViewControllerTransitioningDelegate {
                 return nil
         }
 
-        _ = offerViewController.view
+        offerViewController.view.frame = UIScreen.main.bounds
+        offerViewController.view.setNeedsLayout()
+        offerViewController.view.layoutIfNeeded()
+
+        let yOffset: CGFloat
+        if #available(iOS 11.0, *) {
+            yOffset = presenting.view.safeAreaInsets.top + navController.navigationBar.frame.height
+        } else {
+            yOffset = UIApplication.shared.statusBarFrame.height + navController.navigationBar.frame.maxY
+        }
 
         let authorOriginFrame = cell.authorImageView.superview!.convert(cell.authorImageView.frame, to: view)
         var authorTargetFrame = offerViewController.authorImageView.frame
-        if #available(iOS 11.0, *) {
-            if navigationController!.view.safeAreaInsets.top > 20 {
-                authorTargetFrame.origin.y += navigationController!.view.safeAreaInsets.top - 20
-            }
-        }
+        authorTargetFrame.origin.y += yOffset
 
         let authorView = UIImageView(image: authorImage)
             .copyingProperties(from: cell.authorImageView)
@@ -162,11 +167,7 @@ extension OfferWallViewController: UIViewControllerTransitioningDelegate {
 
         let offerOriginFrame = cell.offerImageView.superview!.convert(cell.offerImageView.frame, to: view)
         var offerTargetFrame = offerViewController.offerImageView.frame
-        if #available(iOS 11.0, *) {
-            if navigationController!.view.safeAreaInsets.top > 20 {
-                offerTargetFrame.origin.y += navigationController!.view.safeAreaInsets.top - 20
-            }
-        }
+        offerTargetFrame.origin.y += yOffset
 
         let offerView = UIImageView(image: offerImage)
             .copyingProperties(from: cell.offerImageView)

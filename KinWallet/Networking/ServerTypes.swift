@@ -15,8 +15,33 @@ struct SimpleStatusResponse: StatusResponse, Codable {
     let status: String
 }
 
-struct TasksResponse: Codable {
+struct CategoriesHeaderMessage: Codable {
+    let title: String
+    let subtitle: String
+}
+
+struct TaskCategoriesResponse: Codable {
+    let categories: [TaskCategory]
+    let headerMessage: CategoriesHeaderMessage
+
+    enum CodingKeys: String, CodingKey {
+        case categories
+        case headerMessage = "header_message"
+    }
+}
+
+struct CategoryTasksResponse: Codable {
     let tasks: [Task]
+    let availableTasksCount: Int
+
+    enum CodingKeys: String, CodingKey {
+        case tasks
+        case availableTasksCount = "available_tasks_count"
+    }
+}
+
+struct TasksByCategoryResponse: Codable {
+    let tasks: [String: [Task]]
 }
 
 struct OffersResponse: Codable {

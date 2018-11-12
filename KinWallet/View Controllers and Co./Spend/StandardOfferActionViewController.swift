@@ -61,8 +61,8 @@ extension StandardOfferActionViewController {
                 }
 
                 guard let bookOfferResult = bookOfferResult, error == nil else {
-                    aSelf.presentErrorAlert(title: L10n.internetErrorTitle,
-                                            message: L10n.internetErrorMessage,
+                    aSelf.presentErrorAlert(title: L10n.NoInternetError.title,
+                                            message: L10n.NoInternetError.message,
                                             errorType: .internetConnection)
                     return
                 }
@@ -71,7 +71,7 @@ extension StandardOfferActionViewController {
                 case .success(let orderId):
                     aSelf.payOffer(with: orderId)
                 case .noGoods, .coolDown:
-                    KinLoader.shared.loadOffers()
+                    DataLoaders.kinit.loadOffers()
                     aSelf.presentErrorAlert(title: L10n.lastOfferGrabbedTitle,
                                             message: L10n.lastOfferGrabbedMessage,
                                             errorType: .offerNotAvailable)
@@ -112,8 +112,8 @@ extension StandardOfferActionViewController {
                     return
                 }
 
-                KinLoader.shared.loadTransactions()
-                KinLoader.shared.loadRedeemedItems()
+                DataLoaders.kinit.loadTransactions()
+                DataLoaders.kinit.loadRedeemedItems()
 
                 DispatchQueue.main.async {
                     aSelf.offerRedeemed(with: redeemGood)

@@ -101,11 +101,11 @@ class PushHandler {
             let asData = try? JSONSerialization.data(withJSONObject: tx, options: []),
             let transaction = try? JSONDecoder().decode(KinitTransaction.self, from: asData)
             else {
-                KinLoader.shared.loadTransactions()
+                DataLoaders.kinit.loadTransactions()
                 return
         }
 
-        KinLoader.shared.prependTransaction(transaction)
+        DataLoaders.kinit.prependTransaction(transaction)
     }
 
     private class func repeatRegistration() {

@@ -192,7 +192,7 @@ extension SurveyInfoViewController {
             .ViewTaskPage(creator: task.author.name,
                           estimatedTimeToComplete: task.minutesToComplete,
                           kinReward: Int(task.kinReward),
-                          taskCategory: task.tags.asString,
+                          taskCategory: task.categoryNameOrId,
                           taskId: task.identifier,
                           taskTitle: task.title,
                           taskType: task.type.toBITaskType())
@@ -205,7 +205,7 @@ extension SurveyInfoViewController {
                                         creator: task.author.name,
                                         estimatedTimeToComplete: task.minutesToComplete,
                                         kinReward: Int(task.kinReward),
-                                        taskCategory: task.tags.asString,
+                                        taskCategory: task.categoryNameOrId,
                                         taskId: task.identifier,
                                         taskTitle: task.title,
                                         taskType: task.type.toBITaskType())
@@ -216,7 +216,7 @@ extension SurveyInfoViewController {
                 .EarningTaskStarted(creator: task.author.name,
                                     estimatedTimeToComplete: task.minutesToComplete,
                                     kinReward: Int(task.kinReward),
-                                    taskCategory: task.tags.asString,
+                                    taskCategory: task.categoryNameOrId,
                                     taskId: task.identifier,
                                     taskTitle: task.title,
                                     taskType: task.type.toBITaskType())
@@ -228,17 +228,5 @@ extension SurveyInfoViewController {
 extension SurveyInfoViewController: StoryboardInitializable {
     static func instantiateFromStoryboard() -> SurveyInfoViewController {
         return StoryboardScene.Earn.surveyInfoViewController.instantiate()
-    }
-}
-
-extension SurveyInfoViewController: VideoTaskViewControllerDelegate {
-    func videoTaskDidFinishPlaying() {
-        dismiss(animated: true) {
-            self.presentTask()
-        }
-    }
-
-    func videoTaskDidCancelPlaying() {
-        dismiss(animated: true)
     }
 }

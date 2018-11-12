@@ -1,5 +1,5 @@
 //
-//  TaskFetcher.swift
+//  KinitLoader.swift
 //  Kinit
 //
 
@@ -9,16 +9,23 @@ import KinUtil
 let nextTaskIdentifier = "Kinit-NextTask"
 let availableBackupList = "Kinit-AvailableBackupList"
 
-enum FetchResult<T> {
+enum FetchResult<Value> {
     case none(Error?)
-    case some(T)
+    case some(Value)
 }
 
-class KinLoader {
-    static let shared = KinLoader()
+extension FetchResult {
+    var value: Value? {
+        guard case let FetchResult.some(value) = self else {
+            return nil
+        }
+
+        return value
+    }
+}
+
+class KinitLoader {
     fileprivate var delegates = [WeakBox]()
-    let currentTask = Observable<FetchResult<Task>>()
-        .stateful()
     let offers = Observable<FetchResult<[Offer]>>(.none(nil))
         .stateful()
     let transactions = Observable<FetchResult<[KinitTransaction]>>(.none(nil))
@@ -26,66 +33,11 @@ class KinLoader {
     let redeemedItems = Observable<FetchResult<[RedeemTransaction]>>(.none(nil))
         .stateful()
 
-    init() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(applicationWillEnterForeground),
-                                               name: UIApplication.willEnterForegroundNotification,
-                                               object: nil)
-    }
-
-    @objc func applicationWillEnterForeground() {
-        guard User.current != nil else {
-            return
-        }
-
-        loadAllData()
-    }
-
-    func deleteCachedAndFetchNextTask() {
-        currentTask.next(.none(nil))
-
-        SimpleDatastore.delete(objectOf: Task.self,
-                               with: nextTaskIdentifier).finally {
-            KinLoader.shared.loadNextTask()
-        }
-    }
-
     func loadAllData() {
-        loadNextTask()
         loadOffers()
         loadTransactions()
         loadRedeemedItems()
         fetchAvailableBackupHints()
-    }
-
-    func loadNextTask() {
-        let cachedTask: Task? = SimpleDatastore.loadObject(nextTaskIdentifier)
-
-        if let task = cachedTask {
-            currentTask.next(.some(task))
-        }
-
-        let completion: ([Task]?, Error?) -> Void = { tasks, error in
-            if let tasks = tasks, let task = tasks.first {
-                let shouldPersistAndUpdate: Bool
-
-                if let cached = cachedTask, cached.identifier == task.identifier {
-                    shouldPersistAndUpdate = task.updatedAt > cached.updatedAt || task.startDate != cached.startDate
-                } else {
-                    shouldPersistAndUpdate = true
-                }
-
-                if shouldPersistAndUpdate {
-                    SimpleDatastore.persist(task, with: nextTaskIdentifier)
-                    self.currentTask.next(.some(task))
-                }
-            } else {
-                self.currentTask.next(.none(error))
-            }
-        }
-
-        let request = WebRequests.nextTasks().withCompletion(completion)
-        KinWebService.shared.load(request)
     }
 
     func loadOffers() {

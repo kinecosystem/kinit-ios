@@ -35,6 +35,27 @@ extension UIColor {
                   alpha: alpha)
     }
 
+    convenience init?(hexString: String) {
+        var cString: String = hexString.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+        if cString.hasPrefix("#") {
+            cString.remove(at: cString.startIndex)
+        }
+
+        if cString.count != 6 {
+            return nil
+        }
+
+        var rgbValue: UInt32 = 0
+        Scanner(string: cString).scanHexInt32(&rgbValue)
+
+        let red = Int((rgbValue & 0xFF0000) >> 16)
+        let green = Int((rgbValue & 0x00FF00) >> 8)
+        let blue = Int(rgbValue & 0x0000FF)
+
+        self.init(red: red, green: green, blue: blue)
+    }
+
     static let kin = KinColors()
 
     static let blueGradientColors1 = [UIColor(red: 23, green: 157, blue: 249),

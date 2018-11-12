@@ -10,7 +10,7 @@ class TransactionHistoryViewController: HistoryViewController<KinitTransaction, 
     var balances = [String: UInt64]()
 
     override func observable() -> Observable<FetchResult<[KinitTransaction]>> {
-        return KinLoader.shared.transactions
+        return DataLoaders.kinit.transactions
     }
 
     override func configureCell(_ cell: TransactionHistoryCollectionViewCell,

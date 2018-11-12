@@ -26,7 +26,7 @@ class RestoreBackupQuestionsViewController: UITableViewController {
 
         let storedHintsIds = storedHints.hints
 
-        KinLoader.shared.fetchAvailableBackupHints { [weak self] hints in
+        DataLoaders.kinit.fetchAvailableBackupHints { [weak self] hints in
             DispatchQueue.main.async {
                 guard let self = self else {
                     return
@@ -254,7 +254,7 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
 
         Analytics.userId = userId
 
-        KinLoader.shared.loadAllData()
+        DataLoaders.loadAllData()
         Kin.setPerformedBackup()
 
         DispatchQueue.main.async {

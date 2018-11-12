@@ -8,9 +8,13 @@
 
 // General
 
-"NoInternetErrorTitle" = "Your internet is MIA";
+"NoInternetError.Title" = "Your internet is MIA";
 
-"NoInternetErrorSubtitle" = "It seems that something is missing...\nPlease check your internet connection.";
+"NoInternetError.Message" = "It seems that something is missing...\nPlease check your internet connection.";
+
+"ServerError.Title" = "Oh… Something isn’t working";
+
+"ServerError.Message" = "An unkown error occured. Please close the app and try again later.";
 
 "Cancel" = "Cancel";
 
@@ -104,13 +108,15 @@
 
 "ReadyToEarnKinQuestion" = "Hi! 👋\nReady to earn some Kin?";
 
-"NextActivityOnTitle" = "Your next activity will be available %@";
+"AvailableActivitesCount" = "%d activities";
 
-"NextActivityOnSubtitle" = "We have planted the seed and your next task is currently growing";
+"NextActivityOn.Title" = "Your next activity will be available %@";
+
+"NextActivityOn.Message" = "We have planted the seed and your next activity is currently growing";
 
 "NoActivitiesTitle" = "No activities at the moment";
 
-"NoActivitiesMessage" = "We are laying the groundwork for your next task.\nStay tuned :)";
+"NoActivitiesMessage" = "We are laying the groundwork for your next activity.\nStay tuned :)";
 
 "ActivityAuthor" = "by %@";
 
@@ -118,13 +124,17 @@
 
 "ActivityActionContinue" = "Continue";
 
-"TaskSubmissionFailedErrorTitle" = "There was a problem submitting your answers";
+"TaskSubmissionFailedError.Title" = "There was a problem submitting your answers";
 
-"TaskSubmissionFailedErrorMessage" = "To make sure you get your Kin, hit close below and continue on the next screen.";
+"TaskSubmissionFailedError.Message" = "To make sure you get your Kin, hit close below and continue on the next screen.";
 
-"ActivityDoneTitle" = "Awesome!";
+"TaskSubmissionPaymentTimeout.Title" = "Your Kin is on its way with a brief delay";
 
-"ActivityDoneMessage" = "You have completed today's activity.";
+"TaskSubmissionPaymentTimeout.Message" = "We have received your results but something got stuck along the way.\n\nPlease tap close and check your balance in a few hours. If no change has ocurred, contact support.";
+
+"ActivityDone.Title" = "Awesome!";
+
+"ActivityDone.Message" = "You have completed today's activity.";
 
 "TransferringKinOnItsWay" = "Your Kin is on its way";
 
@@ -139,10 +149,6 @@
 "LastOfferGrabbedTitle" = "Oops! Someone grabbed the last one... for now";
 
 "LastOfferGrabbedMessage" = "Please check back later";
-
-"InternetErrorTitle" = "Oh no! Your internet is MIA";
-
-"InternetErrorMessage" = "Please check your internet connection and try again.";
 
 "TransactionIncompleteTitle" = "Oops! Transaction incomplete";
 
@@ -256,7 +262,7 @@
 
 "BackgroundAppRefreshRequiredTitle" = "Please Enable Background App Refresh for Kinit";
 
-"BackgroundAppRefreshRequiredMessage" = "In order to reward you with Kin for completing tasks, we require you to turn on the \"Background App Refresh\" setting. Please go to \"Settings -> General -> Background App Refresh\" and make sure that it is turned on for Kinit.";
+"BackgroundAppRefreshRequiredMessage" = "In order to reward you with Kin for completing activities, we require you to turn on the \"Background App Refresh\" setting. Please go to \"Settings -> General -> Background App Refresh\" and make sure that it is turned on for Kinit.";
 
 "BackgroundAppRefreshRequiredAction" = "Open Settings";
 
@@ -382,12 +388,12 @@
 
 "Version" = "Version";
 
-"Update_Alert.Title" = "New version available";
+"UpdateAlert.Title" = "New version available";
 
-"Update_Alert.Message" = "Update to the newest version to keep the kin rolling in";
+"UpdateAlert.Message" = "Update to the newest version to keep the kin rolling in";
 
-"Update_Alert.Action" = "Update Now";
+"UpdateAlert.Action" = "Update Now";
 
-"More_Update.UpToDate" = "Up to date";
+"MoreUpdate.UpToDate" = "Up to date";
 
-"More_Update.UpdateNow" = "Update now";
+"MoreUpdate.UpdateNow" = "Update now";

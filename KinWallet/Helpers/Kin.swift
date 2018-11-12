@@ -64,12 +64,12 @@ class Kin {
         self.client = client
 
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(applicationWillEnterForeground),
-                                               name: UIApplication.willEnterForegroundNotification,
+                                               selector: #selector(applicationDidBecomeActive),
+                                               name: UIApplication.didBecomeActiveNotification,
                                                object: nil)
     }
 
-    @objc func applicationWillEnterForeground() {
+    @objc func applicationDidBecomeActive() {
         refreshBalance()
     }
 }

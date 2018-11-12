@@ -7,6 +7,7 @@ import UIKit
 
 final class SurveyUnavailableViewController: UIViewController, AddNoticeViewController {
     var task: Task?
+    var taskCategory: String!
     var error: Error?
     var noticeViewController: NoticeViewController?
 
@@ -34,46 +35,41 @@ final class SurveyUnavailableViewController: UIViewController, AddNoticeViewCont
                     .send()
             } else {
                 Events.Analytics
-                    .ViewEmptyStatePage(menuItemName: .earn)
+                    .ViewEmptyStatePage(menuItemName: .earn,
+                                        taskCategory: taskCategory)
                     .send()
             }
         }
     }
 
     @objc func displayUnavailabilityReason() {
-        let title: String
-        let subtitle: String?
-        let image: UIImage
+        let noticeContent: NoticeContent
         var displayType = Notice.DisplayType.imageFirst
 
         if let task = task {
             let toUnlock = task.daysToUnlock
             displayType = .titleFirst
 
-            title = L10n.nextActivityOnTitle(task.nextAvailableDay())
-            subtitle = L10n.nextActivityOnSubtitle
-            image = Asset.nextTask.image
+            noticeContent = .init(title: L10n.NextActivityOn.title(task.nextAvailableDay()),
+                                  message: L10n.NextActivityOn.message,
+                                  image: Asset.sowingIllustration.image)
 
             Events.Analytics
                 .ViewLockedTaskPage(timeToUnlock: Int(toUnlock))
                 .send()
         } else {
-            if error != nil {
-                image = noInternetImage
-                title = L10n.internetErrorTitle
-                subtitle = L10n.internetErrorMessage
+            if let error = error {
+                noticeContent = .fromError(error)
             } else {
-                image = Asset.sowingIllustration.image
-                title = L10n.noActivitiesTitle
-                subtitle = L10n.noActivitiesMessage
+                noticeContent = .init(title: L10n.noActivitiesTitle,
+                                      message: L10n.noActivitiesMessage,
+                                      image: Asset.noTasksIlustration.image)
             }
         }
 
         notifyButtonIfNeeded { [weak self] buttonConfiguration in
             self?.children.first?.remove()
-            self?.noticeViewController = self?.addNoticeViewController(with: title,
-                                                                       subtitle: subtitle,
-                                                                       image: image,
+            self?.noticeViewController = self?.addNoticeViewController(with: noticeContent,
                                                                        buttonConfiguration: buttonConfiguration,
                                                                        displayType: displayType,
                                                                        delegate: self)

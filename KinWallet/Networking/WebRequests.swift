@@ -104,8 +104,18 @@ extension WebRequests {
 
 // MARK: Earn
 extension WebRequests {
-    static func nextTasks() -> WebRequest<TasksResponse, [Task]> {
-        return WebRequest<TasksResponse, [Task]>(GET: "/user/tasks",
+    static func taskCategories() -> WebRequest<TaskCategoriesResponse, TaskCategoriesResponse> {
+        return WebRequest<TaskCategoriesResponse, TaskCategoriesResponse>(GET: "/user/categories",
+                                                                          transform: WebResourceHandlers.doNothing)
+    }
+
+    static func tasks(for categoryId: String) -> WebRequest<CategoryTasksResponse, CategoryTasksResponse> {
+        return WebRequest<CategoryTasksResponse, CategoryTasksResponse>(GET: "/user/category/\(categoryId)/tasks",
+            transform: WebResourceHandlers.doNothing)
+    }
+
+    static func nextTasks() -> WebRequest<TasksByCategoryResponse, [String: [Task]]> {
+        return WebRequest<TasksByCategoryResponse, [String: [Task]]>(GET: "/user/tasks",
                                                  transform: { $0?.tasks })
     }
 
@@ -173,7 +183,7 @@ extension WebRequests {
             }
 
             let tx = response.transaction
-            KinLoader.shared.prependTransaction(tx)
+            DataLoaders.kinit.prependTransaction(tx)
 
             return true
         }
@@ -233,10 +243,11 @@ extension WebRequests {
 // MARK: Backup
 
 extension WebRequests {
+    typealias BackupHintListRequest = WebRequest<AvailableBackupHintList, AvailableBackupHintList>
+
     struct Backup {
-        static func availableHints() -> WebRequest<AvailableBackupHintList, AvailableBackupHintList> {
-            return WebRequest<AvailableBackupHintList, AvailableBackupHintList>(GET: "/backup/hints",
-                                                                                transform: WebResourceHandlers.doNothing)
+        static func availableHints() -> BackupHintListRequest {
+            return BackupHintListRequest(GET: "/backup/hints", transform: WebResourceHandlers.doNothing)
         }
 
         static func submitHints(_ hints: [Int]) -> WebRequest<EmptyResponse, EmptyResponse> {

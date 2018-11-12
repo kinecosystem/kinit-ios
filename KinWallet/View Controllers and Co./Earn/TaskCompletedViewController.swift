@@ -10,7 +10,7 @@ import KinUtil
 import KinitDesignables
 
 extension Notification.Name {
-    static var transactionCompleted = Notification.Name(rawValue: "org.kinecosystem.txCompleted")
+    static let transactionCompleted = Notification.Name(rawValue: "org.kinecosystem.txCompleted")
 }
 
 final class TaskCompletedViewController: UIViewController {
@@ -107,7 +107,9 @@ final class TaskCompletedViewController: UIViewController {
             SimpleDatastore.delete(results)
         }
 
-        KinLoader.shared.deleteCachedAndFetchNextTask()
+        DataLoaders.tasks.markTaskFinished(taskId: task.identifier, categoryId: task.categoryId)
+        DataLoaders.tasks.loadTasks(for: task.categoryId)
+        DataLoaders.tasks.loadCategories()
 
         let memo = task.memo
 
@@ -141,13 +143,7 @@ final class TaskCompletedViewController: UIViewController {
                 self.transactionSucceeded(with: paymentAmount, txId: paymentInfo.hash)
             }).add(to: linkBag)
 
-        let timeout: TimeInterval
-
-        #if DEBUG
-        timeout = 8
-        #else
-        timeout = 30
-        #endif
+        let timeout: TimeInterval = 30
 
         DispatchQueue.main.asyncAfter(deadline: .now() + timeout) { [weak self] in
             guard let self = self, self.watch != nil else {
@@ -162,23 +158,20 @@ final class TaskCompletedViewController: UIViewController {
         logEarnTransactionTimeout()
 
         Kin.shared.refreshBalance()
-        KinLoader.shared.loadTransactions()
+        DataLoaders.kinit.loadTransactions()
 
         notificationObserver = nil
         watch = nil
 
-        let message =
-        """
-            We have received your results but something got stuck along the way.
-
-            Please tap close and check your balance in a few hours. If no change has ocurred, contact support.
-            """
         let buttonConfig = NoticeButtonConfiguration(title: "Close", mode: .stroke)
         let noticeViewController = StoryboardScene.Main.noticeViewController.instantiate()
         noticeViewController.delegate = self
-        noticeViewController.notice = Notice(image: Asset.paymentDelay.image,
-                                             title: "Your Kin is on its way with a brief delay",
-                                             subtitle: message,
+
+        let noticeContent = NoticeContent(title: L10n.TaskSubmissionPaymentTimeout.title,
+                                          message: L10n.TaskSubmissionPaymentTimeout.message,
+                                          image: Asset.paymentDelay.image)
+
+        noticeViewController.notice = Notice(content: noticeContent,
                                              buttonConfiguration: buttonConfig,
                                              displayType: .imageFirst)
         present(noticeViewController, animated: true)
@@ -235,7 +228,7 @@ final class TaskCompletedViewController: UIViewController {
         processedSuccess = true
 
         targetBalance = initialBalance + paymentAmount
-        KinLoader.shared.loadTransactions()
+        DataLoaders.kinit.loadTransactions()
 
         logEarnTransactionSucceded(with: paymentAmount, txId: txId)
         Analytics.incrementEarnCount()
@@ -252,9 +245,11 @@ final class TaskCompletedViewController: UIViewController {
         viewController.delegate = self
 
         let buttonConfig = NoticeButtonConfiguration(title: L10n.closeAction, mode: .stroke)
-        viewController.notice = Notice(image: Asset.errorSign.image,
-                                       title: L10n.taskSubmissionFailedErrorTitle,
-                                       subtitle: L10n.taskSubmissionFailedErrorMessage,
+
+        let noticeContent = NoticeContent(title: L10n.TaskSubmissionFailedError.title,
+                                          message: L10n.TaskSubmissionFailedError.message,
+                                          image: Asset.errorSign.image)
+        viewController.notice = Notice(content: noticeContent,
                                        buttonConfiguration: buttonConfig,
                                        displayType: .imageFirst)
 
@@ -270,7 +265,7 @@ extension TaskCompletedViewController {
             .ViewTaskEndPage(creator: task.author.name,
                              estimatedTimeToComplete: task.minutesToComplete,
                              kinReward: Int(task.kinReward),
-                             taskCategory: task.tags.asString,
+                             taskCategory: task.categoryNameOrId,
                              taskId: task.identifier,
                              taskTitle: task.title,
                              taskType: task.type.toBITaskType())
@@ -282,7 +277,7 @@ extension TaskCompletedViewController {
             .ViewRewardPage(creator: task.author.name,
                             estimatedTimeToComplete: task.minutesToComplete,
                             kinReward: Int(task.kinReward),
-                            taskCategory: task.tags.asString,
+                            taskCategory: task.categoryNameOrId,
                             taskId: task.identifier,
                             taskTitle: task.title,
                             taskType: task.type.toBITaskType())
@@ -294,7 +289,7 @@ extension TaskCompletedViewController {
             .ViewKinProvidedImageOnRewardPage(creator: task.author.name,
                                               estimatedTimeToComplete: task.minutesToComplete,
                                               kinReward: Int(task.kinReward),
-                                              taskCategory: task.tags.asString,
+                                              taskCategory: task.categoryNameOrId,
                                               taskId: task.identifier,
                                               taskTitle: task.title,
                                               taskType: task.type.toBITaskType())
@@ -306,7 +301,7 @@ extension TaskCompletedViewController {
             .ClickCloseButtonOnRewardPage(creator: task.author.name,
                                           estimatedTimeToComplete: task.minutesToComplete,
                                           kinReward: Int(task.kinReward),
-                                          taskCategory: task.tags.asString,
+                                          taskCategory: task.categoryNameOrId,
                                           taskId: task.identifier,
                                           taskTitle: task.title,
                                           taskType: task.type.toBITaskType())
@@ -316,8 +311,8 @@ extension TaskCompletedViewController {
     fileprivate func logEarnTransactionTimeout() {
         Events.Business
             .KINTransactionFailed(failureReason: "Timeout",
-                                                         kinAmount: Float(task.kinReward),
-                                                         transactionType: .earn)
+                                  kinAmount: Float(task.kinReward),
+                                  transactionType: .earn)
             .send()
     }
 

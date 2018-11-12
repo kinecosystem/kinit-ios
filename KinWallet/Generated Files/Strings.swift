@@ -23,15 +23,15 @@ internal enum L10n {
   internal static func activityAuthor(_ p1: String) -> String {
     return L10n.tr("Localizable", "ActivityAuthor", p1)
   }
-  /// You have completed today's activity.
-  internal static let activityDoneMessage = L10n.tr("Localizable", "ActivityDoneMessage")
-  /// Awesome!
-  internal static let activityDoneTitle = L10n.tr("Localizable", "ActivityDoneTitle")
+  /// %d activities
+  internal static func availableActivitesCount(_ p1: Int) -> String {
+    return L10n.tr("Localizable", "AvailableActivitesCount", p1)
+  }
   /// Back
   internal static let backAction = L10n.tr("Localizable", "BackAction")
   /// Open Settings
   internal static let backgroundAppRefreshRequiredAction = L10n.tr("Localizable", "BackgroundAppRefreshRequiredAction")
-  /// In order to reward you with Kin for completing tasks, we require you to turn on the "Background App Refresh" setting. Please go to "Settings -> General -> Background App Refresh" and make sure that it is turned on for Kinit.
+  /// In order to reward you with Kin for completing activities, we require you to turn on the "Background App Refresh" setting. Please go to "Settings -> General -> Background App Refresh" and make sure that it is turned on for Kinit.
   internal static let backgroundAppRefreshRequiredMessage = L10n.tr("Localizable", "BackgroundAppRefreshRequiredMessage")
   /// Please Enable Background App Refresh for Kinit
   internal static let backgroundAppRefreshRequiredTitle = L10n.tr("Localizable", "BackgroundAppRefreshRequiredTitle")
@@ -165,10 +165,6 @@ internal enum L10n {
   internal static let giveUsFeedback = L10n.tr("Localizable", "GiveUsFeedback")
   /// Help Center
   internal static let helpCenter = L10n.tr("Localizable", "HelpCenter")
-  /// Please check your internet connection and try again.
-  internal static let internetErrorMessage = L10n.tr("Localizable", "InternetErrorMessage")
-  /// Oh no! Your internet is MIA
-  internal static let internetErrorTitle = L10n.tr("Localizable", "InternetErrorTitle")
   /// Kin delivered!
   internal static let kinDelivered = L10n.tr("Localizable", "KinDelivered")
   /// You’ve succesfully sent K %@.\nYou can see the details under Balance
@@ -191,20 +187,10 @@ internal enum L10n {
   internal static let mailNotConfiguredTitle = L10n.tr("Localizable", "MailNotConfiguredTitle")
   /// Next
   internal static let nextAction = L10n.tr("Localizable", "NextAction")
-  /// We have planted the seed and your next task is currently growing
-  internal static let nextActivityOnSubtitle = L10n.tr("Localizable", "NextActivityOnSubtitle")
-  /// Your next activity will be available %@
-  internal static func nextActivityOnTitle(_ p1: String) -> String {
-    return L10n.tr("Localizable", "NextActivityOnTitle", p1)
-  }
-  /// We are laying the groundwork for your next task.\nStay tuned :)
+  /// We are laying the groundwork for your next activity.\nStay tuned :)
   internal static let noActivitiesMessage = L10n.tr("Localizable", "NoActivitiesMessage")
   /// No activities at the moment
   internal static let noActivitiesTitle = L10n.tr("Localizable", "NoActivitiesTitle")
-  /// It seems that something is missing...\nPlease check your internet connection.
-  internal static let noInternetErrorSubtitle = L10n.tr("Localizable", "NoInternetErrorSubtitle")
-  /// Your internet is MIA
-  internal static let noInternetErrorTitle = L10n.tr("Localizable", "NoInternetErrorTitle")
   /// Open Settings
   internal static let notificationsDeniedAction = L10n.tr("Localizable", "NotificationsDeniedAction")
   /// Push notification permissions were previously denied and are currently turned off.\nPlease go to settings to turn on notifications.
@@ -335,10 +321,6 @@ internal enum L10n {
   internal static let tapToContinue = L10n.tr("Localizable", "TapToContinue")
   /// Tap to finish
   internal static let tapToFinish = L10n.tr("Localizable", "TapToFinish")
-  /// To make sure you get your Kin, hit close below and continue on the next screen.
-  internal static let taskSubmissionFailedErrorMessage = L10n.tr("Localizable", "TaskSubmissionFailedErrorMessage")
-  /// There was a problem submitting your answers
-  internal static let taskSubmissionFailedErrorTitle = L10n.tr("Localizable", "TaskSubmissionFailedErrorTitle")
   ///  Sorry! We were unable to retrieve your code.\nPlease contact support to resolve this issue.
   internal static let transactionIncompleteMessage = L10n.tr("Localizable", "TransactionIncompleteMessage")
   /// Oops! Transaction incomplete
@@ -380,20 +362,64 @@ internal enum L10n {
   /// Your Kin Balance
   internal static let yourKinBalance = L10n.tr("Localizable", "YourKinBalance")
 
+  internal enum ActivityDone {
+    /// You have completed today's activity.
+    internal static let message = L10n.tr("Localizable", "ActivityDone.Message")
+    /// Awesome!
+    internal static let title = L10n.tr("Localizable", "ActivityDone.Title")
+  }
+
   internal enum MoreUpdate {
     /// Update now
-    internal static let updateNow = L10n.tr("Localizable", "More_Update.UpdateNow")
+    internal static let updateNow = L10n.tr("Localizable", "MoreUpdate.UpdateNow")
     /// Up to date
-    internal static let upToDate = L10n.tr("Localizable", "More_Update.UpToDate")
+    internal static let upToDate = L10n.tr("Localizable", "MoreUpdate.UpToDate")
+  }
+
+  internal enum NextActivityOn {
+    /// We have planted the seed and your next activity is currently growing
+    internal static let message = L10n.tr("Localizable", "NextActivityOn.Message")
+    /// Your next activity will be available %@
+    internal static func title(_ p1: String) -> String {
+      return L10n.tr("Localizable", "NextActivityOn.Title", p1)
+    }
+  }
+
+  internal enum NoInternetError {
+    /// It seems that something is missing...\nPlease check your internet connection.
+    internal static let message = L10n.tr("Localizable", "NoInternetError.Message")
+    /// Your internet is MIA
+    internal static let title = L10n.tr("Localizable", "NoInternetError.Title")
+  }
+
+  internal enum ServerError {
+    /// An unkown error occured. Please close the app and try again later.
+    internal static let message = L10n.tr("Localizable", "ServerError.Message")
+    /// Oh… Something isn’t working
+    internal static let title = L10n.tr("Localizable", "ServerError.Title")
+  }
+
+  internal enum TaskSubmissionFailedError {
+    /// To make sure you get your Kin, hit close below and continue on the next screen.
+    internal static let message = L10n.tr("Localizable", "TaskSubmissionFailedError.Message")
+    /// There was a problem submitting your answers
+    internal static let title = L10n.tr("Localizable", "TaskSubmissionFailedError.Title")
+  }
+
+  internal enum TaskSubmissionPaymentTimeout {
+    /// We have received your results but something got stuck along the way.\n\nPlease tap close and check your balance in a few hours. If no change has ocurred, contact support.
+    internal static let message = L10n.tr("Localizable", "TaskSubmissionPaymentTimeout.Message")
+    /// Your Kin is on its way with a brief delay
+    internal static let title = L10n.tr("Localizable", "TaskSubmissionPaymentTimeout.Title")
   }
 
   internal enum UpdateAlert {
     /// Update Now
-    internal static let action = L10n.tr("Localizable", "Update_Alert.Action")
+    internal static let action = L10n.tr("Localizable", "UpdateAlert.Action")
     /// Update to the newest version to keep the kin rolling in
-    internal static let message = L10n.tr("Localizable", "Update_Alert.Message")
+    internal static let message = L10n.tr("Localizable", "UpdateAlert.Message")
     /// New version available
-    internal static let title = L10n.tr("Localizable", "Update_Alert.Title")
+    internal static let title = L10n.tr("Localizable", "UpdateAlert.Title")
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

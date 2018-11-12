@@ -72,12 +72,14 @@ class OfferCollectionViewCell: UICollectionViewCell {
         authorImage = nil
 
         offerImageView.loadImage(url: offer.imageURL.kinImagePathAdjustedForDevice(),
-                                 placeholderImage: Asset.patternPlaceholder.image) { [weak self] image in
+                                 placeholderImage: Asset.patternPlaceholder.image,
+                                 useInMemoryCache: true) { [weak self] image in
                                     self?.offerImage = image
         }
 
         authorImageView.loadImage(url: offer.author.imageURL.kinImagePathAdjustedForDevice(),
-                                  placeholderColor: UIColor.kin.extraLightGray) { [weak self] image in
+                                  placeholderColor: UIColor.kin.extraLightGray,
+                                  useInMemoryCache: true) { [weak self] image in
                                     self?.authorImage = image
         }
 

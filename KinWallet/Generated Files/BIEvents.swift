@@ -2,7 +2,7 @@
 // BIEvents.swift
 //
 // Don't edit this file.
-// Generated at 2018-10-09 14:59:49 +0000 by Kik BI-Generator.
+// Generated at 2018-11-08 09:52:53 +0000 by Kik BI-Generator.
 //
 
 protocol BIEvent {
@@ -152,6 +152,136 @@ struct Events {
     }
     
     
+    struct Log { 
+        /// An error occurred while updating the user's balance using the client blockchain sdk (on app launch, after task completion, after purchase). Event name: `balance_update_failed`
+        struct BalanceUpdateFailed: BIEvent {
+            let name = "balance_update_failed"
+            let failureReason: String
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
+                        
+                        "failure_reason": failureReason, 
+                        ]
+            }
+        } 
+        /// An error occured while creating the stellar account or when funding it with lumens. Event name: `stellar_account_creation_failed`
+        struct StellarAccountCreationFailed: BIEvent {
+            let name = "stellar_account_creation_failed"
+            let failureReason: String
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
+                        
+                        "failure_reason": failureReason, 
+                        ]
+            }
+        } 
+        /// Our server created the stellar account successfully and funded it with lumens. Event name: `stellar_account_creation_succeeded`
+        struct StellarAccountCreationSucceeded: BIEvent {
+            let name = "stellar_account_creation_succeeded"
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
+                        ]
+            }
+        } 
+        /// An error occurred while activating the client account using client blockchain sdk. Event name: `stellar_kin_trustline_setup_failed`
+        struct StellarKinTrustlineSetupFailed: BIEvent {
+            let name = "stellar_kin_trustline_setup_failed"
+            let failureReason: String
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
+                        
+                        "failure_reason": failureReason, 
+                        ]
+            }
+        } 
+        /// Client successfully activated the account using client blockchain sdk. Event name: `stellar_kin_trustline_setup_succeeded`
+        struct StellarKinTrustlineSetupSucceeded: BIEvent {
+            let name = "stellar_kin_trustline_setup_succeeded"
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
+                        ]
+            }
+        } 
+        /// User registration failed. Event name: `user_registration_failed`
+        struct UserRegistrationFailed: BIEvent {
+            let name = "user_registration_failed"
+            let failureReason: String
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
+                        
+                        "failure_reason": failureReason, 
+                        ]
+            }
+        } 
+        /// When formatting of the phone inserted by the user when validating fails. Event name: `phone_formatting_failed`
+        struct PhoneFormattingFailed: BIEvent {
+            let name = "phone_formatting_failed"
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
+                        ]
+            }
+        } 
+        /// When server sends the auth token via push, and the client receives it.. Event name: `auth_token_received`
+        struct AuthTokenReceived: BIEvent {
+            let name = "auth_token_received"
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
+                        ]
+            }
+        } 
+        /// When asking the auth token to the server fails.. Event name: `auth_token_ack_failed`
+        struct AuthTokenAckFailed: BIEvent {
+            let name = "auth_token_ack_failed"
+            let failureReason: String
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
+                        
+                        "failure_reason": failureReason, 
+                        ]
+            }
+        } 
+        /// When captcha fails or is cancelled . Event name: `captcha_failed`
+        struct CaptchaFailed: BIEvent {
+            let name = "captcha_failed"
+            let failureReason: String
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
+                        
+                        "failure_reason": failureReason, 
+                        ]
+            }
+        } 
+    } 
     struct Business { 
         /// user completes a task (e.g. answered all questionnaire's Qs). Event name: `earning_task_completed`
         struct EarningTaskCompleted: BIEvent {
@@ -376,8 +506,8 @@ struct Events {
                 return [
                         "item_name": "Splashscreen",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         ]
             }
@@ -391,8 +521,8 @@ struct Events {
                 return [
                         "item_name": "Menu",
                         "item_type": "item",
-                        "action": "click",
                         "event_type": "analytics",
+                        "action": "click",
                         
                         
                         "menu_item_name": menuItemName.rawValue, 
@@ -420,10 +550,10 @@ struct Events {
                 return [
                         "item_name": "Answer",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Question",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Question",
                         
                         
                         "answer_id": answerId,
@@ -461,10 +591,10 @@ struct Events {
                 return [
                         "item_name": "Close",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Question",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Question",
                         
                         
                         "creator": creator,
@@ -496,10 +626,10 @@ struct Events {
                 return [
                         "item_name": "Close",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Reward",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Reward",
                         
                         
                         "creator": creator,
@@ -528,10 +658,10 @@ struct Events {
                 return [
                         "item_name": "Start",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Task",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Task",
                         
                         
                         "already_started": alreadyStarted,
@@ -560,10 +690,10 @@ struct Events {
                 return [
                         "item_name": "KIN_Provided",
                         "item_type": "image",
-                        "action": "view",
-                        "event_type": "analytics",
-                        "parent_name": "Reward",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "view",
+                        "parent_name": "Reward",
                         
                         
                         "creator": creator,
@@ -585,8 +715,8 @@ struct Events {
                 return [
                         "item_name": "Locked_Task",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         
                         "time_to_unlock": timeToUnlock, 
@@ -611,8 +741,8 @@ struct Events {
                 return [
                         "item_name": "Question",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         
                         "creator": creator,
@@ -643,8 +773,8 @@ struct Events {
                 return [
                         "item_name": "Reward",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         
                         "creator": creator,
@@ -672,8 +802,8 @@ struct Events {
                 return [
                         "item_name": "Task_End",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         
                         "creator": creator,
@@ -701,8 +831,8 @@ struct Events {
                 return [
                         "item_name": "Task",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         
                         "creator": creator,
@@ -731,10 +861,10 @@ struct Events {
                 return [
                         "item_name": "Offer",
                         "item_type": "item",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Spend",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Spend",
                         
                         
                         "brand_name": brandName,
@@ -762,10 +892,10 @@ struct Events {
                 return [
                         "item_name": "Share",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Offer",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Offer",
                         
                         
                         "brand_name": brandName,
@@ -791,10 +921,10 @@ struct Events {
                 return [
                         "item_name": "Code",
                         "item_type": "text",
-                        "action": "view",
-                        "event_type": "analytics",
-                        "parent_name": "Offer",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "view",
+                        "parent_name": "Offer",
                         
                         
                         "brand_name": brandName,
@@ -820,8 +950,8 @@ struct Events {
                 return [
                         "item_name": "Offer",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         
                         "brand_name": brandName,
@@ -842,8 +972,8 @@ struct Events {
                 return [
                         "item_name": "Spend",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         
                         "number_of_offers": numberOfOffers, 
@@ -858,8 +988,8 @@ struct Events {
                 return [
                         "item_name": "Balance",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         ]
             }
@@ -872,8 +1002,8 @@ struct Events {
                 return [
                         "item_name": "Profile",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         ]
             }
@@ -888,8 +1018,8 @@ struct Events {
                 return [
                         "item_name": "Support",
                         "item_type": "button",
-                        "action": "click",
                         "event_type": "analytics",
+                        "action": "click",
                         
                         
                         "FAQ_category": faqCategory,
@@ -907,8 +1037,8 @@ struct Events {
                 return [
                         "item_name": "Engagement",
                         "item_type": "push",
-                        "action": "click",
                         "event_type": "analytics",
+                        "action": "click",
                         
                         
                         "push_id": pushId,
@@ -924,10 +1054,10 @@ struct Events {
                 return [
                         "item_name": "Reminder",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Locked_Task",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Locked_Task",
                         
                         ]
             }
@@ -942,8 +1072,8 @@ struct Events {
                 return [
                         "item_name": "Engagement",
                         "item_type": "push",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         
                         "push_id": pushId,
@@ -961,8 +1091,8 @@ struct Events {
                 return [
                         "item_name": "Error",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         
                         "error_type": errorType.rawValue,
@@ -979,10 +1109,10 @@ struct Events {
                 return [
                         "item_name": "Retry",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Error",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Error",
                         
                         
                         "error_type": errorType.rawValue, 
@@ -998,10 +1128,10 @@ struct Events {
                 return [
                         "item_name": "Close",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Error",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Error",
                         
                         
                         "error_type": errorType.rawValue, 
@@ -1012,16 +1142,18 @@ struct Events {
         struct ViewEmptyStatePage: BIEvent {
             let name = "view_Empty_State_page"
             let menuItemName: MenuItemName
+            let taskCategory: String
             
             var properties: [String: Any] {
                 return [
                         "item_name": "Empty_State",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         
                         "menu_item_name": menuItemName.rawValue,
+                        "task_category": taskCategory, 
                         ]
             }
         } 
@@ -1034,10 +1166,10 @@ struct Events {
                 return [
                         "item_name": "Contact",
                         "item_type": "link",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Error",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Error",
                         
                         
                         "error_type": errorType.rawValue, 
@@ -1053,10 +1185,10 @@ struct Events {
                 return [
                         "item_name": "Error",
                         "item_type": "popup",
-                        "action": "view",
-                        "event_type": "analytics",
-                        "parent_name": "Offer",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "view",
+                        "parent_name": "Offer",
                         
                         
                         "error_type": errorType.rawValue, 
@@ -1072,10 +1204,10 @@ struct Events {
                 return [
                         "item_name": "OK",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Error",
                         "parent_type": "popup",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Error",
                         
                         
                         "error_type": errorType.rawValue, 
@@ -1091,10 +1223,10 @@ struct Events {
                 return [
                         "item_name": "Start",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Onboarding",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Onboarding",
                         
                         
                         "onboarding_tutorial_page": onboardingTutorialPage, 
@@ -1110,8 +1242,8 @@ struct Events {
                 return [
                         "item_name": "Onboarding",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         
                         "onboarding_tutorial_page": onboardingTutorialPage, 
@@ -1126,8 +1258,8 @@ struct Events {
                 return [
                         "item_name": "Phone_Auth",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         ]
             }
@@ -1140,10 +1272,10 @@ struct Events {
                 return [
                         "item_name": "Next",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Phone_Auth",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Phone_Auth",
                         
                         ]
             }
@@ -1156,8 +1288,8 @@ struct Events {
                 return [
                         "item_name": "Verification",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         ]
             }
@@ -1170,10 +1302,10 @@ struct Events {
                 return [
                         "item_name": "Error",
                         "item_type": "message",
-                        "action": "view",
-                        "event_type": "analytics",
-                        "parent_name": "Verification",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "view",
+                        "parent_name": "Verification",
                         
                         ]
             }
@@ -1186,8 +1318,8 @@ struct Events {
                 return [
                         "item_name": "Onboarding_Completed",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         ]
             }
@@ -1201,10 +1333,10 @@ struct Events {
                 return [
                         "item_name": "New_Code",
                         "item_type": "link",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Verification",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Verification",
                         
                         
                         "verification_code_count": verificationCodeCount, 
@@ -1219,8 +1351,8 @@ struct Events {
                 return [
                         "item_name": "Phone_Auth",
                         "item_type": "popup",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         ]
             }
@@ -1233,10 +1365,10 @@ struct Events {
                 return [
                         "item_name": "Verify",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Phone_Auth",
                         "parent_type": "popup",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Phone_Auth",
                         
                         ]
             }
@@ -1249,8 +1381,8 @@ struct Events {
                 return [
                         "item_name": "Send_Kin",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         ]
             }
@@ -1264,10 +1396,10 @@ struct Events {
                 return [
                         "item_name": "Send",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Send_Kin",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Send_Kin",
                         
                         
                         "KIN_amount": kinAmount, 
@@ -1283,10 +1415,10 @@ struct Events {
                 return [
                         "item_name": "Success",
                         "item_type": "message",
-                        "action": "view",
-                        "event_type": "analytics",
-                        "parent_name": "Send_Kin",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "view",
+                        "parent_name": "Send_Kin",
                         
                         
                         "KIN_amount": kinAmount, 
@@ -1302,10 +1434,10 @@ struct Events {
                 return [
                         "item_name": "Error",
                         "item_type": "popup",
-                        "action": "view",
-                        "event_type": "analytics",
-                        "parent_name": "Send_Kin",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "view",
+                        "parent_name": "Send_Kin",
                         
                         
                         "error_type": errorType.rawValue, 
@@ -1320,8 +1452,8 @@ struct Events {
                 return [
                         "item_name": "Video",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         ]
             }
@@ -1335,10 +1467,10 @@ struct Events {
                 return [
                         "item_name": "Play",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Video",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Video",
                         
                         
                         "video_title": videoTitle, 
@@ -1353,8 +1485,8 @@ struct Events {
                 return [
                         "item_name": "Backup_Intro",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         ]
             }
@@ -1367,10 +1499,10 @@ struct Events {
                 return [
                         "item_name": "Backup",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Backup_Intro",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Backup_Intro",
                         
                         ]
             }
@@ -1384,8 +1516,8 @@ struct Events {
                 return [
                         "item_name": "Backup_Flow",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         
                         "backup_flow_step": backupFlowStep.rawValue, 
@@ -1401,10 +1533,10 @@ struct Events {
                 return [
                         "item_name": "Completed_Step",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Backup_Flow",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Backup_Flow",
                         
                         
                         "backup_flow_step": backupFlowStep.rawValue, 
@@ -1419,8 +1551,8 @@ struct Events {
                 return [
                         "item_name": "Backup_Completed",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         ]
             }
@@ -1434,8 +1566,8 @@ struct Events {
                 return [
                         "item_name": "Backup_Notification",
                         "item_type": "popup",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         
                         "backup_notification_type": backupNotificationType.rawValue, 
@@ -1451,10 +1583,10 @@ struct Events {
                 return [
                         "item_name": "Backup",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Backup_Notification",
                         "parent_type": "popup",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Backup_Notification",
                         
                         
                         "backup_notification_type": backupNotificationType.rawValue, 
@@ -1469,8 +1601,8 @@ struct Events {
                 return [
                         "item_name": "Welcome_Back",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         ]
             }
@@ -1483,10 +1615,10 @@ struct Events {
                 return [
                         "item_name": "Restore_Wallet",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Welcome_Back",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Welcome_Back",
                         
                         ]
             }
@@ -1499,10 +1631,10 @@ struct Events {
                 return [
                         "item_name": "Create_New_Wallet",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Welcome_Back",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Welcome_Back",
                         
                         ]
             }
@@ -1515,8 +1647,8 @@ struct Events {
                 return [
                         "item_name": "Scan",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         ]
             }
@@ -1529,10 +1661,10 @@ struct Events {
                 return [
                         "item_name": "Scan",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Scan",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Scan",
                         
                         ]
             }
@@ -1545,8 +1677,8 @@ struct Events {
                 return [
                         "item_name": "Answer_Security_Questions",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         ]
             }
@@ -1559,10 +1691,10 @@ struct Events {
                 return [
                         "item_name": "Confirm",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Answer_Security_Questions",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Answer_Security_Questions",
                         
                         ]
             }
@@ -1575,8 +1707,8 @@ struct Events {
                 return [
                         "item_name": "Wallet_Restored",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         ]
             }
@@ -1589,8 +1721,8 @@ struct Events {
                 return [
                         "item_name": "Creating_Wallet",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         ]
             }
@@ -1604,10 +1736,10 @@ struct Events {
                 return [
                         "item_name": "Backup",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "More",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "More",
                         
                         
                         "already_backed_up": alreadyBackedUp.rawValue, 
@@ -1622,8 +1754,8 @@ struct Events {
                 return [
                         "item_name": "FAQ_Main",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         ]
             }
@@ -1638,8 +1770,8 @@ struct Events {
                 return [
                         "item_name": "FAQ",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         
                         "FAQ_category": faqCategory,
@@ -1655,8 +1787,8 @@ struct Events {
                 return [
                         "item_name": "Feedback",
                         "item_type": "button",
-                        "action": "click",
                         "event_type": "analytics",
+                        "action": "click",
                         
                         ]
             }
@@ -1672,10 +1804,10 @@ struct Events {
                 return [
                         "item_name": "Page_Helpful",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "FAQ",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "FAQ",
                         
                         
                         "FAQ_category": faqCategory,
@@ -1692,8 +1824,8 @@ struct Events {
                 return [
                         "item_name": "Captcha",
                         "item_type": "popup",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         ]
             }
@@ -1708,8 +1840,8 @@ struct Events {
                 return [
                         "item_name": "Campaign",
                         "item_type": "popup",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         
                         "campaign_name": campaignName,
@@ -1727,10 +1859,10 @@ struct Events {
                 return [
                         "item_name": "Link",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Campaign",
                         "parent_type": "popup",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Campaign",
                         
                         
                         "campaign_name": campaignName,
@@ -1746,8 +1878,8 @@ struct Events {
                 return [
                         "item_name": "Task_Categories",
                         "item_type": "page",
-                        "action": "view",
                         "event_type": "analytics",
+                        "action": "view",
                         
                         ]
             }
@@ -1761,10 +1893,10 @@ struct Events {
                 return [
                         "item_name": "Category",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Task_Categories",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Task_Categories",
                         
                         
                         "task_category": taskCategory, 
@@ -1785,10 +1917,10 @@ struct Events {
                 return [
                         "item_name": "Buy",
                         "item_type": "button",
-                        "action": "click",
-                        "event_type": "analytics",
-                        "parent_name": "Offer",
                         "parent_type": "page",
+                        "event_type": "analytics",
+                        "action": "click",
+                        "parent_name": "Offer",
                         
                         
                         "brand_name": brandName,
@@ -1797,136 +1929,6 @@ struct Events {
                         "offer_id": offerId,
                         "offer_name": offerName,
                         "offer_type": offerType, 
-                        ]
-            }
-        } 
-    } 
-    struct Log { 
-        /// An error occurred while updating the user's balance using the client blockchain sdk (on app launch, after task completion, after purchase). Event name: `balance_update_failed`
-        struct BalanceUpdateFailed: BIEvent {
-            let name = "balance_update_failed"
-            let failureReason: String
-            
-            var properties: [String: Any] {
-                return [
-                        "event_type": "log",
-                        
-                        
-                        "failure_reason": failureReason, 
-                        ]
-            }
-        } 
-        /// An error occured while creating the stellar account or when funding it with lumens. Event name: `stellar_account_creation_failed`
-        struct StellarAccountCreationFailed: BIEvent {
-            let name = "stellar_account_creation_failed"
-            let failureReason: String
-            
-            var properties: [String: Any] {
-                return [
-                        "event_type": "log",
-                        
-                        
-                        "failure_reason": failureReason, 
-                        ]
-            }
-        } 
-        /// Our server created the stellar account successfully and funded it with lumens. Event name: `stellar_account_creation_succeeded`
-        struct StellarAccountCreationSucceeded: BIEvent {
-            let name = "stellar_account_creation_succeeded"
-            
-            var properties: [String: Any] {
-                return [
-                        "event_type": "log",
-                        
-                        ]
-            }
-        } 
-        /// An error occurred while activating the client account using client blockchain sdk. Event name: `stellar_kin_trustline_setup_failed`
-        struct StellarKinTrustlineSetupFailed: BIEvent {
-            let name = "stellar_kin_trustline_setup_failed"
-            let failureReason: String
-            
-            var properties: [String: Any] {
-                return [
-                        "event_type": "log",
-                        
-                        
-                        "failure_reason": failureReason, 
-                        ]
-            }
-        } 
-        /// Client successfully activated the account using client blockchain sdk. Event name: `stellar_kin_trustline_setup_succeeded`
-        struct StellarKinTrustlineSetupSucceeded: BIEvent {
-            let name = "stellar_kin_trustline_setup_succeeded"
-            
-            var properties: [String: Any] {
-                return [
-                        "event_type": "log",
-                        
-                        ]
-            }
-        } 
-        /// User registration failed. Event name: `user_registration_failed`
-        struct UserRegistrationFailed: BIEvent {
-            let name = "user_registration_failed"
-            let failureReason: String
-            
-            var properties: [String: Any] {
-                return [
-                        "event_type": "log",
-                        
-                        
-                        "failure_reason": failureReason, 
-                        ]
-            }
-        } 
-        /// When formatting of the phone inserted by the user when validating fails. Event name: `phone_formatting_failed`
-        struct PhoneFormattingFailed: BIEvent {
-            let name = "phone_formatting_failed"
-            
-            var properties: [String: Any] {
-                return [
-                        "event_type": "log",
-                        
-                        ]
-            }
-        } 
-        /// When server sends the auth token via push, and the client receives it.. Event name: `auth_token_received`
-        struct AuthTokenReceived: BIEvent {
-            let name = "auth_token_received"
-            
-            var properties: [String: Any] {
-                return [
-                        "event_type": "log",
-                        
-                        ]
-            }
-        } 
-        /// When asking the auth token to the server fails.. Event name: `auth_token_ack_failed`
-        struct AuthTokenAckFailed: BIEvent {
-            let name = "auth_token_ack_failed"
-            let failureReason: String
-            
-            var properties: [String: Any] {
-                return [
-                        "event_type": "log",
-                        
-                        
-                        "failure_reason": failureReason, 
-                        ]
-            }
-        } 
-        /// When captcha fails or is cancelled . Event name: `captcha_failed`
-        struct CaptchaFailed: BIEvent {
-            let name = "captcha_failed"
-            let failureReason: String
-            
-            var properties: [String: Any] {
-                return [
-                        "event_type": "log",
-                        
-                        
-                        "failure_reason": failureReason, 
                         ]
             }
         } 

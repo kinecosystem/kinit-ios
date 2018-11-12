@@ -5,12 +5,44 @@
 
 import UIKit
 
-let noInternetImage = Asset.noInternetIllustration.image
+let internetErrorCodes = [
+    NSURLErrorCannotConnectToHost,
+    NSURLErrorNetworkConnectionLost,
+    NSURLErrorDNSLookupFailed,
+    NSURLErrorResourceUnavailable,
+    NSURLErrorNotConnectedToInternet,
+    NSURLErrorBadServerResponse,
+    NSURLErrorInternationalRoamingOff,
+    NSURLErrorCallIsActive,
+    NSURLErrorFileDoesNotExist,
+    NSURLErrorNoPermissionsToReadFile
+]
+
+struct NoticeContent {
+    var title: String
+    var message: String?
+    var image: UIImage
+
+    static let generalServerError = NoticeContent(title: L10n.ServerError.title,
+                                                  message: L10n.ServerError.message,
+                                                  image: Asset.serverErrorIllustration.image)
+
+    static func fromError(_ error: Error) -> NoticeContent {
+        let aError = error as NSError
+
+        if aError.domain == NSURLErrorDomain,
+            internetErrorCodes.contains(aError.code) {
+            return NoticeContent(title: L10n.NoInternetError.title,
+                                 message: L10n.NoInternetError.message,
+                                 image: Asset.noInternetIllustration.image)
+        }
+
+        return generalServerError
+    }
+}
 
 struct Notice {
-    let image: UIImage
-    let title: String
-    let subtitle: String?
+    let content: NoticeContent
     let buttonConfiguration: NoticeButtonConfiguration?
     let displayType: DisplayType
 
@@ -85,9 +117,9 @@ class NoticeViewController: UIViewController {
     }
 
     func setupNotice() {
-        titleLabel.text = notice.title
-        subtitleLabel.text = notice.subtitle
-        imageView.image = notice.image
+        titleLabel.text = notice.content.title
+        subtitleLabel.text = notice.content.message
+        imageView.image = notice.content.image
         setupButton()
 
         if notice.displayType == .titleFirst {
@@ -142,9 +174,7 @@ class NoticeViewController: UIViewController {
 }
 
 protocol AddNoticeViewController {
-    func addNoticeViewController(with title: String,
-                                 subtitle: String?,
-                                 image: UIImage,
+    func addNoticeViewController(with content: NoticeContent,
                                  buttonConfiguration: NoticeButtonConfiguration?,
                                  displayType: Notice.DisplayType,
                                  delegate: NoticeViewControllerDelegate?) -> NoticeViewController
@@ -152,17 +182,13 @@ protocol AddNoticeViewController {
 
 extension AddNoticeViewController where Self: UIViewController {
     @discardableResult
-    func addNoticeViewController(with title: String,
-                                 subtitle: String?,
-                                 image: UIImage,
+    func addNoticeViewController(with content: NoticeContent,
                                  buttonConfiguration: NoticeButtonConfiguration? = nil,
                                  displayType: Notice.DisplayType = .imageFirst,
                                  delegate: NoticeViewControllerDelegate? = nil) -> NoticeViewController {
         let noticeViewController = StoryboardScene.Main.noticeViewController.instantiate()
         noticeViewController.delegate = delegate
-        noticeViewController.notice = Notice(image: image,
-                                             title: title,
-                                             subtitle: subtitle,
+        noticeViewController.notice = Notice(content: content,
                                              buttonConfiguration: buttonConfiguration,
                                              displayType: displayType)
         addAndFit(noticeViewController)

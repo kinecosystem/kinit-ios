@@ -131,14 +131,6 @@ final class SurveyViewController: UIViewController {
             return
         }
 
-        if let videoURL = self.task.videoURL, currentQuestionIndex == 0 && !finishedVideoReproduction {
-            let videoViewController = VideoTaskViewController()
-            videoViewController.videoURL = videoURL
-            videoViewController.delegate = self
-            present(videoViewController, animated: false)
-            return
-        }
-
         let question = task.questions[currentQuestionIndex]
         let animateProgress: Bool
 
@@ -291,20 +283,6 @@ extension SurveyViewController: QuizQuestionExplanationDelegate {
     }
 }
 
-extension SurveyViewController: VideoTaskViewControllerDelegate {
-    func videoTaskDidFinishPlaying() {
-        finishedVideoReproduction = true
-        showNextQuestion()
-        dismiss(animated: true, completion: nil)
-    }
-
-    func videoTaskDidCancelPlaying() {
-        dismiss(animated: false) {
-            self.dismiss(animated: true, completion: nil)
-        }
-    }
-}
-
 // MARK: Analytics
 extension SurveyViewController {
     func logQuestionShown(_ question: Question, at questionIndex: Int) {
@@ -316,7 +294,7 @@ extension SurveyViewController {
                 questionId: question.identifier,
                 questionOrder: questionIndex + 1,
                 questionType: question.type == .text ? .text : .textImage,
-                taskCategory: task.tags.asString,
+                taskCategory: task.categoryNameOrId,
                 taskId: task.identifier,
                 taskTitle: task.title)
             .send()
@@ -334,7 +312,7 @@ extension SurveyViewController {
                                              questionId: question.identifier,
                                              questionOrder: questionIndex + 1,
                                              questionType: question.type.toBIQuestionType(),
-                                             taskCategory: task.tags.asString,
+                                             taskCategory: task.categoryNameOrId,
                                              taskId: task.identifier,
                                              taskTitle: task.title)
             .send()
@@ -350,7 +328,7 @@ extension SurveyViewController {
                                             questionId: question.identifier,
                                             questionOrder: questionIndex + 1,
                                             questionType: question.type == .text ? .text : .textImage,
-                                            taskCategory: task.tags.asString,
+                                            taskCategory: task.categoryNameOrId,
                                             taskId: task.identifier,
                                             taskTitle: task.title)
             .send()
@@ -361,7 +339,7 @@ extension SurveyViewController {
             .EarningTaskCompleted(creator: task.author.name,
                                   estimatedTimeToComplete: task.minutesToComplete,
                                   kinReward: Int(task.kinReward),
-                                  taskCategory: task.tags.asString,
+                                  taskCategory: task.categoryNameOrId,
                                   taskId: task.identifier,
                                   taskTitle: task.title,
                                   taskType: task.type.toBITaskType())

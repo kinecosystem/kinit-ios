@@ -95,6 +95,8 @@ internal enum StoryboardScene {
 
     internal static let balanceViewController = SceneType<BalanceViewController>(storyboard: Main.self, identifier: "BalanceViewController")
 
+    internal static let earnHomeViewController = SceneType<EarnHomeViewController>(storyboard: Main.self, identifier: "EarnHomeViewController")
+
     internal static let internalKinAlertController = SceneType<InternalKinAlertController>(storyboard: Main.self, identifier: "InternalKinAlertController")
 
     internal static let moreViewController = SceneType<MoreViewController>(storyboard: Main.self, identifier: "MoreViewController")
@@ -106,8 +108,6 @@ internal enum StoryboardScene {
     internal static let offerWallViewController = SceneType<OfferWallViewController>(storyboard: Main.self, identifier: "OfferWallViewController")
 
     internal static let rootTabBarController = SceneType<RootTabBarController>(storyboard: Main.self, identifier: "RootTabBarController")
-
-    internal static let surveyHomeViewController = SceneType<SurveyHomeViewController>(storyboard: Main.self, identifier: "SurveyHomeViewController")
 
     internal static let surveyNavigationController = SceneType<KinNavigationController>(storyboard: Main.self, identifier: "SurveyNavigationController")
   }

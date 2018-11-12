@@ -20,7 +20,7 @@ class RedeemedGoodsViewController: HistoryViewController<RedeemTransaction, Rede
     }
 
     override func observable() -> Observable<FetchResult<[RedeemTransaction]>> {
-        return KinLoader.shared.redeemedItems
+        return DataLoaders.kinit.redeemedItems
     }
 
     override func configureCell(_ cell: RedeemTransactionCollectionViewCell,
