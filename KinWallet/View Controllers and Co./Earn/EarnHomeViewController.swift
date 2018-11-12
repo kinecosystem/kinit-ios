@@ -17,6 +17,7 @@ final class EarnHomeViewController: UIViewController, AddNoticeViewController {
 
     private var shouldShowEarnAnimation = true
     private var animatingEarn = false
+    fileprivate var navigationBarImage: UIImage?
 
     private let activityIndicator = UIActivityIndicatorView(style: .white)
 
@@ -60,6 +61,16 @@ final class EarnHomeViewController: UIViewController, AddNoticeViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
         addBalanceLabel()
         bindObservables()
+
+        navigationBarImage = navigationController?.navigationBar.backgroundImage(for: .default)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if let navBarImage = navigationBarImage {
+            navigationController?.navigationBar.setBackgroundImage(navBarImage, for: .default)
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {

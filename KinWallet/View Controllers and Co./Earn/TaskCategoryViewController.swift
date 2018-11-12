@@ -17,7 +17,6 @@ class TaskCategoryViewController: UIViewController {
     var categoryName: String?
     private let linkBag = LinkBag()
     private let titleView = TaskCategoryTitleView.loadFromNib()
-    fileprivate var previousNavigationBarImage: UIImage!
     fileprivate var backupFlowController: BackupFlowController?
 
     deinit {
@@ -40,10 +39,6 @@ class TaskCategoryViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        if previousNavigationBarImage == nil {
-            previousNavigationBarImage = navigationController?.navigationBar.backgroundImage(for: .default)!
-        }
 
         if let color = navBarColor,
             let navBar = navigationController?.navigationBar,
@@ -218,13 +213,6 @@ class TaskCategoryViewController: UIViewController {
         Events.Analytics
             .ViewCampaignPopup(campaignName: actionName, taskId: taskId)
             .send()
-    }
-}
-
-extension TaskCategoryViewController: KinNavigationControllerDelegate {
-    func shouldPopViewController() -> Bool {
-        navigationController?.navigationBar.setBackgroundImage(previousNavigationBarImage, for: .default)
-        return true
     }
 }
 
