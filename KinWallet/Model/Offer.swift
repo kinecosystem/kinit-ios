@@ -16,6 +16,8 @@ struct Offer: Codable {
     let type: String
     let typeImageUrl: URL
     let price: UInt64
+    let unavailableReason: String?
+    let cannotBuyReason: String?
 
     enum CodingKeys: String, CodingKey {
         case address
@@ -28,6 +30,8 @@ struct Offer: Codable {
         case type
         case typeImageUrl = "type_image_url"
         case price
+        case unavailableReason = "unavailable_reason"
+        case cannotBuyReason = "cannot_buy_reason"
     }
 }
 
@@ -61,6 +65,10 @@ enum SpecialOffer {
 }
 
 extension Offer {
+    var isAvailable: Bool {
+        return unavailableReason == nil
+    }
+
     func specialOffer() -> SpecialOffer? {
         if title == "Send Kin to a friend" {
             return .sendKin

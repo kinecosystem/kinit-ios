@@ -20,6 +20,13 @@ class OfferCollectionViewCell: UICollectionViewCell {
         }
     }
 
+    @IBOutlet weak var unavailableLabel: UILabel! {
+        didSet {
+            unavailableLabel.font = FontFamily.Roboto.regular.font(size: 16)
+            unavailableLabel.textColor = UIColor.kin.gray
+        }
+    }
+
     @IBOutlet weak var authorNameLabel: UILabel! {
         didSet {
             authorNameLabel.font = FontFamily.Roboto.regular.font(size: 14)
@@ -88,11 +95,13 @@ class OfferCollectionViewCell: UICollectionViewCell {
         let priceString = KinAmountFormatter().string(from: NSNumber(value: offer.price))
             ?? String(describing: offer.price)
 
-        if offer.shouldDisplayPrice() {
-            priceLabel.text = "\(priceString) KIN"
-        } else {
-            priceLabel.text = nil
-        }
+        priceLabel.text = offer.shouldDisplayPrice()
+            ? "\(priceString) KIN"
+            : nil
+
+        offerImageView.alpha = offer.isAvailable ? 1 : 0.1
+        unavailableLabel.isHidden = offer.isAvailable
+        unavailableLabel.text = offer.unavailableReason
     }
 }
 

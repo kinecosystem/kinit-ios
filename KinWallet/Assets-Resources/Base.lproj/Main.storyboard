@@ -457,26 +457,26 @@
                                 <rect key="frame" x="47.5" y="114" width="280" height="331"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" verticalCompressionResistancePriority="500" translatesAutoresizingMaskIntoConstraints="NO" id="fws-5i-2Wf">
-                                        <rect key="frame" x="0.0" y="0.0" width="280" height="19.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NextTask" translatesAutoresizingMaskIntoConstraints="NO" id="tlS-uE-q2u">
-                                        <rect key="frame" x="0.0" y="29.5" width="280" height="171"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SowingIllustration" translatesAutoresizingMaskIntoConstraints="NO" id="tlS-uE-q2u">
+                                        <rect key="frame" x="0.0" y="40" width="280" height="150"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some cool title goes in here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8FU-G2-var">
-                                        <rect key="frame" x="0.0" y="210.5" width="280" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="200" width="280" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="And some great subtitle with a very long length should come here. Isn't it cool?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AqM-Hi-fDO">
-                                        <rect key="frame" x="0.0" y="241" width="280" height="61"/>
+                                        <rect key="frame" x="0.0" y="230.5" width="280" height="61"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" verticalCompressionResistancePriority="500" translatesAutoresizingMaskIntoConstraints="NO" id="BRt-Wn-8FQ">
-                                        <rect key="frame" x="0.0" y="312" width="280" height="19"/>
+                                        <rect key="frame" x="0.0" y="301.5" width="280" height="29.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
@@ -537,7 +537,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lps-cG-pyP">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lps-cG-pyP">
                                         <rect key="frame" x="0.0" y="30.5" width="240" height="53.5"/>
                                         <string key="text">Message
 Message
@@ -604,6 +604,6 @@ Message</string>
     </scenes>
     <resources>
         <image name="BackupNagHeader" width="280" height="141"/>
-        <image name="NextTask" width="193" height="171"/>
+        <image name="SowingIllustration" width="214" height="150"/>
     </resources>
 </document>

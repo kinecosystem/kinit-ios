@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,7 +33,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="Q8O-93-flz">
-                                <rect key="frame" x="283" y="26.5" width="42" height="20.5"/>
+                                <rect key="frame" x="283" y="26" width="42" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -78,15 +75,25 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SlI-dj-0nH">
                         <rect key="frame" x="8" y="8" width="329" height="160"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOY-09-wsB">
+                        <rect key="frame" x="151.5" y="78" width="42" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="ZKV-pD-SAd" secondAttribute="bottom" constant="4" id="5oK-hU-SUE"/>
                 <constraint firstItem="2rT-sS-Bmc" firstAttribute="leading" secondItem="ZKV-pD-SAd" secondAttribute="leading" constant="20" id="69k-96-Kzl"/>
+                <constraint firstItem="HOY-09-wsB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="SlI-dj-0nH" secondAttribute="leading" constant="8" id="6wS-8z-URp"/>
                 <constraint firstItem="ZKV-pD-SAd" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Bl7-P0-qQM"/>
                 <constraint firstItem="SlI-dj-0nH" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerXWithinMargins" id="BqA-6y-zGL"/>
                 <constraint firstItem="bDI-8o-M3E" firstAttribute="trailing" secondItem="SlI-dj-0nH" secondAttribute="trailing" constant="3" id="D9Z-pl-B4y"/>
+                <constraint firstItem="HOY-09-wsB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="SlI-dj-0nH" secondAttribute="top" constant="8" id="GdE-sz-hTe"/>
+                <constraint firstItem="HOY-09-wsB" firstAttribute="centerX" secondItem="SlI-dj-0nH" secondAttribute="centerX" id="Mm7-sc-hXF"/>
+                <constraint firstItem="HOY-09-wsB" firstAttribute="centerY" secondItem="SlI-dj-0nH" secondAttribute="centerY" id="NTi-cc-UJp"/>
                 <constraint firstItem="SlI-dj-0nH" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="Q2C-07-Z6t"/>
                 <constraint firstItem="ZKV-pD-SAd" firstAttribute="top" secondItem="SlI-dj-0nH" secondAttribute="bottom" constant="-2" id="Qir-7C-0u8"/>
                 <constraint firstItem="Q8O-93-flz" firstAttribute="trailing" secondItem="SlI-dj-0nH" secondAttribute="trailing" constant="-12" id="Sen-zt-NYs"/>
@@ -102,11 +109,12 @@
                 <outlet property="offerImageView" destination="SlI-dj-0nH" id="ZFb-y7-q7J"/>
                 <outlet property="priceLabel" destination="Q8O-93-flz" id="IlJ-cp-MLb"/>
                 <outlet property="titleLabel" destination="bRZ-pD-Aud" id="wD1-l6-QMe"/>
+                <outlet property="unavailableLabel" destination="HOY-09-wsB" id="bzi-Z3-KU6"/>
             </connections>
             <point key="canvasLocation" x="-53.5" y="116"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="OfferCardShadow" width="22" height="78"/>
+        <image name="OfferCardShadow" width="22.5" height="78"/>
     </resources>
 </document>

@@ -6,6 +6,8 @@
 import UIKit
 import KinUtil
 
+private let newOfferPolicyKey = "org.kinfoundation.kinwallet.showNewOfferPolicy"
+
 class OfferWallViewController: UIViewController {
     fileprivate var layout: UICollectionViewFlowLayout!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -18,6 +20,7 @@ class OfferWallViewController: UIViewController {
 
         //swiftlint:disable:next force_cast
         layout = (collectionView!.collectionViewLayout as! UICollectionViewFlowLayout)
+
         let itemWidth = view.frame.width - layout.sectionInset.left  - layout.sectionInset.right
         layout.itemSize = OfferCollectionViewCell.itemSize(for: itemWidth)
 
@@ -32,10 +35,27 @@ class OfferWallViewController: UIViewController {
 
         logViewPage()
         collectionView.flashScrollIndicators()
+
+        showPolicyChangeIfNeeded()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+
+    private func showPolicyChangeIfNeeded() {
+        if UserDefaults.standard.bool(forKey: newOfferPolicyKey) == false {
+            UserDefaults.standard.set(true, forKey: newOfferPolicyKey)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+                let alertController = KinAlertController(title: nil,
+                                                         titleImage: Asset.weMadeASmallChange.image,
+                                                         message: L10n.NewOffersPolicy.message,
+                                                         primaryAction: .init(title: L10n.NewOffersPolicy.action) { [weak self] in
+                                                            self?.dismissAnimated()
+                    }, secondaryAction: nil)
+                self?.presentAnimated(alertController)
+            }
+        }
     }
 
     func configureSubscriber() {
@@ -68,8 +88,14 @@ extension OfferWallViewController: UICollectionViewDelegate {
             fatalError("Couldn't get cell at OfferWallViewController collectionView:didSelecItemAtIndexPath:")
         }
 
-        selectedCell = cell
         let offer = subscriber.items[indexPath.item]
+
+        guard offer.isAvailable else {
+            return
+        }
+
+        selectedCell = cell
+
         logTappedOffer(offer, index: indexPath.row)
         let navController = StoryboardScene.Spend.offerDetailsNavigationController.instantiate()
         guard let detailsViewController = navController.viewControllers.first as? OfferDetailsViewController else {

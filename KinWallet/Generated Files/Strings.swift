@@ -376,6 +376,13 @@ internal enum L10n {
     internal static let upToDate = L10n.tr("Localizable", "MoreUpdate.UpToDate")
   }
 
+  internal enum NewOffersPolicy {
+    /// I Understand
+    internal static let action = L10n.tr("Localizable", "NewOffersPolicy.Action")
+    /// In order to always bring you the best new offers, you will be able to buy a maximum of X gift cards from every company each month
+    internal static let message = L10n.tr("Localizable", "NewOffersPolicy.Message")
+  }
+
   internal enum NextActivityOn {
     /// We have planted the seed and your next activity is currently growing
     internal static let message = L10n.tr("Localizable", "NextActivityOn.Message")
