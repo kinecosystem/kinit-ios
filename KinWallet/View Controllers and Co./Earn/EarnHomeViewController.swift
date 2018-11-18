@@ -26,6 +26,7 @@ final class EarnHomeViewController: UIViewController, AddNoticeViewController {
     @IBOutlet weak var headerLabelsLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerTitleLabel: UILabel! {
         didSet {
+            headerTitleLabel.text = nil
             headerTitleLabel.font = FontFamily.Roboto.medium.font(size: 16)
             headerTitleLabel.textColor = UIColor.kin.darkGray
         }
@@ -33,6 +34,7 @@ final class EarnHomeViewController: UIViewController, AddNoticeViewController {
 
     @IBOutlet weak var headerMessageLabel: UILabel! {
         didSet {
+            headerMessageLabel.text = nil
             headerMessageLabel.font = FontFamily.Roboto.regular.font(size: 14)
             headerMessageLabel.textColor = UIColor.kin.gray
         }

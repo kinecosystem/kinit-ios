@@ -42,6 +42,8 @@ class StandardOfferActionViewController: SpendOfferActionViewController {
         if offer.shouldDisplayPrice() {
             priceLabel.amount = UInt64(offer.price)
             buyButton.isEnabled = Kin.shared.balance >= offer.price
+            && offer.cannotBuyReason == nil
+            && offer.isAvailable
         }
     }
 }

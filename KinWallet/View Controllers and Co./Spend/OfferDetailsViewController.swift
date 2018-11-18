@@ -21,6 +21,19 @@ class OfferDetailsViewController: UIViewController {
 
     var redeemGood: RedeemGood?
 
+    var firstViewDidAppear = true
+    @IBOutlet var authorToOfferImageConstraint: NSLayoutConstraint!
+    @IBOutlet var titleStackViewToImageConstraint: NSLayoutConstraint!
+    @IBOutlet var titleStackViewToObservationConstraint: NSLayoutConstraint!
+    @IBOutlet weak var unavailableOfferStackView: UIStackView!
+
+    @IBOutlet weak var unavailableOfferLabel: UILabel! {
+        didSet {
+            unavailableOfferLabel.font = FontFamily.Roboto.regular.font(size: 14)
+            unavailableOfferLabel.textColor = UIColor.kin.gray
+        }
+    }
+
     @IBOutlet weak var offerTypeImageView: UIImageView!
 
     @IBOutlet var toastView: UIView? {
@@ -60,13 +73,10 @@ class OfferDetailsViewController: UIViewController {
         }
     }
 
-    @IBOutlet weak var descriptionLabel: UILabel! {
+    @IBOutlet weak var descriptionTextView: UITextView! {
         didSet {
-            descriptionLabel.numberOfLines = 0
-            descriptionLabel.font = FontFamily.Roboto.regular.font(size: 16)
-            descriptionLabel.textColor = UIColor.kin.gray
-            descriptionLabel.adjustsFontSizeToFitWidth = true
-            descriptionLabel.minimumScaleFactor = 0.5
+            descriptionTextView.font = FontFamily.Roboto.regular.font(size: 16)
+            descriptionTextView.textColor = UIColor.kin.gray
         }
     }
 
@@ -79,17 +89,26 @@ class OfferDetailsViewController: UIViewController {
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(dismissTapped(_:)))
-        drawOffer()
 
         addAndFit(actionViewController!, to: actionView)
 
         interactiveDismissal = SwipeDownInteractiveDismissal(viewController: self)
+
+        unavailableOfferStackView.alpha = 0
+
+        drawOffer()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         logViewedPage()
+
+        if firstViewDidAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: showUnavailabilityReasonIfNeeded)
+        }
+
+        firstViewDidAppear = false
     }
 
     @IBAction func dismissTapped(_ sender: UIBarButtonItem) {
@@ -109,7 +128,38 @@ class OfferDetailsViewController: UIViewController {
         offerTypeImageView.loadImage(url: offer.typeImageUrl.kinImagePathAdjustedForDevice())
 
         titleLabel.text = offer.title
-        descriptionLabel.text = offer.description
+        descriptionTextView.text = offer.description
+    }
+
+    func showUnavailabilityReasonIfNeeded() {
+        let cannotBuyReason: String?
+
+        if Kin.shared.balance >= offer.price {
+            cannotBuyReason = nil
+        } else {
+            cannotBuyReason = offer.cannotBuyReason
+        }
+
+        guard cannotBuyReason != nil else {
+            descriptionTextView.flashScrollIndicators()
+            return
+        }
+
+        UIView.animate(withDuration: 1, animations: { [weak self] in
+            guard let self = self else {
+                return
+            }
+
+            self.unavailableOfferStackView.alpha = 1
+
+            self.unavailableOfferLabel.text = cannotBuyReason
+            NSLayoutConstraint.deactivate([self.titleStackViewToImageConstraint, self.authorToOfferImageConstraint])
+
+            self.view.setNeedsLayout()
+            self.view.layoutIfNeeded()
+            }, completion: { [weak self] _ in
+                self?.descriptionTextView.flashScrollIndicators()
+        })
     }
 
     func showToast(with message: String) {

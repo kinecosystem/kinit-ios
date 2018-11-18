@@ -36,9 +36,9 @@ class KinAlertController: UIViewController {
         presenter.presentAnimated(self)
     }
 
-    init(title: String,
+    init(title: String?,
          titleImage: UIImage?,
-         message: String,
+         message: String?,
          primaryAction: KinAlertAction,
          secondaryAction: KinAlertAction?) {
         super.init(nibName: nil, bundle: nil)
@@ -76,6 +76,7 @@ class InternalKinAlertController: UIViewController {
         didSet {
             if isViewLoaded {
                 messageLabel.text = message
+                messageLabel.isHidden = message == nil
             }
         }
     }
@@ -84,6 +85,7 @@ class InternalKinAlertController: UIViewController {
         didSet {
             if isViewLoaded {
                 titleLabel.text = alertTitle
+                titleLabel.isHidden = alertTitle == nil
             }
         }
     }
@@ -96,9 +98,9 @@ class InternalKinAlertController: UIViewController {
         }
     }
 
-    class func controllerWith(title: String,
+    class func controllerWith(title: String?,
                               titleImage: UIImage?,
-                              message: String,
+                              message: String?,
                               primaryAction: KinAlertAction,
                               secondaryAction: KinAlertAction?) -> InternalKinAlertController {
         let alertController = StoryboardScene.Main.internalKinAlertController.instantiate()
@@ -144,8 +146,12 @@ class InternalKinAlertController: UIViewController {
         super.viewDidLoad()
 
         titleLabel.text = alertTitle
+        titleLabel.isHidden = alertTitle == nil
+
         titleImageView.image = titleImage
+
         messageLabel.text = message
+        messageLabel.isHidden = message == nil
 
         primaryActionButton.setTitle(primaryAction.title, for: .normal)
 
