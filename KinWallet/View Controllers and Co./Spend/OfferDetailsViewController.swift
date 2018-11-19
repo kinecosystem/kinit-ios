@@ -135,9 +135,9 @@ class OfferDetailsViewController: UIViewController {
         let cannotBuyReason: String?
 
         if Kin.shared.balance >= offer.price {
-            cannotBuyReason = nil
-        } else {
             cannotBuyReason = offer.cannotBuyReason
+        } else {
+            cannotBuyReason = nil
         }
 
         guard cannotBuyReason != nil else {
