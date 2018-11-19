@@ -17,6 +17,7 @@ private let kinHorizonProductionIssuer = "GDF42M3IPERQCBLWFEZKQRK77JQ65SCKTU3CW3
 private let kinHorizonProductionName = "Public Global Kin Ecosystem Network ; June 2018"
 
 private let balanceUserDefaultsKey = "org.kinfoundation.kinwallet.currentBalance"
+private let migratedKeychainUserDefaultsKey = "org.kinfoundation.kinwallet.migratedKeychain"
 private let accountStatusUserDefaultsKey = "org.kinfoundation.kinwallet.accountStatus"
 private let accountStatusPerformedBackupKey = "org.kinfoundation.kinwallet.performedBackup"
 
@@ -57,10 +58,20 @@ class Kin {
         kinNetworkId = .custom(issuer: kinHorizonProductionIssuer, stellarNetworkId: .custom(kinHorizonProductionName))
         #endif
 
-        let appId = try! AppId("kit")
-        let client = KinClient(with: url, networkId: kinNetworkId, appId: appId)
+        let client = KinClient(with: url, networkId: kinNetworkId)
 
-        self.account = try! client.accounts.last ?? client.addAccount()
+        if let existing = client.accounts.last {
+            self.account = existing
+
+            if !UserDefaults.standard.bool(forKey: migratedKeychainUserDefaultsKey) {
+                KeyStore.migrateIfNeeded()
+                UserDefaults.standard.set(true, forKey: migratedKeychainUserDefaultsKey)
+            }
+        } else {
+            self.account = try! client.addAccount()
+            UserDefaults.standard.set(true, forKey: migratedKeychainUserDefaultsKey)
+        }
+
         self.client = client
 
         NotificationCenter.default.addObserver(self,
