@@ -164,7 +164,7 @@
 
 "CouponCodeSaved" = "Code saved to My Vouchers";
 
-"NewOffersPolicy.Message" = "In order to always bring you the best new offers, you will be able to buy a maximum of X gift cards from every company each month";
+"NewOffersPolicy.Message" = "In order to always bring you the best new offers, you will be able to buy a maximum of 1 gift card from every company each month";
 
 "NewOffersPolicy.Action" = "I Understand";
 

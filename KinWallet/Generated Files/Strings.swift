@@ -379,7 +379,7 @@ internal enum L10n {
   internal enum NewOffersPolicy {
     /// I Understand
     internal static let action = L10n.tr("Localizable", "NewOffersPolicy.Action")
-    /// In order to always bring you the best new offers, you will be able to buy a maximum of X gift cards from every company each month
+    /// In order to always bring you the best new offers, you will be able to buy a maximum of 1 gift card from every company each month
     internal static let message = L10n.tr("Localizable", "NewOffersPolicy.Message")
   }
 
