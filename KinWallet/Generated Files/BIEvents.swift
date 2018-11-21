@@ -2,7 +2,7 @@
 // BIEvents.swift
 //
 // Don't edit this file.
-// Generated at 2018-11-08 09:52:53 +0000 by Kik BI-Generator.
+// Generated at 2018-11-21 14:03:57 +0000 by Kik BI-Generator.
 //
 
 protocol BIEvent {
@@ -107,6 +107,7 @@ struct Events {
         case earn = "Earn"
         case more = "More"
         case spend = "Spend"
+        case useKin = "Use Kin"
     }
     
     enum QuestionType: String { 
@@ -123,6 +124,7 @@ struct Events {
         case exceedExistingKin = "Exceed existing Kin"
         case exceedMaxOrMinKin = "Exceed max/min Kin"
         case friendNotExists = "Friend not exists"
+        case generic = "Generic"
         case internetConnection = "Internet Connection"
         case offerNotAvailable = "Offer not available"
         case onboarding = "Onboarding"
@@ -505,8 +507,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Splashscreen",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         ]
@@ -520,8 +522,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Menu",
-                        "item_type": "item",
                         "event_type": "analytics",
+                        "item_type": "item",
                         "action": "click",
                         
                         
@@ -549,11 +551,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Answer",
-                        "item_type": "button",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Question",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         
                         "answer_id": answerId,
@@ -590,11 +592,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Close",
-                        "item_type": "button",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Question",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         
                         "creator": creator,
@@ -625,11 +627,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Close",
-                        "item_type": "button",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Reward",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         
                         "creator": creator,
@@ -657,11 +659,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Start",
-                        "item_type": "button",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Task",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         
                         "already_started": alreadyStarted,
@@ -689,11 +691,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "KIN_Provided",
-                        "item_type": "image",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "view",
+                        "item_type": "image",
                         "parent_name": "Reward",
+                        "parent_type": "page",
+                        "action": "view",
                         
                         
                         "creator": creator,
@@ -714,8 +716,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Locked_Task",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         
@@ -740,8 +742,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Question",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         
@@ -772,8 +774,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Reward",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         
@@ -801,8 +803,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Task_End",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         
@@ -830,8 +832,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Task",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         
@@ -860,11 +862,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Offer",
-                        "item_type": "item",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "item",
                         "parent_name": "Spend",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         
                         "brand_name": brandName,
@@ -891,11 +893,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Share",
-                        "item_type": "button",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Offer",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         
                         "brand_name": brandName,
@@ -920,11 +922,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Code",
-                        "item_type": "text",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "view",
+                        "item_type": "text",
                         "parent_name": "Offer",
+                        "parent_type": "page",
+                        "action": "view",
                         
                         
                         "brand_name": brandName,
@@ -949,8 +951,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Offer",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         
@@ -971,12 +973,145 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Spend",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         
                         "number_of_offers": numberOfOffers, 
+                        ]
+            }
+        } 
+        /// user views Explore page, with live ecosystem apps . Event name: `view_Explore_page`
+        struct ViewExplorePage: BIEvent {
+            let name = "view_Explore_page"
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Explore",
+                        "event_type": "analytics",
+                        "item_type": "page",
+                        "action": "view",
+                        
+                        ]
+            }
+        } 
+        /// user views app details page. Event name: `view_App_page`
+        struct ViewAppPage: BIEvent {
+            let name = "view_App_page"
+            let appCategory: String
+            let appId: String
+            let appName: String
+            let transferReady: Bool
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "App",
+                        "event_type": "analytics",
+                        "item_type": "page",
+                        "action": "view",
+                        
+                        
+                        "app_category": appCategory,
+                        "app_id": appId,
+                        "app_name": appName,
+                        "transfer_ready": transferReady, 
+                        ]
+            }
+        } 
+        /// user clicks to send Kin to specific app in the ecosystem, from the app page. Event name: `click_Send_button_on_App_page`
+        struct ClickSendButtonOnAppPage: BIEvent {
+            let name = "click_Send_button_on_App_page"
+            let appCategory: String
+            let appId: String
+            let appName: String
+            let transferReady: Bool
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Send",
+                        "event_type": "analytics",
+                        "item_type": "button",
+                        "parent_name": "App",
+                        "parent_type": "page",
+                        "action": "click",
+                        
+                        
+                        "app_category": appCategory,
+                        "app_id": appId,
+                        "app_name": appName,
+                        "transfer_ready": transferReady, 
+                        ]
+            }
+        } 
+        /// user clicks to send Kin to specific app in the ecosystem, from the app item on explore page. Event name: `click_Send_button_on_App_item`
+        struct ClickSendButtonOnAppItem: BIEvent {
+            let name = "click_Send_button_on_App_item"
+            let appCategory: String
+            let appId: String
+            let appName: String
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Send",
+                        "event_type": "analytics",
+                        "item_type": "button",
+                        "parent_name": "App",
+                        "parent_type": "item",
+                        "action": "click",
+                        
+                        
+                        "app_category": appCategory,
+                        "app_id": appId,
+                        "app_name": appName, 
+                        ]
+            }
+        } 
+        /// user clicks to read more about an app , from the explore page. Event name: `click_Read_button_on_App_item`
+        struct ClickReadButtonOnAppItem: BIEvent {
+            let name = "click_Read_button_on_App_item"
+            let appCategory: String
+            let appId: String
+            let appName: String
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Read",
+                        "event_type": "analytics",
+                        "item_type": "button",
+                        "parent_name": "App",
+                        "parent_type": "item",
+                        "action": "click",
+                        
+                        
+                        "app_category": appCategory,
+                        "app_id": appId,
+                        "app_name": appName, 
+                        ]
+            }
+        } 
+        /// user clicks to get the app from the app store. Event name: `click_Get_button_on_App_page`
+        struct ClickGetButtonOnAppPage: BIEvent {
+            let name = "click_Get_button_on_App_page"
+            let appCategory: String
+            let appId: String
+            let appName: String
+            let transferReady: Bool
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Get",
+                        "event_type": "analytics",
+                        "item_type": "button",
+                        "parent_name": "App",
+                        "parent_type": "page",
+                        "action": "click",
+                        
+                        
+                        "app_category": appCategory,
+                        "app_id": appId,
+                        "app_name": appName,
+                        "transfer_ready": transferReady, 
                         ]
             }
         } 
@@ -987,8 +1122,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Balance",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         ]
@@ -1001,8 +1136,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Profile",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         ]
@@ -1017,8 +1152,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Support",
-                        "item_type": "button",
                         "event_type": "analytics",
+                        "item_type": "button",
                         "action": "click",
                         
                         
@@ -1036,8 +1171,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Engagement",
-                        "item_type": "push",
                         "event_type": "analytics",
+                        "item_type": "push",
                         "action": "click",
                         
                         
@@ -1053,11 +1188,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Reminder",
-                        "item_type": "button",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Locked_Task",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         ]
             }
@@ -1071,8 +1206,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Engagement",
-                        "item_type": "push",
                         "event_type": "analytics",
+                        "item_type": "push",
                         "action": "view",
                         
                         
@@ -1090,8 +1225,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Error",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         
@@ -1108,11 +1243,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Retry",
-                        "item_type": "button",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Error",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         
                         "error_type": errorType.rawValue, 
@@ -1127,11 +1262,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Close",
-                        "item_type": "button",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Error",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         
                         "error_type": errorType.rawValue, 
@@ -1147,8 +1282,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Empty_State",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         
@@ -1165,11 +1300,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Contact",
-                        "item_type": "link",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "link",
                         "parent_name": "Error",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         
                         "error_type": errorType.rawValue, 
@@ -1184,11 +1319,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Error",
-                        "item_type": "popup",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "view",
+                        "item_type": "popup",
                         "parent_name": "Offer",
+                        "parent_type": "page",
+                        "action": "view",
                         
                         
                         "error_type": errorType.rawValue, 
@@ -1203,11 +1338,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "OK",
-                        "item_type": "button",
-                        "parent_type": "popup",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Error",
+                        "parent_type": "popup",
+                        "action": "click",
                         
                         
                         "error_type": errorType.rawValue, 
@@ -1222,11 +1357,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Start",
-                        "item_type": "button",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Onboarding",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         
                         "onboarding_tutorial_page": onboardingTutorialPage, 
@@ -1241,8 +1376,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Onboarding",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         
@@ -1257,8 +1392,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Phone_Auth",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         ]
@@ -1271,11 +1406,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Next",
-                        "item_type": "button",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Phone_Auth",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         ]
             }
@@ -1287,8 +1422,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Verification",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         ]
@@ -1301,11 +1436,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Error",
-                        "item_type": "message",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "view",
+                        "item_type": "message",
                         "parent_name": "Verification",
+                        "parent_type": "page",
+                        "action": "view",
                         
                         ]
             }
@@ -1317,8 +1452,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Onboarding_Completed",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         ]
@@ -1332,11 +1467,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "New_Code",
-                        "item_type": "link",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "link",
                         "parent_name": "Verification",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         
                         "verification_code_count": verificationCodeCount, 
@@ -1350,8 +1485,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Phone_Auth",
-                        "item_type": "popup",
                         "event_type": "analytics",
+                        "item_type": "popup",
                         "action": "view",
                         
                         ]
@@ -1364,11 +1499,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Verify",
-                        "item_type": "button",
-                        "parent_type": "popup",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Phone_Auth",
+                        "parent_type": "popup",
+                        "action": "click",
                         
                         ]
             }
@@ -1380,8 +1515,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Send_Kin",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         ]
@@ -1395,11 +1530,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Send",
-                        "item_type": "button",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Send_Kin",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         
                         "KIN_amount": kinAmount, 
@@ -1414,11 +1549,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Success",
-                        "item_type": "message",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "view",
+                        "item_type": "message",
                         "parent_name": "Send_Kin",
+                        "parent_type": "page",
+                        "action": "view",
                         
                         
                         "KIN_amount": kinAmount, 
@@ -1433,11 +1568,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Error",
-                        "item_type": "popup",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "view",
+                        "item_type": "popup",
                         "parent_name": "Send_Kin",
+                        "parent_type": "page",
+                        "action": "view",
                         
                         
                         "error_type": errorType.rawValue, 
@@ -1451,8 +1586,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Video",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         ]
@@ -1466,11 +1601,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Play",
-                        "item_type": "button",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Video",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         
                         "video_title": videoTitle, 
@@ -1484,8 +1619,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Backup_Intro",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         ]
@@ -1498,11 +1633,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Backup",
-                        "item_type": "button",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Backup_Intro",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         ]
             }
@@ -1515,8 +1650,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Backup_Flow",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         
@@ -1532,11 +1667,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Completed_Step",
-                        "item_type": "button",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Backup_Flow",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         
                         "backup_flow_step": backupFlowStep.rawValue, 
@@ -1550,8 +1685,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Backup_Completed",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         ]
@@ -1565,8 +1700,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Backup_Notification",
-                        "item_type": "popup",
                         "event_type": "analytics",
+                        "item_type": "popup",
                         "action": "view",
                         
                         
@@ -1582,11 +1717,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Backup",
-                        "item_type": "button",
-                        "parent_type": "popup",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Backup_Notification",
+                        "parent_type": "popup",
+                        "action": "click",
                         
                         
                         "backup_notification_type": backupNotificationType.rawValue, 
@@ -1600,8 +1735,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Welcome_Back",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         ]
@@ -1614,11 +1749,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Restore_Wallet",
-                        "item_type": "button",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Welcome_Back",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         ]
             }
@@ -1630,11 +1765,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Create_New_Wallet",
-                        "item_type": "button",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Welcome_Back",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         ]
             }
@@ -1646,8 +1781,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Scan",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         ]
@@ -1660,11 +1795,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Scan",
-                        "item_type": "button",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Scan",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         ]
             }
@@ -1676,8 +1811,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Answer_Security_Questions",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         ]
@@ -1690,11 +1825,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Confirm",
-                        "item_type": "button",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Answer_Security_Questions",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         ]
             }
@@ -1706,8 +1841,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Wallet_Restored",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         ]
@@ -1720,8 +1855,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Creating_Wallet",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         ]
@@ -1735,11 +1870,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Backup",
-                        "item_type": "button",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "More",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         
                         "already_backed_up": alreadyBackedUp.rawValue, 
@@ -1753,8 +1888,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "FAQ_Main",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         ]
@@ -1769,8 +1904,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "FAQ",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         
@@ -1786,8 +1921,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Feedback",
-                        "item_type": "button",
                         "event_type": "analytics",
+                        "item_type": "button",
                         "action": "click",
                         
                         ]
@@ -1803,11 +1938,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Page_Helpful",
-                        "item_type": "button",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "FAQ",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         
                         "FAQ_category": faqCategory,
@@ -1823,8 +1958,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Captcha",
-                        "item_type": "popup",
                         "event_type": "analytics",
+                        "item_type": "popup",
                         "action": "view",
                         
                         ]
@@ -1839,8 +1974,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Campaign",
-                        "item_type": "popup",
                         "event_type": "analytics",
+                        "item_type": "popup",
                         "action": "view",
                         
                         
@@ -1858,11 +1993,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Link",
-                        "item_type": "button",
-                        "parent_type": "popup",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Campaign",
+                        "parent_type": "popup",
+                        "action": "click",
                         
                         
                         "campaign_name": campaignName,
@@ -1877,8 +2012,8 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Task_Categories",
-                        "item_type": "page",
                         "event_type": "analytics",
+                        "item_type": "page",
                         "action": "view",
                         
                         ]
@@ -1892,11 +2027,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Category",
-                        "item_type": "button",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Task_Categories",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         
                         "task_category": taskCategory, 
@@ -1916,11 +2051,11 @@ struct Events {
             var properties: [String: Any] {
                 return [
                         "item_name": "Buy",
-                        "item_type": "button",
-                        "parent_type": "page",
                         "event_type": "analytics",
-                        "action": "click",
+                        "item_type": "button",
                         "parent_name": "Offer",
+                        "parent_type": "page",
+                        "action": "click",
                         
                         
                         "brand_name": brandName,

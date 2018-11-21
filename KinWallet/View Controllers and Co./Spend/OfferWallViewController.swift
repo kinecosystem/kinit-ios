@@ -126,9 +126,11 @@ extension OfferWallViewController {
     func logViewPage() {
         switch DataLoaders.kinit.offers.value! {
         case .none(let error):
-            if error != nil {
+            if let error = error {
+                let errorType: Events.ErrorType = error.isInternetError ? .internetConnection : .generic
+                let failureReason = error.localizedDescription
                 Events.Analytics
-                    .ViewErrorPage(errorType: .internetConnection)
+                    .ViewErrorPage(errorType: errorType, failureReason: failureReason)
                     .send()
             } else {
                 Events.Analytics

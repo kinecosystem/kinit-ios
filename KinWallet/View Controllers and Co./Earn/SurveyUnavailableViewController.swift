@@ -25,23 +25,6 @@ final class SurveyUnavailableViewController: UIViewController, AddNoticeViewCont
                                                object: nil)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        if task == nil {
-            if error != nil {
-                Events.Analytics
-                    .ViewErrorPage(errorType: .internetConnection)
-                    .send()
-            } else {
-                Events.Analytics
-                    .ViewEmptyStatePage(menuItemName: .earn,
-                                        taskCategory: taskCategory)
-                    .send()
-            }
-        }
-    }
-
     @objc func displayUnavailabilityReason() {
         let noticeContent: NoticeContent
         var displayType = Notice.DisplayType.imageFirst
@@ -60,10 +43,20 @@ final class SurveyUnavailableViewController: UIViewController, AddNoticeViewCont
         } else {
             if let error = error {
                 noticeContent = .fromError(error)
+
+                let errorType: Events.ErrorType = error.isInternetError ? .internetConnection : .generic
+                let failureReason = error.localizedDescription
+                Events.Analytics
+                    .ViewErrorPage(errorType: errorType, failureReason: failureReason)
+                    .send()
             } else {
                 noticeContent = .init(title: L10n.noActivitiesTitle,
                                       message: L10n.noActivitiesMessage,
                                       image: Asset.noTasksIlustration.image)
+                Events.Analytics
+                    .ViewEmptyStatePage(menuItemName: .earn,
+                                        taskCategory: taskCategory)
+                    .send()
             }
         }
 

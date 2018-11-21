@@ -138,14 +138,23 @@ final class EarnHomeViewController: UIViewController, AddNoticeViewController {
         children.forEach { $0.remove() }
 
         let noticeContent: NoticeContent
+        let errorType: Events.ErrorType
+        let failureReason: String?
 
         if let error = error {
             noticeContent = .fromError(error)
+            errorType =  error.isInternetError ? .internetConnection : .generic
+            failureReason = error.localizedDescription
         } else {
             noticeContent = NoticeContent.generalServerError
+            errorType = Events.ErrorType.generic
+            failureReason = nil
         }
 
         addNoticeViewController(with: noticeContent)
+        Events.Analytics
+            .ViewErrorPage(errorType: errorType, failureReason: failureReason)
+            .send()
     }
 
     @objc func splashScreenWillDismiss() {

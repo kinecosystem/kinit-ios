@@ -121,7 +121,7 @@ extension Analytics {
 }
 
 extension Events.Analytics.ViewErrorPage {
-    init(errorType: Events.ErrorType) {
-        self.init(errorType: errorType, failureReason: "")
+    init(errorType: Events.ErrorType, failureReason: String? = nil) {
+        self.init(errorType: errorType, failureReason: failureReason ?? "")
     }
 }

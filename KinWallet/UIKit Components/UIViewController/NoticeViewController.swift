@@ -30,14 +30,25 @@ struct NoticeContent {
     static func fromError(_ error: Error) -> NoticeContent {
         let aError = error as NSError
 
-        if aError.domain == NSURLErrorDomain,
-            internetErrorCodes.contains(aError.code) {
+        if aError.isInternetError {
             return NoticeContent(title: L10n.NoInternetError.title,
                                  message: L10n.NoInternetError.message,
                                  image: Asset.noInternetIllustration.image)
         }
 
         return generalServerError
+    }
+}
+
+extension Error {
+    var isInternetError: Bool {
+        return (self as NSError).isInternetError
+    }
+}
+
+extension NSError {
+    var isInternetError: Bool {
+        return domain == NSURLErrorDomain && internetErrorCodes.contains(code)
     }
 }
 
