@@ -1,5 +1,5 @@
 //
-//  Bundle.swift
+//  Bundle+Extensions.swift
 //  Kinit
 //
 

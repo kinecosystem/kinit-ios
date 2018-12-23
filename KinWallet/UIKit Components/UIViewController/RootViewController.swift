@@ -103,7 +103,7 @@ class RootViewController: UIViewController {
                                                             additionalMessage: supportAttributedString)
         let noticeViewController = StoryboardScene.Main.noticeViewController.instantiate()
         noticeViewController.delegate = self
-        
+
         let noticeContent = NoticeContent(title: error.title,
                                           message: L10n.walletOrUserCreationErrorSubtitle,
                                           image: error.image)

@@ -66,7 +66,7 @@
 		828CB4432056EA08007C679C /* ImageAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D891C32020844B0090E77C /* ImageAssets.swift */; };
 		828CB4452056EA22007C679C /* UIButton+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B575C12046C37300AC3E04 /* UIButton+KinWallet.swift */; };
 		828CB4462056EA42007C679C /* Data+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FDE1562028B09F003A30FB /* Data+KinWallet.swift */; };
-		828CB4482056EA42007C679C /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91796BDE2028A3A100F8C6A0 /* Bundle.swift */; };
+		828CB4482056EA42007C679C /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91796BDE2028A3A100F8C6A0 /* Bundle+Extensions.swift */; };
 		828CB4492056EA42007C679C /* Data+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FDE1562028B09F003A30FB /* Data+KinWallet.swift */; };
 		828CB44A2056EA42007C679C /* Optional+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91311C4C204FDB4400618240 /* Optional+KinWallet.swift */; };
 		828CB44B2056EA42007C679C /* UICollectionView+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013D92019F2BF0066367C /* UICollectionView+KinWallet.swift */; };
@@ -283,8 +283,8 @@
 		91796BD6202868E800F8C6A0 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91796BD5202868E800F8C6A0 /* WebService.swift */; };
 		91796BD92028692A00F8C6A0 /* KinWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91796BD82028692A00F8C6A0 /* KinWebService.swift */; };
 		91796BDC2028699300F8C6A0 /* WebRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91796BDB2028699300F8C6A0 /* WebRequests.swift */; };
-		91796BDF2028A3A100F8C6A0 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91796BDE2028A3A100F8C6A0 /* Bundle.swift */; };
-		91796BE02028A3A100F8C6A0 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91796BDE2028A3A100F8C6A0 /* Bundle.swift */; };
+		91796BDF2028A3A100F8C6A0 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91796BDE2028A3A100F8C6A0 /* Bundle+Extensions.swift */; };
+		91796BE02028A3A100F8C6A0 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91796BDE2028A3A100F8C6A0 /* Bundle+Extensions.swift */; };
 		917ECFDF2100C41800EB82E1 /* OfferTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917ECFDE2100C41800EB82E1 /* OfferTransitionAnimator.swift */; };
 		9181983020EE551400E5D523 /* SurveyFullSizedImageAnswerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9181982F20EE551400E5D523 /* SurveyFullSizedImageAnswerCollectionViewCell.xib */; };
 		9181983120EE551400E5D523 /* SurveyFullSizedImageAnswerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9181982F20EE551400E5D523 /* SurveyFullSizedImageAnswerCollectionViewCell.xib */; };
@@ -912,7 +912,7 @@
 		91796BD5202868E800F8C6A0 /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		91796BD82028692A00F8C6A0 /* KinWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinWebService.swift; sourceTree = "<group>"; };
 		91796BDB2028699300F8C6A0 /* WebRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequests.swift; sourceTree = "<group>"; };
-		91796BDE2028A3A100F8C6A0 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
+		91796BDE2028A3A100F8C6A0 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		917ECFDE2100C41800EB82E1 /* OfferTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferTransitionAnimator.swift; sourceTree = "<group>"; };
 		9181982F20EE551400E5D523 /* SurveyFullSizedImageAnswerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SurveyFullSizedImageAnswerCollectionViewCell.xib; sourceTree = "<group>"; };
 		918893B8205E906E0077CD9A /* URLRequest+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+KinWallet.swift"; sourceTree = "<group>"; };
@@ -1356,7 +1356,7 @@
 				91B0668A20C969EE00CE69A7 /* UIImage+ImageEffects.m */,
 				9140137F201755DF0066367C /* AppDelegate+Extensions.swift */,
 				91FF9D04207E091500B536E9 /* Array+KinWallet.swift */,
-				91796BDE2028A3A100F8C6A0 /* Bundle.swift */,
+				91796BDE2028A3A100F8C6A0 /* Bundle+Extensions.swift */,
 				91FDE1562028B09F003A30FB /* Data+KinWallet.swift */,
 				91B575C42046E83200AC3E04 /* Date+Kinit.swift */,
 				91311C4C204FDB4400618240 /* Optional+KinWallet.swift */,
@@ -2189,7 +2189,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftgen >/dev/null; then\n  swiftgen storyboards -t swift4 --output \"KinWallet/Generated Files/Storyboards.swift\" KinWallet\n  sed -i \"\" 's/KinWallet\\.//g' \"KinWallet/Generated Files/Storyboards.swift\"\n  swiftgen xcassets -t swift4 --output \"KinWallet/Generated Files/ImageAssets.swift\" KinWallet/Assets-Resources/Assets.xcassets\nswiftgen fonts -t swift4 --output \"KinWallet/Generated Files/Fonts.swift\" KinWallet/Assets-Resources/Fonts\nswiftgen strings -t structured-swift4 --output \"KinWallet/Generated Files/Strings.swift\" KinWallet/Assets-Resources/Base.lproj/Localizable.strings\nelse\necho \"warning: SwiftGen not installed, install with Homebrew: brew install SwiftGen\"\nfi\n\n";
+			shellScript = "if which swiftgen >/dev/null; then\n  swiftgen storyboards -t scenes-swift4 --output \"KinWallet/Generated Files/Storyboards.swift\" KinWallet\n  sed -i \"\" 's/KinWallet\\.//g' \"KinWallet/Generated Files/Storyboards.swift\"\n  swiftgen xcassets -t swift4 --output \"KinWallet/Generated Files/ImageAssets.swift\" KinWallet/Assets-Resources/Assets.xcassets\nswiftgen fonts -t swift4 --output \"KinWallet/Generated Files/Fonts.swift\" KinWallet/Assets-Resources/Fonts\nswiftgen strings -t structured-swift4 --output \"KinWallet/Generated Files/Strings.swift\" KinWallet/Assets-Resources/Base.lproj/Localizable.strings\nelse\necho \"warning: SwiftGen not installed, install with Homebrew: brew install SwiftGen\"\nfi\n\n";
 		};
 		91401378201741630066367C /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2316,7 +2316,7 @@
 				91392A31208F48330026C2F9 /* WelcomeViewController.swift in Sources */,
 				91E5C6A020B5D20B0024BAA5 /* Sourcery.swift in Sources */,
 				91F69D3B208379F400F06181 /* BarView.swift in Sources */,
-				91796BDF2028A3A100F8C6A0 /* Bundle.swift in Sources */,
+				91796BDF2028A3A100F8C6A0 /* Bundle+Extensions.swift in Sources */,
 				91B0667E20C929EF00CE69A7 /* NSLayoutConstraintHairline.swift in Sources */,
 				910872C32121E96D0095FD45 /* BackupTextInputViewController.swift in Sources */,
 				91FF9D15207E365100B536E9 /* KinitTransaction.swift in Sources */,
@@ -2521,7 +2521,7 @@
 				91D891C2201F33790090E77C /* TaskResults.swift in Sources */,
 				91E84AA620862D9C00E8B7A6 /* RedeemTransaction.swift in Sources */,
 				91E84A7A2086186B00E8B7A6 /* PagerTabStripViewController.swift in Sources */,
-				91796BE02028A3A100F8C6A0 /* Bundle.swift in Sources */,
+				91796BE02028A3A100F8C6A0 /* Bundle+Extensions.swift in Sources */,
 				914013C22019D0BA0066367C /* UIImage+KinWallet.swift in Sources */,
 				91D891C52020844B0090E77C /* ImageAssets.swift in Sources */,
 				915F496A20430258005C09B3 /* Fonts.swift in Sources */,
@@ -2733,7 +2733,7 @@
 				91E84A832086186B00E8B7A6 /* PagerTabStripBehaviour.swift in Sources */,
 				91E84A662086182100E8B7A6 /* SurveyUnavailableViewController.swift in Sources */,
 				91B0668420C9631100CE69A7 /* UIApplication+KinWallet.swift in Sources */,
-				828CB4482056EA42007C679C /* Bundle.swift in Sources */,
+				828CB4482056EA42007C679C /* Bundle+Extensions.swift in Sources */,
 				91E5C6A220B5D20C0024BAA5 /* Sourcery.swift in Sources */,
 				828CB4622056EB02007C679C /* AMPUtils.m in Sources */,
 				828CB4282056E9C1007C679C /* AMPConstants.m in Sources */,
