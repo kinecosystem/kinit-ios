@@ -119,7 +119,7 @@ internal enum L10n {
   internal static let chooseSecurityQuestion = L10n.tr("Localizable", "ChooseSecurityQuestion")
   /// Close
   internal static let closeAction = L10n.tr("Localizable", "CloseAction")
-  /// Confirm
+  /// Check your email
   internal static let confirm = L10n.tr("Localizable", "Confirm")
   /// Contact Support
   internal static let contactSupport = L10n.tr("Localizable", "ContactSupport")
@@ -161,9 +161,9 @@ internal enum L10n {
   internal static let generalServerErrorMessage = L10n.tr("Localizable", "GeneralServerErrorMessage")
   /// Houston We Have a Server Problem
   internal static let generalServerErrorTitle = L10n.tr("Localizable", "GeneralServerErrorTitle")
-  /// Give Us Feedback
+  /// Suggestion Box
   internal static let giveUsFeedback = L10n.tr("Localizable", "GiveUsFeedback")
-  /// Help Center
+  /// I Need Help
   internal static let helpCenter = L10n.tr("Localizable", "HelpCenter")
   /// Kin delivered!
   internal static let kinDelivered = L10n.tr("Localizable", "KinDelivered")
@@ -345,7 +345,7 @@ internal enum L10n {
   internal static let walletCreationErrorTitle = L10n.tr("Localizable", "WalletCreationErrorTitle")
   /// Please check your internet connection & try again.
   internal static let walletOrUserCreationErrorSubtitle = L10n.tr("Localizable", "WalletOrUserCreationErrorSubtitle")
-  /// Earn Kin by completing fun daily activities, and enjoy it toward brown paper packages tied up with string (aka travel, movies, music, and more).
+  /// Earn Kin, a new cryptocurrency, by completing fun daily activities and use it for your favorite things (travel, movies, music, and more)
   internal static let welcome1stScreenMessage = L10n.tr("Localizable", "Welcome1stScreenMessage")
   ///  Welcome to Kinit
   internal static let welcome1stScreenTitle = L10n.tr("Localizable", "Welcome1stScreenTitle")
@@ -363,7 +363,7 @@ internal enum L10n {
   internal static let yourKinBalance = L10n.tr("Localizable", "YourKinBalance")
 
   internal enum ActivityDone {
-    /// You have completed today's activity.
+    /// You have completed this activity.
     internal static let message = L10n.tr("Localizable", "ActivityDone.Message")
     /// Awesome!
     internal static let title = L10n.tr("Localizable", "ActivityDone.Title")
@@ -414,7 +414,7 @@ internal enum L10n {
   }
 
   internal enum TaskSubmissionPaymentTimeout {
-    /// We have received your results but something got stuck along the way.\n\nPlease tap close and check your balance in a few hours. If no change has ocurred, contact support.
+    /// We have received your results but something got stuck along the way.\n\nPlease tap close and check your balance in a few hours. If no change has occurred, contact support.
     internal static let message = L10n.tr("Localizable", "TaskSubmissionPaymentTimeout.Message")
     /// Your Kin is on its way with a brief delay
     internal static let title = L10n.tr("Localizable", "TaskSubmissionPaymentTimeout.Title")
