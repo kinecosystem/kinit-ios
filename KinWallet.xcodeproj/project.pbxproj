@@ -140,6 +140,15 @@
 		9138BBE7204EF1A700450C97 /* SimpleCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9138BBE4204EF1A700450C97 /* SimpleCollectionReusableView.xib */; };
 		9138BBE8204EF1A700450C97 /* SimpleCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9138BBE4204EF1A700450C97 /* SimpleCollectionReusableView.xib */; };
 		91392A31208F48330026C2F9 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91392A30208F48330026C2F9 /* WelcomeViewController.swift */; };
+		913C9C3521CFBD9A00B855BC /* EcosystemApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C3421CFBD9A00B855BC /* EcosystemApp.swift */; };
+		913C9C3621CFBD9A00B855BC /* EcosystemApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C3421CFBD9A00B855BC /* EcosystemApp.swift */; };
+		913C9C3721CFBD9A00B855BC /* EcosystemApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C3421CFBD9A00B855BC /* EcosystemApp.swift */; };
+		913C9C4021CFCFD400B855BC /* SpendKinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C3F21CFCFD400B855BC /* SpendKinViewController.swift */; };
+		913C9C4121CFCFD400B855BC /* SpendKinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C3F21CFCFD400B855BC /* SpendKinViewController.swift */; };
+		913C9C4221CFCFD400B855BC /* SpendKinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C3F21CFCFD400B855BC /* SpendKinViewController.swift */; };
+		913C9C4421D0DAC500B855BC /* AppDiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C4321D0DAC500B855BC /* AppDiscoveryViewController.swift */; };
+		913C9C4521D0DAC500B855BC /* AppDiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C4321D0DAC500B855BC /* AppDiscoveryViewController.swift */; };
+		913C9C4621D0DAC500B855BC /* AppDiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C4321D0DAC500B855BC /* AppDiscoveryViewController.swift */; };
 		9140132E20162FA90066367C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140132D20162FA90066367C /* AppDelegate.swift */; };
 		9140133520162FA90066367C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9140133320162FA90066367C /* Main.storyboard */; };
 		9140133720162FA90066367C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9140133620162FA90066367C /* Assets.xcassets */; };
@@ -821,6 +830,9 @@
 		9138BBE3204EF1A700450C97 /* SimpleCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCollectionReusableView.swift; sourceTree = "<group>"; };
 		9138BBE4204EF1A700450C97 /* SimpleCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleCollectionReusableView.xib; sourceTree = "<group>"; };
 		91392A30208F48330026C2F9 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		913C9C3421CFBD9A00B855BC /* EcosystemApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcosystemApp.swift; sourceTree = "<group>"; };
+		913C9C3F21CFCFD400B855BC /* SpendKinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendKinViewController.swift; sourceTree = "<group>"; };
+		913C9C4321D0DAC500B855BC /* AppDiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDiscoveryViewController.swift; sourceTree = "<group>"; };
 		9140132A20162FA90066367C /* KinWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KinWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9140132D20162FA90066367C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9140133420162FA90066367C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -1402,6 +1414,7 @@
 				910AA2312097307F00CC822A /* RemoteConfig.swift */,
 				91D891C0201F32B60090E77C /* TaskResults.swift */,
 				91796BC62027261F00F8C6A0 /* User.swift */,
+				913C9C3421CFBD9A00B855BC /* EcosystemApp.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1435,6 +1448,8 @@
 				91B0667420C6CD0100CE69A7 /* SendKinOfferActionViewController.swift */,
 				91B0667620C7E47D00CE69A7 /* SendKinViewController.swift */,
 				91B0667820C8177100CE69A7 /* KinSentViewController.swift */,
+				913C9C3F21CFCFD400B855BC /* SpendKinViewController.swift */,
+				913C9C4321D0DAC500B855BC /* AppDiscoveryViewController.swift */,
 			);
 			path = Spend;
 			sourceTree = "<group>";
@@ -1784,6 +1799,7 @@
 				30EEF67D2057F52C00968B75 /* Fabric */,
 				828CB49E20594364007C679C /* Add Fabric Key Into Plist */,
 				0979060EAEEF3A80E9EF481B /* [CP] Embed Pods Frameworks */,
+				913C9C4B21D0F0DB00B855BC /* Load Reveal */,
 			);
 			buildRules = (
 			);
@@ -2177,6 +2193,24 @@
 			shellPath = /bin/sh;
 			shellScript = "plutil -replace \"Fabric.APIKey\" -string `cat .fabric_key` ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\n";
 		};
+		913C9C4B21D0F0DB00B855BC /* Load Reveal */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Load Reveal";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "REVEAL_APP_PATH=$(mdfind kMDItemCFBundleIdentifier=\"com.ittybittyapps.Reveal2\" | head -n 1)\nBUILD_SCRIPT_PATH=\"${REVEAL_APP_PATH}/Contents/SharedSupport/Scripts/reveal_server_build_phase.sh\"\nif [ \"${REVEAL_APP_PATH}\" -a -e \"${BUILD_SCRIPT_PATH}\" ]; then\n\"${BUILD_SCRIPT_PATH}\"\nelse\necho \"Reveal Server not loaded: Cannot find a compatible Reveal app.\"\nfi\n";
+		};
 		9140136E201633640066367C /* SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2346,6 +2380,7 @@
 				91D891BE201F23130090E77C /* Datastore.swift in Sources */,
 				9140138A20187CE90066367C /* Result.swift in Sources */,
 				91F69D39208379F400F06181 /* ButtonBarView.swift in Sources */,
+				913C9C4421D0DAC500B855BC /* AppDiscoveryViewController.swift in Sources */,
 				91E6B652203C69A90080C2FC /* ISPCertificatePinning.m in Sources */,
 				91E6B666203C6AD50080C2FC /* BIEvents.swift in Sources */,
 				91F69D3F2083940D00F06181 /* BalancePagerTabViewController.swift in Sources */,
@@ -2367,6 +2402,7 @@
 				91FF9D2E207F49C800B536E9 /* BalanceViewController.swift in Sources */,
 				9152E601212EB41D00802040 /* KinErrors.swift in Sources */,
 				91FE7D7220F6304B00EDFB67 /* Anchorable.swift in Sources */,
+				913C9C4021CFCFD400B855BC /* SpendKinViewController.swift in Sources */,
 				9140138820187CE90066367C /* Task.swift in Sources */,
 				91E6B654203C69A90080C2FC /* ISPPinnedNSURLConnectionDelegate.m in Sources */,
 				915F497920444C10005C09B3 /* UICountingLabel.m in Sources */,
@@ -2392,6 +2428,7 @@
 				91F877F0216A011C00E91C03 /* SplashScreenViewController.swift in Sources */,
 				9138BBE1204EE21E00450C97 /* OfferDetailsViewController.swift in Sources */,
 				91E6B65C203C69A90080C2FC /* AMPIdentify.m in Sources */,
+				913C9C3521CFBD9A00B855BC /* EcosystemApp.swift in Sources */,
 				82A12DEC2056B841008841F2 /* Configuration.swift in Sources */,
 				91F69D30208379F400F06181 /* SegmentedPagerTabStripViewController.swift in Sources */,
 				91FA4A0D212AB75C00513E1D /* QRCodeScannerViewController.swift in Sources */,
@@ -2536,6 +2573,7 @@
 				914013DF2019F2BF0066367C /* UITableViewCell+KinWallet.swift in Sources */,
 				91E84A9020862C5100E8B7A6 /* User.swift in Sources */,
 				824138402060368B00D7117E /* KinWebService.swift in Sources */,
+				913C9C4521D0DAC500B855BC /* AppDiscoveryViewController.swift in Sources */,
 				910AA2332097308000CC822A /* RemoteConfig.swift in Sources */,
 				82413847206036B400D7117E /* WebService.swift in Sources */,
 				9182C29A203C6C0C0051F003 /* AMPUtils.m in Sources */,
@@ -2557,6 +2595,7 @@
 				91AAB936201E0C920075DAA1 /* String+KinWallet.swift in Sources */,
 				91E84A7C2086186B00E8B7A6 /* SwipeDirection.swift in Sources */,
 				9152E602212EB41D00802040 /* KinErrors.swift in Sources */,
+				913C9C4121CFCFD400B855BC /* SpendKinViewController.swift in Sources */,
 				91E84A9420862C6C00E8B7A6 /* Array+KinWallet.swift in Sources */,
 				91E84A8E208618AB00E8B7A6 /* AppDelegate+Extensions.swift in Sources */,
 				914013D32019F2300066367C /* ReusableView.swift in Sources */,
@@ -2582,6 +2621,7 @@
 				91E84ABA20862E4700E8B7A6 /* TransactionHistoryCollectionViewCell.swift in Sources */,
 				91F877F1216A011C00E91C03 /* SplashScreenViewController.swift in Sources */,
 				91E84A6A2086183900E8B7A6 /* KinitLoader.swift in Sources */,
+				913C9C3621CFBD9A00B855BC /* EcosystemApp.swift in Sources */,
 				91B575C32046C48B00AC3E04 /* UIButton+KinWallet.swift in Sources */,
 				91D7C032204F11D200D35401 /* KinAmountLabel.swift in Sources */,
 				9152E5EA212D505300802040 /* RestoreBackupCells.swift in Sources */,
@@ -2646,6 +2686,7 @@
 				91E84A56208617B300E8B7A6 /* TaskCompletedViewController.swift in Sources */,
 				91F877EC216A011B00E91C03 /* RootViewController.swift in Sources */,
 				91FF123C211AF66C0098470D /* BackupQuestionViewController.swift in Sources */,
+				913C9C4621D0DAC500B855BC /* AppDiscoveryViewController.swift in Sources */,
 				828CB4252056E9C1007C679C /* AMPDeviceInfo.m in Sources */,
 				828CB4272056E9C1007C679C /* AMPURLConnection.m in Sources */,
 				828CB4532056EA43007C679C /* String+KinWallet.swift in Sources */,
@@ -2664,6 +2705,7 @@
 				91AE230121775E980024B8BF /* TaskLoader.swift in Sources */,
 				91C42AD920FDDD68001E1C05 /* UIControl+KinWallet.swift in Sources */,
 				91E84AA120862D1000E8B7A6 /* FetchableCollectionViewDataSource.swift in Sources */,
+				913C9C4221CFCFD400B855BC /* SpendKinViewController.swift in Sources */,
 				828CB42F2056E9DC007C679C /* SimpleCollectionReusableView.swift in Sources */,
 				828CB4262056E9C1007C679C /* AMPIdentify.m in Sources */,
 				824138512060376500D7117E /* URLRequest+KinWallet.swift in Sources */,
@@ -2776,6 +2818,7 @@
 				8241384D2060373300D7117E /* KinWebService.swift in Sources */,
 				91E84A9F20862D0800E8B7A6 /* KinitTransaction.swift in Sources */,
 				918927812166522600E0EE8C /* PostTaskAction.swift in Sources */,
+				913C9C3721CFBD9A00B855BC /* EcosystemApp.swift in Sources */,
 				828CB4492056EA42007C679C /* Data+KinWallet.swift in Sources */,
 				9140135020162FA90066367C /* KinWalletUITests.swift in Sources */,
 				91F877F2216A011C00E91C03 /* SplashScreenViewController.swift in Sources */,

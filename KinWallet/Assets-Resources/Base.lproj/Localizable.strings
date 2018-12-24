@@ -168,6 +168,8 @@
 
 "NewOffersPolicy.Action" = "I Understand";
 
+"GiftCards" = "Gift Cards";
+
 //Sending Kin
 
 "SendKinContactNotFoundErrorTitle" = "Sorry, you can only send Kin to Kinit users.";
@@ -401,3 +403,7 @@
 "MoreUpdate.UpToDate" = "Up to date";
 
 "MoreUpdate.UpdateNow" = "Update now";
+
+// App Discovery
+
+"EcosystemApps" = "Ecosystem Apps";

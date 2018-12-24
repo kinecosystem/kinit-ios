@@ -133,6 +133,8 @@ internal enum L10n {
   internal static let creatingYourWallet = L10n.tr("Localizable", "CreatingYourWallet")
   /// It might take up to 20 sec.
   internal static let creatingYourWalletBePatient = L10n.tr("Localizable", "CreatingYourWalletBePatient")
+  /// Ecosystem Apps
+  internal static let ecosystemApps = L10n.tr("Localizable", "EcosystemApps")
   /// We are hand-picking the best for you!
   internal static let emptyOffersSubtitle = L10n.tr("Localizable", "EmptyOffersSubtitle")
   /// No offers at the moment
@@ -161,6 +163,8 @@ internal enum L10n {
   internal static let generalServerErrorMessage = L10n.tr("Localizable", "GeneralServerErrorMessage")
   /// Houston We Have a Server Problem
   internal static let generalServerErrorTitle = L10n.tr("Localizable", "GeneralServerErrorTitle")
+  /// Gift Cards
+  internal static let giftCards = L10n.tr("Localizable", "GiftCards")
   /// Give Us Feedback
   internal static let giveUsFeedback = L10n.tr("Localizable", "GiveUsFeedback")
   /// Help Center

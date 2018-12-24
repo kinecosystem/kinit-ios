@@ -27,7 +27,6 @@ class OfferWallViewController: UIViewController {
         collectionView!.register(nib: OfferCollectionViewCell.self)
 
         configureSubscriber()
-        addBalanceLabel()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -156,5 +155,11 @@ extension OfferWallViewController {
                                        offerOrder: index,
                                        offerType: offer.type)
             .send()
+    }
+}
+
+extension OfferWallViewController: IndicatorInfoProvider {
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return IndicatorInfo(title: L10n.giftCards)
     }
 }

@@ -5,14 +5,8 @@
 
 import UIKit
 
-class BalancePagerTabViewController: ButtonBarPagerTabStripViewController {
-    @IBOutlet weak var separatorView: UIView! {
-        didSet {
-            separatorView.backgroundColor = UIColor.kin.lightGray
-        }
-    }
-
-    override func viewDidLoad() {
+extension ButtonBarPagerTabStripViewController {
+    func applyKinitStyle() {
         settings.style.selectedBarHeight = 2
         settings.style.selectedBarBackgroundColor = UIColor.kin.appTint
         settings.style.buttonBarItemFont = FontFamily.Roboto.regular.font(size: 16)
@@ -22,6 +16,18 @@ class BalancePagerTabViewController: ButtonBarPagerTabStripViewController {
         settings.style.buttonBarLeftContentInset = 25
         settings.style.buttonBarRightContentInset = 25
         settings.style.buttonBarItemLeftRightMargin = 2
+    }
+}
+
+class BalancePagerTabViewController: ButtonBarPagerTabStripViewController {
+    @IBOutlet weak var separatorView: UIView! {
+        didSet {
+            separatorView.backgroundColor = UIColor.kin.lightGray
+        }
+    }
+
+    override func viewDidLoad() {
+        applyKinitStyle()
 
         super.viewDidLoad()
     }
