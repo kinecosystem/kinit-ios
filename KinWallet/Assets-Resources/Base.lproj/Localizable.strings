@@ -28,7 +28,7 @@
 
 "Buy" = "Buy";
 
-"Confirm" = "Confirm";
+"Confirm" = "Check your email";
 
 "QRCode" = "QR Code";
 
@@ -64,7 +64,7 @@
 
 "Welcome1stScreenTitle" = " Welcome to Kinit";
 
-"Welcome1stScreenMessage" = "Earn Kin by completing fun daily activities, and enjoy it toward brown paper packages tied up with string (aka travel, movies, music, and more).";
+"Welcome1stScreenMessage" = "Earn Kin, a new cryptocurrency, by completing fun daily activities and use it for your favorite things (travel, movies, music, and more)";
 
 "Welcome2ndScreenMessage" = "Earning Kin is just like playing a game, only better, because you get rewarded for your time.";
 
@@ -130,11 +130,11 @@
 
 "TaskSubmissionPaymentTimeout.Title" = "Your Kin is on its way with a brief delay";
 
-"TaskSubmissionPaymentTimeout.Message" = "We have received your results but something got stuck along the way.\n\nPlease tap close and check your balance in a few hours. If no change has ocurred, contact support.";
+"TaskSubmissionPaymentTimeout.Message" = "We have received your results but something got stuck along the way.\n\nPlease tap close and check your balance in a few hours. If no change has occurred, contact support.";
 
 "ActivityDone.Title" = "Awesome!";
 
-"ActivityDone.Message" = "You have completed today's activity.";
+"ActivityDone.Message" = "You have completed this activity.";
 
 "TransferringKinOnItsWay" = "Your Kin is on its way";
 
@@ -226,9 +226,9 @@
 
 "FeedbackEmailSubject" = "Kinit Feedback";
 
-"GiveUsFeedback" = "Give Us Feedback";
+"GiveUsFeedback" = "Suggestion Box";
 
-"HelpCenter" = "Help Center";
+"HelpCenter" = "I Need Help";
 
 "MailNotConfiguredTitle" = "Mail Not Configured";
 
