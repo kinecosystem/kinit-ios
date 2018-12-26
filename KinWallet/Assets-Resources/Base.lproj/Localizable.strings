@@ -407,3 +407,17 @@
 // App Discovery
 
 "EcosystemApps" = "Ecosystem Apps";
+
+"GetApp" = "Get App";
+
+"GetAppShort" = "GET";
+
+"AppEcosystem.Title" = "Introducing Kin Ecosystem apps";
+
+"AppEcosystem.Subtitle" = "Discover all the amazing apps where you can  use Kin.";
+
+"AppPage.AboutApp" = "About %@";
+
+"AppPage.KinUsage" = "Kin Usage";
+
+"AppPage.SendComingSoon" = "Soon you’ll be able to send Kin to this account";

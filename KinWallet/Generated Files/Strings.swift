@@ -163,6 +163,10 @@ internal enum L10n {
   internal static let generalServerErrorMessage = L10n.tr("Localizable", "GeneralServerErrorMessage")
   /// Houston We Have a Server Problem
   internal static let generalServerErrorTitle = L10n.tr("Localizable", "GeneralServerErrorTitle")
+  /// Get App
+  internal static let getApp = L10n.tr("Localizable", "GetApp")
+  /// GET
+  internal static let getAppShort = L10n.tr("Localizable", "GetAppShort")
   /// Gift Cards
   internal static let giftCards = L10n.tr("Localizable", "GiftCards")
   /// Give Us Feedback
@@ -371,6 +375,24 @@ internal enum L10n {
     internal static let message = L10n.tr("Localizable", "ActivityDone.Message")
     /// Awesome!
     internal static let title = L10n.tr("Localizable", "ActivityDone.Title")
+  }
+
+  internal enum AppEcosystem {
+    /// Discover all the amazing apps where you can  use Kin.
+    internal static let subtitle = L10n.tr("Localizable", "AppEcosystem.Subtitle")
+    /// Introducing Kin Ecosystem apps
+    internal static let title = L10n.tr("Localizable", "AppEcosystem.Title")
+  }
+
+  internal enum AppPage {
+    /// About %@
+    internal static func aboutApp(_ p1: String) -> String {
+      return L10n.tr("Localizable", "AppPage.AboutApp", p1)
+    }
+    /// Kin Usage
+    internal static let kinUsage = L10n.tr("Localizable", "AppPage.KinUsage")
+    /// Soon you’ll be able to send Kin to this account
+    internal static let sendComingSoon = L10n.tr("Localizable", "AppPage.SendComingSoon")
   }
 
   internal enum MoreUpdate {

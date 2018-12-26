@@ -22,7 +22,6 @@ internal enum Asset {
   internal static let backupIntroIllustration = ImageAsset(name: "BackupIntroIllustration")
   internal static let backupNagHeader = ImageAsset(name: "BackupNagHeader")
   internal static let backupToDoIcon = ImageAsset(name: "BackupToDoIcon")
-  internal static let buttonStroke = ImageAsset(name: "ButtonStroke")
   internal static let closeXButton = ImageAsset(name: "CloseXButton")
   internal static let closeXButtonDarkGray = ImageAsset(name: "CloseXButtonDarkGray")
   internal static let confettiDiamond = ImageAsset(name: "ConfettiDiamond")

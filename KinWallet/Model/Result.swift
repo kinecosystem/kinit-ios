@@ -31,6 +31,6 @@ extension Result {
     }
 
     func hasOnlyImage() -> Bool {
-        return hasImage() && text.isEmpty
+        return hasImage() && text.isNilOrEmpty
     }
 }

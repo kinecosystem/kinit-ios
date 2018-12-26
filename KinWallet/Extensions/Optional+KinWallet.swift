@@ -5,13 +5,14 @@
 
 import Foundation
 
-extension Optional where Wrapped == [Offer] {
-    var count: Int {
-        if let unwrapped = self {
-            return unwrapped.count
-        }
+protocol OptionalType {
+    associatedtype Wrapped
+    var asOptional: Wrapped? { get }
+}
 
-        return 0
+extension Optional: OptionalType {
+    var asOptional: Wrapped? {
+        return self
     }
 }
 
@@ -25,12 +26,23 @@ extension Optional where Wrapped == Bool {
     }
 }
 
-extension Optional where Wrapped == String {
-    var isEmpty: Bool {
+extension Optional where Wrapped: Collection {
+    var isNilOrEmpty: Bool {
+        guard let collection = self else {
+            return true
+        }
+        return collection.isEmpty
+    }
+
+    var isNotEmpty: Bool {
+        return !isNilOrEmpty
+    }
+
+    var count: Int {
         if let unwrapped = self {
-            return unwrapped.isEmpty
+            return unwrapped.count
         }
 
-        return true
+        return 0
     }
 }
