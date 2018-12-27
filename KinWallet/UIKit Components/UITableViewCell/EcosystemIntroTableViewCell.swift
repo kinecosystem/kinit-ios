@@ -11,6 +11,8 @@ class EcosystemIntroTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
 
+        textLabel?.adjustsFontSizeToFitWidth = true
+        textLabel?.minimumScaleFactor = 0.5
         textLabel?.text = L10n.AppDiscovery.Header.title
         textLabel?.font = FontFamily.Roboto.medium.font(size: 20)
         textLabel?.textColor = UIColor.kin.gray
