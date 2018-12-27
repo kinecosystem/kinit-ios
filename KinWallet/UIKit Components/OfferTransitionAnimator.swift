@@ -153,7 +153,7 @@ extension OfferWallViewController: UIViewControllerTransitioningDelegate {
             yOffset = UIApplication.shared.statusBarFrame.height + navController.navigationBar.frame.maxY
         }
 
-        let authorOriginFrame = cell.authorImageView.superview!.convert(cell.authorImageView.frame, to: view)
+        let authorOriginFrame = cell.authorImageView.superview!.convert(cell.authorImageView.frame, to: presenting.view)
         var authorTargetFrame = offerViewController.authorImageView.frame
         authorTargetFrame.origin.y += yOffset
 
@@ -165,7 +165,7 @@ extension OfferWallViewController: UIViewControllerTransitioningDelegate {
                                                       targetFrame: authorTargetFrame,
                                                       view: authorView)
 
-        let offerOriginFrame = cell.offerImageView.superview!.convert(cell.offerImageView.frame, to: view)
+        let offerOriginFrame = cell.offerImageView.superview!.convert(cell.offerImageView.frame, to: presenting.view)
         var offerTargetFrame = offerViewController.offerImageView.frame
         offerTargetFrame.origin.y += yOffset
 
@@ -199,8 +199,10 @@ extension OfferWallViewController: UIViewControllerTransitioningDelegate {
                 return nil
         }
 
+        let presenting = dismissed.presentingViewController!
+
         let authorOriginFrame = offerViewController.authorImageView.frame
-        let authorTargetFrame = cell.authorImageView.superview!.convert(cell.authorImageView.frame, to: view)
+        let authorTargetFrame = cell.authorImageView.superview!.convert(cell.authorImageView.frame, to: presenting.view)
 
         let authorView = UIImageView(image: authorImage)
             .copyingProperties(from: offerViewController.authorImageView)
@@ -211,7 +213,7 @@ extension OfferWallViewController: UIViewControllerTransitioningDelegate {
                                                       view: authorView)
 
         let offerOriginFrame = offerViewController.offerImageView.frame
-        let offerTargetFrame = cell.offerImageView.superview!.convert(cell.offerImageView.frame, to: view)
+        let offerTargetFrame = cell.offerImageView.superview!.convert(cell.offerImageView.frame, to: presenting.view)
 
         let offerView = UIImageView(image: offerImage)
             .copyingProperties(from: offerViewController.offerImageView)
