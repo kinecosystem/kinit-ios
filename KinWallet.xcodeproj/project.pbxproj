@@ -1497,6 +1497,7 @@
 		914013A12018BC320066367C /* Spend */ = {
 			isa = PBXGroup;
 			children = (
+				913C9C3F21CFCFD400B855BC /* SpendKinViewController.swift */,
 				914013A22018BC320066367C /* OfferWallViewController.swift */,
 				9138BBE0204EE21E00450C97 /* OfferDetailsViewController.swift */,
 				91D075402056A77100CF80D5 /* OffersUnavailableViewController.swift */,
@@ -1504,7 +1505,6 @@
 				91B0667420C6CD0100CE69A7 /* SendKinOfferActionViewController.swift */,
 				91B0667620C7E47D00CE69A7 /* SendKinViewController.swift */,
 				91B0667820C8177100CE69A7 /* KinSentViewController.swift */,
-				913C9C3F21CFCFD400B855BC /* SpendKinViewController.swift */,
 				913C9C4321D0DAC500B855BC /* AppDiscoveryViewController.swift */,
 				913C9C6421D37A8500B855BC /* AppPageViewController.swift */,
 			);

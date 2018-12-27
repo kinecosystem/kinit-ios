@@ -36,7 +36,7 @@
                             <constraint firstItem="hMD-MO-heW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uLF-dM-kKS" secondAttribute="leading" constant="8" id="eQJ-PT-X5C"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EcosystemLearnMoreIllustrationCard" translatesAutoresizingMaskIntoConstraints="NO" id="p0L-A3-dgB">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppDiscoveryFooterIllustration" translatesAutoresizingMaskIntoConstraints="NO" id="p0L-A3-dgB">
                         <rect key="frame" x="26.5" y="11" width="322" height="128"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="322" id="YLE-yR-OWi"/>
@@ -74,6 +74,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="EcosystemLearnMoreIllustrationCard" width="322" height="128"/>
+        <image name="AppDiscoveryFooterIllustration" width="322" height="128"/>
     </resources>
 </document>

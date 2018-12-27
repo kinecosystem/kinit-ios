@@ -163,7 +163,11 @@ class InternalKinAlertController: UIViewController {
     }
 
     @IBAction func primaryButtonTapped() {
-        primaryAction.handler?()
+        if let handler = primaryAction.handler {
+            handler()
+        } else {
+            dismissAnimated()
+        }
     }
 
     @IBAction func secondaryButtonTapped() {

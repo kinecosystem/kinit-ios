@@ -392,6 +392,13 @@ internal enum L10n {
     }
   }
 
+  internal enum AppDiscoveryIntroPopup {
+    /// Awesome
+    internal static let action = L10n.tr("Localizable", "AppDiscoveryIntroPopup.Action")
+    /// Why just have one when you can have many? Discover and download all of the amazing apps with Kin in one place.
+    internal static let title = L10n.tr("Localizable", "AppDiscoveryIntroPopup.Title")
+  }
+
   internal enum AppPage {
     /// About %@
     internal static func aboutApp(_ p1: String) -> String {

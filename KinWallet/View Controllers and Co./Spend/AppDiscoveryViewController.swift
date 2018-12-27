@@ -8,6 +8,8 @@
 import UIKit
 import KinUtil
 
+private let shownAppDiscoveryIntroKey = "org.kinfoundation.kinwallet.shownAppDiscoveryIntro"
+
 private enum AppDiscoveryTableSections: Int {
     case intro = 0
     case categories
@@ -62,6 +64,12 @@ class AppDiscoveryViewController: UIViewController {
             .add(to: linkBag)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        showAppDiscoveryIntroIfNeeded()
+    }
+
     private func render(result: FetchResult<[EcosystemAppCategory]>) {
         switch result {
         case .none(let error): renderEmpty(error)
@@ -72,6 +80,22 @@ class AppDiscoveryViewController: UIViewController {
     private func renderCategories(_ categories: [EcosystemAppCategory]) {
         self.categories = categories
         tableView.reloadData()
+    }
+
+    private func showAppDiscoveryIntroIfNeeded() {
+        guard UserDefaults.standard.bool(forKey: shownAppDiscoveryIntroKey) == false else {
+            return
+        }
+
+        UserDefaults.standard.set(true, forKey: shownAppDiscoveryIntroKey)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+            let alertController = KinAlertController(title: nil,
+                                                     titleImage: Asset.appDiscoveryIntroPopup.image,
+                                                     message: L10n.AppDiscoveryIntroPopup.title,
+                                                     primaryAction: .init(title: L10n.AppDiscoveryIntroPopup.action),
+                                                     secondaryAction: nil)
+            self?.presentAnimated(alertController)
+        }
     }
 
     private func renderEmpty(_ error: Error?) {

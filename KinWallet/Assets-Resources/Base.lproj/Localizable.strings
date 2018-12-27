@@ -412,6 +412,10 @@
 
 "GetAppShort" = "GET";
 
+"AppDiscoveryIntroPopup.Title" = "Why just have one when you can have many? Discover and download all of the amazing apps with Kin in one place.";
+
+"AppDiscoveryIntroPopup.Action" = "Awesome";
+
 "AppDiscovery.Header.Title" = "Introducing Kin Ecosystem apps";
 
 "AppDiscovery.Header.Subtitle" = "Discover all the amazing apps where you can use Kin.";

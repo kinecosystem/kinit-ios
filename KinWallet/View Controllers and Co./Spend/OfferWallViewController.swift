@@ -43,17 +43,18 @@ class OfferWallViewController: UIViewController {
     }
 
     private func showPolicyChangeIfNeeded() {
-        if UserDefaults.standard.bool(forKey: newOfferPolicyKey) == false {
-            UserDefaults.standard.set(true, forKey: newOfferPolicyKey)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-                let alertController = KinAlertController(title: nil,
-                                                         titleImage: Asset.weMadeASmallChange.image,
-                                                         message: L10n.NewOffersPolicy.message,
-                                                         primaryAction: .init(title: L10n.NewOffersPolicy.action) { [weak self] in
-                                                            self?.dismissAnimated()
-                    }, secondaryAction: nil)
-                self?.presentAnimated(alertController)
-            }
+        guard UserDefaults.standard.bool(forKey: newOfferPolicyKey) == false else {
+            return
+        }
+
+        UserDefaults.standard.set(true, forKey: newOfferPolicyKey)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            let alertController = KinAlertController(title: nil,
+                                                     titleImage: Asset.weMadeASmallChange.image,
+                                                     message: L10n.NewOffersPolicy.message,
+                                                     primaryAction: .init(title: L10n.NewOffersPolicy.action),
+                                                     secondaryAction: nil)
+            self?.presentAnimated(alertController)
         }
     }
 
