@@ -37,6 +37,7 @@ class AppDiscoveryViewController: UIViewController {
 
     let tableView: UITableView = {
         let t = UITableView()
+        t.tableFooterView = UIView()
         t.separatorStyle = .none
         t.register(class: EcosystemIntroTableViewCell.self)
         t.register(class: EcosystemAppCategoryTableViewCell.self)
@@ -68,16 +69,23 @@ class AppDiscoveryViewController: UIViewController {
         super.viewDidAppear(animated)
 
         showAppDiscoveryIntroIfNeeded()
+        Events.Analytics.ViewExplorePage().send()
     }
 
     private func render(result: FetchResult<[EcosystemAppCategory]>) {
         switch result {
-        case .none(let error): renderEmpty(error)
+        case .none(let error):
+            if categories.isNilOrEmpty {
+                renderEmpty(error)
+            }
         case .some(let categories): renderCategories(categories)
         }
     }
 
     private func renderCategories(_ categories: [EcosystemAppCategory]) {
+        children
+            .compactMap { $0 as? NoticeViewController }
+            .forEach { $0.remove() }
         self.categories = categories
         tableView.reloadData()
     }
@@ -99,8 +107,15 @@ class AppDiscoveryViewController: UIViewController {
     }
 
     private func renderEmpty(_ error: Error?) {
-        //TODO: handle empty
-        //TODO: handle error
+        let noticeContent: NoticeContent
+
+        if let error = error {
+            noticeContent = .fromError(error)
+        } else {
+            noticeContent = NoticeContent.generalServerError
+        }
+
+        addNoticeViewController(with: noticeContent)
     }
 }
 
@@ -215,7 +230,8 @@ extension AppDiscoveryViewController: AppCardCellDelegate {
             fatalError(m)
         }
 
-        let app = categories[cell.row].apps[cell.column]
+        let category = categories[cell.row]
+        let app = category.apps[cell.column]
         let url = app.metadata.url
 
         if #available(iOS 10.0, *) {
@@ -223,5 +239,11 @@ extension AppDiscoveryViewController: AppCardCellDelegate {
         } else {
             UIApplication.shared.openURL(url)
         }
+
+        Events.Analytics
+            .ClickGetButtonOnAppItem(appCategory: category.name,
+                                     appId: app.bundleId,
+                                     appName: app.name)
+            .send()
     }
 }

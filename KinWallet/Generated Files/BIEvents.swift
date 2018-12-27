@@ -2,7 +2,7 @@
 // BIEvents.swift
 //
 // Don't edit this file.
-// Generated at 2018-11-21 14:03:57 +0000 by Kik BI-Generator.
+// Generated at 2018-12-27 13:53:53 +0000 by Kik BI-Generator.
 //
 
 protocol BIEvent {
@@ -91,6 +91,7 @@ struct Events {
     enum TransactionType: String { 
         case earn = "earn"
         case p2p = "p2p"
+        case send = "send"
         case spend = "spend"
     }
     
@@ -154,136 +155,6 @@ struct Events {
     }
     
     
-    struct Log { 
-        /// An error occurred while updating the user's balance using the client blockchain sdk (on app launch, after task completion, after purchase). Event name: `balance_update_failed`
-        struct BalanceUpdateFailed: BIEvent {
-            let name = "balance_update_failed"
-            let failureReason: String
-            
-            var properties: [String: Any] {
-                return [
-                        "event_type": "log",
-                        
-                        
-                        "failure_reason": failureReason, 
-                        ]
-            }
-        } 
-        /// An error occured while creating the stellar account or when funding it with lumens. Event name: `stellar_account_creation_failed`
-        struct StellarAccountCreationFailed: BIEvent {
-            let name = "stellar_account_creation_failed"
-            let failureReason: String
-            
-            var properties: [String: Any] {
-                return [
-                        "event_type": "log",
-                        
-                        
-                        "failure_reason": failureReason, 
-                        ]
-            }
-        } 
-        /// Our server created the stellar account successfully and funded it with lumens. Event name: `stellar_account_creation_succeeded`
-        struct StellarAccountCreationSucceeded: BIEvent {
-            let name = "stellar_account_creation_succeeded"
-            
-            var properties: [String: Any] {
-                return [
-                        "event_type": "log",
-                        
-                        ]
-            }
-        } 
-        /// An error occurred while activating the client account using client blockchain sdk. Event name: `stellar_kin_trustline_setup_failed`
-        struct StellarKinTrustlineSetupFailed: BIEvent {
-            let name = "stellar_kin_trustline_setup_failed"
-            let failureReason: String
-            
-            var properties: [String: Any] {
-                return [
-                        "event_type": "log",
-                        
-                        
-                        "failure_reason": failureReason, 
-                        ]
-            }
-        } 
-        /// Client successfully activated the account using client blockchain sdk. Event name: `stellar_kin_trustline_setup_succeeded`
-        struct StellarKinTrustlineSetupSucceeded: BIEvent {
-            let name = "stellar_kin_trustline_setup_succeeded"
-            
-            var properties: [String: Any] {
-                return [
-                        "event_type": "log",
-                        
-                        ]
-            }
-        } 
-        /// User registration failed. Event name: `user_registration_failed`
-        struct UserRegistrationFailed: BIEvent {
-            let name = "user_registration_failed"
-            let failureReason: String
-            
-            var properties: [String: Any] {
-                return [
-                        "event_type": "log",
-                        
-                        
-                        "failure_reason": failureReason, 
-                        ]
-            }
-        } 
-        /// When formatting of the phone inserted by the user when validating fails. Event name: `phone_formatting_failed`
-        struct PhoneFormattingFailed: BIEvent {
-            let name = "phone_formatting_failed"
-            
-            var properties: [String: Any] {
-                return [
-                        "event_type": "log",
-                        
-                        ]
-            }
-        } 
-        /// When server sends the auth token via push, and the client receives it.. Event name: `auth_token_received`
-        struct AuthTokenReceived: BIEvent {
-            let name = "auth_token_received"
-            
-            var properties: [String: Any] {
-                return [
-                        "event_type": "log",
-                        
-                        ]
-            }
-        } 
-        /// When asking the auth token to the server fails.. Event name: `auth_token_ack_failed`
-        struct AuthTokenAckFailed: BIEvent {
-            let name = "auth_token_ack_failed"
-            let failureReason: String
-            
-            var properties: [String: Any] {
-                return [
-                        "event_type": "log",
-                        
-                        
-                        "failure_reason": failureReason, 
-                        ]
-            }
-        } 
-        /// When captcha fails or is cancelled . Event name: `captcha_failed`
-        struct CaptchaFailed: BIEvent {
-            let name = "captcha_failed"
-            let failureReason: String
-            
-            var properties: [String: Any] {
-                return [
-                        "event_type": "log",
-                        
-                        
-                        "failure_reason": failureReason, 
-                        ]
-            }
-        } 
-    } 
     struct Business { 
         /// user completes a task (e.g. answered all questionnaire's Qs). Event name: `earning_task_completed`
         struct EarningTaskCompleted: BIEvent {
@@ -498,6 +369,26 @@ struct Events {
                         ]
             }
         } 
+        /// user successfully sent Kin to another app. Event name: `cross_app_KIN_sent`
+        struct CrossAppKinSent: BIEvent {
+            let name = "cross_app_KIN_sent"
+            let appCategory: String
+            let appId: String
+            let appName: String
+            let kinAmount: Float
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "business",
+                        
+                        
+                        "app_category": appCategory,
+                        "app_id": appId,
+                        "app_name": appName,
+                        "KIN_amount": kinAmount, 
+                        ]
+            }
+        } 
     } 
     struct Analytics { 
         /// user views splash screen (=app launch). Event name: `view_Splashscreen_page`
@@ -553,9 +444,9 @@ struct Events {
                         "item_name": "Answer",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Question",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "Question",
                         
                         
                         "answer_id": answerId,
@@ -594,9 +485,9 @@ struct Events {
                         "item_name": "Close",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Question",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "Question",
                         
                         
                         "creator": creator,
@@ -629,9 +520,9 @@ struct Events {
                         "item_name": "Close",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Reward",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "Reward",
                         
                         
                         "creator": creator,
@@ -661,9 +552,9 @@ struct Events {
                         "item_name": "Start",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Task",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "Task",
                         
                         
                         "already_started": alreadyStarted,
@@ -693,9 +584,9 @@ struct Events {
                         "item_name": "KIN_Provided",
                         "event_type": "analytics",
                         "item_type": "image",
-                        "parent_name": "Reward",
                         "parent_type": "page",
                         "action": "view",
+                        "parent_name": "Reward",
                         
                         
                         "creator": creator,
@@ -864,9 +755,9 @@ struct Events {
                         "item_name": "Offer",
                         "event_type": "analytics",
                         "item_type": "item",
-                        "parent_name": "Spend",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "Spend",
                         
                         
                         "brand_name": brandName,
@@ -895,9 +786,9 @@ struct Events {
                         "item_name": "Share",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Offer",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "Offer",
                         
                         
                         "brand_name": brandName,
@@ -924,9 +815,9 @@ struct Events {
                         "item_name": "Code",
                         "event_type": "analytics",
                         "item_type": "text",
-                        "parent_name": "Offer",
                         "parent_type": "page",
                         "action": "view",
+                        "parent_name": "Offer",
                         
                         
                         "brand_name": brandName,
@@ -1019,7 +910,7 @@ struct Events {
                         ]
             }
         } 
-        /// user clicks to send Kin to specific app in the ecosystem, from the app page. Event name: `click_Send_button_on_App_page`
+        /// user clicks to send Kin to specific app in the ecosystem, a specific app page. Event name: `click_Send_button_on_App_page`
         struct ClickSendButtonOnAppPage: BIEvent {
             let name = "click_Send_button_on_App_page"
             let appCategory: String
@@ -1032,9 +923,9 @@ struct Events {
                         "item_name": "Send",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "App",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "App",
                         
                         
                         "app_category": appCategory,
@@ -1044,7 +935,7 @@ struct Events {
                         ]
             }
         } 
-        /// user clicks to send Kin to specific app in the ecosystem, from the app item on explore page. Event name: `click_Send_button_on_App_item`
+        /// user clicks to send Kin to specific app in the ecosystem, from the app item (discovery). Event name: `click_Send_button_on_App_item`
         struct ClickSendButtonOnAppItem: BIEvent {
             let name = "click_Send_button_on_App_item"
             let appCategory: String
@@ -1056,9 +947,9 @@ struct Events {
                         "item_name": "Send",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "App",
                         "parent_type": "item",
                         "action": "click",
+                        "parent_name": "App",
                         
                         
                         "app_category": appCategory,
@@ -1067,21 +958,21 @@ struct Events {
                         ]
             }
         } 
-        /// user clicks to read more about an app , from the explore page. Event name: `click_Read_button_on_App_item`
-        struct ClickReadButtonOnAppItem: BIEvent {
-            let name = "click_Read_button_on_App_item"
+        /// user clicks on the discovery page to get the app from the app item (discovery). Event name: `click_Get_button_on_App_item`
+        struct ClickGetButtonOnAppItem: BIEvent {
+            let name = "click_Get_button_on_App_item"
             let appCategory: String
             let appId: String
             let appName: String
             
             var properties: [String: Any] {
                 return [
-                        "item_name": "Read",
+                        "item_name": "Get",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "App",
                         "parent_type": "item",
                         "action": "click",
+                        "parent_name": "App",
                         
                         
                         "app_category": appCategory,
@@ -1090,7 +981,7 @@ struct Events {
                         ]
             }
         } 
-        /// user clicks to get the app from the app store. Event name: `click_Get_button_on_App_page`
+        /// user clicks to get the app from a specific app page. Event name: `click_Get_button_on_App_page`
         struct ClickGetButtonOnAppPage: BIEvent {
             let name = "click_Get_button_on_App_page"
             let appCategory: String
@@ -1103,9 +994,9 @@ struct Events {
                         "item_name": "Get",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "App",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "App",
                         
                         
                         "app_category": appCategory,
@@ -1190,9 +1081,9 @@ struct Events {
                         "item_name": "Reminder",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Locked_Task",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "Locked_Task",
                         
                         ]
             }
@@ -1245,9 +1136,9 @@ struct Events {
                         "item_name": "Retry",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Error",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "Error",
                         
                         
                         "error_type": errorType.rawValue, 
@@ -1264,9 +1155,9 @@ struct Events {
                         "item_name": "Close",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Error",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "Error",
                         
                         
                         "error_type": errorType.rawValue, 
@@ -1302,9 +1193,9 @@ struct Events {
                         "item_name": "Contact",
                         "event_type": "analytics",
                         "item_type": "link",
-                        "parent_name": "Error",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "Error",
                         
                         
                         "error_type": errorType.rawValue, 
@@ -1321,9 +1212,9 @@ struct Events {
                         "item_name": "Error",
                         "event_type": "analytics",
                         "item_type": "popup",
-                        "parent_name": "Offer",
                         "parent_type": "page",
                         "action": "view",
+                        "parent_name": "Offer",
                         
                         
                         "error_type": errorType.rawValue, 
@@ -1340,9 +1231,9 @@ struct Events {
                         "item_name": "OK",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Error",
                         "parent_type": "popup",
                         "action": "click",
+                        "parent_name": "Error",
                         
                         
                         "error_type": errorType.rawValue, 
@@ -1359,9 +1250,9 @@ struct Events {
                         "item_name": "Start",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Onboarding",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "Onboarding",
                         
                         
                         "onboarding_tutorial_page": onboardingTutorialPage, 
@@ -1408,9 +1299,9 @@ struct Events {
                         "item_name": "Next",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Phone_Auth",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "Phone_Auth",
                         
                         ]
             }
@@ -1438,9 +1329,9 @@ struct Events {
                         "item_name": "Error",
                         "event_type": "analytics",
                         "item_type": "message",
-                        "parent_name": "Verification",
                         "parent_type": "page",
                         "action": "view",
+                        "parent_name": "Verification",
                         
                         ]
             }
@@ -1469,9 +1360,9 @@ struct Events {
                         "item_name": "New_Code",
                         "event_type": "analytics",
                         "item_type": "link",
-                        "parent_name": "Verification",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "Verification",
                         
                         
                         "verification_code_count": verificationCodeCount, 
@@ -1501,9 +1392,9 @@ struct Events {
                         "item_name": "Verify",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Phone_Auth",
                         "parent_type": "popup",
                         "action": "click",
+                        "parent_name": "Phone_Auth",
                         
                         ]
             }
@@ -1532,9 +1423,9 @@ struct Events {
                         "item_name": "Send",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Send_Kin",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "Send_Kin",
                         
                         
                         "KIN_amount": kinAmount, 
@@ -1551,9 +1442,9 @@ struct Events {
                         "item_name": "Success",
                         "event_type": "analytics",
                         "item_type": "message",
-                        "parent_name": "Send_Kin",
                         "parent_type": "page",
                         "action": "view",
+                        "parent_name": "Send_Kin",
                         
                         
                         "KIN_amount": kinAmount, 
@@ -1570,9 +1461,9 @@ struct Events {
                         "item_name": "Error",
                         "event_type": "analytics",
                         "item_type": "popup",
-                        "parent_name": "Send_Kin",
                         "parent_type": "page",
                         "action": "view",
+                        "parent_name": "Send_Kin",
                         
                         
                         "error_type": errorType.rawValue, 
@@ -1603,9 +1494,9 @@ struct Events {
                         "item_name": "Play",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Video",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "Video",
                         
                         
                         "video_title": videoTitle, 
@@ -1635,9 +1526,9 @@ struct Events {
                         "item_name": "Backup",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Backup_Intro",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "Backup_Intro",
                         
                         ]
             }
@@ -1669,9 +1560,9 @@ struct Events {
                         "item_name": "Completed_Step",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Backup_Flow",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "Backup_Flow",
                         
                         
                         "backup_flow_step": backupFlowStep.rawValue, 
@@ -1719,9 +1610,9 @@ struct Events {
                         "item_name": "Backup",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Backup_Notification",
                         "parent_type": "popup",
                         "action": "click",
+                        "parent_name": "Backup_Notification",
                         
                         
                         "backup_notification_type": backupNotificationType.rawValue, 
@@ -1751,9 +1642,9 @@ struct Events {
                         "item_name": "Restore_Wallet",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Welcome_Back",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "Welcome_Back",
                         
                         ]
             }
@@ -1767,9 +1658,9 @@ struct Events {
                         "item_name": "Create_New_Wallet",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Welcome_Back",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "Welcome_Back",
                         
                         ]
             }
@@ -1797,9 +1688,9 @@ struct Events {
                         "item_name": "Scan",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Scan",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "Scan",
                         
                         ]
             }
@@ -1827,9 +1718,9 @@ struct Events {
                         "item_name": "Confirm",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Answer_Security_Questions",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "Answer_Security_Questions",
                         
                         ]
             }
@@ -1872,9 +1763,9 @@ struct Events {
                         "item_name": "Backup",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "More",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "More",
                         
                         
                         "already_backed_up": alreadyBackedUp.rawValue, 
@@ -1940,9 +1831,9 @@ struct Events {
                         "item_name": "Page_Helpful",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "FAQ",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "FAQ",
                         
                         
                         "FAQ_category": faqCategory,
@@ -1995,9 +1886,9 @@ struct Events {
                         "item_name": "Link",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Campaign",
                         "parent_type": "popup",
                         "action": "click",
+                        "parent_name": "Campaign",
                         
                         
                         "campaign_name": campaignName,
@@ -2029,12 +1920,29 @@ struct Events {
                         "item_name": "Category",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Task_Categories",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "Task_Categories",
                         
                         
                         "task_category": taskCategory, 
+                        ]
+            }
+        } 
+        /// User views Learn More page about any topic (event can be triggered for any Learn page we will have). Event name: `view_Learn_More_page`
+        struct ViewLearnMorePage: BIEvent {
+            let name = "view_Learn_More_page"
+            let pageContent: String
+            
+            var properties: [String: Any] {
+                return [
+                        "item_name": "Learn_More",
+                        "event_type": "analytics",
+                        "item_type": "page",
+                        "action": "view",
+                        
+                        
+                        "page_content": pageContent, 
                         ]
             }
         } 
@@ -2053,9 +1961,9 @@ struct Events {
                         "item_name": "Buy",
                         "event_type": "analytics",
                         "item_type": "button",
-                        "parent_name": "Offer",
                         "parent_type": "page",
                         "action": "click",
+                        "parent_name": "Offer",
                         
                         
                         "brand_name": brandName,
@@ -2064,6 +1972,136 @@ struct Events {
                         "offer_id": offerId,
                         "offer_name": offerName,
                         "offer_type": offerType, 
+                        ]
+            }
+        } 
+    } 
+    struct Log { 
+        /// An error occurred while updating the user's balance using the client blockchain sdk (on app launch, after task completion, after purchase). Event name: `balance_update_failed`
+        struct BalanceUpdateFailed: BIEvent {
+            let name = "balance_update_failed"
+            let failureReason: String
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
+                        
+                        "failure_reason": failureReason, 
+                        ]
+            }
+        } 
+        /// An error occured while creating the stellar account or when funding it with lumens. Event name: `stellar_account_creation_failed`
+        struct StellarAccountCreationFailed: BIEvent {
+            let name = "stellar_account_creation_failed"
+            let failureReason: String
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
+                        
+                        "failure_reason": failureReason, 
+                        ]
+            }
+        } 
+        /// Our server created the stellar account successfully and funded it with lumens. Event name: `stellar_account_creation_succeeded`
+        struct StellarAccountCreationSucceeded: BIEvent {
+            let name = "stellar_account_creation_succeeded"
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
+                        ]
+            }
+        } 
+        /// An error occurred while activating the client account using client blockchain sdk. Event name: `stellar_kin_trustline_setup_failed`
+        struct StellarKinTrustlineSetupFailed: BIEvent {
+            let name = "stellar_kin_trustline_setup_failed"
+            let failureReason: String
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
+                        
+                        "failure_reason": failureReason, 
+                        ]
+            }
+        } 
+        /// Client successfully activated the account using client blockchain sdk. Event name: `stellar_kin_trustline_setup_succeeded`
+        struct StellarKinTrustlineSetupSucceeded: BIEvent {
+            let name = "stellar_kin_trustline_setup_succeeded"
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
+                        ]
+            }
+        } 
+        /// User registration failed. Event name: `user_registration_failed`
+        struct UserRegistrationFailed: BIEvent {
+            let name = "user_registration_failed"
+            let failureReason: String
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
+                        
+                        "failure_reason": failureReason, 
+                        ]
+            }
+        } 
+        /// When formatting of the phone inserted by the user when validating fails. Event name: `phone_formatting_failed`
+        struct PhoneFormattingFailed: BIEvent {
+            let name = "phone_formatting_failed"
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
+                        ]
+            }
+        } 
+        /// When server sends the auth token via push, and the client receives it.. Event name: `auth_token_received`
+        struct AuthTokenReceived: BIEvent {
+            let name = "auth_token_received"
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
+                        ]
+            }
+        } 
+        /// When asking the auth token to the server fails.. Event name: `auth_token_ack_failed`
+        struct AuthTokenAckFailed: BIEvent {
+            let name = "auth_token_ack_failed"
+            let failureReason: String
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
+                        
+                        "failure_reason": failureReason, 
+                        ]
+            }
+        } 
+        /// When captcha fails or is cancelled . Event name: `captcha_failed`
+        struct CaptchaFailed: BIEvent {
+            let name = "captcha_failed"
+            let failureReason: String
+            
+            var properties: [String: Any] {
+                return [
+                        "event_type": "log",
+                        
+                        
+                        "failure_reason": failureReason, 
                         ]
             }
         } 

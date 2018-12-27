@@ -117,6 +117,13 @@ class AppPageViewController: UIViewController {
         } else {
             UIApplication.shared.openURL(url)
         }
+
+        Events.Analytics
+            .ClickGetButtonOnAppPage(appCategory: appCategoryName,
+                                     appId: app.bundleId,
+                                     appName: app.name,
+                                     transferReady: false)
+            .send()
     }
 }
 
