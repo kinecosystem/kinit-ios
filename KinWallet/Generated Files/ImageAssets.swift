@@ -31,6 +31,8 @@ internal enum Asset {
   internal static let doneFireworks = ImageAsset(name: "DoneFireworks")
   internal static let doneSign = ImageAsset(name: "DoneSign")
   internal static let dualImageSeparator = ImageAsset(name: "DualImageSeparator")
+  internal static let ecosystemIntroPopup = ImageAsset(name: "EcosystemIntroPopup")
+  internal static let ecosystemLearnMoreIllustrationCard = ImageAsset(name: "EcosystemLearnMoreIllustrationCard")
   internal static let emailAlert = ImageAsset(name: "EmailAlert")
   internal static let emptyHistoryCoupon = ImageAsset(name: "EmptyHistoryCoupon")
   internal static let errorSign = ImageAsset(name: "ErrorSign")

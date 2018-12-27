@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="235" id="KGk-i7-Jjw" customClass="EcosystemFooterTableViewCell" customModule="KinWallet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="230"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="229.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uLF-dM-kKS">
+                        <rect key="frame" x="0.0" y="139" width="375" height="90.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More apps coming soon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMD-MO-heW">
+                                <rect key="frame" x="95.5" y="35" width="184" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hMD-MO-heW" firstAttribute="centerX" secondItem="uLF-dM-kKS" secondAttribute="centerX" id="EUk-TA-Kc1"/>
+                            <constraint firstItem="hMD-MO-heW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uLF-dM-kKS" secondAttribute="top" constant="8" id="KcL-Zn-oyH"/>
+                            <constraint firstItem="hMD-MO-heW" firstAttribute="centerY" secondItem="uLF-dM-kKS" secondAttribute="centerY" id="c1W-Hf-2Ez"/>
+                            <constraint firstItem="hMD-MO-heW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uLF-dM-kKS" secondAttribute="leading" constant="8" id="eQJ-PT-X5C"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EcosystemLearnMoreIllustrationCard" translatesAutoresizingMaskIntoConstraints="NO" id="p0L-A3-dgB">
+                        <rect key="frame" x="26.5" y="11" width="322" height="128"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="322" id="YLE-yR-OWi"/>
+                            <constraint firstAttribute="width" secondItem="p0L-A3-dgB" secondAttribute="height" multiplier="161:64" id="tz7-4Y-aMB"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="KcL-Fv-Pla">
+                        <rect key="frame" x="42.5" y="27" width="290" height="48"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="uLF-dM-kKS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="05K-n4-Y5Q"/>
+                    <constraint firstItem="p0L-A3-dgB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="2Xu-ai-hyk"/>
+                    <constraint firstItem="KcL-Fv-Pla" firstAttribute="top" secondItem="p0L-A3-dgB" secondAttribute="top" constant="16" id="3on-uq-Fke"/>
+                    <constraint firstAttribute="trailing" secondItem="uLF-dM-kKS" secondAttribute="trailing" id="7BK-Ib-Phb"/>
+                    <constraint firstItem="p0L-A3-dgB" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="7pa-sJ-4TD"/>
+                    <constraint firstItem="p0L-A3-dgB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="QFU-r4-kxy"/>
+                    <constraint firstAttribute="bottom" secondItem="uLF-dM-kKS" secondAttribute="bottom" id="X7g-uG-6Tv"/>
+                    <constraint firstItem="KcL-Fv-Pla" firstAttribute="trailing" secondItem="p0L-A3-dgB" secondAttribute="trailing" constant="-16" id="lLs-EQ-THU"/>
+                    <constraint firstItem="uLF-dM-kKS" firstAttribute="top" secondItem="p0L-A3-dgB" secondAttribute="bottom" id="vIC-us-6XE"/>
+                    <constraint firstItem="KcL-Fv-Pla" firstAttribute="leading" secondItem="p0L-A3-dgB" secondAttribute="leading" constant="16" id="wNr-QQ-EJy"/>
+                    <constraint firstItem="KcL-Fv-Pla" firstAttribute="height" secondItem="p0L-A3-dgB" secondAttribute="height" multiplier="0.5" constant="-16" id="xD0-cs-tw5"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="explanationLabel" destination="KcL-Fv-Pla" id="UmA-KY-vz9"/>
+                <outlet property="illustrationImageView" destination="p0L-A3-dgB" id="A2C-Pk-FQm"/>
+                <outlet property="moreAppsSoonLabel" destination="hMD-MO-heW" id="pgX-GP-p1G"/>
+            </connections>
+            <point key="canvasLocation" x="128.80000000000001" y="204.19790104947529"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="EcosystemLearnMoreIllustrationCard" width="322" height="128"/>
+    </resources>
+</document>

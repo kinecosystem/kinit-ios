@@ -412,9 +412,13 @@
 
 "GetAppShort" = "GET";
 
-"AppEcosystem.Title" = "Introducing Kin Ecosystem apps";
+"AppDiscovery.Header.Title" = "Introducing Kin Ecosystem apps";
 
-"AppEcosystem.Subtitle" = "Discover all the amazing apps where you can  use Kin.";
+"AppDiscovery.Header.Subtitle" = "Discover all the amazing apps where you can use Kin.";
+
+"AppDiscovery.Footer.Title" = "Coming soon: a new way to use Kin across the ecosystem";
+
+"AppDiscovery.Footer.Subtitle" = "More apps are coming soon";
 
 "AppPage.AboutApp" = "About %@";
 

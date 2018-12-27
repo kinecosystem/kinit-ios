@@ -377,11 +377,19 @@ internal enum L10n {
     internal static let title = L10n.tr("Localizable", "ActivityDone.Title")
   }
 
-  internal enum AppEcosystem {
-    /// Discover all the amazing apps where you can  use Kin.
-    internal static let subtitle = L10n.tr("Localizable", "AppEcosystem.Subtitle")
-    /// Introducing Kin Ecosystem apps
-    internal static let title = L10n.tr("Localizable", "AppEcosystem.Title")
+  internal enum AppDiscovery {
+    internal enum Footer {
+      /// More apps are coming soon
+      internal static let subtitle = L10n.tr("Localizable", "AppDiscovery.Footer.Subtitle")
+      /// Coming soon: a new way to use Kin across the ecosystem
+      internal static let title = L10n.tr("Localizable", "AppDiscovery.Footer.Title")
+    }
+    internal enum Header {
+      /// Discover all the amazing apps where you can use Kin.
+      internal static let subtitle = L10n.tr("Localizable", "AppDiscovery.Header.Subtitle")
+      /// Introducing Kin Ecosystem apps
+      internal static let title = L10n.tr("Localizable", "AppDiscovery.Header.Title")
+    }
   }
 
   internal enum AppPage {

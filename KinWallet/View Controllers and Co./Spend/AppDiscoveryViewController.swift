@@ -19,7 +19,10 @@ extension AppDiscoveryTableSections {
         switch self {
         case .intro: return 120
         case .categories: return 340
-        case .footer: return 220
+        case .footer:
+            let scale: CGFloat = 0.6
+            let width = UIScreen.main.bounds.width * scale
+            return min(width, 230)
         }
     }
 }
@@ -32,9 +35,10 @@ class AppDiscoveryViewController: UIViewController {
 
     let tableView: UITableView = {
         let t = UITableView()
+        t.separatorStyle = .none
         t.register(class: EcosystemIntroTableViewCell.self)
         t.register(class: EcosystemAppCategoryTableViewCell.self)
-        t.register(class: EcosystemFooterTableViewCell.self)
+        t.register(nib: EcosystemFooterTableViewCell.self)
         t.translatesAutoresizingMaskIntoConstraints = false
         t.allowsSelection = false
 

@@ -182,6 +182,15 @@
 		913C9C8821D3E5DE00B855BC /* SendKinToAppUnavailableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C8721D3E5DE00B855BC /* SendKinToAppUnavailableTableViewCell.swift */; };
 		913C9C8921D3E5DE00B855BC /* SendKinToAppUnavailableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C8721D3E5DE00B855BC /* SendKinToAppUnavailableTableViewCell.swift */; };
 		913C9C8A21D3E5DE00B855BC /* SendKinToAppUnavailableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C8721D3E5DE00B855BC /* SendKinToAppUnavailableTableViewCell.swift */; };
+		913C9C8C21D4CE8A00B855BC /* EcosystemAppCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C8B21D4CE8A00B855BC /* EcosystemAppCategoryTableViewCell.swift */; };
+		913C9C8D21D4CE8A00B855BC /* EcosystemAppCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C8B21D4CE8A00B855BC /* EcosystemAppCategoryTableViewCell.swift */; };
+		913C9C8E21D4CE8A00B855BC /* EcosystemAppCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C8B21D4CE8A00B855BC /* EcosystemAppCategoryTableViewCell.swift */; };
+		913C9C9121D4D05500B855BC /* EcosystemFooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C8F21D4D05500B855BC /* EcosystemFooterTableViewCell.swift */; };
+		913C9C9221D4D05500B855BC /* EcosystemFooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C8F21D4D05500B855BC /* EcosystemFooterTableViewCell.swift */; };
+		913C9C9321D4D05500B855BC /* EcosystemFooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C8F21D4D05500B855BC /* EcosystemFooterTableViewCell.swift */; };
+		913C9C9421D4D05500B855BC /* EcosystemFooterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 913C9C9021D4D05500B855BC /* EcosystemFooterTableViewCell.xib */; };
+		913C9C9521D4D05500B855BC /* EcosystemFooterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 913C9C9021D4D05500B855BC /* EcosystemFooterTableViewCell.xib */; };
+		913C9C9621D4D05500B855BC /* EcosystemFooterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 913C9C9021D4D05500B855BC /* EcosystemFooterTableViewCell.xib */; };
 		9140132E20162FA90066367C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140132D20162FA90066367C /* AppDelegate.swift */; };
 		9140133520162FA90066367C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9140133320162FA90066367C /* Main.storyboard */; };
 		9140133720162FA90066367C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9140133620162FA90066367C /* Assets.xcassets */; };
@@ -877,6 +886,9 @@
 		913C9C7421D39AEB00B855BC /* EcosystemAppTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcosystemAppTextCell.swift; sourceTree = "<group>"; };
 		913C9C7C21D3B5C200B855BC /* AppPageImagesHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPageImagesHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		913C9C8721D3E5DE00B855BC /* SendKinToAppUnavailableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendKinToAppUnavailableTableViewCell.swift; sourceTree = "<group>"; };
+		913C9C8B21D4CE8A00B855BC /* EcosystemAppCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcosystemAppCategoryTableViewCell.swift; sourceTree = "<group>"; };
+		913C9C8F21D4D05500B855BC /* EcosystemFooterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcosystemFooterTableViewCell.swift; sourceTree = "<group>"; };
+		913C9C9021D4D05500B855BC /* EcosystemFooterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EcosystemFooterTableViewCell.xib; sourceTree = "<group>"; };
 		9140132A20162FA90066367C /* KinWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KinWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9140132D20162FA90066367C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9140133420162FA90066367C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -1804,11 +1816,14 @@
 				91FF14D421203BC70098470D /* MoreTableViewCell.swift */,
 				9152E5E8212D505300802040 /* RestoreBackupCells.swift */,
 				913C9C4C21D25F9500B855BC /* EcosystemIntroTableViewCell.swift */,
+				913C9C8B21D4CE8A00B855BC /* EcosystemAppCategoryTableViewCell.swift */,
 				913C9C6821D3879D00B855BC /* AppBasicInfoTableViewCell.swift */,
 				913C9C6921D3879D00B855BC /* AppBasicInfoTableViewCell.xib */,
 				913C9C7421D39AEB00B855BC /* EcosystemAppTextCell.swift */,
 				913C9C7C21D3B5C200B855BC /* AppPageImagesHeaderTableViewCell.swift */,
 				913C9C8721D3E5DE00B855BC /* SendKinToAppUnavailableTableViewCell.swift */,
+				913C9C8F21D4D05500B855BC /* EcosystemFooterTableViewCell.swift */,
+				913C9C9021D4D05500B855BC /* EcosystemFooterTableViewCell.xib */,
 			);
 			path = UITableViewCell;
 			sourceTree = "<group>";
@@ -2081,6 +2096,7 @@
 				9120CA7B2060118C00AFC597 /* upload-dsym.sh in Resources */,
 				91E84A512085ED3000E8B7A6 /* EmptyStateView.xib in Resources */,
 				91E6B656203C69A90080C2FC /* api.amplitude.com.der in Resources */,
+				913C9C9421D4D05500B855BC /* EcosystemFooterTableViewCell.xib in Resources */,
 				9140133A20162FA90066367C /* LaunchScreen.storyboard in Resources */,
 				9140133720162FA90066367C /* Assets.xcassets in Resources */,
 				915F497B204452CC005C09B3 /* CirclesLoader.json in Resources */,
@@ -2128,6 +2144,7 @@
 				9182C29E203C6C0C0051F003 /* ComodoRsaDomainValidationCA.der in Resources */,
 				91FE7F0E20FB745200EDFB67 /* Localizable.strings in Resources */,
 				9182C29D203C6C0C0051F003 /* api.amplitude.com.der in Resources */,
+				913C9C9521D4D05500B855BC /* EcosystemFooterTableViewCell.xib in Resources */,
 				91E84A762086186B00E8B7A6 /* ButtonCell.xib in Resources */,
 				914013A02018B87E0066367C /* InitialTasks.json in Resources */,
 				914013BB2018C68B0066367C /* Earn.storyboard in Resources */,
@@ -2170,6 +2187,7 @@
 				91AE22DA21761E060024B8BF /* TaskCategoryTitleView.xib in Resources */,
 				91B4454920909C5400ED6802 /* TutorialPageView.xib in Resources */,
 				91A4276F2129C7BD0078B589 /* Onboard.storyboard in Resources */,
+				913C9C9621D4D05500B855BC /* EcosystemFooterTableViewCell.xib in Resources */,
 				916ACCFA20F1FFEF00756EBC /* DualImageQuestionSeparatorView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2498,6 +2516,7 @@
 				913C9C3521CFBD9A00B855BC /* EcosystemApp.swift in Sources */,
 				82A12DEC2056B841008841F2 /* Configuration.swift in Sources */,
 				91F69D30208379F400F06181 /* SegmentedPagerTabStripViewController.swift in Sources */,
+				913C9C9121D4D05500B855BC /* EcosystemFooterTableViewCell.swift in Sources */,
 				91FA4A0D212AB75C00513E1D /* QRCodeScannerViewController.swift in Sources */,
 				9198A2A02062926D0052F343 /* NotificationHandler.swift in Sources */,
 				9152E5E9212D505300802040 /* RestoreBackupCells.swift in Sources */,
@@ -2513,6 +2532,7 @@
 				91F69D38208379F400F06181 /* SwipeDirection.swift in Sources */,
 				91F69D3A208379F400F06181 /* PagerTabStripBehaviour.swift in Sources */,
 				91B0667520C6CD0100CE69A7 /* SendKinOfferActionViewController.swift in Sources */,
+				913C9C8C21D4CE8A00B855BC /* EcosystemAppCategoryTableViewCell.swift in Sources */,
 				91401380201755DF0066367C /* AppDelegate+Extensions.swift in Sources */,
 				9157F98F204D589100351E2A /* Offer.swift in Sources */,
 				91B0668220C9631100CE69A7 /* UIApplication+KinWallet.swift in Sources */,
@@ -2700,6 +2720,7 @@
 				913C9C3621CFBD9A00B855BC /* EcosystemApp.swift in Sources */,
 				91B575C32046C48B00AC3E04 /* UIButton+KinWallet.swift in Sources */,
 				91D7C032204F11D200D35401 /* KinAmountLabel.swift in Sources */,
+				913C9C9221D4D05500B855BC /* EcosystemFooterTableViewCell.swift in Sources */,
 				9152E5EA212D505300802040 /* RestoreBackupCells.swift in Sources */,
 				9182C2A7203C6C0C0051F003 /* Amplitude.m in Sources */,
 				9140139A201892640066367C /* AnswerTests.swift in Sources */,
@@ -2715,6 +2736,7 @@
 				9140138720187CE90066367C /* Question.swift in Sources */,
 				9131A0C5212C084A000203DC /* AccountSourceViewController.swift in Sources */,
 				91E84ABC20862E6E00E8B7A6 /* RedeemTransactionCollectionViewCell.swift in Sources */,
+				913C9C8D21D4CE8A00B855BC /* EcosystemAppCategoryTableViewCell.swift in Sources */,
 				91B0667A20C8177100CE69A7 /* KinSentViewController.swift in Sources */,
 				9152E5EE212D6C3300802040 /* UIBarButtonItem.swift in Sources */,
 				91B4454C2090A91E00ED6802 /* WelcomeViewController.swift in Sources */,
@@ -2780,6 +2802,7 @@
 				91E84A6D2086185000E8B7A6 /* AppDelegate.swift in Sources */,
 				828CB41E2056E970007C679C /* UIView+KinWallet.swift in Sources */,
 				91AE200B21760D2D0024B8BF /* TaskCategoryViewController.swift in Sources */,
+				913C9C9321D4D05500B855BC /* EcosystemFooterTableViewCell.swift in Sources */,
 				91E84A6F2086186300E8B7A6 /* BarPagerTabStripViewController.swift in Sources */,
 				91FF14DB212057550098470D /* BackupDoneViewController.swift in Sources */,
 				91AE230121775E980024B8BF /* TaskLoader.swift in Sources */,
@@ -2857,6 +2880,7 @@
 				828CB43E2056E9F6007C679C /* NibLoadableView.swift in Sources */,
 				91E84A832086186B00E8B7A6 /* PagerTabStripBehaviour.swift in Sources */,
 				91E84A662086182100E8B7A6 /* SurveyUnavailableViewController.swift in Sources */,
+				913C9C8E21D4CE8A00B855BC /* EcosystemAppCategoryTableViewCell.swift in Sources */,
 				91B0668420C9631100CE69A7 /* UIApplication+KinWallet.swift in Sources */,
 				828CB4482056EA42007C679C /* Bundle+Extensions.swift in Sources */,
 				91E5C6A220B5D20C0024BAA5 /* Sourcery.swift in Sources */,
