@@ -43,7 +43,6 @@ class AppDiscoveryViewController: UIViewController {
         t.register(class: EcosystemAppCategoryTableViewCell.self)
         t.register(nib: EcosystemFooterTableViewCell.self)
         t.translatesAutoresizingMaskIntoConstraints = false
-        t.allowsSelection = false
 
         return t
     }()
@@ -171,6 +170,15 @@ extension AppDiscoveryViewController: UITableViewDelegate {
         }
 
         return section.rowHeight
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard indexPath.section == AppDiscoveryTableSections.footer.rawValue else {
+            return
+        }
+
+        let comingSoonViewController = AppDiscoveryComingSoonViewController()
+        presentAnimated(comingSoonViewController)
     }
 }
 

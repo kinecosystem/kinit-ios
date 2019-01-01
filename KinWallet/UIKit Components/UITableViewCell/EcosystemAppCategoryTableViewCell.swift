@@ -68,6 +68,8 @@ class EcosystemAppCategoryTableViewCell: UITableViewCell {
     }
 
     private func commonInit() {
+        selectionStyle = .none
+
         contentView.addSubview(titleLabel)
         contentView.addSubview(collectionView)
         contentView.addSubview(customSeparator)

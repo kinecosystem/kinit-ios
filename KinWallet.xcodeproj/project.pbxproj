@@ -132,6 +132,9 @@
 		9131A0BD212C055F000203DC /* RestoreBackupQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9131A0BA212C055F000203DC /* RestoreBackupQuestionsViewController.swift */; };
 		9131A0C5212C084A000203DC /* AccountSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A427572129AF710078B589 /* AccountSourceViewController.swift */; };
 		9131A0C6212C084B000203DC /* AccountSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A427572129AF710078B589 /* AccountSourceViewController.swift */; };
+		913596B121DA67E300578718 /* AppDiscoveryComingSoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913596B021DA67E300578718 /* AppDiscoveryComingSoonViewController.swift */; };
+		913596B221DA67E300578718 /* AppDiscoveryComingSoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913596B021DA67E300578718 /* AppDiscoveryComingSoonViewController.swift */; };
+		913596B321DA67E300578718 /* AppDiscoveryComingSoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913596B021DA67E300578718 /* AppDiscoveryComingSoonViewController.swift */; };
 		91379A45211744D1002D3EF5 /* BackupIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91379A44211744D1002D3EF5 /* BackupIntroViewController.swift */; };
 		91379A4821174AE1002D3EF5 /* Backup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91379A4621174AE1002D3EF5 /* Backup.storyboard */; };
 		9138BBE1204EE21E00450C97 /* OfferDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9138BBE0204EE21E00450C97 /* OfferDetailsViewController.swift */; };
@@ -866,6 +869,7 @@
 		9120CA85206011E600AFC597 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		91311C4C204FDB4400618240 /* Optional+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+KinWallet.swift"; sourceTree = "<group>"; };
 		9131A0BA212C055F000203DC /* RestoreBackupQuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreBackupQuestionsViewController.swift; sourceTree = "<group>"; };
+		913596B021DA67E300578718 /* AppDiscoveryComingSoonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDiscoveryComingSoonViewController.swift; sourceTree = "<group>"; };
 		91379A44211744D1002D3EF5 /* BackupIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupIntroViewController.swift; sourceTree = "<group>"; };
 		91379A4721174AE1002D3EF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Backup.storyboard; sourceTree = "<group>"; };
 		9138BBE0204EE21E00450C97 /* OfferDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailsViewController.swift; sourceTree = "<group>"; };
@@ -1506,6 +1510,7 @@
 				91B0667620C7E47D00CE69A7 /* SendKinViewController.swift */,
 				91B0667820C8177100CE69A7 /* KinSentViewController.swift */,
 				913C9C4321D0DAC500B855BC /* AppDiscoveryViewController.swift */,
+				913596B021DA67E300578718 /* AppDiscoveryComingSoonViewController.swift */,
 				913C9C6421D37A8500B855BC /* AppPageViewController.swift */,
 			);
 			path = Spend;
@@ -2532,6 +2537,7 @@
 				91F69D38208379F400F06181 /* SwipeDirection.swift in Sources */,
 				91F69D3A208379F400F06181 /* PagerTabStripBehaviour.swift in Sources */,
 				91B0667520C6CD0100CE69A7 /* SendKinOfferActionViewController.swift in Sources */,
+				913596B121DA67E300578718 /* AppDiscoveryComingSoonViewController.swift in Sources */,
 				913C9C8C21D4CE8A00B855BC /* EcosystemAppCategoryTableViewCell.swift in Sources */,
 				91401380201755DF0066367C /* AppDelegate+Extensions.swift in Sources */,
 				9157F98F204D589100351E2A /* Offer.swift in Sources */,
@@ -2736,6 +2742,7 @@
 				9140138720187CE90066367C /* Question.swift in Sources */,
 				9131A0C5212C084A000203DC /* AccountSourceViewController.swift in Sources */,
 				91E84ABC20862E6E00E8B7A6 /* RedeemTransactionCollectionViewCell.swift in Sources */,
+				913596B221DA67E300578718 /* AppDiscoveryComingSoonViewController.swift in Sources */,
 				913C9C8D21D4CE8A00B855BC /* EcosystemAppCategoryTableViewCell.swift in Sources */,
 				91B0667A20C8177100CE69A7 /* KinSentViewController.swift in Sources */,
 				9152E5EE212D6C3300802040 /* UIBarButtonItem.swift in Sources */,
@@ -2806,6 +2813,7 @@
 				91E84A6F2086186300E8B7A6 /* BarPagerTabStripViewController.swift in Sources */,
 				91FF14DB212057550098470D /* BackupDoneViewController.swift in Sources */,
 				91AE230121775E980024B8BF /* TaskLoader.swift in Sources */,
+				913596B321DA67E300578718 /* AppDiscoveryComingSoonViewController.swift in Sources */,
 				91C42AD920FDDD68001E1C05 /* UIControl+KinWallet.swift in Sources */,
 				91E84AA120862D1000E8B7A6 /* FetchableCollectionViewDataSource.swift in Sources */,
 				913C9C4221CFCFD400B855BC /* SpendKinViewController.swift in Sources */,

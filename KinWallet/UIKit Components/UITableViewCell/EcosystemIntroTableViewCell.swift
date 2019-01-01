@@ -11,6 +11,8 @@ class EcosystemIntroTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
 
+        selectionStyle = .none
+        
         textLabel?.adjustsFontSizeToFitWidth = true
         textLabel?.minimumScaleFactor = 0.5
         textLabel?.text = L10n.AppDiscovery.Header.title

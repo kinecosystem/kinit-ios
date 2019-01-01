@@ -32,6 +32,22 @@ class EcosystemFooterTableViewCell: UITableViewCell {
             illustrationImageView.layer.shadowRadius = 5
         }
     }
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        commonInit()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+
+        commonInit()
+    }
+
+    private func commonInit() {
+        selectionStyle = .none
+    }
 }
 
 extension EcosystemFooterTableViewCell: NibLoadableView {}

@@ -21,8 +21,8 @@ extension AppInfoBasicView {
     func drawAppInformation(_ app: EcosystemApp, category: String?) {
         let cardImageURL = app.metadata.cardImageURL.kinImagePathAdjustedForDevice()
         let appIconImageURL = app.metadata.iconURL.kinImagePathAdjustedForDevice()
-        bannerImageView?.loadImage(url: cardImageURL, placeholderColor: .gray)
-        iconImageView?.loadImage(url: appIconImageURL, placeholderColor: .gray)
+        bannerImageView?.loadImage(url: cardImageURL, placeholderColor: UIColor.kin.lightGray)
+        iconImageView?.loadImage(url: appIconImageURL, placeholderColor: UIColor.kin.lightGray)
         titleLabel?.text = app.name
         subtitleLabel?.text = app.metadata.shortDescription
         categoryLabel?.text = category
