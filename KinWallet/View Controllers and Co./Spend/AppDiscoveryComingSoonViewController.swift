@@ -18,6 +18,14 @@ class AppDiscoveryComingSoonViewController: WebViewController {
         loadURL(url)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        Events.Analytics
+            .ViewLearnMorePage(pageContent: .sendKinComingSoon)
+            .send()
+    }
+
     override func setupUserContentController(_ controller: WKUserContentController) {
         controller.add(self, name: closePageMessageName)
     }
