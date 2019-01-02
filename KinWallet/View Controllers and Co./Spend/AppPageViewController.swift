@@ -105,6 +105,17 @@ class AppPageViewController: UIViewController {
         self.view = v
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        Events.Analytics
+            .ViewAppPage(appCategory: appCategoryName,
+                         appId: app.bundleId,
+                         appName: app.name,
+                         transferReady: false)
+            .send()
+    }
+
     @objc func dismissTapped() {
         dismissAnimated()
     }
