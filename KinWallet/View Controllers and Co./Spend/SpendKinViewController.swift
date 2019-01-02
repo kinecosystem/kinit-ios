@@ -42,7 +42,7 @@ class UseKinPagerTabViewController: ButtonBarPagerTabStripViewController {
     }
 
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        return [StoryboardScene.Spend.offerWallViewController.instantiate(),
-                AppDiscoveryViewController()]
+        return [AppDiscoveryViewController(),
+                StoryboardScene.Spend.offerWallViewController.instantiate()]
     }
 }
