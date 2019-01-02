@@ -311,14 +311,14 @@ extension TaskCompletedViewController {
     fileprivate func logEarnTransactionTimeout() {
         Events.Business
             .KINTransactionFailed(failureReason: "Timeout",
-                                  kinAmount: Float(task.kinReward),
+                                  kinAmount: Int(task.kinReward),
                                   transactionType: .earn)
             .send()
     }
 
     fileprivate func logEarnTransactionSucceded(with amount: UInt64, txId: String) {
         Events.Business
-            .KINTransactionSucceeded(kinAmount: Float(amount),
+            .KINTransactionSucceeded(kinAmount: Int(amount),
                                      transactionId: txId,
                                      transactionType: .earn)
             .send()
