@@ -74,7 +74,7 @@ extension UIView {
 
     func applyThinShadow(color: UIColor = UIColor.kin.cadetBlue.withAlphaComponent(0.5),
                          radius: CGFloat = 3,
-                         opacity: Float = 3,
+                         opacity: Float = 0.5,
                          offset: CGSize = .init(width: 0, height: -1)) {
         layer.shadowColor = color.cgColor
         layer.shadowRadius = radius

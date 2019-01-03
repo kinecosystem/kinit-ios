@@ -18,11 +18,12 @@
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Asset {
+  internal static let appDiscoveryFooterIllustration = ImageAsset(name: "AppDiscoveryFooterIllustration")
+  internal static let appDiscoveryIntroPopup = ImageAsset(name: "AppDiscoveryIntroPopup")
   internal static let backupDoneIcon = ImageAsset(name: "BackupDoneIcon")
   internal static let backupIntroIllustration = ImageAsset(name: "BackupIntroIllustration")
   internal static let backupNagHeader = ImageAsset(name: "BackupNagHeader")
   internal static let backupToDoIcon = ImageAsset(name: "BackupToDoIcon")
-  internal static let buttonStroke = ImageAsset(name: "ButtonStroke")
   internal static let closeXButton = ImageAsset(name: "CloseXButton")
   internal static let closeXButtonDarkGray = ImageAsset(name: "CloseXButtonDarkGray")
   internal static let confettiDiamond = ImageAsset(name: "ConfettiDiamond")

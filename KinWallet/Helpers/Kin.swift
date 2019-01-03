@@ -293,7 +293,7 @@ extension Kin {
             if let error = error {
                 Events.Business
                     .KINTransactionFailed(failureReason: error.localizedDescription,
-                                          kinAmount: Float(amount),
+                                          kinAmount: Int(amount),
                                           transactionType: .spend)
                     .send()
 
@@ -302,7 +302,7 @@ extension Kin {
 
             if let txHash = txHash {
                 Events.Business
-                    .KINTransactionSucceeded(kinAmount: Float(amount),
+                    .KINTransactionSucceeded(kinAmount: Int(amount),
                                              transactionId: txHash,
                                              transactionType: .spend)
                     .send()

@@ -101,7 +101,7 @@ class SendKinViewController: UIViewController {
         let aAmount = UInt64(amount)
 
         Events.Analytics
-            .ClickSendButtonOnSendKinPage(kinAmount: Float(amount))
+            .ClickSendButtonOnSendKinPage(kinAmount: Int(amount))
             .send()
 
         let currentBalance = Kin.shared.balance
@@ -128,7 +128,7 @@ class SendKinViewController: UIViewController {
                 self?.alertTransactionFailed()
                 Events.Business
                     .KINTransactionFailed(failureReason: error?.localizedDescription ?? "No reason",
-                                          kinAmount: Float(aAmount),
+                                          kinAmount: Int(aAmount),
                                           transactionType: .p2p)
                     .send()
 
@@ -140,7 +140,7 @@ class SendKinViewController: UIViewController {
             //delay sending the event a little bit, to make sure balance is updated
             DispatchQueue.global().asyncAfter(deadline: .now() + 2, execute: {
                 Events.Business
-                    .KINTransactionSucceeded(kinAmount: Float(aAmount),
+                    .KINTransactionSucceeded(kinAmount: Int(aAmount),
                                              transactionId: txId,
                                              transactionType: .p2p)
                     .send()

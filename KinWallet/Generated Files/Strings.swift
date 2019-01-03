@@ -133,6 +133,8 @@ internal enum L10n {
   internal static let creatingYourWallet = L10n.tr("Localizable", "CreatingYourWallet")
   /// It might take up to 20 sec.
   internal static let creatingYourWalletBePatient = L10n.tr("Localizable", "CreatingYourWalletBePatient")
+  /// Ecosystem Apps
+  internal static let ecosystemApps = L10n.tr("Localizable", "EcosystemApps")
   /// We are hand-picking the best for you!
   internal static let emptyOffersSubtitle = L10n.tr("Localizable", "EmptyOffersSubtitle")
   /// No offers at the moment
@@ -161,6 +163,12 @@ internal enum L10n {
   internal static let generalServerErrorMessage = L10n.tr("Localizable", "GeneralServerErrorMessage")
   /// Houston We Have a Server Problem
   internal static let generalServerErrorTitle = L10n.tr("Localizable", "GeneralServerErrorTitle")
+  /// Get App
+  internal static let getApp = L10n.tr("Localizable", "GetApp")
+  /// GET
+  internal static let getAppShort = L10n.tr("Localizable", "GetAppShort")
+  /// Gift Cards
+  internal static let giftCards = L10n.tr("Localizable", "GiftCards")
   /// Give Us Feedback
   internal static let giveUsFeedback = L10n.tr("Localizable", "GiveUsFeedback")
   /// Help Center
@@ -367,6 +375,39 @@ internal enum L10n {
     internal static let message = L10n.tr("Localizable", "ActivityDone.Message")
     /// Awesome!
     internal static let title = L10n.tr("Localizable", "ActivityDone.Title")
+  }
+
+  internal enum AppDiscovery {
+    internal enum Footer {
+      /// More apps are coming soon
+      internal static let subtitle = L10n.tr("Localizable", "AppDiscovery.Footer.Subtitle")
+      /// Coming soon: a new way to use Kin across the ecosystem
+      internal static let title = L10n.tr("Localizable", "AppDiscovery.Footer.Title")
+    }
+    internal enum Header {
+      /// Discover all the amazing apps where you can use Kin.
+      internal static let subtitle = L10n.tr("Localizable", "AppDiscovery.Header.Subtitle")
+      /// Introducing Kin Ecosystem apps
+      internal static let title = L10n.tr("Localizable", "AppDiscovery.Header.Title")
+    }
+  }
+
+  internal enum AppDiscoveryIntroPopup {
+    /// Awesome
+    internal static let action = L10n.tr("Localizable", "AppDiscoveryIntroPopup.Action")
+    /// Why just have one when you can have many? Discover and download all of the amazing apps with Kin in one place.
+    internal static let title = L10n.tr("Localizable", "AppDiscoveryIntroPopup.Title")
+  }
+
+  internal enum AppPage {
+    /// About %@
+    internal static func aboutApp(_ p1: String) -> String {
+      return L10n.tr("Localizable", "AppPage.AboutApp", p1)
+    }
+    /// Kin Usage
+    internal static let kinUsage = L10n.tr("Localizable", "AppPage.KinUsage")
+    /// Soon you’ll be able to send Kin to this account
+    internal static let sendComingSoon = L10n.tr("Localizable", "AppPage.SendComingSoon")
   }
 
   internal enum MoreUpdate {

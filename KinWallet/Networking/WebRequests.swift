@@ -280,3 +280,14 @@ extension WebRequests {
         }
     }
 }
+
+//MARK: App Discovery
+
+extension WebRequests {
+    struct KinEcosystem {
+        static func discoveryApps() -> WebRequest<[EcosystemAppCategory], [EcosystemAppCategory]> {
+            return WebRequest<[EcosystemAppCategory], [EcosystemAppCategory]>(GET: "/app_discovery",
+                                                                              transform: WebResourceHandlers.doNothing)
+        }
+    }
+}

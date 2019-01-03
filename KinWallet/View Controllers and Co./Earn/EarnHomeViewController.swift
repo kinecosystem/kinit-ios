@@ -8,7 +8,7 @@
 import UIKit
 import KinUtil
 
-final class EarnHomeViewController: UIViewController, AddNoticeViewController {
+final class EarnHomeViewController: UIViewController {
     fileprivate struct Constants {
         static let numberOfColumns: UInt = 2
         static let itemSide: CGFloat = 155
@@ -143,7 +143,7 @@ final class EarnHomeViewController: UIViewController, AddNoticeViewController {
 
         if let error = error {
             noticeContent = .fromError(error)
-            errorType =  error.isInternetError ? .internetConnection : .generic
+            errorType = error.isInternetError ? .internetConnection : .generic
             failureReason = error.localizedDescription
         } else {
             noticeContent = NoticeContent.generalServerError

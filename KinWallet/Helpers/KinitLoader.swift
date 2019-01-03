@@ -32,12 +32,15 @@ class KinitLoader {
         .stateful()
     let redeemedItems = Observable<FetchResult<[RedeemTransaction]>>(.none(nil))
         .stateful()
+    let ecosystemAppCategories = Observable<FetchResult<[EcosystemAppCategory]>>(.none(nil))
+        .stateful()
 
     func loadAllData() {
         loadOffers()
         loadTransactions()
         loadRedeemedItems()
         fetchAvailableBackupHints()
+        loadEcosystemApps()
     }
 
     func loadOffers() {
@@ -50,6 +53,10 @@ class KinitLoader {
 
     func loadRedeemedItems() {
         loadItems(request: WebRequests.redeemedItems(), observable: redeemedItems)
+    }
+
+    func loadEcosystemApps() {
+        loadItems(request: WebRequests.KinEcosystem.discoveryApps(), observable: ecosystemAppCategories)
     }
 
     func loadItems<A, B>(request: WebRequest<A, B>, observable: Observable<FetchResult<B>>) where B: Collection {

@@ -88,7 +88,7 @@ class OfferDetailsViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: xImage,
                                                            style: .plain,
                                                            target: self,
-                                                           action: #selector(dismissTapped(_:)))
+                                                           action: #selector(dismissTapped))
 
         addAndFit(actionViewController!, to: actionView)
 
@@ -111,7 +111,7 @@ class OfferDetailsViewController: UIViewController {
         firstViewDidAppear = false
     }
 
-    @IBAction func dismissTapped(_ sender: UIBarButtonItem) {
+    @IBAction func dismissTapped() {
         dismiss()
     }
 

@@ -139,7 +139,7 @@ extension BackupConfirmEmailViewController: KinNavigationControllerDelegate {
                                                     message: L10n.performBackupMissingConfirmationMessage,
                                                     preferredStyle: .alert)
             alertController.addAction(title: L10n.performBackupMissingConfirmationContinueBackup, style: .default)
-            
+
             let cancelTitle = L10n.performBackupMissingConfirmationCancelBackup
             alertController.addAction(title: cancelTitle, style: .default) { [weak self] in
                 self?.disablePopNavigation = false

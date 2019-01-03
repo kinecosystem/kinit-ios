@@ -54,7 +54,7 @@ class KinSentViewController: UIViewController {
         view.addGestureRecognizer(tapGesture)
 
         Events.Analytics
-            .ViewSuccessMessageOnSendKinPage(kinAmount: Float(amount))
+            .ViewSuccessMessageOnSendKinPage(kinAmount: Int(amount))
             .send()
     }
 

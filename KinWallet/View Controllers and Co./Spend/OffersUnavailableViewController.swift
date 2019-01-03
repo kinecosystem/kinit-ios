@@ -5,7 +5,7 @@
 
 import UIKit
 
-class OffersUnavailableViewController: UIViewController, AddNoticeViewController {
+class OffersUnavailableViewController: UIViewController {
     var error: Error?
 
     override func viewDidLoad() {

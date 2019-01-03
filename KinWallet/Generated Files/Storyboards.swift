@@ -64,11 +64,11 @@ internal enum StoryboardScene {
 
     internal static let offerWallNavigationController = SceneType<KinNavigationController>(storyboard: Main.self, identifier: "OfferWallNavigationController")
 
-    internal static let offerWallViewController = SceneType<OfferWallViewController>(storyboard: Main.self, identifier: "OfferWallViewController")
-
     internal static let rootTabBarController = SceneType<RootTabBarController>(storyboard: Main.self, identifier: "RootTabBarController")
 
     internal static let surveyNavigationController = SceneType<KinNavigationController>(storyboard: Main.self, identifier: "SurveyNavigationController")
+
+    internal static let useKinViewController = SceneType<UseKinViewController>(storyboard: Main.self, identifier: "UseKinViewController")
   }
   internal enum Onboard: StoryboardType {
     internal static let storyboardName = "Onboard"
@@ -97,6 +97,8 @@ internal enum StoryboardScene {
     internal static let offerDetailsNavigationController = SceneType<UIKit.UINavigationController>(storyboard: Spend.self, identifier: "OfferDetailsNavigationController")
 
     internal static let offerDetailsViewController = SceneType<OfferDetailsViewController>(storyboard: Spend.self, identifier: "OfferDetailsViewController")
+
+    internal static let offerWallViewController = SceneType<OfferWallViewController>(storyboard: Spend.self, identifier: "OfferWallViewController")
 
     internal static let sendKinOfferActionViewController = SceneType<SendKinOfferActionViewController>(storyboard: Spend.self, identifier: "SendKinOfferActionViewController")
 

@@ -191,7 +191,7 @@ protocol AddNoticeViewController {
                                  delegate: NoticeViewControllerDelegate?) -> NoticeViewController
 }
 
-extension AddNoticeViewController where Self: UIViewController {
+extension UIViewController: AddNoticeViewController {
     @discardableResult
     func addNoticeViewController(with content: NoticeContent,
                                  buttonConfiguration: NoticeButtonConfiguration? = nil,
