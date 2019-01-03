@@ -202,7 +202,7 @@ extension AppDiscoveryViewController: UICollectionViewDataSource {
         cell.row = collectionView.tag
         cell.column = indexPath.item
         cell.delegate = self
-        cell.drawAppInformation(categories[collectionView.tag].apps[indexPath.item], category: nil)
+        cell.drawAppInformation(categories[collectionView.tag].apps[indexPath.item], category: nil, short: false)
 
         return cell
     }

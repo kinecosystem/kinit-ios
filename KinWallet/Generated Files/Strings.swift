@@ -289,6 +289,8 @@ internal enum L10n {
   internal static let sendingKin = L10n.tr("Localizable", "SendingKin")
   /// Send Kin
   internal static let sendKinAction = L10n.tr("Localizable", "SendKinAction")
+  /// SEND
+  internal static let sendKinActionShort = L10n.tr("Localizable", "SendKinActionShort")
   /// Maybe send your friends to the app store?
   internal static let sendKinContactNotFoundErrorMessage = L10n.tr("Localizable", "SendKinContactNotFoundErrorMessage")
   /// Sorry, you can only send Kin to Kinit users.

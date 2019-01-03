@@ -48,12 +48,9 @@ class AppPageViewController: UIViewController {
         return iv
     }()
 
-    let getButton: UIButton = {
+    let actionButton: UIButton = {
         let b = UIButton(type: .system)
-        b.makeKinButtonOutlined(height: 28, borderWidth: 2, borderColor: UIColor.kin.appTint)
         b.widthAnchor.constraint(equalToConstant: 72).isActive = true
-        b.setTitle(L10n.getAppShort, for: .normal)
-        b.tintColor = UIColor.kin.appTint
 
         return b
     }()
@@ -86,12 +83,18 @@ class AppPageViewController: UIViewController {
         tableView.delegate = self
 
         titleImageView.alpha = 0
-        getButton.alpha = 0
-        getButton.addTarget(self, action: #selector(openAppURL), for: .touchUpInside)
+        actionButton.alpha = 0
+        actionButton.addTarget(self, action: #selector(performAppAction), for: .touchUpInside)
+
+        self.view = v
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
         navigationItem.titleView = titleImageView
         titleImageView.loadImage(url: app.metadata.iconURL.kinImagePathAdjustedForDevice())
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: getButton)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: actionButton)
         navigationItem.rightBarButtonItem?.tintColor = UIColor.kin.appTint
 
         let xImage = Asset.closeXButtonDarkGray.image
@@ -102,7 +105,19 @@ class AppPageViewController: UIViewController {
                                                  action: #selector(dismissTapped))
         navigationItem.leftBarButtonItem = closeBarButtonItem
 
-        self.view = v
+        let actionButtonHeight = AppBasicInfoTableViewCell.actionButtonHeight
+
+        if app.isTransferAvailable {
+            actionButton.makeKinButtonFilled(height: actionButtonHeight)
+            actionButton.tintColor = .white
+            actionButton.setTitle(L10n.sendKinActionShort, for: .normal)
+        } else {
+            actionButton.setTitle(L10n.getAppShort, for: .normal)
+            actionButton.makeKinButtonOutlined(height: actionButtonHeight,
+                                               borderWidth: 2,
+                                               borderColor: UIColor.kin.appTint)
+            actionButton.tintColor = UIColor.kin.appTint
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -120,7 +135,15 @@ class AppPageViewController: UIViewController {
         dismissAnimated()
     }
 
-    @objc fileprivate func openAppURL() {
+    @objc fileprivate func performAppAction() {
+        if app.isTransferAvailable {
+            sendKinToApp()
+        } else {
+            openAppURL()
+        }
+    }
+
+    fileprivate func openAppURL() {
         let url = app.metadata.url
 
         if #available(iOS 10.0, *) {
@@ -135,6 +158,10 @@ class AppPageViewController: UIViewController {
                                      appName: app.name,
                                      transferReady: false)
             .send()
+    }
+
+    fileprivate func sendKinToApp() {
+
     }
 }
 
@@ -155,7 +182,7 @@ extension AppPageViewController: UITableViewDataSource {
         case .iconNameAndGetButton:
             let c: AppBasicInfoTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             c.delegate = self
-            c.drawAppInformation(app, category: appCategoryName)
+            c.drawAppInformation(app, category: appCategoryName, short: true)
             cell = c
         case .sendKinNotAvailable:
             let c: SendKinToAppUnavailableTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
@@ -179,11 +206,12 @@ extension AppPageViewController: UITableViewDataSource {
 extension AppPageViewController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let cell = tableView.cellForRow(at: IndexPath(row: AppPageRow.iconNameAndGetButton.rawValue, section: 0))
-            as? AppBasicInfoTableViewCell else {
+            as? AppBasicInfoTableViewCell,
+            let cellActionButton = cell.actionButton else {
                 return
         }
 
-        let frame = cell.getAppButton.superview!.convert(cell.getAppButton.frame, to: view)
+        let frame = cellActionButton.superview!.convert(cellActionButton.frame, to: view)
 
         let originY: CGFloat
         if #available(iOS 11.0, *) {
@@ -194,7 +222,7 @@ extension AppPageViewController: UITableViewDelegate {
         let percent = 1 - (frame.height + originY)/frame.height
         let desiredAlpha = min(max(percent, 0), 1)
 
-        getButton.alpha = desiredAlpha
+        actionButton.alpha = desiredAlpha
         titleImageView.alpha = desiredAlpha
     }
 
@@ -204,7 +232,7 @@ extension AppPageViewController: UITableViewDelegate {
 }
 
 extension AppPageViewController: AppBasicInfoDelegate {
-    func appBasicInfoCellDidTapOpen(_ cell: AppBasicInfoTableViewCell) {
-        openAppURL()
+    func appBasicInfoCellDidTapAction(_ cell: AppBasicInfoTableViewCell) {
+        performAppAction()
     }
 }
