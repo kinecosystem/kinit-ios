@@ -135,6 +135,19 @@
 		913596B121DA67E300578718 /* AppDiscoveryComingSoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913596B021DA67E300578718 /* AppDiscoveryComingSoonViewController.swift */; };
 		913596B221DA67E300578718 /* AppDiscoveryComingSoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913596B021DA67E300578718 /* AppDiscoveryComingSoonViewController.swift */; };
 		913596B321DA67E300578718 /* AppDiscoveryComingSoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913596B021DA67E300578718 /* AppDiscoveryComingSoonViewController.swift */; };
+		913596FB21E34CD300578718 /* move_kin.h in Headers */ = {isa = PBXBuildFile; fileRef = 913596F921E34CD300578718 /* move_kin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		913596FE21E34CD300578718 /* move_kin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 913596F721E34CD300578718 /* move_kin.framework */; };
+		913596FF21E34CD300578718 /* move_kin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 913596F721E34CD300578718 /* move_kin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9135970421E34CF500578718 /* StellarKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9135970321E34CF500578718 /* StellarKit.framework */; };
+		9135970621E34D4400578718 /* GetAddressFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9135970521E34D4400578718 /* GetAddressFlow.swift */; };
+		9135970821E3526100578718 /* PublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9135970721E3526100578718 /* PublicKey.swift */; };
+		9135970921E352FC00578718 /* Array+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF9D04207E091500B536E9 /* Array+KinWallet.swift */; };
+		9135970B21E359AB00578718 /* GetAddressFlowTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9135970A21E359AB00578718 /* GetAddressFlowTypes.swift */; };
+		9135970D21E359C600578718 /* MoveKinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9135970C21E359C600578718 /* MoveKinApp.swift */; };
+		9135970F21E35B4F00578718 /* MoveKinFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9135970E21E35B4F00578718 /* MoveKinFlow.swift */; };
+		9135971121E35C3200578718 /* MoveKinConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9135971021E35C3200578718 /* MoveKinConstants.swift */; };
+		9135971321E3607E00578718 /* ProvideAddressFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9135971221E3607E00578718 /* ProvideAddressFlow.swift */; };
+		9135971621E384FE00578718 /* ConnectingAppsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9135971521E384FE00578718 /* ConnectingAppsViewController.swift */; };
 		91379A45211744D1002D3EF5 /* BackupIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91379A44211744D1002D3EF5 /* BackupIntroViewController.swift */; };
 		91379A4821174AE1002D3EF5 /* Backup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91379A4621174AE1002D3EF5 /* Backup.storyboard */; };
 		9138BBE1204EE21E00450C97 /* OfferDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9138BBE0204EE21E00450C97 /* OfferDetailsViewController.swift */; };
@@ -721,6 +734,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		913596FC21E34CD300578718 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9140132220162FA90066367C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 913596F621E34CD300578718;
+			remoteInfo = "move-kin";
+		};
 		9140134120162FA90066367C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9140132220162FA90066367C /* Project object */;
@@ -830,6 +850,7 @@
 			files = (
 				91FF124E211B18290098470D /* KinitDesignables.framework in Embed Frameworks */,
 				9152E5E3212D48D400802040 /* KinCoreSDK.framework in Embed Frameworks */,
+				913596FF21E34CD300578718 /* move_kin.framework in Embed Frameworks */,
 				91E6B605203AD0D80080C2FC /* Lottie.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -870,6 +891,18 @@
 		91311C4C204FDB4400618240 /* Optional+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+KinWallet.swift"; sourceTree = "<group>"; };
 		9131A0BA212C055F000203DC /* RestoreBackupQuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreBackupQuestionsViewController.swift; sourceTree = "<group>"; };
 		913596B021DA67E300578718 /* AppDiscoveryComingSoonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDiscoveryComingSoonViewController.swift; sourceTree = "<group>"; };
+		913596F721E34CD300578718 /* move_kin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = move_kin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		913596F921E34CD300578718 /* move_kin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = move_kin.h; sourceTree = "<group>"; };
+		913596FA21E34CD300578718 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9135970321E34CF500578718 /* StellarKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = StellarKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9135970521E34D4400578718 /* GetAddressFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAddressFlow.swift; sourceTree = "<group>"; };
+		9135970721E3526100578718 /* PublicKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKey.swift; sourceTree = "<group>"; };
+		9135970A21E359AB00578718 /* GetAddressFlowTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAddressFlowTypes.swift; sourceTree = "<group>"; };
+		9135970C21E359C600578718 /* MoveKinApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveKinApp.swift; sourceTree = "<group>"; };
+		9135970E21E35B4F00578718 /* MoveKinFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveKinFlow.swift; sourceTree = "<group>"; };
+		9135971021E35C3200578718 /* MoveKinConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveKinConstants.swift; sourceTree = "<group>"; };
+		9135971221E3607E00578718 /* ProvideAddressFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvideAddressFlow.swift; sourceTree = "<group>"; };
+		9135971521E384FE00578718 /* ConnectingAppsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectingAppsViewController.swift; sourceTree = "<group>"; };
 		91379A44211744D1002D3EF5 /* BackupIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupIntroViewController.swift; sourceTree = "<group>"; };
 		91379A4721174AE1002D3EF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Backup.storyboard; sourceTree = "<group>"; };
 		9138BBE0204EE21E00450C97 /* OfferDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailsViewController.swift; sourceTree = "<group>"; };
@@ -1151,6 +1184,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		913596F421E34CD300578718 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9135970421E34CF500578718 /* StellarKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9140132720162FA90066367C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1166,6 +1207,7 @@
 				3066337E2058FFCF00F9BB45 /* Crashlytics.framework in Frameworks */,
 				9120CA7C2060118C00AFC597 /* libTestFairy.a in Frameworks */,
 				3066337D2058FFCF00F9BB45 /* Fabric.framework in Frameworks */,
+				913596FE21E34CD300578718 /* move_kin.framework in Frameworks */,
 				18DD39BBF88D9821BD50D364 /* Pods_KinWallet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1259,6 +1301,31 @@
 			path = TestFairy;
 			sourceTree = "<group>";
 		};
+		913596F821E34CD300578718 /* move-kin */ = {
+			isa = PBXGroup;
+			children = (
+				9135971421E37FD500578718 /* View Controllers */,
+				9135970A21E359AB00578718 /* GetAddressFlowTypes.swift */,
+				9135971021E35C3200578718 /* MoveKinConstants.swift */,
+				9135970C21E359C600578718 /* MoveKinApp.swift */,
+				9135970721E3526100578718 /* PublicKey.swift */,
+				9135970E21E35B4F00578718 /* MoveKinFlow.swift */,
+				9135970521E34D4400578718 /* GetAddressFlow.swift */,
+				9135971221E3607E00578718 /* ProvideAddressFlow.swift */,
+				913596F921E34CD300578718 /* move_kin.h */,
+				913596FA21E34CD300578718 /* Info.plist */,
+			);
+			path = "move-kin";
+			sourceTree = "<group>";
+		};
+		9135971421E37FD500578718 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9135971521E384FE00578718 /* ConnectingAppsViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		91379A3C21174473002D3EF5 /* Backup */ = {
 			isa = PBXGroup;
 			children = (
@@ -1310,6 +1377,7 @@
 				9140134320162FA90066367C /* KinWalletTests */,
 				9140134E20162FA90066367C /* KinWalletUITests */,
 				91FF1247211B18290098470D /* KinitDesignables */,
+				913596F821E34CD300578718 /* move-kin */,
 				9140132B20162FA90066367C /* Products */,
 				91AEBF4D202B322D007BBBA3 /* Frameworks */,
 				38F39F46269BA4029BBEA83A /* Pods */,
@@ -1323,6 +1391,7 @@
 				9140134020162FA90066367C /* KinWalletTests.xctest */,
 				9140134B20162FA90066367C /* KinWalletUITests.xctest */,
 				91FF1246211B18290098470D /* KinitDesignables.framework */,
+				913596F721E34CD300578718 /* move_kin.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1623,6 +1692,7 @@
 		91AEBF4D202B322D007BBBA3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9135970321E34CF500578718 /* StellarKit.framework */,
 				919BCD0B21010CC700C39661 /* KinUtil.framework */,
 				9120CA85206011E600AFC597 /* OpenGLES.framework */,
 				9120CA83206011E000AFC597 /* SystemConfiguration.framework */,
@@ -1848,6 +1918,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		913596F221E34CD300578718 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				913596FB21E34CD300578718 /* move_kin.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		91FF1243211B18290098470D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1859,6 +1937,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		913596F621E34CD300578718 /* move-kin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9135970021E34CD300578718 /* Build configuration list for PBXNativeTarget "move-kin" */;
+			buildPhases = (
+				913596F221E34CD300578718 /* Headers */,
+				913596F321E34CD300578718 /* Sources */,
+				913596F421E34CD300578718 /* Frameworks */,
+				913596F521E34CD300578718 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "move-kin";
+			productName = "move-kin";
+			productReference = 913596F721E34CD300578718 /* move_kin.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		9140132920162FA90066367C /* KinWallet */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9140135420162FA90066367C /* Build configuration list for PBXNativeTarget "KinWallet" */;
@@ -1882,6 +1978,7 @@
 				91E6B607203AD0D80080C2FC /* PBXTargetDependency */,
 				91FF124C211B18290098470D /* PBXTargetDependency */,
 				9152E5E5212D48D400802040 /* PBXTargetDependency */,
+				913596FD21E34CD300578718 /* PBXTargetDependency */,
 			);
 			name = KinWallet;
 			productName = KinWallet;
@@ -1954,6 +2051,11 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = KinFoundation;
 				TargetAttributes = {
+					913596F621E34CD300578718 = {
+						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
+						ProvisioningStyle = Automatic;
+					};
 					9140132920162FA90066367C = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -2009,6 +2111,7 @@
 				9140133F20162FA90066367C /* KinWalletTests */,
 				9140134A20162FA90066367C /* KinWalletUITests */,
 				91FF1245211B18290098470D /* KinitDesignables */,
+				913596F621E34CD300578718 /* move-kin */,
 			);
 		};
 /* End PBXProject section */
@@ -2081,6 +2184,13 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		913596F521E34CD300578718 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9140132820162FA90066367C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2376,6 +2486,22 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		913596F321E34CD300578718 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9135970821E3526100578718 /* PublicKey.swift in Sources */,
+				9135970921E352FC00578718 /* Array+KinWallet.swift in Sources */,
+				9135970621E34D4400578718 /* GetAddressFlow.swift in Sources */,
+				9135971621E384FE00578718 /* ConnectingAppsViewController.swift in Sources */,
+				9135971121E35C3200578718 /* MoveKinConstants.swift in Sources */,
+				9135971321E3607E00578718 /* ProvideAddressFlow.swift in Sources */,
+				9135970D21E359C600578718 /* MoveKinApp.swift in Sources */,
+				9135970B21E359AB00578718 /* GetAddressFlowTypes.swift in Sources */,
+				9135970F21E35B4F00578718 /* MoveKinFlow.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9140132620162FA90066367C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3001,6 +3127,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		913596FD21E34CD300578718 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 913596F621E34CD300578718 /* move-kin */;
+			targetProxy = 913596FC21E34CD300578718 /* PBXContainerItemProxy */;
+		};
 		9140134220162FA90066367C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9140132920162FA90066367C /* KinWallet */;
@@ -3072,6 +3203,72 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		9135970121E34CD300578718 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = F879J8YSJ9;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = "move-kin/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kinecosystem.move-kin";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9135970221E34CD300578718 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = F879J8YSJ9;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = "move-kin/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kinecosystem.move-kin";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		9140135220162FA90066367C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3434,6 +3631,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9135970021E34CD300578718 /* Build configuration list for PBXNativeTarget "move-kin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9135970121E34CD300578718 /* Debug */,
+				9135970221E34CD300578718 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		9140132520162FA90066367C /* Build configuration list for PBXProject "KinWallet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

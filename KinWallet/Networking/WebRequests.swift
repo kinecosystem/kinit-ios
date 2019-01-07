@@ -281,7 +281,7 @@ extension WebRequests {
     }
 }
 
-//MARK: App Discovery
+// MARK: App Discovery
 
 extension WebRequests {
     struct KinEcosystem {
