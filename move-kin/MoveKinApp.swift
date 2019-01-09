@@ -8,22 +8,23 @@
 import Foundation
 
 public struct MoveKinApp {
-    let appName: String
-    let appStoreURL: URL
-    let bundleId: String
-    let urlScheme: String
-    let appIconURL: URL
+    public let appName: String
+    public let appStoreURL: URL
+    public let bundleId: String
+    public let urlScheme: String
+    public let appIconURL: URL
+
+    public init(appName: String,
+                appStoreURL: URL,
+                bundleId: String,
+                urlScheme: String,
+                appIconURL: URL) {
+        self.appName = appName
+        self.appStoreURL = appStoreURL
+        self.bundleId = bundleId
+        self.urlScheme = urlScheme
+        self.appIconURL = appIconURL
+    }
 }
 
 extension MoveKinApp: Equatable {}
-
-extension MoveKinApp {
-    var requestKinAddressURL: URL? {
-        guard urlScheme.isNotEmpty else {
-            return nil
-        }
-
-        let urlString = "\(urlScheme)://\(MoveKinConstants.urlHost)/\(MoveKinConstants.requestAddressURLPath)"
-        return URL(string: urlString)
-    }
-}

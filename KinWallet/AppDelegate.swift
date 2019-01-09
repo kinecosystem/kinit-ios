@@ -9,6 +9,7 @@ import UIKit
 import KinCoreSDK
 import Firebase
 import FirebaseAuth
+import MoveKin
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -104,6 +105,17 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         PushHandler.handlePush(with: userInfo)
+    }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        print("Should handle \(url.absoluteString)")
+
+        if let sourceApp = options[.sourceApplication] as? String,
+            MoveKinFlow.shared.canHandleURL(url) {
+            MoveKinFlow.shared.handleURL(url, from: sourceApp)
+        }
+
+        return true
     }
 }
 

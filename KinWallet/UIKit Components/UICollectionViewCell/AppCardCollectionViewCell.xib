@@ -35,7 +35,7 @@
                                 <rect key="frame" x="243" y="21" width="57" height="30"/>
                                 <state key="normal" title="Get App"/>
                                 <connections>
-                                    <action selector="openApp" destination="b0b-Gs-DFB" eventType="touchUpInside" id="8PD-As-j1X"/>
+                                    <action selector="actionButtonTapped" destination="b0b-Gs-DFB" eventType="touchUpInside" id="ccH-aC-D1q"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="627-Gg-Ai5">

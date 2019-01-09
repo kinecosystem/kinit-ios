@@ -7,19 +7,52 @@
 
 import UIKit
 
-protocol MoveKinFlowDelegate: class {
-    func sendKin(amount: UInt, to address: String, completion: (Bool) -> Void)
+public protocol MoveKinSelectAmountStage: class {
+    var amountSelectionBlock: ((UInt) -> Void)? { get set }
+}
+
+public extension MoveKinSelectAmountStage {
+    func setAmountSelectionBlock(_ selectionBlock: @escaping (UInt) -> Void) {
+        amountSelectionBlock = selectionBlock
+    }
+}
+
+public enum MoveKinAmountOption {
+    case specified(UInt)
+    case willInput(UIViewController & MoveKinSelectAmountStage)
+}
+
+public protocol MoveKinSendingStage {
+    func sendKinDidStart()
+    func sendKinDidSucceed(moveToSentPage: @escaping () -> Void)
+    func sendKinDidFail()
+}
+
+public protocol MoveKinFlowUIProvider: class {
+    func viewControllerForConnectingStage() -> UIViewController
+    func viewControllerForSendingStage() -> UIViewController & MoveKinSendingStage
+    func viewControllerForSentStage() -> UIViewController
+}
+
+public protocol MoveKinFlowDelegate: class {
+    func sendKin(amount: UInt, to address: String, completion: @escaping (Bool) -> Void)
+    func provideUserAddress(addressHandler: @escaping (String?) -> Void)
+
 }
 
 public class MoveKinFlow {
-    public let shared = MoveKinFlow()
+    public static let shared = MoveKinFlow()
+
+    fileprivate var destinationAddress: PublicAddress?
+    fileprivate var amountOption: MoveKinAmountOption?
 
     let getAddressFlow = GetAddressFlow()
     let provideAddressFlow = ProvideAddressFlow()
 
-    weak var delegate: MoveKinFlowDelegate?
+    public weak var delegate: MoveKinFlowDelegate?
+    public weak var uiProvider: MoveKinFlowUIProvider?
 
-    private var presentedViewController: UIViewController?
+    private var navigationController: UINavigationController?
 
     private var presenter: UIViewController? {
         guard let appDelegate = UIApplication.shared.delegate,
@@ -34,14 +67,53 @@ public class MoveKinFlow {
         return viewController
     }
 
-    public func startMoveKinFlow(to destinationApp: MoveKinApp) {
+    public func startMoveKinFlow(to destinationApp: MoveKinApp, amountOption: MoveKinAmountOption) {
+        guard let uiProvider = uiProvider else {
+            fatalError("MoveKin flow started, but no uiProvider set: MoveKinFlow.shared.uiProvider = x")
+        }
+
         guard getAddressFlow.state == .idle else {
             return
         }
 
-        presentedViewController = UINavigationController(rootViewController: ConnectingAppsViewController())
-        presenter?.present(presentedViewController!, animated: true) { [weak self] in
+        self.amountOption = amountOption
+
+        navigationController = UINavigationController(rootViewController: uiProvider.viewControllerForConnectingStage())
+        navigationController!.setNavigationBarHidden(true, animated: false)
+        presenter?.present(navigationController!, animated: true) { [weak self] in
             self?.connectingAppsDidPresent(to: destinationApp)
+        }
+    }
+
+    fileprivate func amountSelected(_ amount: UInt) {
+        guard
+            let delegate = delegate,
+            let uiProvider = uiProvider else {
+            fatalError("MoveKin flow is in progress, but no delegate or uiProvider are set")
+        }
+
+        guard let destinationAddress = destinationAddress else {
+            fatalError("MoveKin flow will start sending, but no destinationAddress is set.")
+        }
+
+        //TODO: look for retain cycles
+
+        let sendingViewController = uiProvider.viewControllerForSendingStage()
+        navigationController!.pushViewController(sendingViewController, animated: true)
+        sendingViewController.sendKinDidStart()
+        delegate.sendKin(amount: amount, to: destinationAddress.asString) { success in
+            self.destinationAddress = nil
+            self.amountOption = nil
+
+            if success {
+                sendingViewController.sendKinDidSucceed {
+                    let sentViewController = uiProvider.viewControllerForSentStage()
+                    self.navigationController!.pushViewController(sentViewController, animated: true)
+                }
+            } else {
+                sendingViewController.sendKinDidFail()
+                //TODO: dismiss screen
+            }
         }
     }
 
@@ -51,7 +123,7 @@ public class MoveKinFlow {
             case .success(let publicAddress):
                 self.getAddressFlowDidSucceed(with: publicAddress)
             case .cancelled:
-                self.presentedViewController?.dismiss(animated: true, completion: nil)
+                self.navigationController?.dismiss(animated: true, completion: nil)
             case .error(let error):
                 self.getAddressFlowDidFail(error)
             }
@@ -59,12 +131,12 @@ public class MoveKinFlow {
     }
 
     public func canHandleURL(_ url: URL) -> Bool {
-        guard url.host == MoveKinConstants.urlHost else {
+        guard url.host == Constants.urlHost else {
             return false
         }
 
-        guard url.path == MoveKinConstants.receiveAddressURLPath
-            || url.path == MoveKinConstants.requestAddressURLPath else {
+        guard url.path == Constants.receiveAddressURLPath
+            || url.path == Constants.requestAddressURLPath else {
                 return false
         }
 
@@ -72,14 +144,14 @@ public class MoveKinFlow {
     }
 
     public func handleURL(_ url: URL, from appBundleId: String) {
-        guard url.host == MoveKinConstants.urlHost else {
+        guard url.host == Constants.urlHost else {
             return
         }
 
         switch url.path {
-        case MoveKinConstants.receiveAddressURLPath:
+        case Constants.receiveAddressURLPath:
             getAddressFlow.handleURL(url, from: appBundleId)
-        case MoveKinConstants.requestAddressURLPath:
+        case Constants.requestAddressURLPath:
             print("YO")
         default:
             break
@@ -91,7 +163,19 @@ public class MoveKinFlow {
 extension MoveKinFlow {
     func getAddressFlowDidSucceed(with publicAddress: PublicAddress) {
         print("Got public address: \(publicAddress.asString)")
-        presentedViewController?.dismiss(animated: true, completion: nil)
+
+        destinationAddress = publicAddress
+
+        switch amountOption! {
+        case .specified(let amount):
+            amountSelected(amount)
+        case .willInput(let inputViewController):
+            inputViewController.setAmountSelectionBlock { [weak self] amount in
+                self?.amountSelected(amount)
+            }
+
+            navigationController!.pushViewController(inputViewController, animated: true)
+        }
     }
 }
 
@@ -100,7 +184,7 @@ extension MoveKinFlow {
     func getAddressFlowDidFail(_ error: GetAddressFlowTypes.Error) {
         switch error {
         case .timeout:
-            presentedViewController?.dismiss(animated: true, completion: nil)
+            navigationController?.dismiss(animated: true, completion: nil)
         case .appLaunchFailed(let app):
             handleOpenAppStore(for: app)
         case .bundleIdMismatch, .invalidAddress, .invalidHandleURL, .invalidURLScheme:
@@ -114,13 +198,13 @@ extension MoveKinFlow {
                                                 message: message,
                                                 preferredStyle: .alert)
         alertController.addAction(.init(title: "Back", style: .default) { _ in
-            self.presentedViewController?.dismiss(animated: true)
+            self.navigationController?.dismiss(animated: true)
         })
-        presentedViewController?.present(alertController, animated: true)
+        navigationController?.present(alertController, animated: true)
     }
 
     private func handleOpenAppStore(for destinationApp: MoveKinApp) {
-        guard let presented = presentedViewController else {
+        guard let presented = navigationController else {
             return
         }
 

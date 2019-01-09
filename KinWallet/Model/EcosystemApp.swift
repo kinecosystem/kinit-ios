@@ -8,7 +8,7 @@
 import Foundation
 
 struct AppTransferData: Codable {
-
+    let urlScheme: String
 }
 
 struct AppMetadata: Codable {
@@ -43,7 +43,7 @@ struct EcosystemApp: Codable {
     let isActive: Bool
     let metadata: AppMetadata
     let name: String
-    let transferData: AppTransferData?
+    let transferData: AppTransferData? = AppTransferData(urlScheme: "bananao")
 
     enum CodingKeys: String, CodingKey {
         case bundleId = "identifier"

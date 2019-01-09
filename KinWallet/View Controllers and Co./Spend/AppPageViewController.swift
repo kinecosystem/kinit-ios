@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MoveKin
 
 private enum AppPageRow: Int {
     case headerImages = 0
@@ -36,6 +37,7 @@ extension AppPageRow {
 }
 
 class AppPageViewController: UIViewController {
+    let appDiscoveryAction = AppDiscoveryAction(moveKinFlow: MoveKinFlow.shared)
     var app: EcosystemApp!
     var appCategoryName: String!
 
@@ -136,32 +138,24 @@ class AppPageViewController: UIViewController {
     }
 
     @objc fileprivate func performAppAction() {
+        appDiscoveryAction.performAppAction(for: app)
+
+        let event: BIEvent
         if app.isTransferAvailable {
-            sendKinToApp()
+            event = Events.Analytics
+                .ClickSendButtonOnAppPage(appCategory: appCategoryName,
+                                         appId: app.bundleId,
+                                         appName: app.name,
+                                         transferReady: false)
         } else {
-            openAppURL()
-        }
-    }
-
-    fileprivate func openAppURL() {
-        let url = app.metadata.url
-
-        if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url)
-        } else {
-            UIApplication.shared.openURL(url)
+            event = Events.Analytics
+                .ClickGetButtonOnAppPage(appCategory: appCategoryName,
+                                         appId: app.bundleId,
+                                         appName: app.name,
+                                         transferReady: false)
         }
 
-        Events.Analytics
-            .ClickGetButtonOnAppPage(appCategory: appCategoryName,
-                                     appId: app.bundleId,
-                                     appName: app.name,
-                                     transferReady: false)
-            .send()
-    }
-
-    fileprivate func sendKinToApp() {
-
+        event.send()
     }
 }
 

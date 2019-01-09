@@ -7,6 +7,7 @@
 
 import UIKit
 import KinUtil
+import MoveKin
 
 private let shownAppDiscoveryIntroKey = "org.kinfoundation.kinwallet.shownAppDiscoveryIntro"
 
@@ -33,6 +34,8 @@ extension AppDiscoveryTableSections: CaseIterable {}
 
 class AppDiscoveryViewController: UIViewController {
     let linkBag = LinkBag()
+    let appDiscoveryAction = AppDiscoveryAction(moveKinFlow: MoveKinFlow.shared)
+
     var categories: [EcosystemAppCategory]?
 
     let tableView: UITableView = {
@@ -232,7 +235,7 @@ extension AppDiscoveryViewController: IndicatorInfoProvider {
 }
 
 extension AppDiscoveryViewController: AppCardCellDelegate {
-    func appCardCellDidTapOpenApp(_ cell: AppCardCollectionViewCell) {
+    func appCardCellDidTapActionButton(_ cell: AppCardCollectionViewCell) {
         guard let categories = categories else {
             let m = "AppDiscoveryViewController received ecosystemAppCellDidTapOpenApp: but categories is nil"
             fatalError(m)
@@ -240,18 +243,22 @@ extension AppDiscoveryViewController: AppCardCellDelegate {
 
         let category = categories[cell.row]
         let app = category.apps[cell.column]
-        let url = app.metadata.url
 
-        if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url)
+        let event: BIEvent
+        if app.isTransferAvailable {
+            event = Events.Analytics
+                .ClickSendButtonOnAppItem(appCategory: category.name,
+                                          appId: app.bundleId,
+                                          appName: app.name)
         } else {
-            UIApplication.shared.openURL(url)
+            event = Events.Analytics
+                .ClickGetButtonOnAppItem(appCategory: category.name,
+                                         appId: app.bundleId,
+                                         appName: app.name)
         }
 
-        Events.Analytics
-            .ClickGetButtonOnAppItem(appCategory: category.name,
-                                     appId: app.bundleId,
-                                     appName: app.name)
-            .send()
+        event.send()
+
+        appDiscoveryAction.performAppAction(for: app)
     }
 }

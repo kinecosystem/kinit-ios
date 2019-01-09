@@ -34,7 +34,7 @@ class GetAddressFlow {
     func startMoveKinFlow(to destinationApp: MoveKinApp, completion: @escaping GetAddressFlowCompletion) {
         self.completion = completion
 
-        guard let url = destinationApp.requestKinAddressURL else {
+        guard let url = LaunchURLBuilder.requestAddressURL(for: destinationApp) else {
             state = .error(.invalidURLScheme)
             return
         }
@@ -60,7 +60,7 @@ class GetAddressFlow {
     }
 
     func canHandleURL(_ url: URL) -> Bool {
-        guard url.host == MoveKinConstants.urlHost, url.path == MoveKinConstants.receiveAddressURLPath else {
+        guard url.host == Constants.urlHost, url.path == Constants.receiveAddressURLPath else {
             return false
         }
 
@@ -74,10 +74,11 @@ class GetAddressFlow {
             return
         }
 
-        guard bundleId == appBundleId else {
-            state = .error(.bundleIdMismatch)
-            return
-        }
+        //TODO: uncomment
+//        guard bundleId == appBundleId else {
+//            state = .error(.bundleIdMismatch)
+//            return
+//        }
 
         do {
             let address = try kinAddress(from: url)
@@ -92,7 +93,7 @@ class GetAddressFlow {
             let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false),
             let queryItems = urlComponents.queryItems,
             let addressQueryItem = queryItems.first(where: {
-                $0.name == MoveKinConstants.receiveAddressURLQueryItemName
+                $0.name == Constants.receiveAddressQueryItem
             }) else {
                 throw GetAddressFlowTypes.Error.invalidHandleURL
         }
@@ -113,7 +114,7 @@ class GetAddressFlow {
         }
 
         timeoutDispatchWorkItem = item
-        DispatchQueue.main.asyncAfter(deadline: .now() + MoveKinConstants.didBecomeActiveTimeout,
+        DispatchQueue.main.asyncAfter(deadline: .now() + Constants.didBecomeActiveTimeout,
                                       execute: item)
     }
 }

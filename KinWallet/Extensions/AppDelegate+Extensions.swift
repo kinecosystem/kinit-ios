@@ -6,6 +6,7 @@
 import UIKit
 import WebKit
 import KinitDesignables
+import MoveKin
 
 extension AppDelegate {
     class var shared: AppDelegate {
@@ -74,4 +75,4 @@ extension AppDelegate: WebServiceProvider {
     }
 }
 
-class WhiteNavigationBar: UINavigationBar { }
+class WhiteNavigationBar: UINavigationBar {}

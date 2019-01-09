@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AppCardCellDelegate: class {
-    func appCardCellDidTapOpenApp(_ cell: AppCardCollectionViewCell)
+    func appCardCellDidTapActionButton(_ cell: AppCardCollectionViewCell)
 }
 
 class AppCardCollectionViewCell: UICollectionViewCell {
@@ -52,8 +52,8 @@ class AppCardCollectionViewCell: UICollectionViewCell {
         setupActionButtonConstraints()
     }
 
-    @IBAction func openApp() {
-        delegate?.appCardCellDidTapOpenApp(self)
+    @IBAction func actionButtonTapped() {
+        delegate?.appCardCellDidTapActionButton(self)
     }
 }
 
