@@ -31,6 +31,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             #endif
         }
 
+        MoveKinFlow.shared.delegate = self
         lastBackgroundRefreshStatus = application.backgroundRefreshStatus
         AuthToken.prepare()
 

@@ -384,6 +384,13 @@
 		9191EBB821E5E97E002BAC48 /* ConnectingAppsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBB721E5E97E002BAC48 /* ConnectingAppsViewController.swift */; };
 		9191EBB921E5F2C7002BAC48 /* ConnectingAppsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBB721E5E97E002BAC48 /* ConnectingAppsViewController.swift */; };
 		9191EBBA21E5F2C7002BAC48 /* ConnectingAppsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBB721E5E97E002BAC48 /* ConnectingAppsViewController.swift */; };
+		9191EBC021E62945002BAC48 /* ConnectingLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 9191EBBF21E62945002BAC48 /* ConnectingLoader.json */; };
+		9191EBC121E62945002BAC48 /* ConnectingLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 9191EBBF21E62945002BAC48 /* ConnectingLoader.json */; };
+		9191EBC221E62945002BAC48 /* ConnectingLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 9191EBBF21E62945002BAC48 /* ConnectingLoader.json */; };
+		9191EBC421E62F19002BAC48 /* SentKinToAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBC321E62F19002BAC48 /* SentKinToAppViewController.swift */; };
+		9191EBC521E62F19002BAC48 /* SentKinToAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBC321E62F19002BAC48 /* SentKinToAppViewController.swift */; };
+		9191EBC621E62F19002BAC48 /* SentKinToAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBC321E62F19002BAC48 /* SentKinToAppViewController.swift */; };
+		9191EBCC21E64ECD002BAC48 /* MoveKinNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBCB21E64ECD002BAC48 /* MoveKinNavigationController.swift */; };
 		9198A2A02062926D0052F343 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9198A29F2062926D0052F343 /* NotificationHandler.swift */; };
 		91A427582129AF710078B589 /* AccountSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A427572129AF710078B589 /* AccountSourceViewController.swift */; };
 		91A4275E2129BD830078B589 /* CreatingWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4275D2129BD830078B589 /* CreatingWalletViewController.swift */; };
@@ -1034,6 +1041,9 @@
 		9191EBB321E5E8CC002BAC48 /* SendKinAmountInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendKinAmountInputViewController.swift; sourceTree = "<group>"; };
 		9191EBB521E5E8F6002BAC48 /* SendingKinToAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingKinToAppViewController.swift; sourceTree = "<group>"; };
 		9191EBB721E5E97E002BAC48 /* ConnectingAppsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectingAppsViewController.swift; sourceTree = "<group>"; };
+		9191EBBF21E62945002BAC48 /* ConnectingLoader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ConnectingLoader.json; sourceTree = "<group>"; };
+		9191EBC321E62F19002BAC48 /* SentKinToAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentKinToAppViewController.swift; sourceTree = "<group>"; };
+		9191EBCB21E64ECD002BAC48 /* MoveKinNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveKinNavigationController.swift; sourceTree = "<group>"; };
 		9198A29F2062926D0052F343 /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		919BCD0B21010CC700C39661 /* KinUtil.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KinUtil.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A427572129AF710078B589 /* AccountSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSourceViewController.swift; sourceTree = "<group>"; };
@@ -1320,6 +1330,7 @@
 				9135970721E3526100578718 /* PublicKey.swift */,
 				9135970E21E35B4F00578718 /* MoveKinFlow.swift */,
 				9135970521E34D4400578718 /* GetAddressFlow.swift */,
+				9191EBCB21E64ECD002BAC48 /* MoveKinNavigationController.swift */,
 				9191EB9821E4A33D002BAC48 /* LaunchURLBuilder.swift */,
 				9135971221E3607E00578718 /* ProvideAddressFlow.swift */,
 				913596F921E34CD300578718 /* move_kin.h */,
@@ -1467,6 +1478,7 @@
 				910872B121205D6A0095FD45 /* LockAnimation.json */,
 				91A427682129BFF20078B589 /* WalletLoader.json */,
 				915F497A204452CC005C09B3 /* CirclesLoader.json */,
+				9191EBBF21E62945002BAC48 /* ConnectingLoader.json */,
 				9140133620162FA90066367C /* Assets.xcassets */,
 				9140133320162FA90066367C /* Main.storyboard */,
 				91379A4621174AE1002D3EF5 /* Backup.storyboard */,
@@ -1675,6 +1687,7 @@
 				9191EBB721E5E97E002BAC48 /* ConnectingAppsViewController.swift */,
 				9191EBB321E5E8CC002BAC48 /* SendKinAmountInputViewController.swift */,
 				9191EBB521E5E8F6002BAC48 /* SendingKinToAppViewController.swift */,
+				9191EBC321E62F19002BAC48 /* SentKinToAppViewController.swift */,
 			);
 			path = "Move Kin";
 			sourceTree = "<group>";
@@ -2245,6 +2258,7 @@
 				91D7C02A204EFBC400D35401 /* Spend.storyboard in Resources */,
 				913C9C5D21D2719500B855BC /* AppCardCollectionViewCell.xib in Resources */,
 				915F495A20430125005C09B3 /* Roboto-Medium.ttf in Resources */,
+				9191EBC021E62945002BAC48 /* ConnectingLoader.json in Resources */,
 				91E6B659203C69A90080C2FC /* AppledocSettings.plist in Resources */,
 				82A12DE42056B723008841F2 /* config.json in Resources */,
 				915F496520430125005C09B3 /* Roboto-Thin.ttf in Resources */,
@@ -2289,6 +2303,7 @@
 				916ACCF920F1FFEF00756EBC /* DualImageQuestionSeparatorView.xib in Resources */,
 				9182C2A5203C6C0C0051F003 /* ComodoRsaCA.der in Resources */,
 				91B4454820909C5400ED6802 /* TutorialPageView.xib in Resources */,
+				9191EBC121E62945002BAC48 /* ConnectingLoader.json in Resources */,
 				91A4276E2129C7BD0078B589 /* Onboard.storyboard in Resources */,
 				913C9C5E21D2719500B855BC /* AppCardCollectionViewCell.xib in Resources */,
 				91D891DF2020B43D0090E77C /* SurveyImageAnswerCollectionViewCell.xib in Resources */,
@@ -2315,6 +2330,7 @@
 				9181983220EE551400E5D523 /* SurveyFullSizedImageAnswerCollectionViewCell.xib in Resources */,
 				91AE22DA21761E060024B8BF /* TaskCategoryTitleView.xib in Resources */,
 				91B4454920909C5400ED6802 /* TutorialPageView.xib in Resources */,
+				9191EBC221E62945002BAC48 /* ConnectingLoader.json in Resources */,
 				91A4276F2129C7BD0078B589 /* Onboard.storyboard in Resources */,
 				913C9C9621D4D05500B855BC /* EcosystemFooterTableViewCell.xib in Resources */,
 				916ACCFA20F1FFEF00756EBC /* DualImageQuestionSeparatorView.xib in Resources */,
@@ -2507,6 +2523,7 @@
 				9135970821E3526100578718 /* PublicKey.swift in Sources */,
 				9135970921E352FC00578718 /* Array+KinWallet.swift in Sources */,
 				9135970621E34D4400578718 /* GetAddressFlow.swift in Sources */,
+				9191EBCC21E64ECD002BAC48 /* MoveKinNavigationController.swift in Sources */,
 				9191EB9921E4A33D002BAC48 /* LaunchURLBuilder.swift in Sources */,
 				9135971121E35C3200578718 /* MoveKinConstants.swift in Sources */,
 				9135971321E3607E00578718 /* ProvideAddressFlow.swift in Sources */,
@@ -2712,6 +2729,7 @@
 				913C9C7121D38F3300B855BC /* AppInfoView.swift in Sources */,
 				91F69D36208379F400F06181 /* BaseButtonBarPagerTabStripViewController.swift in Sources */,
 				91D891C72020A1A60090E77C /* QuestionCollectionViewDataSource.swift in Sources */,
+				9191EBC421E62F19002BAC48 /* SentKinToAppViewController.swift in Sources */,
 				914013DE2019F2BF0066367C /* UITableViewCell+KinWallet.swift in Sources */,
 				91E6B616203C29B30080C2FC /* SurveyDoneViewController.swift in Sources */,
 				91473FE0201DCDBF0013A530 /* SelectedResult.swift in Sources */,
@@ -2885,6 +2903,7 @@
 				91E6B614203C0FFA0080C2FC /* FeedbackGenerator.swift in Sources */,
 				9140138720187CE90066367C /* Question.swift in Sources */,
 				9131A0C5212C084A000203DC /* AccountSourceViewController.swift in Sources */,
+				9191EBC521E62F19002BAC48 /* SentKinToAppViewController.swift in Sources */,
 				91E84ABC20862E6E00E8B7A6 /* RedeemTransactionCollectionViewCell.swift in Sources */,
 				913596B221DA67E300578718 /* AppDiscoveryComingSoonViewController.swift in Sources */,
 				913C9C8D21D4CE8A00B855BC /* EcosystemAppCategoryTableViewCell.swift in Sources */,
@@ -2987,6 +3006,7 @@
 				828CB44F2056EA42007C679C /* Date+Kinit.swift in Sources */,
 				9170CD812133F3A0009986A5 /* AMPTrackingOptions.m in Sources */,
 				9159956F21356A0F00E4E840 /* AuthToken.swift in Sources */,
+				9191EBC621E62F19002BAC48 /* SentKinToAppViewController.swift in Sources */,
 				828CB4432056EA08007C679C /* ImageAssets.swift in Sources */,
 				828CB44B2056EA42007C679C /* UICollectionView+KinWallet.swift in Sources */,
 				91B57F9420E038E200CE5EE1 /* Bridge.swift in Sources */,

@@ -339,8 +339,6 @@ internal enum L10n {
   internal static let transactionsEmptyStateMessage = L10n.tr("Localizable", "TransactionsEmptyStateMessage")
   /// Your new balance
   internal static let transferringKinNewBalance = L10n.tr("Localizable", "TransferringKinNewBalance")
-  /// Your Kin is on its way
-  internal static let transferringKinOnItsWay = L10n.tr("Localizable", "TransferringKinOnItsWay")
   /// Try Again
   internal static let tryAgain = L10n.tr("Localizable", "TryAgain")
   /// We were unable to create a profile for you
@@ -419,6 +417,21 @@ internal enum L10n {
     internal static let upToDate = L10n.tr("Localizable", "MoreUpdate.UpToDate")
   }
 
+  internal enum MoveKin {
+    /// Connecting Apps
+    internal static let connectingApps = L10n.tr("Localizable", "MoveKin.ConnectingApps")
+    internal enum SendingKinCompleted {
+      /// Sending Completed
+      internal static let title = L10n.tr("Localizable", "MoveKin.SendingKinCompleted.Title")
+      internal enum Subtitle {
+        /// see transaction details under balance
+        internal static let `postfix` = L10n.tr("Localizable", "MoveKin.SendingKinCompleted.Subtitle.Postfix")
+        /// You’ve succesfully sent
+        internal static let `prefix` = L10n.tr("Localizable", "MoveKin.SendingKinCompleted.Subtitle.Prefix")
+      }
+    }
+  }
+
   internal enum NewOffersPolicy {
     /// I Understand
     internal static let action = L10n.tr("Localizable", "NewOffersPolicy.Action")
@@ -461,6 +474,13 @@ internal enum L10n {
     internal static let message = L10n.tr("Localizable", "TaskSubmissionPaymentTimeout.Message")
     /// Your Kin is on its way with a brief delay
     internal static let title = L10n.tr("Localizable", "TaskSubmissionPaymentTimeout.Title")
+  }
+
+  internal enum TransferringKinOnItsWay {
+    /// Your Kin is on its way
+    internal static let receive = L10n.tr("Localizable", "TransferringKinOnItsWay.Receive")
+    /// Your Kin is on its way to 
+    internal static let sendToApp = L10n.tr("Localizable", "TransferringKinOnItsWay.SendToApp")
   }
 
   internal enum UpdateAlert {

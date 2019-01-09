@@ -16,7 +16,7 @@ class LaunchURLBuilder {
         guard let appURLScheme = Bundle.firstAppURLScheme else {
             let message =
             """
-            MoveKin couldn't find a URL scheme to be used to launch this app back and receive data from \(app.appName)".
+            MoveKin couldn't find a URL scheme to be used to launch this app back and receive data from \(app.name)".
             Add a URL scheme to this app's info.plist and try again.
             """
 

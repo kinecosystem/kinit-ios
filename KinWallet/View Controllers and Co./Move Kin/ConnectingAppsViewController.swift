@@ -7,6 +7,7 @@
 
 import UIKit
 import KinitDesignables
+import Lottie
 
 private let iconSide: CGFloat = 52
 
@@ -35,7 +36,7 @@ class ConnectingAppsViewController: UIViewController {
     let connectingAppsLabel: UILabel = {
         let l = UILabel()
         l.translatesAutoresizingMaskIntoConstraints = false
-        l.text = "Connecting Apps"
+        l.text = L10n.MoveKin.connectingApps
         l.font = FontFamily.Roboto.regular.font(size: 14)
         l.textColor = .white
 
@@ -57,9 +58,10 @@ class ConnectingAppsViewController: UIViewController {
         return iv
     }()
 
-    let loaderView: UIView = {
-        let v = UIView()
+    let loaderView: LOTAnimationView = {
+        let v = LOTAnimationView(name: "ConnectingLoader")
         v.translatesAutoresizingMaskIntoConstraints = false
+        v.contentMode = .scaleAspectFit
         v.widthAnchor.constraint(equalToConstant: iconSide).isActive = true
         v.heightAnchor.constraint(equalToConstant: 3).isActive = true
         v.backgroundColor = UIColor.darkGray
@@ -67,8 +69,8 @@ class ConnectingAppsViewController: UIViewController {
         return v
     }()
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func loadView() {
@@ -98,8 +100,23 @@ class ConnectingAppsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        loaderView.play()
         otherAppIcon.loadImage(url: appIconURL,
                                placeholderColor: UIColor.kin.lightGray,
                                useInMemoryCache: true)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(appDidBecomeActive),
+                                               name: UIApplication.didBecomeActiveNotification,
+                                               object: nil)
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
+    @objc func appDidBecomeActive() {
+        loaderView.stop()
+        loaderView.play()
     }
 }

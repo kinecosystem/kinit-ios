@@ -53,6 +53,26 @@ extension AppDelegate {
     }
 }
 
+extension AppDelegate: MoveKinFlowDelegate {
+    func sendKin(amount: UInt, to address: String, completion: @escaping (Bool) -> Void) {
+        guard Kin.shared.accountStatus == .activated else {
+            completion(false)
+            return
+        }
+
+        Kin.shared.send(UInt64(amount), to: address, memo: nil) { txId, _ in
+            completion(txId != nil)
+        }
+    }
+
+    func provideUserAddress(addressHandler: @escaping (String?) -> Void) {
+        let address = Kin.shared.accountStatus == .activated
+            ? Kin.shared.publicAddress
+            : nil
+        addressHandler(address)
+    }
+}
+
 extension AppDelegate: WebServiceProvider {
     func headers() -> [String: String]? {
         var headers = [String: String]()

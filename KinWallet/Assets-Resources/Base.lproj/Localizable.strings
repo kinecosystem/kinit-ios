@@ -136,7 +136,9 @@
 
 "ActivityDone.Message" = "You have completed today's activity.";
 
-"TransferringKinOnItsWay" = "Your Kin is on its way";
+"TransferringKinOnItsWay.Receive" = "Your Kin is on its way";
+
+"TransferringKinOnItsWay.SendToApp" = "Your Kin is on its way to ";
 
 "TransferringKinNewBalance" = "Your new balance";
 
@@ -431,3 +433,13 @@
 "AppPage.KinUsage" = "Kin Usage";
 
 "AppPage.SendComingSoon" = "Soon you’ll be able to send Kin to this account";
+
+// Moving Kin
+
+"MoveKin.ConnectingApps" = "Connecting Apps";
+
+"MoveKin.SendingKinCompleted.Title" = "Sending Completed";
+
+"MoveKin.SendingKinCompleted.Subtitle.Prefix" = "You’ve succesfully sent";
+
+"MoveKin.SendingKinCompleted.Subtitle.Postfix" = "see transaction details under balance";

@@ -9,15 +9,12 @@ import MoveKin
 
 class AppDiscoveryAction {
     let moveKinFlow: MoveKinFlow
-    fileprivate var app: EcosystemApp!
 
     init(moveKinFlow: MoveKinFlow) {
         self.moveKinFlow = moveKinFlow
     }
 
     func performAppAction(for app: EcosystemApp) {
-        self.app = app
-
         guard app.isTransferAvailable,
             let transferData = app.transferData else {
                 let url = app.metadata.url
@@ -31,50 +28,43 @@ class AppDiscoveryAction {
                 return
         }
 
-        let mApp = MoveKinApp(appName: app.name,
+        let mApp = MoveKinApp(name: app.name,
                               appStoreURL: app.metadata.url,
                               bundleId: app.bundleId,
                               urlScheme: transferData.urlScheme,
-                              appIconURL: app.metadata.iconURL)
-        moveKinFlow.delegate = self
+                              appIconURL: app.metadata.iconURL.kinImagePathAdjustedForDevice())
         moveKinFlow.uiProvider = self
-        moveKinFlow.startMoveKinFlow(to: mApp, amountOption: .specified(10))
-    }
-}
-
-extension AppDiscoveryAction: MoveKinFlowDelegate {
-    func sendKin(amount: UInt, to address: String, completion: @escaping (Bool) -> Void) {
-        guard Kin.shared.accountStatus == .activated else {
-            completion(false)
-            return
-        }
-
-        Kin.shared.send(UInt64(amount), to: address, memo: nil) { txId, _ in
-            completion(txId != nil)
-        }
+//        moveKinFlow.startMoveKinFlow(to: mApp, amountOption: .willInput(SendKinAmountInputViewController()))
+        moveKinFlow.startMoveKinFlow(to: mApp, amountOption: .specified(4))
     }
 }
 
 extension AppDiscoveryAction: MoveKinFlowUIProvider {
-    func provideUserAddress(addressHandler: @escaping (String?) -> Void) {
-        let address = Kin.shared.accountStatus == .activated
-            ? Kin.shared.publicAddress
-            : nil
-        addressHandler(address)
-    }
-
-    func viewControllerForConnectingStage() -> UIViewController {
+    func viewControllerForConnectingStage(_ app: MoveKinApp) -> UIViewController {
         let connectingAppsViewController = ConnectingAppsViewController()
-        connectingAppsViewController.appIconURL = app.metadata.iconURL.kinImagePathAdjustedForDevice()
+        connectingAppsViewController.appIconURL = app.appIconURL
 
         return connectingAppsViewController
     }
 
-    func viewControllerForSendingStage() -> UIViewController & MoveKinSendingStage {
-        return SendingKinToAppViewController()
+    func viewControllerForSendingStage(amount: UInt, app: MoveKinApp) -> UIViewController & MoveKinSendingPage {
+        let sendingKinViewController = SendingKinToAppViewController()
+        sendingKinViewController.appIconURL = app.appIconURL
+        sendingKinViewController.appName = app.name
+
+        return sendingKinViewController
     }
 
-    func viewControllerForSentStage() -> UIViewController {
-        return UIViewController()
+    func viewControllerForSentStage(amount: UInt, app: MoveKinApp) -> UIViewController & MoveKinSentPage {
+        let sentVC = SentKinToAppViewController()
+        sentVC.amount = amount
+
+        return sentVC
+    }
+
+    func errorViewController() -> UIViewController {
+        let errorVC = UIViewController()
+        errorVC.view.backgroundColor = .red
+        return errorVC
     }
 }

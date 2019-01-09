@@ -24,6 +24,10 @@ class GetAddressFlow {
 
     private var completion: GetAddressFlowCompletion?
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
     init() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(appDidBecomeActive),

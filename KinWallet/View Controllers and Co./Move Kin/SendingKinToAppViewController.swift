@@ -7,18 +7,51 @@
 
 import UIKit
 import MoveKin
+import KinitDesignables
 
 class SendingKinToAppViewController: UIViewController {
+    var appIconURL: URL!
+    var appName: String!
+    let initialBalance = Kin.shared.balance
 
+    let transferringKinViewController: TransferringKinViewController = {
+        let transferringViewController = StoryboardScene.Earn.transferringKinViewController.instantiate()
+        transferringViewController.initialBalance = Kin.shared.balance
+
+        return transferringViewController
+    }()
+
+    let gradientView: GradientView = {
+        let v = GradientView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.direction = .vertical
+        v.colors = UIColor.blueGradientColors1
+
+        return v
+    }()
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.addAndFit(gradientView)
+        transferringKinViewController.transferType = .moveToApp(appName, appIconURL)
+        addAndFit(transferringKinViewController)
+    }
 }
 
-extension SendingKinToAppViewController: MoveKinSendingStage {
-    func sendKinDidStart() {
+extension SendingKinToAppViewController: MoveKinSendingPage {
+    func sendKinDidStart(amount: UInt) {
 
     }
 
-    func sendKinDidSucceed(moveToSentPage: @escaping () -> Void) {
-        moveToSentPage()
+    func sendKinDidSucceed(amount: UInt, moveToSentPage: @escaping () -> Void) {
+        transferringKinViewController.transactionSucceeded(newBalance: initialBalance - UInt64(amount)) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: moveToSentPage)
+        }
     }
 
     func sendKinDidFail() {

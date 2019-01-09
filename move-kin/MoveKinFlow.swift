@@ -7,37 +7,35 @@
 
 import UIKit
 
-public protocol MoveKinSelectAmountStage: class {
-    var amountSelectionBlock: ((UInt) -> Void)? { get set }
-}
-
-public extension MoveKinSelectAmountStage {
-    func setAmountSelectionBlock(_ selectionBlock: @escaping (UInt) -> Void) {
-        amountSelectionBlock = selectionBlock
-    }
+public protocol MoveKinSelectAmountPage: class {
+    func setupSelectAmountPage(selectionHandler: @escaping (UInt) -> Void) //var amountSelectionBlock: ((UInt) -> Void)? { get set }
 }
 
 public enum MoveKinAmountOption {
     case specified(UInt)
-    case willInput(UIViewController & MoveKinSelectAmountStage)
+    case willInput(UIViewController & MoveKinSelectAmountPage)
 }
 
-public protocol MoveKinSendingStage {
-    func sendKinDidStart()
-    func sendKinDidSucceed(moveToSentPage: @escaping () -> Void)
+public protocol MoveKinSendingPage {
+    func sendKinDidStart(amount: UInt)
+    func sendKinDidSucceed(amount: UInt, moveToSentPage: @escaping () -> Void)
     func sendKinDidFail()
 }
 
+public protocol MoveKinSentPage {
+    func setupSentKinPage(amount: UInt, finishHandler: @escaping () -> Void)
+}
+
 public protocol MoveKinFlowUIProvider: class {
-    func viewControllerForConnectingStage() -> UIViewController
-    func viewControllerForSendingStage() -> UIViewController & MoveKinSendingStage
-    func viewControllerForSentStage() -> UIViewController
+    func viewControllerForConnectingStage(_ app: MoveKinApp) -> UIViewController
+    func viewControllerForSendingStage(amount: UInt, app: MoveKinApp) -> UIViewController & MoveKinSendingPage
+    func viewControllerForSentStage(amount: UInt, app: MoveKinApp) -> UIViewController & MoveKinSentPage
+    func errorViewController() -> UIViewController
 }
 
 public protocol MoveKinFlowDelegate: class {
     func sendKin(amount: UInt, to address: String, completion: @escaping (Bool) -> Void)
     func provideUserAddress(addressHandler: @escaping (String?) -> Void)
-
 }
 
 public class MoveKinFlow {
@@ -45,6 +43,7 @@ public class MoveKinFlow {
 
     fileprivate var destinationAddress: PublicAddress?
     fileprivate var amountOption: MoveKinAmountOption?
+    fileprivate var app: MoveKinApp?
 
     let getAddressFlow = GetAddressFlow()
     let provideAddressFlow = ProvideAddressFlow()
@@ -76,12 +75,16 @@ public class MoveKinFlow {
             return
         }
 
+        self.app = destinationApp
         self.amountOption = amountOption
 
-        navigationController = UINavigationController(rootViewController: uiProvider.viewControllerForConnectingStage())
+        let connectingViewController = uiProvider.viewControllerForConnectingStage(destinationApp)
+        navigationController = MoveKinNavigationController(rootViewController: connectingViewController)
         navigationController!.setNavigationBarHidden(true, animated: false)
         presenter?.present(navigationController!, animated: true) { [weak self] in
-            self?.connectingAppsDidPresent(to: destinationApp)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+                self?.connectingAppsDidPresent(to: destinationApp)
+            })
         }
     }
 
@@ -92,27 +95,35 @@ public class MoveKinFlow {
             fatalError("MoveKin flow is in progress, but no delegate or uiProvider are set")
         }
 
-        guard let destinationAddress = destinationAddress else {
-            fatalError("MoveKin flow will start sending, but no destinationAddress is set.")
+        guard
+            let destinationAddress = destinationAddress,
+            let app = app else {
+            fatalError("MoveKin flow will start sending, but no destinationAddress or app are set.")
         }
 
-        //TODO: look for retain cycles
+        //TODO: MoveKin look for retain cycles
 
-        let sendingViewController = uiProvider.viewControllerForSendingStage()
+        let sendingViewController = uiProvider.viewControllerForSendingStage(amount: amount, app: app)
         navigationController!.pushViewController(sendingViewController, animated: true)
-        sendingViewController.sendKinDidStart()
+        sendingViewController.sendKinDidStart(amount: amount)
         delegate.sendKin(amount: amount, to: destinationAddress.asString) { success in
-            self.destinationAddress = nil
-            self.amountOption = nil
+            DispatchQueue.main.async {
+                self.destinationAddress = nil
+                self.amountOption = nil
 
-            if success {
-                sendingViewController.sendKinDidSucceed {
-                    let sentViewController = uiProvider.viewControllerForSentStage()
-                    self.navigationController!.pushViewController(sentViewController, animated: true)
+                if success {
+                    sendingViewController.sendKinDidSucceed(amount: amount) {
+                        let sentViewController = uiProvider.viewControllerForSentStage(amount: amount, app: app)
+                        sentViewController.setupSentKinPage(amount: amount, finishHandler: {
+                            self.navigationController!.dismiss(animated: true)
+                            self.navigationController = nil
+                        })
+                        self.navigationController!.pushViewController(sentViewController, animated: true)
+                    }
+                } else {
+                    sendingViewController.sendKinDidFail()
+                    //TODO: MoveKin dismiss screen
                 }
-            } else {
-                sendingViewController.sendKinDidFail()
-                //TODO: dismiss screen
             }
         }
     }
@@ -164,17 +175,21 @@ extension MoveKinFlow {
     func getAddressFlowDidSucceed(with publicAddress: PublicAddress) {
         print("Got public address: \(publicAddress.asString)")
 
-        destinationAddress = publicAddress
+        // Network requests fail when the app didn't finish to transition to foreground.
+        // Also, for a better transition, delay the calls below by 0.5s
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+            self.destinationAddress = publicAddress
 
-        switch amountOption! {
-        case .specified(let amount):
-            amountSelected(amount)
-        case .willInput(let inputViewController):
-            inputViewController.setAmountSelectionBlock { [weak self] amount in
-                self?.amountSelected(amount)
+            switch self.amountOption! {
+            case .specified(let amount):
+                self.amountSelected(amount)
+            case .willInput(let inputViewController):
+                inputViewController.setupSelectAmountPage { [weak self] amount in
+                    self?.amountSelected(amount)
+                }
+
+                self.navigationController!.pushViewController(inputViewController, animated: true)
             }
-
-            navigationController!.pushViewController(inputViewController, animated: true)
         }
     }
 }

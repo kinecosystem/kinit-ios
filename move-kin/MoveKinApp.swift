@@ -8,18 +8,18 @@
 import Foundation
 
 public struct MoveKinApp {
-    public let appName: String
+    public let name: String
     public let appStoreURL: URL
     public let bundleId: String
     public let urlScheme: String
     public let appIconURL: URL
 
-    public init(appName: String,
+    public init(name: String,
                 appStoreURL: URL,
                 bundleId: String,
                 urlScheme: String,
                 appIconURL: URL) {
-        self.appName = appName
+        self.name = name
         self.appStoreURL = appStoreURL
         self.bundleId = bundleId
         self.urlScheme = urlScheme

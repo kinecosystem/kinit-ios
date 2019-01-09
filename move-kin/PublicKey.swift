@@ -28,3 +28,9 @@ extension PublicAddress: RawRepresentable {
         return KeyUtils.base32(publicKey: key)
     }
 }
+
+extension PublicAddress: CustomStringConvertible {
+    public var description: String {
+        return asString
+    }
+}
