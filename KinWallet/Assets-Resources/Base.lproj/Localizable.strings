@@ -214,6 +214,8 @@
 
 "YourKinBalance" = "Your Kin Balance";
 
+"XKinAvailable" = "%d Kin available";
+
 "TransactionsEmptyStateMessage" = "Your transactions will appear here!";
 
 "BalanceRecentActions" = "Recent Actions";
@@ -443,3 +445,7 @@
 "MoveKin.SendingKinCompleted.Subtitle.Prefix" = "You’ve succesfully sent";
 
 "MoveKin.SendingKinCompleted.Subtitle.Postfix" = "see transaction details under balance";
+
+"MoveKin.SendingFailed.Title" = "Oh no!";
+
+"MoveKin.SendingFailed.Subtitle" = "We received your send request but something went wrong.\nPlease try again later.";

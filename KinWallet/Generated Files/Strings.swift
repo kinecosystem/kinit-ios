@@ -367,6 +367,10 @@ internal enum L10n {
   internal static let welcome3rdScreenTitle = L10n.tr("Localizable", "Welcome3rdScreenTitle")
   /// By clicking "Start earning Kin" you are agreeing\nto our Terms of Service and Privacy Policy
   internal static let welcomeScreenDisclaimer = L10n.tr("Localizable", "WelcomeScreenDisclaimer")
+  /// %d Kin available
+  internal static func xKinAvailable(_ p1: Int) -> String {
+    return L10n.tr("Localizable", "XKinAvailable", p1)
+  }
   /// Your Kin Balance
   internal static let yourKinBalance = L10n.tr("Localizable", "YourKinBalance")
 
@@ -420,6 +424,12 @@ internal enum L10n {
   internal enum MoveKin {
     /// Connecting Apps
     internal static let connectingApps = L10n.tr("Localizable", "MoveKin.ConnectingApps")
+    internal enum SendingFailed {
+      /// We received your send request but something went wrong.\nPlease try again later.
+      internal static let subtitle = L10n.tr("Localizable", "MoveKin.SendingFailed.Subtitle")
+      /// Oh no!
+      internal static let title = L10n.tr("Localizable", "MoveKin.SendingFailed.Title")
+    }
     internal enum SendingKinCompleted {
       /// Sending Completed
       internal static let title = L10n.tr("Localizable", "MoveKin.SendingKinCompleted.Title")

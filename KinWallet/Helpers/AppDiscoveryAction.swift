@@ -34,8 +34,10 @@ class AppDiscoveryAction {
                               urlScheme: transferData.urlScheme,
                               appIconURL: app.metadata.iconURL.kinImagePathAdjustedForDevice())
         moveKinFlow.uiProvider = self
-//        moveKinFlow.startMoveKinFlow(to: mApp, amountOption: .willInput(SendKinAmountInputViewController()))
-        moveKinFlow.startMoveKinFlow(to: mApp, amountOption: .specified(4))
+        let inputViewController = StoryboardScene.Spend.sendKinAmountInputViewController.instantiate()
+        inputViewController.appName = mApp.name
+        inputViewController.appIconURL = mApp.appIconURL
+        moveKinFlow.startMoveKinFlow(to: mApp, amountOption: .willInput(inputViewController))
     }
 }
 
@@ -62,9 +64,7 @@ extension AppDiscoveryAction: MoveKinFlowUIProvider {
         return sentVC
     }
 
-    func errorViewController() -> UIViewController {
-        let errorVC = UIViewController()
-        errorVC.view.backgroundColor = .red
-        return errorVC
+    func errorViewController() -> UIViewController & MoveKinErrorPage {
+        return MoveKinErrorPageViewController()
     }
 }

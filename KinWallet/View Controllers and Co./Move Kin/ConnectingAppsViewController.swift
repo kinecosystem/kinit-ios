@@ -60,6 +60,7 @@ class ConnectingAppsViewController: UIViewController {
 
     let loaderView: LOTAnimationView = {
         let v = LOTAnimationView(name: "ConnectingLoader")
+        v.loopAnimation = true
         v.translatesAutoresizingMaskIntoConstraints = false
         v.contentMode = .scaleAspectFit
         v.widthAnchor.constraint(equalToConstant: iconSide).isActive = true

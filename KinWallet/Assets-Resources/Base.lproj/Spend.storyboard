@@ -329,53 +329,10 @@ on your phone to redeem</string>
             </objects>
             <point key="canvasLocation" x="714" y="-25"/>
         </scene>
-        <!--Send Kin Offer Action View Controller-->
-        <scene sceneID="WIh-MV-Hnl">
-            <objects>
-                <viewController storyboardIdentifier="SendKinOfferActionViewController" id="bna-sW-kJi" customClass="SendKinOfferActionViewController" customModule="KinWallet" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="tH0-Um-7EY">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cc9-vW-Mii">
-                                <rect key="frame" x="47.5" y="13" width="280" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="0Lg-vF-mr7"/>
-                                    <constraint firstAttribute="height" constant="44" id="KF5-cm-UGG"/>
-                                </constraints>
-                                <state key="normal" title="Send Kin"/>
-                                <connections>
-                                    <action selector="sendKin:" destination="bna-sW-kJi" eventType="touchUpInside" id="gA3-P0-hlF"/>
-                                </connections>
-                            </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="4d3-Je-MFL">
-                                <rect key="frame" x="177.5" y="25" width="20" height="20"/>
-                            </activityIndicatorView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="cc9-vW-Mii" firstAttribute="centerY" secondItem="CM3-aJ-oVA" secondAttribute="centerY" id="Bq3-SC-x24"/>
-                            <constraint firstItem="4d3-Je-MFL" firstAttribute="centerX" secondItem="cc9-vW-Mii" secondAttribute="centerX" id="ext-mA-siT"/>
-                            <constraint firstItem="cc9-vW-Mii" firstAttribute="centerX" secondItem="CM3-aJ-oVA" secondAttribute="centerX" id="iIC-ck-m7C"/>
-                            <constraint firstItem="4d3-Je-MFL" firstAttribute="centerY" secondItem="cc9-vW-Mii" secondAttribute="centerY" id="o4v-kW-bSn"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="CM3-aJ-oVA"/>
-                    </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="70"/>
-                    <connections>
-                        <outlet property="activityIndicatorView" destination="4d3-Je-MFL" id="6Nf-yh-HQ9"/>
-                        <outlet property="sendKinButton" destination="cc9-vW-Mii" id="3BI-0W-Eoz"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="haY-5f-Kww" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="714" y="126"/>
-        </scene>
-        <!--Send Kin View Controller-->
+        <!--Send Kin Amount Input View Controller-->
         <scene sceneID="Ctl-Nq-VCX">
             <objects>
-                <viewController storyboardIdentifier="SendKinViewController" id="Awj-8G-4Em" customClass="SendKinViewController" customModule="KinWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SendKinAmountInputViewController" id="Awj-8G-4Em" customClass="SendKinAmountInputViewController" customModule="KinWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="My5-WS-y52">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -401,7 +358,7 @@ on your phone to redeem</string>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Cp-0g-RGg">
                                                 <rect key="frame" x="0.0" y="22.5" width="289" height="17.5"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -441,9 +398,16 @@ on your phone to redeem</string>
                                     <constraint firstAttribute="height" constant="1" id="JGu-Xb-3Pp" customClass="NSLayoutConstraintHairline" customModule="KinWallet" customModuleProvider="target"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMh-OY-EJt">
+                                <rect key="frame" x="16" y="137" width="34" height="16.5"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="vMh-OY-EJt" firstAttribute="leading" secondItem="19H-QE-OQF" secondAttribute="leading" id="1HN-qT-qJ2"/>
                             <constraint firstItem="Uc4-wg-5cm" firstAttribute="trailing" secondItem="cqx-ka-eDP" secondAttribute="trailing" constant="16" id="1Kh-zO-1p6"/>
                             <constraint firstItem="mUB-ST-Hw7" firstAttribute="width" relation="lessThanOrEqual" secondItem="My5-WS-y52" secondAttribute="width" multiplier="0.7" id="4Zg-jR-Si3"/>
                             <constraint firstAttribute="trailing" secondItem="eTl-df-5PV" secondAttribute="trailing" id="8hZ-gd-A40"/>
@@ -452,6 +416,7 @@ on your phone to redeem</string>
                             <constraint firstItem="pyc-hj-Lma" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Uc4-wg-5cm" secondAttribute="leading" constant="10" id="SDL-mk-Wrs"/>
                             <constraint firstItem="cqx-ka-eDP" firstAttribute="top" secondItem="Uc4-wg-5cm" secondAttribute="top" constant="16" id="TOT-2V-FQx"/>
                             <constraint firstItem="mUB-ST-Hw7" firstAttribute="centerX" secondItem="Uc4-wg-5cm" secondAttribute="centerX" id="Uon-hy-Ati"/>
+                            <constraint firstItem="vMh-OY-EJt" firstAttribute="top" secondItem="eTl-df-5PV" secondAttribute="bottom" constant="8" id="Vru-d3-L78"/>
                             <constraint firstItem="cqx-ka-eDP" firstAttribute="leading" secondItem="Uc4-wg-5cm" secondAttribute="leading" constant="16" id="eSd-nb-0UQ"/>
                             <constraint firstItem="yMe-ce-9Yb" firstAttribute="bottom" secondItem="My5-WS-y52" secondAttribute="bottomMargin" id="fHx-xC-i7N"/>
                             <constraint firstItem="eTl-df-5PV" firstAttribute="leading" secondItem="My5-WS-y52" secondAttribute="leading" id="l9C-3y-9FT"/>
@@ -463,11 +428,11 @@ on your phone to redeem</string>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="activityIndicatorView" destination="CGB-kf-Zg4" id="7xL-DR-PSM"/>
                         <outlet property="amountLabel" destination="mUB-ST-Hw7" id="dYz-J0-Bhl"/>
                         <outlet property="amountTextField" destination="yMe-ce-9Yb" id="ngf-J9-yBj"/>
-                        <outlet property="contactImageView" destination="19H-QE-OQF" id="INl-GJ-rlv"/>
-                        <outlet property="contactNameLabel" destination="7Cp-0g-RGg" id="KdT-dy-whA"/>
+                        <outlet property="appIconImageView" destination="19H-QE-OQF" id="Wx2-ip-riC"/>
+                        <outlet property="appNameLabel" destination="7Cp-0g-RGg" id="roL-gp-vXk"/>
+                        <outlet property="currentBalanceLabel" destination="vMh-OY-EJt" id="dyK-SI-57o"/>
                         <outlet property="kLabel" destination="pyc-hj-Lma" id="vmh-7p-fV9"/>
                         <outlet property="sendKinButton" destination="ebA-WM-nbz" id="NEC-7p-ZNR"/>
                         <outlet property="sendKinContainerView" destination="jHq-PW-oAB" id="WGX-u2-0bM"/>
@@ -486,9 +451,6 @@ on your phone to redeem</string>
                                 <action selector="sendKin:" destination="Awj-8G-4Em" eventType="touchUpInside" id="iwH-9g-7Mq"/>
                             </connections>
                         </button>
-                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="CGB-kf-Zg4">
-                            <rect key="frame" x="347" y="24" width="20" height="20"/>
-                        </activityIndicatorView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -497,8 +459,6 @@ on your phone to redeem</string>
                         <constraint firstItem="ebA-WM-nbz" firstAttribute="top" secondItem="KqJ-VC-N2q" secondAttribute="top" id="ChB-nV-3uh"/>
                         <constraint firstAttribute="height" constant="68" id="ZCQ-Jx-cr8"/>
                         <constraint firstAttribute="trailing" secondItem="ebA-WM-nbz" secondAttribute="trailing" id="uWX-l6-5fg"/>
-                        <constraint firstItem="CGB-kf-Zg4" firstAttribute="centerY" secondItem="jHq-PW-oAB" secondAttribute="centerY" id="xQc-ur-FE9"/>
-                        <constraint firstAttribute="trailing" secondItem="CGB-kf-Zg4" secondAttribute="trailing" constant="8" id="zXY-aB-dby"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="KqJ-VC-N2q"/>
                 </view>

@@ -8,7 +8,7 @@
 import UIKit
 
 public protocol MoveKinSelectAmountPage: class {
-    func setupSelectAmountPage(selectionHandler: @escaping (UInt) -> Void) //var amountSelectionBlock: ((UInt) -> Void)? { get set }
+    func setupSelectAmountPage(selectionHandler: @escaping (UInt) -> Void)
 }
 
 public enum MoveKinAmountOption {
@@ -19,18 +19,22 @@ public enum MoveKinAmountOption {
 public protocol MoveKinSendingPage {
     func sendKinDidStart(amount: UInt)
     func sendKinDidSucceed(amount: UInt, moveToSentPage: @escaping () -> Void)
-    func sendKinDidFail()
+    func sendKinDidFail(moveToErrorPage: @escaping () -> Void)
 }
 
 public protocol MoveKinSentPage {
     func setupSentKinPage(amount: UInt, finishHandler: @escaping () -> Void)
 }
 
+public protocol MoveKinErrorPage {
+    func setupMoveKinErrorPage(finishHandler: @escaping () -> Void)
+}
+
 public protocol MoveKinFlowUIProvider: class {
     func viewControllerForConnectingStage(_ app: MoveKinApp) -> UIViewController
     func viewControllerForSendingStage(amount: UInt, app: MoveKinApp) -> UIViewController & MoveKinSendingPage
     func viewControllerForSentStage(amount: UInt, app: MoveKinApp) -> UIViewController & MoveKinSentPage
-    func errorViewController() -> UIViewController
+    func errorViewController() -> UIViewController & MoveKinErrorPage
 }
 
 public protocol MoveKinFlowDelegate: class {
@@ -82,7 +86,7 @@ public class MoveKinFlow {
         navigationController = MoveKinNavigationController(rootViewController: connectingViewController)
         navigationController!.setNavigationBarHidden(true, animated: false)
         presenter?.present(navigationController!, animated: true) { [weak self] in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6, execute: {
                 self?.connectingAppsDidPresent(to: destinationApp)
             })
         }
@@ -121,8 +125,14 @@ public class MoveKinFlow {
                         self.navigationController!.pushViewController(sentViewController, animated: true)
                     }
                 } else {
-                    sendingViewController.sendKinDidFail()
-                    //TODO: MoveKin dismiss screen
+                    sendingViewController.sendKinDidFail {
+                        let errorPageViewController = uiProvider.errorViewController()
+                        errorPageViewController.setupMoveKinErrorPage {
+                            self.navigationController!.dismiss(animated: true)
+                            self.navigationController = nil
+                        }
+                        self.navigationController!.pushViewController(errorPageViewController, animated: true)
+                    }
                 }
             }
         }

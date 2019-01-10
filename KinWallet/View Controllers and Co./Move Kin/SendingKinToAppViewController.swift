@@ -41,6 +41,12 @@ class SendingKinToAppViewController: UIViewController {
         transferringKinViewController.transferType = .moveToApp(appName, appIconURL)
         addAndFit(transferringKinViewController)
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
 }
 
 extension SendingKinToAppViewController: MoveKinSendingPage {
@@ -54,7 +60,7 @@ extension SendingKinToAppViewController: MoveKinSendingPage {
         }
     }
 
-    func sendKinDidFail() {
-
+    func sendKinDidFail(moveToErrorPage: @escaping () -> Void) {
+        moveToErrorPage()
     }
 }
