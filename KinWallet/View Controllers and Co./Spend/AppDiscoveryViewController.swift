@@ -96,8 +96,8 @@ class AppDiscoveryViewController: UIViewController {
 
     private func showIntroPopupIfNeeded() {
         guard
-            (UserDefaults.standard.bool(forKey: shownAppDiscoveryIntroKey) == false
-                || UserDefaults.standard.bool(forKey: shownEcosystemMoveKinIntroKey) == false) else {
+            UserDefaults.standard.bool(forKey: shownAppDiscoveryIntroKey) == false
+                || UserDefaults.standard.bool(forKey: shownEcosystemMoveKinIntroKey) == false else {
                     return
         }
 
@@ -136,11 +136,12 @@ class AppDiscoveryViewController: UIViewController {
         }
 
         UserDefaults.standard.set(true, forKey: shownEcosystemMoveKinIntroKey)
+        let actionTitle = L10n.AppEcosystemMoveKinIntroPopup.action
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
             let alertController = KinAlertController(title: L10n.AppEcosystemMoveKinIntroPopup.title,
                                                      titleImage: Asset.appDiscoverySendIntroPopup.image,
                                                      message: L10n.AppEcosystemMoveKinIntroPopup.message,
-                                                     primaryAction: .init(title: L10n.AppEcosystemMoveKinIntroPopup.action),
+                                                     primaryAction: .init(title: actionTitle),
                                                      secondaryAction: nil)
             self?.presentAnimated(alertController)
         }
