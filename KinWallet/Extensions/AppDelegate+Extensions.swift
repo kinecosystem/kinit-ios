@@ -54,13 +54,27 @@ extension AppDelegate {
 }
 
 extension AppDelegate: MoveKinFlowDelegate {
-    func sendKin(amount: UInt, to address: String, completion: @escaping (Bool) -> Void) {
+    func sendKin(amount: UInt, to address: String, app: MoveKinApp, completion: @escaping (Bool) -> Void) {
         guard Kin.shared.accountStatus == .activated else {
             completion(false)
             return
         }
 
         Kin.shared.send(UInt64(amount), to: address, memo: nil) { txId, _ in
+            if let appSid = DataLoaders.kinit.ecosystemAppSid(for: app.bundleId),
+                let txId = txId {
+                let reportBody = ReportMoveKinToAppBody(address: address,
+                                                        txHash: txId,
+                                                        amount: amount,
+                                                        destinationAppSid: appSid)
+                WebRequests.KinEcosystem
+                    .reportMoveKinToApp(reportBody)
+                    .withCompletion { transaction, _ in
+                        if let transaction = transaction {
+                            DataLoaders.kinit.prependTransaction(transaction)
+                        }
+                    }.load(with: KinWebService.shared)
+            }
             completion(txId != nil)
         }
     }

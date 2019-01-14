@@ -10,6 +10,7 @@ import KinUtil
 import MoveKin
 
 private let shownAppDiscoveryIntroKey = "org.kinfoundation.kinwallet.shownAppDiscoveryIntro"
+private let shownEcosystemMoveKinIntroKey = "org.kinfoundation.kinwallet.shownEcosystemMoveKinIntro"
 
 private enum AppDiscoveryTableSections: Int {
     case intro = 0
@@ -70,7 +71,8 @@ class AppDiscoveryViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        showAppDiscoveryIntroIfNeeded()
+        showIntroPopupIfNeeded()
+
         Events.Analytics.ViewExplorePage().send()
     }
 
@@ -92,6 +94,26 @@ class AppDiscoveryViewController: UIViewController {
         tableView.reloadData()
     }
 
+    private func showIntroPopupIfNeeded() {
+        guard
+            (UserDefaults.standard.bool(forKey: shownAppDiscoveryIntroKey) == false
+                || UserDefaults.standard.bool(forKey: shownEcosystemMoveKinIntroKey) == false) else {
+                    return
+        }
+
+        let transferAvailableApp = DataLoaders.kinit.ecosystemAppCategories
+            .value?
+            .value?
+            .flatMap { $0.apps }
+            .first(where: { $0.isTransferAvailable })
+
+        if transferAvailableApp != nil {
+            showMoveKinIntroIfNeeded()
+        } else {
+            showAppDiscoveryIntroIfNeeded()
+        }
+    }
+
     private func showAppDiscoveryIntroIfNeeded() {
         guard UserDefaults.standard.bool(forKey: shownAppDiscoveryIntroKey) == false else {
             return
@@ -103,6 +125,22 @@ class AppDiscoveryViewController: UIViewController {
                                                      titleImage: Asset.appDiscoveryIntroPopup.image,
                                                      message: L10n.AppDiscoveryIntroPopup.title,
                                                      primaryAction: .init(title: L10n.AppDiscoveryIntroPopup.action),
+                                                     secondaryAction: nil)
+            self?.presentAnimated(alertController)
+        }
+    }
+
+    private func showMoveKinIntroIfNeeded() {
+        guard UserDefaults.standard.bool(forKey: shownEcosystemMoveKinIntroKey) == false else {
+            return
+        }
+
+        UserDefaults.standard.set(true, forKey: shownEcosystemMoveKinIntroKey)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+            let alertController = KinAlertController(title: L10n.AppEcosystemMoveKinIntroPopup.title,
+                                                     titleImage: Asset.appDiscoverySendIntroPopup.image,
+                                                     message: L10n.AppEcosystemMoveKinIntroPopup.message,
+                                                     primaryAction: .init(title: L10n.AppEcosystemMoveKinIntroPopup.action),
                                                      secondaryAction: nil)
             self?.presentAnimated(alertController)
         }

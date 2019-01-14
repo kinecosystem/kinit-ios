@@ -11,6 +11,7 @@ import MoveKin
 
 class SendKinAmountInputViewController: UIViewController {
     var amountSelectionBlock: ((UInt) -> Void)?
+    var cancelBlock: (() -> Void)?
     let linkBag = LinkBag()
     var appName: String!
     var appIconURL: URL!
@@ -71,6 +72,12 @@ class SendKinAmountInputViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.hidesBackButton = true
+        let closeImage = Asset.closeXButtonDarkGray.image.withRenderingMode(.alwaysOriginal)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: closeImage,
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(cancel))
         toLabel.textColor = UIColor.kin.gray
         appNameLabel.textColor = UIColor.kin.gray
         currentBalanceLabel.textColor = UIColor.kin.gray
@@ -90,6 +97,12 @@ class SendKinAmountInputViewController: UIViewController {
         amountTextField.becomeFirstResponder()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+
     @IBAction func sendKin(_ sender: Any) {
         let aAmount = amount
         guard aAmount <= Kin.shared.balance else {
@@ -97,6 +110,10 @@ class SendKinAmountInputViewController: UIViewController {
         }
 
         amountSelectionBlock?(aAmount)
+    }
+
+    @objc func cancel() {
+        cancelBlock?()
     }
 }
 
@@ -157,7 +174,8 @@ extension SendKinAmountInputViewController: UITextFieldDelegate {
 }
 
 extension SendKinAmountInputViewController: MoveKinSelectAmountPage {
-    func setupSelectAmountPage(selectionHandler: @escaping (UInt) -> Void) {
+    func setupSelectAmountPage(cancelHandler: @escaping () -> Void, selectionHandler: @escaping (UInt) -> Void) {
         amountSelectionBlock = selectionHandler
+        cancelBlock = cancelHandler
     }
 }

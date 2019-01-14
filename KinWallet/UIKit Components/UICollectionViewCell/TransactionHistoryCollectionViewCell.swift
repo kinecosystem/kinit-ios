@@ -46,17 +46,27 @@ class TransactionHistoryCellFactory {
         let amountAfter = kinAmountFormatter.string(from: NSNumber(value: balanceAfter))!
         cell.balanceLabel.text = "\(amountAfter) K"
 
-        let asset = transaction.clientReceived
-            ? Asset.historyKinIcon
-            : Asset.historyCouponIcon
-        cell.iconImageView.image = asset.image
+        if transaction.clientReceived {
+            cell.iconImageView.image = Asset.historyKinIcon.image
+        } else {
+            if transaction.type == "p2p" {
+                cell.iconImageView.loadImage(url: transaction.author.imageURL.kinImagePathAdjustedForDevice(),
+                                             placeholderColor: UIColor.kin.lightGray)
+            } else {
+                cell.iconImageView.image = Asset.historyCouponIcon.image
+            }
+        }
     }
 }
 
 class TransactionHistoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var timelineTopView: UIView!
     @IBOutlet weak var timelineBottomView: UIView!
-    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var iconImageView: UIImageView! {
+        didSet {
+            iconImageView.contentMode = .scaleAspectFit
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

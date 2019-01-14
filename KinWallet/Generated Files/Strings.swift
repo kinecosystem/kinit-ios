@@ -403,6 +403,15 @@ internal enum L10n {
     internal static let title = L10n.tr("Localizable", "AppDiscoveryIntroPopup.Title")
   }
 
+  internal enum AppEcosystemMoveKinIntroPopup {
+    /// Got it!
+    internal static let action = L10n.tr("Localizable", "AppEcosystemMoveKinIntroPopup.Action")
+    /// Now you can send Kin to any app in the ecosystem using Kinit!\n\nJust look for the "Send Kin" button  on the apps page to try it for yourself.
+    internal static let message = L10n.tr("Localizable", "AppEcosystemMoveKinIntroPopup.Message")
+    /// The future is here!
+    internal static let title = L10n.tr("Localizable", "AppEcosystemMoveKinIntroPopup.Title")
+  }
+
   internal enum AppPage {
     /// About %@
     internal static func aboutApp(_ p1: String) -> String {

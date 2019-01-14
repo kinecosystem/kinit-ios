@@ -422,6 +422,12 @@
 
 "AppDiscoveryIntroPopup.Action" = "Awesome";
 
+"AppEcosystemMoveKinIntroPopup.Title" = "The future is here!";
+
+"AppEcosystemMoveKinIntroPopup.Message" = "Now you can send Kin to any app in the ecosystem using Kinit!\n\nJust look for the \"Send Kin\" button  on the apps page to try it for yourself.";
+
+"AppEcosystemMoveKinIntroPopup.Action" = "Got it!";
+
 "AppDiscovery.Header.Title" = "Introducing Kin Ecosystem apps";
 
 "AppDiscovery.Header.Subtitle" = "Discover all the amazing apps where you can use Kin.";

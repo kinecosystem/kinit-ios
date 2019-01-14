@@ -170,3 +170,17 @@ struct RestoreUserIdResponse: Codable {
         case userId = "user_id"
     }
 }
+
+struct ReportMoveKinToAppBody: Codable {
+    let address: String
+    let txHash: String
+    let amount: UInt
+    let destinationAppSid: Int
+
+    enum CodingKeys: String, CodingKey {
+        case address = "destination_address"
+        case txHash = "tx_hash"
+        case amount
+        case destinationAppSid = "destination_app_sid"
+    }
+}

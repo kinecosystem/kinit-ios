@@ -9,6 +9,10 @@ import Foundation
 
 struct AppTransferData: Codable {
     let urlScheme: String
+
+    enum CodingKeys: String, CodingKey {
+        case urlScheme = "url_scheme"
+    }
 }
 
 struct AppMetadata: Codable {
@@ -43,7 +47,8 @@ struct EcosystemApp: Codable {
     let isActive: Bool
     let metadata: AppMetadata
     let name: String
-    let transferData: AppTransferData? = AppTransferData(urlScheme: "bananao")
+    let serverIdentifier: Int
+    let transferData: AppTransferData?
 
     enum CodingKeys: String, CodingKey {
         case bundleId = "identifier"
@@ -52,6 +57,7 @@ struct EcosystemApp: Codable {
         case metadata = "meta_data"
         case name
         case transferData = "transfer_data"
+        case serverIdentifier = "sid"
     }
 }
 

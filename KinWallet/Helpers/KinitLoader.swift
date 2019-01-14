@@ -105,3 +105,12 @@ class KinitLoader {
             }.load(with: KinWebService.shared)
     }
 }
+
+extension KinitLoader {
+    func ecosystemAppSid(for bundleId: String) -> Int? {
+        return ecosystemAppCategories.value?.value?
+            .flatMap { $0.apps }
+            .first(where: { $0.bundleId == bundleId })?
+            .serverIdentifier
+    }
+}
