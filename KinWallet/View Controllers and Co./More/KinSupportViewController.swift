@@ -87,9 +87,13 @@ extension ContactOption {
 
 final class KinSupportViewController: MFMailComposeViewController {
     let option: ContactOption
+    let faqCategory: String?
+    let faqSubcategory: String?
 
-    init(option: ContactOption) {
+    init(option: ContactOption, faqCategory: String?, faqSubcategory: String?) {
         self.option = option
+        self.faqCategory = faqCategory
+        self.faqSubcategory = faqSubcategory
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -103,14 +107,17 @@ final class KinSupportViewController: MFMailComposeViewController {
         present(.feedback, from: presenter)
     }
 
-    class func presentSupport(from presenter: UIViewController, faqCategory: String = "", faqTitle: String = "") {
+    class func presentSupport(from presenter: UIViewController, faqCategory: String = "", faqSubcategory: String = "") {
         Events.Analytics
-            .ClickSupportButton(faqCategory: faqCategory, faqTitle: faqTitle)
+            .ClickSupportButton(faqCategory: faqCategory, faqSubcategory: faqSubcategory)
             .send()
-        present(.support, from: presenter)
+        present(.support, from: presenter, faqCategory: faqCategory, faqSubcategory: faqSubcategory)
     }
 
-    private class func present(_ option: ContactOption, from presenter: UIViewController) {
+    private class func present(_ option: ContactOption,
+                               from presenter: UIViewController,
+                               faqCategory: String? = nil,
+                               faqSubcategory: String? = nil) {
         let recipient = option.emailAddress
         let subject = option.emailSubject
 
@@ -120,7 +127,9 @@ final class KinSupportViewController: MFMailComposeViewController {
             return
         }
 
-        let mailController = KinSupportViewController(option: option)
+        let mailController = KinSupportViewController(option: option,
+                                                      faqCategory: faqCategory,
+                                                      faqSubcategory: faqSubcategory)
         mailController.setToRecipients([recipient])
         mailController.setSubject(subject)
 
@@ -207,7 +216,9 @@ extension KinSupportViewController: MFMailComposeViewControllerDelegate {
         case .feedback:
             Events.Business.FeedbackSent().send()
         case .support:
-            Events.Business.SupportRequestSent().send()
+            Events.Business
+                .SupportRequestSent(faqCategory: faqCategory.orEmpty, faqSubcategory: faqSubcategory.orEmpty)
+                .send()
         }
     }
 }

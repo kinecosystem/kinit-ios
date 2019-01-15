@@ -107,10 +107,19 @@ class KinitLoader {
 }
 
 extension KinitLoader {
-    func ecosystemAppSid(for bundleId: String) -> Int? {
-        return ecosystemAppCategories.value?.value?
-            .flatMap { $0.apps }
-            .first(where: { $0.bundleId == bundleId })?
-            .serverIdentifier
+    func ecosystemApp(for bundleId: String) -> (app: EcosystemApp, categoryName: String)? {
+        guard let categories = ecosystemAppCategories.value?.value else {
+            return nil
+        }
+
+        guard
+            let app = categories
+                .flatMap({ $0.apps })
+                .first(where: { $0.bundleId == bundleId }),
+            let categoryName = categories.first(where: { $0.id == app.categoryId })?.name else {
+                return nil
+        }
+
+        return (app, categoryName)
     }
 }

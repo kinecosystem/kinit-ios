@@ -60,22 +60,38 @@ extension AppDelegate: MoveKinFlowDelegate {
             return
         }
 
-        Kin.shared.send(UInt64(amount), to: address, memo: nil) { txId, _ in
-            if let appSid = DataLoaders.kinit.ecosystemAppSid(for: app.bundleId),
-                let txId = txId {
+        Kin.shared.send(UInt64(amount), to: address, memo: nil, type: .crossApp) { txId, error in
+            completion(txId != nil)
+
+            guard let ecosystemAppAndCategory = DataLoaders.kinit.ecosystemApp(for: app.bundleId) else {
+                return
+            }
+
+            if let txId = txId {
                 let reportBody = ReportMoveKinToAppBody(address: address,
                                                         txHash: txId,
                                                         amount: amount,
-                                                        destinationAppSid: appSid)
-                WebRequests.KinEcosystem
-                    .reportMoveKinToApp(reportBody)
-                    .withCompletion { transaction, _ in
-                        if let transaction = transaction {
-                            DataLoaders.kinit.prependTransaction(transaction)
-                        }
+                                                        destinationAppSid: ecosystemAppAndCategory.app.serverIdentifier)
+                WebRequests.KinEcosystem.reportMoveKinToApp(reportBody).withCompletion { transaction, _ in
+                    if let transaction = transaction {
+                        DataLoaders.kinit.prependTransaction(transaction)
+                    }
                     }.load(with: KinWebService.shared)
             }
-            completion(txId != nil)
+
+            if let error = error {
+                Events.Business
+                    .CrossAppKinFailure(failureReason: error.localizedDescription,
+                                        failureType: .error)
+                    .send()
+            } else {
+                Events.Business
+                    .CrossAppKinSent(appCategory: ecosystemAppAndCategory.categoryName,
+                                     appId: ecosystemAppAndCategory.app.bundleId,
+                                     appName: ecosystemAppAndCategory.app.name,
+                                     kinAmount: Int(amount))
+                    .send()
+            }
         }
     }
 
