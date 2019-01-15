@@ -133,6 +133,8 @@ extension SendKinAmountInputViewController: UITextFieldDelegate {
 
             if amount > Kin.shared.balance {
                 currentBalanceLabel.shake(times: 1, delta: 5)
+
+                FeedbackGenerator.notifyWarningIfAvailable()
             }
         }
 
