@@ -18,4 +18,4 @@
 	url = https://github.com/xmartlabs/XLPagerTabStrip
 [submodule "Submodules/MoveKin"]
 	path = Submodules/MoveKin
-	url = git@github.com:kinecosystem/MoveKin-iOS.git
+	url = git@github.com:kinecosystem/move-kin-ios.git
