@@ -43,18 +43,6 @@ internal enum L10n {
   internal static let backupAvailableTitle = L10n.tr("Localizable", "BackupAvailableTitle")
   /// Your wallet is backed up!
   internal static let backupCompleteMessage = L10n.tr("Localizable", "BackupCompleteMessage")
-  /// Make sure to keep the code someplace safe because you’ll need it if you need to recover your account.
-  internal static let backupConfirmMessage = L10n.tr("Localizable", "BackupConfirmMessage")
-  /// resend
-  internal static let backupConfirmResend = L10n.tr("Localizable", "BackupConfirmResend")
-  /// If not, %@ or check your spam folder
-  internal static func backupConfirmResendMessage(_ p1: String) -> String {
-    return L10n.tr("Localizable", "BackupConfirmResendMessage", p1)
-  }
-  /// Please check your email to make sure you received your QR code.\nIf you did, click confirm below.
-  internal static let backupConfirmSubtitle = L10n.tr("Localizable", "BackupConfirmSubtitle")
-  /// Confirm Email
-  internal static let backupConfirmTitle = L10n.tr("Localizable", "BackupConfirmTitle")
   /// I understand, continue
   internal static let backupExactAnswerContinueAction = L10n.tr("Localizable", "BackupExactAnswerContinueAction")
   /// It is important to remember your answers. You will be required to provide exactly the same answers when restoring your account and will not be able to restore your account without them. The only way to reset your answers is by creating a new backup.
@@ -119,8 +107,6 @@ internal enum L10n {
   internal static let chooseSecurityQuestion = L10n.tr("Localizable", "ChooseSecurityQuestion")
   /// Close
   internal static let closeAction = L10n.tr("Localizable", "CloseAction")
-  /// Confirm
-  internal static let confirm = L10n.tr("Localizable", "Confirm")
   /// Contact Support
   internal static let contactSupport = L10n.tr("Localizable", "ContactSupport")
   /// Continue
@@ -149,10 +135,6 @@ internal enum L10n {
   }
   /// Kinit Feedback
   internal static let feedbackEmailSubject = L10n.tr("Localizable", "FeedbackEmailSubject")
-  /// We can’t respond to feedbacks individually. If you have a question or need help resolving a problem, you’ll find answers in our help center.
-  internal static let feedbackNotSupportAlertMessage = L10n.tr("Localizable", "FeedbackNotSupportAlertMessage")
-  /// 
-  internal static let feedbackNotSupportAlertTitle = L10n.tr("Localizable", "FeedbackNotSupportAlertTitle")
   /// First Question
   internal static let firstSecurityQuestion = L10n.tr("Localizable", "FirstSecurityQuestion")
   /// We are having technical issues. Please try again or contact support.
@@ -169,10 +151,10 @@ internal enum L10n {
   internal static let getAppShort = L10n.tr("Localizable", "GetAppShort")
   /// Gift Cards
   internal static let giftCards = L10n.tr("Localizable", "GiftCards")
-  /// Give Us Feedback
-  internal static let giveUsFeedback = L10n.tr("Localizable", "GiveUsFeedback")
   /// Help Center
   internal static let helpCenter = L10n.tr("Localizable", "HelpCenter")
+  /// I Need Help
+  internal static let iNeedHelp = L10n.tr("Localizable", "INeedHelp")
   /// Kin delivered!
   internal static let kinDelivered = L10n.tr("Localizable", "KinDelivered")
   /// You’ve succesfully sent K %@.\nYou can see the details under Balance
@@ -283,8 +265,6 @@ internal enum L10n {
   internal static let securityQuestionsSubtitle = L10n.tr("Localizable", "SecurityQuestionsSubtitle")
   /// Security Questions
   internal static let securityQuestionsTitle = L10n.tr("Localizable", "SecurityQuestionsTitle")
-  /// Send Feedback
-  internal static let sendFeedback = L10n.tr("Localizable", "SendFeedback")
   /// Sending Kin
   internal static let sendingKin = L10n.tr("Localizable", "SendingKin")
   /// Send Kin
@@ -321,6 +301,8 @@ internal enum L10n {
   internal static let spendYourKin = L10n.tr("Localizable", "SpendYourKin")
   /// Start
   internal static let startAction = L10n.tr("Localizable", "StartAction")
+  /// Suggestion Box
+  internal static let suggestionBox = L10n.tr("Localizable", "SuggestionBox")
   /// Support
   internal static let support = L10n.tr("Localizable", "Support")
   /// Kinit Support Request
@@ -353,7 +335,7 @@ internal enum L10n {
   internal static let walletCreationErrorTitle = L10n.tr("Localizable", "WalletCreationErrorTitle")
   /// Please check your internet connection & try again.
   internal static let walletOrUserCreationErrorSubtitle = L10n.tr("Localizable", "WalletOrUserCreationErrorSubtitle")
-  /// Earn Kin by completing fun daily activities, and enjoy it toward brown paper packages tied up with string (aka travel, movies, music, and more).
+  /// Earn Kin, a new cryptocurrency, by completing fun daily activities and use it for your favorite things (travel, movies, music, and more)
   internal static let welcome1stScreenMessage = L10n.tr("Localizable", "Welcome1stScreenMessage")
   ///  Welcome to Kinit
   internal static let welcome1stScreenTitle = L10n.tr("Localizable", "Welcome1stScreenTitle")
@@ -371,7 +353,7 @@ internal enum L10n {
   internal static let yourKinBalance = L10n.tr("Localizable", "YourKinBalance")
 
   internal enum ActivityDone {
-    /// You have completed today's activity.
+    /// You have completed this activity.
     internal static let message = L10n.tr("Localizable", "ActivityDone.Message")
     /// Awesome!
     internal static let title = L10n.tr("Localizable", "ActivityDone.Title")
@@ -408,6 +390,32 @@ internal enum L10n {
     internal static let kinUsage = L10n.tr("Localizable", "AppPage.KinUsage")
     /// Soon you’ll be able to send Kin to this account
     internal static let sendComingSoon = L10n.tr("Localizable", "AppPage.SendComingSoon")
+  }
+
+  internal enum BackupConfirm {
+    /// Confirm
+    internal static let action = L10n.tr("Localizable", "BackupConfirm.Action")
+    /// Make sure to keep the code someplace safe because you’ll need it if you need to recover your account.
+    internal static let message = L10n.tr("Localizable", "BackupConfirm.Message")
+    /// resend
+    internal static let resend = L10n.tr("Localizable", "BackupConfirm.Resend")
+    /// If not, %@ or check your spam folder
+    internal static func resendMessage(_ p1: String) -> String {
+      return L10n.tr("Localizable", "BackupConfirm.ResendMessage", p1)
+    }
+    /// Please check your email to make sure you received your QR code.\nIf you did, click confirm below.
+    internal static let subtitle = L10n.tr("Localizable", "BackupConfirm.Subtitle")
+    /// Check Your Email
+    internal static let title = L10n.tr("Localizable", "BackupConfirm.Title")
+  }
+
+  internal enum FeedbackIsNotSupport {
+    /// We can’t respond to feedbacks individually. If you have a question or need help resolving a problem, you’ll find answers in our help center.
+    internal static let alertMessage = L10n.tr("Localizable", "FeedbackIsNotSupport.AlertMessage")
+    /// Feedback
+    internal static let alertTitle = L10n.tr("Localizable", "FeedbackIsNotSupport.AlertTitle")
+    /// I Understand, Continue
+    internal static let `continue` = L10n.tr("Localizable", "FeedbackIsNotSupport.Continue")
   }
 
   internal enum MoreUpdate {
@@ -455,7 +463,7 @@ internal enum L10n {
   }
 
   internal enum TaskSubmissionPaymentTimeout {
-    /// We have received your results but something got stuck along the way.\n\nPlease tap close and check your balance in a few hours. If no change has ocurred, contact support.
+    /// We have received your results but something got stuck along the way.\n\nPlease tap close and check your balance in a few hours. If no change has occurred, contact support.
     internal static let message = L10n.tr("Localizable", "TaskSubmissionPaymentTimeout.Message")
     /// Your Kin is on its way with a brief delay
     internal static let title = L10n.tr("Localizable", "TaskSubmissionPaymentTimeout.Title")

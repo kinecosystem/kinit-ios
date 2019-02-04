@@ -15,7 +15,7 @@ class BackupConfirmEmailViewController: UIViewController {
         didSet {
             titleLabel.font = FontFamily.Roboto.medium.font(size: 22)
             titleLabel.textColor = UIColor.kin.darkGray
-            titleLabel.text = L10n.backupConfirmTitle
+            titleLabel.text = L10n.BackupConfirm.title
         }
     }
 
@@ -25,8 +25,8 @@ class BackupConfirmEmailViewController: UIViewController {
             resendEmailLabel.font = FontFamily.Roboto.regular.font(size: 16)
             resendEmailLabel.textColor = UIColor.kin.gray
 
-            let resend = L10n.backupConfirmResend
-            let resendMessage = L10n.backupConfirmResendMessage(resend)
+            let resend = L10n.BackupConfirm.resend
+            let resendMessage = L10n.BackupConfirm.resendMessage(resend)
             let range = (resendMessage as NSString).range(of: resend)
 
             let attributedString = NSMutableAttributedString(string: resendMessage)
@@ -42,7 +42,7 @@ class BackupConfirmEmailViewController: UIViewController {
         didSet {
             subtitleLabel.font = FontFamily.Roboto.regular.font(size: 16)
             subtitleLabel.textColor = UIColor.kin.gray
-            subtitleLabel.text = L10n.backupConfirmSubtitle
+            subtitleLabel.text = L10n.BackupConfirm.subtitle
         }
     }
 
@@ -50,13 +50,13 @@ class BackupConfirmEmailViewController: UIViewController {
         didSet {
             messageLabel.textColor = UIColor.kin.gray
             messageLabel.font = FontFamily.Roboto.medium.font(size: 18)
-            messageLabel.text = L10n.backupConfirmMessage
+            messageLabel.text = L10n.BackupConfirm.message
         }
     }
 
     private let confirmAccessoryView: ButtonAccessoryInputView = {
         let b = ButtonAccessoryInputView()
-        b.title = L10n.confirm
+        b.title = L10n.BackupConfirm.action
         b.translatesAutoresizingMaskIntoConstraints = false
 
         return b

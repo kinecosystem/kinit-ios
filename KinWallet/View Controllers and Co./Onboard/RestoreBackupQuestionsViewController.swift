@@ -206,8 +206,8 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
             firstAnswer = answers.0
             secondAnswer = answers.1
         } else {
-            firstAnswer = answers.0.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            secondAnswer = answers.1.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            firstAnswer = answers.0.trimmingCharacters(in: .whitespacesAndNewlines)
+            secondAnswer = answers.1.trimmingCharacters(in: .whitespacesAndNewlines)
         }
 
         DispatchQueue.global().async {

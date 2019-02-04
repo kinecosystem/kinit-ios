@@ -36,8 +36,8 @@ private enum MoreSectionItem: String {
     var title: String {
         switch self {
         case .backup: return L10n.walletBackup
-        case .helpCenter: return L10n.helpCenter
-        case .feedback: return L10n.giveUsFeedback
+        case .helpCenter: return L10n.iNeedHelp
+        case .feedback: return L10n.suggestionBox
         }
     }
 
@@ -161,12 +161,12 @@ final class MoreViewController: UIViewController {
     }
 
     @objc fileprivate func feedbackTapped() {
-        let alertController = UIAlertController(title: L10n.feedbackNotSupportAlertTitle,
-                                                message: L10n.feedbackNotSupportAlertMessage,
+        let alertController = UIAlertController(title: L10n.FeedbackIsNotSupport.alertTitle,
+                                                message: L10n.FeedbackIsNotSupport.alertMessage,
                                                 preferredStyle: .alert)
-        alertController.addAction(title: L10n.helpCenter, style: .default, handler: showHelpCenter)
+        alertController.addAction(title: L10n.iNeedHelp, style: .default, handler: showHelpCenter)
 
-        alertController.addAction(title: L10n.sendFeedback, style: .default) { [unowned self] in
+        alertController.addAction(title: L10n.FeedbackIsNotSupport.continue, style: .default) { [unowned self] in
             KinSupportViewController.presentFeedback(from: self)
         }
 

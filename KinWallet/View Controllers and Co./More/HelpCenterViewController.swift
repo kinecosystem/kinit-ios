@@ -26,7 +26,7 @@ final class HelpCenterViewController: WebViewController {
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicatorView)
 
-        title = L10n.helpCenter
+        title = L10n.iNeedHelp
 
         loadMainPage()
     }
