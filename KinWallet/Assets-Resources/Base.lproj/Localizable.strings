@@ -28,8 +28,6 @@
 
 "Buy" = "Buy";
 
-"Confirm" = "Confirm";
-
 "QRCode" = "QR Code";
 
 "StartAction" = "Start";
@@ -64,7 +62,7 @@
 
 "Welcome1stScreenTitle" = " Welcome to Kinit";
 
-"Welcome1stScreenMessage" = "Earn Kin by completing fun daily activities, and enjoy it toward brown paper packages tied up with string (aka travel, movies, music, and more).";
+"Welcome1stScreenMessage" = "Earn Kin, a new cryptocurrency, by completing fun daily activities and use it for your favorite things (travel, movies, music, and more)";
 
 "Welcome2ndScreenMessage" = "Earning Kin is just like playing a game, only better, because you get rewarded for your time.";
 
@@ -130,11 +128,11 @@
 
 "TaskSubmissionPaymentTimeout.Title" = "Your Kin is on its way with a brief delay";
 
-"TaskSubmissionPaymentTimeout.Message" = "We have received your results but something got stuck along the way.\n\nPlease tap close and check your balance in a few hours. If no change has ocurred, contact support.";
+"TaskSubmissionPaymentTimeout.Message" = "We have received your results but something got stuck along the way.\n\nPlease tap close and check your balance in a few hours. If no change has occurred, contact support.";
 
 "ActivityDone.Title" = "Awesome!";
 
-"ActivityDone.Message" = "You have completed today's activity.";
+"ActivityDone.Message" = "You have completed this activity.";
 
 "TransferringKinOnItsWay" = "Your Kin is on its way";
 
@@ -228,9 +226,11 @@
 
 "FeedbackEmailSubject" = "Kinit Feedback";
 
-"GiveUsFeedback" = "Give Us Feedback";
+"SuggestionBox" = "Suggestion Box";
 
 "HelpCenter" = "Help Center";
+
+"INeedHelp" = "I Need Help";
 
 "MailNotConfiguredTitle" = "Mail Not Configured";
 
@@ -240,11 +240,11 @@
 
 "FeedbackEmailBody" = "We really appreciate your input. Please enter your feedback for Kinit %@ here:";
 
-"FeedbackNotSupportAlertTitle" = "";
+"FeedbackIsNotSupport.AlertTitle" = "Feedback";
 
-"FeedbackNotSupportAlertMessage" = "We can’t respond to feedbacks individually. If you have a question or need help resolving a problem, you’ll find answers in our help center.";
+"FeedbackIsNotSupport.AlertMessage" = "We can’t respond to feedbacks individually. If you have a question or need help resolving a problem, you’ll find answers in our help center.";
 
-"SendFeedback" = "Send Feedback";
+"FeedbackIsNotSupport.Continue" = "I Understand, Continue";
 
 // Camera permissions
 
@@ -306,15 +306,17 @@
 
 "BackupQRCodeEmailObservation" = "* Make sure your email is written correctly.\nYou don’t want your wallet QR code to get to the hands of someone else.";
 
-"BackupConfirmTitle" = "Confirm Email";
+"BackupConfirm.Title" = "Check Your Email";
 
-"BackupConfirmSubtitle" = "Please check your email to make sure you received your QR code.\nIf you did, click confirm below.";
+"BackupConfirm.Subtitle" = "Please check your email to make sure you received your QR code.\nIf you did, click confirm below.";
 
-"BackupConfirmResendMessage" = "If not, %@ or check your spam folder";
+"BackupConfirm.ResendMessage" = "If not, %@ or check your spam folder";
 
-"BackupConfirmResend" = "resend";
+"BackupConfirm.Resend" = "resend";
 
-"BackupConfirmMessage" = "Make sure to keep the code someplace safe because you’ll need it if you need to recover your account.";
+"BackupConfirm.Message" = "Make sure to keep the code someplace safe because you’ll need it if you need to recover your account.";
+
+"BackupConfirm.Action" = "Confirm";
 
 "BackupRestoredMessage" = "Your wallet was restored!";
 
