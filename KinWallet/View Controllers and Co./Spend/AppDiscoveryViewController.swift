@@ -35,7 +35,7 @@ extension AppDiscoveryTableSections: CaseIterable {}
 
 class AppDiscoveryViewController: UIViewController {
     let linkBag = LinkBag()
-    let appDiscoveryAction = AppDiscoveryAction(moveKinFlow: MoveKinFlow.shared)
+    let appDiscoveryAction = AppDiscoveryAction(moveKinFlow: AppDelegate.shared.moveKinFlow)
 
     var categories: [EcosystemAppCategory]?
 

@@ -16,7 +16,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var notificationHandler: NotificationHandler?
     var lastBackgroundRefreshStatus: UIBackgroundRefreshStatus!
-
+    let moveKinFlow = MoveKinFlow()
     let rootViewController = RootViewController()
 
     //swiftlint:disable:next line_length
@@ -31,7 +31,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             #endif
         }
 
-        MoveKinFlow.shared.delegate = self
+        moveKinFlow.sendDelegate = self
+        moveKinFlow.receiveDelegate = self
+
         lastBackgroundRefreshStatus = application.backgroundRefreshStatus
         AuthToken.prepare()
 
@@ -108,12 +110,14 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         PushHandler.handlePush(with: userInfo)
     }
 
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication,
+                     open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         print("Should handle \(url.absoluteString)")
 
         if let sourceApp = options[.sourceApplication] as? String,
-            MoveKinFlow.shared.canHandleURL(url) {
-            MoveKinFlow.shared.handleURL(url, from: sourceApp)
+            moveKinFlow.canHandleURL(url) {
+            moveKinFlow.handleURL(url, from: sourceApp)
         }
 
         return true

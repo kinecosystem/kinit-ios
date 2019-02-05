@@ -37,7 +37,7 @@ extension AppPageRow {
 }
 
 class AppPageViewController: UIViewController {
-    let appDiscoveryAction = AppDiscoveryAction(moveKinFlow: MoveKinFlow.shared)
+    let appDiscoveryAction = AppDiscoveryAction(moveKinFlow: AppDelegate.shared.moveKinFlow)
     var app: EcosystemApp!
     var appCategoryName: String!
 
