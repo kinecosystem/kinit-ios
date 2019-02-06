@@ -53,7 +53,7 @@ extension AppDelegate {
     }
 }
 
-extension AppDelegate: MoveKinSendDelegate {
+extension AppDelegate: SendKinFlowDelegate {
     func sendKin(amount: UInt, to address: String, app: MoveKinApp, completion: @escaping (Bool) -> Void) {
         guard Kin.shared.accountStatus == .activated else {
             completion(false)
@@ -93,15 +93,6 @@ extension AppDelegate: MoveKinSendDelegate {
                     .send()
             }
         }
-    }
-}
-
-extension AppDelegate: MoveKinReceiveDelegate {
-    func provideUserAddress(addressHandler: @escaping (String?) -> Void) {
-        let address = Kin.shared.accountStatus == .activated
-            ? Kin.shared.publicAddress
-            : nil
-        addressHandler(address)
     }
 }
 

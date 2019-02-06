@@ -33,7 +33,7 @@ class AppDiscoveryAction {
                               bundleId: app.bundleId,
                               urlScheme: transferData.urlScheme,
                               appIconURL: app.metadata.iconURL.kinImagePathAdjustedForDevice())
-        moveKinFlow.uiProvider = self
+        moveKinFlow.sendFlowUIProvider = self
         let inputViewController = StoryboardScene.Spend.sendKinAmountInputViewController.instantiate()
         inputViewController.appName = mApp.name
         inputViewController.appIconURL = mApp.appIconURL
@@ -41,7 +41,7 @@ class AppDiscoveryAction {
     }
 }
 
-extension AppDiscoveryAction: MoveKinFlowUIProvider {
+extension AppDiscoveryAction: SendKinFlowUIProvider {
     func viewControllerForConnectingStage(_ app: MoveKinApp) -> UIViewController {
         let connectingAppsViewController = ConnectingAppsViewController()
         connectingAppsViewController.appIconURL = app.appIconURL
