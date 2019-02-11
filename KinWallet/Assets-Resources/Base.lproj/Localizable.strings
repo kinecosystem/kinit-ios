@@ -431,3 +431,14 @@
 "AppPage.KinUsage" = "Kin Usage";
 
 "AppPage.SendComingSoon" = "Soon you’ll be able to send Kin to this account";
+
+"SupportSubmitError.Title" = "Swing and a miss…";
+
+"SupportSubmitError.Message" = "There was a technical issue sending your message. Let’s try that again…";
+
+"SupportSubmitError.AfterRetry.Title" = "It’s just not happening…";
+
+"SupportSubmitError.AfterRetry.Message" = "It looks like we have a technical issue and can’t send your message right now. Please try again later.";
+
+"SupportSubmitError.Retry" = "Retry";
+

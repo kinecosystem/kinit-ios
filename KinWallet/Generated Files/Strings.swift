@@ -1,5 +1,5 @@
 // swiftlint:disable all
-// Generated using SwiftGen, by O.Halligon — https://github.com/SwiftGen/SwiftGen
+// Generated using SwiftGen — https://github.com/SwiftGen/SwiftGen
 
 import Foundation
 
@@ -455,6 +455,21 @@ internal enum L10n {
     internal static let title = L10n.tr("Localizable", "ServerError.Title")
   }
 
+  internal enum SupportSubmitError {
+    /// There was a technical issue sending your message. Let’s try that again…
+    internal static let message = L10n.tr("Localizable", "SupportSubmitError.Message")
+    /// Retry
+    internal static let retry = L10n.tr("Localizable", "SupportSubmitError.Retry")
+    /// Swing and a miss…
+    internal static let title = L10n.tr("Localizable", "SupportSubmitError.Title")
+    internal enum AfterRetry {
+      /// It looks like we have a technical issue and can’t send your message right now. Please try again later.
+      internal static let message = L10n.tr("Localizable", "SupportSubmitError.AfterRetry.Message")
+      /// It’s just not happening…
+      internal static let title = L10n.tr("Localizable", "SupportSubmitError.AfterRetry.Title")
+    }
+  }
+
   internal enum TaskSubmissionFailedError {
     /// To make sure you get your Kin, hit close below and continue on the next screen.
     internal static let message = L10n.tr("Localizable", "TaskSubmissionFailedError.Message")
@@ -485,6 +500,7 @@ internal enum L10n {
 
 extension L10n {
   private static func tr(_ table: String, _ key: String, _ args: CVarArg...) -> String {
+    // swiftlint:disable:next nslocalizedstring_key
     let format = NSLocalizedString(key, tableName: table, bundle: Bundle(for: BundleToken.self), comment: "")
     return String(format: format, locale: Locale.current, arguments: args)
   }

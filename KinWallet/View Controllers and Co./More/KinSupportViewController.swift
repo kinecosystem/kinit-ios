@@ -103,9 +103,9 @@ final class KinSupportViewController: MFMailComposeViewController {
         present(.feedback, from: presenter)
     }
 
-    class func presentSupport(from presenter: UIViewController, faqCategory: String = "", faqTitle: String = "") {
+    class func presentSupport(from presenter: UIViewController, faqCategory: String = "", faqSubcategory: String = "") {
         Events.Analytics
-            .ClickSupportButton(faqCategory: faqCategory, faqTitle: faqTitle)
+            .ClickSupportButton(faqCategory: faqCategory, faqSubcategory: faqSubcategory)
             .send()
         present(.support, from: presenter)
     }
@@ -131,7 +131,7 @@ final class KinSupportViewController: MFMailComposeViewController {
         mailController.addAttachmentData(attachmentData(),
                                          mimeType: "txt",
                                          fileName: "Info.txt")
-        mailController.mailComposeDelegate = mailController
+      //  mailController.mailComposeDelegate = mailController
         presenter.present(mailController, animated: true)
     }
 
@@ -191,23 +191,3 @@ final class KinSupportViewController: MFMailComposeViewController {
     }
 }
 
-extension KinSupportViewController: MFMailComposeViewControllerDelegate {
-    func mailComposeController(_ controller: MFMailComposeViewController,
-                               didFinishWith result: MFMailComposeResult,
-                               error: Error?) {
-        dismiss(animated: true)
-
-        guard
-            let controller = controller as? KinSupportViewController,
-            result == .sent else {
-            return
-        }
-
-        switch controller.option {
-        case .feedback:
-            Events.Business.FeedbackSent().send()
-        case .support:
-            Events.Business.SupportRequestSent().send()
-        }
-    }
-}
