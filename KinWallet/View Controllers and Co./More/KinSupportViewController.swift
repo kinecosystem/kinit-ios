@@ -131,7 +131,6 @@ final class KinSupportViewController: MFMailComposeViewController {
         mailController.addAttachmentData(attachmentData(),
                                          mimeType: "txt",
                                          fileName: "Info.txt")
-      //  mailController.mailComposeDelegate = mailController
         presenter.present(mailController, animated: true)
     }
 
@@ -190,4 +189,3 @@ final class KinSupportViewController: MFMailComposeViewController {
         return attachmentString().data(using: .utf8) ?? Data()
     }
 }
-

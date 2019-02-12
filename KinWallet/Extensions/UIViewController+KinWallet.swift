@@ -62,7 +62,11 @@ extension UIViewController {
                 return
             }
 
-            KinSupportViewController.presentSupport(from: self)
+            let helpCenterViewController = HelpCenterViewController()
+            helpCenterViewController.setPageToLoad(page: HelpCenterViewController.Page.support,
+                                                   category: HelpCenterViewController.Category.backup_restore,
+                                                   subCategory: HelpCenterViewController.SubCategory.other)
+            self.navigationController?.pushViewController(helpCenterViewController, animated: true)
         }
 
         alertController.addAction(title: L10n.tryAgain, style: .default)

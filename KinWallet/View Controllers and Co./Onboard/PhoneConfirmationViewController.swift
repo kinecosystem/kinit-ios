@@ -258,7 +258,11 @@ class PhoneConfirmationViewController: UIViewController {
     }
 
     @IBAction func contactSupport(_ sender: Any) {
-        KinSupportViewController.presentSupport(from: self)
+        let helpCenterViewController = HelpCenterViewController()
+        helpCenterViewController.setPageToLoad(page: HelpCenterViewController.Page.support,
+                                               category: HelpCenterViewController.Category.other,
+                                               subCategory: HelpCenterViewController.SubCategory.onboarding)
+        self.navigationController?.pushViewController(helpCenterViewController, animated: true)
     }
 
     func isCurrentCodeValid() -> Bool {

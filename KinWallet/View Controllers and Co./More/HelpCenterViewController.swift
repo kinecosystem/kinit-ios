@@ -19,13 +19,37 @@ private struct MessageNames {
     static let pageLoaded = "pageLoaded"
     static let isPageHelpfulSelection = "isPageHelpfulSelection"
     static let formPageLoaded = "formPageLoaded"
+    static let feedbackSubmitted = "feedbackSubmitted"
 }
 
 final class HelpCenterViewController: WebViewController {
-    private let helpCenterURL = URL(string: "https://s3.amazonaws.com/kinapp-static/faq2/index.html")!
+    enum Page: String {
+        case faq = "https://s3.amazonaws.com/kinapp-static/faq2/index.html"
+        case feedback = "https://s3.amazonaws.com/kinapp-static/faq2/support/feedback.html"
+        case support = "https://s3.amazonaws.com/kinapp-static/faq2/support/contact-us.html"
+    }
+    enum Category: String {
+        case backup_restore = "Backup %26 Restore your Kin"
+        case other = "Other"
+    }
+
+    enum SubCategory: String {
+        case other = "Other"
+        case onboarding = "On-boarding error"
+    }
 
     private let activityIndicatorView = UIActivityIndicatorView(style: .white)
     private var errorCount = 0
+    private var pageURL = URL(string: Page.faq.rawValue)!
+
+    func setPageToLoad(page: Page) {
+        pageURL = URL(string: page.rawValue)!
+    }
+
+    func setPageToLoad(page: Page, category: Category, subCategory: SubCategory) {
+        let urlString = "\(page.rawValue)?category=\(category)&subCategory=\(subCategory)"
+        pageURL = URL(string: urlString)!
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +80,7 @@ final class HelpCenterViewController: WebViewController {
         controller.add(handler, name: MessageNames.supportRequestSent)
         controller.add(handler, name: MessageNames.showSubmissionError)
         controller.add(handler, name: MessageNames.formPageLoaded)
+        controller.add(handler, name: MessageNames.feedbackSubmitted)
     }
 
     override func loadingStateChanged(_ isLoading: Bool) {
@@ -69,16 +94,12 @@ final class HelpCenterViewController: WebViewController {
     }
 
     fileprivate func loadMainPage() {
-        loadURL(helpCenterURL)
+        loadURL(pageURL)
     }
 
     fileprivate func presentErrorAlert() {
-        var title = L10n.SupportSubmitError.title
-        var message = L10n.SupportSubmitError.message
-        if errorCount > 0 {
-            title = L10n.SupportSubmitError.AfterRetry.title
-            message = L10n.SupportSubmitError.AfterRetry.message
-        }
+        let title = errorCount > 0 ? L10n.SupportSubmitError.AfterRetry.title : L10n.SupportSubmitError.title
+        let message = errorCount > 0 ? L10n.SupportSubmitError.title : L10n.SupportSubmitError.message
 
         let alertController = UIAlertController(title: title,
                                                 message: message,
@@ -96,14 +117,19 @@ final class HelpCenterViewController: WebViewController {
     fileprivate func onFormPageLoaded() {
         let userId = User.current?.userId ?? "No user ID"
         let platform = "\(UIDevice.current.model) \(ProcessInfo().operatingSystemVersionString)"
-        var debug = "false"
+        let isDebug: String
         #if DEBUG
-            debug = "true"
+            isDebug = "true"
+        #else
+            isDebug = "false"
         #endif
 
-        let jsToRun = "window.setMiscFormData(\(toJS(str: userId)),\(toJS(str: platform)),\(toJS(str: Bundle.appVersion)),\(toJS(str: debug)));"
-
-        print(jsToRun)
+        let jsToRun = """
+            window.setMiscFormData(\(toJS(str: userId)),\
+                                   \(toJS(str: platform)),\
+                                   \(toJS(str: Bundle.appVersion)),
+                                   \(toJS(str: isDebug)));
+        """
         webView.evaluateJavaScript(jsToRun)
     }
 
@@ -114,7 +140,7 @@ final class HelpCenterViewController: WebViewController {
 
 extension HelpCenterViewController: KinNavigationControllerDelegate {
     func shouldPopViewController() -> Bool {
-        if webView.canGoBack && webView.url != helpCenterURL {
+        if webView.canGoBack && webView.url != pageURL {
             loadMainPage()
             return false
         }
@@ -152,18 +178,14 @@ private class HelpCenterWebViewHandler: NSObject, WKScriptMessageHandler {
             supportRequestSent(body: body)
         case MessageNames.formPageLoaded:
             formPageLoaded(body: body)
+        case MessageNames.feedbackSubmitted:
+            feedbackSubmitted(body: body)
         default:
             break
         }
     }
 
     private func handleSubmissionError(body: [String: Any]) {
-        guard
-            let data = body["data"] as? String,
-            let errors = body["error"] as? String else {
-                return
-        }
-        print("Data: \(data), Error: \(errors)")
         helpCenterViewController?.presentErrorAlert()
     }
 
@@ -229,5 +251,13 @@ private class HelpCenterWebViewHandler: NSObject, WKScriptMessageHandler {
 
     private func formPageLoaded(body: [String: Any]) {
         helpCenterViewController?.onFormPageLoaded()
+    }
+
+    private func feedbackSubmitted(body: [String: Any]) {
+        Events.Analytics.ClickSubmitButtonOnFeedbackForm().send()
+    }
+
+    private func feedbackFormSent(body: [String: Any]) {
+        Events.Business.FeedbackformSent().send()
     }
 }
