@@ -60,7 +60,7 @@ extension AppDelegate: SendKinFlowDelegate {
             return
         }
 
-        Kin.shared.send(UInt64(amount), to: address, memo: nil, type: .crossApp) { txId, error in
+        Kin.shared.send(UInt64(amount), to: address, memo: "1-kit-to-app", type: .crossApp) { txId, error in
             completion(txId != nil)
 
             guard let ecosystemAppAndCategory = DataLoaders.kinit.ecosystemApp(for: app.bundleId) else {
