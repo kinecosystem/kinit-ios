@@ -259,9 +259,8 @@ class PhoneConfirmationViewController: UIViewController {
 
     @IBAction func contactSupport(_ sender: Any) {
         let helpCenterViewController = HelpCenterViewController()
-        helpCenterViewController.setPageToLoad(page: HelpCenterViewController.Page.support,
-                                               category: HelpCenterViewController.Category.other,
-                                               subCategory: HelpCenterViewController.SubCategory.onboarding)
+        helpCenterViewController.setPageToLoad(page: .support,
+                                               faqInfo: (category: .other, subCategory: .onboarding))
         self.navigationController?.pushViewController(helpCenterViewController, animated: true)
     }
 

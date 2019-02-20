@@ -410,12 +410,14 @@ internal enum L10n {
   }
 
   internal enum FeedbackIsNotSupport {
-    /// We can’t respond to feedbacks individually. If you have a question or need help resolving a problem, you’ll find answers in our help center.
+    /// Thoughts? Suggestions? Share them here! If you need help resolving a problem, check out "I need help"
     internal static let alertMessage = L10n.tr("Localizable", "FeedbackIsNotSupport.AlertMessage")
-    /// Feedback
+    /// How can we do better?
     internal static let alertTitle = L10n.tr("Localizable", "FeedbackIsNotSupport.AlertTitle")
-    /// I Understand, Continue
+    /// Give product feedback
     internal static let `continue` = L10n.tr("Localizable", "FeedbackIsNotSupport.Continue")
+    /// I have a problem
+    internal static let support = L10n.tr("Localizable", "FeedbackIsNotSupport.Support")
   }
 
   internal enum MoreUpdate {

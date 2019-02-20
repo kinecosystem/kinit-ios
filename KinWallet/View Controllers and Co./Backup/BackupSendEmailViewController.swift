@@ -94,7 +94,7 @@ class BackupSendEmailViewController: BackupTextInputViewController {
                     self.accessoryView.isLoading = false
 
                     guard success.boolValue else {
-                        self.presentSupportAlert(title: L10n.generalServerErrorTitle,
+                        self.presentBackupRestoreSupportAlert(title: L10n.generalServerErrorTitle,
                                                  message: L10n.generalServerErrorMessage)
 
                         return

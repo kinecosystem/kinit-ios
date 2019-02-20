@@ -35,19 +35,21 @@ final class HelpCenterViewController: WebViewController {
 
     enum SubCategory: String {
         case other = "Other"
-        case onboarding = "On-boarding error"
+        case onboarding = "On-boarding%20error"
     }
 
     private let activityIndicatorView = UIActivityIndicatorView(style: .white)
     private var errorCount = 0
     private var pageURL = URL(string: Page.faq.rawValue)!
 
-    func setPageToLoad(page: Page) {
-        pageURL = URL(string: page.rawValue)!
-    }
-
-    func setPageToLoad(page: Page, category: Category, subCategory: SubCategory) {
-        let urlString = "\(page.rawValue)?category=\(category)&subCategory=\(subCategory)"
+    func setPageToLoad(page: Page, faqInfo: (category: Category, subCategory: SubCategory)? = nil) {
+        guard
+            let category = faqInfo?.category,
+            let subCategory = faqInfo?.subCategory else {
+                pageURL = URL(string: page.rawValue)!
+                return
+        }
+        let urlString = "\(page.rawValue)?category=\(category.rawValue)&subCategory=\(subCategory.rawValue)"
         pageURL = URL(string: urlString)!
     }
 

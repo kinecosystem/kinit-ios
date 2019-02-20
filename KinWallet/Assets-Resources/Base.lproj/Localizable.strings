@@ -240,11 +240,13 @@
 
 "FeedbackEmailBody" = "We really appreciate your input. Please enter your feedback for Kinit %@ here:";
 
-"FeedbackIsNotSupport.AlertTitle" = "Feedback";
+"FeedbackIsNotSupport.AlertTitle" = "How can we do better?";
 
-"FeedbackIsNotSupport.AlertMessage" = "We can’t respond to feedbacks individually. If you have a question or need help resolving a problem, you’ll find answers in our help center.";
+"FeedbackIsNotSupport.AlertMessage" = "Thoughts? Suggestions? Share them here! If you need help resolving a problem, check out \"I need help\"";
 
-"FeedbackIsNotSupport.Continue" = "I Understand, Continue";
+"FeedbackIsNotSupport.Continue" = "Give product feedback";
+
+"FeedbackIsNotSupport.Support" = "I have a problem";
 
 // Camera permissions
 

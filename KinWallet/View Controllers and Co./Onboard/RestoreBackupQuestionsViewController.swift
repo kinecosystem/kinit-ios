@@ -225,7 +225,7 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
                         self.attemptRestore(with: answers, isRetryingWithoutTrimming: true)
                     } else {
                         actionCell?.actionButton.isLoading = false
-                        self.presentSupportAlert(title: L10n.backupWrongAnswersTitle,
+                        self.presentBackupRestoreSupportAlert(title: L10n.backupWrongAnswersTitle,
                                                  message: L10n.backupWrongAnswersMessage)
                     }
                 }
@@ -240,7 +240,7 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
             Kin.shared.resetKeyStore()
 
             DispatchQueue.main.async {
-                self.presentSupportAlert(title: L10n.restoreBackupUserMatchFailedTitle,
+                self.presentBackupRestoreSupportAlert(title: L10n.restoreBackupUserMatchFailedTitle,
                                          message: L10n.restoreBackupUserMatchFailedMessage)
             }
 

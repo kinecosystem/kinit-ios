@@ -244,7 +244,7 @@ class BackupQuestionViewController: BackupTextInputViewController {
         DispatchQueue.global().async {
             guard let encryptedWallet = try? self.encryptWallet() else {
                 DispatchQueue.main.async {
-                    self.presentSupportAlert(title: L10n.generalErrorTitle,
+                    self.presentBackupRestoreSupportAlert(title: L10n.generalErrorTitle,
                                              message: L10n.generalErrorMessage)
 
                     self.accessoryView.isLoading = false

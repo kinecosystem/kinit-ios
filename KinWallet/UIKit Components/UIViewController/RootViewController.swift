@@ -328,9 +328,8 @@ extension RootViewController: NoticeViewControllerDelegate {
     func noticeViewControllerDidTapAdditionalMessage(_ viewController: NoticeViewController) {
         logClickedSupportOnErrorPage()
         let helpCenterViewController = HelpCenterViewController()
-        helpCenterViewController.setPageToLoad(page: HelpCenterViewController.Page.support,
-                                               category: HelpCenterViewController.Category.other,
-                                               subCategory: HelpCenterViewController.SubCategory.onboarding)
+        helpCenterViewController.setPageToLoad(page: .support,
+                                               faqInfo: (category: .other, subCategory: .onboarding))
         self.navigationController?.pushViewController(helpCenterViewController, animated: true)
     }
 }
