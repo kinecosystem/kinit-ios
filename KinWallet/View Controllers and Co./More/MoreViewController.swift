@@ -164,11 +164,14 @@ final class MoreViewController: UIViewController {
         let alertController = UIAlertController(title: L10n.FeedbackIsNotSupport.alertTitle,
                                                 message: L10n.FeedbackIsNotSupport.alertMessage,
                                                 preferredStyle: .alert)
-        alertController.addAction(title: L10n.iNeedHelp, style: .default, handler: showHelpCenter)
 
         alertController.addAction(title: L10n.FeedbackIsNotSupport.continue, style: .default) { [unowned self] in
-            KinSupportViewController.presentFeedback(from: self)
+            let helpCenterViewController = HelpCenterViewController()
+            helpCenterViewController.setPageToLoad(page: HelpCenterViewController.Page.feedback)
+            self.navigationController?.pushViewController(helpCenterViewController, animated: true)
         }
+
+        alertController.addAction(title: L10n.iNeedHelp, style: .default, handler: showHelpCenter)
 
         presentAnimated(alertController)
     }

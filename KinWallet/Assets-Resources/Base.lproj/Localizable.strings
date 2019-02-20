@@ -240,11 +240,13 @@
 
 "FeedbackEmailBody" = "We really appreciate your input. Please enter your feedback for Kinit %@ here:";
 
-"FeedbackIsNotSupport.AlertTitle" = "Feedback";
+"FeedbackIsNotSupport.AlertTitle" = "How can we do better?";
 
-"FeedbackIsNotSupport.AlertMessage" = "We can’t respond to feedbacks individually. If you have a question or need help resolving a problem, you’ll find answers in our help center.";
+"FeedbackIsNotSupport.AlertMessage" = "Thoughts? Suggestions? Share them here! If you need help resolving a problem, check out \"I need help\"";
 
-"FeedbackIsNotSupport.Continue" = "I Understand, Continue";
+"FeedbackIsNotSupport.Continue" = "Give product feedback";
+
+"FeedbackIsNotSupport.Support" = "I have a problem";
 
 // Camera permissions
 
@@ -431,3 +433,14 @@
 "AppPage.KinUsage" = "Kin Usage";
 
 "AppPage.SendComingSoon" = "Soon you’ll be able to send Kin to this account";
+
+"SupportSubmitError.Title" = "Swing and a miss…";
+
+"SupportSubmitError.Message" = "There was a technical issue sending your message. Let’s try that again…";
+
+"SupportSubmitError.AfterRetry.Title" = "It’s just not happening…";
+
+"SupportSubmitError.AfterRetry.Message" = "It looks like we have a technical issue and can’t send your message right now. Please try again later.";
+
+"SupportSubmitError.Retry" = "Retry";
+

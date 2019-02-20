@@ -53,7 +53,7 @@ extension UIViewController {
 }
 
 extension UIViewController {
-    func presentSupportAlert(title: String, message: String) {
+    func presentBackupRestoreSupportAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title,
                                                 message: message,
                                                 preferredStyle: .alert)
@@ -62,7 +62,10 @@ extension UIViewController {
                 return
             }
 
-            KinSupportViewController.presentSupport(from: self)
+            let helpCenterViewController = HelpCenterViewController()
+            helpCenterViewController.setPageToLoad(page: .support,
+                                                   faqInfo: (category: .backup_restore, subCategory: .other))
+            self.navigationController?.pushViewController(helpCenterViewController, animated: true)
         }
 
         alertController.addAction(title: L10n.tryAgain, style: .default)
