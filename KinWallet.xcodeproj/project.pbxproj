@@ -281,6 +281,8 @@
 		9159956F21356A0F00E4E840 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159956C21356A0F00E4E840 /* AuthToken.swift */; };
 		915995962136BC0200E4E840 /* BackupConfirmEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910872BE21218E5F0095FD45 /* BackupConfirmEmailViewController.swift */; };
 		9159959E2136BC0300E4E840 /* BackupConfirmEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910872BE21218E5F0095FD45 /* BackupConfirmEmailViewController.swift */; };
+		915E5A18221D6E44004CF9EF /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 915E5A17221D6E44004CF9EF /* Sodium.framework */; };
+		915E5A19221D6E44004CF9EF /* Sodium.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 915E5A17221D6E44004CF9EF /* Sodium.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		915F495A20430125005C09B3 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 915F494D20430125005C09B3 /* Roboto-Medium.ttf */; };
 		915F495B20430125005C09B3 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 915F494E20430125005C09B3 /* Roboto-Light.ttf */; };
 		915F495C20430125005C09B3 /* KinK.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 915F494F20430125005C09B3 /* KinK.ttf */; };
@@ -869,6 +871,7 @@
 				9152E5E3212D48D400802040 /* KinCoreSDK.framework in Embed Frameworks */,
 				9191EC4321E789AF002BAC48 /* MoveKin.framework in Embed Frameworks */,
 				91E6B605203AD0D80080C2FC /* Lottie.framework in Embed Frameworks */,
+				915E5A19221D6E44004CF9EF /* Sodium.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -987,6 +990,7 @@
 		9159955D2135457A00E4E840 /* BackupFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupFlowController.swift; sourceTree = "<group>"; };
 		9159956821354E3A00E4E840 /* UIAlertController+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+KinWallet.swift"; sourceTree = "<group>"; };
 		9159956C21356A0F00E4E840 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
+		915E5A17221D6E44004CF9EF /* Sodium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Sodium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		915F494D20430125005C09B3 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		915F494E20430125005C09B3 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		915F494F20430125005C09B3 /* KinK.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KinK.ttf; sourceTree = "<group>"; };
@@ -1204,6 +1208,7 @@
 				9120CA86206011E600AFC597 /* OpenGLES.framework in Frameworks */,
 				9152E5E2212D48D400802040 /* KinCoreSDK.framework in Frameworks */,
 				9120CA84206011E000AFC597 /* SystemConfiguration.framework in Frameworks */,
+				915E5A18221D6E44004CF9EF /* Sodium.framework in Frameworks */,
 				9120CA81206011DA00AFC597 /* CoreMotion.framework in Frameworks */,
 				9120CA82206011DA00AFC597 /* CoreMedia.framework in Frameworks */,
 				9120CA7E206011D200AFC597 /* AVFoundation.framework in Frameworks */,
@@ -1350,6 +1355,7 @@
 		9140132120162FA90066367C = {
 			isa = PBXGroup;
 			children = (
+				915E5A17221D6E44004CF9EF /* Sodium.framework */,
 				9191EC3621E78986002BAC48 /* MoveKin.xcodeproj */,
 				9152E5D1212D489800802040 /* KinCoreSDK.xcodeproj */,
 				91E6B5F5203AD0D00080C2FC /* Lottie.xcodeproj */,

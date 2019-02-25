@@ -10,9 +10,9 @@ import StellarKit
 
 //swiftlint:disable force_try
 
-private let kinHorizonStageURL = URL(string: "https://horizon-playground.kininfrastructure.com/")!
+private let kinHorizonStageURL = URL(string: "https://horizon-playground.kininfrastructure.com")!
 
-private let kinHorizonProductionURL = URL(string: "https://horizon-ecosystem.kininfrastructure.com/")!
+private let kinHorizonProductionURL = URL(string: "https://horizon-ecosystem.kininfrastructure.com")!
 private let kinHorizonProductionIssuer = "GDF42M3IPERQCBLWFEZKQRK77JQ65SCKTU3CW36HZVCX7XX5A5QXZIVK"
 private let kinHorizonProductionName = "Public Global Kin Ecosystem Network ; June 2018"
 
