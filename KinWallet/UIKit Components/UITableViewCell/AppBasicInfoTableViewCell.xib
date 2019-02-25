@@ -27,7 +27,7 @@
                         <rect key="frame" x="329" y="16" width="30" height="30"/>
                         <state key="normal" title="Get"/>
                         <connections>
-                            <action selector="didTapOpen" destination="mZG-Qi-VDE" eventType="touchUpInside" id="LZa-Ju-c18"/>
+                            <action selector="didTapAction" destination="mZG-Qi-VDE" eventType="touchUpInside" id="ahv-Gu-0QA"/>
                         </connections>
                     </button>
                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="751" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="qdA-X4-83H">
@@ -67,8 +67,8 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="actionButton" destination="ICg-1b-Yy7" id="E9h-L1-cYA"/>
                 <outlet property="categoryLabel" destination="szi-F2-ztv" id="eoq-TQ-Kpx"/>
-                <outlet property="getAppButton" destination="ICg-1b-Yy7" id="aF1-HP-dwS"/>
                 <outlet property="iconImageView" destination="XNF-lF-ygQ" id="5QP-Lb-8Ba"/>
                 <outlet property="subtitleLabel" destination="z3q-SY-WBm" id="fo7-S5-j1V"/>
                 <outlet property="titleLabel" destination="9wE-Ir-4v2" id="dmH-qK-ES5"/>

@@ -1,5 +1,5 @@
 // swiftlint:disable all
-// Generated using SwiftGen, by O.Halligon — https://github.com/SwiftGen/SwiftGen
+// Generated using SwiftGen — https://github.com/SwiftGen/SwiftGen
 
 import Foundation
 
@@ -269,6 +269,8 @@ internal enum L10n {
   internal static let sendingKin = L10n.tr("Localizable", "SendingKin")
   /// Send Kin
   internal static let sendKinAction = L10n.tr("Localizable", "SendKinAction")
+  /// SEND
+  internal static let sendKinActionShort = L10n.tr("Localizable", "SendKinActionShort")
   /// Maybe send your friends to the app store?
   internal static let sendKinContactNotFoundErrorMessage = L10n.tr("Localizable", "SendKinContactNotFoundErrorMessage")
   /// Sorry, you can only send Kin to Kinit users.
@@ -319,8 +321,6 @@ internal enum L10n {
   internal static let transactionsEmptyStateMessage = L10n.tr("Localizable", "TransactionsEmptyStateMessage")
   /// Your new balance
   internal static let transferringKinNewBalance = L10n.tr("Localizable", "TransferringKinNewBalance")
-  /// Your Kin is on its way
-  internal static let transferringKinOnItsWay = L10n.tr("Localizable", "TransferringKinOnItsWay")
   /// Try Again
   internal static let tryAgain = L10n.tr("Localizable", "TryAgain")
   /// We were unable to create a profile for you
@@ -349,6 +349,10 @@ internal enum L10n {
   internal static let welcome3rdScreenTitle = L10n.tr("Localizable", "Welcome3rdScreenTitle")
   /// By clicking "Start earning Kin" you are agreeing\nto our Terms of Service and Privacy Policy
   internal static let welcomeScreenDisclaimer = L10n.tr("Localizable", "WelcomeScreenDisclaimer")
+  /// %d Kin available
+  internal static func xKinAvailable(_ p1: Int) -> String {
+    return L10n.tr("Localizable", "XKinAvailable", p1)
+  }
   /// Your Kin Balance
   internal static let yourKinBalance = L10n.tr("Localizable", "YourKinBalance")
 
@@ -379,6 +383,15 @@ internal enum L10n {
     internal static let action = L10n.tr("Localizable", "AppDiscoveryIntroPopup.Action")
     /// Why just have one when you can have many? Discover and download all of the amazing apps with Kin in one place.
     internal static let title = L10n.tr("Localizable", "AppDiscoveryIntroPopup.Title")
+  }
+
+  internal enum AppEcosystemMoveKinIntroPopup {
+    /// Got it!
+    internal static let action = L10n.tr("Localizable", "AppEcosystemMoveKinIntroPopup.Action")
+    /// Now you can send Kin to any app in the ecosystem using Kinit!\n\nJust look for the "Send Kin" button  on the apps page to try it for yourself.
+    internal static let message = L10n.tr("Localizable", "AppEcosystemMoveKinIntroPopup.Message")
+    /// The future is here!
+    internal static let title = L10n.tr("Localizable", "AppEcosystemMoveKinIntroPopup.Title")
   }
 
   internal enum AppPage {
@@ -425,6 +438,27 @@ internal enum L10n {
     internal static let upToDate = L10n.tr("Localizable", "MoreUpdate.UpToDate")
   }
 
+  internal enum MoveKin {
+    /// Connecting Apps
+    internal static let connectingApps = L10n.tr("Localizable", "MoveKin.ConnectingApps")
+    internal enum SendingFailed {
+      /// We received your send request but something went wrong.\nPlease try again later.
+      internal static let subtitle = L10n.tr("Localizable", "MoveKin.SendingFailed.Subtitle")
+      /// Oh no!
+      internal static let title = L10n.tr("Localizable", "MoveKin.SendingFailed.Title")
+    }
+    internal enum SendingKinCompleted {
+      /// Sending Completed
+      internal static let title = L10n.tr("Localizable", "MoveKin.SendingKinCompleted.Title")
+      internal enum Subtitle {
+        /// see transaction details under balance
+        internal static let `postfix` = L10n.tr("Localizable", "MoveKin.SendingKinCompleted.Subtitle.Postfix")
+        /// You’ve succesfully sent
+        internal static let `prefix` = L10n.tr("Localizable", "MoveKin.SendingKinCompleted.Subtitle.Prefix")
+      }
+    }
+  }
+
   internal enum NewOffersPolicy {
     /// I Understand
     internal static let action = L10n.tr("Localizable", "NewOffersPolicy.Action")
@@ -469,6 +503,13 @@ internal enum L10n {
     internal static let title = L10n.tr("Localizable", "TaskSubmissionPaymentTimeout.Title")
   }
 
+  internal enum TransferringKinOnItsWay {
+    /// Your Kin is on its way
+    internal static let receive = L10n.tr("Localizable", "TransferringKinOnItsWay.Receive")
+    /// Your Kin is on its way to 
+    internal static let sendToApp = L10n.tr("Localizable", "TransferringKinOnItsWay.SendToApp")
+  }
+
   internal enum UpdateAlert {
     /// Update Now
     internal static let action = L10n.tr("Localizable", "UpdateAlert.Action")
@@ -485,6 +526,7 @@ internal enum L10n {
 
 extension L10n {
   private static func tr(_ table: String, _ key: String, _ args: CVarArg...) -> String {
+    // swiftlint:disable:next nslocalizedstring_key
     let format = NSLocalizedString(key, tableName: table, bundle: Bundle(for: BundleToken.self), comment: "")
     return String(format: format, locale: Locale.current, arguments: args)
   }

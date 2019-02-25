@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AppCardCellDelegate: class {
-    func appCardCellDidTapOpenApp(_ cell: AppCardCollectionViewCell)
+    func appCardCellDidTapActionButton(_ cell: AppCardCollectionViewCell)
 }
 
 class AppCardCollectionViewCell: UICollectionViewCell {
@@ -44,16 +44,16 @@ class AppCardCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    @IBOutlet weak var getAppButton: UIButton! {
-        didSet {
-            getAppButton.setTitle(L10n.getApp, for: .normal)
-            getAppButton.makeKinButtonOutlined(height: 28, borderWidth: 1)
-            getAppButton.widthAnchor.constraint(equalToConstant: 72).isActive = true
-        }
+    @IBOutlet weak var actionButton: UIButton?
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        setupActionButtonConstraints()
     }
 
-    @IBAction func openApp() {
-        delegate?.appCardCellDidTapOpenApp(self)
+    @IBAction func actionButtonTapped() {
+        delegate?.appCardCellDidTapActionButton(self)
     }
 }
 

@@ -9,13 +9,14 @@ import UIKit
 import KinCoreSDK
 import Firebase
 import FirebaseAuth
+import MoveKin
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var notificationHandler: NotificationHandler?
     var lastBackgroundRefreshStatus: UIBackgroundRefreshStatus!
-
+    let moveKinFlow = MoveKinFlow()
     let rootViewController = RootViewController()
 
     //swiftlint:disable:next line_length
@@ -29,6 +30,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             #endif
         }
+
+        moveKinFlow.sendDelegate = self
 
         lastBackgroundRefreshStatus = application.backgroundRefreshStatus
         AuthToken.prepare()
@@ -104,6 +107,19 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         PushHandler.handlePush(with: userInfo)
+    }
+
+    func application(_ app: UIApplication,
+                     open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        print("Should handle \(url.absoluteString)")
+
+        if let sourceApp = options[.sourceApplication] as? String,
+            moveKinFlow.canHandleURL(url) {
+            moveKinFlow.handleURL(url, from: sourceApp)
+        }
+
+        return true
     }
 }
 

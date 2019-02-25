@@ -165,34 +165,6 @@ extension WebRequests {
                                                         body: paymentReceipt,
                                                         transform: transform)
     }
-
-    static func reportTransaction(with txId: String,
-                                  amount: UInt64,
-                                  to address: String) -> WebRequest<TransactionReportStatusResponse, Success> {
-        //swiftlint:disable:next nesting
-        struct PeerToPeerReport: Codable {
-            let tx_hash: String
-            let amount: UInt64
-            let destination_address: String
-        }
-
-        let transform: (TransactionReportStatusResponse?) -> Success? = {
-            guard let response = $0,
-                WebResourceHandlers.isJSONStatusOk(response: response).boolValue else {
-                return false
-            }
-
-            let tx = response.transaction
-            DataLoaders.kinit.prependTransaction(tx)
-
-            return true
-        }
-
-        let body = PeerToPeerReport(tx_hash: txId, amount: amount, destination_address: address)
-        return WebRequest<TransactionReportStatusResponse, Success>(POST: "/user/transaction/p2p",
-                                                                    body: body,
-                                                                    transform: transform)
-    }
 }
 
 // MARK: History
@@ -281,13 +253,29 @@ extension WebRequests {
     }
 }
 
-//MARK: App Discovery
+// MARK: App Discovery
 
 extension WebRequests {
     struct KinEcosystem {
         static func discoveryApps() -> WebRequest<[EcosystemAppCategory], [EcosystemAppCategory]> {
             return WebRequest<[EcosystemAppCategory], [EcosystemAppCategory]>(GET: "/app_discovery",
                                                                               transform: WebResourceHandlers.doNothing)
+        }
+
+        static func reportMoveKinToApp(_ body: ReportMoveKinToAppBody)
+            -> WebRequest<TransactionReportStatusResponse, KinitTransaction> {
+            let transform: (TransactionReportStatusResponse?) -> KinitTransaction? = {
+                guard let response = $0,
+                    WebResourceHandlers.isJSONStatusOk(response: response).boolValue else {
+                        return nil
+                }
+
+                return response.transaction
+            }
+
+            return WebRequest<TransactionReportStatusResponse, KinitTransaction>(POST: "/user/transaction/app2app",
+                                                                                 body: body,
+                                                                                 transform: transform)
         }
     }
 }

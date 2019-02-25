@@ -7,6 +7,14 @@
 
 import Foundation
 
+struct AppTransferData: Codable {
+    let urlScheme: String
+
+    enum CodingKeys: String, CodingKey {
+        case urlScheme = "url_scheme"
+    }
+}
+
 struct AppMetadata: Codable {
     let cardImageURL: URL
     let categoryName: String
@@ -39,6 +47,8 @@ struct EcosystemApp: Codable {
     let isActive: Bool
     let metadata: AppMetadata
     let name: String
+    let serverIdentifier: Int
+    let transferData: AppTransferData?
 
     enum CodingKeys: String, CodingKey {
         case bundleId = "identifier"
@@ -46,6 +56,14 @@ struct EcosystemApp: Codable {
         case isActive = "is_active"
         case metadata = "meta_data"
         case name
+        case transferData = "transfer_data"
+        case serverIdentifier = "sid"
+    }
+}
+
+extension EcosystemApp {
+    var isTransferAvailable: Bool {
+        return transferData != nil
     }
 }
 

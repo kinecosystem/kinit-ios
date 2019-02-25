@@ -35,7 +35,7 @@
                                 <rect key="frame" x="243" y="21" width="57" height="30"/>
                                 <state key="normal" title="Get App"/>
                                 <connections>
-                                    <action selector="openApp" destination="b0b-Gs-DFB" eventType="touchUpInside" id="8PD-As-j1X"/>
+                                    <action selector="actionButtonTapped" destination="b0b-Gs-DFB" eventType="touchUpInside" id="ccH-aC-D1q"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="627-Gg-Ai5">
@@ -83,8 +83,8 @@
             <viewLayoutGuide key="safeArea" id="4Bh-30-6kl"/>
             <size key="customSize" width="300" height="240"/>
             <connections>
+                <outlet property="actionButton" destination="1X6-q8-6z9" id="ml0-Ic-cPz"/>
                 <outlet property="bannerImageView" destination="nBW-Xw-LYq" id="mSc-Xg-9Sw"/>
-                <outlet property="getAppButton" destination="1X6-q8-6z9" id="rld-oo-hhT"/>
                 <outlet property="iconImageView" destination="cio-nT-yyp" id="CBB-n1-22g"/>
                 <outlet property="subtitleLabel" destination="OAZ-vi-mvI" id="U2f-J5-31E"/>
                 <outlet property="titleLabel" destination="v80-Md-821" id="YKV-Nk-md8"/>

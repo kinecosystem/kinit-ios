@@ -82,7 +82,7 @@ extension StandardOfferActionViewController {
     }
 
     private func payOffer(with orderId: String) {
-        Kin.shared.send(offer.price, to: offer.address, memo: orderId) { [weak self] txHash, error in
+        Kin.shared.send(offer.price, to: offer.address, memo: orderId, type: .spend) { [weak self] txHash, error in
             guard let aSelf = self else {
                 return
             }

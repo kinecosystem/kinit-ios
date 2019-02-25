@@ -134,7 +134,9 @@
 
 "ActivityDone.Message" = "You have completed this activity.";
 
-"TransferringKinOnItsWay" = "Your Kin is on its way";
+"TransferringKinOnItsWay.Receive" = "Your Kin is on its way";
+
+"TransferringKinOnItsWay.SendToApp" = "Your Kin is on its way to ";
 
 "TransferringKinNewBalance" = "Your new balance";
 
@@ -180,6 +182,8 @@
 
 "SendKinAction" = "Send Kin";
 
+"SendKinActionShort" = "SEND";
+
 "SendingKin" = "Sending Kin";
 
 "SendKinHighAmountErrorTitle" = "That's Very Kind";
@@ -207,6 +211,8 @@
 // Balance
 
 "YourKinBalance" = "Your Kin Balance";
+
+"XKinAvailable" = "%d Kin available";
 
 "TransactionsEmptyStateMessage" = "Your transactions will appear here!";
 
@@ -418,6 +424,12 @@
 
 "AppDiscoveryIntroPopup.Action" = "Awesome";
 
+"AppEcosystemMoveKinIntroPopup.Title" = "The future is here!";
+
+"AppEcosystemMoveKinIntroPopup.Message" = "Now you can send Kin to any app in the ecosystem using Kinit!\n\nJust look for the \"Send Kin\" button  on the apps page to try it for yourself.";
+
+"AppEcosystemMoveKinIntroPopup.Action" = "Got it!";
+
 "AppDiscovery.Header.Title" = "Introducing Kin Ecosystem apps";
 
 "AppDiscovery.Header.Subtitle" = "Discover all the amazing apps where you can use Kin.";
@@ -431,3 +443,17 @@
 "AppPage.KinUsage" = "Kin Usage";
 
 "AppPage.SendComingSoon" = "Soon you’ll be able to send Kin to this account";
+
+// Moving Kin
+
+"MoveKin.ConnectingApps" = "Connecting Apps";
+
+"MoveKin.SendingKinCompleted.Title" = "Sending Completed";
+
+"MoveKin.SendingKinCompleted.Subtitle.Prefix" = "You’ve succesfully sent";
+
+"MoveKin.SendingKinCompleted.Subtitle.Postfix" = "see transaction details under balance";
+
+"MoveKin.SendingFailed.Title" = "Oh no!";
+
+"MoveKin.SendingFailed.Subtitle" = "We received your send request but something went wrong.\nPlease try again later.";

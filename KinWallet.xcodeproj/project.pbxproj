@@ -281,6 +281,8 @@
 		9159956F21356A0F00E4E840 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159956C21356A0F00E4E840 /* AuthToken.swift */; };
 		915995962136BC0200E4E840 /* BackupConfirmEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910872BE21218E5F0095FD45 /* BackupConfirmEmailViewController.swift */; };
 		9159959E2136BC0300E4E840 /* BackupConfirmEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910872BE21218E5F0095FD45 /* BackupConfirmEmailViewController.swift */; };
+		915E5A18221D6E44004CF9EF /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 915E5A17221D6E44004CF9EF /* Sodium.framework */; };
+		915E5A19221D6E44004CF9EF /* Sodium.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 915E5A17221D6E44004CF9EF /* Sodium.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		915F495A20430125005C09B3 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 915F494D20430125005C09B3 /* Roboto-Medium.ttf */; };
 		915F495B20430125005C09B3 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 915F494E20430125005C09B3 /* Roboto-Light.ttf */; };
 		915F495C20430125005C09B3 /* KinK.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 915F494F20430125005C09B3 /* KinK.ttf */; };
@@ -365,6 +367,24 @@
 		91908C65204D69F200971F11 /* OfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91908C63204D69F200971F11 /* OfferCollectionViewCell.swift */; };
 		91908C66204D69F200971F11 /* OfferCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91908C64204D69F200971F11 /* OfferCollectionViewCell.xib */; };
 		91908C67204D6A6A00971F11 /* OfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91908C63204D69F200971F11 /* OfferCollectionViewCell.swift */; };
+		9191EBA221E4AF10002BAC48 /* AppDiscoveryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBA121E4AF10002BAC48 /* AppDiscoveryAction.swift */; };
+		9191EBB421E5E8CC002BAC48 /* SendKinAmountInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBB321E5E8CC002BAC48 /* SendKinAmountInputViewController.swift */; };
+		9191EBB621E5E8F6002BAC48 /* SendingKinToAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBB521E5E8F6002BAC48 /* SendingKinToAppViewController.swift */; };
+		9191EBB821E5E97E002BAC48 /* ConnectingAppsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBB721E5E97E002BAC48 /* ConnectingAppsViewController.swift */; };
+		9191EBB921E5F2C7002BAC48 /* ConnectingAppsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBB721E5E97E002BAC48 /* ConnectingAppsViewController.swift */; };
+		9191EBBA21E5F2C7002BAC48 /* ConnectingAppsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBB721E5E97E002BAC48 /* ConnectingAppsViewController.swift */; };
+		9191EBC021E62945002BAC48 /* ConnectingLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 9191EBBF21E62945002BAC48 /* ConnectingLoader.json */; };
+		9191EBC121E62945002BAC48 /* ConnectingLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 9191EBBF21E62945002BAC48 /* ConnectingLoader.json */; };
+		9191EBC221E62945002BAC48 /* ConnectingLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 9191EBBF21E62945002BAC48 /* ConnectingLoader.json */; };
+		9191EBC421E62F19002BAC48 /* SentKinToAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBC321E62F19002BAC48 /* SentKinToAppViewController.swift */; };
+		9191EBC521E62F19002BAC48 /* SentKinToAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBC321E62F19002BAC48 /* SentKinToAppViewController.swift */; };
+		9191EBC621E62F19002BAC48 /* SentKinToAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBC321E62F19002BAC48 /* SentKinToAppViewController.swift */; };
+		9191EBD721E756C4002BAC48 /* MoveKinErrorPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBD621E756C4002BAC48 /* MoveKinErrorPageViewController.swift */; };
+		9191EBD921E776F5002BAC48 /* MoveKinFinalPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBD821E776F5002BAC48 /* MoveKinFinalPageViewController.swift */; };
+		9191EBDA21E77874002BAC48 /* MoveKinFinalPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBD821E776F5002BAC48 /* MoveKinFinalPageViewController.swift */; };
+		9191EBDB21E77875002BAC48 /* MoveKinFinalPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBD821E776F5002BAC48 /* MoveKinFinalPageViewController.swift */; };
+		9191EC4221E789AF002BAC48 /* MoveKin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9191EC3C21E78986002BAC48 /* MoveKin.framework */; };
+		9191EC4321E789AF002BAC48 /* MoveKin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9191EC3C21E78986002BAC48 /* MoveKin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9198A2A02062926D0052F343 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9198A29F2062926D0052F343 /* NotificationHandler.swift */; };
 		91A427582129AF710078B589 /* AccountSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A427572129AF710078B589 /* AccountSourceViewController.swift */; };
 		91A4275E2129BD830078B589 /* CreatingWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4275D2129BD830078B589 /* CreatingWalletViewController.swift */; };
@@ -417,8 +437,6 @@
 		91B0667120C6AF7800CE69A7 /* StandardOfferActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667020C6AF7800CE69A7 /* StandardOfferActionViewController.swift */; };
 		91B0667220C6BB7900CE69A7 /* StandardOfferActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667020C6AF7800CE69A7 /* StandardOfferActionViewController.swift */; };
 		91B0667320C6BB7900CE69A7 /* StandardOfferActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667020C6AF7800CE69A7 /* StandardOfferActionViewController.swift */; };
-		91B0667520C6CD0100CE69A7 /* SendKinOfferActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667420C6CD0100CE69A7 /* SendKinOfferActionViewController.swift */; };
-		91B0667720C7E47D00CE69A7 /* SendKinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667620C7E47D00CE69A7 /* SendKinViewController.swift */; };
 		91B0667920C8177100CE69A7 /* KinSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667820C8177100CE69A7 /* KinSentViewController.swift */; };
 		91B0667A20C8177100CE69A7 /* KinSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667820C8177100CE69A7 /* KinSentViewController.swift */; };
 		91B0667B20C8177100CE69A7 /* KinSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0667820C8177100CE69A7 /* KinSentViewController.swift */; };
@@ -770,6 +788,27 @@
 			remoteGlobalIDString = 82140EA81FA88E5B00FAF19B;
 			remoteInfo = KinCoreSDK;
 		};
+		9191EC3B21E78986002BAC48 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9191EC3621E78986002BAC48 /* MoveKin.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9191EC0A21E78731002BAC48;
+			remoteInfo = MoveKin;
+		};
+		9191EC3D21E78986002BAC48 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9191EC3621E78986002BAC48 /* MoveKin.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9191EC1321E78731002BAC48;
+			remoteInfo = MoveKinTests;
+		};
+		9191EC4421E789AF002BAC48 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9191EC3621E78986002BAC48 /* MoveKin.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9191EC0921E78731002BAC48;
+			remoteInfo = MoveKin;
+		};
 		91E6B5FC203AD0D00080C2FC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 91E6B5F5203AD0D00080C2FC /* Lottie.xcodeproj */;
@@ -830,7 +869,9 @@
 			files = (
 				91FF124E211B18290098470D /* KinitDesignables.framework in Embed Frameworks */,
 				9152E5E3212D48D400802040 /* KinCoreSDK.framework in Embed Frameworks */,
+				9191EC4321E789AF002BAC48 /* MoveKin.framework in Embed Frameworks */,
 				91E6B605203AD0D80080C2FC /* Lottie.framework in Embed Frameworks */,
+				915E5A19221D6E44004CF9EF /* Sodium.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -870,6 +911,7 @@
 		91311C4C204FDB4400618240 /* Optional+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+KinWallet.swift"; sourceTree = "<group>"; };
 		9131A0BA212C055F000203DC /* RestoreBackupQuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreBackupQuestionsViewController.swift; sourceTree = "<group>"; };
 		913596B021DA67E300578718 /* AppDiscoveryComingSoonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDiscoveryComingSoonViewController.swift; sourceTree = "<group>"; };
+		9135970321E34CF500578718 /* StellarKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = StellarKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91379A44211744D1002D3EF5 /* BackupIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupIntroViewController.swift; sourceTree = "<group>"; };
 		91379A4721174AE1002D3EF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Backup.storyboard; sourceTree = "<group>"; };
 		9138BBE0204EE21E00450C97 /* OfferDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailsViewController.swift; sourceTree = "<group>"; };
@@ -948,6 +990,7 @@
 		9159955D2135457A00E4E840 /* BackupFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupFlowController.swift; sourceTree = "<group>"; };
 		9159956821354E3A00E4E840 /* UIAlertController+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+KinWallet.swift"; sourceTree = "<group>"; };
 		9159956C21356A0F00E4E840 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
+		915E5A17221D6E44004CF9EF /* Sodium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Sodium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		915F494D20430125005C09B3 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		915F494E20430125005C09B3 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		915F494F20430125005C09B3 /* KinK.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KinK.ttf; sourceTree = "<group>"; };
@@ -991,6 +1034,15 @@
 		9189277721664E3400E0EE8C /* PostTaskAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTaskAction.swift; sourceTree = "<group>"; };
 		91908C63204D69F200971F11 /* OfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCollectionViewCell.swift; sourceTree = "<group>"; };
 		91908C64204D69F200971F11 /* OfferCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfferCollectionViewCell.xib; sourceTree = "<group>"; };
+		9191EBA121E4AF10002BAC48 /* AppDiscoveryAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDiscoveryAction.swift; sourceTree = "<group>"; };
+		9191EBB321E5E8CC002BAC48 /* SendKinAmountInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendKinAmountInputViewController.swift; sourceTree = "<group>"; };
+		9191EBB521E5E8F6002BAC48 /* SendingKinToAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingKinToAppViewController.swift; sourceTree = "<group>"; };
+		9191EBB721E5E97E002BAC48 /* ConnectingAppsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectingAppsViewController.swift; sourceTree = "<group>"; };
+		9191EBBF21E62945002BAC48 /* ConnectingLoader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ConnectingLoader.json; sourceTree = "<group>"; };
+		9191EBC321E62F19002BAC48 /* SentKinToAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentKinToAppViewController.swift; sourceTree = "<group>"; };
+		9191EBD621E756C4002BAC48 /* MoveKinErrorPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveKinErrorPageViewController.swift; sourceTree = "<group>"; };
+		9191EBD821E776F5002BAC48 /* MoveKinFinalPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveKinFinalPageViewController.swift; sourceTree = "<group>"; };
+		9191EC3621E78986002BAC48 /* MoveKin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MoveKin.xcodeproj; path = Submodules/MoveKin/MoveKin.xcodeproj; sourceTree = "<group>"; };
 		9198A29F2062926D0052F343 /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		919BCD0B21010CC700C39661 /* KinUtil.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KinUtil.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A427572129AF710078B589 /* AccountSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSourceViewController.swift; sourceTree = "<group>"; };
@@ -1013,8 +1065,6 @@
 		91AEBF382029E958007BBBA3 /* WebRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequest.swift; sourceTree = "<group>"; };
 		91AEBF3B202B0554007BBBA3 /* TaskCompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCompletedViewController.swift; sourceTree = "<group>"; };
 		91B0667020C6AF7800CE69A7 /* StandardOfferActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardOfferActionViewController.swift; sourceTree = "<group>"; };
-		91B0667420C6CD0100CE69A7 /* SendKinOfferActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendKinOfferActionViewController.swift; sourceTree = "<group>"; };
-		91B0667620C7E47D00CE69A7 /* SendKinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendKinViewController.swift; sourceTree = "<group>"; };
 		91B0667820C8177100CE69A7 /* KinSentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinSentViewController.swift; sourceTree = "<group>"; };
 		91B0667D20C929EF00CE69A7 /* NSLayoutConstraintHairline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintHairline.swift; sourceTree = "<group>"; };
 		91B0668120C9631100CE69A7 /* UIApplication+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+KinWallet.swift"; sourceTree = "<group>"; };
@@ -1158,9 +1208,11 @@
 				9120CA86206011E600AFC597 /* OpenGLES.framework in Frameworks */,
 				9152E5E2212D48D400802040 /* KinCoreSDK.framework in Frameworks */,
 				9120CA84206011E000AFC597 /* SystemConfiguration.framework in Frameworks */,
+				915E5A18221D6E44004CF9EF /* Sodium.framework in Frameworks */,
 				9120CA81206011DA00AFC597 /* CoreMotion.framework in Frameworks */,
 				9120CA82206011DA00AFC597 /* CoreMedia.framework in Frameworks */,
 				9120CA7E206011D200AFC597 /* AVFoundation.framework in Frameworks */,
+				9191EC4221E789AF002BAC48 /* MoveKin.framework in Frameworks */,
 				91FF124D211B18290098470D /* KinitDesignables.framework in Frameworks */,
 				91E6B604203AD0D80080C2FC /* Lottie.framework in Frameworks */,
 				3066337E2058FFCF00F9BB45 /* Crashlytics.framework in Frameworks */,
@@ -1303,6 +1355,8 @@
 		9140132120162FA90066367C = {
 			isa = PBXGroup;
 			children = (
+				915E5A17221D6E44004CF9EF /* Sodium.framework */,
+				9191EC3621E78986002BAC48 /* MoveKin.xcodeproj */,
 				9152E5D1212D489800802040 /* KinCoreSDK.xcodeproj */,
 				91E6B5F5203AD0D00080C2FC /* Lottie.xcodeproj */,
 				9140132C20162FA90066367C /* KinWallet */,
@@ -1376,6 +1430,7 @@
 		9140135D201632070066367C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9191EBB221E5E8B9002BAC48 /* Move Kin */,
 				91392A29208F48240026C2F9 /* Onboard */,
 				914013A32018BC320066367C /* Earn */,
 				914013A12018BC320066367C /* Spend */,
@@ -1395,6 +1450,7 @@
 				910872B121205D6A0095FD45 /* LockAnimation.json */,
 				91A427682129BFF20078B589 /* WalletLoader.json */,
 				915F497A204452CC005C09B3 /* CirclesLoader.json */,
+				9191EBBF21E62945002BAC48 /* ConnectingLoader.json */,
 				9140133620162FA90066367C /* Assets.xcassets */,
 				9140133320162FA90066367C /* Main.storyboard */,
 				91379A4621174AE1002D3EF5 /* Backup.storyboard */,
@@ -1506,8 +1562,6 @@
 				9138BBE0204EE21E00450C97 /* OfferDetailsViewController.swift */,
 				91D075402056A77100CF80D5 /* OffersUnavailableViewController.swift */,
 				91B0667020C6AF7800CE69A7 /* StandardOfferActionViewController.swift */,
-				91B0667420C6CD0100CE69A7 /* SendKinOfferActionViewController.swift */,
-				91B0667620C7E47D00CE69A7 /* SendKinViewController.swift */,
 				91B0667820C8177100CE69A7 /* KinSentViewController.swift */,
 				913C9C4321D0DAC500B855BC /* AppDiscoveryViewController.swift */,
 				913596B021DA67E300578718 /* AppDiscoveryComingSoonViewController.swift */,
@@ -1597,6 +1651,28 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		9191EBB221E5E8B9002BAC48 /* Move Kin */ = {
+			isa = PBXGroup;
+			children = (
+				9191EBB721E5E97E002BAC48 /* ConnectingAppsViewController.swift */,
+				9191EBB321E5E8CC002BAC48 /* SendKinAmountInputViewController.swift */,
+				9191EBB521E5E8F6002BAC48 /* SendingKinToAppViewController.swift */,
+				9191EBD821E776F5002BAC48 /* MoveKinFinalPageViewController.swift */,
+				9191EBC321E62F19002BAC48 /* SentKinToAppViewController.swift */,
+				9191EBD621E756C4002BAC48 /* MoveKinErrorPageViewController.swift */,
+			);
+			path = "Move Kin";
+			sourceTree = "<group>";
+		};
+		9191EC3721E78986002BAC48 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9191EC3C21E78986002BAC48 /* MoveKin.framework */,
+				9191EC3E21E78986002BAC48 /* MoveKinTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		91AAB930201E091C0075DAA1 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1616,6 +1692,7 @@
 				9152E600212EB41D00802040 /* KinErrors.swift */,
 				91AAB931201E0AC00075DAA1 /* ResourceDownloader.swift */,
 				9170390B20B75175006B01FB /* PushHandler.swift */,
+				9191EBA121E4AF10002BAC48 /* AppDiscoveryAction.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1623,6 +1700,7 @@
 		91AEBF4D202B322D007BBBA3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9135970321E34CF500578718 /* StellarKit.framework */,
 				919BCD0B21010CC700C39661 /* KinUtil.framework */,
 				9120CA85206011E600AFC597 /* OpenGLES.framework */,
 				9120CA83206011E000AFC597 /* SystemConfiguration.framework */,
@@ -1882,6 +1960,7 @@
 				91E6B607203AD0D80080C2FC /* PBXTargetDependency */,
 				91FF124C211B18290098470D /* PBXTargetDependency */,
 				9152E5E5212D48D400802040 /* PBXTargetDependency */,
+				9191EC4521E789AF002BAC48 /* PBXTargetDependency */,
 			);
 			name = KinWallet;
 			productName = KinWallet;
@@ -2002,6 +2081,10 @@
 					ProductGroup = 91E6B5F6203AD0D00080C2FC /* Products */;
 					ProjectRef = 91E6B5F5203AD0D00080C2FC /* Lottie.xcodeproj */;
 				},
+				{
+					ProductGroup = 9191EC3721E78986002BAC48 /* Products */;
+					ProjectRef = 9191EC3621E78986002BAC48 /* MoveKin.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -2041,6 +2124,20 @@
 			fileType = wrapper.framework;
 			path = KinCoreSDK.framework;
 			remoteRef = 9152E5E0212D489800802040 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9191EC3C21E78986002BAC48 /* MoveKin.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MoveKin.framework;
+			remoteRef = 9191EC3B21E78986002BAC48 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9191EC3E21E78986002BAC48 /* MoveKinTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = MoveKinTests.xctest;
+			remoteRef = 9191EC3D21E78986002BAC48 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		91E6B5FD203AD0D00080C2FC /* Lottie.framework */ = {
@@ -2121,6 +2218,7 @@
 				91D7C02A204EFBC400D35401 /* Spend.storyboard in Resources */,
 				913C9C5D21D2719500B855BC /* AppCardCollectionViewCell.xib in Resources */,
 				915F495A20430125005C09B3 /* Roboto-Medium.ttf in Resources */,
+				9191EBC021E62945002BAC48 /* ConnectingLoader.json in Resources */,
 				91E6B659203C69A90080C2FC /* AppledocSettings.plist in Resources */,
 				82A12DE42056B723008841F2 /* config.json in Resources */,
 				915F496520430125005C09B3 /* Roboto-Thin.ttf in Resources */,
@@ -2165,6 +2263,7 @@
 				916ACCF920F1FFEF00756EBC /* DualImageQuestionSeparatorView.xib in Resources */,
 				9182C2A5203C6C0C0051F003 /* ComodoRsaCA.der in Resources */,
 				91B4454820909C5400ED6802 /* TutorialPageView.xib in Resources */,
+				9191EBC121E62945002BAC48 /* ConnectingLoader.json in Resources */,
 				91A4276E2129C7BD0078B589 /* Onboard.storyboard in Resources */,
 				913C9C5E21D2719500B855BC /* AppCardCollectionViewCell.xib in Resources */,
 				91D891DF2020B43D0090E77C /* SurveyImageAnswerCollectionViewCell.xib in Resources */,
@@ -2191,6 +2290,7 @@
 				9181983220EE551400E5D523 /* SurveyFullSizedImageAnswerCollectionViewCell.xib in Resources */,
 				91AE22DA21761E060024B8BF /* TaskCategoryTitleView.xib in Resources */,
 				91B4454920909C5400ED6802 /* TutorialPageView.xib in Resources */,
+				9191EBC221E62945002BAC48 /* ConnectingLoader.json in Resources */,
 				91A4276F2129C7BD0078B589 /* Onboard.storyboard in Resources */,
 				913C9C9621D4D05500B855BC /* EcosystemFooterTableViewCell.xib in Resources */,
 				916ACCFA20F1FFEF00756EBC /* DualImageQuestionSeparatorView.xib in Resources */,
@@ -2416,6 +2516,7 @@
 				910AA2242096F34600CC822A /* AccountReadyViewController.swift in Sources */,
 				9138BBE5204EF1A700450C97 /* SimpleCollectionReusableView.swift in Sources */,
 				91D891DA2020B43D0090E77C /* SurveyQuestionCollectionReusableView.swift in Sources */,
+				9191EBB821E5E97E002BAC48 /* ConnectingAppsViewController.swift in Sources */,
 				9114743D203F17ED00C16279 /* WeakBox.swift in Sources */,
 				91B0667920C8177100CE69A7 /* KinSentViewController.swift in Sources */,
 				91E6B650203C69A90080C2FC /* AMPUtils.m in Sources */,
@@ -2432,7 +2533,6 @@
 				91F877E7216A011B00E91C03 /* NoticeViewController.swift in Sources */,
 				914013AA2018BC780066367C /* SurveyViewController.swift in Sources */,
 				91E6B65B203C69A90080C2FC /* AMPDeviceInfo.m in Sources */,
-				91B0667720C7E47D00CE69A7 /* SendKinViewController.swift in Sources */,
 				91392A31208F48330026C2F9 /* WelcomeViewController.swift in Sources */,
 				91E5C6A020B5D20B0024BAA5 /* Sourcery.swift in Sources */,
 				91F69D3B208379F400F06181 /* BarView.swift in Sources */,
@@ -2458,6 +2558,7 @@
 				91FA4A02212AA4DF00513E1D /* RestoreBackupQRScannerViewController.swift in Sources */,
 				91F69D35208379F400F06181 /* PagerTabStripError.swift in Sources */,
 				914013B72018C5D70066367C /* StoryboardInitializable.swift in Sources */,
+				9191EBB421E5E8CC002BAC48 /* SendKinAmountInputViewController.swift in Sources */,
 				91B0668620C9634B00CE69A7 /* AlphaTransitionAnimator.swift in Sources */,
 				91F69D3D208379F400F06181 /* ButtonBarPagerTabStripViewController.swift in Sources */,
 				91AA18E621048AD000044D9C /* QuizData.swift in Sources */,
@@ -2497,6 +2598,7 @@
 				91FF1231211AF6670098470D /* BackupQuestionViewController.swift in Sources */,
 				914013AD2018BCB90066367C /* SurveyUnavailableViewController.swift in Sources */,
 				9159956D21356A0F00E4E840 /* AuthToken.swift in Sources */,
+				9191EBD921E776F5002BAC48 /* MoveKinFinalPageViewController.swift in Sources */,
 				91147441203F1D4100C16279 /* BalanceLabel.swift in Sources */,
 				914013E02019F2BF0066367C /* UICollectionView+KinWallet.swift in Sources */,
 				9140137D201748100066367C /* UIViewController+KinWallet.swift in Sources */,
@@ -2523,12 +2625,14 @@
 				91F69D30208379F400F06181 /* SegmentedPagerTabStripViewController.swift in Sources */,
 				913C9C9121D4D05500B855BC /* EcosystemFooterTableViewCell.swift in Sources */,
 				91FA4A0D212AB75C00513E1D /* QRCodeScannerViewController.swift in Sources */,
+				9191EBD721E756C4002BAC48 /* MoveKinErrorPageViewController.swift in Sources */,
 				9198A2A02062926D0052F343 /* NotificationHandler.swift in Sources */,
 				9152E5E9212D505300802040 /* RestoreBackupCells.swift in Sources */,
 				91F877F4216A012C00E91C03 /* KinAlertController.swift in Sources */,
 				9170CD7F2133F3A0009986A5 /* AMPTrackingOptions.m in Sources */,
 				91FF14AC211C5FFE0098470D /* ButtonAccessoryInputView.swift in Sources */,
 				91D891E22020B43D0090E77C /* AnswersCollectionViewLayout.swift in Sources */,
+				9191EBB621E5E8F6002BAC48 /* SendingKinToAppViewController.swift in Sources */,
 				914013C12019D0BA0066367C /* UIImage+KinWallet.swift in Sources */,
 				91D7C031204F11D200D35401 /* KinAmountLabel.swift in Sources */,
 				91B575BA2045E62B00AC3E04 /* KinitLoader.swift in Sources */,
@@ -2536,7 +2640,6 @@
 				9140138D20187DEB0066367C /* Author.swift in Sources */,
 				91F69D38208379F400F06181 /* SwipeDirection.swift in Sources */,
 				91F69D3A208379F400F06181 /* PagerTabStripBehaviour.swift in Sources */,
-				91B0667520C6CD0100CE69A7 /* SendKinOfferActionViewController.swift in Sources */,
 				913596B121DA67E300578718 /* AppDiscoveryComingSoonViewController.swift in Sources */,
 				913C9C8C21D4CE8A00B855BC /* EcosystemAppCategoryTableViewCell.swift in Sources */,
 				91401380201755DF0066367C /* AppDelegate+Extensions.swift in Sources */,
@@ -2569,6 +2672,7 @@
 				913C9C7121D38F3300B855BC /* AppInfoView.swift in Sources */,
 				91F69D36208379F400F06181 /* BaseButtonBarPagerTabStripViewController.swift in Sources */,
 				91D891C72020A1A60090E77C /* QuestionCollectionViewDataSource.swift in Sources */,
+				9191EBC421E62F19002BAC48 /* SentKinToAppViewController.swift in Sources */,
 				914013DE2019F2BF0066367C /* UITableViewCell+KinWallet.swift in Sources */,
 				91E6B616203C29B30080C2FC /* SurveyDoneViewController.swift in Sources */,
 				91473FE0201DCDBF0013A530 /* SelectedResult.swift in Sources */,
@@ -2576,6 +2680,7 @@
 				91AE230621776C4E0024B8BF /* DataLoaders.swift in Sources */,
 				91FF9D32207F4BE100B536E9 /* RedeemedGoodsViewController.swift in Sources */,
 				910AA22E2096F42F00CC822A /* ConfettiView.swift in Sources */,
+				9191EBA221E4AF10002BAC48 /* AppDiscoveryAction.swift in Sources */,
 				9170390C20B75175006B01FB /* PushHandler.swift in Sources */,
 				91796BC72027261F00F8C6A0 /* User.swift in Sources */,
 			);
@@ -2597,6 +2702,7 @@
 				913C9C4E21D25F9500B855BC /* EcosystemIntroTableViewCell.swift in Sources */,
 				9170CD8F21341E25009986A5 /* BackupNagViewController.swift in Sources */,
 				91AE200A21760D2D0024B8BF /* TaskCategoryViewController.swift in Sources */,
+				9191EBDA21E77874002BAC48 /* MoveKinFinalPageViewController.swift in Sources */,
 				828CB45E2056EAFC007C679C /* ISPPinnedNSURLConnectionDelegate.m in Sources */,
 				828CB47F2056EE26007C679C /* OffersUnavailableViewController.swift in Sources */,
 				914013B82018C5D70066367C /* StoryboardInitializable.swift in Sources */,
@@ -2741,11 +2847,13 @@
 				91E6B614203C0FFA0080C2FC /* FeedbackGenerator.swift in Sources */,
 				9140138720187CE90066367C /* Question.swift in Sources */,
 				9131A0C5212C084A000203DC /* AccountSourceViewController.swift in Sources */,
+				9191EBC521E62F19002BAC48 /* SentKinToAppViewController.swift in Sources */,
 				91E84ABC20862E6E00E8B7A6 /* RedeemTransactionCollectionViewCell.swift in Sources */,
 				913596B221DA67E300578718 /* AppDiscoveryComingSoonViewController.swift in Sources */,
 				913C9C8D21D4CE8A00B855BC /* EcosystemAppCategoryTableViewCell.swift in Sources */,
 				91B0667A20C8177100CE69A7 /* KinSentViewController.swift in Sources */,
 				9152E5EE212D6C3300802040 /* UIBarButtonItem.swift in Sources */,
+				9191EBB921E5F2C7002BAC48 /* ConnectingAppsViewController.swift in Sources */,
 				91B4454C2090A91E00ED6802 /* WelcomeViewController.swift in Sources */,
 				91401399201892640066367C /* QuestionnaireTests.swift in Sources */,
 				91B0668320C9631100CE69A7 /* UIApplication+KinWallet.swift in Sources */,
@@ -2810,6 +2918,7 @@
 				828CB41E2056E970007C679C /* UIView+KinWallet.swift in Sources */,
 				91AE200B21760D2D0024B8BF /* TaskCategoryViewController.swift in Sources */,
 				913C9C9321D4D05500B855BC /* EcosystemFooterTableViewCell.swift in Sources */,
+				9191EBDB21E77875002BAC48 /* MoveKinFinalPageViewController.swift in Sources */,
 				91E84A6F2086186300E8B7A6 /* BarPagerTabStripViewController.swift in Sources */,
 				91FF14DB212057550098470D /* BackupDoneViewController.swift in Sources */,
 				91AE230121775E980024B8BF /* TaskLoader.swift in Sources */,
@@ -2842,6 +2951,7 @@
 				828CB44F2056EA42007C679C /* Date+Kinit.swift in Sources */,
 				9170CD812133F3A0009986A5 /* AMPTrackingOptions.m in Sources */,
 				9159956F21356A0F00E4E840 /* AuthToken.swift in Sources */,
+				9191EBC621E62F19002BAC48 /* SentKinToAppViewController.swift in Sources */,
 				828CB4432056EA08007C679C /* ImageAssets.swift in Sources */,
 				828CB44B2056EA42007C679C /* UICollectionView+KinWallet.swift in Sources */,
 				91B57F9420E038E200CE5EE1 /* Bridge.swift in Sources */,
@@ -2850,6 +2960,7 @@
 				91B4454D2090A91E00ED6802 /* WelcomeViewController.swift in Sources */,
 				91B40AB2213D54F800DD035B /* HelpCenterViewController.swift in Sources */,
 				91E84A842086186B00E8B7A6 /* PagerTabStripError.swift in Sources */,
+				9191EBBA21E5F2C7002BAC48 /* ConnectingAppsViewController.swift in Sources */,
 				913C9C4F21D25F9500B855BC /* EcosystemIntroTableViewCell.swift in Sources */,
 				91E84A9120862C5200E8B7A6 /* User.swift in Sources */,
 				9152E5EF212D6C3300802040 /* UIBarButtonItem.swift in Sources */,
@@ -3015,6 +3126,11 @@
 			isa = PBXTargetDependency;
 			name = KinCoreSDK;
 			targetProxy = 9152E5E4212D48D400802040 /* PBXContainerItemProxy */;
+		};
+		9191EC4521E789AF002BAC48 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MoveKin;
+			targetProxy = 9191EC4421E789AF002BAC48 /* PBXContainerItemProxy */;
 		};
 		91E6B607203AD0D80080C2FC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

@@ -7,8 +7,10 @@
 
 import UIKit
 import KinUtil
+import MoveKin
 
 private let shownAppDiscoveryIntroKey = "org.kinfoundation.kinwallet.shownAppDiscoveryIntro"
+private let shownEcosystemMoveKinIntroKey = "org.kinfoundation.kinwallet.shownEcosystemMoveKinIntro"
 
 private enum AppDiscoveryTableSections: Int {
     case intro = 0
@@ -33,6 +35,8 @@ extension AppDiscoveryTableSections: CaseIterable {}
 
 class AppDiscoveryViewController: UIViewController {
     let linkBag = LinkBag()
+    let appDiscoveryAction = AppDiscoveryAction(moveKinFlow: AppDelegate.shared.moveKinFlow)
+
     var categories: [EcosystemAppCategory]?
 
     let tableView: UITableView = {
@@ -67,7 +71,8 @@ class AppDiscoveryViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        showAppDiscoveryIntroIfNeeded()
+        showIntroPopupIfNeeded()
+
         Events.Analytics.ViewExplorePage().send()
     }
 
@@ -89,6 +94,26 @@ class AppDiscoveryViewController: UIViewController {
         tableView.reloadData()
     }
 
+    private func showIntroPopupIfNeeded() {
+        guard
+            UserDefaults.standard.bool(forKey: shownAppDiscoveryIntroKey) == false
+                || UserDefaults.standard.bool(forKey: shownEcosystemMoveKinIntroKey) == false else {
+                    return
+        }
+
+        let transferAvailableApp = DataLoaders.kinit.ecosystemAppCategories
+            .value?
+            .value?
+            .flatMap { $0.apps }
+            .first(where: { $0.isTransferAvailable })
+
+        if transferAvailableApp != nil {
+            showMoveKinIntroIfNeeded()
+        } else {
+            showAppDiscoveryIntroIfNeeded()
+        }
+    }
+
     private func showAppDiscoveryIntroIfNeeded() {
         guard UserDefaults.standard.bool(forKey: shownAppDiscoveryIntroKey) == false else {
             return
@@ -100,6 +125,23 @@ class AppDiscoveryViewController: UIViewController {
                                                      titleImage: Asset.appDiscoveryIntroPopup.image,
                                                      message: L10n.AppDiscoveryIntroPopup.title,
                                                      primaryAction: .init(title: L10n.AppDiscoveryIntroPopup.action),
+                                                     secondaryAction: nil)
+            self?.presentAnimated(alertController)
+        }
+    }
+
+    private func showMoveKinIntroIfNeeded() {
+        guard UserDefaults.standard.bool(forKey: shownEcosystemMoveKinIntroKey) == false else {
+            return
+        }
+
+        UserDefaults.standard.set(true, forKey: shownEcosystemMoveKinIntroKey)
+        let actionTitle = L10n.AppEcosystemMoveKinIntroPopup.action
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+            let alertController = KinAlertController(title: L10n.AppEcosystemMoveKinIntroPopup.title,
+                                                     titleImage: Asset.appDiscoverySendIntroPopup.image,
+                                                     message: L10n.AppEcosystemMoveKinIntroPopup.message,
+                                                     primaryAction: .init(title: actionTitle),
                                                      secondaryAction: nil)
             self?.presentAnimated(alertController)
         }
@@ -202,7 +244,7 @@ extension AppDiscoveryViewController: UICollectionViewDataSource {
         cell.row = collectionView.tag
         cell.column = indexPath.item
         cell.delegate = self
-        cell.drawAppInformation(categories[collectionView.tag].apps[indexPath.item], category: nil)
+        cell.drawAppInformation(categories[collectionView.tag].apps[indexPath.item], category: nil, short: false)
 
         return cell
     }
@@ -232,7 +274,7 @@ extension AppDiscoveryViewController: IndicatorInfoProvider {
 }
 
 extension AppDiscoveryViewController: AppCardCellDelegate {
-    func appCardCellDidTapOpenApp(_ cell: AppCardCollectionViewCell) {
+    func appCardCellDidTapActionButton(_ cell: AppCardCollectionViewCell) {
         guard let categories = categories else {
             let m = "AppDiscoveryViewController received ecosystemAppCellDidTapOpenApp: but categories is nil"
             fatalError(m)
@@ -240,18 +282,22 @@ extension AppDiscoveryViewController: AppCardCellDelegate {
 
         let category = categories[cell.row]
         let app = category.apps[cell.column]
-        let url = app.metadata.url
 
-        if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url)
+        let event: BIEvent
+        if app.isTransferAvailable {
+            event = Events.Analytics
+                .ClickSendButtonOnAppItem(appCategory: category.name,
+                                          appId: app.bundleId,
+                                          appName: app.name)
         } else {
-            UIApplication.shared.openURL(url)
+            event = Events.Analytics
+                .ClickGetButtonOnAppItem(appCategory: category.name,
+                                         appId: app.bundleId,
+                                         appName: app.name)
         }
 
-        Events.Analytics
-            .ClickGetButtonOnAppItem(appCategory: category.name,
-                                     appId: app.bundleId,
-                                     appName: app.name)
-            .send()
+        event.send()
+
+        appDiscoveryAction.performAppAction(for: app)
     }
 }

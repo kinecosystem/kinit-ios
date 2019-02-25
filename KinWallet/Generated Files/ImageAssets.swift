@@ -1,5 +1,5 @@
 // swiftlint:disable all
-// Generated using SwiftGen, by O.Halligon — https://github.com/SwiftGen/SwiftGen
+// Generated using SwiftGen — https://github.com/SwiftGen/SwiftGen
 
 #if os(OSX)
   import AppKit.NSImage
@@ -20,6 +20,7 @@
 internal enum Asset {
   internal static let appDiscoveryFooterIllustration = ImageAsset(name: "AppDiscoveryFooterIllustration")
   internal static let appDiscoveryIntroPopup = ImageAsset(name: "AppDiscoveryIntroPopup")
+  internal static let appDiscoverySendIntroPopup = ImageAsset(name: "AppDiscoverySendIntroPopup")
   internal static let backupDoneIcon = ImageAsset(name: "BackupDoneIcon")
   internal static let backupIntroIllustration = ImageAsset(name: "BackupIntroIllustration")
   internal static let backupNagHeader = ImageAsset(name: "BackupNagHeader")

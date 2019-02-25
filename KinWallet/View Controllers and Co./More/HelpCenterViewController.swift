@@ -48,8 +48,8 @@ final class HelpCenterViewController: WebViewController {
         controller.add(handler, name: MessageNames.pageLoaded)
     }
 
-    fileprivate func contactSupport(category: String, pageTitle: String) {
-        KinSupportViewController.presentSupport(from: self, faqCategory: category, faqTitle: pageTitle)
+    fileprivate func contactSupport(category: String, subcategory: String) {
+        KinSupportViewController.presentSupport(from: self, faqCategory: category, faqSubcategory: subcategory)
     }
 
     override func loadingStateChanged(_ isLoading: Bool) {
@@ -88,23 +88,23 @@ private class HelpCenterWebViewHandler: NSObject, WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         guard
             let body = message.body as? [String: Any],
-            let category = body["faqCategory"] as? String,
-            let title = body["faqTitle"] as? String else {
+            let category = body["faqTitle"] as? String,
+            let subcategory = body["faqCategory"] as? String else {
             return
         }
 
         switch message.name {
         case MessageNames.contactSupport:
-            helpCenterViewController?.contactSupport(category: category, pageTitle: title)
+            helpCenterViewController?.contactSupport(category: category, subcategory: subcategory)
         case MessageNames.isPageHelpfulSelection:
             if let isHelpful = body["helpful"] as? Bool {
-                isPageHelpfulSelection(category: category, pageTitle: title, isHelpful: isHelpful)
+                isPageHelpfulSelection(category: category, subcategory: subcategory, isHelpful: isHelpful)
             }
         case MessageNames.pageLoaded:
             if category == "Main Page" {
                 mainPageLoaded()
             } else {
-                pageLoaded(category: category, pageTitle: title)
+                pageLoaded(category: category, subcategory: subcategory)
             }
         default:
             break
@@ -115,15 +115,15 @@ private class HelpCenterWebViewHandler: NSObject, WKScriptMessageHandler {
         Events.Analytics.ViewFaqMainPage().send()
     }
 
-    private func pageLoaded(category: String, pageTitle: String) {
+    private func pageLoaded(category: String, subcategory: String) {
         Events.Analytics
-            .ViewFaqPage(faqCategory: category, faqTitle: pageTitle)
+            .ViewFaqPage(faqCategory: category, faqSubcategory: subcategory)
             .send()
     }
 
-    private func isPageHelpfulSelection(category: String, pageTitle: String, isHelpful: Bool) {
+    private func isPageHelpfulSelection(category: String, subcategory: String, isHelpful: Bool) {
         Events.Analytics
-            .ClickPageHelpfulButtonOnFaqPage(faqCategory: category, faqTitle: pageTitle, helpful: isHelpful)
+            .ClickPageHelpfulButtonOnFaqPage(faqCategory: category, faqSubcategory: subcategory, helpful: isHelpful)
             .send()
     }
 }

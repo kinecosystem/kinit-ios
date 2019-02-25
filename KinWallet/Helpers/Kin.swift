@@ -10,9 +10,9 @@ import StellarKit
 
 //swiftlint:disable force_try
 
-private let kinHorizonStageURL = URL(string: "https://horizon-playground.kininfrastructure.com/")!
+private let kinHorizonStageURL = URL(string: "https://horizon-playground.kininfrastructure.com")!
 
-private let kinHorizonProductionURL = URL(string: "https://horizon-ecosystem.kininfrastructure.com/")!
+private let kinHorizonProductionURL = URL(string: "https://horizon-ecosystem.kininfrastructure.com")!
 private let kinHorizonProductionIssuer = "GDF42M3IPERQCBLWFEZKQRK77JQ65SCKTU3CW36HZVCX7XX5A5QXZIVK"
 private let kinHorizonProductionName = "Public Global Kin Ecosystem Network ; June 2018"
 
@@ -286,6 +286,7 @@ extension Kin {
     func send(_ amount: UInt64,
               to address: String,
               memo: String? = nil,
+              type: SendTransactionType,
               completion: @escaping KinCoreSDK.TransactionCompletion) {
         account.sendTransaction(to: address, kin: Decimal(amount), memo: memo) { txHash, error in
             completion(txHash, error)
@@ -294,7 +295,7 @@ extension Kin {
                 Events.Business
                     .KINTransactionFailed(failureReason: error.localizedDescription,
                                           kinAmount: Int(amount),
-                                          transactionType: .spend)
+                                          transactionType: type.toBIEventType)
                     .send()
 
                 return
@@ -304,7 +305,7 @@ extension Kin {
                 Events.Business
                     .KINTransactionSucceeded(kinAmount: Int(amount),
                                              transactionId: txHash,
-                                             transactionType: .spend)
+                                             transactionType: type.toBIEventType)
                     .send()
             }
 
@@ -313,6 +314,18 @@ extension Kin {
             Analytics.incrementSpendCount()
             Analytics.incrementTransactionCount()
             Analytics.incrementTotalSpent(by: Int(amount))
+        }
+    }
+}
+
+enum SendTransactionType {
+    case spend
+    case crossApp
+
+    var toBIEventType: Events.TransactionType {
+        switch self {
+        case .spend: return .spend
+        case .crossApp: return .crossApp
         }
     }
 }

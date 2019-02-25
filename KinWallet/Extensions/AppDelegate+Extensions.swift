@@ -6,6 +6,7 @@
 import UIKit
 import WebKit
 import KinitDesignables
+import MoveKin
 
 extension AppDelegate {
     class var shared: AppDelegate {
@@ -52,6 +53,49 @@ extension AppDelegate {
     }
 }
 
+extension AppDelegate: SendKinFlowDelegate {
+    func sendKin(amount: UInt, to address: String, app: MoveKinApp, completion: @escaping (Bool) -> Void) {
+        guard Kin.shared.accountStatus == .activated else {
+            completion(false)
+            return
+        }
+
+        Kin.shared.send(UInt64(amount), to: address, memo: "1-kit-to-app", type: .crossApp) { txId, error in
+            completion(txId != nil)
+
+            guard let ecosystemAppAndCategory = DataLoaders.kinit.ecosystemApp(for: app.bundleId) else {
+                return
+            }
+
+            if let txId = txId {
+                let reportBody = ReportMoveKinToAppBody(address: address,
+                                                        txHash: txId,
+                                                        amount: amount,
+                                                        destinationAppSid: ecosystemAppAndCategory.app.serverIdentifier)
+                WebRequests.KinEcosystem.reportMoveKinToApp(reportBody).withCompletion { transaction, _ in
+                    if let transaction = transaction {
+                        DataLoaders.kinit.prependTransaction(transaction)
+                    }
+                    }.load(with: KinWebService.shared)
+            }
+
+            if let error = error {
+                Events.Business
+                    .CrossAppKinFailure(failureReason: error.localizedDescription,
+                                        failureType: .error)
+                    .send()
+            } else {
+                Events.Business
+                    .CrossAppKinSent(appCategory: ecosystemAppAndCategory.categoryName,
+                                     appId: ecosystemAppAndCategory.app.bundleId,
+                                     appName: ecosystemAppAndCategory.app.name,
+                                     kinAmount: Int(amount))
+                    .send()
+            }
+        }
+    }
+}
+
 extension AppDelegate: WebServiceProvider {
     func headers() -> [String: String]? {
         var headers = [String: String]()
@@ -74,4 +118,4 @@ extension AppDelegate: WebServiceProvider {
     }
 }
 
-class WhiteNavigationBar: UINavigationBar { }
+class WhiteNavigationBar: UINavigationBar {}

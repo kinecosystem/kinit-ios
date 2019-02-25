@@ -1,5 +1,5 @@
 // swiftlint:disable all
-// Generated using SwiftGen, by O.Halligon — https://github.com/SwiftGen/SwiftGen
+// Generated using SwiftGen — https://github.com/SwiftGen/SwiftGen
 
 // swiftlint:disable sorted_imports
 import Foundation
@@ -100,9 +100,7 @@ internal enum StoryboardScene {
 
     internal static let offerWallViewController = SceneType<OfferWallViewController>(storyboard: Spend.self, identifier: "OfferWallViewController")
 
-    internal static let sendKinOfferActionViewController = SceneType<SendKinOfferActionViewController>(storyboard: Spend.self, identifier: "SendKinOfferActionViewController")
-
-    internal static let sendKinViewController = SceneType<SendKinViewController>(storyboard: Spend.self, identifier: "SendKinViewController")
+    internal static let sendKinAmountInputViewController = SceneType<SendKinAmountInputViewController>(storyboard: Spend.self, identifier: "SendKinAmountInputViewController")
 
     internal static let standardOfferActionViewController = SceneType<StandardOfferActionViewController>(storyboard: Spend.self, identifier: "StandardOfferActionViewController")
   }
