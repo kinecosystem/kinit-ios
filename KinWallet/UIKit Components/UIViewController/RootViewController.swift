@@ -330,7 +330,8 @@ extension RootViewController: NoticeViewControllerDelegate {
         let helpCenterViewController = HelpCenterViewController()
         helpCenterViewController.setPageToLoad(page: .support,
                                                faqInfo: (category: .other, subCategory: .onboarding))
-        self.navigationController?.pushViewController(helpCenterViewController, animated: true)
+        let navController = KinNavigationController(rootViewController: helpCenterViewController)
+        viewController.presentAnimated(navController)
     }
 }
 

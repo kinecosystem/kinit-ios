@@ -65,7 +65,8 @@ extension UIViewController {
             let helpCenterViewController = HelpCenterViewController()
             helpCenterViewController.setPageToLoad(page: .support,
                                                    faqInfo: (category: .backup_restore, subCategory: .other))
-            self.navigationController?.pushViewController(helpCenterViewController, animated: true)
+            let navController = KinNavigationController(rootViewController: helpCenterViewController)
+            self.presentAnimated(navController)
         }
 
         alertController.addAction(title: L10n.tryAgain, style: .default)

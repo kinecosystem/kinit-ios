@@ -261,7 +261,8 @@ class PhoneConfirmationViewController: UIViewController {
         let helpCenterViewController = HelpCenterViewController()
         helpCenterViewController.setPageToLoad(page: .support,
                                                faqInfo: (category: .other, subCategory: .onboarding))
-        self.navigationController?.pushViewController(helpCenterViewController, animated: true)
+        let navController = KinNavigationController(rootViewController: helpCenterViewController)
+        presentAnimated(navController)
     }
 
     func isCurrentCodeValid() -> Bool {

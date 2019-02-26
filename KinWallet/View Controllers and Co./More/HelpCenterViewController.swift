@@ -22,35 +22,58 @@ private struct MessageNames {
     static let feedbackSubmitted = "feedbackSubmitted"
 }
 
+extension HelpCenterViewController.Page {
+    var title: String {
+        switch self {
+        case .faq, .support: return L10n.iNeedHelp
+        case .feedback: return L10n.suggestionBox
+        }
+    }
+}
+
 final class HelpCenterViewController: WebViewController {
+
+    struct PageToLoad {
+        let page: Page
+        let url: URL
+
+        init(page: Page, faqInfo: (category: Category, subCategory: SubCategory)? = nil) {
+            self.page = page
+            guard
+                let cat = faqInfo?.category,
+                let subCat = faqInfo?.subCategory else {
+                    self.url = URL(string: page.rawValue)!
+                    return
+            }
+            let urlString = "\(page.rawValue)?"
+                + "category=\(cat.rawValue)&sub_category=\(subCat.rawValue)"
+                    .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+            self.url = URL(string: urlString)!
+        }
+    }
+
     enum Page: String {
         case faq = "https://s3.amazonaws.com/kinapp-static/faq2/index.html"
         case feedback = "https://s3.amazonaws.com/kinapp-static/faq2/support/feedback.html"
         case support = "https://s3.amazonaws.com/kinapp-static/faq2/support/contact-us.html"
     }
+
     enum Category: String {
         case backup_restore = "Backup %26 Restore your Kin"
         case other = "Other"
     }
 
     enum SubCategory: String {
+        case onboarding = "On-boarding error"
         case other = "Other"
-        case onboarding = "On-boarding%20error"
     }
 
     private let activityIndicatorView = UIActivityIndicatorView(style: .white)
     private var errorCount = 0
-    private var pageURL = URL(string: Page.faq.rawValue)!
+    private var pageToLoad: PageToLoad = PageToLoad(page: Page.faq)
 
     func setPageToLoad(page: Page, faqInfo: (category: Category, subCategory: SubCategory)? = nil) {
-        guard
-            let category = faqInfo?.category,
-            let subCategory = faqInfo?.subCategory else {
-                pageURL = URL(string: page.rawValue)!
-                return
-        }
-        let urlString = "\(page.rawValue)?category=\(category.rawValue)&subCategory=\(subCategory.rawValue)"
-        pageURL = URL(string: urlString)!
+        pageToLoad = PageToLoad(page: page, faqInfo: faqInfo)
     }
 
     override func viewDidLoad() {
@@ -58,9 +81,16 @@ final class HelpCenterViewController: WebViewController {
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicatorView)
 
-        title = L10n.iNeedHelp
+        title = pageToLoad.page.title
 
         loadMainPage()
+
+        if navigationController?.viewControllers.first == self {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: L10n.closeAction,
+                                                               style: .plain,
+                                                               target: self,
+                                                               action: #selector(close))
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -95,8 +125,16 @@ final class HelpCenterViewController: WebViewController {
         }
     }
 
+    @objc fileprivate func close() {
+        if navigationController?.viewControllers.first == self {
+            dismissAnimated()
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
+    }
+
     fileprivate func loadMainPage() {
-        loadURL(pageURL)
+        loadURL(pageToLoad.url)
     }
 
     fileprivate func presentErrorAlert() {
@@ -142,7 +180,7 @@ final class HelpCenterViewController: WebViewController {
 
 extension HelpCenterViewController: KinNavigationControllerDelegate {
     func shouldPopViewController() -> Bool {
-        if webView.canGoBack && webView.url != pageURL {
+        if webView.canGoBack && webView.url != pageToLoad.url {
             loadMainPage()
             return false
         }
