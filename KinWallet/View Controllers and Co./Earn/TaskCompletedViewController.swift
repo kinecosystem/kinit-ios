@@ -139,7 +139,7 @@ final class TaskCompletedViewController: UIViewController {
 
                 Kin.shared.refreshBalance()
 
-                let paymentAmount = (paymentInfo.amount as NSDecimalNumber).uint64Value
+                let paymentAmount = (paymentInfo.amount as NSDecimalNumber).uint64Value / 10_000_000
                 self.transactionSucceeded(with: paymentAmount, txId: paymentInfo.hash)
             }).add(to: linkBag)
 
