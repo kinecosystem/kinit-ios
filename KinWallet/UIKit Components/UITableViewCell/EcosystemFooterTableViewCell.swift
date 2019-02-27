@@ -10,7 +10,6 @@ import UIKit
 class EcosystemFooterTableViewCell: UITableViewCell {
     @IBOutlet weak var explanationLabel: UILabel! {
         didSet {
-            explanationLabel.text = L10n.AppDiscovery.Footer.title
             explanationLabel.font = FontFamily.Roboto.bold.font(size: 16)
             explanationLabel.textColor = UIColor.kin.gray
         }

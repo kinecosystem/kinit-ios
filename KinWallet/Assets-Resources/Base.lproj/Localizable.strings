@@ -434,7 +434,9 @@
 
 "AppDiscovery.Header.Subtitle" = "Discover all the amazing apps where you can use Kin.";
 
-"AppDiscovery.Footer.Title" = "Coming soon: a new way to use Kin across the ecosystem";
+"AppDiscovery.Footer.Title.Discovery" = "Coming soon: a new way to use Kin across the ecosystem";
+
+"AppDiscovery.Footer.Title.SendAvailable" = "Learn more about sending Kin";
 
 "AppDiscovery.Footer.Subtitle" = "More apps are coming soon";
 

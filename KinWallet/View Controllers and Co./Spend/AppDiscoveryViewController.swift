@@ -51,6 +51,16 @@ class AppDiscoveryViewController: UIViewController {
         return t
     }()
 
+    var isTransferAvailable: Bool {
+        let transferAvailableApp = DataLoaders.kinit.ecosystemAppCategories
+            .value?
+            .value?
+            .flatMap { $0.apps }
+            .first(where: { $0.isTransferAvailable })
+
+        return transferAvailableApp != nil
+    }
+
     override func loadView() {
         let v = UIView()
         tableView.dataSource = self
@@ -101,13 +111,7 @@ class AppDiscoveryViewController: UIViewController {
                     return
         }
 
-        let transferAvailableApp = DataLoaders.kinit.ecosystemAppCategories
-            .value?
-            .value?
-            .flatMap { $0.apps }
-            .first(where: { $0.isTransferAvailable })
-
-        if transferAvailableApp != nil {
+        if isTransferAvailable {
             showMoveKinIntroIfNeeded()
         } else {
             showAppDiscoveryIntroIfNeeded()
@@ -200,7 +204,12 @@ extension AppDiscoveryViewController: UITableViewDataSource {
             cell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
             return cell
         case .footer:
-            return tableView.dequeueReusableCell(forIndexPath: indexPath) as EcosystemFooterTableViewCell
+            let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as EcosystemFooterTableViewCell
+            cell.explanationLabel.text = isTransferAvailable
+                ? L10n.AppDiscovery.Footer.Title.sendAvailable
+                : L10n.AppDiscovery.Footer.Title.discovery
+
+            return cell
         }
     }
 }
