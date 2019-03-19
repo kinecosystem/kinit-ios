@@ -5,3 +5,4 @@ excluded:
   - "Submodules"
 opt_in_rules:
   - overridden_super_call
+  - toggle_bool

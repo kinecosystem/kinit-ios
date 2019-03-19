@@ -386,6 +386,15 @@
 		9191EC4221E789AF002BAC48 /* MoveKin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9191EC3C21E78986002BAC48 /* MoveKin.framework */; };
 		9191EC4321E789AF002BAC48 /* MoveKin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9191EC3C21E78986002BAC48 /* MoveKin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9198A2A02062926D0052F343 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9198A29F2062926D0052F343 /* NotificationHandler.swift */; };
+		919AC216222EA52F00BCA851 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 919AC215222EA52F00BCA851 /* Media.xcassets */; };
+		919AC218222EA52F00BCA851 /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919AC217222EA52F00BCA851 /* ActionViewController.swift */; };
+		919AC21B222EA52F00BCA851 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 919AC219222EA52F00BCA851 /* MainInterface.storyboard */; };
+		919AC21F222EA52F00BCA851 /* WalletExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 919AC213222EA52F00BCA851 /* WalletExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		919AC22A222EA5E700BCA851 /* StellarKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 919AC229222EA5E700BCA851 /* StellarKit.framework */; };
+		919AC234222EA5EC00BCA851 /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 919AC233222EA5EC00BCA851 /* Sodium.framework */; };
+		919AC235222EA5F200BCA851 /* KinCoreSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9152E5DB212D489800802040 /* KinCoreSDK.framework */; };
+		919AC238222EA75400BCA851 /* KinEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919AC237222EA75400BCA851 /* KinEnvironment.swift */; };
+		919AC239222EA75400BCA851 /* KinEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919AC237222EA75400BCA851 /* KinEnvironment.swift */; };
 		91A427582129AF710078B589 /* AccountSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A427572129AF710078B589 /* AccountSourceViewController.swift */; };
 		91A4275E2129BD830078B589 /* CreatingWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4275D2129BD830078B589 /* CreatingWalletViewController.swift */; };
 		91A427662129BEAC0078B589 /* CreatingWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4275D2129BD830078B589 /* CreatingWalletViewController.swift */; };
@@ -809,6 +818,13 @@
 			remoteGlobalIDString = 9191EC0921E78731002BAC48;
 			remoteInfo = MoveKin;
 		};
+		919AC21D222EA52F00BCA851 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9140132220162FA90066367C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 919AC212222EA52F00BCA851;
+			remoteInfo = WalletExtension;
+		};
 		91E6B5FC203AD0D00080C2FC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 91E6B5F5203AD0D00080C2FC /* Lottie.xcodeproj */;
@@ -874,6 +890,17 @@
 				915E5A19221D6E44004CF9EF /* Sodium.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		919AC209222EA3F700BCA851 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				919AC21F222EA52F00BCA851 /* WalletExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -1044,6 +1071,17 @@
 		9191EBD821E776F5002BAC48 /* MoveKinFinalPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveKinFinalPageViewController.swift; sourceTree = "<group>"; };
 		9191EC3621E78986002BAC48 /* MoveKin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MoveKin.xcodeproj; path = Submodules/MoveKin/MoveKin.xcodeproj; sourceTree = "<group>"; };
 		9198A29F2062926D0052F343 /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
+		919AC20B222EA44800BCA851 /* StellarKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = StellarKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		919AC20D222EA45E00BCA851 /* Sodium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Sodium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		919AC213222EA52F00BCA851 /* WalletExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WalletExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		919AC215222EA52F00BCA851 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		919AC217222EA52F00BCA851 /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
+		919AC21A222EA52F00BCA851 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		919AC21C222EA52F00BCA851 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		919AC229222EA5E700BCA851 /* StellarKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = StellarKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		919AC233222EA5EC00BCA851 /* Sodium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Sodium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		919AC237222EA75400BCA851 /* KinEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinEnvironment.swift; sourceTree = "<group>"; };
+		919AC23A222EB8EF00BCA851 /* WalletExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WalletExtension.entitlements; sourceTree = "<group>"; };
 		919BCD0B21010CC700C39661 /* KinUtil.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KinUtil.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A427572129AF710078B589 /* AccountSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSourceViewController.swift; sourceTree = "<group>"; };
 		91A4275D2129BD830078B589 /* CreatingWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatingWalletViewController.swift; sourceTree = "<group>"; };
@@ -1242,6 +1280,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		919AC210222EA52F00BCA851 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				919AC235222EA5F200BCA851 /* KinCoreSDK.framework in Frameworks */,
+				919AC234222EA5EC00BCA851 /* Sodium.framework in Frameworks */,
+				919AC22A222EA5E700BCA851 /* StellarKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		91FF1242211B18290098470D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1364,6 +1412,7 @@
 				9140134320162FA90066367C /* KinWalletTests */,
 				9140134E20162FA90066367C /* KinWalletUITests */,
 				91FF1247211B18290098470D /* KinitDesignables */,
+				919AC214222EA52F00BCA851 /* WalletExtension */,
 				9140132B20162FA90066367C /* Products */,
 				91AEBF4D202B322D007BBBA3 /* Frameworks */,
 				38F39F46269BA4029BBEA83A /* Pods */,
@@ -1377,6 +1426,7 @@
 				9140134020162FA90066367C /* KinWalletTests.xctest */,
 				9140134B20162FA90066367C /* KinWalletUITests.xctest */,
 				91FF1246211B18290098470D /* KinitDesignables.framework */,
+				919AC213222EA52F00BCA851 /* WalletExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1673,6 +1723,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		919AC214222EA52F00BCA851 /* WalletExtension */ = {
+			isa = PBXGroup;
+			children = (
+				919AC23A222EB8EF00BCA851 /* WalletExtension.entitlements */,
+				919AC215222EA52F00BCA851 /* Media.xcassets */,
+				919AC217222EA52F00BCA851 /* ActionViewController.swift */,
+				919AC219222EA52F00BCA851 /* MainInterface.storyboard */,
+				919AC21C222EA52F00BCA851 /* Info.plist */,
+			);
+			path = WalletExtension;
+			sourceTree = "<group>";
+		};
 		91AAB930201E091C0075DAA1 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1685,6 +1747,7 @@
 				91E20B8A202B3E3B000CB741 /* FeedbackGenerator.swift */,
 				9159956C21356A0F00E4E840 /* AuthToken.swift */,
 				91E6B60B203AD1D30080C2FC /* Kin.swift */,
+				919AC237222EA75400BCA851 /* KinEnvironment.swift */,
 				91AE230521776C4E0024B8BF /* DataLoaders.swift */,
 				91B575B92045E62B00AC3E04 /* KinitLoader.swift */,
 				91AE22F721775E930024B8BF /* TaskLoader.swift */,
@@ -1700,6 +1763,10 @@
 		91AEBF4D202B322D007BBBA3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				919AC233222EA5EC00BCA851 /* Sodium.framework */,
+				919AC229222EA5E700BCA851 /* StellarKit.framework */,
+				919AC20D222EA45E00BCA851 /* Sodium.framework */,
+				919AC20B222EA44800BCA851 /* StellarKit.framework */,
 				9135970321E34CF500578718 /* StellarKit.framework */,
 				919BCD0B21010CC700C39661 /* KinUtil.framework */,
 				9120CA85206011E600AFC597 /* OpenGLES.framework */,
@@ -1953,6 +2020,7 @@
 				828CB49E20594364007C679C /* Add Fabric Key Into Plist */,
 				0979060EAEEF3A80E9EF481B /* [CP] Embed Pods Frameworks */,
 				913C9C4B21D0F0DB00B855BC /* Load Reveal */,
+				919AC209222EA3F700BCA851 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -1961,6 +2029,7 @@
 				91FF124C211B18290098470D /* PBXTargetDependency */,
 				9152E5E5212D48D400802040 /* PBXTargetDependency */,
 				9191EC4521E789AF002BAC48 /* PBXTargetDependency */,
+				919AC21E222EA52F00BCA851 /* PBXTargetDependency */,
 			);
 			name = KinWallet;
 			productName = KinWallet;
@@ -2005,6 +2074,23 @@
 			productReference = 9140134B20162FA90066367C /* KinWalletUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		919AC212222EA52F00BCA851 /* WalletExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 919AC220222EA52F00BCA851 /* Build configuration list for PBXNativeTarget "WalletExtension" */;
+			buildPhases = (
+				919AC20F222EA52F00BCA851 /* Sources */,
+				919AC210222EA52F00BCA851 /* Frameworks */,
+				919AC211222EA52F00BCA851 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WalletExtension;
+			productName = WalletExtension;
+			productReference = 919AC213222EA52F00BCA851 /* WalletExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		91FF1245211B18290098470D /* KinitDesignables */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 91FF124F211B18290098470D /* Build configuration list for PBXNativeTarget "KinitDesignables" */;
@@ -2029,15 +2115,18 @@
 		9140132220162FA90066367C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = KinFoundation;
 				TargetAttributes = {
 					9140132920162FA90066367C = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
 								enabled = 1;
 							};
 							com.apple.Push = {
@@ -2047,17 +2136,26 @@
 					};
 					9140133F20162FA90066367C = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 9140132920162FA90066367C;
 					};
 					9140134A20162FA90066367C = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 9140132920162FA90066367C;
+					};
+					919AC212222EA52F00BCA851 = {
+						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					91FF1245211B18290098470D = {
 						CreatedOnToolsVersion = 9.4;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -2092,6 +2190,7 @@
 				9140133F20162FA90066367C /* KinWalletTests */,
 				9140134A20162FA90066367C /* KinWalletUITests */,
 				91FF1245211B18290098470D /* KinitDesignables */,
+				919AC212222EA52F00BCA851 /* WalletExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -2294,6 +2393,15 @@
 				91A4276F2129C7BD0078B589 /* Onboard.storyboard in Resources */,
 				913C9C9621D4D05500B855BC /* EcosystemFooterTableViewCell.xib in Resources */,
 				916ACCFA20F1FFEF00756EBC /* DualImageQuestionSeparatorView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		919AC211222EA52F00BCA851 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				919AC216222EA52F00BCA851 /* Media.xcassets in Resources */,
+				919AC21B222EA52F00BCA851 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2586,6 +2694,7 @@
 				916ACCF520F1FFEF00756EBC /* DualImageQuestionSeparatorView.swift in Sources */,
 				91B40AB0213D54F800DD035B /* HelpCenterViewController.swift in Sources */,
 				91F877E4216A011B00E91C03 /* KinNavigationController.swift in Sources */,
+				919AC238222EA75400BCA851 /* KinEnvironment.swift in Sources */,
 				91E84A4F2085ED2300E8B7A6 /* EmptyStateView.swift in Sources */,
 				91B575C22046C37300AC3E04 /* UIButton+KinWallet.swift in Sources */,
 				91FF9D2E207F49C800B536E9 /* BalanceViewController.swift in Sources */,
@@ -3098,6 +3207,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		919AC20F222EA52F00BCA851 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				919AC239222EA75400BCA851 /* KinEnvironment.swift in Sources */,
+				919AC218222EA52F00BCA851 /* ActionViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		91FF1241211B18290098470D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3131,6 +3249,11 @@
 			isa = PBXTargetDependency;
 			name = MoveKin;
 			targetProxy = 9191EC4421E789AF002BAC48 /* PBXContainerItemProxy */;
+		};
+		919AC21E222EA52F00BCA851 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 919AC212222EA52F00BCA851 /* WalletExtension */;
+			targetProxy = 919AC21D222EA52F00BCA851 /* PBXContainerItemProxy */;
 		};
 		91E6B607203AD0D80080C2FC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3167,6 +3290,14 @@
 				9140133920162FA90066367C /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		919AC219222EA52F00BCA851 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				919AC21A222EA52F00BCA851 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 		91D7C028204EFBC400D35401 /* Spend.storyboard */ = {
@@ -3254,7 +3385,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = KinWallet/KinWallet.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 368;
 				DEVELOPMENT_TEAM = F879J8YSJ9;
 				ENABLE_BITCODE = NO;
@@ -3296,7 +3427,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/KinWallet",
@@ -3321,7 +3452,7 @@
 			baseConfigurationReference = 25246B587FA0565B0EC72751 /* Pods-KinWalletUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/KinWallet",
@@ -3340,6 +3471,53 @@
 				TEST_TARGET_NAME = KinWallet;
 			};
 			name = Debug;
+		};
+		919AC221222EA52F00BCA851 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_ENTITLEMENTS = WalletExtension/WalletExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F879J8YSJ9;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = WalletExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.kinecosystem.kinit.WalletExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		919AC222222EA52F00BCA851 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_ENTITLEMENTS = WalletExtension/WalletExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F879J8YSJ9;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = WalletExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.kinecosystem.kinit.WalletExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
 		};
 		91B2626920DA4A5A00E8A766 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -3402,7 +3580,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = KinWallet/KinWallet.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 368;
 				DEVELOPMENT_TEAM = F879J8YSJ9;
 				ENABLE_BITCODE = NO;
@@ -3444,7 +3622,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/KinWallet",
@@ -3469,7 +3647,7 @@
 			baseConfigurationReference = 7B0DD744421168E44BA1A995 /* Pods-KinWalletUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/KinWallet",
@@ -3496,7 +3674,7 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 368;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = F879J8YSJ9;
@@ -3525,7 +3703,7 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 368;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = F879J8YSJ9;
@@ -3582,6 +3760,15 @@
 			buildConfigurations = (
 				9140135B20162FA90066367C /* Debug */,
 				91B2626C20DA4A5A00E8A766 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		919AC220222EA52F00BCA851 /* Build configuration list for PBXNativeTarget "WalletExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				919AC221222EA52F00BCA851 /* Debug */,
+				919AC222222EA52F00BCA851 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

@@ -10,12 +10,6 @@ import StellarKit
 
 //swiftlint:disable force_try
 
-private let kinHorizonStageURL = URL(string: "https://horizon-playground.kininfrastructure.com")!
-
-private let kinHorizonProductionURL = URL(string: "https://horizon-ecosystem.kininfrastructure.com")!
-private let kinHorizonProductionIssuer = "GDF42M3IPERQCBLWFEZKQRK77JQ65SCKTU3CW36HZVCX7XX5A5QXZIVK"
-private let kinHorizonProductionName = "Public Global Kin Ecosystem Network ; June 2018"
-
 private let balanceUserDefaultsKey = "org.kinfoundation.kinwallet.currentBalance"
 private let accountStatusUserDefaultsKey = "org.kinfoundation.kinwallet.accountStatus"
 private let accountStatusPerformedBackupKey = "org.kinfoundation.kinwallet.performedBackup"
@@ -46,21 +40,12 @@ class Kin {
     }
 
     init() {
-        let url: URL
-        let kinNetworkId: KinCoreSDK.NetworkId
-
-        #if DEBUG || RELEASE_STAGE
-        url = kinHorizonStageURL
-        kinNetworkId = .playground
-        #else
-        url = kinHorizonProductionURL
-        kinNetworkId = .custom(issuer: kinHorizonProductionIssuer, stellarNetworkId: .custom(kinHorizonProductionName))
-        #endif
-
-        let client = KinClient(with: url, networkId: kinNetworkId)
+        let client = KinEnvironment.kinClient()
 
         self.account = try! client.accounts.last ?? client.addAccount()
         self.client = client
+
+        print("Host app's public address is \(client.accounts.last!.publicAddress)")
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(applicationDidBecomeActive),
