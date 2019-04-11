@@ -5,7 +5,7 @@
 
 import UIKit
 import Lottie
-import KinCoreSDK
+import KinMigrationModule
 import KinUtil
 import KinitDesignables
 
@@ -16,7 +16,7 @@ extension Notification.Name {
 final class TaskCompletedViewController: UIViewController {
     var task: Task!
     var results: TaskResults?
-    var watch: PaymentWatch?
+    var watch: PaymentWatchProtocol?
     var notificationObserver: NSObjectProtocol?
     let linkBag = LinkBag()
     var failedToSubmitResults = false

@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct Result: Codable {
+struct TaskResult: Codable {
     let identifier: String
     let imageURL: URL?
     let text: String?
@@ -19,13 +19,13 @@ struct Result: Codable {
     }
 }
 
-extension Result: Equatable {
-    static func == (lhs: Result, rhs: Result) -> Bool {
+extension TaskResult: Equatable {
+    static func == (lhs: TaskResult, rhs: TaskResult) -> Bool {
         return lhs.identifier == rhs.identifier
     }
 }
 
-extension Result {
+extension TaskResult {
     func hasImage() -> Bool {
         return imageURL != nil
     }

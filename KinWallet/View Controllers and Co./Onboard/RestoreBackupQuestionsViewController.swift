@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import KinCoreSDK
+import KinSDK
 
 class RestoreBackupQuestionsViewController: UITableViewController {
     var questions = [String]()

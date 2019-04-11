@@ -10,12 +10,6 @@
 [submodule "Submodules/UICountingLabel"]
 	path = Submodules/UICountingLabel
 	url = https://github.com/dataxpress/UICountingLabel.git
-[submodule "Submodules/KinCore"]
-	path = Submodules/KinCore
-	url = https://github.com/kinfoundation/kin-core-ios.git
 [submodule "Submodules/XLPagerTabStrip"]
 	path = Submodules/XLPagerTabStrip
 	url = https://github.com/xmartlabs/XLPagerTabStrip
-[submodule "Submodules/MoveKin"]
-	path = Submodules/MoveKin
-	url = git@github.com:kinecosystem/move-kin-ios.git

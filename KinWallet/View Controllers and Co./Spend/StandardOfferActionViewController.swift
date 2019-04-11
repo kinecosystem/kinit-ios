@@ -82,21 +82,21 @@ extension StandardOfferActionViewController {
     }
 
     private func payOffer(with orderId: String) {
-        Kin.shared.send(offer.price, to: offer.address, memo: orderId, type: .spend) { [weak self] txHash, error in
+        Kin.shared.send(offer.price, to: offer.address, memo: orderId, type: .spend) { [weak self] result in
             guard let aSelf = self else {
                 return
             }
 
-            guard let txHash = txHash else {
+            switch result {
+            case .success(let txHash):
+                KLogVerbose("Transaction successful. TxHash: \(txHash)")
+                aSelf.redeemOffer(with: txHash)
+            case .failure(let error):
                 KLogError("Error sending to address \(String(describing: error))")
                 aSelf.presentErrorAlert(title: L10n.lastOfferGrabbedTitle,
                                         message: L10n.lastOfferGrabbedMessage,
                                         errorType: .offerNotAvailable)
-                return
             }
-
-            KLogVerbose("Transaction successful. TxHash: \(txHash)")
-            aSelf.redeemOffer(with: txHash)
         }
     }
 

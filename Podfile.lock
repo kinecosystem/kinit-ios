@@ -29,19 +29,36 @@ PODS:
     - "GoogleToolboxForMac/NSString+URLArguments (= 2.1.3)"
   - "GoogleToolboxForMac/NSString+URLArguments (2.1.3)"
   - GTMSessionFetcher/Core (1.1.15)
+  - KinCoreSDK (0.7.19):
+    - Sodium (= 0.7.0)
+    - StellarKit (= 0.3.17)
+  - KinMigrationModule (0.0.8):
+    - KinCoreSDK (= 0.7.19)
+    - KinSDK (= 0.8.6)
+    - Sodium (= 0.7.0)
+  - KinSDK (0.8.6):
+    - KinUtil (= 0.0.18)
+    - Sodium (= 0.7.0)
+  - KinUtil (0.0.18)
   - libPhoneNumber-iOS (0.9.13)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - Sodium (0.7.0)
+  - StellarErrors (0.3.17)
+  - StellarKit (0.3.17):
+    - KinUtil (= 0.0.18)
+    - StellarErrors (= 0.3.17)
 
 DEPENDENCIES:
   - Firebase/Auth
+  - KinMigrationModule (~> 0.0.8)
   - libPhoneNumber-iOS (~> 0.9)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -49,8 +66,15 @@ SPEC REPOS:
     - FirebaseInstanceID
     - GoogleToolboxForMac
     - GTMSessionFetcher
+    - KinCoreSDK
+    - KinMigrationModule
+    - KinSDK
+    - KinUtil
     - libPhoneNumber-iOS
     - nanopb
+    - Sodium
+    - StellarErrors
+    - StellarKit
 
 SPEC CHECKSUMS:
   Firebase: cc13dfab1038c8b45d7903e01fc690451d6d0b24
@@ -60,9 +84,16 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 8d20d890d65c917f9f7d9950b6e10a760ad34321
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
+  KinCoreSDK: cf254c8041e56137bfbdec7431ecc3187c5007cf
+  KinMigrationModule: dca19a1791db29397a856edfac7d68cf0a21085f
+  KinSDK: 162a6b27e299015aaff845a74b0b73ba7a569b80
+  KinUtil: ffcdec211f59a5fbb7fd68a13fcfc403f62596e0
   libPhoneNumber-iOS: e444379ac18bbfbdefad571da735b2cd7e096caa
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  Sodium: c5510cc6f5e1b27858e5f260b5cac80d4a3f9379
+  StellarErrors: 5987d5cd224c4ca51582b1e9e9efd15b86c41f5a
+  StellarKit: bea116076a87bf1e6bcb59366e34164ba75a1c2c
 
-PODFILE CHECKSUM: 2569bd17c5c9330183cc431099873b040fab0e26
+PODFILE CHECKSUM: 01fcf46ed9129d94b7026e8fe4324bfceeaef614
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.6.1

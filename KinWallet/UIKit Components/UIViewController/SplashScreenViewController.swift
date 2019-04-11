@@ -14,7 +14,7 @@ final class SplashScreenViewController: UIViewController {
 
         navigationController?.setNavigationBarHidden(true, animated: false)
 
-        if Kin.shared.accountStatus == .activated && User.current?.phoneNumber != nil {
+        if Kin.shared.kin2AccountStatus == .activated && User.current?.phoneNumber != nil {
             DataLoaders.tasks.categories
                 .on(queue: .main, next: { _ in
                     AppDelegate.shared.dismissSplashIfNeeded()

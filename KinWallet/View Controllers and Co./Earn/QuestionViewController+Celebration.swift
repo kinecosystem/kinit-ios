@@ -8,7 +8,7 @@
 import UIKit
 
 extension QuestionViewController {
-    func celebration(forSelecting result: Result) -> AnswerCelebration {
+    func celebration(forSelecting result: TaskResult) -> AnswerCelebration {
         if let quizData = question.quizData {
             return .quiz(correctAnswerId: quizData.correctAnswerId)
         }

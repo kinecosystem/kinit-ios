@@ -6,6 +6,8 @@ target 'KinWallet' do
 
   pod 'Firebase/Auth'
   pod 'libPhoneNumber-iOS', '~> 0.9'
+  pod 'KinMigrationModule', '~> 0.0.8'
+  #pod 'MoveKin', :path => '/Users/natan/Documents/Kik/MoveKin'
 
   # Pods for KinWallet
 

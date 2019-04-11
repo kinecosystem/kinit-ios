@@ -9,6 +9,8 @@ import UIKit
 import Lottie
 
 class CreatingWalletViewController: UIViewController {
+    var isMigrating = false
+
     @IBOutlet weak var creatingWalletLabel: UILabel! {
         didSet {
             creatingWalletLabel.text = L10n.creatingYourWallet
@@ -37,6 +39,10 @@ class CreatingWalletViewController: UIViewController {
         super.viewDidLoad()
 
         loaderView.play()
+
+        if isMigrating {
+            creatingWalletLabel.text = "Migrating Wallet!"
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -189,7 +189,7 @@ class RootViewController: UIViewController {
             Kin.shared.resetKeyStore()
         }
 
-        if Kin.shared.accountStatus == .activated {
+        if Kin.shared.kin2AccountStatus == .activated {
             DispatchQueue.main.asyncAfter(deadline: .now() + taskFetchTimeout) {
                 self.dismissSplashIfNeeded()
             }
@@ -247,7 +247,7 @@ class RootViewController: UIViewController {
     }
 
     private func performOnboarding() {
-        let alreadyActivated = Kin.shared.accountStatus == .activated
+        let alreadyActivated = Kin.shared.kin2AccountStatus == .activated
         let thisAttempt = UUID().uuidString
         latestWalletCreationAttempt = thisAttempt
 

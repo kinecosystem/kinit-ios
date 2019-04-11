@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import KinCoreSDK
+import KinSDK
 
 private let authTokenKeychainKey = "AuthToken"
 

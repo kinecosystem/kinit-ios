@@ -195,7 +195,7 @@ extension SurveyAnswerCollectionViewCell {
 
 class SurveyViewsFactory {
     class func drawCell(_ cell: SurveyAnswerCollectionViewCell,
-                        for result: Result,
+                        for result: TaskResult,
                         questionType: QuestionType,
                         indexPath: IndexPath) {
         cell.indexPath = indexPath

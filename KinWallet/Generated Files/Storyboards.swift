@@ -92,15 +92,11 @@ internal enum StoryboardScene {
   internal enum Spend: StoryboardType {
     internal static let storyboardName = "Spend"
 
-    internal static let kinSentViewController = SceneType<KinSentViewController>(storyboard: Spend.self, identifier: "KinSentViewController")
-
     internal static let offerDetailsNavigationController = SceneType<UIKit.UINavigationController>(storyboard: Spend.self, identifier: "OfferDetailsNavigationController")
 
     internal static let offerDetailsViewController = SceneType<OfferDetailsViewController>(storyboard: Spend.self, identifier: "OfferDetailsViewController")
 
     internal static let offerWallViewController = SceneType<OfferWallViewController>(storyboard: Spend.self, identifier: "OfferWallViewController")
-
-    internal static let sendKinAmountInputViewController = SceneType<SendKinAmountInputViewController>(storyboard: Spend.self, identifier: "SendKinAmountInputViewController")
 
     internal static let standardOfferActionViewController = SceneType<StandardOfferActionViewController>(storyboard: Spend.self, identifier: "StandardOfferActionViewController")
   }

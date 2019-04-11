@@ -4,36 +4,44 @@
 //
 
 import Foundation
-import KinCoreSDK
+import KinMigrationModule
 import StellarErrors
-import StellarKit
 
 //swiftlint:disable force_try
 
-private let kinHorizonStageURL = URL(string: "https://horizon-playground.kininfrastructure.com")!
-
-private let kinHorizonProductionURL = URL(string: "https://horizon-ecosystem.kininfrastructure.com")!
-private let kinHorizonProductionIssuer = "GDF42M3IPERQCBLWFEZKQRK77JQ65SCKTU3CW36HZVCX7XX5A5QXZIVK"
-private let kinHorizonProductionName = "Public Global Kin Ecosystem Network ; June 2018"
+private let kinitAppId = "kit1"
 
 private let balanceUserDefaultsKey = "org.kinfoundation.kinwallet.currentBalance"
-private let accountStatusUserDefaultsKey = "org.kinfoundation.kinwallet.accountStatus"
+private let kin2AccountStatusUserDefaultsKey = "org.kinfoundation.kinwallet.accountStatus"
 private let accountStatusPerformedBackupKey = "org.kinfoundation.kinwallet.performedBackup"
 
 protocol BalanceDelegate: class {
     func balanceDidUpdate(balance: UInt64)
 }
 
-class Kin {
-    static let shared = Kin()
-    let client: KinClient
+enum Kin2AccountStatus: Int {
+    case notCreated
+    case notActivated
+    case activated
+}
 
-    private(set) var account: KinAccount
+//Remove this when migrating to Swift 5
+enum Result<T, Error> {
+    case success(T)
+    case failure(Error)
+}
+
+class Kin: NSObject {
+    static let shared = Kin()
+    private var client: KinClientProtocol
+    fileprivate var migratingWalletViewController: CreatingWalletViewController?
+
+    private(set) var account: KinAccountProtocol
     let linkBag = LinkBag()
     private var onboardingPromise: Promise<OnboardingResult>?
-    var accountStatus: AccountStatus = {
-        let fromDefaults = UserDefaults.standard.integer(forKey: accountStatusUserDefaultsKey)
-        return AccountStatus(rawValue: fromDefaults) ?? .notCreated
+    var kin2AccountStatus: Kin2AccountStatus = {
+        let fromDefaults = UserDefaults.standard.integer(forKey: kin2AccountStatusUserDefaultsKey)
+        return Kin2AccountStatus(rawValue: fromDefaults) ?? .notCreated
     }()
 
     fileprivate var balanceDelegates = [WeakBox]()
@@ -45,22 +53,37 @@ class Kin {
         NotificationCenter.default.removeObserver(self)
     }
 
-    init() {
-        let url: URL
-        let kinNetworkId: KinCoreSDK.NetworkId
+    override init() {
+
+        let kinNetwork: Network
 
         #if DEBUG || RELEASE_STAGE
-        url = kinHorizonStageURL
-        kinNetworkId = .playground
+        kinNetwork = .testNet
         #else
-        url = kinHorizonProductionURL
-        kinNetworkId = .custom(issuer: kinHorizonProductionIssuer, stellarNetworkId: .custom(kinHorizonProductionName))
+        kinNetwork = .mainNet
         #endif
 
-        let client = KinClient(with: url, networkId: kinNetworkId)
+        let provider = try! ServiceProvider(network: kinNetwork,
+                                            migrateBaseURL: URL(string: "https://stage.kinitapp.com/user"),
+                                            queryItems: [URLQueryItem(name: "user_id", value: User.current?.userId)])
+        let appId = try! AppId(kinitAppId)
+        let migrationManager = KinMigrationManager(serviceProvider: provider, appId: appId)
 
-        self.account = try! client.accounts.last ?? client.addAccount()
-        self.client = client
+        let kin2Client = migrationManager.kinClient(version: .kinCore)
+        if let existingAccount = kin2Client.accounts.last,
+            !migrationManager.isAccountMigrated(publicAddress: existingAccount.publicAddress) {
+            client = kin2Client
+            account = existingAccount
+
+            super.init()
+            migrationManager.delegate = self
+            try! migrationManager.start(with: account.publicAddress)
+        } else {
+            let aClient = migrationManager.kinClient(version: .kinSDK)
+            account = try! aClient.accounts.last ?? aClient.addAccount()
+            client = aClient
+            super.init()
+        }
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(applicationDidBecomeActive),
@@ -76,8 +99,7 @@ class Kin {
 // MARK: Account cleanup
 extension Kin {
     func resetKeyStore() {
-        UserDefaults.standard.set(AccountStatus.notCreated.rawValue,
-                                  forKey: accountStatusUserDefaultsKey)
+        UserDefaults.standard.set(AccountStatus.notCreated.rawValue, forKey: kin2AccountStatusUserDefaultsKey)
         Kin.setPerformedBackup(false)
         client.deleteKeystore()
         self.account = try! client.addAccount()
@@ -118,51 +140,48 @@ extension Kin {
 
         onboardingPromise = Promise<OnboardingResult>()
 
-        if accountStatus == .activated {
+        if kin2AccountStatus == .activated {
             refreshBalance()
             return onboardingPromise!
         }
 
-        refreshBalance { balance, rError in
-            if let balance = balance {
-                UserDefaults.standard.set(AccountStatus.activated.rawValue,
-                                          forKey: accountStatusUserDefaultsKey)
+        refreshBalance { result in
+            switch result {
+            case .success(let balance):
+                UserDefaults.standard.set(Kin2AccountStatus.activated.rawValue,
+                                          forKey: kin2AccountStatusUserDefaultsKey)
                 KLogVerbose("Already on-boarded account \(self.account.publicAddress). Balance is \(balance) KIN")
                 self.onboardingPromise?.signal(.success)
                 self.onboardingPromise = nil
-                return
-            }
+            case .failure(let error):
+                guard
+                    let kError = error as? KinError,
+                    case let KinError.balanceQueryFailed(stellarError) = kError
+                    else {
+                        self.onboardingPromise?.signal(.failure(String(describing: error)))
+                        self.onboardingPromise = nil
 
-            guard
-                let error = rError as? KinError,
-                case let KinError.balanceQueryFailed(stellarError) = error
-                else {
-                    let errorDescription = rError != nil
-                        ? String(describing: rError!)
-                        : "Unknown Error"
-                    self.onboardingPromise?.signal(.failure(errorDescription))
-                    self.onboardingPromise = nil
+                        return
+                }
 
-                    return
-            }
-
-            if case StellarError.missingAccount = stellarError {
-                UserDefaults.standard.set(AccountStatus.notCreated.rawValue,
-                                          forKey: accountStatusUserDefaultsKey)
-                self.onboardAndActivateAccount().then {
-                    self.onboardingPromise?.signal($0)
+                if case StellarError.missingAccount = stellarError {
+                    UserDefaults.standard.set(AccountStatus.notCreated.rawValue,
+                                              forKey: kin2AccountStatusUserDefaultsKey)
+                    self.onboardAndActivateAccount().then {
+                        self.onboardingPromise?.signal($0)
+                        self.onboardingPromise = nil
+                    }
+                } else if case StellarError.missingBalance = stellarError {
+                    UserDefaults.standard.set(Kin2AccountStatus.notActivated.rawValue,
+                                              forKey: kin2AccountStatusUserDefaultsKey)
+                    self.activateAccount().then {
+                        self.onboardingPromise?.signal($0)
+                        self.onboardingPromise = nil
+                    }
+                } else {
+                    self.onboardingPromise?.signal(.failure(stellarError.localizedDescription))
                     self.onboardingPromise = nil
                 }
-            } else if case StellarError.missingBalance = stellarError {
-                UserDefaults.standard.set(AccountStatus.notActivated.rawValue,
-                                          forKey: accountStatusUserDefaultsKey)
-                self.activateAccount().then {
-                    self.onboardingPromise?.signal($0)
-                    self.onboardingPromise = nil
-                }
-            } else {
-                self.onboardingPromise?.signal(.failure(stellarError.localizedDescription))
-                self.onboardingPromise = nil
             }
         }
 
@@ -196,24 +215,14 @@ extension Kin {
     private func activateAccount() -> Promise<OnboardingResult> {
         let p = Promise<OnboardingResult>()
 
-        account.activate()
-            .then { _ in
-                UserDefaults.standard.set(AccountStatus.activated.rawValue,
-                                          forKey: accountStatusUserDefaultsKey)
-                KLogVerbose("Account activated")
-                Events.Business.WalletCreated().send()
-                Events.Log.StellarKinTrustlineSetupSucceeded().send()
-                self.balanceUpdated(0)
+        UserDefaults.standard.set(Kin2AccountStatus.activated.rawValue,
+                                  forKey: kin2AccountStatusUserDefaultsKey)
+        KLogVerbose("Account activated")
+        Events.Business.WalletCreated().send()
+        Events.Log.StellarKinTrustlineSetupSucceeded().send()
+        self.balanceUpdated(0)
 
-                p.signal(.success)
-            }.error { error in
-                KLogError("Error activating account: \(error)")
-                Events.Log
-                    .StellarKinTrustlineSetupFailed(failureReason: error.localizedDescription)
-                    .send()
-
-                p.signal(.failure(error.localizedDescription))
-            }
+        p.signal(.success)
 
         return p
     }
@@ -221,7 +230,7 @@ extension Kin {
 
 // MARK: Watching operations
 extension Kin {
-    func watch(cursor: String?) throws -> KinCoreSDK.PaymentWatch {
+    func watch(cursor: String?) throws -> PaymentWatchProtocol {
         return try account.watchPayments(cursor: cursor)
     }
 }
@@ -242,13 +251,12 @@ extension Kin {
         }
     }
 
-    func refreshBalance(completion: BalanceCompletion? = nil) {
-        account.balance { [weak self] balance, error in
-            defer {
-                completion?(balance, error)
-            }
-
-            if let error = error, Kin.shared.accountStatus == .activated {
+    func refreshBalance(completion: ((Result<Decimal, Error>) -> Void)? = nil) {
+        account.balance()
+            .then({ [weak self] balance in
+                self?.balanceUpdated(balance)
+                completion?(.success(balance))
+            }).error({ error in
                 KLogError("Error fetching balance")
                 let errorDescription: String
 
@@ -261,12 +269,8 @@ extension Kin {
                 Events.Log
                     .BalanceUpdateFailed(failureReason: errorDescription)
                     .send()
-
-                return
-            }
-
-            self?.balanceUpdated(balance ?? 0)
-        }
+                completion?(.failure(error))
+            })
     }
 
     private func balanceUpdated(_ balance: Decimal) {
@@ -287,33 +291,23 @@ extension Kin {
               to address: String,
               memo: String? = nil,
               type: SendTransactionType,
-              completion: @escaping KinCoreSDK.TransactionCompletion) {
-        account.sendTransaction(to: address, kin: Decimal(amount), memo: memo) { txHash, error in
-            completion(txHash, error)
+              completion: @escaping (Result<TransactionId, Error>) -> Void) {
+        account.sendTransaction(to: address, kin: Decimal(amount), memo: memo, fee: 0, whitelist: { txEnv -> Promise<TransactionEnvelope> in
+            let p = Promise<TransactionEnvelope>()
 
-            if let error = error {
-                Events.Business
-                    .KINTransactionFailed(failureReason: error.localizedDescription,
-                                          kinAmount: Int(amount),
-                                          transactionType: type.toBIEventType)
-                    .send()
-
-                return
-            }
-
-            if let txHash = txHash {
-                Events.Business
-                    .KINTransactionSucceeded(kinAmount: Int(amount),
-                                             transactionId: txHash,
-                                             transactionType: type.toBIEventType)
-                    .send()
-            }
-
+            return p
+        }).then { transactionId in
             Kin.shared.refreshBalance()
 
             Analytics.incrementSpendCount()
             Analytics.incrementTransactionCount()
             Analytics.incrementTotalSpent(by: Int(amount))
+            }.error { error in
+                Events.Business
+                    .KINTransactionFailed(failureReason: error.localizedDescription,
+                                          kinAmount: Int(amount),
+                                          transactionType: type.toBIEventType)
+                    .send()
         }
     }
 }
@@ -327,5 +321,32 @@ enum SendTransactionType {
         case .spend: return .spend
         case .crossApp: return .crossApp
         }
+    }
+}
+
+extension Kin: KinMigrationManagerDelegate {
+    func kinMigrationManagerNeedsVersion(_ kinMigrationManager: KinMigrationManager) -> Promise<KinVersion> {
+        return Promise(.kinSDK)
+    }
+
+    func kinMigrationManagerDidStart(_ kinMigrationManager: KinMigrationManager) {
+        migratingWalletViewController = StoryboardScene.Onboard.creatingWalletViewController.instantiate()
+        migratingWalletViewController!.isMigrating = true
+        UIApplication.shared.delegate?.window??.rootViewController?.presentAnimated(migratingWalletViewController!)
+        print("migration started, yet!")
+    }
+
+    func kinMigrationManager(_ kinMigrationManager: KinMigrationManager, readyWith client: KinClientProtocol) {
+        print("Client is ready, and migration succeeded, yay!!")
+        migratingWalletViewController?.dismissAnimated()
+        self.client = client
+        self.account = client.accounts.last!
+        refreshBalance()
+    }
+
+    func kinMigrationManager(_ kinMigrationManager: KinMigrationManager, error: Error) {
+        //TODO: Alert error and do what?
+        migratingWalletViewController?.dismissAnimated()
+        print("Migration failed: \(error)")
     }
 }
