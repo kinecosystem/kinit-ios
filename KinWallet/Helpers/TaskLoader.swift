@@ -29,14 +29,14 @@ class TaskLoader {
 
     func loadCategories() {
         self.isLoadingCategories.next(true)
-        WebRequests.taskCategories().withCompletion { [weak self] response, error in
+        WebRequests.taskCategories().withCompletion { [weak self] result in
             guard let self = self else {
                 return
             }
 
             self.isLoadingCategories.next(false)
 
-            if let categories = response?.categories, categories.isNotEmpty {
+            if let categories = result.value?.categories, categories.isNotEmpty {
                 self._categories = categories
                 self.categories.next(.some(categories))
 
@@ -49,23 +49,23 @@ class TaskLoader {
                 }
             } else {
                 self._categories = []
-                self.categories.next(.none(error))
-                self.currentCategoryObservable?.1.next(.none(error))
+                self.categories.next(.none(result.error))
+                self.currentCategoryObservable?.1.next(.none(result.error))
             }
 
-            if let headerMessage = response?.headerMessage {
+            if let headerMessage = result.value?.headerMessage {
                 self.headerMessage.next(headerMessage)
             }
             }.load(with: KinWebService.shared)
     }
 
     func loadAllTasks() {
-        WebRequests.nextTasks().withCompletion { [weak self] tasks, error in
+        WebRequests.nextTasks().withCompletion { [weak self] result in
             guard let self = self else {
                 return
             }
 
-            if let tasks = tasks, tasks.isNotEmpty {
+            if let tasks = result.value, tasks.isNotEmpty {
                 self._tasksByCategory = tasks
             } else {
                 self._tasksByCategory = [:]
@@ -75,19 +75,19 @@ class TaskLoader {
                 if let task = self._tasksByCategory[taskObservable.0]?.first {
                     taskObservable.1.next(.some(task))
                 } else {
-                    taskObservable.1.next(.none(error))
+                    taskObservable.1.next(.none(result.error))
                 }
             }
         }.load(with: KinWebService.shared)
     }
 
     func loadTasks(for categoryId: CategoryId) {
-        WebRequests.tasks(for: categoryId).withCompletion { [weak self] response, error in
+        WebRequests.tasks(for: categoryId).withCompletion { [weak self] result in
             guard let self = self else {
                 return
             }
 
-            if let response = response {
+            if let response = result.value {
                 self._tasksByCategory[categoryId] = response.tasks
 
                 if
@@ -106,10 +106,10 @@ class TaskLoader {
             }
 
             if self.currentTaskObservable?.0 == categoryId {
-                if let task = response?.tasks.first {
+                if let task = result.value?.tasks.first {
                     self.currentTaskObservable?.1.next(.some(task))
                 } else {
-                    self.currentTaskObservable?.1.next(.none(error))
+                    self.currentTaskObservable?.1.next(.none(result.error))
                 }
             }
         }.load(with: KinWebService.shared)

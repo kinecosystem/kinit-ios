@@ -97,8 +97,8 @@ class PhoneVerificationRequestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        WebRequests.Blacklists.areaCodes().withCompletion { [weak self] codes, _ in
-            if let codes = codes {
+        WebRequests.Blacklists.areaCodes().withCompletion { [weak self] result in
+            if let codes = result.value {
                 self?.blacklistedCodes = Set(codes)
             }
         }.load(with: KinWebService.shared)

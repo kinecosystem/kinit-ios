@@ -85,12 +85,12 @@ class PushHandler {
 
         AuthToken.setCurrent(token)
 
-        WebRequests.ackAuthToken(token).withCompletion({ _, error in
-            if error != nil {
-                let reason = error?.localizedDescription ?? "No description"
+        WebRequests.ackAuthToken(token).withCompletion { result in
+            if result.error != nil {
+                let reason = result.error?.localizedDescription ?? "No description"
                 Events.Log.AuthTokenAckFailed(failureReason: reason).send()
             }
-        }).load(with: KinWebService.shared)
+        }.load(with: KinWebService.shared)
     }
 
     private class func peerToPeerReceived(with kinData: [String: Any]) {

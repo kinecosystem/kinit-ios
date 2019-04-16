@@ -16,6 +16,7 @@ enum WebServiceError: Error {
     case unexpectedData(Data)
     case malformedJSON(Error?, String?)
     case invalidStatusCode(Int)
+    case transformedValueNil
 }
 
 enum HTTPMethod {
@@ -98,7 +99,7 @@ class WebService: WebServiceProtocol {
 
         return { data, response, error in
             if let error = error {
-                completion(nil, error)
+                completion(.failure(error))
                 KLogError(request.path + ": " + String(describing: error))
 
                 if let curl = curlString {
@@ -109,7 +110,7 @@ class WebService: WebServiceProtocol {
             }
 
             guard let response = response as? HTTPURLResponse else {
-                completion(nil, WebServiceError.internalInconsistency)
+                completion(.failure(WebServiceError.internalInconsistency))
                 return
             }
 
@@ -121,12 +122,12 @@ class WebService: WebServiceProtocol {
                     KLogError("You can retry this request with:\n\(curl)")
                 }
 
-                completion(nil, WebServiceError.invalidStatusCode(statusCode))
+                completion(.failure(WebServiceError.invalidStatusCode(statusCode)))
                 return
             }
 
             guard let data = data else {
-                completion(nil, WebServiceError.internalInconsistency)
+                completion(.failure(WebServiceError.internalInconsistency))
                 return
             }
 
@@ -134,11 +135,16 @@ class WebService: WebServiceProtocol {
                 KLogVerbose(request.path + ": " + (String(data: data, encoding: .utf8) ?? "Bad Response"))
 
                 let decoded = try JSONDecoder().decode(R.self, from: data)
-                completion(request.transform(decoded), nil)
+                if let transformedValue = request.transform(decoded) {
+                    completion(.success(transformedValue))
+                } else {
+                    completion(.failure(WebServiceError.transformedValueNil))
+                }
             } catch {
                 print(error)
                 print("Malformed JSON:\n\(String(data: data, encoding: .utf8) ?? "")")
-                completion(nil, WebServiceError.malformedJSON(error, String(data: data, encoding: .utf8)))
+                let wError = WebServiceError.malformedJSON(error, String(data: data, encoding: .utf8))
+                completion(.failure(wError))
             }
         }
     }

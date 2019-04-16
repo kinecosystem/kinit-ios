@@ -68,8 +68,8 @@ extension User {
         }
 
         WebRequests.userRegistrationRequest(for: copy)
-            .withCompletion { _, error in
-                if error == nil {
+            .withCompletion { result in
+                if result.error == nil {
                     copy.save()
                 }
             }.load(with: KinWebService.shared)
@@ -99,11 +99,13 @@ extension User {
             return
         }
 
-        WebRequests.updateDeviceToken(token).withCompletion { success, _ in
-            KLogVerbose("Updated device token: \(success.boolValue)")
-            guard success.boolValue else {
+        WebRequests.updateDeviceToken(token).withCompletion { result in
+            guard case let Result.success(success) = result, success else {
+                KLogVerbose("Failed to update device token.")
                 return
             }
+
+            KLogVerbose("Updated device token.")
 
             var copiedSelf = self
             copiedSelf.deviceToken = token

@@ -81,14 +81,14 @@ final class TaskCompletedViewController: UIViewController {
 
         let tResults = results.applyingAddress(Kin.shared.publicAddress)
         WebRequests.submitTaskResults(tResults)
-            .withCompletion { [weak self] success, error in
+            .withCompletion { [weak self] result in
                 guard let self = self else {
                     return
                 }
 
-                guard success.boolValue else {
+                guard result.value.boolValue else {
                     self.failedToSubmitResults = true
-                    KLogError(String(describing: error?.localizedDescription))
+                    KLogError(String(describing: result.error?.localizedDescription))
                     DispatchQueue.main.async {
                         self.errorSubmitingResults()
                     }

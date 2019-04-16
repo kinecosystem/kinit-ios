@@ -164,8 +164,8 @@ class RootViewController: UIViewController {
         Crashlytics.sharedInstance().setUserIdentifier(currentUser.userId)
 
         UIApplication.shared.registerForRemoteNotifications()
-        WebRequests.appLaunch().withCompletion { config, _ in
-            KLogVerbose("App Launch: \(config != nil ? String(describing: config!) : "No config")")
+        WebRequests.appLaunch().withCompletion { result in
+            KLogVerbose("App Launch: \(result.value != nil ? String(describing: result.value!) : "No config")")
             }.load(with: KinWebService.shared)
 
         DataLoaders.loadAllData()
@@ -199,12 +199,13 @@ class RootViewController: UIViewController {
     private func registerUser() {
         let user = User.createNew()
         WebRequests.userRegistrationRequest(for: user)
-            .withCompletion { [weak self] config, error in
+            .withCompletion { [weak self] result in
+                let config = result.value
                 KLogVerbose("User registration: \(config != nil ? String(describing: config!) : "No config")")
                 guard config != nil else {
-                    let reason = error?.localizedDescription ?? "Unknown User Registration Error"
+                    let reason = result.error?.localizedDescription ?? "Unknown User Registration Error"
 
-                    self?.logRegistrationFailed(error: error, reason: reason)
+                    self?.logRegistrationFailed(error: result.error, reason: reason)
                     DispatchQueue.main.async {
                         self?.showErrorNotice(error: .user, failureReason: reason)
                     }

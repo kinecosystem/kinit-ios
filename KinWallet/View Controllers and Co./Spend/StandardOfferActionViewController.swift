@@ -57,13 +57,13 @@ extension StandardOfferActionViewController {
         buyActivityIndicator.startAnimating()
 
         WebRequests.bookOffer(offer)
-            .withCompletion { [weak self] bookOfferResult, error in
-                guard let aSelf = self else {
+            .withCompletion { [weak self] result in
+                guard let self = self else {
                     return
                 }
 
-                guard let bookOfferResult = bookOfferResult, error == nil else {
-                    aSelf.presentErrorAlert(title: L10n.NoInternetError.title,
+                guard let bookOfferResult = result.value else {
+                    self.presentErrorAlert(title: L10n.NoInternetError.title,
                                             message: L10n.NoInternetError.message,
                                             errorType: .internetConnection)
                     return
@@ -71,10 +71,10 @@ extension StandardOfferActionViewController {
 
                 switch bookOfferResult {
                 case .success(let orderId):
-                    aSelf.payOffer(with: orderId)
+                    self.payOffer(with: orderId)
                 case .noGoods, .coolDown:
                     DataLoaders.kinit.loadOffers()
-                    aSelf.presentErrorAlert(title: L10n.lastOfferGrabbedTitle,
+                    self.presentErrorAlert(title: L10n.lastOfferGrabbedTitle,
                                             message: L10n.lastOfferGrabbedMessage,
                                             errorType: .offerNotAvailable)
                 }
@@ -82,7 +82,11 @@ extension StandardOfferActionViewController {
     }
 
     private func payOffer(with orderId: String) {
-        Kin.shared.send(offer.price, to: offer.address, memo: orderId, type: .spend) { [weak self] result in
+        Kin.shared.send(offer.price,
+                        orderId: orderId,
+                        to: offer.address,
+                        memo: orderId,
+                        type: .spend) { [weak self] result in
             guard let aSelf = self else {
                 return
             }
@@ -103,13 +107,13 @@ extension StandardOfferActionViewController {
     private func redeemOffer(with txHash: String) {
         let receipt = PaymentReceipt(txHash: txHash)
         WebRequests.redeemOffer(with: receipt)
-            .withCompletion { [weak self] goods, error in
+            .withCompletion { [weak self] result in
                 guard let aSelf = self else {
                     return
                 }
 
-                guard let redeemGood = goods?.first else {
-                    KLogError("Error redeeming goods \(String(describing: error))")
+                guard let redeemGood = result.value?.first else {
+                    KLogError("Error redeeming goods \(String(describing: result.error))")
                     aSelf.presentIncompleteTransactionAlert()
                     return
                 }

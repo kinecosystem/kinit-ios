@@ -85,7 +85,7 @@ class BackupSendEmailViewController: BackupTextInputViewController {
         accessoryView.isLoading = true
 
         WebRequests.Backup.sendEmail(to: insertedEmailAddress, encryptedKey: encryptedWallet)
-            .withCompletion { [weak self] success, _ in
+            .withCompletion { [weak self] result in
                 DispatchQueue.main.async {
                     guard let self = self else {
                         return
@@ -93,16 +93,15 @@ class BackupSendEmailViewController: BackupTextInputViewController {
 
                     self.accessoryView.isLoading = false
 
-                    guard success.boolValue else {
+                    switch result {
+                    case .failure:
                         self.presentSupportAlert(title: L10n.generalServerErrorTitle,
                                                  message: L10n.generalServerErrorMessage)
-
-                        return
+                    case .success:
+                        let confirmEmailReceived = StoryboardScene.Backup.backupConfirmEmailViewController.instantiate()
+                        confirmEmailReceived.chosenHints = self.chosenHints
+                        self.navigationController?.pushViewController(confirmEmailReceived, animated: true)
                     }
-
-                    let confirmEmailReceived = StoryboardScene.Backup.backupConfirmEmailViewController.instantiate()
-                    confirmEmailReceived.chosenHints = self.chosenHints
-                    self.navigationController?.pushViewController(confirmEmailReceived, animated: true)
                 }
         }.load(with: KinWebService.shared)
     }

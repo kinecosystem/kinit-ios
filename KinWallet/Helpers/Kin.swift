@@ -31,6 +31,23 @@ enum Result<T, Error> {
     case failure(Error)
 }
 
+extension Result {
+    var error: Error? {
+        if case let Result.failure(error) = self {
+            return error
+        }
+
+        return nil
+    }
+
+    var value: T? {
+        if case let Result.success(value) = self {
+            return value
+        }
+
+        return nil
+    }
+}
 class Kin: NSObject {
     static let shared = Kin()
     private var client: KinClientProtocol

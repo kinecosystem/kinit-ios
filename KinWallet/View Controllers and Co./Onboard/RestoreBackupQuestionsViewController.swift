@@ -215,7 +215,7 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
                 try Kin.shared.importWallet(self.encryptedWallet, with: firstAnswer + secondAnswer)
                 WebRequests.Backup
                     .restoreUserId(with: Kin.shared.publicAddress)
-                    .withCompletion(self.backRestoreCompletion)
+                    .withCompletion(self.backupRestoreCompletion)
                     .load(with: KinWebService.shared)
             } catch {
                 DispatchQueue.main.async {
@@ -235,8 +235,8 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
         }
     }
 
-    private func backRestoreCompletion(userId: String?, error: Error?) {
-        guard let userId = userId else {
+    private func backupRestoreCompletion(result: Result<String, Error>) {
+        guard let userId = result.value else {
             Kin.shared.resetKeyStore()
 
             DispatchQueue.main.async {

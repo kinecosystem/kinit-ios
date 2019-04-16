@@ -177,18 +177,16 @@ class PhoneConfirmationViewController: UIViewController {
     }
 
     func updateServer(with token: String) {
-        WebRequests.updateUserIdToken(token).withCompletion { [weak self] hints, _ in
-            guard let aSelf = self else {
+        WebRequests.updateUserIdToken(token).withCompletion { [weak self] result in
+            guard let self = self else {
                 return
             }
 
             DispatchQueue.main.async {
-                guard let hints = hints else {
-                    aSelf.validationFailed()
-                    return
+                switch result {
+                case .failure: self.validationFailed()
+                case .success(let hints): self.validationSucceeded(with: hints)
                 }
-
-                aSelf.validationSucceeded(with: hints)
             }
         }.load(with: KinWebService.shared)
     }
