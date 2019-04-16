@@ -12,17 +12,10 @@ import StellarErrors
 private let kinitAppId = "kit"
 
 private let balanceUserDefaultsKey = "org.kinfoundation.kinwallet.currentBalance"
-private let kin2AccountStatusUserDefaultsKey = "org.kinfoundation.kinwallet.accountStatus"
 private let accountStatusPerformedBackupKey = "org.kinfoundation.kinwallet.performedBackup"
 
 protocol BalanceDelegate: class {
     func balanceDidUpdate(balance: UInt64)
-}
-
-private enum Kin2AccountStatus: Int {
-    case notCreated
-    case notActivated
-    case activated
 }
 
 enum TxSignatureError: Error {
@@ -123,7 +116,6 @@ class Kin: NSObject {
 // MARK: Account cleanup
 extension Kin {
     func resetKeyStore() {
-        UserDefaults.standard.set(Kin2AccountStatus.notCreated.rawValue, forKey: kin2AccountStatusUserDefaultsKey)
         Kin.setPerformedBackup(false)
 
         migrationManager.deleteKeystore()
@@ -174,8 +166,6 @@ extension Kin {
         refreshBalance { result in
             switch result {
             case .success(let balance):
-                UserDefaults.standard.set(Kin2AccountStatus.activated.rawValue,
-                                          forKey: kin2AccountStatusUserDefaultsKey)
                 KLogVerbose("Already on-boarded account \(self.account.publicAddress). Balance is \(balance) KIN")
                 self.onboardingPromise?.signal(.success)
                 self.onboardingPromise = nil
