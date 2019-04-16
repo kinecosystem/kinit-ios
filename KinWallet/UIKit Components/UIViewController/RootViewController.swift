@@ -148,7 +148,7 @@ class RootViewController: UIViewController {
             if let storedHintIds: SelectedHintIds = SimpleDatastore.loadObject(selectedHintIdsKey),
                 storedHintIds.hints.isNotEmpty {
                 showAccountSourceSelection()
-            } else {
+            } else if currentUser.publicAddress == nil {
                 performOnboarding()
             }
         } else {
@@ -189,7 +189,7 @@ class RootViewController: UIViewController {
             Kin.shared.resetKeyStore()
         }
 
-        if Kin.shared.kin2AccountStatus == .activated {
+        if User.current?.publicAddress != nil {
             DispatchQueue.main.asyncAfter(deadline: .now() + taskFetchTimeout) {
                 self.dismissSplashIfNeeded()
             }
@@ -248,20 +248,17 @@ class RootViewController: UIViewController {
     }
 
     private func performOnboarding() {
-        let alreadyActivated = Kin.shared.kin2AccountStatus == .activated
-        let thisAttempt = UUID().uuidString
-        latestWalletCreationAttempt = thisAttempt
+        let attemptId = UUID().uuidString
+        latestWalletCreationAttempt = attemptId
 
         Kin.shared.performOnboardingIfNeeded().then { [weak self] in
-            self?.performedOnboarding($0, previouslyActivated: alreadyActivated)
+            self?.performedOnboarding($0)
         }
 
-        if !alreadyActivated {
-            startWalletCreationTimeout(with: thisAttempt)
-        }
+        startWalletCreationTimeout(with: attemptId)
     }
 
-    func performedOnboarding(_ result: OnboardingResult, previouslyActivated: Bool) {
+    func performedOnboarding(_ result: OnboardingResult) {
         if case let OnboardingResult.failure(reason) = result {
             DispatchQueue.main.async {
                 self.showErrorNotice(error: .wallet, failureReason: reason)
@@ -269,19 +266,17 @@ class RootViewController: UIViewController {
             return
         }
 
-        if !previouslyActivated {
-            guard var user = User.current else {
-                return
-            }
+        guard var user = User.current else {
+            return
+        }
 
-            user.publicAddress = Kin.shared.publicAddress
-            user.save()
+        user.publicAddress = Kin.shared.publicAddress
+        user.save()
 
-            DispatchQueue.main.async {
-                let accountReady = StoryboardScene.Onboard.accountReadyViewController.instantiate()
-                accountReady.walletSource = .new
-                self.splashScreenNavigationController?.pushViewController(accountReady, animated: true)
-            }
+        DispatchQueue.main.async {
+            let accountReady = StoryboardScene.Onboard.accountReadyViewController.instantiate()
+            accountReady.walletSource = .new
+            self.splashScreenNavigationController?.pushViewController(accountReady, animated: true)
         }
     }
 

@@ -9,7 +9,7 @@ import StellarErrors
 
 //swiftlint:disable force_try
 
-private let kinitAppId = "kit1"
+private let kinitAppId = "kit"
 
 private let balanceUserDefaultsKey = "org.kinfoundation.kinwallet.currentBalance"
 private let kin2AccountStatusUserDefaultsKey = "org.kinfoundation.kinwallet.accountStatus"
@@ -19,10 +19,15 @@ protocol BalanceDelegate: class {
     func balanceDidUpdate(balance: UInt64)
 }
 
-enum Kin2AccountStatus: Int {
+private enum Kin2AccountStatus: Int {
     case notCreated
     case notActivated
     case activated
+}
+
+enum TxSignatureError: Error {
+    case encodingFailed
+    case decodingFailed
 }
 
 //Remove this when migrating to Swift 5
@@ -52,14 +57,10 @@ class Kin: NSObject {
     static let shared = Kin()
     private var client: KinClientProtocol
     fileprivate var migratingWalletViewController: CreatingWalletViewController?
-
+    private let migrationManager: KinMigrationManager
     private(set) var account: KinAccountProtocol
     let linkBag = LinkBag()
     private var onboardingPromise: Promise<OnboardingResult>?
-    var kin2AccountStatus: Kin2AccountStatus = {
-        let fromDefaults = UserDefaults.standard.integer(forKey: kin2AccountStatusUserDefaultsKey)
-        return Kin2AccountStatus(rawValue: fromDefaults) ?? .notCreated
-    }()
 
     fileprivate var balanceDelegates = [WeakBox]()
     var publicAddress: String {
@@ -82,23 +83,29 @@ class Kin: NSObject {
 
         let provider = try! ServiceProvider(network: kinNetwork,
                                             migrateBaseURL: URL(string: "https://stage.kinitapp.com/user"),
-                                            queryItems: [URLQueryItem(name: "user_id", value: User.current?.userId)])
+                                             queryItems: [URLQueryItem(name: "user_id", value: User.current?.userId)])
         let appId = try! AppId(kinitAppId)
-        let migrationManager = KinMigrationManager(serviceProvider: provider, appId: appId)
+        migrationManager = KinMigrationManager(serviceProvider: provider, appId: appId)
 
         let kin2Client = migrationManager.kinClient(version: .kinCore)
-        if let existingAccount = kin2Client.accounts.last,
+        let kin3Client = migrationManager.kinClient(version: .kinSDK)
+        let hasPhoneNumber = User.current?.phoneNumber != nil
+
+        if hasPhoneNumber,
+            let existingAccount = kin2Client.accounts.last,
+            kin3Client.accounts.last == nil,
             !migrationManager.isAccountMigrated(publicAddress: existingAccount.publicAddress) {
             client = kin2Client
             account = existingAccount
 
             super.init()
+
             migrationManager.delegate = self
             try! migrationManager.start(with: account.publicAddress)
         } else {
-            let aClient = migrationManager.kinClient(version: .kinSDK)
-            account = try! aClient.accounts.last ?? aClient.addAccount()
-            client = aClient
+            account = try! kin3Client.accounts.last ?? kin3Client.addAccount()
+            client = kin3Client
+
             super.init()
         }
 
@@ -116,9 +123,10 @@ class Kin: NSObject {
 // MARK: Account cleanup
 extension Kin {
     func resetKeyStore() {
-        UserDefaults.standard.set(AccountStatus.notCreated.rawValue, forKey: kin2AccountStatusUserDefaultsKey)
+        UserDefaults.standard.set(Kin2AccountStatus.notCreated.rawValue, forKey: kin2AccountStatusUserDefaultsKey)
         Kin.setPerformedBackup(false)
-        client.deleteKeystore()
+
+        migrationManager.deleteKeystore()
         self.account = try! client.addAccount()
     }
 }
@@ -150,6 +158,7 @@ enum OnboardingResult {
 
 // MARK: Account activation
 extension Kin {
+    @discardableResult
     func performOnboardingIfNeeded() -> Promise<OnboardingResult> {
         if let onboardingPromise = onboardingPromise {
             return onboardingPromise
@@ -157,7 +166,7 @@ extension Kin {
 
         onboardingPromise = Promise<OnboardingResult>()
 
-        if kin2AccountStatus == .activated {
+        if User.current?.publicAddress != nil {
             refreshBalance()
             return onboardingPromise!
         }
@@ -172,8 +181,8 @@ extension Kin {
                 self.onboardingPromise = nil
             case .failure(let error):
                 guard
-                    let kError = error as? KinError,
-                    case let KinError.balanceQueryFailed(stellarError) = kError
+                    let kError = error as? KinMigrationModule.KinError,
+                    case KinMigrationModule.KinError.missingAccount = kError
                     else {
                         self.onboardingPromise?.signal(.failure(String(describing: error)))
                         self.onboardingPromise = nil
@@ -181,22 +190,8 @@ extension Kin {
                         return
                 }
 
-                if case StellarError.missingAccount = stellarError {
-                    UserDefaults.standard.set(AccountStatus.notCreated.rawValue,
-                                              forKey: kin2AccountStatusUserDefaultsKey)
-                    self.onboardAndActivateAccount().then {
-                        self.onboardingPromise?.signal($0)
-                        self.onboardingPromise = nil
-                    }
-                } else if case StellarError.missingBalance = stellarError {
-                    UserDefaults.standard.set(Kin2AccountStatus.notActivated.rawValue,
-                                              forKey: kin2AccountStatusUserDefaultsKey)
-                    self.activateAccount().then {
-                        self.onboardingPromise?.signal($0)
-                        self.onboardingPromise = nil
-                    }
-                } else {
-                    self.onboardingPromise?.signal(.failure(stellarError.localizedDescription))
+                self.onboardAccount().then {
+                    self.onboardingPromise?.signal($0)
                     self.onboardingPromise = nil
                 }
             }
@@ -205,12 +200,12 @@ extension Kin {
         return onboardingPromise!
     }
 
-    private func onboardAndActivateAccount() -> Promise<OnboardingResult> {
+    private func onboardAccount() -> Promise<OnboardingResult> {
         let p = Promise<OnboardingResult>()
 
         WebRequests.createAccount(with: account.publicAddress)
-            .withCompletion { success, error in
-                if let error = error {
+            .withCompletion { result in
+                if let error = result.error {
                     KLogError("Error creating account: \(error)")
                     Events.Log
                         .StellarAccountCreationFailed(failureReason: error.localizedDescription)
@@ -219,27 +214,12 @@ extension Kin {
                     return
                 }
 
-                KLogVerbose("Success onboarding account? \(success.boolValue)")
+                KLogVerbose("Success onboarding account? \(result.value.boolValue)")
                 Events.Log.StellarAccountCreationSucceeded().send()
-                self.activateAccount().then {
-                    p.signal($0)
-                }
+                Events.Business.WalletCreated().send()
+                self.balanceUpdated(0)
+                p.signal(.success)
             }.load(with: KinWebService.shared)
-
-        return p
-    }
-
-    private func activateAccount() -> Promise<OnboardingResult> {
-        let p = Promise<OnboardingResult>()
-
-        UserDefaults.standard.set(Kin2AccountStatus.activated.rawValue,
-                                  forKey: kin2AccountStatusUserDefaultsKey)
-        KLogVerbose("Account activated")
-        Events.Business.WalletCreated().send()
-        Events.Log.StellarKinTrustlineSetupSucceeded().send()
-        self.balanceUpdated(0)
-
-        p.signal(.success)
 
         return p
     }
@@ -305,26 +285,49 @@ extension Kin {
 // MARK: Performing transactions
 extension Kin {
     func send(_ amount: UInt64,
+              orderId: String,
               to address: String,
               memo: String? = nil,
               type: SendTransactionType,
               completion: @escaping (Result<TransactionId, Error>) -> Void) {
-        account.sendTransaction(to: address, kin: Decimal(amount), memo: memo, fee: 0, whitelist: { txEnv -> Promise<TransactionEnvelope> in
+        let senderAddress = account.publicAddress
+        account.sendTransaction(to: address, kin: Decimal(amount), memo: memo, fee: 0) { txEnv in
             let p = Promise<TransactionEnvelope>()
+            guard let txBase64 = txEnv.asBase64String else {
+                return p.signal(TxSignatureError.encodingFailed)
+            }
 
+            let transaction = SignableTransaction(id: orderId,
+                                                  senderAddress: senderAddress,
+                                                  recipientAddress: address,
+                                                  amount: Int(amount),
+                                                  transaction: txBase64)
+            WebRequests.addSignature(to: transaction)
+                .withCompletion { result in
+                    guard
+                        let signedTxString = result.value,
+                        let signedEnv = TransactionEnvelope.fromBase64String(string: signedTxString) else {
+                            p.signal(result.error ?? TxSignatureError.decodingFailed)
+                            return
+                    }
+
+                    p.signal(signedEnv)
+            }.load(with: KinWebService.shared)
             return p
-        }).then { transactionId in
-            Kin.shared.refreshBalance()
+            }.then { txId in
+                Kin.shared.refreshBalance()
 
-            Analytics.incrementSpendCount()
-            Analytics.incrementTransactionCount()
-            Analytics.incrementTotalSpent(by: Int(amount))
+                Analytics.incrementSpendCount()
+                Analytics.incrementTransactionCount()
+                Analytics.incrementTotalSpent(by: Int(amount))
+                completion(.success(txId))
             }.error { error in
                 Events.Business
                     .KINTransactionFailed(failureReason: error.localizedDescription,
                                           kinAmount: Int(amount),
                                           transactionType: type.toBIEventType)
                     .send()
+                completion(.failure(error))
         }
     }
 }

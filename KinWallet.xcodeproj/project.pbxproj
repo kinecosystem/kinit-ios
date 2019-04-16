@@ -118,6 +118,7 @@
 		9114743E203F1A5000C16279 /* WeakBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114743C203F17ED00C16279 /* WeakBox.swift */; };
 		91147441203F1D4100C16279 /* BalanceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91147440203F1D4100C16279 /* BalanceLabel.swift */; };
 		91147442203F1D4100C16279 /* BalanceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91147440203F1D4100C16279 /* BalanceLabel.swift */; };
+		911AAAC02265FCB400A18295 /* XDRCodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911AAABF2265FCB400A18295 /* XDRCodable+Extensions.swift */; };
 		9120CA7B2060118C00AFC597 /* upload-dsym.sh in Resources */ = {isa = PBXBuildFile; fileRef = 9120CA782060118B00AFC597 /* upload-dsym.sh */; };
 		9120CA7C2060118C00AFC597 /* libTestFairy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9120CA792060118B00AFC597 /* libTestFairy.a */; };
 		9120CA7E206011D200AFC597 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9120CA7D206011D200AFC597 /* AVFoundation.framework */; };
@@ -813,6 +814,7 @@
 		91147439203F177500C16279 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradientView.swift; path = Submodules/GradientView/GradientView/GradientView.swift; sourceTree = SOURCE_ROOT; };
 		9114743C203F17ED00C16279 /* WeakBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakBox.swift; sourceTree = "<group>"; };
 		91147440203F1D4100C16279 /* BalanceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceLabel.swift; sourceTree = "<group>"; };
+		911AAABF2265FCB400A18295 /* XDRCodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XDRCodable+Extensions.swift"; sourceTree = "<group>"; };
 		9120CA782060118B00AFC597 /* upload-dsym.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "upload-dsym.sh"; sourceTree = "<group>"; };
 		9120CA792060118B00AFC597 /* libTestFairy.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFairy.a; sourceTree = "<group>"; };
 		9120CA7A2060118B00AFC597 /* TestFairy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFairy.h; sourceTree = "<group>"; };
@@ -1402,6 +1404,7 @@
 				91CB636320597F3C00C65404 /* URL+KinWallet.swift */,
 				918893B8205E906E0077CD9A /* URLRequest+KinWallet.swift */,
 				9152E5EC212D6C3300802040 /* UIBarButtonItem.swift */,
+				911AAABF2265FCB400A18295 /* XDRCodable+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1797,8 +1800,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9140135420162FA90066367C /* Build configuration list for PBXNativeTarget "KinWallet" */;
 			buildPhases = (
-				9140136E201633640066367C /* SwiftGen */,
 				A2D9072A51CA43FDCBED3C9F /* [CP] Check Pods Manifest.lock */,
+				9140136E201633640066367C /* SwiftGen */,
 				9140132620162FA90066367C /* Sources */,
 				9140132720162FA90066367C /* Frameworks */,
 				9140132820162FA90066367C /* Resources */,
@@ -2416,6 +2419,7 @@
 				9140137D201748100066367C /* UIViewController+KinWallet.swift in Sources */,
 				9152E5ED212D6C3300802040 /* UIBarButtonItem.swift in Sources */,
 				91AE22F821775E930024B8BF /* TaskLoader.swift in Sources */,
+				911AAAC02265FCB400A18295 /* XDRCodable+Extensions.swift in Sources */,
 				91C42AD720FDDD68001E1C05 /* UIControl+KinWallet.swift in Sources */,
 				91F877EA216A011B00E91C03 /* RootViewController.swift in Sources */,
 				9163EDFF20553248005F3123 /* UIAlertAction+KinWallet.swift in Sources */,
