@@ -32,7 +32,7 @@ PODS:
   - KinCoreSDK (0.7.19):
     - Sodium (= 0.7.0)
     - StellarKit (= 0.3.17)
-  - KinMigrationModule (0.0.8):
+  - KinMigrationModule (0.0.9):
     - KinCoreSDK (= 0.7.19)
     - KinSDK (= 0.8.6)
     - Sodium (= 0.7.0)
@@ -54,8 +54,9 @@ PODS:
 
 DEPENDENCIES:
   - Firebase/Auth
-  - KinMigrationModule (~> 0.0.8)
-  - libPhoneNumber-iOS (~> 0.9)
+  - KinMigrationModule (from `https://github.com/kinecosystem/kin-migration-module-ios`, branch `fix-migrate-URL`)
+  - KinSDK (from `https://github.com/kinecosystem/kin-sdk-ios`, branch `fix-appId-length`)
+  - libPhoneNumber-iOS
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -67,14 +68,28 @@ SPEC REPOS:
     - GoogleToolboxForMac
     - GTMSessionFetcher
     - KinCoreSDK
-    - KinMigrationModule
-    - KinSDK
     - KinUtil
     - libPhoneNumber-iOS
     - nanopb
     - Sodium
     - StellarErrors
     - StellarKit
+
+EXTERNAL SOURCES:
+  KinMigrationModule:
+    :branch: fix-migrate-URL
+    :git: https://github.com/kinecosystem/kin-migration-module-ios
+  KinSDK:
+    :branch: fix-appId-length
+    :git: https://github.com/kinecosystem/kin-sdk-ios
+
+CHECKOUT OPTIONS:
+  KinMigrationModule:
+    :commit: bb309be71452a8100af435efe5ce1bce15baa994
+    :git: https://github.com/kinecosystem/kin-migration-module-ios
+  KinSDK:
+    :commit: 2a16f714d8a9f3d3eb97b6499ae8dd4ebefb25c0
+    :git: https://github.com/kinecosystem/kin-sdk-ios
 
 SPEC CHECKSUMS:
   Firebase: cc13dfab1038c8b45d7903e01fc690451d6d0b24
@@ -85,7 +100,7 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
   KinCoreSDK: cf254c8041e56137bfbdec7431ecc3187c5007cf
-  KinMigrationModule: dca19a1791db29397a856edfac7d68cf0a21085f
+  KinMigrationModule: 6e432c86dc21130ee04b9fce76501b77f34e6a70
   KinSDK: 162a6b27e299015aaff845a74b0b73ba7a569b80
   KinUtil: ffcdec211f59a5fbb7fd68a13fcfc403f62596e0
   libPhoneNumber-iOS: e444379ac18bbfbdefad571da735b2cd7e096caa
@@ -94,6 +109,6 @@ SPEC CHECKSUMS:
   StellarErrors: 5987d5cd224c4ca51582b1e9e9efd15b86c41f5a
   StellarKit: bea116076a87bf1e6bcb59366e34164ba75a1c2c
 
-PODFILE CHECKSUM: 01fcf46ed9129d94b7026e8fe4324bfceeaef614
+PODFILE CHECKSUM: 464eb64feeac8ef557be05ad5bb8e8852b0f45d0
 
 COCOAPODS: 1.6.1
