@@ -8,24 +8,30 @@
 import UIKit
 import Lottie
 
-class CreatingWalletViewController: UIViewController {
-    var isMigrating = false
+private struct Constants {
+    static let errorMessageFont = FontFamily.Roboto.regular.font(size: 12)!
+    static let errorMessageTextColor = UIColor.kin.gray
+}
 
-    @IBOutlet weak var creatingWalletLabel: UILabel! {
+class WalletLoadingViewController: UIViewController {
+    @IBOutlet weak var descriptionLabel: UILabel! {
         didSet {
-            creatingWalletLabel.text = L10n.creatingYourWallet
-            creatingWalletLabel.font = FontFamily.Roboto.medium.font(size: 16)
-            creatingWalletLabel.textColor = UIColor.kin.gray
+            descriptionLabel.font = FontFamily.Roboto.medium.font(size: 16)
+            descriptionLabel.textColor = UIColor.kin.gray
         }
     }
 
-    @IBOutlet weak var patienceLabel: UILabel! {
-        didSet {
-            patienceLabel.text = L10n.creatingYourWalletBePatient
-            patienceLabel.font = FontFamily.Roboto.regular.font(size: 12)
-            patienceLabel.textColor = UIColor.kin.gray
-        }
-    }
+    @IBOutlet weak var bottomContainerView: UIView!
+
+    let timeEstimationLabel: UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.text = L10n.creatingYourWalletBePatient
+        l.font = FontFamily.Roboto.regular.font(size: 12)
+        l.textColor = UIColor.kin.gray
+
+        return l
+    }()
 
     @IBOutlet weak var loaderView: LOTAnimationView! {
         didSet {
@@ -40,9 +46,30 @@ class CreatingWalletViewController: UIViewController {
 
         loaderView.play()
 
-        if isMigrating {
-            creatingWalletLabel.text = "Migrating Wallet!"
-        }
+        addTimeEstimationLabel()
+    }
+
+    func addTimeEstimationLabel() {
+        addToBottomView(timeEstimationLabel)
+    }
+
+    func addToBottomView(_ subview: UIView) {
+        bottomContainerView.removeAllSubviews()
+        bottomContainerView.addSubview(subview)
+        bottomContainerView.leadingAnchor.constraint(equalTo: subview.leadingAnchor).isActive = true
+        bottomContainerView.bottomAnchor.constraint(equalTo: subview.bottomAnchor).isActive = true
+        bottomContainerView.trailingAnchor.constraint(equalTo: subview.trailingAnchor).isActive = true
+    }
+}
+
+class CreatingWalletViewController: UIViewController {
+    let walletLoadingViewController = StoryboardScene.Onboard.walletLoadingViewController.instantiate()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        addAndFit(walletLoadingViewController)
+        walletLoadingViewController.descriptionLabel.text = L10n.creatingYourWallet
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -55,5 +82,72 @@ class CreatingWalletViewController: UIViewController {
         super.viewDidAppear(animated)
 
         Events.Analytics.ViewCreatingWalletPage().send()
+    }
+}
+
+class MigratingWalletViewController: UIViewController {
+    let walletLoadingViewController = StoryboardScene.Onboard.walletLoadingViewController.instantiate()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        addAndFit(walletLoadingViewController)
+        walletLoadingViewController.descriptionLabel.text = L10n.Migration.migratingWallet
+    }
+
+    func migrationFailed() {
+        walletLoadingViewController.loaderView.stop()
+        walletLoadingViewController.loaderView.animationProgress = 0
+        walletLoadingViewController.descriptionLabel.text = nil
+
+        addBottomViews()
+    }
+
+    func addBottomViews() {
+        let errorLabel = UILabel()
+        errorLabel.textColor = Constants.errorMessageTextColor
+        errorLabel.font = Constants.errorMessageFont
+        errorLabel.text = L10n.Migration.migrationFailed
+
+        let orLabel = UILabel()
+        orLabel.text = L10n.or.lowercased()
+        orLabel.font = Constants.errorMessageFont
+        orLabel.textColor = Constants.errorMessageTextColor
+
+        let retryButton = failedButton(with: L10n.retry, selector: #selector(retryMigration))
+        let supportButton = failedButton(with: L10n.contactSupport.lowercased(), selector: #selector(contactSupport))
+
+        let bottomStackView = UIStackView(arrangedSubviews: [retryButton, orLabel, supportButton])
+        bottomStackView.axis = .horizontal
+        bottomStackView.spacing = 4
+
+        let externalStackView = UIStackView(arrangedSubviews: [errorLabel, bottomStackView])
+        externalStackView.axis = .vertical
+        externalStackView.spacing = 4
+
+        walletLoadingViewController.addToBottomView(externalStackView)
+    }
+
+    private func failedButton(with title: String, selector: Selector) -> UIButton {
+        let button = UIButton(type: .custom)
+        let attributedTitle = NSAttributedString(string: title,
+                                                 attributes: [.foregroundColor: Constants.errorMessageTextColor,
+                                                              .font: Constants.errorMessageFont])
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.addTarget(self, action: selector, for: .touchUpInside)
+
+        return button
+    }
+
+    @objc func retryMigration() {
+        walletLoadingViewController.loaderView.play()
+        walletLoadingViewController.addTimeEstimationLabel()
+        walletLoadingViewController.descriptionLabel.text = L10n.Migration.migratingWallet
+
+        Kin.shared.startMigration()
+    }
+
+    @objc func contactSupport() {
+        KinSupportViewController.presentSupport(from: self)
     }
 }

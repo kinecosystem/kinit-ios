@@ -26,7 +26,7 @@
 		828CB4012056E88A007C679C /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A12DEB2056B841008841F2 /* Configuration.swift */; };
 		828CB40E2056E8F5007C679C /* SurveyDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E6B615203C29B30080C2FC /* SurveyDoneViewController.swift */; };
 		828CB40F2056E8F5007C679C /* TransferringKinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E6B618203C2A0B0080C2FC /* TransferringKinViewController.swift */; };
-		828CB4122056E913007C679C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138520187CE90066367C /* Result.swift */; };
+		828CB4122056E913007C679C /* TaskResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138520187CE90066367C /* TaskResult.swift */; };
 		828CB4132056E913007C679C /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138C20187DEB0066367C /* Author.swift */; };
 		828CB4142056E913007C679C /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138320187CE90066367C /* Question.swift */; };
 		828CB4152056E913007C679C /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138420187CE90066367C /* Task.swift */; };
@@ -126,6 +126,7 @@
 		9120CA82206011DA00AFC597 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9120CA80206011DA00AFC597 /* CoreMedia.framework */; };
 		9120CA84206011E000AFC597 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9120CA83206011E000AFC597 /* SystemConfiguration.framework */; };
 		9120CA86206011E600AFC597 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9120CA85206011E600AFC597 /* OpenGLES.framework */; };
+		912B9A6022672BA80018FA50 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912B9A5F22672BA80018FA50 /* Result.swift */; };
 		91311C4D204FDB4400618240 /* Optional+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91311C4C204FDB4400618240 /* Optional+KinWallet.swift */; };
 		91311C53204FDBD500618240 /* Optional+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91311C4C204FDB4400618240 /* Optional+KinWallet.swift */; };
 		9131A0BB212C055F000203DC /* RestoreBackupQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9131A0BA212C055F000203DC /* RestoreBackupQuestionsViewController.swift */; };
@@ -200,8 +201,8 @@
 		9140138720187CE90066367C /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138320187CE90066367C /* Question.swift */; };
 		9140138820187CE90066367C /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138420187CE90066367C /* Task.swift */; };
 		9140138920187CE90066367C /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138420187CE90066367C /* Task.swift */; };
-		9140138A20187CE90066367C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138520187CE90066367C /* Result.swift */; };
-		9140138B20187CE90066367C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138520187CE90066367C /* Result.swift */; };
+		9140138A20187CE90066367C /* TaskResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138520187CE90066367C /* TaskResult.swift */; };
+		9140138B20187CE90066367C /* TaskResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138520187CE90066367C /* TaskResult.swift */; };
 		9140138D20187DEB0066367C /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138C20187DEB0066367C /* Author.swift */; };
 		9140138E20187DEB0066367C /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138C20187DEB0066367C /* Author.swift */; };
 		9140139020187E140066367C /* SampleTask.json in Resources */ = {isa = PBXBuildFile; fileRef = 9140138F20187E140066367C /* SampleTask.json */; };
@@ -823,6 +824,7 @@
 		9120CA80206011DA00AFC597 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		9120CA83206011E000AFC597 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9120CA85206011E600AFC597 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		912B9A5F22672BA80018FA50 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		91311C4C204FDB4400618240 /* Optional+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+KinWallet.swift"; sourceTree = "<group>"; };
 		9131A0BA212C055F000203DC /* RestoreBackupQuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreBackupQuestionsViewController.swift; sourceTree = "<group>"; };
 		9135970321E34CF500578718 /* StellarKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = StellarKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -864,7 +866,7 @@
 		9140137F201755DF0066367C /* AppDelegate+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Extensions.swift"; sourceTree = "<group>"; };
 		9140138320187CE90066367C /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		9140138420187CE90066367C /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		9140138520187CE90066367C /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		9140138520187CE90066367C /* TaskResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskResult.swift; sourceTree = "<group>"; };
 		9140138C20187DEB0066367C /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		9140138F20187E140066367C /* SampleTask.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SampleTask.json; sourceTree = "<group>"; };
 		91401393201892640066367C /* AuthorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorTests.swift; sourceTree = "<group>"; };
@@ -1184,6 +1186,7 @@
 			isa = PBXGroup;
 			children = (
 				91B57F9120E038E200CE5EE1 /* Bridge.swift */,
+				912B9A5F22672BA80018FA50 /* Result.swift */,
 				9114743C203F17ED00C16279 /* WeakBox.swift */,
 			);
 			path = Foundation;
@@ -1412,7 +1415,7 @@
 		9140138220187CE90066367C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9140138520187CE90066367C /* Result.swift */,
+				9140138520187CE90066367C /* TaskResult.swift */,
 				91AA18E521048AD000044D9C /* QuizData.swift */,
 				9140138C20187DEB0066367C /* Author.swift */,
 				9140138320187CE90066367C /* Question.swift */,
@@ -2366,6 +2369,7 @@
 				910AA2322097308000CC822A /* RemoteConfig.swift in Sources */,
 				91D891CD2020B3C70090E77C /* TouchUpEffectScalable.swift in Sources */,
 				91FF9D18207E4C0200B536E9 /* RedeemTransaction.swift in Sources */,
+				912B9A6022672BA80018FA50 /* Result.swift in Sources */,
 				9170CD9621343121009986A5 /* BackupNagCounter.swift in Sources */,
 				914013BE2019D07D0066367C /* UIColor+KinWallet.swift in Sources */,
 				9170CD7A2133EA47009986A5 /* ConfigPanel.swift in Sources */,
@@ -2383,7 +2387,7 @@
 				91FE7F1120FB768700EDFB67 /* Strings.swift in Sources */,
 				913C9C8821D3E5DE00B855BC /* SendKinToAppUnavailableTableViewCell.swift in Sources */,
 				91D891BE201F23130090E77C /* Datastore.swift in Sources */,
-				9140138A20187CE90066367C /* Result.swift in Sources */,
+				9140138A20187CE90066367C /* TaskResult.swift in Sources */,
 				91F69D39208379F400F06181 /* ButtonBarView.swift in Sources */,
 				91E6B652203C69A90080C2FC /* ISPCertificatePinning.m in Sources */,
 				91E6B666203C6AD50080C2FC /* BIEvents.swift in Sources */,
@@ -2525,7 +2529,7 @@
 				9159956A21354E3A00E4E840 /* UIAlertController+KinWallet.swift in Sources */,
 				91C42AD820FDDD68001E1C05 /* UIControl+KinWallet.swift in Sources */,
 				9170CD7B2133EA47009986A5 /* ConfigPanel.swift in Sources */,
-				9140138B20187CE90066367C /* Result.swift in Sources */,
+				9140138B20187CE90066367C /* TaskResult.swift in Sources */,
 				914013E12019F2BF0066367C /* UICollectionView+KinWallet.swift in Sources */,
 				9182C2A1203C6C0C0051F003 /* AMPDatabaseHelper.m in Sources */,
 				91E84AB320862E0F00E8B7A6 /* TransactionHistoryViewController.swift in Sources */,
@@ -2775,7 +2779,7 @@
 				91E84AB220862E0F00E8B7A6 /* TransactionHistoryViewController.swift in Sources */,
 				91A427672129BEAC0078B589 /* CreatingWalletViewController.swift in Sources */,
 				9149BC71216F8010009DFFE9 /* TaskCategory.swift in Sources */,
-				828CB4122056E913007C679C /* Result.swift in Sources */,
+				828CB4122056E913007C679C /* TaskResult.swift in Sources */,
 				91E84A8B2086188000E8B7A6 /* NotificationHandler.swift in Sources */,
 				91E84AAB20862DB700E8B7A6 /* SurveyAnswerCollectionViewCell.swift in Sources */,
 				91E84A58208617BC00E8B7A6 /* EarnKinAnimationViewController.swift in Sources */,

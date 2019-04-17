@@ -77,8 +77,6 @@ internal enum StoryboardScene {
 
     internal static let accountSourceViewController = SceneType<AccountSourceViewController>(storyboard: Onboard.self, identifier: "AccountSourceViewController")
 
-    internal static let creatingWalletViewController = SceneType<CreatingWalletViewController>(storyboard: Onboard.self, identifier: "CreatingWalletViewController")
-
     internal static let phoneConfirmationViewController = SceneType<PhoneConfirmationViewController>(storyboard: Onboard.self, identifier: "PhoneConfirmationViewController")
 
     internal static let phoneVerificationRequestViewController = SceneType<PhoneVerificationRequestViewController>(storyboard: Onboard.self, identifier: "PhoneVerificationRequestViewController")
@@ -86,6 +84,8 @@ internal enum StoryboardScene {
     internal static let restoreBackupQRScannerViewController = SceneType<RestoreBackupQRScannerViewController>(storyboard: Onboard.self, identifier: "RestoreBackupQRScannerViewController")
 
     internal static let restoreBackupQuestionsViewController = SceneType<RestoreBackupQuestionsViewController>(storyboard: Onboard.self, identifier: "RestoreBackupQuestionsViewController")
+
+    internal static let walletLoadingViewController = SceneType<WalletLoadingViewController>(storyboard: Onboard.self, identifier: "WalletLoadingViewController")
 
     internal static let welcomeViewController = SceneType<WelcomeViewController>(storyboard: Onboard.self, identifier: "WelcomeViewController")
   }

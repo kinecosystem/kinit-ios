@@ -9,6 +9,12 @@ import StellarErrors
 
 //swiftlint:disable force_try
 
+extension Notification.Name {
+    static let KinMigrationStarted = Notification.Name("KinMigrationStarted")
+    static let KinMigrationFailed = Notification.Name("KinMigrationFailed")
+    static let KinMigrationSucceeded = Notification.Name("KinMigrationSucceeded")
+}
+
 private let kinitAppId = "kit"
 
 private let balanceUserDefaultsKey = "org.kinfoundation.kinwallet.currentBalance"
@@ -23,33 +29,10 @@ enum TxSignatureError: Error {
     case decodingFailed
 }
 
-//Remove this when migrating to Swift 5
-enum Result<T, Error> {
-    case success(T)
-    case failure(Error)
-}
-
-extension Result {
-    var error: Error? {
-        if case let Result.failure(error) = self {
-            return error
-        }
-
-        return nil
-    }
-
-    var value: T? {
-        if case let Result.success(value) = self {
-            return value
-        }
-
-        return nil
-    }
-}
 class Kin: NSObject {
     static let shared = Kin()
     private var client: KinClientProtocol
-    fileprivate var migratingWalletViewController: CreatingWalletViewController?
+    fileprivate var migratingWalletWindow: UIWindow?
     private let migrationManager: KinMigrationManager
     private(set) var account: KinAccountProtocol
     let linkBag = LinkBag()
@@ -65,7 +48,6 @@ class Kin: NSObject {
     }
 
     override init() {
-
         let kinNetwork: Network
 
         #if DEBUG || RELEASE_STAGE
@@ -93,8 +75,7 @@ class Kin: NSObject {
 
             super.init()
 
-            migrationManager.delegate = self
-            try! migrationManager.start(with: account.publicAddress)
+            startMigration()
         } else {
             account = try! kin3Client.accounts.last ?? kin3Client.addAccount()
             client = kin3Client
@@ -130,8 +111,9 @@ extension Kin {
     }
 
     func importWallet(_ encryptedWallet: String, with passphrase: String) throws {
+        client = migrationManager.kinClient(version: .kinCore)
         account = try client.importAccount(encryptedWallet, passphrase: passphrase)
-        _ = performOnboardingIfNeeded()
+        startMigration()
     }
 
     static func setPerformedBackup(_ performed: Bool = true) {
@@ -140,6 +122,14 @@ extension Kin {
 
     static func performedBackup() -> Bool {
         return UserDefaults.standard.bool(forKey: accountStatusPerformedBackupKey)
+    }
+}
+
+extension Kin {
+    func startMigration() {
+        migrationManager.delegate = self
+        try! migrationManager.start(with: account.publicAddress)
+        //TODO: Add migration started event
     }
 }
 
@@ -340,23 +330,55 @@ extension Kin: KinMigrationManagerDelegate {
     }
 
     func kinMigrationManagerDidStart(_ kinMigrationManager: KinMigrationManager) {
-        migratingWalletViewController = StoryboardScene.Onboard.creatingWalletViewController.instantiate()
-        migratingWalletViewController!.isMigrating = true
-        UIApplication.shared.delegate?.window??.rootViewController?.presentAnimated(migratingWalletViewController!)
-        print("migration started, yet!")
+        KLogVerbose("Migration started")
+
+        DispatchQueue.main.async {
+            let migratingWalletViewController = MigratingWalletViewController()
+
+            self.migratingWalletWindow = UIWindow()
+            self.migratingWalletWindow!.rootViewController = migratingWalletViewController
+            self.migratingWalletWindow!.makeKeyAndVisible()
+        }
+
+        NotificationCenter.default.post(name: .KinMigrationStarted, object: nil)
+
+        Events.Business.MigrationStarted().send()
     }
 
     func kinMigrationManager(_ kinMigrationManager: KinMigrationManager, readyWith client: KinClientProtocol) {
-        print("Client is ready, and migration succeeded, yay!!")
-        migratingWalletViewController?.dismissAnimated()
+        KLogVerbose("Client is ready, and migration succeeded, yay!!")
+
         self.client = client
         self.account = client.accounts.last!
         refreshBalance()
+
+        NotificationCenter.default.post(name: .KinMigrationSucceeded, object: nil)
+
+        DispatchQueue.main.async {
+            guard let window = self.migratingWalletWindow else {
+                return
+            }
+
+            UIView.animate(withDuration: 0.25, animations: {
+                window.transform = .init(translationX: 0, y: window.frame.height)
+            }, completion: { _ in
+                self.migratingWalletWindow = nil
+            })
+        }
+
+        Events.Business.MigrationSucceeded().send()
     }
 
     func kinMigrationManager(_ kinMigrationManager: KinMigrationManager, error: Error) {
-        //TODO: Alert error and do what?
-        migratingWalletViewController?.dismissAnimated()
-        print("Migration failed: \(error)")
+        KLogError("Migration failed: \(error)")
+
+        DispatchQueue.main.async {
+            let migrateViewController = self.migratingWalletWindow?.rootViewController as? MigratingWalletViewController
+            migrateViewController?.migrationFailed()
+        }
+
+        NotificationCenter.default.post(name: .KinMigrationFailed, object: nil)
+
+        Events.Log.MigrationFailed(failureReason: String(describing: error)).send()
     }
 }

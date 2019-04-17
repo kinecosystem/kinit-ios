@@ -257,6 +257,8 @@ internal enum L10n {
   internal static let restoreBackupYourAnswerTitle = L10n.tr("Localizable", "RestoreBackupYourAnswerTitle")
   /// Restore From Backup
   internal static let restoreFromBackup = L10n.tr("Localizable", "RestoreFromBackup")
+  /// Retry
+  internal static let retry = L10n.tr("Localizable", "Retry")
   /// Second Question
   internal static let secondSecurityQuestion = L10n.tr("Localizable", "SecondSecurityQuestion")
   /// Security
@@ -433,6 +435,13 @@ internal enum L10n {
     internal static let alertTitle = L10n.tr("Localizable", "FeedbackIsNotSupport.AlertTitle")
     /// I Understand, Continue
     internal static let `continue` = L10n.tr("Localizable", "FeedbackIsNotSupport.Continue")
+  }
+
+  internal enum Migration {
+    /// Migrating Your Wallet
+    internal static let migratingWallet = L10n.tr("Localizable", "Migration.MigratingWallet")
+    /// Sorry, an error occurred
+    internal static let migrationFailed = L10n.tr("Localizable", "Migration.MigrationFailed")
   }
 
   internal enum MoreUpdate {

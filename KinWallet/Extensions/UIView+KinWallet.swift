@@ -82,3 +82,9 @@ extension UIView {
         layer.shadowOffset = offset
     }
 }
+
+extension UIView {
+    func removeAllSubviews() {
+        subviews.forEach { $0.removeFromSuperview() }
+    }
+}

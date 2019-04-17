@@ -39,6 +39,11 @@ class RestoreBackupQuestionsViewController: UITableViewController {
                 self.tableView.insertSections(IndexSet(integersIn: (1...2)), with: .fade)
             }
         }
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(migrationSucceeded),
+                                               name: .KinMigrationSucceeded,
+                                               object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -256,13 +261,16 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
 
         DataLoaders.loadAllData()
         Kin.setPerformedBackup()
+        Kin.shared.startMigration()
 
+        Events.Business.WalletRestored().send()
+    }
+
+    @objc func migrationSucceeded() {
         DispatchQueue.main.async {
             let accountReadyVC = StoryboardScene.Onboard.accountReadyViewController.instantiate()
             accountReadyVC.walletSource = .restored
             self.navigationController?.pushViewController(accountReadyVC, animated: true)
         }
-
-        Events.Business.WalletRestored().send()
     }
 }

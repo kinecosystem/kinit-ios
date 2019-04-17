@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -629,10 +629,10 @@ What would you like to do?</string>
             </objects>
             <point key="canvasLocation" x="2880.8000000000002" y="2334.7826086956525"/>
         </scene>
-        <!--Creating Wallet View Controller-->
+        <!--Wallet Loading View Controller-->
         <scene sceneID="Q0k-mN-HG7">
             <objects>
-                <viewController storyboardIdentifier="CreatingWalletViewController" id="SNg-sy-rzU" customClass="CreatingWalletViewController" customModule="KinWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WalletLoadingViewController" id="SNg-sy-rzU" customClass="WalletLoadingViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SIS-pR-7eA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -651,33 +651,33 @@ What would you like to do?</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It might take up to 20 sec" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ty6-9g-g0q">
-                                <rect key="frame" x="90" y="626" width="195" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="opo-Ly-pRB">
+                                <rect key="frame" x="20" y="444.5" width="335" height="202.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ty6-9g-g0q" firstAttribute="centerX" secondItem="7Y6-tr-Emz" secondAttribute="centerX" id="Q43-Eg-lt9"/>
+                            <constraint firstItem="opo-Ly-pRB" firstAttribute="top" secondItem="L3n-jJ-QGo" secondAttribute="bottom" constant="20" id="2Ab-HF-3OU"/>
+                            <constraint firstItem="7Y6-tr-Emz" firstAttribute="bottom" secondItem="opo-Ly-pRB" secondAttribute="bottom" constant="20" id="AUw-n2-SCa"/>
+                            <constraint firstItem="opo-Ly-pRB" firstAttribute="leading" secondItem="7Y6-tr-Emz" secondAttribute="leading" constant="20" id="KD1-ZL-sRn"/>
                             <constraint firstItem="XwC-qn-zta" firstAttribute="centerX" secondItem="7Y6-tr-Emz" secondAttribute="centerX" id="UlS-jK-sU4"/>
                             <constraint firstItem="L3n-jJ-QGo" firstAttribute="top" secondItem="XwC-qn-zta" secondAttribute="bottom" constant="20" id="aNY-Vc-WjL"/>
                             <constraint firstItem="XwC-qn-zta" firstAttribute="centerY" secondItem="7Y6-tr-Emz" secondAttribute="centerY" id="f9V-lF-3PF"/>
+                            <constraint firstItem="opo-Ly-pRB" firstAttribute="centerX" secondItem="7Y6-tr-Emz" secondAttribute="centerX" id="fwk-hH-8du"/>
                             <constraint firstItem="L3n-jJ-QGo" firstAttribute="centerX" secondItem="XwC-qn-zta" secondAttribute="centerX" id="hEo-JQ-NBq"/>
-                            <constraint firstItem="7Y6-tr-Emz" firstAttribute="bottom" secondItem="ty6-9g-g0q" secondAttribute="bottom" constant="20" id="kfA-QA-lj7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7Y6-tr-Emz"/>
                     </view>
                     <connections>
-                        <outlet property="creatingWalletLabel" destination="L3n-jJ-QGo" id="exr-Ro-DUb"/>
+                        <outlet property="bottomContainerView" destination="opo-Ly-pRB" id="N6O-1V-9Va"/>
+                        <outlet property="descriptionLabel" destination="L3n-jJ-QGo" id="lGb-lN-Cze"/>
                         <outlet property="loaderView" destination="XwC-qn-zta" id="TkU-2h-neu"/>
-                        <outlet property="patienceLabel" destination="ty6-9g-g0q" id="9GA-kg-amh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tPe-59-aaB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2404" y="3205"/>
+            <point key="canvasLocation" x="2404" y="3204.6476761619192"/>
         </scene>
         <!--Account Ready View Controller-->
         <scene sceneID="Euu-vG-joK">

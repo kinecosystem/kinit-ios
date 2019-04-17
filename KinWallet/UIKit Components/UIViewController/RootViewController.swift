@@ -111,7 +111,7 @@ class RootViewController: UIViewController {
         noticeViewController.notice = Notice(content: noticeContent,
                                              buttonConfiguration: buttonConfiguration,
                                              displayType: .imageFirst)
-        present(noticeViewController, animated: true)
+        presentAnimated(noticeViewController)
 
         errorNoticeViewController = noticeViewController
 
@@ -241,7 +241,7 @@ class RootViewController: UIViewController {
     }
 
     func startCreatingWallet() {
-        let creatingWalletViewController = StoryboardScene.Onboard.creatingWalletViewController.instantiate()
+        let creatingWalletViewController = CreatingWalletViewController()
         splashScreenNavigationController?.pushViewController(creatingWalletViewController, animated: true)
 
         performOnboarding()
