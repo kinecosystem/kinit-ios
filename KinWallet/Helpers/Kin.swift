@@ -68,7 +68,6 @@ class Kin: NSObject {
 
         if hasPhoneNumber,
             let existingAccount = kin2Client.accounts.last,
-            kin3Client.accounts.last == nil,
             !migrationManager.isAccountMigrated(publicAddress: existingAccount.publicAddress) {
             client = kin2Client
             account = existingAccount
