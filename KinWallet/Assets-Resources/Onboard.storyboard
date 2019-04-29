@@ -632,7 +632,7 @@ What would you like to do?</string>
         <!--Wallet Loading View Controller-->
         <scene sceneID="Q0k-mN-HG7">
             <objects>
-                <viewController storyboardIdentifier="WalletLoadingViewController" id="SNg-sy-rzU" customClass="WalletLoadingViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WalletLoadingViewController" id="SNg-sy-rzU" customClass="WalletLoadingViewController" customModule="KinWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SIS-pR-7eA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

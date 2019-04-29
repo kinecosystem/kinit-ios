@@ -9,7 +9,7 @@ import UIKit
 import Lottie
 
 private struct Constants {
-    static let errorMessageFont = FontFamily.Roboto.regular.font(size: 12)!
+    static let errorMessageFont = FontFamily.Roboto.regular.font(size: 14)!
     static let errorMessageTextColor = UIColor.kin.gray
 }
 
@@ -25,6 +25,7 @@ class WalletLoadingViewController: UIViewController {
 
     let timeEstimationLabel: UILabel = {
         let l = UILabel()
+        l.textAlignment = .center
         l.translatesAutoresizingMaskIntoConstraints = false
         l.text = L10n.creatingYourWalletBePatient
         l.font = FontFamily.Roboto.regular.font(size: 12)
@@ -118,12 +119,18 @@ class MigratingWalletViewController: UIViewController {
         let supportButton = failedButton(with: L10n.contactSupport.lowercased(), selector: #selector(contactSupport))
 
         let bottomStackView = UIStackView(arrangedSubviews: [retryButton, orLabel, supportButton])
+        bottomStackView.translatesAutoresizingMaskIntoConstraints = false
+        bottomStackView.alignment = .center
+        bottomStackView.distribution = .equalSpacing
         bottomStackView.axis = .horizontal
-        bottomStackView.spacing = 4
+        bottomStackView.spacing = 2
 
         let externalStackView = UIStackView(arrangedSubviews: [errorLabel, bottomStackView])
+        externalStackView.translatesAutoresizingMaskIntoConstraints = false
+        externalStackView.alignment = .center
+        externalStackView.distribution = .equalSpacing
         externalStackView.axis = .vertical
-        externalStackView.spacing = 4
+        externalStackView.spacing = 0
 
         walletLoadingViewController.addToBottomView(externalStackView)
     }
@@ -132,7 +139,8 @@ class MigratingWalletViewController: UIViewController {
         let button = UIButton(type: .custom)
         let attributedTitle = NSAttributedString(string: title,
                                                  attributes: [.foregroundColor: Constants.errorMessageTextColor,
-                                                              .font: Constants.errorMessageFont])
+                                                              .font: Constants.errorMessageFont,
+                                                              .underlineStyle: NSUnderlineStyle.single.rawValue])
         button.setAttributedTitle(attributedTitle, for: .normal)
         button.addTarget(self, action: selector, for: .touchUpInside)
 
