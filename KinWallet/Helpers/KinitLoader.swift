@@ -96,7 +96,7 @@ class KinitLoader {
 
         WebRequests.Backup.availableHints()
             .withCompletion { result in
-                guard let list = result.value, list.hints.count > 0 else {
+                guard let list = result.value, list.hints.isNotEmpty else {
                     return
                 }
 

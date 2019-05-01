@@ -215,14 +215,16 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
             secondAnswer = answers.1.trimmingCharacters(in: .whitespacesAndNewlines)
         }
 
-        DispatchQueue.global().async {
-            do {
-                try Kin.shared.importWallet(self.encryptedWallet, with: firstAnswer + secondAnswer)
+        Kin.shared.importWallet(self.encryptedWallet, passphrase: firstAnswer + secondAnswer) { importResult in
+            switch importResult {
+            case .success(let migrationNeeded):
+                print("Restore succeded from QR")
                 WebRequests.Backup
                     .restoreUserId(with: Kin.shared.publicAddress)
-                    .withCompletion(self.backupRestoreCompletion)
-                    .load(with: KinWebService.shared)
-            } catch {
+                    .withCompletion { [weak self] result in
+                        self?.backupRestoreCompletion(result: result, needsMigration: migrationNeeded)
+                    }.load(with: KinWebService.shared)
+            case .decryptFailed:
                 DispatchQueue.main.async {
                     let shouldRetry = firstAnswer != answers.0 || secondAnswer != answers.1
 
@@ -236,11 +238,14 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
                 }
 
                 KLogError("Could not decrypt wallet with given passphrase")
+            case .migrationCheckFailed(let error):
+                self.presentSupportAlert(title: "Error",
+                                         message: String(describing: error))
             }
         }
     }
 
-    private func backupRestoreCompletion(result: Result<String, Error>) {
+    private func backupRestoreCompletion(result: Result<String, Error>, needsMigration: Bool) {
         guard let userId = result.value else {
             Kin.shared.resetKeyStore()
 
@@ -261,12 +266,23 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
 
         DataLoaders.loadAllData()
         Kin.setPerformedBackup()
-        Kin.shared.startMigration()
 
         Events.Business.WalletRestored().send()
+
+        print("Restored userID \(userId). \(needsMigration ? "Migration needed" : "Already on Kin 3, won't migrate")")
+
+        if needsMigration {
+            Kin.shared.startMigration()
+        } else {
+            accountRestored()
+        }
     }
 
     @objc func migrationSucceeded() {
+        accountRestored()
+    }
+
+    @objc func accountRestored() {
         DispatchQueue.main.async {
             let accountReadyVC = StoryboardScene.Onboard.accountReadyViewController.instantiate()
             accountReadyVC.walletSource = .restored
