@@ -285,7 +285,7 @@ extension PhoneConfirmationViewController: UITextFieldDelegate {
 
         let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
         let pressedBackspaceAfterSingleSpaceSymbol = currentText == " "
-            && newText == ""
+            && newText.isEmpty
             && range.location == 0
             && range.length == 1
 

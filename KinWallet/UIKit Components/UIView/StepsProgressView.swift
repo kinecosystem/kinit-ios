@@ -55,7 +55,7 @@ public final class StepsProgressView: UIView {
         commonInit()
     }
 
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
         commonInit()
@@ -112,10 +112,9 @@ public final class StepsProgressView: UIView {
         let currentProgressView = stackView?.arrangedSubviews
             .compactMap {
                 $0 as? UIProgressView
-            }.filter {
+            }.first(where: {
                 $0.progress > 0 && $0.progress < 1
-            }
-            .first
+            })
 
         guard let progressView = currentProgressView else {
             return

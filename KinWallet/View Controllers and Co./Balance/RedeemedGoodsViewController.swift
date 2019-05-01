@@ -81,8 +81,8 @@ extension RedeemedGoodsViewController: RedeemTransactionCellDelegate {
         collectionView.performBatchUpdates({
             collectionView.visibleCells
                 .compactMap { $0 as? RedeemTransactionCollectionViewCell }
-                .filter { $0 != cell && $0.isOpen }
-                .first?.isOpen = false
+                .first(where: { $0 != cell && $0.isOpen })?
+                .isOpen = false
 
             cell.isOpen.toggle()
             if !cell.isOpen {

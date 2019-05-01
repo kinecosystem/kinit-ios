@@ -238,7 +238,7 @@ class SwipeDownInteractiveDismissal: UIPercentDrivenInteractiveTransition {
     fileprivate let gestureRecognizer = UIPanGestureRecognizer()
     private var interactionInProgress = false
     var currentProgress: CGFloat = 0
-    private struct FinishTransitionThreshold {
+    private enum FinishTransitionThreshold {
         static let progress: CGFloat = 0.5
         static let yVelocity: CGFloat = 800
     }

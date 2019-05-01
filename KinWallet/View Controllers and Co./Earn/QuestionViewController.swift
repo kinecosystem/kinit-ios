@@ -195,7 +195,7 @@ final class QuestionViewController: UIViewController {
     @objc func questionFinished() {
         guard
             let answerId = collectionViewDataSource.selectedAnswerIds.first,
-            let answer = question.results.filter({ $0.identifier == answerId }).first else {
+            let answer = question.results.first(where: { $0.identifier == answerId }) else {
                 KLogError(KinitErrorCodes.noSelectedAnswer.rawValue, domain: KinErrorDomain)
                 return
         }

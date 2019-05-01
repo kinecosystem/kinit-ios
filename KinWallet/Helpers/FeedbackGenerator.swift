@@ -38,4 +38,3 @@ class FeedbackGenerator {
         feedbackGenerator.selectionChanged()
     }
 }
-
