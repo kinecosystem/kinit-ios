@@ -278,7 +278,7 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
         print("Restored userID \(userId). \(needsMigration ? "Migration needed" : "Already on Kin 3, won't migrate")")
 
         if needsMigration {
-            Kin.shared.startMigration()
+            Kin.shared.startMigration(userId: userId)
         } else {
             accountRestored()
         }

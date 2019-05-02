@@ -16,7 +16,7 @@ extension Notification.Name {
 }
 
 private let kinitAppId = "kit"
-
+private let userIdMigrationQueryItemName = "user_id"
 private let balanceUserDefaultsKey = "org.kinfoundation.kinwallet.currentBalance"
 private let accountStatusPerformedBackupKey = "org.kinfoundation.kinwallet.performedBackup"
 
@@ -28,7 +28,7 @@ class Kin: NSObject {
     static let shared = Kin()
     private var client: KinClientProtocol
     fileprivate var migratingWalletWindow: UIWindow?
-    private let migrationManager: KinMigrationManager
+    private var migrationManager: KinMigrationManager
     private(set) var account: KinAccountProtocol
     let linkBag = LinkBag()
     private var onboardingPromise: Promise<OnboardingResult>?
@@ -43,19 +43,7 @@ class Kin: NSObject {
     }
 
     override init() {
-        let kinNetwork: Network
-
-        #if DEBUG || RELEASE_STAGE
-        kinNetwork = .testNet
-        #else
-        kinNetwork = .mainNet
-        #endif
-
-        let provider = try! ServiceProvider(network: kinNetwork,
-                                            migrateBaseURL: URL(string: "https://stage.kinitapp.com/user"),
-                                             queryItems: [URLQueryItem(name: "user_id", value: User.current?.userId)])
-        let appId = try! AppId(kinitAppId)
-        migrationManager = KinMigrationManager(serviceProvider: provider, appId: appId)
+        migrationManager = Kin.newMigrationManager(userId: User.current?.userId)
 
         let kin2Client = migrationManager.kinClient(version: .kinCore)
         let kin3Client = migrationManager.kinClient(version: .kinSDK)
@@ -69,7 +57,7 @@ class Kin: NSObject {
 
             super.init()
 
-            startMigration()
+            startMigration(userId: User.current!.userId)
         } else {
             account = try! kin3Client.accounts.last ?? kin3Client.addAccount()
             client = kin3Client
@@ -81,6 +69,24 @@ class Kin: NSObject {
                                                selector: #selector(applicationDidBecomeActive),
                                                name: UIApplication.didBecomeActiveNotification,
                                                object: nil)
+    }
+
+    private static func newMigrationManager(userId: String?) -> KinMigrationManager {
+        let kinNetwork: Network
+
+        #if DEBUG || RELEASE_STAGE
+        kinNetwork = .testNet
+        #else
+        kinNetwork = .mainNet
+        #endif
+
+        let queryItems = userId.map { [URLQueryItem(name: userIdMigrationQueryItemName, value: $0)] }
+
+        let provider = try! ServiceProvider(network: kinNetwork,
+                                            migrateBaseURL: URL(string: "https://stage.kinitapp.com/user"),
+                                            queryItems: queryItems)
+        let appId = try! AppId(kinitAppId)
+        return KinMigrationManager(serviceProvider: provider, appId: appId)
     }
 
     @objc func applicationDidBecomeActive() {
@@ -154,7 +160,13 @@ extension Kin {
         }
     }
 
-    func startMigration() {
+    func startMigration(userId: String) {
+        if migrationManager.serviceProvider.queryItems?
+            .first(where: { $0.name == userIdMigrationQueryItemName })?
+            .value != userId {
+            migrationManager = Kin.newMigrationManager(userId: userId)
+        }
+
         migrationManager.delegate = self
         try! migrationManager.start(with: account.publicAddress)
     }
@@ -341,9 +353,17 @@ extension Kin: KinMigrationManagerDelegate {
 
         DispatchQueue.main.async {
             if self.migratingWalletWindow == nil {
-                self.migratingWalletWindow = UIWindow()
-                self.migratingWalletWindow!.rootViewController = MigratingWalletViewController()
-                self.migratingWalletWindow!.makeKeyAndVisible()
+                let window = UIWindow()
+                let viewController = MigratingWalletViewController()
+                window.rootViewController = viewController
+                window.backgroundColor = .clear
+                window.makeKeyAndVisible()
+                viewController.view.transform = .init(translationX: 0, y: UIScreen.main.bounds.height)
+                UIView.animate(withDuration: 0.3) {
+                    viewController.view.transform = .identity
+                }
+
+                self.migratingWalletWindow = window
             }
         }
 
@@ -366,8 +386,8 @@ extension Kin: KinMigrationManagerDelegate {
                 return
             }
 
-            UIView.animate(withDuration: 0.25, animations: {
-                window.transform = .init(translationX: 0, y: window.frame.height)
+            UIView.animate(withDuration: 0.3, animations: {
+                window.rootViewController?.view.transform = .init(translationX: 0, y: UIScreen.main.bounds.height)
             }, completion: { _ in
                 self.migratingWalletWindow = nil
             })

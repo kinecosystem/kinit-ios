@@ -78,7 +78,7 @@ class MigratingWalletViewController: UIViewController {
         walletLoadingViewController.addTimeEstimationLabel()
         walletLoadingViewController.descriptionLabel.text = L10n.Migration.migratingWallet
 
-        Kin.shared.startMigration()
+        Kin.shared.startMigration(userId: User.current!.userId)
     }
 
     @objc func contactSupport() {
