@@ -46,6 +46,16 @@ protocol WebServiceProtocol {
     var provider: WebServiceProvider? { get set }
 }
 
+extension WebServiceProtocol {
+    var baseURL: URL {
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = serverHost
+
+        return urlComponents.url!
+    }
+}
+
 class WebService: WebServiceProtocol {
     let serverHost: String
     let urlSession: URLSession = {

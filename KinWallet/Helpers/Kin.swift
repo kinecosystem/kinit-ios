@@ -83,7 +83,7 @@ class Kin: NSObject {
         let queryItems = userId.map { [URLQueryItem(name: userIdMigrationQueryItemName, value: $0)] }
 
         let provider = try! ServiceProvider(network: kinNetwork,
-                                            migrateBaseURL: URL(string: "https://stage.kinitapp.com/user"),
+                                            migrateBaseURL: KinWebService.shared.baseURL.appendingPathComponent("user"),
                                             queryItems: queryItems)
         let appId = try! AppId(kinitAppId)
         return KinMigrationManager(serviceProvider: provider, appId: appId)
