@@ -144,15 +144,17 @@ class RootViewController: UIViewController {
 
         KLogVerbose("User \(currentUser.userId) with device token \(currentUser.deviceToken ?? "No token")")
 
-        if currentUser.phoneNumber != nil {
-            if let storedHintIds: SelectedHintIds = SimpleDatastore.loadObject(selectedHintIdsKey),
-                storedHintIds.hints.isNotEmpty {
-                showAccountSourceSelection()
-            } else if currentUser.publicAddress == nil {
-                performOnboarding()
+        if currentUser.publicAddress == nil {
+            if currentUser.phoneNumber != nil {
+                if let storedHintIds: SelectedHintIds = SimpleDatastore.loadObject(selectedHintIdsKey),
+                    storedHintIds.hints.isNotEmpty {
+                    showAccountSourceSelection()
+                } else if currentUser.publicAddress == nil {
+                    performOnboarding()
+                }
+            } else {
+                showWelcomeViewController()
             }
-        } else {
-            showWelcomeViewController()
         }
 
         #if !TESTS

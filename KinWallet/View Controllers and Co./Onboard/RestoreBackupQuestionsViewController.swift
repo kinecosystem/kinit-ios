@@ -222,7 +222,10 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
                 WebRequests.Backup
                     .restoreUserId(with: Kin.shared.publicAddress)
                     .withCompletion { [weak self] result in
-                        self?.backupRestoreCompletion(result: result, needsMigration: migrationNeeded)
+                        DispatchQueue.main.async {
+                            actionCell?.actionButton.isLoading = false
+                            self?.backupRestoreCompletion(result: result, needsMigration: migrationNeeded)
+                        }
                     }.load(with: KinWebService.shared)
             case .decryptFailed:
                 DispatchQueue.main.async {
@@ -239,8 +242,11 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
 
                 KLogError("Could not decrypt wallet with given passphrase")
             case .migrationCheckFailed(let error):
-                self.presentSupportAlert(title: "Error",
-                                         message: String(describing: error))
+                DispatchQueue.main.async {
+                    self.presentSupportAlert(title: "Error",
+                                             message: String(describing: error))
+                    actionCell?.actionButton.isLoading = false
+                }
             }
         }
     }

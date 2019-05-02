@@ -107,16 +107,18 @@ extension Kin {
     func importWallet(_ encryptedWallet: String,
                       passphrase: String,
                       completion: @escaping (ImportWalletResult) -> Void) {
-        client = migrationManager.kinClient(version: .kinCore)
+        DispatchQueue.global().async {
+            self.client = self.migrationManager.kinClient(version: .kinCore)
 
-        do {
-            account = try client.importAccount(encryptedWallet, passphrase: passphrase)
-        } catch {
-            completion(.decryptFailed(error))
-            return
+            do {
+                self.account = try self.client.importAccount(encryptedWallet, passphrase: passphrase)
+            } catch {
+                completion(.decryptFailed(error))
+                return
+            }
+
+            self.startMigrationIfNeeded(completion: completion)
         }
-
-        startMigrationIfNeeded(completion: completion)
     }
 
     static func setPerformedBackup(_ performed: Bool = true) {
@@ -130,15 +132,16 @@ extension Kin {
 
 extension Kin {
     func startMigrationIfNeeded(completion: @escaping (ImportWalletResult) -> Void) {
-        let tempKin3Client = migrationManager.kinClient(version: .kinCore)
+        let tempKin3Client = migrationManager.kinClient(version: .kinSDK)
         tempKin3Client.deleteKeystore()
         let json = try! account.export(passphrase: "")
-        _ = try! tempKin3Client.importAccount(json, passphrase: "")
+        let tempKin3Account = try! tempKin3Client.importAccount(json, passphrase: "")
 
-        tempKin3Client.accounts.first!.balance()
-            .then { _ in
+        tempKin3Account.balance()
+            .then { balance in
                 self.client = tempKin3Client
                 self.account = tempKin3Client.accounts.first!
+                self.balanceUpdated(balance)
                 completion(.success(migrationNeeded: false))
             }.error { error in
                 tempKin3Client.deleteKeystore()
