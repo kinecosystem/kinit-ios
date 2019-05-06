@@ -38,7 +38,7 @@ PODS:
 DEPENDENCIES:
   - Firebase/Auth
   - KinMigrationModule (from `https://github.com/kinecosystem/kin-migration-module-ios`, branch `kinnovation`)
-  - KinSDK (from `https://github.com/kinecosystem/kin-sdk-ios`, branch `master`)
+  - KinSDK (from `https://github.com/kinecosystem/kin-sdk-ios`, branch `link-wallets`)
   - libPhoneNumber-iOS
 
 SPEC REPOS:
@@ -61,7 +61,7 @@ EXTERNAL SOURCES:
     :branch: kinnovation
     :git: https://github.com/kinecosystem/kin-migration-module-ios
   KinSDK:
-    :branch: master
+    :branch: link-wallets
     :git: https://github.com/kinecosystem/kin-sdk-ios
 
 CHECKOUT OPTIONS:
@@ -69,7 +69,7 @@ CHECKOUT OPTIONS:
     :commit: f9f96da84f281276b942533aa3a92b86297d0d77
     :git: https://github.com/kinecosystem/kin-migration-module-ios
   KinSDK:
-    :commit: 1d9ab281661c75e2787bc836908640a9fdc02c50
+    :commit: bbbdc4e39d8214c2b8af7e234e3b1d8268622c36
     :git: https://github.com/kinecosystem/kin-sdk-ios
 
 SPEC CHECKSUMS:
@@ -88,6 +88,6 @@ SPEC CHECKSUMS:
   StellarErrors: 936a03ecd2c92d073f4c3ec706ec4e8a4440cbd1
   StellarKit: b30586085ec19e16a66467bdff9bab743cfd0e5e
 
-PODFILE CHECKSUM: df9869a105df090a078b18c485270c385287ca8d
+PODFILE CHECKSUM: f9c2e46677a1582daac7e2285cca39fa7486bf58
 
 COCOAPODS: 1.6.1

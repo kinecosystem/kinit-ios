@@ -34,3 +34,14 @@ enum ImportWalletResult {
     case decryptFailed(Error)
     case migrationCheckFailed(Error)
 }
+
+
+extension Notification.Name {
+    static let KinMigrationStarted = Notification.Name("KinMigrationStarted")
+    static let KinMigrationFailed = Notification.Name("KinMigrationFailed")
+    static let KinMigrationSucceeded = Notification.Name("KinMigrationSucceeded")
+}
+
+protocol BalanceDelegate: class {
+    func balanceDidUpdate(balance: UInt64)
+}

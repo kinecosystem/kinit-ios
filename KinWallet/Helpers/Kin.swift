@@ -9,20 +9,10 @@ import StellarErrors
 
 //swiftlint:disable force_try
 
-extension Notification.Name {
-    static let KinMigrationStarted = Notification.Name("KinMigrationStarted")
-    static let KinMigrationFailed = Notification.Name("KinMigrationFailed")
-    static let KinMigrationSucceeded = Notification.Name("KinMigrationSucceeded")
-}
-
 private let kinitAppId = "kit"
 private let userIdMigrationQueryItemName = "user_id"
 private let balanceUserDefaultsKey = "org.kinfoundation.kinwallet.currentBalance"
 private let accountStatusPerformedBackupKey = "org.kinfoundation.kinwallet.performedBackup"
-
-protocol BalanceDelegate: class {
-    func balanceDidUpdate(balance: UInt64)
-}
 
 class Kin: NSObject {
     static let shared = Kin()
@@ -32,8 +22,8 @@ class Kin: NSObject {
     private(set) var account: KinAccountProtocol
     let linkBag = LinkBag()
     private var onboardingPromise: Promise<OnboardingResult>?
-
     fileprivate var balanceDelegates = [WeakBox]()
+
     var publicAddress: String {
         return account.publicAddress
     }
@@ -47,9 +37,8 @@ class Kin: NSObject {
 
         let kin2Client = migrationManager.kinClient(version: .kinCore)
         let kin3Client = migrationManager.kinClient(version: .kinSDK)
-        let hasPhoneNumber = User.current?.phoneNumber != nil
 
-        if hasPhoneNumber,
+        if User.current?.phoneNumber != nil,
             let existingAccount = kin2Client.accounts.last,
             !migrationManager.isAccountMigrated(publicAddress: existingAccount.publicAddress) {
             client = kin2Client
@@ -98,7 +87,6 @@ class Kin: NSObject {
 extension Kin {
     func resetKeyStore() {
         Kin.setPerformedBackup(false)
-
         migrationManager.deleteKeystore()
         self.account = try! client.addAccount()
     }
