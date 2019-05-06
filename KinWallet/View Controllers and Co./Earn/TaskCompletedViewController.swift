@@ -131,7 +131,7 @@ final class TaskCompletedViewController: UIViewController {
 
         watch = try? Kin.shared.watch(cursor: nil)
         watch?.emitter
-            .filter { $0.memoText == memo }
+            .filter { $0.memoText == "1-kit-" + memo }
             .on(queue: DispatchQueue.main, next: { [weak self] paymentInfo in
                 guard let self = self else {
                     return
