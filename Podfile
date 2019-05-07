@@ -6,8 +6,8 @@ target 'KinWallet' do
 
   pod 'Firebase/Auth'
   pod 'libPhoneNumber-iOS'
-  pod 'KinMigrationModule', :git => 'https://github.com/kinecosystem/kin-migration-module-ios', :branch => 'fix-migrate-URL'
-  pod 'KinSDK', :git => 'https://github.com/kinecosystem/kin-sdk-ios', :branch => 'fix-appId-length'
+  pod 'KinMigrationModule', :git => 'https://github.com/kinecosystem/kin-migration-module-ios', :branch => 'kinnovation'
+  pod 'KinSDK'
   #pod 'MoveKin', :path => '/Users/natan/Documents/Kik/MoveKin'
 
   # Pods for KinWallet

@@ -303,7 +303,7 @@ extension Kin {
               completion: @escaping (Result<TransactionId, Error>) -> Void) {
         let senderAddress = account.publicAddress
         account.sendTransaction(to: address, kin: Decimal(amount), memo: memo, fee: 0) { txEnv in
-            let p = Promise<TransactionEnvelope>()
+            let p = Promise<TransactionEnvelope?>()
             guard let txBase64 = txEnv.asBase64String else {
                 return p.signal(TxSignatureError.encodingFailed)
             }
