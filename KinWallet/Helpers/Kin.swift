@@ -9,7 +9,6 @@ import StellarErrors
 
 //swiftlint:disable force_try
 
-private let kinitAppId = "kit"
 private let userIdMigrationQueryItemName = "user_id"
 private let balanceUserDefaultsKey = "org.kinfoundation.kinwallet.currentBalance"
 private let accountStatusPerformedBackupKey = "org.kinfoundation.kinwallet.performedBackup"
@@ -61,20 +60,12 @@ class Kin: NSObject {
     }
 
     private static func newMigrationManager(userId: String?) -> KinMigrationManager {
-        let kinNetwork: Network
-
-        #if DEBUG || RELEASE_STAGE
-        kinNetwork = .testNet
-        #else
-        kinNetwork = .mainNet
-        #endif
-
         let queryItems = userId.map { [URLQueryItem(name: userIdMigrationQueryItemName, value: $0)] }
 
-        let provider = try! ServiceProvider(network: kinNetwork,
+        let provider = try! ServiceProvider(network: KinEnvironment.network,
                                             migrateBaseURL: KinWebService.shared.baseURL.appendingPathComponent("user"),
                                             queryItems: queryItems)
-        let appId = try! AppId(kinitAppId)
+        let appId = try! AppId(KinEnvironment.kinitAppId)
         return KinMigrationManager(serviceProvider: provider, appId: appId)
     }
 

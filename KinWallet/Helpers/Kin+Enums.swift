@@ -35,7 +35,6 @@ enum ImportWalletResult {
     case migrationCheckFailed(Error)
 }
 
-
 extension Notification.Name {
     static let KinMigrationStarted = Notification.Name("KinMigrationStarted")
     static let KinMigrationFailed = Notification.Name("KinMigrationFailed")

@@ -7,13 +7,13 @@
 
 import UIKit
 import MobileCoreServices
-
-//swiftlint:disable force_cast
-//swiftlint:disable force_try
+import KinSDK
 
 class OneWalletActionViewController: UIViewController {
-//    let kinClient = KinEnvironment.kinClient()
     var incomingAddress: String?
+    var hostAppBundleId: String?
+    var hostAppName: String?
+    var promise: Promise<TransactionEnvelope>?
 
     @IBOutlet weak var label: UILabel! {
         didSet {
@@ -30,20 +30,28 @@ class OneWalletActionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        guard WalletLinker.isWalletAvailable() else {
+            //TODO: warn the wallet wasn't created and return error
+            return
+        }
+
         print("Extension activated")
-//        print("Extension's public address is \(kinClient.accounts.last?.publicAddress ?? "No address")")
 
         (extensionContext?.inputItems.first as? NSExtensionItem)?
             .attachments?
-            .first(where: { $0.hasItemConformingToTypeIdentifier(kUTTypeText as String) })?
-            .loadItem(forTypeIdentifier: kUTTypeText as String, options: nil, completionHandler: { result, error in
-                guard let address = result as? String else {
+            .first(where: { $0.hasItemConformingToTypeIdentifier(kUTTypePropertyList as String) })?
+            .loadItem(forTypeIdentifier: kUTTypePropertyList as String, options: nil, completionHandler: { result, error in
+                guard let dictionary = result as? [String: String] else {
+                    print(String(describing: result))
+                    print("loaded item is not a dictionary")
                     return
                 }
 
-                self.incomingAddress = address
+                self.incomingAddress = dictionary["address"]
+                self.hostAppBundleId = dictionary["bundleId"]
+                self.hostAppName = dictionary["appName"]
 
-                let text = "Incoming address is \(address)"
+                let text = "Incoming address is \(self.incomingAddress ?? "meh")"
                 DispatchQueue.main.async {
                     self.label.text = text
                     UIView.animate(withDuration: 0.3, animations: {
@@ -62,31 +70,35 @@ class OneWalletActionViewController: UIViewController {
     }
 
     @IBAction func connect(_ sender: Any) {
-//        guard
-//            let address = incomingAddress,
-//            let account = kinClient.accounts.last else {
-//                self.extensionContext!.completeRequest(returningItems: nil,
-//                                                       completionHandler: nil)
-//                return
-//        }
-//
-//        account.linkingTransaction(publicKey: address)
-//            .then { envelope in
-//                let encodedEnvelope = try! XDREncoder.encode(envelope).base64EncodedString() as NSSecureCoding?
-//                print(encodedEnvelope!)
-//
-//                let returnProvider = NSItemProvider(item: encodedEnvelope as NSSecureCoding?,
-//                                                    typeIdentifier: kUTTypeText as String)
-//                let returnItem = NSExtensionItem()
-//                returnItem.attachments = [returnProvider]
-//                self.extensionContext!.completeRequest(returningItems: [returnItem],
-//                                                       completionHandler: nil)
-//            }.error { error in
-//                self.extensionContext!.completeRequest(returningItems: nil,
-//                                                       completionHandler: nil)
-//        }
+        guard
+            let address = incomingAddress,
+            let bundleId = hostAppBundleId else {
+            return
+        }
+
+        promise = WalletLinker.createLinkingAccountsTransaction(to: address, appBundleIdentifier: bundleId)
+        promise!
+            .then { [weak self] envelope in
+                do {
+                    let encodedEnvelope = try XDREncoder.encode(envelope).base64EncodedString()
+                    let returnProvider = NSItemProvider(item: encodedEnvelope as NSSecureCoding?,
+                                                        typeIdentifier: kUTTypeText as String)
+                    let returnItem = NSExtensionItem()
+                    returnItem.attachments = [returnProvider]
+                    self?.extensionContext!.completeRequest(returningItems: [returnItem],
+                                                           completionHandler: nil)
+                } catch {
+                    self?.linkingFailed(error: error)
+                }
+            }
+            .error { [weak self] error in
+                self?.linkingFailed(error: error)
+        }
+    }
+
+    func linkingFailed(error: Error) {
+        //TODO: handle error
+        self.extensionContext!.completeRequest(returningItems: nil,
+                                               completionHandler: nil)
     }
 }
-
-//swiftlint:enable force_cast
-//swiftlint:enable force_try

@@ -66,7 +66,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   KinMigrationModule:
-    :commit: f9f96da84f281276b942533aa3a92b86297d0d77
+    :commit: 047387bfc4930742e02bcade27f0b76e86d70b5d
     :git: https://github.com/kinecosystem/kin-migration-module-ios
   KinSDK:
     :commit: bbbdc4e39d8214c2b8af7e234e3b1d8268622c36
