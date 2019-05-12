@@ -9,6 +9,8 @@ import UIKit
 import MobileCoreServices
 import KinSDK
 
+private let walletLinkingTypeIdentifier = "org.kinecosystem.wallet-linking"
+
 class OneWalletActionViewController: UIViewController {
     var incomingAddress: String?
     var hostAppBundleId: String?
@@ -39,8 +41,8 @@ class OneWalletActionViewController: UIViewController {
 
         (extensionContext?.inputItems.first as? NSExtensionItem)?
             .attachments?
-            .first(where: { $0.hasItemConformingToTypeIdentifier(kUTTypePropertyList as String) })?
-            .loadItem(forTypeIdentifier: kUTTypePropertyList as String, options: nil, completionHandler: { result, error in
+            .first(where: { $0.hasItemConformingToTypeIdentifier(walletLinkingTypeIdentifier) })?
+            .loadItem(forTypeIdentifier: walletLinkingTypeIdentifier, options: nil, completionHandler: { result, error in
                 guard let dictionary = result as? [String: String] else {
                     print(String(describing: result))
                     print("loaded item is not a dictionary")

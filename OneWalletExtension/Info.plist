@@ -25,7 +25,15 @@
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>NSExtensionActivationRule</key>
-			<string>TRUEPREDICATE</string>
+            <string>SUBQUERY (
+                extensionItems,
+                $extensionItem,
+                SUBQUERY (
+                $extensionItem.attachments,
+                $attachment,
+                (ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "org.kinecosystem.wallet-linking")
+                ).@count == 1
+                ).@count == 1</string>
 			<key>NSExtensionServiceAllowsFinderPreviewItem</key>
 			<true/>
 			<key>NSExtensionServiceAllowsTouchBarItem</key>
