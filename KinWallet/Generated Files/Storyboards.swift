@@ -77,8 +77,6 @@ internal enum StoryboardScene {
 
     internal static let accountSourceViewController = SceneType<AccountSourceViewController>(storyboard: Onboard.self, identifier: "AccountSourceViewController")
 
-    internal static let creatingWalletViewController = SceneType<CreatingWalletViewController>(storyboard: Onboard.self, identifier: "CreatingWalletViewController")
-
     internal static let phoneConfirmationViewController = SceneType<PhoneConfirmationViewController>(storyboard: Onboard.self, identifier: "PhoneConfirmationViewController")
 
     internal static let phoneVerificationRequestViewController = SceneType<PhoneVerificationRequestViewController>(storyboard: Onboard.self, identifier: "PhoneVerificationRequestViewController")
@@ -87,20 +85,18 @@ internal enum StoryboardScene {
 
     internal static let restoreBackupQuestionsViewController = SceneType<RestoreBackupQuestionsViewController>(storyboard: Onboard.self, identifier: "RestoreBackupQuestionsViewController")
 
+    internal static let walletLoadingViewController = SceneType<WalletLoadingViewController>(storyboard: Onboard.self, identifier: "WalletLoadingViewController")
+
     internal static let welcomeViewController = SceneType<WelcomeViewController>(storyboard: Onboard.self, identifier: "WelcomeViewController")
   }
   internal enum Spend: StoryboardType {
     internal static let storyboardName = "Spend"
-
-    internal static let kinSentViewController = SceneType<KinSentViewController>(storyboard: Spend.self, identifier: "KinSentViewController")
 
     internal static let offerDetailsNavigationController = SceneType<UIKit.UINavigationController>(storyboard: Spend.self, identifier: "OfferDetailsNavigationController")
 
     internal static let offerDetailsViewController = SceneType<OfferDetailsViewController>(storyboard: Spend.self, identifier: "OfferDetailsViewController")
 
     internal static let offerWallViewController = SceneType<OfferWallViewController>(storyboard: Spend.self, identifier: "OfferWallViewController")
-
-    internal static let sendKinAmountInputViewController = SceneType<SendKinAmountInputViewController>(storyboard: Spend.self, identifier: "SendKinAmountInputViewController")
 
     internal static let standardOfferActionViewController = SceneType<StandardOfferActionViewController>(storyboard: Spend.self, identifier: "StandardOfferActionViewController")
   }

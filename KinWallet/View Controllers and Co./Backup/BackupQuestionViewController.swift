@@ -209,7 +209,10 @@ class BackupQuestionViewController: BackupTextInputViewController {
             .textOrEmpty
             .trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 
-        chosenHints = chosenHints ?? []
+        if step == BackupStep.firstQuestion {
+            chosenHints = []
+        }
+
         chosenHints!.append((thisHintId, answer))
 
         if step == .firstQuestion {

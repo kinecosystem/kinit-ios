@@ -60,11 +60,11 @@ class KinitLoader {
     }
 
     func loadItems<A, B>(request: WebRequest<A, B>, observable: Observable<FetchResult<B>>) where B: Collection {
-        request.withCompletion { result, error in
-            if let result = result, result.isNotEmpty {
-                observable.next(.some(result))
+        request.withCompletion { result in
+            if let collection = result.value, collection.isNotEmpty {
+                observable.next(.some(collection))
             } else {
-                observable.next(.none(error))
+                observable.next(.none(result.error))
             }
         }.load(with: KinWebService.shared)
     }
@@ -95,8 +95,8 @@ class KinitLoader {
         }
 
         WebRequests.Backup.availableHints()
-            .withCompletion { list, _ in
-                guard let list = list, list.hints.count > 0 else {
+            .withCompletion { result in
+                guard let list = result.value, list.hints.isNotEmpty else {
                     return
                 }
 

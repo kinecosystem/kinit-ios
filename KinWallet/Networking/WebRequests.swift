@@ -96,41 +96,35 @@ extension WebRequests {
 // MARK: Kin Onboard
 extension WebRequests {
     static func createAccount(with publicAddress: String) -> WebRequest<SimpleStatusResponse, Success> {
-        return WebRequest<SimpleStatusResponse, Success>(POST: "/user/onboard",
-                                                         body: ["public_address": publicAddress],
-                                                         transform: WebResourceHandlers.isJSONStatusOk)
+        return .init(POST: "/user/onboard",
+                     body: ["public_address": publicAddress],
+                     transform: WebResourceHandlers.isJSONStatusOk)
     }
 }
 
 // MARK: Earn
 extension WebRequests {
     static func taskCategories() -> WebRequest<TaskCategoriesResponse, TaskCategoriesResponse> {
-        return WebRequest<TaskCategoriesResponse, TaskCategoriesResponse>(GET: "/user/categories",
-                                                                          transform: WebResourceHandlers.doNothing)
+        return .init(GET: "/user/categories", transform: WebResourceHandlers.doNothing)
     }
 
     static func tasks(for categoryId: String) -> WebRequest<CategoryTasksResponse, CategoryTasksResponse> {
-        return WebRequest<CategoryTasksResponse, CategoryTasksResponse>(GET: "/user/category/\(categoryId)/tasks",
-            transform: WebResourceHandlers.doNothing)
+        return .init(GET: "/user/category/\(categoryId)/tasks", transform: WebResourceHandlers.doNothing)
     }
 
     static func nextTasks() -> WebRequest<TasksByCategoryResponse, [String: [Task]]> {
-        return WebRequest<TasksByCategoryResponse, [String: [Task]]>(GET: "/user/tasks",
-                                                 transform: { $0?.tasks })
+        return .init(GET: "/user/tasks", transform: { $0?.tasks })
     }
 
     static func submitTaskResults(_ results: TaskResults) -> WebRequest<SimpleStatusResponse, Success> {
-        return WebRequest<SimpleStatusResponse, Success>(POST: "/user/task/results",
-                                                      body: results,
-                                                      transform: WebResourceHandlers.isJSONStatusOk)
+        return .init(POST: "/user/task/results", body: results, transform: WebResourceHandlers.isJSONStatusOk)
     }
 }
 
 // MARK: Spend
 extension WebRequests {
     static func offers() -> WebRequest<OffersResponse, [Offer]> {
-        return WebRequest<OffersResponse, [Offer]>(GET: "/user/offers",
-                                                   transform: { $0?.offers })
+        return .init(GET: "/user/offers", transform: { $0?.offers })
     }
 
     static func bookOffer(_ offer: Offer) -> WebRequest<BookOfferResponse, BookOfferResult> {
@@ -145,9 +139,7 @@ extension WebRequests {
             return .success(orderId)
         }
 
-        return WebRequest<BookOfferResponse, BookOfferResult>(POST: "/offer/book",
-                                                     body: OfferInfo(identifier: offer.identifier),
-                                                     transform: transform)
+        return .init(POST: "/offer/book", body: OfferInfo(identifier: offer.identifier), transform: transform)
     }
 
     static func redeemOffer(with paymentReceipt: PaymentReceipt) -> WebRequest<RedeemResponse, [RedeemGood]> {
@@ -161,9 +153,7 @@ extension WebRequests {
             return response.goods
         }
 
-        return WebRequest<RedeemResponse, [RedeemGood]>(POST: "/offer/redeem",
-                                                        body: paymentReceipt,
-                                                        transform: transform)
+        return .init(POST: "/offer/redeem", body: paymentReceipt, transform: transform)
     }
 }
 
@@ -181,8 +171,7 @@ extension WebRequests {
             return response.transactions
         }
 
-        return WebRequest<TransactionHistoryResponse, [KinitTransaction]>(GET: "/user/transactions",
-                                                                          transform: transform)
+        return .init(GET: "/user/transactions", transform: transform)
     }
 
     static func redeemedItems() -> WebRequest<RedeemedItemsResponse, [RedeemTransaction]> {
@@ -196,8 +185,7 @@ extension WebRequests {
             return response.items
         }
 
-        return WebRequest<RedeemedItemsResponse, [RedeemTransaction]>(GET: "/user/redeemed",
-                                                                          transform: transform)
+        return .init(GET: "/user/redeemed", transform: transform)
     }
 }
 
@@ -206,8 +194,7 @@ extension WebRequests {
 extension WebRequests {
     struct Blacklists {
         static func areaCodes() -> WebRequest<BlacklistedAreaCodes, [String]> {
-            return WebRequest<BlacklistedAreaCodes, [String]>(GET: "/blacklist/areacodes",
-                                                              transform: { $0?.areaCodes })
+            return .init(GET: "/blacklist/areacodes", transform: { $0?.areaCodes })
         }
     }
 }
@@ -215,30 +202,23 @@ extension WebRequests {
 // MARK: Backup
 
 extension WebRequests {
-    typealias BackupHintListRequest = WebRequest<AvailableBackupHintList, AvailableBackupHintList>
-
     struct Backup {
-        static func availableHints() -> BackupHintListRequest {
-            return BackupHintListRequest(GET: "/backup/hints", transform: WebResourceHandlers.doNothing)
+        static func availableHints() -> WebRequest<AvailableBackupHintList, AvailableBackupHintList> {
+            return .init(GET: "/backup/hints", transform: WebResourceHandlers.doNothing)
         }
 
         static func submitHints(_ hints: [Int]) -> WebRequest<EmptyResponse, EmptyResponse> {
             let hintsToSubmit = ChosenBackupHints(hints: hints)
-            return WebRequest<EmptyResponse, EmptyResponse>(POST: "/user/backup/hints",
-                                                            body: hintsToSubmit,
-                                                            transform: WebResourceHandlers.doNothing)
+            return .init(POST: "/user/backup/hints", body: hintsToSubmit, transform: WebResourceHandlers.doNothing)
         }
 
         static func submittedQuestionsIds() -> WebRequest<ChosenBackupHints, [Int]> {
-            return WebRequest<ChosenBackupHints, [Int]>(GET: "/user/backup/hints",
-                                                        transform: { $0?.hints })
+            return .init(GET: "/user/backup/hints", transform: { $0?.hints })
         }
 
         static func sendEmail(to address: String, encryptedKey: String) -> WebRequest<SimpleStatusResponse, Success> {
             let body = ["to_address": address, "enc_key": encryptedKey]
-            return WebRequest<SimpleStatusResponse, Success>(POST: "/user/email_backup",
-                                                             body: body,
-                                                             transform: WebResourceHandlers.isJSONStatusOk)
+            return .init(POST: "/user/email_backup", body: body, transform: WebResourceHandlers.isJSONStatusOk)
         }
 
         static func restoreUserId(with address: String) -> WebRequest<RestoreUserIdResponse, String> {
@@ -246,9 +226,7 @@ extension WebRequests {
                 return $0?.userId
             }
 
-            return WebRequest<RestoreUserIdResponse, String>(POST: "/user/restore",
-                                                             body: ["address": address],
-                                                             transform: transform)
+            return .init(POST: "/user/restore", body: ["address": address], transform: transform)
         }
     }
 }
@@ -273,9 +251,46 @@ extension WebRequests {
                 return response.transaction
             }
 
-            return WebRequest<TransactionReportStatusResponse, KinitTransaction>(POST: "/user/transaction/app2app",
-                                                                                 body: body,
-                                                                                 transform: transform)
+            return .init(POST: "/user/transaction/app2app", body: body, transform: transform)
         }
+    }
+}
+
+struct SignableTransaction: Codable {
+    let id: String
+    let senderAddress: String
+    let recipientAddress: String
+    let amount: Int
+    let transaction: String
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case senderAddress = "sender_address"
+        case recipientAddress = "recipient_address"
+        case amount
+        case transaction
+    }
+}
+
+struct SignableTransactionResponse: Codable, StatusResponse {
+    let status: String
+    let signedTransaction: String
+
+    enum CodingKeys: String, CodingKey {
+        case status
+        case signedTransaction = "tx"
+    }
+}
+
+extension WebRequests {
+    static func addSignature(to transaction: SignableTransaction) -> WebRequest<SignableTransactionResponse, String> {
+        return .init(POST: "/user/add-signature", body: transaction, transform: {
+            guard let response = $0,
+                WebResourceHandlers.isJSONStatusOk(response: response).boolValue else {
+                    return nil
+            }
+
+            return response.signedTransaction
+        })
     }
 }

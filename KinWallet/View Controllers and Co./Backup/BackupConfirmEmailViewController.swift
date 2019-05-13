@@ -108,7 +108,7 @@ class BackupConfirmEmailViewController: UIViewController {
         confirmAccessoryView.isLoading = true
 
         WebRequests.Backup.submitHints(chosenHints)
-            .withCompletion { [weak self] _, error in
+            .withCompletion { [weak self] result in
                 guard let self = self else {
                     return
                 }
@@ -116,7 +116,7 @@ class BackupConfirmEmailViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.confirmAccessoryView.isLoading = false
 
-                    guard error == nil else {
+                    guard result.error == nil else {
                         let alertController = UIAlertController(title: L10n.generalServerErrorTitle,
                                                                 message: L10n.generalServerErrorMessage,
                                                                 preferredStyle: .alert)

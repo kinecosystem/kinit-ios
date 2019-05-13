@@ -8,7 +8,7 @@
 import UIKit
 
 extension QuestionViewController {
-    func celebration(forSelecting result: Result) -> AnswerCelebration {
+    func celebration(forSelecting result: TaskResult) -> AnswerCelebration {
         if let quizData = question.quizData {
             return .quiz(correctAnswerId: quizData.correctAnswerId)
         }
@@ -180,13 +180,13 @@ private class QuizConfettiView: UIView {
         Asset.quizConfettiRectangle.image
         ]
 
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
         commonInit()
     }
 
-    public override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
 
         commonInit()

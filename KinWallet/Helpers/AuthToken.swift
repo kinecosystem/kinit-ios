@@ -6,12 +6,12 @@
 //
 
 import Foundation
-import KinCoreSDK
+import KinSDK
 
 private let authTokenKeychainKey = "AuthToken"
 
 class AuthToken {
-    static private var _current: String?
+    private static var _current: String?
     static let keychain = KeychainSwift(keyPrefix: "org.kinecosystem.kinit")
 
     static func prepare() {

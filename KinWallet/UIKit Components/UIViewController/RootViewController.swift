@@ -111,7 +111,7 @@ class RootViewController: UIViewController {
         noticeViewController.notice = Notice(content: noticeContent,
                                              buttonConfiguration: buttonConfiguration,
                                              displayType: .imageFirst)
-        present(noticeViewController, animated: true)
+        presentAnimated(noticeViewController)
 
         errorNoticeViewController = noticeViewController
 
@@ -144,15 +144,17 @@ class RootViewController: UIViewController {
 
         KLogVerbose("User \(currentUser.userId) with device token \(currentUser.deviceToken ?? "No token")")
 
-        if currentUser.phoneNumber != nil {
-            if let storedHintIds: SelectedHintIds = SimpleDatastore.loadObject(selectedHintIdsKey),
-                storedHintIds.hints.isNotEmpty {
-                showAccountSourceSelection()
+        if currentUser.publicAddress == nil {
+            if currentUser.phoneNumber != nil {
+                if let storedHintIds: SelectedHintIds = SimpleDatastore.loadObject(selectedHintIdsKey),
+                    storedHintIds.hints.isNotEmpty {
+                    showAccountSourceSelection()
+                } else if currentUser.publicAddress == nil {
+                    performOnboarding()
+                }
             } else {
-                performOnboarding()
+                showWelcomeViewController()
             }
-        } else {
-            showWelcomeViewController()
         }
 
         #if !TESTS
@@ -164,8 +166,8 @@ class RootViewController: UIViewController {
         Crashlytics.sharedInstance().setUserIdentifier(currentUser.userId)
 
         UIApplication.shared.registerForRemoteNotifications()
-        WebRequests.appLaunch().withCompletion { config, _ in
-            KLogVerbose("App Launch: \(config != nil ? String(describing: config!) : "No config")")
+        WebRequests.appLaunch().withCompletion { result in
+            KLogVerbose("App Launch: \(result.value != nil ? String(describing: result.value!) : "No config")")
             }.load(with: KinWebService.shared)
 
         DataLoaders.loadAllData()
@@ -189,7 +191,7 @@ class RootViewController: UIViewController {
             Kin.shared.resetKeyStore()
         }
 
-        if Kin.shared.accountStatus == .activated {
+        if User.current?.publicAddress != nil {
             DispatchQueue.main.asyncAfter(deadline: .now() + taskFetchTimeout) {
                 self.dismissSplashIfNeeded()
             }
@@ -199,12 +201,13 @@ class RootViewController: UIViewController {
     private func registerUser() {
         let user = User.createNew()
         WebRequests.userRegistrationRequest(for: user)
-            .withCompletion { [weak self] config, error in
+            .withCompletion { [weak self] result in
+                let config = result.value
                 KLogVerbose("User registration: \(config != nil ? String(describing: config!) : "No config")")
                 guard config != nil else {
-                    let reason = error?.localizedDescription ?? "Unknown User Registration Error"
+                    let reason = result.error?.localizedDescription ?? "Unknown User Registration Error"
 
-                    self?.logRegistrationFailed(error: error, reason: reason)
+                    self?.logRegistrationFailed(error: result.error, reason: reason)
                     DispatchQueue.main.async {
                         self?.showErrorNotice(error: .user, failureReason: reason)
                     }
@@ -240,27 +243,24 @@ class RootViewController: UIViewController {
     }
 
     func startCreatingWallet() {
-        let creatingWalletViewController = StoryboardScene.Onboard.creatingWalletViewController.instantiate()
+        let creatingWalletViewController = CreatingWalletViewController()
         splashScreenNavigationController?.pushViewController(creatingWalletViewController, animated: true)
 
         performOnboarding()
     }
 
     private func performOnboarding() {
-        let alreadyActivated = Kin.shared.accountStatus == .activated
-        let thisAttempt = UUID().uuidString
-        latestWalletCreationAttempt = thisAttempt
+        let attemptId = UUID().uuidString
+        latestWalletCreationAttempt = attemptId
 
         Kin.shared.performOnboardingIfNeeded().then { [weak self] in
-            self?.performedOnboarding($0, previouslyActivated: alreadyActivated)
+            self?.performedOnboarding($0)
         }
 
-        if !alreadyActivated {
-            startWalletCreationTimeout(with: thisAttempt)
-        }
+        startWalletCreationTimeout(with: attemptId)
     }
 
-    func performedOnboarding(_ result: OnboardingResult, previouslyActivated: Bool) {
+    func performedOnboarding(_ result: OnboardingResult) {
         if case let OnboardingResult.failure(reason) = result {
             DispatchQueue.main.async {
                 self.showErrorNotice(error: .wallet, failureReason: reason)
@@ -268,19 +268,17 @@ class RootViewController: UIViewController {
             return
         }
 
-        if !previouslyActivated {
-            guard var user = User.current else {
-                return
-            }
+        guard var user = User.current else {
+            return
+        }
 
-            user.publicAddress = Kin.shared.publicAddress
-            user.save()
+        user.publicAddress = Kin.shared.publicAddress
+        user.save()
 
-            DispatchQueue.main.async {
-                let accountReady = StoryboardScene.Onboard.accountReadyViewController.instantiate()
-                accountReady.walletSource = .new
-                self.splashScreenNavigationController?.pushViewController(accountReady, animated: true)
-            }
+        DispatchQueue.main.async {
+            let accountReady = StoryboardScene.Onboard.accountReadyViewController.instantiate()
+            accountReady.walletSource = .new
+            self.splashScreenNavigationController?.pushViewController(accountReady, animated: true)
         }
     }
 

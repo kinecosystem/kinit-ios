@@ -5,7 +5,7 @@
 
 import UIKit
 import Lottie
-import KinCoreSDK
+import KinMigrationModule
 import KinUtil
 import KinitDesignables
 
@@ -16,7 +16,7 @@ extension Notification.Name {
 final class TaskCompletedViewController: UIViewController {
     var task: Task!
     var results: TaskResults?
-    var watch: PaymentWatch?
+    var watch: PaymentWatchProtocol?
     var notificationObserver: NSObjectProtocol?
     let linkBag = LinkBag()
     var failedToSubmitResults = false
@@ -81,14 +81,14 @@ final class TaskCompletedViewController: UIViewController {
 
         let tResults = results.applyingAddress(Kin.shared.publicAddress)
         WebRequests.submitTaskResults(tResults)
-            .withCompletion { [weak self] success, error in
+            .withCompletion { [weak self] result in
                 guard let self = self else {
                     return
                 }
 
-                guard success.boolValue else {
+                guard result.value.boolValue else {
                     self.failedToSubmitResults = true
-                    KLogError(String(describing: error?.localizedDescription))
+                    KLogError(String(describing: result.error?.localizedDescription))
                     DispatchQueue.main.async {
                         self.errorSubmitingResults()
                     }
@@ -131,7 +131,7 @@ final class TaskCompletedViewController: UIViewController {
 
         watch = try? Kin.shared.watch(cursor: nil)
         watch?.emitter
-            .filter { $0.memoText == memo }
+            .filter { $0.memoText == "1-kit-" + memo }
             .on(queue: DispatchQueue.main, next: { [weak self] paymentInfo in
                 guard let self = self else {
                     return
@@ -139,7 +139,7 @@ final class TaskCompletedViewController: UIViewController {
 
                 Kin.shared.refreshBalance()
 
-                let paymentAmount = (paymentInfo.amount as NSDecimalNumber).uint64Value / 10_000_000
+                let paymentAmount = (paymentInfo.amount as NSDecimalNumber).uint64Value
                 self.transactionSucceeded(with: paymentAmount, txId: paymentInfo.hash)
             }).add(to: linkBag)
 

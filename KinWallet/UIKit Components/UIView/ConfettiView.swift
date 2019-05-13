@@ -22,13 +22,13 @@ class ConfettiView: UIView {
                                         Asset.confettiTriangle]
     var intensity = 0.5
 
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
         commonInit()
     }
 
-    public override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
 
         commonInit()

@@ -5,17 +5,17 @@
 
 import Foundation
 
-class WebRequest<Result: Codable, Transform> {
-    typealias WebRequestCompletion = ((Transform?, Error?) -> Void)
+class WebRequest<ResponseType: Codable, TransformedType> {
+    typealias WebRequestCompletion = ((Result<TransformedType, Error>) -> Void)
 
     let path: String
     let method: HTTPMethod
-    let transform: (Result?) -> Transform?
+    let transform: (ResponseType?) -> TransformedType?
     var completion: WebRequestCompletion?
 
     init(GET path: String,
          params: [String: String]? = nil,
-         transform: @escaping (Result?) -> Transform?,
+         transform: @escaping (ResponseType?) -> TransformedType?,
          completion: WebRequestCompletion? = nil) {
         self.path = path
         self.method = .get(params)
@@ -25,7 +25,7 @@ class WebRequest<Result: Codable, Transform> {
 
     init<B>(POST path: String,
             body: B,
-            transform: @escaping (Result?) -> Transform?,
+            transform: @escaping (ResponseType?) -> TransformedType?,
             completion: WebRequestCompletion? = nil) where B: Codable {
         self.path = path
         self.method = .post(try? JSONEncoder().encode(body))

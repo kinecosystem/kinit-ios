@@ -26,7 +26,7 @@
 		828CB4012056E88A007C679C /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A12DEB2056B841008841F2 /* Configuration.swift */; };
 		828CB40E2056E8F5007C679C /* SurveyDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E6B615203C29B30080C2FC /* SurveyDoneViewController.swift */; };
 		828CB40F2056E8F5007C679C /* TransferringKinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E6B618203C2A0B0080C2FC /* TransferringKinViewController.swift */; };
-		828CB4122056E913007C679C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138520187CE90066367C /* Result.swift */; };
+		828CB4122056E913007C679C /* TaskResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138520187CE90066367C /* TaskResult.swift */; };
 		828CB4132056E913007C679C /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138C20187DEB0066367C /* Author.swift */; };
 		828CB4142056E913007C679C /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138320187CE90066367C /* Question.swift */; };
 		828CB4152056E913007C679C /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138420187CE90066367C /* Task.swift */; };
@@ -118,6 +118,7 @@
 		9114743E203F1A5000C16279 /* WeakBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114743C203F17ED00C16279 /* WeakBox.swift */; };
 		91147441203F1D4100C16279 /* BalanceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91147440203F1D4100C16279 /* BalanceLabel.swift */; };
 		91147442203F1D4100C16279 /* BalanceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91147440203F1D4100C16279 /* BalanceLabel.swift */; };
+		911AAAC02265FCB400A18295 /* XDRCodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911AAABF2265FCB400A18295 /* XDRCodable+Extensions.swift */; };
 		9120CA7B2060118C00AFC597 /* upload-dsym.sh in Resources */ = {isa = PBXBuildFile; fileRef = 9120CA782060118B00AFC597 /* upload-dsym.sh */; };
 		9120CA7C2060118C00AFC597 /* libTestFairy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9120CA792060118B00AFC597 /* libTestFairy.a */; };
 		9120CA7E206011D200AFC597 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9120CA7D206011D200AFC597 /* AVFoundation.framework */; };
@@ -125,6 +126,7 @@
 		9120CA82206011DA00AFC597 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9120CA80206011DA00AFC597 /* CoreMedia.framework */; };
 		9120CA84206011E000AFC597 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9120CA83206011E000AFC597 /* SystemConfiguration.framework */; };
 		9120CA86206011E600AFC597 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9120CA85206011E600AFC597 /* OpenGLES.framework */; };
+		912B9A6022672BA80018FA50 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912B9A5F22672BA80018FA50 /* Result.swift */; };
 		91311C4D204FDB4400618240 /* Optional+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91311C4C204FDB4400618240 /* Optional+KinWallet.swift */; };
 		91311C53204FDBD500618240 /* Optional+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91311C4C204FDB4400618240 /* Optional+KinWallet.swift */; };
 		9131A0BB212C055F000203DC /* RestoreBackupQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9131A0BA212C055F000203DC /* RestoreBackupQuestionsViewController.swift */; };
@@ -132,9 +134,6 @@
 		9131A0BD212C055F000203DC /* RestoreBackupQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9131A0BA212C055F000203DC /* RestoreBackupQuestionsViewController.swift */; };
 		9131A0C5212C084A000203DC /* AccountSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A427572129AF710078B589 /* AccountSourceViewController.swift */; };
 		9131A0C6212C084B000203DC /* AccountSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A427572129AF710078B589 /* AccountSourceViewController.swift */; };
-		913596B121DA67E300578718 /* AppDiscoveryComingSoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913596B021DA67E300578718 /* AppDiscoveryComingSoonViewController.swift */; };
-		913596B221DA67E300578718 /* AppDiscoveryComingSoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913596B021DA67E300578718 /* AppDiscoveryComingSoonViewController.swift */; };
-		913596B321DA67E300578718 /* AppDiscoveryComingSoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913596B021DA67E300578718 /* AppDiscoveryComingSoonViewController.swift */; };
 		91379A45211744D1002D3EF5 /* BackupIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91379A44211744D1002D3EF5 /* BackupIntroViewController.swift */; };
 		91379A4821174AE1002D3EF5 /* Backup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91379A4621174AE1002D3EF5 /* Backup.storyboard */; };
 		9138BBE1204EE21E00450C97 /* OfferDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9138BBE0204EE21E00450C97 /* OfferDetailsViewController.swift */; };
@@ -149,9 +148,6 @@
 		913C9C4021CFCFD400B855BC /* SpendKinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C3F21CFCFD400B855BC /* SpendKinViewController.swift */; };
 		913C9C4121CFCFD400B855BC /* SpendKinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C3F21CFCFD400B855BC /* SpendKinViewController.swift */; };
 		913C9C4221CFCFD400B855BC /* SpendKinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C3F21CFCFD400B855BC /* SpendKinViewController.swift */; };
-		913C9C4421D0DAC500B855BC /* AppDiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C4321D0DAC500B855BC /* AppDiscoveryViewController.swift */; };
-		913C9C4521D0DAC500B855BC /* AppDiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C4321D0DAC500B855BC /* AppDiscoveryViewController.swift */; };
-		913C9C4621D0DAC500B855BC /* AppDiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C4321D0DAC500B855BC /* AppDiscoveryViewController.swift */; };
 		913C9C4D21D25F9500B855BC /* EcosystemIntroTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C4C21D25F9500B855BC /* EcosystemIntroTableViewCell.swift */; };
 		913C9C4E21D25F9500B855BC /* EcosystemIntroTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C4C21D25F9500B855BC /* EcosystemIntroTableViewCell.swift */; };
 		913C9C4F21D25F9500B855BC /* EcosystemIntroTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C4C21D25F9500B855BC /* EcosystemIntroTableViewCell.swift */; };
@@ -164,9 +160,6 @@
 		913C9C5D21D2719500B855BC /* AppCardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 913C9C5C21D2719500B855BC /* AppCardCollectionViewCell.xib */; };
 		913C9C5E21D2719500B855BC /* AppCardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 913C9C5C21D2719500B855BC /* AppCardCollectionViewCell.xib */; };
 		913C9C5F21D2719500B855BC /* AppCardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 913C9C5C21D2719500B855BC /* AppCardCollectionViewCell.xib */; };
-		913C9C6521D37A8500B855BC /* AppPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C6421D37A8500B855BC /* AppPageViewController.swift */; };
-		913C9C6621D37A8500B855BC /* AppPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C6421D37A8500B855BC /* AppPageViewController.swift */; };
-		913C9C6721D37A8500B855BC /* AppPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C6421D37A8500B855BC /* AppPageViewController.swift */; };
 		913C9C6A21D3879D00B855BC /* AppBasicInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C6821D3879D00B855BC /* AppBasicInfoTableViewCell.swift */; };
 		913C9C6B21D3879D00B855BC /* AppBasicInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C6821D3879D00B855BC /* AppBasicInfoTableViewCell.swift */; };
 		913C9C6C21D3879D00B855BC /* AppBasicInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C9C6821D3879D00B855BC /* AppBasicInfoTableViewCell.swift */; };
@@ -208,8 +201,8 @@
 		9140138720187CE90066367C /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138320187CE90066367C /* Question.swift */; };
 		9140138820187CE90066367C /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138420187CE90066367C /* Task.swift */; };
 		9140138920187CE90066367C /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138420187CE90066367C /* Task.swift */; };
-		9140138A20187CE90066367C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138520187CE90066367C /* Result.swift */; };
-		9140138B20187CE90066367C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138520187CE90066367C /* Result.swift */; };
+		9140138A20187CE90066367C /* TaskResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138520187CE90066367C /* TaskResult.swift */; };
+		9140138B20187CE90066367C /* TaskResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138520187CE90066367C /* TaskResult.swift */; };
 		9140138D20187DEB0066367C /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138C20187DEB0066367C /* Author.swift */; };
 		9140138E20187DEB0066367C /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140138C20187DEB0066367C /* Author.swift */; };
 		9140139020187E140066367C /* SampleTask.json in Resources */ = {isa = PBXBuildFile; fileRef = 9140138F20187E140066367C /* SampleTask.json */; };
@@ -251,8 +244,6 @@
 		9149C4CE2173407B009DFFE9 /* EarnHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9149C4CD2173407B009DFFE9 /* EarnHomeViewController.swift */; };
 		9149C4CF2173407B009DFFE9 /* EarnHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9149C4CD2173407B009DFFE9 /* EarnHomeViewController.swift */; };
 		9149C4D02173407B009DFFE9 /* EarnHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9149C4CD2173407B009DFFE9 /* EarnHomeViewController.swift */; };
-		9152E5E2212D48D400802040 /* KinCoreSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9152E5DB212D489800802040 /* KinCoreSDK.framework */; };
-		9152E5E3212D48D400802040 /* KinCoreSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9152E5DB212D489800802040 /* KinCoreSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9152E5E9212D505300802040 /* RestoreBackupCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152E5E8212D505300802040 /* RestoreBackupCells.swift */; };
 		9152E5EA212D505300802040 /* RestoreBackupCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152E5E8212D505300802040 /* RestoreBackupCells.swift */; };
 		9152E5EB212D505300802040 /* RestoreBackupCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152E5E8212D505300802040 /* RestoreBackupCells.swift */; };
@@ -281,8 +272,6 @@
 		9159956F21356A0F00E4E840 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159956C21356A0F00E4E840 /* AuthToken.swift */; };
 		915995962136BC0200E4E840 /* BackupConfirmEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910872BE21218E5F0095FD45 /* BackupConfirmEmailViewController.swift */; };
 		9159959E2136BC0300E4E840 /* BackupConfirmEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910872BE21218E5F0095FD45 /* BackupConfirmEmailViewController.swift */; };
-		915E5A18221D6E44004CF9EF /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 915E5A17221D6E44004CF9EF /* Sodium.framework */; };
-		915E5A19221D6E44004CF9EF /* Sodium.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 915E5A17221D6E44004CF9EF /* Sodium.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		915F495A20430125005C09B3 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 915F494D20430125005C09B3 /* Roboto-Medium.ttf */; };
 		915F495B20430125005C09B3 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 915F494E20430125005C09B3 /* Roboto-Light.ttf */; };
 		915F495C20430125005C09B3 /* KinK.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 915F494F20430125005C09B3 /* KinK.ttf */; };
@@ -329,6 +318,7 @@
 		9170CD9621343121009986A5 /* BackupNagCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170CD9521343121009986A5 /* BackupNagCounter.swift */; };
 		9170CD9721343121009986A5 /* BackupNagCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170CD9521343121009986A5 /* BackupNagCounter.swift */; };
 		9170CD9821343121009986A5 /* BackupNagCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170CD9521343121009986A5 /* BackupNagCounter.swift */; };
+		917933A82279880E006F3E5A /* Kin+Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917933A72279880E006F3E5A /* Kin+Enums.swift */; };
 		91796BC72027261F00F8C6A0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91796BC62027261F00F8C6A0 /* User.swift */; };
 		91796BC92027276000F8C6A0 /* UIDevice+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91796BC82027276000F8C6A0 /* UIDevice+KinWallet.swift */; };
 		91796BCA2027276000F8C6A0 /* UIDevice+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91796BC82027276000F8C6A0 /* UIDevice+KinWallet.swift */; };
@@ -367,29 +357,16 @@
 		91908C65204D69F200971F11 /* OfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91908C63204D69F200971F11 /* OfferCollectionViewCell.swift */; };
 		91908C66204D69F200971F11 /* OfferCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91908C64204D69F200971F11 /* OfferCollectionViewCell.xib */; };
 		91908C67204D6A6A00971F11 /* OfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91908C63204D69F200971F11 /* OfferCollectionViewCell.swift */; };
-		9191EBA221E4AF10002BAC48 /* AppDiscoveryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBA121E4AF10002BAC48 /* AppDiscoveryAction.swift */; };
-		9191EBB421E5E8CC002BAC48 /* SendKinAmountInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBB321E5E8CC002BAC48 /* SendKinAmountInputViewController.swift */; };
-		9191EBB621E5E8F6002BAC48 /* SendingKinToAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBB521E5E8F6002BAC48 /* SendingKinToAppViewController.swift */; };
-		9191EBB821E5E97E002BAC48 /* ConnectingAppsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBB721E5E97E002BAC48 /* ConnectingAppsViewController.swift */; };
-		9191EBB921E5F2C7002BAC48 /* ConnectingAppsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBB721E5E97E002BAC48 /* ConnectingAppsViewController.swift */; };
-		9191EBBA21E5F2C7002BAC48 /* ConnectingAppsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBB721E5E97E002BAC48 /* ConnectingAppsViewController.swift */; };
 		9191EBC021E62945002BAC48 /* ConnectingLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 9191EBBF21E62945002BAC48 /* ConnectingLoader.json */; };
 		9191EBC121E62945002BAC48 /* ConnectingLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 9191EBBF21E62945002BAC48 /* ConnectingLoader.json */; };
 		9191EBC221E62945002BAC48 /* ConnectingLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 9191EBBF21E62945002BAC48 /* ConnectingLoader.json */; };
-		9191EBC421E62F19002BAC48 /* SentKinToAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBC321E62F19002BAC48 /* SentKinToAppViewController.swift */; };
-		9191EBC521E62F19002BAC48 /* SentKinToAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBC321E62F19002BAC48 /* SentKinToAppViewController.swift */; };
-		9191EBC621E62F19002BAC48 /* SentKinToAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBC321E62F19002BAC48 /* SentKinToAppViewController.swift */; };
-		9191EBD721E756C4002BAC48 /* MoveKinErrorPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBD621E756C4002BAC48 /* MoveKinErrorPageViewController.swift */; };
-		9191EBD921E776F5002BAC48 /* MoveKinFinalPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBD821E776F5002BAC48 /* MoveKinFinalPageViewController.swift */; };
-		9191EBDA21E77874002BAC48 /* MoveKinFinalPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBD821E776F5002BAC48 /* MoveKinFinalPageViewController.swift */; };
-		9191EBDB21E77875002BAC48 /* MoveKinFinalPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9191EBD821E776F5002BAC48 /* MoveKinFinalPageViewController.swift */; };
-		9191EC4221E789AF002BAC48 /* MoveKin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9191EC3C21E78986002BAC48 /* MoveKin.framework */; };
-		9191EC4321E789AF002BAC48 /* MoveKin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9191EC3C21E78986002BAC48 /* MoveKin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9198A2A02062926D0052F343 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9198A29F2062926D0052F343 /* NotificationHandler.swift */; };
+		91A226792278915000FD4E78 /* MigratingWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A226782278915000FD4E78 /* MigratingWalletViewController.swift */; };
+		91A2267F2278917500FD4E78 /* CreatingWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A2267E2278917500FD4E78 /* CreatingWalletViewController.swift */; };
 		91A427582129AF710078B589 /* AccountSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A427572129AF710078B589 /* AccountSourceViewController.swift */; };
-		91A4275E2129BD830078B589 /* CreatingWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4275D2129BD830078B589 /* CreatingWalletViewController.swift */; };
-		91A427662129BEAC0078B589 /* CreatingWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4275D2129BD830078B589 /* CreatingWalletViewController.swift */; };
-		91A427672129BEAC0078B589 /* CreatingWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4275D2129BD830078B589 /* CreatingWalletViewController.swift */; };
+		91A4275E2129BD830078B589 /* WalletLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4275D2129BD830078B589 /* WalletLoadingViewController.swift */; };
+		91A427662129BEAC0078B589 /* WalletLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4275D2129BD830078B589 /* WalletLoadingViewController.swift */; };
+		91A427672129BEAC0078B589 /* WalletLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4275D2129BD830078B589 /* WalletLoadingViewController.swift */; };
 		91A427692129BFF20078B589 /* WalletLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 91A427682129BFF20078B589 /* WalletLoader.json */; };
 		91A4276A2129BFF20078B589 /* WalletLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 91A427682129BFF20078B589 /* WalletLoader.json */; };
 		91A4276B2129BFF20078B589 /* WalletLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 91A427682129BFF20078B589 /* WalletLoader.json */; };
@@ -753,62 +730,6 @@
 			remoteGlobalIDString = 9140132920162FA90066367C;
 			remoteInfo = KinWallet;
 		};
-		9152E5DA212D489800802040 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9152E5D1212D489800802040 /* KinCoreSDK.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 82140EA91FA88E5B00FAF19B;
-			remoteInfo = KinCoreSDK;
-		};
-		9152E5DC212D489800802040 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9152E5D1212D489800802040 /* KinCoreSDK.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8278352E1FA9B5F20006C3DF;
-			remoteInfo = KinTestHost;
-		};
-		9152E5DE212D489800802040 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9152E5D1212D489800802040 /* KinCoreSDK.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 827835411FA9B5F20006C3DF;
-			remoteInfo = KinCoreSDKTests;
-		};
-		9152E5E0212D489800802040 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9152E5D1212D489800802040 /* KinCoreSDK.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 82BA2113204D867200396AE2;
-			remoteInfo = "KinCoreSDK-macos";
-		};
-		9152E5E4212D48D400802040 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9152E5D1212D489800802040 /* KinCoreSDK.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 82140EA81FA88E5B00FAF19B;
-			remoteInfo = KinCoreSDK;
-		};
-		9191EC3B21E78986002BAC48 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9191EC3621E78986002BAC48 /* MoveKin.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9191EC0A21E78731002BAC48;
-			remoteInfo = MoveKin;
-		};
-		9191EC3D21E78986002BAC48 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9191EC3621E78986002BAC48 /* MoveKin.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9191EC1321E78731002BAC48;
-			remoteInfo = MoveKinTests;
-		};
-		9191EC4421E789AF002BAC48 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9191EC3621E78986002BAC48 /* MoveKin.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9191EC0921E78731002BAC48;
-			remoteInfo = MoveKin;
-		};
 		91E6B5FC203AD0D00080C2FC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 91E6B5F5203AD0D00080C2FC /* Lottie.xcodeproj */;
@@ -837,7 +758,7 @@
 			remoteGlobalIDString = 84FE12EF1E4C1485009B157C;
 			remoteInfo = LottieLibraryIOS;
 		};
-		91E6B606203AD0D80080C2FC /* PBXContainerItemProxy */ = {
+		91E77BBF2240FADA00AAE25D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 91E6B5F5203AD0D00080C2FC /* Lottie.xcodeproj */;
 			proxyType = 1;
@@ -868,10 +789,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				91FF124E211B18290098470D /* KinitDesignables.framework in Embed Frameworks */,
-				9152E5E3212D48D400802040 /* KinCoreSDK.framework in Embed Frameworks */,
-				9191EC4321E789AF002BAC48 /* MoveKin.framework in Embed Frameworks */,
 				91E6B605203AD0D80080C2FC /* Lottie.framework in Embed Frameworks */,
-				915E5A19221D6E44004CF9EF /* Sodium.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -900,6 +818,7 @@
 		91147439203F177500C16279 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradientView.swift; path = Submodules/GradientView/GradientView/GradientView.swift; sourceTree = SOURCE_ROOT; };
 		9114743C203F17ED00C16279 /* WeakBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakBox.swift; sourceTree = "<group>"; };
 		91147440203F1D4100C16279 /* BalanceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceLabel.swift; sourceTree = "<group>"; };
+		911AAABF2265FCB400A18295 /* XDRCodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XDRCodable+Extensions.swift"; sourceTree = "<group>"; };
 		9120CA782060118B00AFC597 /* upload-dsym.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "upload-dsym.sh"; sourceTree = "<group>"; };
 		9120CA792060118B00AFC597 /* libTestFairy.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFairy.a; sourceTree = "<group>"; };
 		9120CA7A2060118B00AFC597 /* TestFairy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFairy.h; sourceTree = "<group>"; };
@@ -908,9 +827,9 @@
 		9120CA80206011DA00AFC597 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		9120CA83206011E000AFC597 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9120CA85206011E600AFC597 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		912B9A5F22672BA80018FA50 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		91311C4C204FDB4400618240 /* Optional+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+KinWallet.swift"; sourceTree = "<group>"; };
 		9131A0BA212C055F000203DC /* RestoreBackupQuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreBackupQuestionsViewController.swift; sourceTree = "<group>"; };
-		913596B021DA67E300578718 /* AppDiscoveryComingSoonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDiscoveryComingSoonViewController.swift; sourceTree = "<group>"; };
 		9135970321E34CF500578718 /* StellarKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = StellarKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91379A44211744D1002D3EF5 /* BackupIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupIntroViewController.swift; sourceTree = "<group>"; };
 		91379A4721174AE1002D3EF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Backup.storyboard; sourceTree = "<group>"; };
@@ -920,12 +839,10 @@
 		91392A30208F48330026C2F9 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		913C9C3421CFBD9A00B855BC /* EcosystemApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcosystemApp.swift; sourceTree = "<group>"; };
 		913C9C3F21CFCFD400B855BC /* SpendKinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendKinViewController.swift; sourceTree = "<group>"; };
-		913C9C4321D0DAC500B855BC /* AppDiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDiscoveryViewController.swift; sourceTree = "<group>"; };
 		913C9C4C21D25F9500B855BC /* EcosystemIntroTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcosystemIntroTableViewCell.swift; sourceTree = "<group>"; };
 		913C9C5021D2601A00B855BC /* AppCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		913C9C5421D2707500B855BC /* HorizontalGalleryCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalGalleryCollectionViewLayout.swift; sourceTree = "<group>"; };
 		913C9C5C21D2719500B855BC /* AppCardCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppCardCollectionViewCell.xib; sourceTree = "<group>"; };
-		913C9C6421D37A8500B855BC /* AppPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPageViewController.swift; sourceTree = "<group>"; };
 		913C9C6821D3879D00B855BC /* AppBasicInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBasicInfoTableViewCell.swift; sourceTree = "<group>"; };
 		913C9C6921D3879D00B855BC /* AppBasicInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppBasicInfoTableViewCell.xib; sourceTree = "<group>"; };
 		913C9C7021D38F3300B855BC /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
@@ -952,7 +869,7 @@
 		9140137F201755DF0066367C /* AppDelegate+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Extensions.swift"; sourceTree = "<group>"; };
 		9140138320187CE90066367C /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		9140138420187CE90066367C /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		9140138520187CE90066367C /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		9140138520187CE90066367C /* TaskResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskResult.swift; sourceTree = "<group>"; };
 		9140138C20187DEB0066367C /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		9140138F20187E140066367C /* SampleTask.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SampleTask.json; sourceTree = "<group>"; };
 		91401393201892640066367C /* AuthorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorTests.swift; sourceTree = "<group>"; };
@@ -979,7 +896,6 @@
 		91473FDF201DCDBF0013A530 /* SelectedResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedResult.swift; sourceTree = "<group>"; };
 		9149BC67216F3CB0009DFFE9 /* TaskCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCategory.swift; sourceTree = "<group>"; };
 		9149C4CD2173407B009DFFE9 /* EarnHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarnHomeViewController.swift; sourceTree = "<group>"; };
-		9152E5D1212D489800802040 /* KinCoreSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KinCoreSDK.xcodeproj; path = Submodules/KinCore/KinSDK/KinCoreSDK.xcodeproj; sourceTree = "<group>"; };
 		9152E5E8212D505300802040 /* RestoreBackupCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreBackupCells.swift; sourceTree = "<group>"; };
 		9152E5EC212D6C3300802040 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		9152E600212EB41D00802040 /* KinErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinErrors.swift; sourceTree = "<group>"; };
@@ -990,7 +906,6 @@
 		9159955D2135457A00E4E840 /* BackupFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupFlowController.swift; sourceTree = "<group>"; };
 		9159956821354E3A00E4E840 /* UIAlertController+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+KinWallet.swift"; sourceTree = "<group>"; };
 		9159956C21356A0F00E4E840 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
-		915E5A17221D6E44004CF9EF /* Sodium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Sodium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		915F494D20430125005C09B3 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		915F494E20430125005C09B3 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		915F494F20430125005C09B3 /* KinK.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KinK.ttf; sourceTree = "<group>"; };
@@ -1020,6 +935,7 @@
 		9170CD7E2133F3A0009986A5 /* AMPTrackingOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPTrackingOptions.h; sourceTree = "<group>"; };
 		9170CD8D21341E25009986A5 /* BackupNagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupNagViewController.swift; sourceTree = "<group>"; };
 		9170CD9521343121009986A5 /* BackupNagCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupNagCounter.swift; sourceTree = "<group>"; };
+		917933A72279880E006F3E5A /* Kin+Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Kin+Enums.swift"; sourceTree = "<group>"; };
 		91796BC62027261F00F8C6A0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		91796BC82027276000F8C6A0 /* UIDevice+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+KinWallet.swift"; sourceTree = "<group>"; };
 		91796BCB20272A8B00F8C6A0 /* DeviceList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DeviceList.plist; sourceTree = "<group>"; };
@@ -1034,19 +950,13 @@
 		9189277721664E3400E0EE8C /* PostTaskAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTaskAction.swift; sourceTree = "<group>"; };
 		91908C63204D69F200971F11 /* OfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCollectionViewCell.swift; sourceTree = "<group>"; };
 		91908C64204D69F200971F11 /* OfferCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfferCollectionViewCell.xib; sourceTree = "<group>"; };
-		9191EBA121E4AF10002BAC48 /* AppDiscoveryAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDiscoveryAction.swift; sourceTree = "<group>"; };
-		9191EBB321E5E8CC002BAC48 /* SendKinAmountInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendKinAmountInputViewController.swift; sourceTree = "<group>"; };
-		9191EBB521E5E8F6002BAC48 /* SendingKinToAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingKinToAppViewController.swift; sourceTree = "<group>"; };
-		9191EBB721E5E97E002BAC48 /* ConnectingAppsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectingAppsViewController.swift; sourceTree = "<group>"; };
 		9191EBBF21E62945002BAC48 /* ConnectingLoader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ConnectingLoader.json; sourceTree = "<group>"; };
-		9191EBC321E62F19002BAC48 /* SentKinToAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentKinToAppViewController.swift; sourceTree = "<group>"; };
-		9191EBD621E756C4002BAC48 /* MoveKinErrorPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveKinErrorPageViewController.swift; sourceTree = "<group>"; };
-		9191EBD821E776F5002BAC48 /* MoveKinFinalPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveKinFinalPageViewController.swift; sourceTree = "<group>"; };
-		9191EC3621E78986002BAC48 /* MoveKin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MoveKin.xcodeproj; path = Submodules/MoveKin/MoveKin.xcodeproj; sourceTree = "<group>"; };
 		9198A29F2062926D0052F343 /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		919BCD0B21010CC700C39661 /* KinUtil.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KinUtil.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		91A226782278915000FD4E78 /* MigratingWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigratingWalletViewController.swift; sourceTree = "<group>"; };
+		91A2267E2278917500FD4E78 /* CreatingWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatingWalletViewController.swift; sourceTree = "<group>"; };
 		91A427572129AF710078B589 /* AccountSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSourceViewController.swift; sourceTree = "<group>"; };
-		91A4275D2129BD830078B589 /* CreatingWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatingWalletViewController.swift; sourceTree = "<group>"; };
+		91A4275D2129BD830078B589 /* WalletLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletLoadingViewController.swift; sourceTree = "<group>"; };
 		91A427682129BFF20078B589 /* WalletLoader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WalletLoader.json; sourceTree = "<group>"; };
 		91A4276C2129C7BD0078B589 /* Onboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboard.storyboard; sourceTree = "<group>"; };
 		91AA18E521048AD000044D9C /* QuizData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizData.swift; sourceTree = "<group>"; };
@@ -1206,13 +1116,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9120CA86206011E600AFC597 /* OpenGLES.framework in Frameworks */,
-				9152E5E2212D48D400802040 /* KinCoreSDK.framework in Frameworks */,
 				9120CA84206011E000AFC597 /* SystemConfiguration.framework in Frameworks */,
-				915E5A18221D6E44004CF9EF /* Sodium.framework in Frameworks */,
 				9120CA81206011DA00AFC597 /* CoreMotion.framework in Frameworks */,
 				9120CA82206011DA00AFC597 /* CoreMedia.framework in Frameworks */,
 				9120CA7E206011D200AFC597 /* AVFoundation.framework in Frameworks */,
-				9191EC4221E789AF002BAC48 /* MoveKin.framework in Frameworks */,
 				91FF124D211B18290098470D /* KinitDesignables.framework in Frameworks */,
 				91E6B604203AD0D80080C2FC /* Lottie.framework in Frameworks */,
 				3066337E2058FFCF00F9BB45 /* Crashlytics.framework in Frameworks */,
@@ -1285,6 +1192,7 @@
 			isa = PBXGroup;
 			children = (
 				91B57F9120E038E200CE5EE1 /* Bridge.swift */,
+				912B9A5F22672BA80018FA50 /* Result.swift */,
 				9114743C203F17ED00C16279 /* WeakBox.swift */,
 			);
 			path = Foundation;
@@ -1344,7 +1252,9 @@
 				91B4454E2090C3B400ED6802 /* PhoneVerificationRequestViewController.swift */,
 				91B445682091F98800ED6802 /* PhoneConfirmationViewController.swift */,
 				91A427572129AF710078B589 /* AccountSourceViewController.swift */,
-				91A4275D2129BD830078B589 /* CreatingWalletViewController.swift */,
+				91A4275D2129BD830078B589 /* WalletLoadingViewController.swift */,
+				91A2267E2278917500FD4E78 /* CreatingWalletViewController.swift */,
+				91A226782278915000FD4E78 /* MigratingWalletViewController.swift */,
 				91FA4A01212AA4DF00513E1D /* RestoreBackupQRScannerViewController.swift */,
 				9131A0BA212C055F000203DC /* RestoreBackupQuestionsViewController.swift */,
 				910AA2232096F34600CC822A /* AccountReadyViewController.swift */,
@@ -1355,9 +1265,6 @@
 		9140132120162FA90066367C = {
 			isa = PBXGroup;
 			children = (
-				915E5A17221D6E44004CF9EF /* Sodium.framework */,
-				9191EC3621E78986002BAC48 /* MoveKin.xcodeproj */,
-				9152E5D1212D489800802040 /* KinCoreSDK.xcodeproj */,
 				91E6B5F5203AD0D00080C2FC /* Lottie.xcodeproj */,
 				9140132C20162FA90066367C /* KinWallet */,
 				9120CA772060118B00AFC597 /* TestFairy */,
@@ -1430,7 +1337,6 @@
 		9140135D201632070066367C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9191EBB221E5E8B9002BAC48 /* Move Kin */,
 				91392A29208F48240026C2F9 /* Onboard */,
 				914013A32018BC320066367C /* Earn */,
 				914013A12018BC320066367C /* Spend */,
@@ -1509,6 +1415,7 @@
 				91CB636320597F3C00C65404 /* URL+KinWallet.swift */,
 				918893B8205E906E0077CD9A /* URLRequest+KinWallet.swift */,
 				9152E5EC212D6C3300802040 /* UIBarButtonItem.swift */,
+				911AAABF2265FCB400A18295 /* XDRCodable+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1516,7 +1423,7 @@
 		9140138220187CE90066367C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9140138520187CE90066367C /* Result.swift */,
+				9140138520187CE90066367C /* TaskResult.swift */,
 				91AA18E521048AD000044D9C /* QuizData.swift */,
 				9140138C20187DEB0066367C /* Author.swift */,
 				9140138320187CE90066367C /* Question.swift */,
@@ -1563,9 +1470,6 @@
 				91D075402056A77100CF80D5 /* OffersUnavailableViewController.swift */,
 				91B0667020C6AF7800CE69A7 /* StandardOfferActionViewController.swift */,
 				91B0667820C8177100CE69A7 /* KinSentViewController.swift */,
-				913C9C4321D0DAC500B855BC /* AppDiscoveryViewController.swift */,
-				913596B021DA67E300578718 /* AppDiscoveryComingSoonViewController.swift */,
-				913C9C6421D37A8500B855BC /* AppPageViewController.swift */,
 			);
 			path = Spend;
 			sourceTree = "<group>";
@@ -1608,17 +1512,6 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		9152E5D2212D489800802040 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9152E5DB212D489800802040 /* KinCoreSDK.framework */,
-				9152E5DD212D489800802040 /* KinTestHost.app */,
-				9152E5DF212D489800802040 /* KinSDKTests.xctest */,
-				9152E5E1212D489800802040 /* KinCoreSDK.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		915F494C20430125005C09B3 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1651,28 +1544,6 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		9191EBB221E5E8B9002BAC48 /* Move Kin */ = {
-			isa = PBXGroup;
-			children = (
-				9191EBB721E5E97E002BAC48 /* ConnectingAppsViewController.swift */,
-				9191EBB321E5E8CC002BAC48 /* SendKinAmountInputViewController.swift */,
-				9191EBB521E5E8F6002BAC48 /* SendingKinToAppViewController.swift */,
-				9191EBD821E776F5002BAC48 /* MoveKinFinalPageViewController.swift */,
-				9191EBC321E62F19002BAC48 /* SentKinToAppViewController.swift */,
-				9191EBD621E756C4002BAC48 /* MoveKinErrorPageViewController.swift */,
-			);
-			path = "Move Kin";
-			sourceTree = "<group>";
-		};
-		9191EC3721E78986002BAC48 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9191EC3C21E78986002BAC48 /* MoveKin.framework */,
-				9191EC3E21E78986002BAC48 /* MoveKinTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		91AAB930201E091C0075DAA1 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1685,6 +1556,7 @@
 				91E20B8A202B3E3B000CB741 /* FeedbackGenerator.swift */,
 				9159956C21356A0F00E4E840 /* AuthToken.swift */,
 				91E6B60B203AD1D30080C2FC /* Kin.swift */,
+				917933A72279880E006F3E5A /* Kin+Enums.swift */,
 				91AE230521776C4E0024B8BF /* DataLoaders.swift */,
 				91B575B92045E62B00AC3E04 /* KinitLoader.swift */,
 				91AE22F721775E930024B8BF /* TaskLoader.swift */,
@@ -1692,7 +1564,6 @@
 				9152E600212EB41D00802040 /* KinErrors.swift */,
 				91AAB931201E0AC00075DAA1 /* ResourceDownloader.swift */,
 				9170390B20B75175006B01FB /* PushHandler.swift */,
-				9191EBA121E4AF10002BAC48 /* AppDiscoveryAction.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1942,10 +1813,10 @@
 			buildConfigurationList = 9140135420162FA90066367C /* Build configuration list for PBXNativeTarget "KinWallet" */;
 			buildPhases = (
 				A2D9072A51CA43FDCBED3C9F /* [CP] Check Pods Manifest.lock */,
+				9140136E201633640066367C /* SwiftGen */,
 				9140132620162FA90066367C /* Sources */,
 				9140132720162FA90066367C /* Frameworks */,
 				9140132820162FA90066367C /* Resources */,
-				9140136E201633640066367C /* SwiftGen */,
 				91401378201741630066367C /* SwiftLint */,
 				914013E2201A19170066367C /* Sourcery */,
 				9186E52F202B40FC00AA9F46 /* Embed Frameworks */,
@@ -1957,10 +1828,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				91E6B607203AD0D80080C2FC /* PBXTargetDependency */,
+				91E77BC02240FADA00AAE25D /* PBXTargetDependency */,
 				91FF124C211B18290098470D /* PBXTargetDependency */,
-				9152E5E5212D48D400802040 /* PBXTargetDependency */,
-				9191EC4521E789AF002BAC48 /* PBXTargetDependency */,
 			);
 			name = KinWallet;
 			productName = KinWallet;
@@ -2035,7 +1904,8 @@
 				TargetAttributes = {
 					9140132920162FA90066367C = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = F879J8YSJ9;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -2047,12 +1917,14 @@
 					};
 					9140133F20162FA90066367C = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = F879J8YSJ9;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 9140132920162FA90066367C;
 					};
 					9140134A20162FA90066367C = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = F879J8YSJ9;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 9140132920162FA90066367C;
 					};
 					91FF1245211B18290098470D = {
@@ -2074,16 +1946,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9152E5D2212D489800802040 /* Products */;
-					ProjectRef = 9152E5D1212D489800802040 /* KinCoreSDK.xcodeproj */;
-				},
-				{
 					ProductGroup = 91E6B5F6203AD0D00080C2FC /* Products */;
 					ProjectRef = 91E6B5F5203AD0D00080C2FC /* Lottie.xcodeproj */;
-				},
-				{
-					ProductGroup = 9191EC3721E78986002BAC48 /* Products */;
-					ProjectRef = 9191EC3621E78986002BAC48 /* MoveKin.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -2097,49 +1961,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9152E5DB212D489800802040 /* KinCoreSDK.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = KinCoreSDK.framework;
-			remoteRef = 9152E5DA212D489800802040 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9152E5DD212D489800802040 /* KinTestHost.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = KinTestHost.app;
-			remoteRef = 9152E5DC212D489800802040 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9152E5DF212D489800802040 /* KinSDKTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			name = KinSDKTests.xctest;
-			path = KinCoreSDKTests.xctest;
-			remoteRef = 9152E5DE212D489800802040 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9152E5E1212D489800802040 /* KinCoreSDK.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = KinCoreSDK.framework;
-			remoteRef = 9152E5E0212D489800802040 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9191EC3C21E78986002BAC48 /* MoveKin.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = MoveKin.framework;
-			remoteRef = 9191EC3B21E78986002BAC48 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9191EC3E21E78986002BAC48 /* MoveKinTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = MoveKinTests.xctest;
-			remoteRef = 9191EC3D21E78986002BAC48 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		91E6B5FD203AD0D00080C2FC /* Lottie.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -2313,22 +2134,34 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-KinWallet/Pods-KinWallet-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-KinWallet/Pods-KinWallet-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/KinCoreSDK/KinCoreSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/KinMigrationModule/KinMigrationModule.framework",
+				"${BUILT_PRODUCTS_DIR}/KinSDK/KinSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/KinUtil/KinUtil.framework",
+				"${BUILT_PRODUCTS_DIR}/Sodium/Sodium.framework",
+				"${BUILT_PRODUCTS_DIR}/StellarErrors/StellarErrors.framework",
+				"${BUILT_PRODUCTS_DIR}/StellarKit/StellarKit.framework",
 				"${BUILT_PRODUCTS_DIR}/libPhoneNumber-iOS/libPhoneNumber_iOS.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KinCoreSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KinMigrationModule.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KinSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KinUtil.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sodium.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StellarErrors.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StellarKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libPhoneNumber_iOS.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KinWallet/Pods-KinWallet-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KinWallet/Pods-KinWallet-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		30EEF67D2057F52C00968B75 /* Fabric */ = {
@@ -2482,7 +2315,6 @@
 			files = (
 				91AAB938201E0CB80075DAA1 /* UIImageView+KinWallet.swift in Sources */,
 				914013B32018C0740066367C /* QuestionViewController.swift in Sources */,
-				913C9C6521D37A8500B855BC /* AppPageViewController.swift in Sources */,
 				9170CD6F2133E7B7009986A5 /* BackupNavigationController.swift in Sources */,
 				914013D42019F2300066367C /* NibLoadableView.swift in Sources */,
 				91B40AAD213D54F800DD035B /* KinSupportViewController.swift in Sources */,
@@ -2497,7 +2329,7 @@
 				91E6B65F203C69A90080C2FC /* AMPConstants.m in Sources */,
 				91F69D34208379F400F06181 /* PagerTabStripViewController.swift in Sources */,
 				91A427582129AF710078B589 /* AccountSourceViewController.swift in Sources */,
-				91A4275E2129BD830078B589 /* CreatingWalletViewController.swift in Sources */,
+				91A4275E2129BD830078B589 /* WalletLoadingViewController.swift in Sources */,
 				91311C4D204FDB4400618240 /* Optional+KinWallet.swift in Sources */,
 				918893B9205E906E0077CD9A /* URLRequest+KinWallet.swift in Sources */,
 				91AEBF392029E958007BBBA3 /* WebRequest.swift in Sources */,
@@ -2516,7 +2348,6 @@
 				910AA2242096F34600CC822A /* AccountReadyViewController.swift in Sources */,
 				9138BBE5204EF1A700450C97 /* SimpleCollectionReusableView.swift in Sources */,
 				91D891DA2020B43D0090E77C /* SurveyQuestionCollectionReusableView.swift in Sources */,
-				9191EBB821E5E97E002BAC48 /* ConnectingAppsViewController.swift in Sources */,
 				9114743D203F17ED00C16279 /* WeakBox.swift in Sources */,
 				91B0667920C8177100CE69A7 /* KinSentViewController.swift in Sources */,
 				91E6B650203C69A90080C2FC /* AMPUtils.m in Sources */,
@@ -2548,6 +2379,7 @@
 				910AA2322097308000CC822A /* RemoteConfig.swift in Sources */,
 				91D891CD2020B3C70090E77C /* TouchUpEffectScalable.swift in Sources */,
 				91FF9D18207E4C0200B536E9 /* RedeemTransaction.swift in Sources */,
+				912B9A6022672BA80018FA50 /* Result.swift in Sources */,
 				9170CD9621343121009986A5 /* BackupNagCounter.swift in Sources */,
 				914013BE2019D07D0066367C /* UIColor+KinWallet.swift in Sources */,
 				9170CD7A2133EA47009986A5 /* ConfigPanel.swift in Sources */,
@@ -2558,7 +2390,6 @@
 				91FA4A02212AA4DF00513E1D /* RestoreBackupQRScannerViewController.swift in Sources */,
 				91F69D35208379F400F06181 /* PagerTabStripError.swift in Sources */,
 				914013B72018C5D70066367C /* StoryboardInitializable.swift in Sources */,
-				9191EBB421E5E8CC002BAC48 /* SendKinAmountInputViewController.swift in Sources */,
 				91B0668620C9634B00CE69A7 /* AlphaTransitionAnimator.swift in Sources */,
 				91F69D3D208379F400F06181 /* ButtonBarPagerTabStripViewController.swift in Sources */,
 				91AA18E621048AD000044D9C /* QuizData.swift in Sources */,
@@ -2566,9 +2397,8 @@
 				91FE7F1120FB768700EDFB67 /* Strings.swift in Sources */,
 				913C9C8821D3E5DE00B855BC /* SendKinToAppUnavailableTableViewCell.swift in Sources */,
 				91D891BE201F23130090E77C /* Datastore.swift in Sources */,
-				9140138A20187CE90066367C /* Result.swift in Sources */,
+				9140138A20187CE90066367C /* TaskResult.swift in Sources */,
 				91F69D39208379F400F06181 /* ButtonBarView.swift in Sources */,
-				913C9C4421D0DAC500B855BC /* AppDiscoveryViewController.swift in Sources */,
 				91E6B652203C69A90080C2FC /* ISPCertificatePinning.m in Sources */,
 				91E6B666203C6AD50080C2FC /* BIEvents.swift in Sources */,
 				91F69D3F2083940D00F06181 /* BalancePagerTabViewController.swift in Sources */,
@@ -2576,6 +2406,7 @@
 				91796BC92027276000F8C6A0 /* UIDevice+KinWallet.swift in Sources */,
 				91FF14D9212057550098470D /* BackupDoneViewController.swift in Sources */,
 				9156A97A205035A500F21C20 /* ServerTypes.swift in Sources */,
+				917933A82279880E006F3E5A /* Kin+Enums.swift in Sources */,
 				91B40AB3213D54F800DD035B /* MoreViewController.swift in Sources */,
 				91E6B653203C69A90080C2FC /* ISPPinnedNSURLSessionDelegate.m in Sources */,
 				91E6B655203C69A90080C2FC /* AMPRevenue.m in Sources */,
@@ -2598,12 +2429,12 @@
 				91FF1231211AF6670098470D /* BackupQuestionViewController.swift in Sources */,
 				914013AD2018BCB90066367C /* SurveyUnavailableViewController.swift in Sources */,
 				9159956D21356A0F00E4E840 /* AuthToken.swift in Sources */,
-				9191EBD921E776F5002BAC48 /* MoveKinFinalPageViewController.swift in Sources */,
 				91147441203F1D4100C16279 /* BalanceLabel.swift in Sources */,
 				914013E02019F2BF0066367C /* UICollectionView+KinWallet.swift in Sources */,
 				9140137D201748100066367C /* UIViewController+KinWallet.swift in Sources */,
 				9152E5ED212D6C3300802040 /* UIBarButtonItem.swift in Sources */,
 				91AE22F821775E930024B8BF /* TaskLoader.swift in Sources */,
+				911AAAC02265FCB400A18295 /* XDRCodable+Extensions.swift in Sources */,
 				91C42AD720FDDD68001E1C05 /* UIControl+KinWallet.swift in Sources */,
 				91F877EA216A011B00E91C03 /* RootViewController.swift in Sources */,
 				9163EDFF20553248005F3123 /* UIAlertAction+KinWallet.swift in Sources */,
@@ -2625,14 +2456,13 @@
 				91F69D30208379F400F06181 /* SegmentedPagerTabStripViewController.swift in Sources */,
 				913C9C9121D4D05500B855BC /* EcosystemFooterTableViewCell.swift in Sources */,
 				91FA4A0D212AB75C00513E1D /* QRCodeScannerViewController.swift in Sources */,
-				9191EBD721E756C4002BAC48 /* MoveKinErrorPageViewController.swift in Sources */,
+				91A2267F2278917500FD4E78 /* CreatingWalletViewController.swift in Sources */,
 				9198A2A02062926D0052F343 /* NotificationHandler.swift in Sources */,
 				9152E5E9212D505300802040 /* RestoreBackupCells.swift in Sources */,
 				91F877F4216A012C00E91C03 /* KinAlertController.swift in Sources */,
 				9170CD7F2133F3A0009986A5 /* AMPTrackingOptions.m in Sources */,
 				91FF14AC211C5FFE0098470D /* ButtonAccessoryInputView.swift in Sources */,
 				91D891E22020B43D0090E77C /* AnswersCollectionViewLayout.swift in Sources */,
-				9191EBB621E5E8F6002BAC48 /* SendingKinToAppViewController.swift in Sources */,
 				914013C12019D0BA0066367C /* UIImage+KinWallet.swift in Sources */,
 				91D7C031204F11D200D35401 /* KinAmountLabel.swift in Sources */,
 				91B575BA2045E62B00AC3E04 /* KinitLoader.swift in Sources */,
@@ -2640,7 +2470,6 @@
 				9140138D20187DEB0066367C /* Author.swift in Sources */,
 				91F69D38208379F400F06181 /* SwipeDirection.swift in Sources */,
 				91F69D3A208379F400F06181 /* PagerTabStripBehaviour.swift in Sources */,
-				913596B121DA67E300578718 /* AppDiscoveryComingSoonViewController.swift in Sources */,
 				913C9C8C21D4CE8A00B855BC /* EcosystemAppCategoryTableViewCell.swift in Sources */,
 				91401380201755DF0066367C /* AppDelegate+Extensions.swift in Sources */,
 				9157F98F204D589100351E2A /* Offer.swift in Sources */,
@@ -2650,6 +2479,7 @@
 				91B0667120C6AF7800CE69A7 /* StandardOfferActionViewController.swift in Sources */,
 				914013B02018BD050066367C /* SurveyInfoViewController.swift in Sources */,
 				915F49692043022E005C09B3 /* Fonts.swift in Sources */,
+				91A226792278915000FD4E78 /* MigratingWalletViewController.swift in Sources */,
 				9131A0BB212C055F000203DC /* RestoreBackupQuestionsViewController.swift in Sources */,
 				91FDE1572028B09F003A30FB /* Data+KinWallet.swift in Sources */,
 				91F877ED216A011B00E91C03 /* RootTabBarController.swift in Sources */,
@@ -2672,7 +2502,6 @@
 				913C9C7121D38F3300B855BC /* AppInfoView.swift in Sources */,
 				91F69D36208379F400F06181 /* BaseButtonBarPagerTabStripViewController.swift in Sources */,
 				91D891C72020A1A60090E77C /* QuestionCollectionViewDataSource.swift in Sources */,
-				9191EBC421E62F19002BAC48 /* SentKinToAppViewController.swift in Sources */,
 				914013DE2019F2BF0066367C /* UITableViewCell+KinWallet.swift in Sources */,
 				91E6B616203C29B30080C2FC /* SurveyDoneViewController.swift in Sources */,
 				91473FE0201DCDBF0013A530 /* SelectedResult.swift in Sources */,
@@ -2680,7 +2509,6 @@
 				91AE230621776C4E0024B8BF /* DataLoaders.swift in Sources */,
 				91FF9D32207F4BE100B536E9 /* RedeemedGoodsViewController.swift in Sources */,
 				910AA22E2096F42F00CC822A /* ConfettiView.swift in Sources */,
-				9191EBA221E4AF10002BAC48 /* AppDiscoveryAction.swift in Sources */,
 				9170390C20B75175006B01FB /* PushHandler.swift in Sources */,
 				91796BC72027261F00F8C6A0 /* User.swift in Sources */,
 			);
@@ -2692,7 +2520,6 @@
 			files = (
 				91D891BF201F30BE0090E77C /* Datastore.swift in Sources */,
 				91FA4A0A212AA90500513E1D /* RestoreBackupQRScannerViewController.swift in Sources */,
-				913C9C6621D37A8500B855BC /* AppPageViewController.swift in Sources */,
 				91E5C6A120B5D20B0024BAA5 /* Sourcery.swift in Sources */,
 				82413848206036CC00D7117E /* URL+KinWallet.swift in Sources */,
 				91B40AAE213D54F800DD035B /* KinSupportViewController.swift in Sources */,
@@ -2702,7 +2529,6 @@
 				913C9C4E21D25F9500B855BC /* EcosystemIntroTableViewCell.swift in Sources */,
 				9170CD8F21341E25009986A5 /* BackupNagViewController.swift in Sources */,
 				91AE200A21760D2D0024B8BF /* TaskCategoryViewController.swift in Sources */,
-				9191EBDA21E77874002BAC48 /* MoveKinFinalPageViewController.swift in Sources */,
 				828CB45E2056EAFC007C679C /* ISPPinnedNSURLConnectionDelegate.m in Sources */,
 				828CB47F2056EE26007C679C /* OffersUnavailableViewController.swift in Sources */,
 				914013B82018C5D70066367C /* StoryboardInitializable.swift in Sources */,
@@ -2716,7 +2542,7 @@
 				9159956A21354E3A00E4E840 /* UIAlertController+KinWallet.swift in Sources */,
 				91C42AD820FDDD68001E1C05 /* UIControl+KinWallet.swift in Sources */,
 				9170CD7B2133EA47009986A5 /* ConfigPanel.swift in Sources */,
-				9140138B20187CE90066367C /* Result.swift in Sources */,
+				9140138B20187CE90066367C /* TaskResult.swift in Sources */,
 				914013E12019F2BF0066367C /* UICollectionView+KinWallet.swift in Sources */,
 				9182C2A1203C6C0C0051F003 /* AMPDatabaseHelper.m in Sources */,
 				91E84AB320862E0F00E8B7A6 /* TransactionHistoryViewController.swift in Sources */,
@@ -2778,7 +2604,6 @@
 				914013DF2019F2BF0066367C /* UITableViewCell+KinWallet.swift in Sources */,
 				91E84A9020862C5100E8B7A6 /* User.swift in Sources */,
 				824138402060368B00D7117E /* KinWebService.swift in Sources */,
-				913C9C4521D0DAC500B855BC /* AppDiscoveryViewController.swift in Sources */,
 				910AA2332097308000CC822A /* RemoteConfig.swift in Sources */,
 				82413847206036B400D7117E /* WebService.swift in Sources */,
 				9182C29A203C6C0C0051F003 /* AMPUtils.m in Sources */,
@@ -2820,7 +2645,7 @@
 				828CB45D2056EAFC007C679C /* ISPPinnedNSURLSessionDelegate.m in Sources */,
 				91E84AAC20862DB700E8B7A6 /* SurveyAnswerCollectionViewCell.swift in Sources */,
 				910872C42121E9E30095FD45 /* BackupTextInputViewController.swift in Sources */,
-				91A427662129BEAC0078B589 /* CreatingWalletViewController.swift in Sources */,
+				91A427662129BEAC0078B589 /* WalletLoadingViewController.swift in Sources */,
 				91E84A732086186B00E8B7A6 /* ButtonBarPagerTabStripViewController.swift in Sources */,
 				913C9C5621D2707500B855BC /* HorizontalGalleryCollectionViewLayout.swift in Sources */,
 				913C9C7621D39AEB00B855BC /* EcosystemAppTextCell.swift in Sources */,
@@ -2847,13 +2672,10 @@
 				91E6B614203C0FFA0080C2FC /* FeedbackGenerator.swift in Sources */,
 				9140138720187CE90066367C /* Question.swift in Sources */,
 				9131A0C5212C084A000203DC /* AccountSourceViewController.swift in Sources */,
-				9191EBC521E62F19002BAC48 /* SentKinToAppViewController.swift in Sources */,
 				91E84ABC20862E6E00E8B7A6 /* RedeemTransactionCollectionViewCell.swift in Sources */,
-				913596B221DA67E300578718 /* AppDiscoveryComingSoonViewController.swift in Sources */,
 				913C9C8D21D4CE8A00B855BC /* EcosystemAppCategoryTableViewCell.swift in Sources */,
 				91B0667A20C8177100CE69A7 /* KinSentViewController.swift in Sources */,
 				9152E5EE212D6C3300802040 /* UIBarButtonItem.swift in Sources */,
-				9191EBB921E5F2C7002BAC48 /* ConnectingAppsViewController.swift in Sources */,
 				91B4454C2090A91E00ED6802 /* WelcomeViewController.swift in Sources */,
 				91401399201892640066367C /* QuestionnaireTests.swift in Sources */,
 				91B0668320C9631100CE69A7 /* UIApplication+KinWallet.swift in Sources */,
@@ -2902,7 +2724,6 @@
 				91E84A56208617B300E8B7A6 /* TaskCompletedViewController.swift in Sources */,
 				91F877EC216A011B00E91C03 /* RootViewController.swift in Sources */,
 				91FF123C211AF66C0098470D /* BackupQuestionViewController.swift in Sources */,
-				913C9C4621D0DAC500B855BC /* AppDiscoveryViewController.swift in Sources */,
 				828CB4252056E9C1007C679C /* AMPDeviceInfo.m in Sources */,
 				913C9C5721D2707500B855BC /* HorizontalGalleryCollectionViewLayout.swift in Sources */,
 				828CB4272056E9C1007C679C /* AMPURLConnection.m in Sources */,
@@ -2918,11 +2739,9 @@
 				828CB41E2056E970007C679C /* UIView+KinWallet.swift in Sources */,
 				91AE200B21760D2D0024B8BF /* TaskCategoryViewController.swift in Sources */,
 				913C9C9321D4D05500B855BC /* EcosystemFooterTableViewCell.swift in Sources */,
-				9191EBDB21E77875002BAC48 /* MoveKinFinalPageViewController.swift in Sources */,
 				91E84A6F2086186300E8B7A6 /* BarPagerTabStripViewController.swift in Sources */,
 				91FF14DB212057550098470D /* BackupDoneViewController.swift in Sources */,
 				91AE230121775E980024B8BF /* TaskLoader.swift in Sources */,
-				913596B321DA67E300578718 /* AppDiscoveryComingSoonViewController.swift in Sources */,
 				91C42AD920FDDD68001E1C05 /* UIControl+KinWallet.swift in Sources */,
 				91E84AA120862D1000E8B7A6 /* FetchableCollectionViewDataSource.swift in Sources */,
 				913C9C4221CFCFD400B855BC /* SpendKinViewController.swift in Sources */,
@@ -2951,7 +2770,6 @@
 				828CB44F2056EA42007C679C /* Date+Kinit.swift in Sources */,
 				9170CD812133F3A0009986A5 /* AMPTrackingOptions.m in Sources */,
 				9159956F21356A0F00E4E840 /* AuthToken.swift in Sources */,
-				9191EBC621E62F19002BAC48 /* SentKinToAppViewController.swift in Sources */,
 				828CB4432056EA08007C679C /* ImageAssets.swift in Sources */,
 				828CB44B2056EA42007C679C /* UICollectionView+KinWallet.swift in Sources */,
 				91B57F9420E038E200CE5EE1 /* Bridge.swift in Sources */,
@@ -2960,7 +2778,6 @@
 				91B4454D2090A91E00ED6802 /* WelcomeViewController.swift in Sources */,
 				91B40AB2213D54F800DD035B /* HelpCenterViewController.swift in Sources */,
 				91E84A842086186B00E8B7A6 /* PagerTabStripError.swift in Sources */,
-				9191EBBA21E5F2C7002BAC48 /* ConnectingAppsViewController.swift in Sources */,
 				913C9C4F21D25F9500B855BC /* EcosystemIntroTableViewCell.swift in Sources */,
 				91E84A9120862C5200E8B7A6 /* User.swift in Sources */,
 				9152E5EF212D6C3300802040 /* UIBarButtonItem.swift in Sources */,
@@ -2973,9 +2790,9 @@
 				828CB40F2056E8F5007C679C /* TransferringKinViewController.swift in Sources */,
 				91AA18E821048AD000044D9C /* QuizData.swift in Sources */,
 				91E84AB220862E0F00E8B7A6 /* TransactionHistoryViewController.swift in Sources */,
-				91A427672129BEAC0078B589 /* CreatingWalletViewController.swift in Sources */,
+				91A427672129BEAC0078B589 /* WalletLoadingViewController.swift in Sources */,
 				9149BC71216F8010009DFFE9 /* TaskCategory.swift in Sources */,
-				828CB4122056E913007C679C /* Result.swift in Sources */,
+				828CB4122056E913007C679C /* TaskResult.swift in Sources */,
 				91E84A8B2086188000E8B7A6 /* NotificationHandler.swift in Sources */,
 				91E84AAB20862DB700E8B7A6 /* SurveyAnswerCollectionViewCell.swift in Sources */,
 				91E84A58208617BC00E8B7A6 /* EarnKinAnimationViewController.swift in Sources */,
@@ -3009,7 +2826,6 @@
 				916450D320D165DF00CB7994 /* ParticlesView.swift in Sources */,
 				91E84A60208617DA00E8B7A6 /* OfferWallViewController.swift in Sources */,
 				91E84A6B2086183A00E8B7A6 /* KinitLoader.swift in Sources */,
-				913C9C6721D37A8500B855BC /* AppPageViewController.swift in Sources */,
 				828CB4292056E9C1007C679C /* Amplitude.m in Sources */,
 				91E84AB420862E1400E8B7A6 /* RedeemedGoodsViewController.swift in Sources */,
 				828CB4402056E9F6007C679C /* StoryboardInitializable.swift in Sources */,
@@ -3122,20 +2938,10 @@
 			target = 9140132920162FA90066367C /* KinWallet */;
 			targetProxy = 9140134C20162FA90066367C /* PBXContainerItemProxy */;
 		};
-		9152E5E5212D48D400802040 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = KinCoreSDK;
-			targetProxy = 9152E5E4212D48D400802040 /* PBXContainerItemProxy */;
-		};
-		9191EC4521E789AF002BAC48 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MoveKin;
-			targetProxy = 9191EC4421E789AF002BAC48 /* PBXContainerItemProxy */;
-		};
-		91E6B607203AD0D80080C2FC /* PBXTargetDependency */ = {
+		91E77BC02240FADA00AAE25D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Lottie_iOS;
-			targetProxy = 91E6B606203AD0D80080C2FC /* PBXContainerItemProxy */;
+			targetProxy = 91E77BBF2240FADA00AAE25D /* PBXContainerItemProxy */;
 		};
 		91FF124C211B18290098470D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3254,8 +3060,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = KinWallet/KinWallet.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 368;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 394;
 				DEVELOPMENT_TEAM = F879J8YSJ9;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3282,7 +3088,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.kinecosystem.kinit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "$(sigh_org.kinecosystem.kinit_appstore_profile-name)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -3296,7 +3102,8 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F879J8YSJ9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/KinWallet",
@@ -3321,7 +3128,8 @@
 			baseConfigurationReference = 25246B587FA0565B0EC72751 /* Pods-KinWalletUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F879J8YSJ9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/KinWallet",
@@ -3402,8 +3210,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = KinWallet/KinWallet.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 368;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 394;
 				DEVELOPMENT_TEAM = F879J8YSJ9;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3430,7 +3238,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.kinecosystem.kinit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "$(sigh_org.kinecosystem.kinit_appstore_profile-name)";
 				PROVISIONING_PROFILE_SPECIFIER = "$(sigh_org.kinecosystem.kinit_appstore_profile-name)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -3444,7 +3252,8 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F879J8YSJ9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/KinWallet",
@@ -3469,7 +3278,8 @@
 			baseConfigurationReference = 7B0DD744421168E44BA1A995 /* Pods-KinWalletUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F879J8YSJ9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/KinWallet",
@@ -3497,11 +3307,11 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 368;
+				CURRENT_PROJECT_VERSION = 394;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = F879J8YSJ9;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 368;
+				DYLIB_CURRENT_VERSION = 394;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = KinitDesignables/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -3509,6 +3319,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.kinecosystem.kinit.KinitDesignables;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
@@ -3526,11 +3337,11 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 368;
+				CURRENT_PROJECT_VERSION = 394;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = F879J8YSJ9;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 368;
+				DYLIB_CURRENT_VERSION = 394;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = KinitDesignables/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -3538,6 +3349,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.kinecosystem.kinit.KinitDesignables;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;

@@ -20,7 +20,7 @@ struct Question: Codable {
     let quizData: QuizData?
     let text: String
     let type: QuestionType
-    let results: [Result]
+    let results: [TaskResult]
 
     enum CodingKeys: String, CodingKey {
         case identifier = "id"

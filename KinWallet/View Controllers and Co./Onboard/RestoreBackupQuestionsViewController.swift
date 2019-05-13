@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import KinCoreSDK
+import KinSDK
 
 class RestoreBackupQuestionsViewController: UITableViewController {
     var questions = [String]()
@@ -39,6 +39,11 @@ class RestoreBackupQuestionsViewController: UITableViewController {
                 self.tableView.insertSections(IndexSet(integersIn: (1...2)), with: .fade)
             }
         }
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(migrationSucceeded),
+                                               name: .KinMigrationSucceeded,
+                                               object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -210,14 +215,19 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
             secondAnswer = answers.1.trimmingCharacters(in: .whitespacesAndNewlines)
         }
 
-        DispatchQueue.global().async {
-            do {
-                try Kin.shared.importWallet(self.encryptedWallet, with: firstAnswer + secondAnswer)
+        Kin.shared.importWallet(self.encryptedWallet, passphrase: firstAnswer + secondAnswer) { importResult in
+            switch importResult {
+            case .success(let migrationNeeded):
+                print("Restore succeded from QR")
                 WebRequests.Backup
                     .restoreUserId(with: Kin.shared.publicAddress)
-                    .withCompletion(self.backRestoreCompletion)
-                    .load(with: KinWebService.shared)
-            } catch {
+                    .withCompletion { [weak self] result in
+                        DispatchQueue.main.async {
+                            actionCell?.actionButton.isLoading = false
+                            self?.backupRestoreCompletion(result: result, needsMigration: migrationNeeded)
+                        }
+                    }.load(with: KinWebService.shared)
+            case .decryptFailed:
                 DispatchQueue.main.async {
                     let shouldRetry = firstAnswer != answers.0 || secondAnswer != answers.1
 
@@ -231,12 +241,18 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
                 }
 
                 KLogError("Could not decrypt wallet with given passphrase")
+            case .migrationCheckFailed(let error):
+                DispatchQueue.main.async {
+                    self.presentSupportAlert(title: "Error",
+                                             message: String(describing: error))
+                    actionCell?.actionButton.isLoading = false
+                }
             }
         }
     }
 
-    private func backRestoreCompletion(userId: String?, error: Error?) {
-        guard let userId = userId else {
+    private func backupRestoreCompletion(result: Result<String, Error>, needsMigration: Bool) {
+        guard let userId = result.value else {
             Kin.shared.resetKeyStore()
 
             DispatchQueue.main.async {
@@ -257,12 +273,26 @@ extension RestoreBackupQuestionsViewController: RestoreBackupCellDelegate {
         DataLoaders.loadAllData()
         Kin.setPerformedBackup()
 
+        Events.Business.WalletRestored().send()
+
+        print("Restored userID \(userId). \(needsMigration ? "Migration needed" : "Already on Kin 3, won't migrate")")
+
+        if needsMigration {
+            Kin.shared.startMigration(userId: userId)
+        } else {
+            accountRestored()
+        }
+    }
+
+    @objc func migrationSucceeded() {
+        accountRestored()
+    }
+
+    @objc func accountRestored() {
         DispatchQueue.main.async {
             let accountReadyVC = StoryboardScene.Onboard.accountReadyViewController.instantiate()
             accountReadyVC.walletSource = .restored
             self.navigationController?.pushViewController(accountReadyVC, animated: true)
         }
-
-        Events.Business.WalletRestored().send()
     }
 }

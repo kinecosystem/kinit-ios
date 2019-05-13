@@ -300,4 +300,3 @@ extension TaskCategoryViewController: BackupFlowDelegate {
         backupFlowController = nil
     }
 }
-

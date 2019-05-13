@@ -238,8 +238,8 @@ extension SurveyViewController: QuestionViewControllerDelegate {
             answerIndex = nil
         } else {
             answerIndex = question.results.enumerated()
-                .filter { $0.element.identifier == selectedAnswer.resultIds.first }
-                .first?.offset
+                .first(where: { $0.element.identifier == selectedAnswer.resultIds.first })?
+                .offset
         }
 
         logQuestionAnswered(question,

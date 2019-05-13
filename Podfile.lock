@@ -1,68 +1,93 @@
 PODS:
-  - Firebase/Auth (4.11.0):
-    - Firebase/Core
-    - FirebaseAuth (= 4.5.0)
-  - Firebase/Core (4.11.0):
-    - FirebaseAnalytics (= 4.1.0)
-    - FirebaseCore (= 4.0.18)
-  - FirebaseAnalytics (4.1.0):
-    - FirebaseCore (~> 4.0)
-    - FirebaseInstanceID (~> 2.0)
-    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-    - nanopb (~> 0.3)
-  - FirebaseAuth (4.5.0):
-    - FirebaseAnalytics (~> 4.1)
-    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
+  - Firebase/Auth (5.20.2):
+    - Firebase/CoreOnly
+    - FirebaseAuth (= 5.4.2)
+  - Firebase/CoreOnly (5.20.2):
+    - FirebaseCore (= 5.4.1)
+  - FirebaseAuth (5.4.2):
+    - FirebaseAuthInterop (~> 1.0)
+    - FirebaseCore (~> 5.2)
+    - GoogleUtilities/Environment (~> 5.2)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseCore (4.0.18):
-    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-  - FirebaseInstanceID (2.0.10):
-    - FirebaseCore (~> 4.0)
-  - GoogleToolboxForMac/DebugUtils (2.1.3):
-    - GoogleToolboxForMac/Defines (= 2.1.3)
-  - GoogleToolboxForMac/Defines (2.1.3)
-  - "GoogleToolboxForMac/NSData+zlib (2.1.3)":
-    - GoogleToolboxForMac/Defines (= 2.1.3)
-  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.1.3)":
-    - GoogleToolboxForMac/DebugUtils (= 2.1.3)
-    - GoogleToolboxForMac/Defines (= 2.1.3)
-    - "GoogleToolboxForMac/NSString+URLArguments (= 2.1.3)"
-  - "GoogleToolboxForMac/NSString+URLArguments (2.1.3)"
-  - GTMSessionFetcher/Core (1.1.15)
+  - FirebaseAuthInterop (1.0.0)
+  - FirebaseCore (5.4.1):
+    - GoogleUtilities/Environment (~> 5.2)
+    - GoogleUtilities/Logger (~> 5.2)
+  - GoogleUtilities/Environment (5.8.0)
+  - GoogleUtilities/Logger (5.8.0):
+    - GoogleUtilities/Environment
+  - GTMSessionFetcher/Core (1.2.1)
+  - KinCoreSDK (0.8.0):
+    - Sodium (= 0.8.0)
+    - StellarKit (= 0.4.0)
+  - KinMigrationModule (0.1.0):
+    - KinCoreSDK (= 0.8.0)
+    - KinSDK (= 0.9.0)
+    - Sodium (= 0.8.0)
+  - KinSDK (0.9.0):
+    - KinUtil (= 0.1.0)
+    - Sodium (= 0.8.0)
+  - KinUtil (0.1.0)
   - libPhoneNumber-iOS (0.9.13)
-  - nanopb (0.3.8):
-    - nanopb/decode (= 0.3.8)
-    - nanopb/encode (= 0.3.8)
-  - nanopb/decode (0.3.8)
-  - nanopb/encode (0.3.8)
+  - Sodium (0.8.0)
+  - StellarErrors (0.4.0)
+  - StellarKit (0.4.0):
+    - KinUtil (= 0.1.0)
+    - StellarErrors (= 0.4.0)
 
 DEPENDENCIES:
   - Firebase/Auth
-  - libPhoneNumber-iOS (~> 0.9)
+  - KinMigrationModule (from `https://github.com/kinecosystem/kin-migration-module-ios`, branch `kinnovation`)
+  - KinSDK (from `https://github.com/kinecosystem/kin-sdk-ios`, branch `master`)
+  - libPhoneNumber-iOS
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Firebase
-    - FirebaseAnalytics
     - FirebaseAuth
+    - FirebaseAuthInterop
     - FirebaseCore
-    - FirebaseInstanceID
-    - GoogleToolboxForMac
+    - GoogleUtilities
     - GTMSessionFetcher
+    - KinCoreSDK
+    - KinUtil
     - libPhoneNumber-iOS
-    - nanopb
+    - Sodium
+    - StellarErrors
+    - StellarKit
+
+EXTERNAL SOURCES:
+  KinMigrationModule:
+    :branch: kinnovation
+    :git: https://github.com/kinecosystem/kin-migration-module-ios
+  KinSDK:
+    :branch: master
+    :git: https://github.com/kinecosystem/kin-sdk-ios
+
+CHECKOUT OPTIONS:
+  KinMigrationModule:
+    :commit: f9f96da84f281276b942533aa3a92b86297d0d77
+    :git: https://github.com/kinecosystem/kin-migration-module-ios
+  KinSDK:
+    :commit: 1d9ab281661c75e2787bc836908640a9fdc02c50
+    :git: https://github.com/kinecosystem/kin-sdk-ios
 
 SPEC CHECKSUMS:
-  Firebase: cc13dfab1038c8b45d7903e01fc690451d6d0b24
-  FirebaseAnalytics: 3dfae28d4a5e06f86c4fae830efc2ad3fadb19bc
-  FirebaseAuth: 147bf340a0706b44ca1753d6b41ebafd9687cfe6
-  FirebaseCore: b981f47e5254cbcfdeb483355300d743f6fcab2c
-  FirebaseInstanceID: 8d20d890d65c917f9f7d9950b6e10a760ad34321
-  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
-  GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
+  Firebase: 0c8cf33f266410c61ab3e2265cfa412200351d9c
+  FirebaseAuth: dd7bbf03a5aee0eafb3a1aee4d2812bd74bac890
+  FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
+  FirebaseCore: f1a9a8be1aee4bf71a2fc0f4096df6788bdfda61
+  GoogleUtilities: 04fce34bcd5620c1ee76fb79172105c74a4df335
+  GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
+  KinCoreSDK: 419f6736c8aefcc0aef8ad45fa9032890ae6672e
+  KinMigrationModule: 0f14c64bfb6e1046bd137ab829264223c20905ec
+  KinSDK: 24cbb5cf8b560c6025eacabc1b5aebbe5938c141
+  KinUtil: 5ba64858ba2f24156d6e229c963b37f8d808bd4c
   libPhoneNumber-iOS: e444379ac18bbfbdefad571da735b2cd7e096caa
-  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  Sodium: 63c0ca312a932e6da481689537d4b35568841bdc
+  StellarErrors: 936a03ecd2c92d073f4c3ec706ec4e8a4440cbd1
+  StellarKit: b30586085ec19e16a66467bdff9bab743cfd0e5e
 
-PODFILE CHECKSUM: 2569bd17c5c9330183cc431099873b040fab0e26
+PODFILE CHECKSUM: df9869a105df090a078b18c485270c385287ca8d
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.6.1

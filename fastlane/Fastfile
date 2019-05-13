@@ -44,7 +44,7 @@ platform :ios do
     adhoc = options[:adhoc] ? true : false
     build_type = adhoc ? "adhoc" : "appstore"
 
-    disable_automatic_code_signing
+    disable_automatic_code_signing(targets: ["KinWallet"])
     sync_code_signing(
       git_branch: "kin-ecosystem-F879J8YSJ9",
       username: "fastlane@kinecosystem.com",
@@ -53,7 +53,8 @@ platform :ios do
     )
     build_ios_app(
       scheme: "Kinit",
-      export_method: adhoc ? "ad-hoc" : "app-store"
+      export_method: adhoc ? "ad-hoc" : "app-store",
+      export_team_id: "F879J8YSJ9"
     )
     notification(
       subtitle: build_type,
@@ -86,11 +87,11 @@ platform :ios do
       ],
       message: "Build number bump"
     )
-    enable_automatic_code_signing
+    enable_automatic_code_signing(targets: ["KinWallet"])
   end
 
   error do |lane, exception, options|
-    enable_automatic_code_signing
+    enable_automatic_code_signing(targets: ["KinWallet"])
     notification(
       subtitle: "Error in lane #{lane}",
       message: exception.to_s
