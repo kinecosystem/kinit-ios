@@ -12,12 +12,32 @@ enum WalletLinkerError: Error {
     case noAccount
 }
 
+enum KinEnvironment {
+    static let network: KinSDK.Network = {
+        #if DEBUG || RELEASE_STAGE
+        return .testNet
+        #else
+        return .mainNet
+        #endif
+    }()
+
+    static let nodeURL: URL = {
+        #if DEBUG || RELEASE_STAGE
+        return URL(string: "https://horizon-testnet.kininfrastructure.com")!
+        #else
+        return URL(string: "https://horizon.kinfederation.com")!
+        #endif
+    }()
+
+    static let kinitAppId = "kit"
+}
+
 class WalletLinker {
     private static var kinClient: KinClient {
         let appId = try! AppId(KinEnvironment.kinitAppId) //swiftlint:disable:this force_try
 
         return KinClient(with: KinEnvironment.nodeURL,
-                         network: KinEnvironment.network.mapToKinSDK,
+                         network: KinEnvironment.network,
                          appId: appId)
     }
 

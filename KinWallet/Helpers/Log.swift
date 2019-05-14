@@ -4,7 +4,11 @@
 //
 
 import Foundation
+
+#if BUILDING_FOR_APP_EXTENSION
+#else
 import Crashlytics
+#endif
 
 enum KinitLogLevel: Int, Comparable, Equatable {
     case off = 0
@@ -102,7 +106,10 @@ private func KLog(_ message: Any, file: StaticString, line: UInt, level: KinitLo
         let emoji = level.emoji()
 
         print(emoji, level, emoji, lastPath + ":" + String(describing: line), message)
+        #if BUILDING_FOR_APP_EXTENSION
+        #else
         CLSLogv("%@ %@:%@, %@",
                 getVaList([String(describing: level), lastPath, String(describing: line), String(describing: message)]))
+        #endif
     }
 }

@@ -47,6 +47,7 @@ internal enum Asset {
   internal static let imageTextAnswerBackgroundSelected = ImageAsset(name: "ImageTextAnswerBackgroundSelected")
   internal static let infoIcon = ImageAsset(name: "InfoIcon")
   internal static let kinCoin = ImageAsset(name: "KinCoin")
+  internal static let kinEcosystemLogo = ImageAsset(name: "KinEcosystemLogo")
   internal static let kinLogoSplash = ImageAsset(name: "KinLogoSplash")
   internal static let kinReward = ImageAsset(name: "KinReward")
   internal static let kinTaskReward = ImageAsset(name: "KinTaskReward")

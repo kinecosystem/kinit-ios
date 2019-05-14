@@ -35,7 +35,24 @@ internal enum FontFamily {
     internal static let thinItalic = FontConvertible(name: "Roboto-ThinItalic", family: "Roboto", path: "Roboto-ThinItalic.ttf")
     internal static let all: [FontConvertible] = [black, blackItalic, bold, boldItalic, italic, light, lightItalic, medium, mediumItalic, regular, thin, thinItalic]
   }
-  internal static let allCustomFonts: [FontConvertible] = [KinK.all, Roboto.all].flatMap { $0 }
+  internal enum Sailec {
+    internal static let black = FontConvertible(name: "Sailec-Black", family: "Sailec", path: "Sailec-Black.otf")
+    internal static let blackItalic = FontConvertible(name: "Sailec-BlackItalic", family: "Sailec", path: "Sailec-Black-Italic.otf")
+    internal static let bold = FontConvertible(name: "Sailec-Bold", family: "Sailec", path: "Sailec-Bold.otf")
+    internal static let boldItalic = FontConvertible(name: "Sailec-BoldItalic", family: "Sailec", path: "Sailec-Bold-Italic.otf")
+    internal static let hairline = FontConvertible(name: "Sailec-Hairline", family: "Sailec", path: "Sailec-Hairline.otf")
+    internal static let hairlineItalic = FontConvertible(name: "Sailec-HairlineItalic", family: "Sailec", path: "Sailec-Hairline-Italic.otf")
+    internal static let light = FontConvertible(name: "Sailec-Light", family: "Sailec", path: "Sailec-Light.otf")
+    internal static let lightItalic = FontConvertible(name: "Sailec-LightItalic", family: "Sailec", path: "Sailec-Light-Italic.otf")
+    internal static let medium = FontConvertible(name: "Sailec-Medium", family: "Sailec", path: "Sailec-Medium.otf")
+    internal static let mediumItalic = FontConvertible(name: "Sailec-MediumItalic", family: "Sailec", path: "Sailec-Medium-Italic.otf")
+    internal static let regular = FontConvertible(name: "Sailec-Regular", family: "Sailec", path: "Sailec.otf")
+    internal static let regularItalic = FontConvertible(name: "Sailec-RegularItalic", family: "Sailec", path: "Sailec-Regular-Italic.otf")
+    internal static let thin = FontConvertible(name: "Sailec-Thin", family: "Sailec", path: "Sailec-Thin.otf")
+    internal static let thinItalic = FontConvertible(name: "Sailec-ThinItalic", family: "Sailec", path: "Sailec-Thin-Italic.otf")
+    internal static let all: [FontConvertible] = [black, blackItalic, bold, boldItalic, hairline, hairlineItalic, light, lightItalic, medium, mediumItalic, regular, regularItalic, thin, thinItalic]
+  }
+  internal static let allCustomFonts: [FontConvertible] = [KinK.all, Roboto.all, Sailec.all].flatMap { $0 }
   internal static func registerAllCustomFonts() {
     allCustomFonts.forEach { $0.register() }
   }

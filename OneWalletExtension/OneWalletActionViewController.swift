@@ -11,41 +11,39 @@ import KinSDK
 
 private let walletLinkingTypeIdentifier = "org.kinecosystem.wallet-linking"
 
+@objc(OneWalletActionViewController)
+
 class OneWalletActionViewController: UIViewController {
+    let confirmationViewController = UIStoryboard(name: "OneWalletExtension", bundle: nil)
+        .instantiateViewController(withIdentifier: "OneWalletConfirmationViewController")
+        as! OneWalletConfirmationViewController //swiftlint:disable:this force_cast
+
     var incomingAddress: String?
     var hostAppBundleId: String?
     var hostAppName: String?
     var promise: Promise<TransactionEnvelope>?
 
-    @IBOutlet weak var label: UILabel! {
-        didSet {
-            label.alpha = 0
-        }
-    }
-
-    @IBOutlet weak var connectButton: UIButton! {
-        didSet {
-            connectButton.alpha = 0
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.backgroundColor = .white
+
+        confirmationViewController.delegate = self
+        addAndFit(confirmationViewController)
 
         guard WalletLinker.isWalletAvailable() else {
             //TODO: warn the wallet wasn't created and return error
             return
         }
 
-        print("Extension activated")
+//        KLogDebug("Extension activated")
 
         (extensionContext?.inputItems.first as? NSExtensionItem)?
             .attachments?
             .first(where: { $0.hasItemConformingToTypeIdentifier(walletLinkingTypeIdentifier) })?
             .loadItem(forTypeIdentifier: walletLinkingTypeIdentifier, options: nil, completionHandler: { result, error in
                 guard let dictionary = result as? [String: String] else {
-                    print(String(describing: result))
-                    print("loaded item is not a dictionary")
+                    //TODO: Handle error
                     return
                 }
 
@@ -53,25 +51,18 @@ class OneWalletActionViewController: UIViewController {
                 self.hostAppBundleId = dictionary["bundleId"]
                 self.hostAppName = dictionary["appName"]
 
-                let text = "Incoming address is \(self.incomingAddress ?? "meh")"
-                DispatchQueue.main.async {
-                    self.label.text = text
-                    UIView.animate(withDuration: 0.3, animations: {
-                        self.label.alpha = 1
-                        self.connectButton.alpha = 1
-                    })
-                }
+                //TODO: Activate button
             })
     }
 
-    @IBAction func cancel() {
+    func cancel() {
         // Return any edited content to the host app.
         // This template doesn't do anything, so we just echo the passed in items.
         self.extensionContext!.completeRequest(returningItems: nil,
                                                completionHandler: nil)
     }
 
-    @IBAction func connect(_ sender: Any) {
+    func connect() {
         guard
             let address = incomingAddress,
             let bundleId = hostAppBundleId else {
@@ -102,5 +93,15 @@ class OneWalletActionViewController: UIViewController {
         //TODO: handle error
         self.extensionContext!.completeRequest(returningItems: nil,
                                                completionHandler: nil)
+    }
+}
+
+extension OneWalletActionViewController: OneWalletConfirmationDelegate {
+    func oneWalletConfirmationDidCancel() {
+        cancel()
+    }
+
+    func oneWalletConfirmationDidConfirm() {
+        connect()
     }
 }

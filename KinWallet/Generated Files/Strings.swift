@@ -495,6 +495,15 @@ internal enum L10n {
     internal static let title = L10n.tr("Localizable", "NoInternetError.Title")
   }
 
+  internal enum OneWallet {
+    internal enum ConnectScreen {
+      /// I agree
+      internal static let accept = L10n.tr("Localizable", "OneWallet.ConnectScreen.Accept")
+      /// Please give Kinit permission to receive your Kin account information (i.e., your public address and user ID) to approve future transactions in each app.
+      internal static let explanation = L10n.tr("Localizable", "OneWallet.ConnectScreen.Explanation")
+    }
+  }
+
   internal enum ServerError {
     /// An unkown error occured. Please close the app and try again later.
     internal static let message = L10n.tr("Localizable", "ServerError.Message")

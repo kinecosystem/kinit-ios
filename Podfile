@@ -14,13 +14,6 @@ target 'KinWallet' do
   add_kin_sdk
   #pod 'MoveKin', :path => '/Users/natan/Documents/Kik/MoveKin'
 
-  # Pods for KinWallet
-
-  target 'OneWalletExtension' do
-    inherit! :search_paths
-    add_kin_sdk
-  end
-
   target 'KinWalletTests' do
     inherit! :search_paths
     # Pods for testing
@@ -30,5 +23,10 @@ target 'KinWallet' do
     inherit! :search_paths
     # Pods for testing
   end
+end
 
+target 'OneWalletExtension' do
+  use_frameworks!
+
+  add_kin_sdk
 end

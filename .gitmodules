@@ -13,3 +13,6 @@
 [submodule "Submodules/XLPagerTabStrip"]
 	path = Submodules/XLPagerTabStrip
 	url = https://github.com/xmartlabs/XLPagerTabStrip
+[submodule "Submodules/TORoundedButton"]
+	path = Submodules/TORoundedButton
+	url = https://github.com/TimOliver/TORoundedButton.git
