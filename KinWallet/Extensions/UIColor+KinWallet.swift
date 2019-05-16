@@ -27,6 +27,7 @@ struct KinColors {
     let quizAnswerWrong = UIColor(red: 252, green: 98, blue: 79)
 
     let ecosystemPurple = UIColor(red: 0.43, green: 0.26, blue: 0.91, alpha: 1.00)
+    let cranberryRed = UIColor(red: 0.86, green: 0.29, blue: 0.48, alpha: 1.00)
 }
 
 extension UIColor {

@@ -9,7 +9,7 @@ import UIKit
 import MobileCoreServices
 import KinSDK
 
-private let walletLinkingTypeIdentifier = "org.kinecosystem.wallet-linking"
+private let walletLinkingSetupTypeIdentifier = "org.kinecosystem.kinit.wallet-linking-setup"
 
 @objc(OneWalletActionViewController)
 
@@ -18,10 +18,9 @@ class OneWalletActionViewController: UIViewController {
         .instantiateViewController(withIdentifier: "OneWalletConfirmationViewController")
         as! OneWalletConfirmationViewController //swiftlint:disable:this force_cast
 
-    var incomingAddress: String?
-    var hostAppBundleId: String?
-    var hostAppName: String?
+    var linkRequestPayload: KinWalletLinkRequestPayload?
     var promise: Promise<TransactionEnvelope>?
+    var retryCount = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,76 +28,179 @@ class OneWalletActionViewController: UIViewController {
         view.backgroundColor = .white
 
         confirmationViewController.delegate = self
+        confirmationViewController.setAgreeButtonHidden(true, animated: false)
         addAndFit(confirmationViewController)
 
         guard WalletLinker.isWalletAvailable() else {
-            //TODO: warn the wallet wasn't created and return error
+            noAccountAvailable()
             return
         }
 
-//        KLogDebug("Extension activated")
+        confirmationViewController.isLoading = true
 
-        (extensionContext?.inputItems.first as? NSExtensionItem)?
+        guard let itemProvider = (extensionContext?.inputItems.first as? NSExtensionItem)?
             .attachments?
-            .first(where: { $0.hasItemConformingToTypeIdentifier(walletLinkingTypeIdentifier) })?
-            .loadItem(forTypeIdentifier: walletLinkingTypeIdentifier, options: nil, completionHandler: { result, error in
-                guard let dictionary = result as? [String: String] else {
-                    //TODO: Handle error
+            .first(where: { $0.hasItemConformingToTypeIdentifier(walletLinkingTypeIdentifier) }) else {
+                handleDecodingError()
+                return
+        }
+
+        itemProvider.loadItem(forTypeIdentifier: walletLinkingTypeIdentifier, options: nil) { [weak self] result, _ in
+            DispatchQueue.main.async {
+                guard let self = self else {
                     return
                 }
+                self.confirmationViewController.isLoading = false
 
-                self.incomingAddress = dictionary["address"]
-                self.hostAppBundleId = dictionary["bundleId"]
-                self.hostAppName = dictionary["appName"]
+                guard let data = result as? Data,
+                    let operationType = try? JSONDecoder().decode(KinitOneWalletOperationType.self, from: data) else {
+                        self.handleDecodingError()
+                        return
+                }
 
-                //TODO: Activate button
-            })
+                switch operationType {
+                case .confirmSetup:
+                    print("Confirm setup is not ready yet")
+                case .link(let payload):
+                    guard WalletLinker.isAddressAllowedToLink(payload.publicAddress) else {
+                        self.addressesMatch()
+                        return
+                    }
+
+                    self.linkRequestPayload = payload
+                    self.confirmationViewController.setAgreeButtonHidden(false, animated: true)
+                    self.startConnectPromise()
+                }
+            }
+        }
     }
 
-    func cancel() {
-        // Return any edited content to the host app.
-        // This template doesn't do anything, so we just echo the passed in items.
-        self.extensionContext!.completeRequest(returningItems: nil,
-                                               completionHandler: nil)
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+
+    private func addressesMatch() {
+        //TODO: Adjust
+        presentAlert(title: "Wallets Are the Same",
+                     message: "It seems that you're trying to link an account to itself") {
+            self.complete(with: .addressesMatch)
+        }
+    }
+
+    private func addressAlreadyLinked() {
+        presentAlert(title: "Wallets Already Linked",
+                     message: "It seems that you're trying to link an account that is already linked to Kinit") {
+            self.complete(with: .addressesMatch)
+        }
+    }
+
+    private func noAccountAvailable() {
+        presentAlert(title: "No Account Yet",
+                     message: "It seems that you haven't logged in to Kinit yet. Open Kinit to setup your account") {
+                self.complete(with: .noAccount)
+        }
+    }
+
+    private func handleDecodingError() {
+        presentAlert(title: L10n.generalErrorTitle,
+                     message: "The host app didn't provide Kinit with the correct data") {
+                        self.complete(with: .decodingError)
+        }
+    }
+
+    private func presentAlert(title: String, message: String, action: @escaping () -> Void) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(title: L10n.ok, handler: action)
+        presentAnimated(alertController)
+    }
+
+    private func startConnectPromise(isRetrying: Bool = false) {
+        guard let payload = linkRequestPayload else {
+            complete(with: .decodingError)
+            return
+        }
+
+        if isRetrying {
+            retryCount += 1
+        }
+
+        promise = WalletLinker.createLinkingAccountsTransaction(to: payload.publicAddress,
+                                                                appBundleIdentifier: payload.bundleId)
     }
 
     func connect() {
-        guard
-            let address = incomingAddress,
-            let bundleId = hostAppBundleId else {
+        if promise == nil {
+            startConnectPromise(isRetrying: true)
+        }
+
+        guard let promise = promise else {
             return
         }
 
-        promise = WalletLinker.createLinkingAccountsTransaction(to: address, appBundleIdentifier: bundleId)
-        promise!
+        confirmationViewController.isLoading = true
+        confirmationViewController.setErrorMessage(nil)
+        confirmationViewController.setAgreeButtonEnabled(false)
+        promise
             .then { [weak self] envelope in
                 do {
                     let encodedEnvelope = try XDREncoder.encode(envelope).base64EncodedString()
-                    let returnProvider = NSItemProvider(item: encodedEnvelope as NSSecureCoding?,
-                                                        typeIdentifier: kUTTypeText as String)
-                    let returnItem = NSExtensionItem()
-                    returnItem.attachments = [returnProvider]
-                    self?.extensionContext!.completeRequest(returningItems: [returnItem],
-                                                           completionHandler: nil)
+                    DispatchQueue.main.async {
+                        self?.complete(with: .success(encodedEnvelope))
+                    }
                 } catch {
-                    self?.linkingFailed(error: error)
+                    DispatchQueue.main.async {
+                        self?.linkingFailed(error: error, isEncodingError: true)
+                    }
                 }
             }
             .error { [weak self] error in
-                self?.linkingFailed(error: error)
+                DispatchQueue.main.async {
+                    self?.linkingFailed(error: error, isEncodingError: false)
+                }
         }
     }
 
-    func linkingFailed(error: Error) {
-        //TODO: handle error
-        self.extensionContext!.completeRequest(returningItems: nil,
-                                               completionHandler: nil)
+    func linkingFailed(error: Error, isEncodingError: Bool) {
+        promise = nil
+        let shouldEnableAgreeButton: Bool
+        confirmationViewController.isLoading = false
+
+        if case KinSDK.StellarError.missingAccount = error {
+            shouldEnableAgreeButton = false
+            noAccountAvailable()
+        } else if error.isInternetError {
+            shouldEnableAgreeButton = true
+            confirmationViewController.setErrorMessage(L10n.OneWallet.ConnectScreen.internetError)
+        } else {
+            shouldEnableAgreeButton = !isEncodingError
+            let errorMessage = shouldEnableAgreeButton
+                ? L10n.OneWallet.ConnectScreen.genericErrorTryAgain
+                : L10n.OneWallet.ConnectScreen.genericErrorClose
+            confirmationViewController.setErrorMessage(errorMessage)
+        }
+
+        confirmationViewController.setAgreeButtonEnabled(shouldEnableAgreeButton)
+    }
+
+    private func complete(with result: OneWalletLinkResult) {
+        confirmationViewController.isLoading = false
+
+        guard let data = try? JSONEncoder().encode(result) else {
+            extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+            return
+        }
+
+        let returnProvider = NSItemProvider(item: data as NSSecureCoding,
+                                            typeIdentifier: walletLinkingResultTypeIdentifier)
+        let returnItem = NSExtensionItem()
+        returnItem.attachments = [returnProvider]
+        extensionContext?.completeRequest(returningItems: [returnItem], completionHandler: nil)
     }
 }
 
 extension OneWalletActionViewController: OneWalletConfirmationDelegate {
     func oneWalletConfirmationDidCancel() {
-        cancel()
+        complete(with: .cancelled)
     }
 
     func oneWalletConfirmationDidConfirm() {

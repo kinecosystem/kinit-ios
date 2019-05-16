@@ -146,6 +146,12 @@
 		91123D54228AC0E000805624 /* Sailec-Black-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D52228AC0E000805624 /* Sailec-Black-Italic.otf */; };
 		91123D56228ACCA600805624 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91123D55228ACCA600805624 /* UILabel+Extensions.swift */; };
 		91123D57228ACCA600805624 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91123D55228ACCA600805624 /* UILabel+Extensions.swift */; };
+		91123D5E228B006500805624 /* OneWalletLinkTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91123D5C228B006500805624 /* OneWalletLinkTypes.swift */; };
+		91123D72228C3D3D00805624 /* UIAlertAction+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9163EDFE20553248005F3123 /* UIAlertAction+KinWallet.swift */; };
+		91123D73228C3D4200805624 /* UIAlertController+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159956821354E3A00E4E840 /* UIAlertController+KinWallet.swift */; };
+		91123D75228C409E00805624 /* Error+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91123D74228C409E00805624 /* Error+Extensions.swift */; };
+		91123D76228C409E00805624 /* Error+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91123D74228C409E00805624 /* Error+Extensions.swift */; };
+		91123D8A228D672400805624 /* KinEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913228782281AA1E00A36024 /* KinEnvironment.swift */; };
 		9114743D203F17ED00C16279 /* WeakBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114743C203F17ED00C16279 /* WeakBox.swift */; };
 		9114743E203F1A5000C16279 /* WeakBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114743C203F17ED00C16279 /* WeakBox.swift */; };
 		91147441203F1D4100C16279 /* BalanceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91147440203F1D4100C16279 /* BalanceLabel.swift */; };
@@ -255,7 +261,7 @@
 		9140139120187E140066367C /* SampleTask.json in Resources */ = {isa = PBXBuildFile; fileRef = 9140138F20187E140066367C /* SampleTask.json */; };
 		91401397201892640066367C /* AuthorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91401393201892640066367C /* AuthorTests.swift */; };
 		91401398201892640066367C /* QuestionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91401394201892640066367C /* QuestionTests.swift */; };
-		91401399201892640066367C /* QuestionnaireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91401395201892640066367C /* QuestionnaireTests.swift */; };
+		91401399201892640066367C /* TaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91401395201892640066367C /* TaskTests.swift */; };
 		9140139A201892640066367C /* AnswerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91401396201892640066367C /* AnswerTests.swift */; };
 		914013A02018B87E0066367C /* InitialTasks.json in Resources */ = {isa = PBXBuildFile; fileRef = 9140139F2018B87E0066367C /* InitialTasks.json */; };
 		914013A52018BC320066367C /* OfferWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013A22018BC320066367C /* OfferWallViewController.swift */; };
@@ -908,6 +914,8 @@
 		91123D36228AC02000805624 /* Sailec.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sailec.otf; sourceTree = "<group>"; };
 		91123D52228AC0E000805624 /* Sailec-Black-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sailec-Black-Italic.otf"; sourceTree = "<group>"; };
 		91123D55228ACCA600805624 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
+		91123D5C228B006500805624 /* OneWalletLinkTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneWalletLinkTypes.swift; sourceTree = "<group>"; };
+		91123D74228C409E00805624 /* Error+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Extensions.swift"; sourceTree = "<group>"; };
 		91147439203F177500C16279 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradientView.swift; path = Submodules/GradientView/GradientView/GradientView.swift; sourceTree = SOURCE_ROOT; };
 		9114743C203F17ED00C16279 /* WeakBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakBox.swift; sourceTree = "<group>"; };
 		91147440203F1D4100C16279 /* BalanceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceLabel.swift; sourceTree = "<group>"; };
@@ -975,7 +983,7 @@
 		9140138F20187E140066367C /* SampleTask.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SampleTask.json; sourceTree = "<group>"; };
 		91401393201892640066367C /* AuthorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorTests.swift; sourceTree = "<group>"; };
 		91401394201892640066367C /* QuestionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTests.swift; sourceTree = "<group>"; };
-		91401395201892640066367C /* QuestionnaireTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionnaireTests.swift; sourceTree = "<group>"; };
+		91401395201892640066367C /* TaskTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTests.swift; sourceTree = "<group>"; };
 		91401396201892640066367C /* AnswerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerTests.swift; sourceTree = "<group>"; };
 		9140139F2018B87E0066367C /* InitialTasks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InitialTasks.json; sourceTree = "<group>"; };
 		914013A22018BC320066367C /* OfferWallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferWallViewController.swift; sourceTree = "<group>"; };
@@ -1533,6 +1541,7 @@
 				91123D55228ACCA600805624 /* UILabel+Extensions.swift */,
 				91C42AD620FDDD68001E1C05 /* UIControl+KinWallet.swift */,
 				914013C02019D0BA0066367C /* UIImage+KinWallet.swift */,
+				91123D74228C409E00805624 /* Error+Extensions.swift */,
 				91AAB937201E0CB80075DAA1 /* UIImageView+KinWallet.swift */,
 				91B575C12046C37300AC3E04 /* UIButton+KinWallet.swift */,
 				914013D62019F2BE0066367C /* UITableView+KinWallet.swift */,
@@ -1579,7 +1588,7 @@
 			children = (
 				91401393201892640066367C /* AuthorTests.swift */,
 				91401394201892640066367C /* QuestionTests.swift */,
-				91401395201892640066367C /* QuestionnaireTests.swift */,
+				91401395201892640066367C /* TaskTests.swift */,
 				91401396201892640066367C /* AnswerTests.swift */,
 			);
 			path = Model;
@@ -1696,6 +1705,7 @@
 				913228A42281C45000A36024 /* OneWalletExtension.entitlements */,
 				9192F3EF2277426D006E7909 /* OneWalletExtension.xcassets */,
 				9192F3F12277426D006E7909 /* OneWalletActionViewController.swift */,
+				91123D5C228B006500805624 /* OneWalletLinkTypes.swift */,
 				912D36E0228973E400409667 /* OneWalletExtension.storyboard */,
 				9192F3F62277426D006E7909 /* Info.plist */,
 			);
@@ -2048,6 +2058,7 @@
 				9192F3E92277426D006E7909 /* Sources */,
 				9192F3EA2277426D006E7909 /* Frameworks */,
 				9192F3EB2277426D006E7909 /* Resources */,
+				91123D89228D605900805624 /* Empty */,
 			);
 			buildRules = (
 			);
@@ -2472,6 +2483,24 @@
 			shellPath = /bin/sh;
 			shellScript = "plutil -replace \"Fabric.APIKey\" -string `cat .fabric_key` ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\n";
 		};
+		91123D89228D605900805624 /* Empty */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Empty;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
 		913C9C4B21D0F0DB00B855BC /* Load Reveal */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2719,6 +2748,7 @@
 				82A12DEC2056B841008841F2 /* Configuration.swift in Sources */,
 				91F69D30208379F400F06181 /* SegmentedPagerTabStripViewController.swift in Sources */,
 				913C9C9121D4D05500B855BC /* EcosystemFooterTableViewCell.swift in Sources */,
+				91123D75228C409E00805624 /* Error+Extensions.swift in Sources */,
 				913228792281AA1E00A36024 /* KinEnvironment.swift in Sources */,
 				91FA4A0D212AB75C00513E1D /* QRCodeScannerViewController.swift in Sources */,
 				91A2267F2278917500FD4E78 /* CreatingWalletViewController.swift in Sources */,
@@ -2942,7 +2972,7 @@
 				91B0667A20C8177100CE69A7 /* KinSentViewController.swift in Sources */,
 				9152E5EE212D6C3300802040 /* UIBarButtonItem.swift in Sources */,
 				91B4454C2090A91E00ED6802 /* WelcomeViewController.swift in Sources */,
-				91401399201892640066367C /* QuestionnaireTests.swift in Sources */,
+				91401399201892640066367C /* TaskTests.swift in Sources */,
 				91B0668320C9631100CE69A7 /* UIApplication+KinWallet.swift in Sources */,
 				91E84A5C208617CA00E8B7A6 /* BalancePagerTabViewController.swift in Sources */,
 				91E6B617203C29B30080C2FC /* SurveyDoneViewController.swift in Sources */,
@@ -3183,12 +3213,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91123D73228C3D4200805624 /* UIAlertController+KinWallet.swift in Sources */,
 				912D36EE2289A17500409667 /* ImageAssets.swift in Sources */,
 				912D36D32289619100409667 /* OneWalletConfirmationViewController.swift in Sources */,
 				91123D57228ACCA600805624 /* UILabel+Extensions.swift in Sources */,
 				912D36D922896A5900409667 /* Strings.swift in Sources */,
+				91123D76228C409E00805624 /* Error+Extensions.swift in Sources */,
+				91123D8A228D672400805624 /* KinEnvironment.swift in Sources */,
 				9192F3F22277426D006E7909 /* OneWalletActionViewController.swift in Sources */,
+				91123D5E228B006500805624 /* OneWalletLinkTypes.swift in Sources */,
 				9132289F2281C43C00A36024 /* Array+KinWallet.swift in Sources */,
+				91123D72228C3D3D00805624 /* UIAlertAction+KinWallet.swift in Sources */,
 				912D36E92289797100409667 /* UIViewController+Extensions.swift in Sources */,
 				91123D51228AC02500805624 /* Fonts.swift in Sources */,
 				912D36EA2289798700409667 /* UIView+KinWallet.swift in Sources */,
@@ -3341,7 +3376,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(APP_EXTENSION_SWIFT)";
 				SWIFT_OBJC_BRIDGING_HEADER = "KinWallet/KinWallet-BridgingHeader.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -3540,7 +3575,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(APP_EXTENSION_SWIFT)";
 				SWIFT_OBJC_BRIDGING_HEADER = "KinWallet/KinWallet-BridgingHeader.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;

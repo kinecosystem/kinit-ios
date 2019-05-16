@@ -20,13 +20,13 @@ extension UIAlertController {
         }))
     }
 
-    func addAction(title: String, style: UIAlertAction.Style, handler: (() -> Void)? = nil) {
+    func addAction(title: String, style: UIAlertAction.Style = .default, handler: (() -> Void)? = nil) {
         addAction(title: title, style: style) { _ in
             handler?()
         }
     }
 
-    func addAction(title: String, style: UIAlertAction.Style, handler: ((UIAlertAction) -> Void)?) {
+    func addAction(title: String, style: UIAlertAction.Style = .default, handler: ((UIAlertAction) -> Void)?) {
         addAction(.init(title: title, style: style, handler: handler))
     }
 }

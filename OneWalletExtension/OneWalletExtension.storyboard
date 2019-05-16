@@ -24,14 +24,14 @@
                                     <navigationItem title="Kin Ecosystem" id="GfN-zm-gsO"/>
                                 </items>
                             </navigationBar>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="lzm-K2-IEm">
-                                <rect key="frame" x="41.5" y="234" width="331" height="166.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="lzm-K2-IEm">
+                                <rect key="frame" x="41.5" y="233" width="331" height="168.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" image="KinEcosystemLogo" translatesAutoresizingMaskIntoConstraints="NO" id="cHL-cR-vBS">
                                         <rect key="frame" x="131.5" y="0.0" width="68" height="69"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukt-EX-hW7">
-                                        <rect key="frame" x="0.0" y="85" width="331" height="81.5"/>
+                                        <rect key="frame" x="0.0" y="87" width="331" height="81.5"/>
                                         <string key="text">Please give Kinit permission to receive your Kin account information (i.e., your public address and user ID) to approve future transactions in each app.</string>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                         <nil key="textColor"/>

@@ -5,19 +5,6 @@
 
 import UIKit
 
-let internetErrorCodes = [
-    NSURLErrorCannotConnectToHost,
-    NSURLErrorNetworkConnectionLost,
-    NSURLErrorDNSLookupFailed,
-    NSURLErrorResourceUnavailable,
-    NSURLErrorNotConnectedToInternet,
-    NSURLErrorBadServerResponse,
-    NSURLErrorInternationalRoamingOff,
-    NSURLErrorCallIsActive,
-    NSURLErrorFileDoesNotExist,
-    NSURLErrorNoPermissionsToReadFile
-]
-
 struct NoticeContent {
     var title: String
     var message: String?
@@ -37,18 +24,6 @@ struct NoticeContent {
         }
 
         return generalServerError
-    }
-}
-
-extension Error {
-    var isInternetError: Bool {
-        return (self as NSError).isInternetError
-    }
-}
-
-extension NSError {
-    var isInternetError: Bool {
-        return domain == NSURLErrorDomain && internetErrorCodes.contains(code)
     }
 }
 

@@ -147,7 +147,7 @@ class PhoneConfirmationViewController: UIViewController {
                                                                  verificationCode: currentCode())
         activityIndicatorView.startAnimating()
 
-        Auth.auth().signIn(with: credential) { [weak self] firebaseUser, error in
+        Auth.auth().signInAndRetrieveData(with: credential) { [weak self] firebaseUser, error in
             guard let aSelf = self else {
                 return
             }
@@ -157,7 +157,7 @@ class PhoneConfirmationViewController: UIViewController {
                 return
             }
 
-            aSelf.getFirebaseIdToken(for: firebaseUser!)
+            aSelf.getFirebaseIdToken(for: firebaseUser!.user)
         }
     }
 

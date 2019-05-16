@@ -15,16 +15,6 @@ extension UIViewController {
 }
 
 extension UIViewController {
-    func presentAnimated(_ viewController: UIViewController, completion: (() -> Void)? = nil) {
-        present(viewController, animated: true, completion: completion)
-    }
-
-    func dismissAnimated(completion: (() -> Void)? = nil) {
-        dismiss(animated: true, completion: completion)
-    }
-}
-
-extension UIViewController {
     func presentSupportAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title,
                                                 message: message,

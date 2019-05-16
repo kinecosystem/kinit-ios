@@ -501,6 +501,12 @@ internal enum L10n {
       internal static let accept = L10n.tr("Localizable", "OneWallet.ConnectScreen.Accept")
       /// Please give Kinit permission to receive your Kin account information (i.e., your public address and user ID) to approve future transactions in each app.
       internal static let explanation = L10n.tr("Localizable", "OneWallet.ConnectScreen.Explanation")
+      /// An error occurred.\nPlease close the page and try again later.
+      internal static let genericErrorClose = L10n.tr("Localizable", "OneWallet.ConnectScreen.GenericErrorClose")
+      /// An error occurred. Please try again.
+      internal static let genericErrorTryAgain = L10n.tr("Localizable", "OneWallet.ConnectScreen.GenericErrorTryAgain")
+      /// An error occurred.\nPlease check your internet connection and try again.
+      internal static let internetError = L10n.tr("Localizable", "OneWallet.ConnectScreen.InternetError")
     }
   }
 

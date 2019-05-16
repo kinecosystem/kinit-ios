@@ -12,26 +12,6 @@ enum WalletLinkerError: Error {
     case noAccount
 }
 
-enum KinEnvironment {
-    static let network: KinSDK.Network = {
-        #if DEBUG || RELEASE_STAGE
-        return .testNet
-        #else
-        return .mainNet
-        #endif
-    }()
-
-    static let nodeURL: URL = {
-        #if DEBUG || RELEASE_STAGE
-        return URL(string: "https://horizon-testnet.kininfrastructure.com")!
-        #else
-        return URL(string: "https://horizon.kinfederation.com")!
-        #endif
-    }()
-
-    static let kinitAppId = "kit"
-}
-
 class WalletLinker {
     private static var kinClient: KinClient {
         let appId = try! AppId(KinEnvironment.kinitAppId) //swiftlint:disable:this force_try
@@ -42,7 +22,15 @@ class WalletLinker {
     }
 
     static func isWalletAvailable() -> Bool {
-        return kinClient.accounts.isNotEmpty
+        return kinClient.accounts.isNotEmpty// && User.current?.publicAddress != nil
+    }
+
+    static func isAddressAllowedToLink(_ address: String) -> Bool {
+        guard let account = kinClient.accounts.last else {
+            return false
+        }
+
+        return account.publicAddress != address
     }
 
     static func createLinkingAccountsTransaction(to publicAddress: String,

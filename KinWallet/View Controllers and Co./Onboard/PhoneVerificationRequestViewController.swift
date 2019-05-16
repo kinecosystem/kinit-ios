@@ -76,7 +76,7 @@ class PhoneVerificationRequestViewController: UIViewController {
     }
 
     var regionCode: String {
-        let fromCarrier = NBPhoneNumberUtil().countryCodeByCarrier()
+        let fromCarrier = phoneNumberUtility.countryCodeByCarrier()
 
         guard let codeFromCarrier = fromCarrier, fromCarrier != NB_UNKNOWN_REGION else {
             return Locale.current.regionCode ?? "US"
@@ -86,7 +86,7 @@ class PhoneVerificationRequestViewController: UIViewController {
     }
 
     private func countryCode(for region: String) -> String {
-        let countryCallingCode = NBPhoneNumberUtil().getCountryCode(forRegion: region) ?? NSNumber(value: 1)
+        let countryCallingCode = phoneNumberUtility.getCountryCode(forRegion: region) ?? NSNumber(value: 1)
         return "+" + countryCallingCode.stringValue
     }
 
@@ -226,7 +226,7 @@ class PhoneVerificationRequestViewController: UIViewController {
     }
 
     @objc func numberTextDidChange() {
-        let text = phoneTextField.text ?? ""
+        let text = phoneTextField.textOrEmpty
 
         if !errorLabel.isHidden {
             makeErrorLabelVisible(false)

@@ -474,3 +474,9 @@
 "OneWallet.ConnectScreen.Explanation" = "Please give Kinit permission to receive your Kin account information (i.e., your public address and user ID) to approve future transactions in each app.";
 
 "OneWallet.ConnectScreen.Accept" = "I agree";
+
+"OneWallet.ConnectScreen.GenericErrorTryAgain" = "An error occurred. Please try again.";
+
+"OneWallet.ConnectScreen.GenericErrorClose" = "An error occurred.\nPlease close the page and try again later.";
+
+"OneWallet.ConnectScreen.InternetError" = "An error occurred.\nPlease check your internet connection and try again.";

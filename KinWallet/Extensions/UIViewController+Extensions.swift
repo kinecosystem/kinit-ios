@@ -34,3 +34,13 @@ extension UIViewController {
         UIDevice.current.setValue(orientation.rawValue, forKey: "orientation")
     }
 }
+
+extension UIViewController {
+    func presentAnimated(_ viewController: UIViewController, completion: (() -> Void)? = nil) {
+        present(viewController, animated: true, completion: completion)
+    }
+
+    func dismissAnimated(completion: (() -> Void)? = nil) {
+        dismiss(animated: true, completion: completion)
+    }
+}

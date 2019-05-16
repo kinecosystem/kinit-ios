@@ -16,6 +16,16 @@ protocol OneWalletConfirmationDelegate: class {
 final class OneWalletConfirmationViewController: UIViewController {
     weak var delegate: OneWalletConfirmationDelegate?
 
+    var isLoading = false {
+        didSet {
+            if isLoading {
+                activityIndicator.startAnimating()
+            } else {
+                activityIndicator.stopAnimating()
+            }
+        }
+    }
+
     @IBOutlet weak var explanationLabel: UILabel! {
         didSet {
             explanationLabel.text = L10n.OneWallet.ConnectScreen.explanation
@@ -24,7 +34,7 @@ final class OneWalletConfirmationViewController: UIViewController {
         }
     }
 
-    let acceptButton: RoundedButton = {
+    private let agreeButton: RoundedButton = {
         let button = RoundedButton(text: L10n.OneWallet.ConnectScreen.accept)
         button.textFont = FontFamily.Sailec.medium.font(size: 16)
         button.tintColor = UIColor.kin.ecosystemPurple
@@ -34,6 +44,26 @@ final class OneWalletConfirmationViewController: UIViewController {
         button.cornerRadius = 4
 
         return button
+    }()
+
+    private let activityIndicator: UIActivityIndicatorView = {
+        let a = UIActivityIndicatorView(style: .gray)
+        a.translatesAutoresizingMaskIntoConstraints = false
+        a.color = UIColor.kin.ecosystemPurple
+
+        return a
+    }()
+
+    private let errorMessageLabel: UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.textColor = UIColor.kin.cranberryRed
+        l.font = FontFamily.Sailec.regular.font(size: 14)
+        l.applySailecLineSpacing(4)
+        l.textAlignment = .center
+        l.numberOfLines = 0
+
+        return l
     }()
 
     @IBOutlet weak var navigationBar: UINavigationBar! {
@@ -59,16 +89,56 @@ final class OneWalletConfirmationViewController: UIViewController {
         super.viewDidLoad()
 
         view.tintColor = UIColor.kin.ecosystemPurple
-        view.addSubview(acceptButton)
-        acceptButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        acceptButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        acceptButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
-        acceptButton.bottomAnchor.constraint(equalTo: view.bottomAnchor,
-                                             constant: -40).isActive = true
 
-        acceptButton.tappedHandler = { [weak self] in
+        addAgreeButton()
+        addActivityIndicator()
+        addErrorMessageLabel()
+    }
+
+    func setAgreeButtonHidden(_ hidden: Bool, animated: Bool) {
+        let changes = {
+            self.agreeButton.alpha = hidden ? 0 : 1
+        }
+
+        guard animated else {
+            changes()
+            return
+        }
+
+        UIView.animate(withDuration: 0.25, animations: changes)
+    }
+
+    func setErrorMessage(_ message: String?) {
+        errorMessageLabel.text = message
+    }
+
+    func setAgreeButtonEnabled(_ enabled: Bool) {
+        agreeButton.isEnabled = enabled
+    }
+
+    private func addAgreeButton() {
+        view.addSubview(agreeButton)
+        agreeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        agreeButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        agreeButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+        view.bottomAnchor.constraint(equalTo: agreeButton.bottomAnchor, constant: 42).isActive = true
+
+        agreeButton.tappedHandler = { [weak self] in
             self?.delegate?.oneWalletConfirmationDidConfirm()
         }
+    }
+
+    private func addActivityIndicator() {
+        view.addSubview(activityIndicator)
+        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        agreeButton.topAnchor.constraint(equalTo: activityIndicator.bottomAnchor, constant: 24).isActive = true
+    }
+
+    private func addErrorMessageLabel() {
+        view.addSubview(errorMessageLabel)
+        view.centerXAnchor.constraint(equalTo: errorMessageLabel.centerXAnchor).isActive = true
+        agreeButton.widthAnchor.constraint(equalTo: errorMessageLabel.widthAnchor).isActive = true
+        agreeButton.topAnchor.constraint(equalTo: errorMessageLabel.bottomAnchor, constant: 24).isActive = true
     }
 
     @objc func cancelTapped() {

@@ -165,13 +165,12 @@ extension Bridge: WKScriptMessageHandler {
 }
 
 public extension WKWebView {
-
     private struct STPrivateStatic {
         fileprivate static var bridgeKey = "STPrivateStatic.bridgeKey"
     }
 
     /// Bridge for WKWebView and JavaScript. Initialize `lazy`
-    public var bridge: Bridge {
+    var bridge: Bridge {
         if let bridge = objc_getAssociatedObject(self, &STPrivateStatic.bridgeKey) as? Bridge {
             return bridge
         }
@@ -181,7 +180,7 @@ public extension WKWebView {
     }
 
     /// Remove Bridge And Reset, All the handlers will be removed
-    public func removeBridge() {
+    func removeBridge() {
         if let bridge = objc_getAssociatedObject(self, &STPrivateStatic.bridgeKey) as? Bridge {
             let userContentController = bridge.configuration.userContentController
             userContentController.removeScriptMessageHandler(forName: Bridge.name)
@@ -191,11 +190,10 @@ public extension WKWebView {
 }
 
 fileprivate extension WKWebView {
-
-    fileprivate func st_dispatchBridgeEvent(_ eventName: String,
-                                            parameters: [String: Any],
-                                            results: Bridge.Results,
-                                            completionHandler: ((Any?, Error?) -> Void)? = nil) {
+    func st_dispatchBridgeEvent(_ eventName: String,
+                                parameters: [String: Any],
+                                results: Bridge.Results,
+                                completionHandler: ((Any?, Error?) -> Void)? = nil) {
 
         var eventDetail: [String: Any] = parameters
         switch results {
