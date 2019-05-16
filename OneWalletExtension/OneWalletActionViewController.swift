@@ -165,10 +165,18 @@ class OneWalletActionViewController: UIViewController {
         let shouldEnableAgreeButton: Bool
         confirmationViewController.isLoading = false
 
+        let isMissingSequenceError: Bool
+
+        if case KinSDK.StellarError.missingSequence = error {
+            isMissingSequenceError = true
+        } else {
+            isMissingSequenceError = false
+        }
+
         if case KinSDK.StellarError.missingAccount = error {
             shouldEnableAgreeButton = false
             noAccountAvailable()
-        } else if error.isInternetError {
+        } else if isMissingSequenceError || error.isInternetError {
             shouldEnableAgreeButton = true
             confirmationViewController.setErrorMessage(L10n.OneWallet.ConnectScreen.internetError)
         } else {
