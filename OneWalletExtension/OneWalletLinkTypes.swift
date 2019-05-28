@@ -64,8 +64,11 @@ extension KinitOneWalletOperationType: Codable {
     }
 }
 
+public typealias EnvelopeBase64 = String
+public typealias MasterAddress = String
+
 enum OneWalletLinkResult {
-    case success(String)
+    case success(EnvelopeBase64, MasterAddress)
     case noAccount
     case cancelled
     case decodingError
@@ -86,6 +89,7 @@ extension OneWalletLinkResult: Codable {
     private enum CodingKeys: String, CodingKey {
         case result
         case successEnvelope = "envelope"
+        case masterAddress = "master-address"
     }
 
     init(from decoder: Decoder) throws {
@@ -101,7 +105,8 @@ extension OneWalletLinkResult: Codable {
         case LinkResultKey.addressAlreadyLinked: self = .addressAlreadyLinked
         case LinkResultKey.success:
             let envelope = try container.decode(String.self, forKey: .successEnvelope)
-            self = .success(envelope)
+            let masterAddress = try container.decode(String.self, forKey: .masterAddress)
+            self = .success(envelope, masterAddress)
         default: self = .decodingError
         }
     }
@@ -115,9 +120,10 @@ extension OneWalletLinkResult: Codable {
         case .noAccount: try container.encode(LinkResultKey.noAccount, forKey: .result)
         case .addressesMatch: try container.encode(LinkResultKey.addressesMatch, forKey: .result)
         case .addressAlreadyLinked: try container.encode(LinkResultKey.addressAlreadyLinked, forKey: .result)
-        case .success(let envelope):
+        case .success(let envelope, let masterAddress):
             try container.encode(LinkResultKey.success, forKey: .result)
             try container.encode(envelope, forKey: .successEnvelope)
+            try container.encode(masterAddress, forKey: .masterAddress)
         }
     }
 }

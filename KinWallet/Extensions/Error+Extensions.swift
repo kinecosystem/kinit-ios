@@ -21,12 +21,20 @@ let internetErrorCodes = [
 ]
 
 extension Error {
+    var isTimeout: Bool {
+        return (self as NSError).isTimeout
+    }
+
     var isInternetError: Bool {
         return (self as NSError).isInternetError
     }
 }
 
 extension NSError {
+    var isTimeout: Bool {
+        return domain == NSURLErrorDomain && code == NSURLErrorTimedOut
+    }
+
     var isInternetError: Bool {
         return domain == NSURLErrorDomain && internetErrorCodes.contains(code)
     }

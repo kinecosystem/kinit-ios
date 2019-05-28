@@ -115,6 +115,7 @@
 		910AA2322097308000CC822A /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA2312097307F00CC822A /* RemoteConfig.swift */; };
 		910AA2332097308000CC822A /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA2312097307F00CC822A /* RemoteConfig.swift */; };
 		910AA2342097308000CC822A /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA2312097307F00CC822A /* RemoteConfig.swift */; };
+		91113FE3229D3AF3001F9AD6 /* UIImage+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013C02019D0BA0066367C /* UIImage+KinWallet.swift */; };
 		91123D37228AC02000805624 /* Sailec-Hairline.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D26228AC01F00805624 /* Sailec-Hairline.otf */; };
 		91123D38228AC02000805624 /* Sailec-Hairline.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D26228AC01F00805624 /* Sailec-Hairline.otf */; };
 		91123D39228AC02000805624 /* Sailec-Hairline-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D2B228AC01F00805624 /* Sailec-Hairline-Italic.otf */; };
@@ -3225,6 +3226,7 @@
 				9132289F2281C43C00A36024 /* Array+KinWallet.swift in Sources */,
 				91123D72228C3D3D00805624 /* UIAlertAction+KinWallet.swift in Sources */,
 				912D36E92289797100409667 /* UIViewController+Extensions.swift in Sources */,
+				91113FE3229D3AF3001F9AD6 /* UIImage+KinWallet.swift in Sources */,
 				91123D51228AC02500805624 /* Fonts.swift in Sources */,
 				912D36EA2289798700409667 /* UIView+KinWallet.swift in Sources */,
 				912D36D8228967E100409667 /* UIColor+KinWallet.swift in Sources */,

@@ -34,11 +34,11 @@ class WalletLinker {
     }
 
     static func createLinkingAccountsTransaction(to publicAddress: String,
-                                                 appBundleIdentifier: String) -> Promise<TransactionEnvelope> {
+                                                 appBundleIdentifier: String) -> (Promise<TransactionEnvelope>, String?) {
         guard let account = kinClient.accounts.last else {
-            return .init(WalletLinkerError.noAccount)
+            return (.init(WalletLinkerError.noAccount), nil)
         }
 
-        return account.linkAccount(to: publicAddress, appBundleIdentifier: appBundleIdentifier)
+        return (account.linkAccount(to: publicAddress, appBundleIdentifier: appBundleIdentifier), account.publicAddress)
     }
 }

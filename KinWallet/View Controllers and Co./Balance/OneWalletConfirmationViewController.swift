@@ -15,6 +15,13 @@ protocol OneWalletConfirmationDelegate: class {
 
 final class OneWalletConfirmationViewController: UIViewController {
     weak var delegate: OneWalletConfirmationDelegate?
+    var appName: String! {
+        didSet {
+            if isViewLoaded {
+                explanationLabel.setTextApplyingLineSpacing(L10n.OneWallet.ConnectScreen.explanation(appName))
+            }
+        }
+    }
 
     var isLoading = false {
         didSet {
@@ -28,8 +35,7 @@ final class OneWalletConfirmationViewController: UIViewController {
 
     @IBOutlet weak var explanationLabel: UILabel! {
         didSet {
-            explanationLabel.text = L10n.OneWallet.ConnectScreen.explanation
-            explanationLabel.applySailecLineSpacing()
+            explanationLabel.text = nil
             explanationLabel.font = FontFamily.Sailec.regular.font(size: 16)
         }
     }
@@ -59,7 +65,6 @@ final class OneWalletConfirmationViewController: UIViewController {
         l.translatesAutoresizingMaskIntoConstraints = false
         l.textColor = UIColor.kin.cranberryRed
         l.font = FontFamily.Sailec.regular.font(size: 14)
-        l.applySailecLineSpacing(4)
         l.textAlignment = .center
         l.numberOfLines = 0
 
@@ -69,17 +74,17 @@ final class OneWalletConfirmationViewController: UIViewController {
     @IBOutlet weak var navigationBar: UINavigationBar! {
         didSet {
             navigationBar.isTranslucent = false
-            navigationBar.barTintColor = .white
+            navigationBar.setBackgroundImage(UIImage.from(.white), for: .default)
+            navigationBar.shadowImage = .init()
             navigationBar.titleTextAttributes = [.font: FontFamily.Sailec.regular.font(size: 18),
                                                  .foregroundColor: UIColor.black]
             let navigationItem = UINavigationItem(title: "Kin Ecosystem")
-            let xImage = Asset.closeXButtonDarkGray.image
+            let xImage = Asset.closeButtonBlack.image.withRenderingMode(.alwaysOriginal)
             navigationItem.leftBarButtonItem = UIBarButtonItem(image: xImage,
                                                                landscapeImagePhone: nil,
                                                                style: .plain,
                                                                target: self,
                                                                action: #selector(cancelTapped))
-            navigationItem.leftBarButtonItem?.tintColor = .black
 
             navigationBar.items = [navigationItem]
         }
@@ -109,7 +114,12 @@ final class OneWalletConfirmationViewController: UIViewController {
     }
 
     func setErrorMessage(_ message: String?) {
-        errorMessageLabel.text = message
+        guard let message = message else {
+            errorMessageLabel.text = nil
+            return
+        }
+
+        errorMessageLabel.setTextApplyingLineSpacing(message)
     }
 
     func setAgreeButtonEnabled(_ enabled: Bool) {

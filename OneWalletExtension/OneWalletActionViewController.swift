@@ -21,6 +21,7 @@ class OneWalletActionViewController: UIViewController {
     var linkRequestPayload: KinWalletLinkRequestPayload?
     var promise: Promise<TransactionEnvelope>?
     var retryCount = 0
+    var masterAddress: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +69,7 @@ class OneWalletActionViewController: UIViewController {
                     }
 
                     self.linkRequestPayload = payload
+                    self.confirmationViewController.appName = payload.appName
                     self.confirmationViewController.setAgreeButtonHidden(false, animated: true)
                     self.startConnectPromise()
                 }
@@ -90,7 +92,7 @@ class OneWalletActionViewController: UIViewController {
     private func addressAlreadyLinked() {
         presentAlert(title: "Wallets Already Linked",
                      message: "It seems that you're trying to link an account that is already linked to Kinit") {
-            self.complete(with: .addressesMatch)
+            self.complete(with: .addressAlreadyLinked)
         }
     }
 
@@ -124,8 +126,10 @@ class OneWalletActionViewController: UIViewController {
             retryCount += 1
         }
 
-        promise = WalletLinker.createLinkingAccountsTransaction(to: payload.publicAddress,
-                                                                appBundleIdentifier: payload.bundleId)
+        let linkAccounts = WalletLinker.createLinkingAccountsTransaction(to: payload.publicAddress,
+                                                                         appBundleIdentifier: payload.bundleId)
+        promise = linkAccounts.0
+        masterAddress = linkAccounts.1
     }
 
     func connect() {
@@ -133,7 +137,9 @@ class OneWalletActionViewController: UIViewController {
             startConnectPromise(isRetrying: true)
         }
 
-        guard let promise = promise else {
+        guard
+            let promise = promise,
+            let masterAddress = masterAddress else {
             return
         }
 
@@ -145,7 +151,7 @@ class OneWalletActionViewController: UIViewController {
                 do {
                     let encodedEnvelope = try XDREncoder.encode(envelope).base64EncodedString()
                     DispatchQueue.main.async {
-                        self?.complete(with: .success(encodedEnvelope))
+                        self?.complete(with: .success(encodedEnvelope, masterAddress))
                     }
                 } catch {
                     DispatchQueue.main.async {

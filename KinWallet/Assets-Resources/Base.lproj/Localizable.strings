@@ -471,7 +471,7 @@
 
 //One Wallet
 
-"OneWallet.ConnectScreen.Explanation" = "Please give Kinit permission to receive your Kin account information (i.e., your public address and user ID) to approve future transactions in each app.";
+"OneWallet.ConnectScreen.Explanation" = "Please give Kinit permission to receive your Kin account information (i.e., your public address and user ID) to approve future transactions in %@.";
 
 "OneWallet.ConnectScreen.Accept" = "I agree";
 
