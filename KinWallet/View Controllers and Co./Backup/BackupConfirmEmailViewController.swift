@@ -68,12 +68,7 @@ class BackupConfirmEmailViewController: UIViewController {
         view.addSubview(confirmAccessoryView)
         view.leadingAnchor.constraint(equalTo: confirmAccessoryView.leadingAnchor).isActive = true
         view.trailingAnchor.constraint(equalTo: confirmAccessoryView.trailingAnchor).isActive = true
-
-        if #available(iOS 11.0, *) {
-            view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: confirmAccessoryView.bottomAnchor).isActive = true
-        } else {
-            view.bottomAnchor.constraint(equalTo: confirmAccessoryView.bottomAnchor).isActive = true
-        }
+        view.safeBottomAnchor.constraint(equalTo: confirmAccessoryView.bottomAnchor).isActive = true
 
         messageStackView.bottomAnchor.constraint(lessThanOrEqualTo: confirmAccessoryView.topAnchor,
                                                  constant: 20).isActive = true

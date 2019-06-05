@@ -66,6 +66,8 @@ internal enum Asset {
   internal static let noInternetIllustration = ImageAsset(name: "NoInternetIllustration")
   internal static let noOffers = ImageAsset(name: "NoOffers")
   internal static let noTasksIlustration = ImageAsset(name: "NoTasksIlustration")
+  internal static let numberPadBackground = ImageAsset(name: "NumberPadBackground")
+  internal static let numberPadDelete = ImageAsset(name: "NumberPadDelete")
   internal static let offerCardShadow = ImageAsset(name: "OfferCardShadow")
   internal static let patternPlaceholder = ImageAsset(name: "PatternPlaceholder")
   internal static let paymentDelay = ImageAsset(name: "PaymentDelay")

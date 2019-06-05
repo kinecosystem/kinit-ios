@@ -127,3 +127,10 @@ extension OneWalletLinkResult: Codable {
         }
     }
 }
+
+struct OneWalletTopupRequest: Codable {
+    let appBundleIdentifier: String
+    let publicAddress: String
+    let appURLScheme: String
+    let appName: String
+}

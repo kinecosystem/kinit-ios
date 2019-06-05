@@ -74,7 +74,7 @@ final class OneWalletConfirmationViewController: UIViewController {
     @IBOutlet weak var navigationBar: UINavigationBar! {
         didSet {
             navigationBar.isTranslucent = false
-            navigationBar.setBackgroundImage(UIImage.from(.white), for: .default)
+            navigationBar.setBackgroundImage(.from(.white), for: .default)
             navigationBar.shadowImage = .init()
             navigationBar.titleTextAttributes = [.font: FontFamily.Sailec.regular.font(size: 18),
                                                  .foregroundColor: UIColor.black]

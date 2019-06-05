@@ -54,6 +54,22 @@ extension UIView {
         centerXAnchor.constraint(equalTo: superview.centerXAnchor).isActive = true
         centerYAnchor.constraint(equalTo: superview.centerYAnchor).isActive = true
     }
+
+    var safeBottomAnchor: NSLayoutYAxisAnchor {
+        guard #available(iOS 11.0, *) else {
+            return bottomAnchor
+        }
+
+        return safeAreaLayoutGuide.bottomAnchor
+    }
+
+    var safeTopAnchor: NSLayoutYAxisAnchor {
+        guard #available(iOS 11.0, *) else {
+            return topAnchor
+        }
+
+        return safeAreaLayoutGuide.topAnchor
+    }
 }
 
 extension UIView {

@@ -346,6 +346,7 @@
 		916450CB20D1592400CB7994 /* ParticlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916450CA20D1592400CB7994 /* ParticlesView.swift */; };
 		916450D220D165DE00CB7994 /* ParticlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916450CA20D1592400CB7994 /* ParticlesView.swift */; };
 		916450D320D165DF00CB7994 /* ParticlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916450CA20D1592400CB7994 /* ParticlesView.swift */; };
+		9168062422A66B9E002EE676 /* With.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9168062322A66B9E002EE676 /* With.swift */; };
 		916ACCF520F1FFEF00756EBC /* DualImageQuestionSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916ACCF320F1FFEF00756EBC /* DualImageQuestionSeparatorView.swift */; };
 		916ACCF620F1FFEF00756EBC /* DualImageQuestionSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916ACCF320F1FFEF00756EBC /* DualImageQuestionSeparatorView.swift */; };
 		916ACCF720F1FFEF00756EBC /* DualImageQuestionSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916ACCF320F1FFEF00756EBC /* DualImageQuestionSeparatorView.swift */; };
@@ -430,6 +431,11 @@
 		91A4276D2129C7BD0078B589 /* Onboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91A4276C2129C7BD0078B589 /* Onboard.storyboard */; };
 		91A4276E2129C7BD0078B589 /* Onboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91A4276C2129C7BD0078B589 /* Onboard.storyboard */; };
 		91A4276F2129C7BD0078B589 /* Onboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91A4276C2129C7BD0078B589 /* Onboard.storyboard */; };
+		91A9B4E222A511B900540EF3 /* KinAmountInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A9B4E122A511B900540EF3 /* KinAmountInputViewController.swift */; };
+		91A9B4E422A5120A00540EF3 /* KinitInputNumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A9B4E322A5120A00540EF3 /* KinitInputNumberPad.swift */; };
+		91A9B4E622A512A200540EF3 /* KinitNumberPadButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A9B4E522A512A200540EF3 /* KinitNumberPadButton.swift */; };
+		91A9B4E822A5456500540EF3 /* TopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A9B4E722A5456500540EF3 /* TopupViewController.swift */; };
+		91A9B4E922A5621C00540EF3 /* OneWalletLinkTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91123D5C228B006500805624 /* OneWalletLinkTypes.swift */; };
 		91AA18E621048AD000044D9C /* QuizData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AA18E521048AD000044D9C /* QuizData.swift */; };
 		91AA18E721048AD000044D9C /* QuizData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AA18E521048AD000044D9C /* QuizData.swift */; };
 		91AA18E821048AD000044D9C /* QuizData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AA18E521048AD000044D9C /* QuizData.swift */; };
@@ -1035,6 +1041,7 @@
 		915F497A204452CC005C09B3 /* CirclesLoader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CirclesLoader.json; sourceTree = "<group>"; };
 		9163EDFE20553248005F3123 /* UIAlertAction+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertAction+KinWallet.swift"; sourceTree = "<group>"; };
 		916450CA20D1592400CB7994 /* ParticlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticlesView.swift; sourceTree = "<group>"; };
+		9168062322A66B9E002EE676 /* With.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = With.swift; sourceTree = "<group>"; };
 		916ACCF320F1FFEF00756EBC /* DualImageQuestionSeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DualImageQuestionSeparatorView.swift; sourceTree = "<group>"; };
 		916ACCF420F1FFEF00756EBC /* DualImageQuestionSeparatorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DualImageQuestionSeparatorView.xib; sourceTree = "<group>"; };
 		9170390B20B75175006B01FB /* PushHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushHandler.swift; sourceTree = "<group>"; };
@@ -1074,6 +1081,10 @@
 		91A4275D2129BD830078B589 /* WalletLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletLoadingViewController.swift; sourceTree = "<group>"; };
 		91A427682129BFF20078B589 /* WalletLoader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WalletLoader.json; sourceTree = "<group>"; };
 		91A4276C2129C7BD0078B589 /* Onboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboard.storyboard; sourceTree = "<group>"; };
+		91A9B4E122A511B900540EF3 /* KinAmountInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinAmountInputViewController.swift; sourceTree = "<group>"; };
+		91A9B4E322A5120A00540EF3 /* KinitInputNumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinitInputNumberPad.swift; sourceTree = "<group>"; };
+		91A9B4E522A512A200540EF3 /* KinitNumberPadButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinitNumberPadButton.swift; sourceTree = "<group>"; };
+		91A9B4E722A5456500540EF3 /* TopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopupViewController.swift; sourceTree = "<group>"; };
 		91AA18E521048AD000044D9C /* QuizData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizData.swift; sourceTree = "<group>"; };
 		91AA18E92104C01900044D9C /* QuizQuestionExplanationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestionExplanationViewController.swift; sourceTree = "<group>"; };
 		91AA18ED2104D67300044D9C /* QuestionViewController+Celebration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestionViewController+Celebration.swift"; sourceTree = "<group>"; };
@@ -1311,6 +1322,8 @@
 				91B4453C20909C4500ED6802 /* TutorialPageView.swift */,
 				91B4454620909C5400ED6802 /* TutorialPageView.xib */,
 				91FF123D211AF7420098470D /* StepsProgressView.swift */,
+				91A9B4E322A5120A00540EF3 /* KinitInputNumberPad.swift */,
+				91A9B4E522A512A200540EF3 /* KinitNumberPadButton.swift */,
 			);
 			path = UIView;
 			sourceTree = "<group>";
@@ -1476,6 +1489,7 @@
 		9140135D201632070066367C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				91A9B4DC22A5119200540EF3 /* Top up */,
 				91392A29208F48240026C2F9 /* Onboard */,
 				914013A32018BC320066367C /* Earn */,
 				914013A12018BC320066367C /* Spend */,
@@ -1713,6 +1727,15 @@
 			path = OneWalletExtension;
 			sourceTree = "<group>";
 		};
+		91A9B4DC22A5119200540EF3 /* Top up */ = {
+			isa = PBXGroup;
+			children = (
+				91A9B4E122A511B900540EF3 /* KinAmountInputViewController.swift */,
+				91A9B4E722A5456500540EF3 /* TopupViewController.swift */,
+			);
+			path = "Top up";
+			sourceTree = "<group>";
+		};
 		91AAB930201E091C0075DAA1 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1735,6 +1758,7 @@
 				91AAB931201E0AC00075DAA1 /* ResourceDownloader.swift */,
 				9170390B20B75175006B01FB /* PushHandler.swift */,
 				918E03CE227F1D580065804E /* WalletLinker.swift */,
+				9168062322A66B9E002EE676 /* With.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2650,6 +2674,7 @@
 				910AA2122095C34600CC822A /* UITextField+KinWallet.swift in Sources */,
 				914013DA2019F2BF0066367C /* UITableView+KinWallet.swift in Sources */,
 				9170BE92206A5E9A00DC88B4 /* EarnKinAnimationViewController.swift in Sources */,
+				91A9B4E422A5120A00540EF3 /* KinitInputNumberPad.swift in Sources */,
 				91FF9D34207F79F400B536E9 /* FetchableCollectionViewDataSource.swift in Sources */,
 				91796BCF2027578500F8C6A0 /* TimeZone+KinWallet.swift in Sources */,
 				91B575C52046E83200AC3E04 /* Date+Kinit.swift in Sources */,
@@ -2670,6 +2695,7 @@
 				91F69D2F208379F400F06181 /* ButtonBarViewCell.swift in Sources */,
 				91FF9D05207E091500B536E9 /* Array+KinWallet.swift in Sources */,
 				91B4453D20909C4500ED6802 /* TutorialPageView.swift in Sources */,
+				91A9B4E222A511B900540EF3 /* KinAmountInputViewController.swift in Sources */,
 				910AA2322097308000CC822A /* RemoteConfig.swift in Sources */,
 				91D891CD2020B3C70090E77C /* TouchUpEffectScalable.swift in Sources */,
 				91FF9D18207E4C0200B536E9 /* RedeemTransaction.swift in Sources */,
@@ -2712,6 +2738,7 @@
 				91B40AB0213D54F800DD035B /* HelpCenterViewController.swift in Sources */,
 				91F877E4216A011B00E91C03 /* KinNavigationController.swift in Sources */,
 				91E84A4F2085ED2300E8B7A6 /* EmptyStateView.swift in Sources */,
+				91A9B4E822A5456500540EF3 /* TopupViewController.swift in Sources */,
 				91B575C22046C37300AC3E04 /* UIButton+KinWallet.swift in Sources */,
 				91FF9D2E207F49C800B536E9 /* BalanceViewController.swift in Sources */,
 				9152E601212EB41D00802040 /* KinErrors.swift in Sources */,
@@ -2752,6 +2779,7 @@
 				91123D75228C409E00805624 /* Error+Extensions.swift in Sources */,
 				913228792281AA1E00A36024 /* KinEnvironment.swift in Sources */,
 				91FA4A0D212AB75C00513E1D /* QRCodeScannerViewController.swift in Sources */,
+				91A9B4E622A512A200540EF3 /* KinitNumberPadButton.swift in Sources */,
 				91A2267F2278917500FD4E78 /* CreatingWalletViewController.swift in Sources */,
 				9198A2A02062926D0052F343 /* NotificationHandler.swift in Sources */,
 				9152E5E9212D505300802040 /* RestoreBackupCells.swift in Sources */,
@@ -2762,12 +2790,14 @@
 				914013C12019D0BA0066367C /* UIImage+KinWallet.swift in Sources */,
 				91D7C031204F11D200D35401 /* KinAmountLabel.swift in Sources */,
 				91B575BA2045E62B00AC3E04 /* KinitLoader.swift in Sources */,
+				9168062422A66B9E002EE676 /* With.swift in Sources */,
 				91B4454F2090C3B400ED6802 /* PhoneVerificationRequestViewController.swift in Sources */,
 				9140138D20187DEB0066367C /* Author.swift in Sources */,
 				91F69D38208379F400F06181 /* SwipeDirection.swift in Sources */,
 				91F69D3A208379F400F06181 /* PagerTabStripBehaviour.swift in Sources */,
 				913C9C8C21D4CE8A00B855BC /* EcosystemAppCategoryTableViewCell.swift in Sources */,
 				91401380201755DF0066367C /* AppDelegate+Extensions.swift in Sources */,
+				91A9B4E922A5621C00540EF3 /* OneWalletLinkTypes.swift in Sources */,
 				9157F98F204D589100351E2A /* Offer.swift in Sources */,
 				91B0668220C9631100CE69A7 /* UIApplication+KinWallet.swift in Sources */,
 				910AA21C209613EA00CC822A /* Shakeable.swift in Sources */,
@@ -3408,7 +3438,7 @@
 					"PB_NO_PACKED_STRUCTS=1",
 				);
 				INFOPLIST_FILE = KinWallet/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3608,7 +3638,7 @@
 					"PB_NO_PACKED_STRUCTS=1",
 				);
 				INFOPLIST_FILE = KinWallet/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

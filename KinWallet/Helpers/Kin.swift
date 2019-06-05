@@ -283,26 +283,27 @@ extension Kin {
         let senderAddress = account.publicAddress
         account.sendTransaction(to: address, kin: Decimal(amount), memo: memo, fee: 0) { txEnv in
             let p = Promise<TransactionEnvelope?>()
-            guard let txBase64 = txEnv.asBase64String else {
-                return p.signal(TxSignatureError.encodingFailed)
-            }
-
-            let transaction = SignableTransaction(id: orderId,
-                                                  senderAddress: senderAddress,
-                                                  recipientAddress: address,
-                                                  amount: Int(amount),
-                                                  transaction: txBase64)
-            WebRequests.addSignature(to: transaction)
-                .withCompletion { result in
-                    guard
-                        let signedTxString = result.value,
-                        let signedEnv = TransactionEnvelope.fromBase64String(string: signedTxString) else {
-                            p.signal(result.error ?? TxSignatureError.decodingFailed)
-                            return
-                    }
-
-                    p.signal(signedEnv)
-            }.load(with: KinWebService.shared)
+            p.signal(txEnv)
+//            guard let txBase64 = txEnv.asBase64String else {
+//                return p.signal(TxSignatureError.encodingFailed)
+//            }
+//
+//            let transaction = SignableTransaction(id: orderId,
+//                                                  senderAddress: senderAddress,
+//                                                  recipientAddress: address,
+//                                                  amount: Int(amount),
+//                                                  transaction: txBase64)
+//            WebRequests.addSignature(to: transaction)
+//                .withCompletion { result in
+//                    guard
+//                        let signedTxString = result.value,
+//                        let signedEnv = TransactionEnvelope.fromBase64String(string: signedTxString) else {
+//                            p.signal(result.error ?? TxSignatureError.decodingFailed)
+//                            return
+//                    }
+//
+//                    p.signal(signedEnv)
+//            }.load(with: KinWebService.shared)
             return p
             }.then { txId in
                 Kin.shared.refreshBalance()

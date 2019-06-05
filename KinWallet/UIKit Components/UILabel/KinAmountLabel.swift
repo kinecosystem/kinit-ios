@@ -73,7 +73,7 @@ class KinAmountLabel: UILabel {
 
         let text = " KIN ( K )"
         let fontSize = floor(CGFloat(size.rawValue) * 0.6)
-        let font = FontFamily.Roboto.regular.font(size: fontSize) ?? UIFont.systemFont(ofSize: fontSize)
+        let font = FontFamily.Sailec.regular.font(size: fontSize) ?? UIFont.systemFont(ofSize: fontSize)
         let kFontSize = floor(CGFloat(size.rawValue) * 0.42)
         let kFont = FontFamily.KinK.regular.font(size: kFontSize) ?? UIFont.systemFont(ofSize: kFontSize)
         let attributedString = NSMutableAttributedString(string: text, attributes: [.font: font])
@@ -103,9 +103,7 @@ class KinAmountLabel: UILabel {
 
     private func attributedNumber(_ amount: UInt64) -> NSAttributedString {
         let fontSize = CGFloat(size.rawValue)
-        let fontConvertible = size == .small
-            ? FontFamily.Roboto.bold
-            : FontFamily.Roboto.medium
+        let fontConvertible =  FontFamily.Sailec.bold
 
         let formattedAmount = KinAmountLabel.amountFormatter.string(from: NSNumber(value: amount))
         let font = fontConvertible.font(size: fontSize) ?? UIFont.systemFont(ofSize: fontSize)

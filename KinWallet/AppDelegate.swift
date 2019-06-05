@@ -104,6 +104,23 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
         PushHandler.handlePush(with: userInfo)
     }
+
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        print(url)
+        print(url.query ?? "No URL query")
+
+        if url.host == "topup",
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+            let payloadQueryItem = components.queryItems?.first(where: { $0.name == "payload" }),
+            let payload = payloadQueryItem.value?.removingPercentEncoding,
+            let payloadData = payload.data(using: .utf8),
+            let request = try? JSONDecoder().decode(OneWalletTopupRequest.self, from: payloadData) {
+            let topupViewController = TopupViewController(topupRequest: request)
+            rootViewController.presentAnimated(topupViewController)
+        }
+
+        return true
+    }
 }
 
 extension AppDelegate {

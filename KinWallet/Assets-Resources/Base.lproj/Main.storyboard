@@ -197,7 +197,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Kin Balance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tgf-N6-HWb">
-                                <rect key="frame" x="123.5" y="82.5" width="128.5" height="20.5"/>
+                                <rect key="frame" x="123.5" y="74.5" width="128.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -220,7 +220,7 @@
                             <constraint firstItem="ksW-5c-qKP" firstAttribute="trailing" secondItem="prh-TE-EGf" secondAttribute="trailing" id="Nfd-SV-yWJ"/>
                             <constraint firstItem="zo8-yE-Sxm" firstAttribute="top" secondItem="9nc-Uc-TUs" secondAttribute="bottom" id="TbV-ae-0iL"/>
                             <constraint firstItem="zo8-yE-Sxm" firstAttribute="trailing" secondItem="prh-TE-EGf" secondAttribute="trailing" id="X8N-jg-hQg"/>
-                            <constraint firstItem="h3N-xt-b49" firstAttribute="top" secondItem="Tgf-N6-HWb" secondAttribute="bottom" id="dwb-Sa-nrq"/>
+                            <constraint firstItem="h3N-xt-b49" firstAttribute="top" secondItem="Tgf-N6-HWb" secondAttribute="bottom" constant="8" id="dwb-Sa-nrq"/>
                             <constraint firstItem="9nc-Uc-TUs" firstAttribute="leading" secondItem="BfM-NC-zej" secondAttribute="leading" id="e5t-hn-IWn"/>
                             <constraint firstItem="zo8-yE-Sxm" firstAttribute="top" secondItem="prh-TE-EGf" secondAttribute="top" id="sEX-Sg-Eav"/>
                             <constraint firstItem="zo8-yE-Sxm" firstAttribute="leading" secondItem="prh-TE-EGf" secondAttribute="leading" id="sQW-gk-bii"/>
