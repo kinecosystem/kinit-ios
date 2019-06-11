@@ -74,10 +74,7 @@ final class OneWalletConfirmationViewController: UIViewController {
     @IBOutlet weak var navigationBar: UINavigationBar! {
         didSet {
             navigationBar.isTranslucent = false
-            navigationBar.setBackgroundImage(.from(.white), for: .default)
             navigationBar.shadowImage = .init()
-            navigationBar.titleTextAttributes = [.font: FontFamily.Sailec.regular.font(size: 18),
-                                                 .foregroundColor: UIColor.black]
             let navigationItem = UINavigationItem(title: "Kin Ecosystem")
             let xImage = Asset.closeButtonBlack.image.withRenderingMode(.alwaysOriginal)
             navigationItem.leftBarButtonItem = UIBarButtonItem(image: xImage,
@@ -94,6 +91,10 @@ final class OneWalletConfirmationViewController: UIViewController {
         super.viewDidLoad()
 
         view.tintColor = UIColor.kin.ecosystemPurple
+
+        navigationBar.setBackgroundImage(.from(.white), for: .default)
+        navigationBar.titleTextAttributes = [.font: FontFamily.Sailec.regular.font(size: 18),
+                                             .foregroundColor: UIColor.black]
 
         addAgreeButton()
         addActivityIndicator()

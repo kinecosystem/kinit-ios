@@ -14,54 +14,11 @@ struct KinWalletLinkRequestPayload: Codable {
     let bundleId: String
     let appName: String
     let publicAddress: String
-}
-
-enum KinitOneWalletOperationType {
-    case confirmSetup
-    case link(KinWalletLinkRequestPayload)
+    let urlScheme: String
 }
 
 enum KinitOneWalletLinkError: Error {
     case decodeError
-}
-
-extension KinitOneWalletOperationType: Codable {
-    private struct OperationTypeKey {
-        static let link = "link"
-        static let confirmSetup = "confirm-setup"
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case type
-        case linkRequestPayload = "payload"
-    }
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-
-        let type = try container.decode(String.self, forKey: .type)
-
-        switch type {
-        case OperationTypeKey.confirmSetup:
-            self = .confirmSetup
-        case OperationTypeKey.link:
-            self = .link(try container.decode(KinWalletLinkRequestPayload.self, forKey: .linkRequestPayload))
-        default:
-            throw KinitOneWalletLinkError.decodeError
-        }
-    }
-
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-
-        switch self {
-        case .confirmSetup:
-            try container.encode(OperationTypeKey.confirmSetup, forKey: .type)
-        case .link(let payload):
-            try container.encode(OperationTypeKey.link, forKey: .type)
-            try container.encode(payload, forKey: .linkRequestPayload)
-        }
-    }
 }
 
 public typealias EnvelopeBase64 = String

@@ -14,7 +14,6 @@
 		3066338E2059183B00F9BB45 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3066337B2058FFCE00F9BB45 /* Fabric.framework */; };
 		306633952059188100F9BB45 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3066337C2058FFCE00F9BB45 /* Crashlytics.framework */; };
 		306633962059188100F9BB45 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3066337B2058FFCE00F9BB45 /* Fabric.framework */; };
-		380C66A1C0CA8F5D181BE0FC /* Pods_OneWalletExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EFB37B1DB9D061C1ECCFC13 /* Pods_OneWalletExtension.framework */; };
 		824138402060368B00D7117E /* KinWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91796BD82028692A00F8C6A0 /* KinWebService.swift */; };
 		82413847206036B400D7117E /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91796BD5202868E800F8C6A0 /* WebService.swift */; };
 		82413848206036CC00D7117E /* URL+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CB636320597F3C00C65404 /* URL+KinWallet.swift */; };
@@ -115,44 +114,22 @@
 		910AA2322097308000CC822A /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA2312097307F00CC822A /* RemoteConfig.swift */; };
 		910AA2332097308000CC822A /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA2312097307F00CC822A /* RemoteConfig.swift */; };
 		910AA2342097308000CC822A /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910AA2312097307F00CC822A /* RemoteConfig.swift */; };
-		91113FE3229D3AF3001F9AD6 /* UIImage+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013C02019D0BA0066367C /* UIImage+KinWallet.swift */; };
 		91123D37228AC02000805624 /* Sailec-Hairline.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D26228AC01F00805624 /* Sailec-Hairline.otf */; };
-		91123D38228AC02000805624 /* Sailec-Hairline.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D26228AC01F00805624 /* Sailec-Hairline.otf */; };
 		91123D39228AC02000805624 /* Sailec-Hairline-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D2B228AC01F00805624 /* Sailec-Hairline-Italic.otf */; };
-		91123D3A228AC02000805624 /* Sailec-Hairline-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D2B228AC01F00805624 /* Sailec-Hairline-Italic.otf */; };
 		91123D3B228AC02000805624 /* Sailec-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D2C228AC01F00805624 /* Sailec-Black.otf */; };
-		91123D3C228AC02000805624 /* Sailec-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D2C228AC01F00805624 /* Sailec-Black.otf */; };
 		91123D3D228AC02000805624 /* Sailec-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D2D228AC01F00805624 /* Sailec-Thin.otf */; };
-		91123D3E228AC02000805624 /* Sailec-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D2D228AC01F00805624 /* Sailec-Thin.otf */; };
 		91123D3F228AC02000805624 /* Sailec-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D2E228AC02000805624 /* Sailec-Medium.otf */; };
-		91123D40228AC02000805624 /* Sailec-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D2E228AC02000805624 /* Sailec-Medium.otf */; };
 		91123D41228AC02000805624 /* Sailec-Medium-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D2F228AC02000805624 /* Sailec-Medium-Italic.otf */; };
-		91123D42228AC02000805624 /* Sailec-Medium-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D2F228AC02000805624 /* Sailec-Medium-Italic.otf */; };
 		91123D43228AC02000805624 /* Sailec-Thin-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D30228AC02000805624 /* Sailec-Thin-Italic.otf */; };
-		91123D44228AC02000805624 /* Sailec-Thin-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D30228AC02000805624 /* Sailec-Thin-Italic.otf */; };
 		91123D45228AC02000805624 /* Sailec-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D31228AC02000805624 /* Sailec-Light.otf */; };
-		91123D46228AC02000805624 /* Sailec-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D31228AC02000805624 /* Sailec-Light.otf */; };
 		91123D47228AC02000805624 /* Sailec-Regular-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D32228AC02000805624 /* Sailec-Regular-Italic.otf */; };
-		91123D48228AC02000805624 /* Sailec-Regular-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D32228AC02000805624 /* Sailec-Regular-Italic.otf */; };
 		91123D49228AC02000805624 /* Sailec-Light-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D33228AC02000805624 /* Sailec-Light-Italic.otf */; };
-		91123D4A228AC02000805624 /* Sailec-Light-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D33228AC02000805624 /* Sailec-Light-Italic.otf */; };
 		91123D4B228AC02000805624 /* Sailec-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D34228AC02000805624 /* Sailec-Bold.otf */; };
-		91123D4C228AC02000805624 /* Sailec-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D34228AC02000805624 /* Sailec-Bold.otf */; };
 		91123D4D228AC02000805624 /* Sailec-Bold-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D35228AC02000805624 /* Sailec-Bold-Italic.otf */; };
-		91123D4E228AC02000805624 /* Sailec-Bold-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D35228AC02000805624 /* Sailec-Bold-Italic.otf */; };
 		91123D4F228AC02000805624 /* Sailec.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D36228AC02000805624 /* Sailec.otf */; };
-		91123D50228AC02000805624 /* Sailec.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D36228AC02000805624 /* Sailec.otf */; };
-		91123D51228AC02500805624 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915F49682043022E005C09B3 /* Fonts.swift */; };
 		91123D53228AC0E000805624 /* Sailec-Black-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D52228AC0E000805624 /* Sailec-Black-Italic.otf */; };
-		91123D54228AC0E000805624 /* Sailec-Black-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91123D52228AC0E000805624 /* Sailec-Black-Italic.otf */; };
 		91123D56228ACCA600805624 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91123D55228ACCA600805624 /* UILabel+Extensions.swift */; };
-		91123D57228ACCA600805624 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91123D55228ACCA600805624 /* UILabel+Extensions.swift */; };
-		91123D5E228B006500805624 /* OneWalletLinkTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91123D5C228B006500805624 /* OneWalletLinkTypes.swift */; };
-		91123D72228C3D3D00805624 /* UIAlertAction+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9163EDFE20553248005F3123 /* UIAlertAction+KinWallet.swift */; };
-		91123D73228C3D4200805624 /* UIAlertController+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159956821354E3A00E4E840 /* UIAlertController+KinWallet.swift */; };
 		91123D75228C409E00805624 /* Error+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91123D74228C409E00805624 /* Error+Extensions.swift */; };
-		91123D76228C409E00805624 /* Error+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91123D74228C409E00805624 /* Error+Extensions.swift */; };
-		91123D8A228D672400805624 /* KinEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913228782281AA1E00A36024 /* KinEnvironment.swift */; };
 		9114743D203F17ED00C16279 /* WeakBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114743C203F17ED00C16279 /* WeakBox.swift */; };
 		9114743E203F1A5000C16279 /* WeakBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114743C203F17ED00C16279 /* WeakBox.swift */; };
 		91147441203F1D4100C16279 /* BalanceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91147440203F1D4100C16279 /* BalanceLabel.swift */; };
@@ -167,18 +144,9 @@
 		9120CA86206011E600AFC597 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9120CA85206011E600AFC597 /* OpenGLES.framework */; };
 		912B9A6022672BA80018FA50 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912B9A5F22672BA80018FA50 /* Result.swift */; };
 		912D36CE2289614500409667 /* TORoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 912D36CC2289614500409667 /* TORoundedButton.m */; };
-		912D36D32289619100409667 /* OneWalletConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912D36D22289619100409667 /* OneWalletConfirmationViewController.swift */; };
-		912D36D8228967E100409667 /* UIColor+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914013BD2019D07D0066367C /* UIColor+KinWallet.swift */; };
-		912D36D922896A5900409667 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FE7F1020FB768700EDFB67 /* Strings.swift */; };
 		912D36DB22896D0800409667 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 912D36DA22896D0800409667 /* Config.xcconfig */; };
-		912D36DC22896D0800409667 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 912D36DA22896D0800409667 /* Config.xcconfig */; };
 		912D36DF228973CB00409667 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9140133320162FA90066367C /* Main.storyboard */; };
-		912D36E1228973E400409667 /* OneWalletExtension.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 912D36E0228973E400409667 /* OneWalletExtension.storyboard */; };
-		912D36E92289797100409667 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140137C201748100066367C /* UIViewController+Extensions.swift */; };
-		912D36EA2289798700409667 /* UIView+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91401375201635990066367C /* UIView+KinWallet.swift */; };
 		912D36EC228979B400409667 /* UIViewController+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912D36EB228979B400409667 /* UIViewController+KinWallet.swift */; };
-		912D36ED2289A16C00409667 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9140133620162FA90066367C /* Assets.xcassets */; };
-		912D36EE2289A17500409667 /* ImageAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D891C32020844B0090E77C /* ImageAssets.swift */; };
 		91311C4D204FDB4400618240 /* Optional+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91311C4C204FDB4400618240 /* Optional+KinWallet.swift */; };
 		91311C53204FDBD500618240 /* Optional+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91311C4C204FDB4400618240 /* Optional+KinWallet.swift */; };
 		9131A0BB212C055F000203DC /* RestoreBackupQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9131A0BA212C055F000203DC /* RestoreBackupQuestionsViewController.swift */; };
@@ -187,7 +155,6 @@
 		9131A0C5212C084A000203DC /* AccountSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A427572129AF710078B589 /* AccountSourceViewController.swift */; };
 		9131A0C6212C084B000203DC /* AccountSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A427572129AF710078B589 /* AccountSourceViewController.swift */; };
 		913228792281AA1E00A36024 /* KinEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913228782281AA1E00A36024 /* KinEnvironment.swift */; };
-		9132289F2281C43C00A36024 /* Array+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF9D04207E091500B536E9 /* Array+KinWallet.swift */; };
 		91379A45211744D1002D3EF5 /* BackupIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91379A44211744D1002D3EF5 /* BackupIntroViewController.swift */; };
 		91379A4821174AE1002D3EF5 /* Backup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91379A4621174AE1002D3EF5 /* Backup.storyboard */; };
 		9138BBE1204EE21E00450C97 /* OfferDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9138BBE0204EE21E00450C97 /* OfferDetailsViewController.swift */; };
@@ -347,6 +314,7 @@
 		916450D220D165DE00CB7994 /* ParticlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916450CA20D1592400CB7994 /* ParticlesView.swift */; };
 		916450D320D165DF00CB7994 /* ParticlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916450CA20D1592400CB7994 /* ParticlesView.swift */; };
 		9168062422A66B9E002EE676 /* With.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9168062322A66B9E002EE676 /* With.swift */; };
+		9168064222A7BE8A002EE676 /* TopupCompletionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9168064122A7BE8A002EE676 /* TopupCompletionBar.swift */; };
 		916ACCF520F1FFEF00756EBC /* DualImageQuestionSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916ACCF320F1FFEF00756EBC /* DualImageQuestionSeparatorView.swift */; };
 		916ACCF620F1FFEF00756EBC /* DualImageQuestionSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916ACCF320F1FFEF00756EBC /* DualImageQuestionSeparatorView.swift */; };
 		916ACCF720F1FFEF00756EBC /* DualImageQuestionSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916ACCF320F1FFEF00756EBC /* DualImageQuestionSeparatorView.swift */; };
@@ -408,16 +376,12 @@
 		9189277821664E3400E0EE8C /* PostTaskAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9189277721664E3400E0EE8C /* PostTaskAction.swift */; };
 		918927802166522600E0EE8C /* PostTaskAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9189277721664E3400E0EE8C /* PostTaskAction.swift */; };
 		918927812166522600E0EE8C /* PostTaskAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9189277721664E3400E0EE8C /* PostTaskAction.swift */; };
-		918E03D42280214F0065804E /* WalletLinker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918E03CE227F1D580065804E /* WalletLinker.swift */; };
 		91908C65204D69F200971F11 /* OfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91908C63204D69F200971F11 /* OfferCollectionViewCell.swift */; };
 		91908C66204D69F200971F11 /* OfferCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91908C64204D69F200971F11 /* OfferCollectionViewCell.xib */; };
 		91908C67204D6A6A00971F11 /* OfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91908C63204D69F200971F11 /* OfferCollectionViewCell.swift */; };
 		9191EBC021E62945002BAC48 /* ConnectingLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 9191EBBF21E62945002BAC48 /* ConnectingLoader.json */; };
 		9191EBC121E62945002BAC48 /* ConnectingLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 9191EBBF21E62945002BAC48 /* ConnectingLoader.json */; };
 		9191EBC221E62945002BAC48 /* ConnectingLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 9191EBBF21E62945002BAC48 /* ConnectingLoader.json */; };
-		9192F3F02277426D006E7909 /* OneWalletExtension.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9192F3EF2277426D006E7909 /* OneWalletExtension.xcassets */; };
-		9192F3F22277426D006E7909 /* OneWalletActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9192F3F12277426D006E7909 /* OneWalletActionViewController.swift */; };
-		9192F3F92277426D006E7909 /* OneWalletExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9192F3ED2277426D006E7909 /* OneWalletExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9198A2A02062926D0052F343 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9198A29F2062926D0052F343 /* NotificationHandler.swift */; };
 		91A226792278915000FD4E78 /* MigratingWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A226782278915000FD4E78 /* MigratingWalletViewController.swift */; };
 		91A2267F2278917500FD4E78 /* CreatingWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A2267E2278917500FD4E78 /* CreatingWalletViewController.swift */; };
@@ -454,7 +418,6 @@
 		91AAB939201E0CB80075DAA1 /* UIImageView+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AAB937201E0CB80075DAA1 /* UIImageView+KinWallet.swift */; };
 		91AC4695207CE6590016B648 /* SurveyMultipleTextAnswerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91AC468E207CE6590016B648 /* SurveyMultipleTextAnswerCollectionViewCell.xib */; };
 		91AC9FD82289BD970029A6A6 /* TORoundedButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 912D36CD2289614500409667 /* TORoundedButton.h */; };
-		91AC9FDE2289DF5F0029A6A6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 91FE7F0B20FB745200EDFB67 /* Localizable.strings */; };
 		91AE1D2F2175EB120024B8BF /* TaskCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE1D2D2175EB120024B8BF /* TaskCategoryCollectionViewCell.swift */; };
 		91AE1D302175EB120024B8BF /* TaskCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE1D2D2175EB120024B8BF /* TaskCategoryCollectionViewCell.swift */; };
 		91AE1D312175EB120024B8BF /* TaskCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE1D2D2175EB120024B8BF /* TaskCategoryCollectionViewCell.swift */; };
@@ -534,6 +497,10 @@
 		91B57F9220E038E200CE5EE1 /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B57F9120E038E200CE5EE1 /* Bridge.swift */; };
 		91B57F9320E038E200CE5EE1 /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B57F9120E038E200CE5EE1 /* Bridge.swift */; };
 		91B57F9420E038E200CE5EE1 /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B57F9120E038E200CE5EE1 /* Bridge.swift */; };
+		91B74AF322A7EC0300B3CCFF /* KinitInputActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B74AF222A7EC0300B3CCFF /* KinitInputActionBar.swift */; };
+		91B74AF822A994EE00B3CCFF /* OneWalletActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9192F3F12277426D006E7909 /* OneWalletActionViewController.swift */; };
+		91B74AF922A9955700B3CCFF /* OneWalletConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912D36D22289619100409667 /* OneWalletConfirmationViewController.swift */; };
+		91B74AFA22A9957100B3CCFF /* WalletLinker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918E03CE227F1D580065804E /* WalletLinker.swift */; };
 		91C42AD720FDDD68001E1C05 /* UIControl+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C42AD620FDDD68001E1C05 /* UIControl+KinWallet.swift */; };
 		91C42AD820FDDD68001E1C05 /* UIControl+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C42AD620FDDD68001E1C05 /* UIControl+KinWallet.swift */; };
 		91C42AD920FDDD68001E1C05 /* UIControl+KinWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C42AD620FDDD68001E1C05 /* UIControl+KinWallet.swift */; };
@@ -781,20 +748,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		912D36D02289615200409667 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9140132220162FA90066367C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 91FF1245211B18290098470D;
-			remoteInfo = KinitDesignables;
-		};
-		91345CD122806EAF00672D43 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9140132220162FA90066367C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9192F3EC2277426D006E7909;
-			remoteInfo = OneWalletExtension;
-		};
 		9140134120162FA90066367C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9140132220162FA90066367C /* Project object */;
@@ -879,7 +832,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				9192F3F92277426D006E7909 /* OneWalletExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -940,12 +892,10 @@
 		912D36CD2289614500409667 /* TORoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TORoundedButton.h; path = Submodules/TORoundedButton/TORoundedButton/TORoundedButton.h; sourceTree = SOURCE_ROOT; };
 		912D36D22289619100409667 /* OneWalletConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneWalletConfirmationViewController.swift; sourceTree = "<group>"; };
 		912D36DA22896D0800409667 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		912D36E0228973E400409667 /* OneWalletExtension.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OneWalletExtension.storyboard; sourceTree = "<group>"; };
 		912D36EB228979B400409667 /* UIViewController+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+KinWallet.swift"; sourceTree = "<group>"; };
 		91311C4C204FDB4400618240 /* Optional+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+KinWallet.swift"; sourceTree = "<group>"; };
 		9131A0BA212C055F000203DC /* RestoreBackupQuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreBackupQuestionsViewController.swift; sourceTree = "<group>"; };
 		913228782281AA1E00A36024 /* KinEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinEnvironment.swift; sourceTree = "<group>"; };
-		913228A42281C45000A36024 /* OneWalletExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneWalletExtension.entitlements; sourceTree = "<group>"; };
 		9135970321E34CF500578718 /* StellarKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = StellarKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91379A44211744D1002D3EF5 /* BackupIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupIntroViewController.swift; sourceTree = "<group>"; };
 		91379A4721174AE1002D3EF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Backup.storyboard; sourceTree = "<group>"; };
@@ -1042,6 +992,7 @@
 		9163EDFE20553248005F3123 /* UIAlertAction+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertAction+KinWallet.swift"; sourceTree = "<group>"; };
 		916450CA20D1592400CB7994 /* ParticlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticlesView.swift; sourceTree = "<group>"; };
 		9168062322A66B9E002EE676 /* With.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = With.swift; sourceTree = "<group>"; };
+		9168064122A7BE8A002EE676 /* TopupCompletionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopupCompletionBar.swift; sourceTree = "<group>"; };
 		916ACCF320F1FFEF00756EBC /* DualImageQuestionSeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DualImageQuestionSeparatorView.swift; sourceTree = "<group>"; };
 		916ACCF420F1FFEF00756EBC /* DualImageQuestionSeparatorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DualImageQuestionSeparatorView.xib; sourceTree = "<group>"; };
 		9170390B20B75175006B01FB /* PushHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushHandler.swift; sourceTree = "<group>"; };
@@ -1069,10 +1020,7 @@
 		91908C63204D69F200971F11 /* OfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCollectionViewCell.swift; sourceTree = "<group>"; };
 		91908C64204D69F200971F11 /* OfferCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfferCollectionViewCell.xib; sourceTree = "<group>"; };
 		9191EBBF21E62945002BAC48 /* ConnectingLoader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ConnectingLoader.json; sourceTree = "<group>"; };
-		9192F3ED2277426D006E7909 /* OneWalletExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneWalletExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		9192F3EF2277426D006E7909 /* OneWalletExtension.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = OneWalletExtension.xcassets; sourceTree = "<group>"; };
 		9192F3F12277426D006E7909 /* OneWalletActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneWalletActionViewController.swift; sourceTree = "<group>"; };
-		9192F3F62277426D006E7909 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9198A29F2062926D0052F343 /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		919BCD0B21010CC700C39661 /* KinUtil.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KinUtil.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A226782278915000FD4E78 /* MigratingWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigratingWalletViewController.swift; sourceTree = "<group>"; };
@@ -1121,6 +1069,7 @@
 		91B575C42046E83200AC3E04 /* Date+Kinit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Kinit.swift"; sourceTree = "<group>"; };
 		91B57F8920E035E900CE5EE1 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		91B57F9120E038E200CE5EE1 /* Bridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
+		91B74AF222A7EC0300B3CCFF /* KinitInputActionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinitInputActionBar.swift; sourceTree = "<group>"; };
 		91C42AD620FDDD68001E1C05 /* UIControl+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+KinWallet.swift"; sourceTree = "<group>"; };
 		91CB636320597F3C00C65404 /* URL+KinWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+KinWallet.swift"; sourceTree = "<group>"; };
 		91D075402056A77100CF80D5 /* OffersUnavailableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersUnavailableViewController.swift; sourceTree = "<group>"; };
@@ -1277,14 +1226,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9192F3EA2277426D006E7909 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				380C66A1C0CA8F5D181BE0FC /* Pods_OneWalletExtension.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		91FF1242211B18290098470D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1324,6 +1265,8 @@
 				91FF123D211AF7420098470D /* StepsProgressView.swift */,
 				91A9B4E322A5120A00540EF3 /* KinitInputNumberPad.swift */,
 				91A9B4E522A512A200540EF3 /* KinitNumberPadButton.swift */,
+				91B74AF222A7EC0300B3CCFF /* KinitInputActionBar.swift */,
+				9168064122A7BE8A002EE676 /* TopupCompletionBar.swift */,
 			);
 			path = UIView;
 			sourceTree = "<group>";
@@ -1421,7 +1364,6 @@
 				9140134320162FA90066367C /* KinWalletTests */,
 				9140134E20162FA90066367C /* KinWalletUITests */,
 				91FF1247211B18290098470D /* KinitDesignables */,
-				9192F3EE2277426D006E7909 /* OneWalletExtension */,
 				9140132B20162FA90066367C /* Products */,
 				91AEBF4D202B322D007BBBA3 /* Frameworks */,
 				38F39F46269BA4029BBEA83A /* Pods */,
@@ -1435,7 +1377,6 @@
 				9140134020162FA90066367C /* KinWalletTests.xctest */,
 				9140134B20162FA90066367C /* KinWalletUITests.xctest */,
 				91FF1246211B18290098470D /* KinitDesignables.framework */,
-				9192F3ED2277426D006E7909 /* OneWalletExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1489,7 +1430,7 @@
 		9140135D201632070066367C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				91A9B4DC22A5119200540EF3 /* Top up */,
+				91A9B4DC22A5119200540EF3 /* One Wallet */,
 				91392A29208F48240026C2F9 /* Onboard */,
 				914013A32018BC320066367C /* Earn */,
 				914013A12018BC320066367C /* Spend */,
@@ -1714,26 +1655,15 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		9192F3EE2277426D006E7909 /* OneWalletExtension */ = {
+		91A9B4DC22A5119200540EF3 /* One Wallet */ = {
 			isa = PBXGroup;
 			children = (
-				913228A42281C45000A36024 /* OneWalletExtension.entitlements */,
-				9192F3EF2277426D006E7909 /* OneWalletExtension.xcassets */,
 				9192F3F12277426D006E7909 /* OneWalletActionViewController.swift */,
 				91123D5C228B006500805624 /* OneWalletLinkTypes.swift */,
-				912D36E0228973E400409667 /* OneWalletExtension.storyboard */,
-				9192F3F62277426D006E7909 /* Info.plist */,
-			);
-			path = OneWalletExtension;
-			sourceTree = "<group>";
-		};
-		91A9B4DC22A5119200540EF3 /* Top up */ = {
-			isa = PBXGroup;
-			children = (
 				91A9B4E122A511B900540EF3 /* KinAmountInputViewController.swift */,
 				91A9B4E722A5456500540EF3 /* TopupViewController.swift */,
 			);
-			path = "Top up";
+			path = "One Wallet";
 			sourceTree = "<group>";
 		};
 		91AAB930201E091C0075DAA1 /* Helpers */ = {
@@ -2030,7 +1960,6 @@
 			dependencies = (
 				91E77BC02240FADA00AAE25D /* PBXTargetDependency */,
 				91FF124C211B18290098470D /* PBXTargetDependency */,
-				91345CD222806EAF00672D43 /* PBXTargetDependency */,
 			);
 			name = KinWallet;
 			productName = KinWallet;
@@ -2074,26 +2003,6 @@
 			productName = KinWalletUITests;
 			productReference = 9140134B20162FA90066367C /* KinWalletUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		9192F3EC2277426D006E7909 /* OneWalletExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9192F4002277426D006E7909 /* Build configuration list for PBXNativeTarget "OneWalletExtension" */;
-			buildPhases = (
-				5531489A58EA5E9E3543A805 /* [CP] Check Pods Manifest.lock */,
-				9192F3E92277426D006E7909 /* Sources */,
-				9192F3EA2277426D006E7909 /* Frameworks */,
-				9192F3EB2277426D006E7909 /* Resources */,
-				91123D89228D605900805624 /* Empty */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				912D36D12289615200409667 /* PBXTargetDependency */,
-			);
-			name = OneWalletExtension;
-			productName = OneWalletExtension;
-			productReference = 9192F3ED2277426D006E7909 /* OneWalletExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 		91FF1245211B18290098470D /* KinitDesignables */ = {
 			isa = PBXNativeTarget;
@@ -2151,15 +2060,6 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 9140132920162FA90066367C;
 					};
-					9192F3EC2277426D006E7909 = {
-						CreatedOnToolsVersion = 10.2.1;
-						ProvisioningStyle = Automatic;
-						SystemCapabilities = {
-							com.apple.Keychain = {
-								enabled = 1;
-							};
-						};
-					};
 					91FF1245211B18290098470D = {
 						CreatedOnToolsVersion = 9.4;
 						LastSwiftMigration = 1020;
@@ -2190,7 +2090,6 @@
 				9140133F20162FA90066367C /* KinWalletTests */,
 				9140134A20162FA90066367C /* KinWalletUITests */,
 				91FF1245211B18290098470D /* KinitDesignables */,
-				9192F3EC2277426D006E7909 /* OneWalletExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -2368,32 +2267,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9192F3EB2277426D006E7909 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				91123D50228AC02000805624 /* Sailec.otf in Resources */,
-				91123D54228AC0E000805624 /* Sailec-Black-Italic.otf in Resources */,
-				91123D46228AC02000805624 /* Sailec-Light.otf in Resources */,
-				91123D48228AC02000805624 /* Sailec-Regular-Italic.otf in Resources */,
-				91123D40228AC02000805624 /* Sailec-Medium.otf in Resources */,
-				91123D3A228AC02000805624 /* Sailec-Hairline-Italic.otf in Resources */,
-				91AC9FDE2289DF5F0029A6A6 /* Localizable.strings in Resources */,
-				91123D3E228AC02000805624 /* Sailec-Thin.otf in Resources */,
-				9192F3F02277426D006E7909 /* OneWalletExtension.xcassets in Resources */,
-				912D36E1228973E400409667 /* OneWalletExtension.storyboard in Resources */,
-				91123D4C228AC02000805624 /* Sailec-Bold.otf in Resources */,
-				912D36ED2289A16C00409667 /* Assets.xcassets in Resources */,
-				91123D4A228AC02000805624 /* Sailec-Light-Italic.otf in Resources */,
-				91123D3C228AC02000805624 /* Sailec-Black.otf in Resources */,
-				91123D4E228AC02000805624 /* Sailec-Bold-Italic.otf in Resources */,
-				912D36DC22896D0800409667 /* Config.xcconfig in Resources */,
-				91123D42228AC02000805624 /* Sailec-Medium-Italic.otf in Resources */,
-				91123D38228AC02000805624 /* Sailec-Hairline.otf in Resources */,
-				91123D44228AC02000805624 /* Sailec-Thin-Italic.otf in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		91FF1244211B18290098470D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2472,28 +2345,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5531489A58EA5E9E3543A805 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OneWalletExtension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		828CB49E20594364007C679C /* Add Fabric Key Into Plist */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2507,24 +2358,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "plutil -replace \"Fabric.APIKey\" -string `cat .fabric_key` ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\n";
-		};
-		91123D89228D605900805624 /* Empty */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = Empty;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
 		};
 		913C9C4B21D0F0DB00B855BC /* Load Reveal */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2556,7 +2389,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftgen >/dev/null; then\n  swiftgen storyboards -t scenes-swift4 --output \"KinWallet/Generated Files/Storyboards.swift\" KinWallet\n  swiftgen xcassets -t swift4 --output \"KinWallet/Generated Files/ImageAssets.swift\" KinWallet/Assets-Resources/Assets.xcassets\nswiftgen fonts -t swift4 --output \"KinWallet/Generated Files/Fonts.swift\" KinWallet/Assets-Resources/Fonts\nswiftgen strings -t structured-swift4 --output \"KinWallet/Generated Files/Strings.swift\" KinWallet/Assets-Resources/Base.lproj/Localizable.strings\nelse\necho \"warning: SwiftGen not installed, install with Homebrew: brew install SwiftGen\"\nfi\n\n";
+			shellScript = "if which swiftgen >/dev/null; then\n  swiftgen storyboards -t scenes-swift4 --output \"KinWallet/Generated Files/Storyboards.swift\" KinWallet\n  swiftgen xcassets -t swift4 --output \"KinWallet/Generated Files/ImageAssets.swift\" KinWallet/Assets-Resources/Assets.xcassets\nswiftgen fonts -t swift4 --output \"KinWallet/Generated Files/Fonts.swift\" KinWallet/Assets-Resources/Fonts\nswiftgen strings -t structured-swift4 --output \"KinWallet/Generated Files/Strings.swift\" KinWallet/Assets-Resources/Base.lproj/Localizable.strings\nelse\necho \"warning: SwiftGen not installed, install with Homebrew: brew install SwiftGen\"\nfi\n";
 		};
 		91401378201741630066367C /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2666,6 +2499,7 @@
 				9138BBE5204EF1A700450C97 /* SimpleCollectionReusableView.swift in Sources */,
 				91D891DA2020B43D0090E77C /* SurveyQuestionCollectionReusableView.swift in Sources */,
 				9114743D203F17ED00C16279 /* WeakBox.swift in Sources */,
+				91B74AF822A994EE00B3CCFF /* OneWalletActionViewController.swift in Sources */,
 				91B0667920C8177100CE69A7 /* KinSentViewController.swift in Sources */,
 				91E6B650203C69A90080C2FC /* AMPUtils.m in Sources */,
 				91D1E286218078AC00F9AF4F /* TaskCategoryTitleView.swift in Sources */,
@@ -2757,6 +2591,7 @@
 				91AE22F821775E930024B8BF /* TaskLoader.swift in Sources */,
 				911AAAC02265FCB400A18295 /* XDRCodable+Extensions.swift in Sources */,
 				91C42AD720FDDD68001E1C05 /* UIControl+KinWallet.swift in Sources */,
+				91B74AF322A7EC0300B3CCFF /* KinitInputActionBar.swift in Sources */,
 				91F877EA216A011B00E91C03 /* RootViewController.swift in Sources */,
 				9163EDFF20553248005F3123 /* UIAlertAction+KinWallet.swift in Sources */,
 				91379A45211744D1002D3EF5 /* BackupIntroViewController.swift in Sources */,
@@ -2803,8 +2638,10 @@
 				910AA21C209613EA00CC822A /* Shakeable.swift in Sources */,
 				91E20B8B202B3E3B000CB741 /* FeedbackGenerator.swift in Sources */,
 				91B0667120C6AF7800CE69A7 /* StandardOfferActionViewController.swift in Sources */,
+				9168064222A7BE8A002EE676 /* TopupCompletionBar.swift in Sources */,
 				914013B02018BD050066367C /* SurveyInfoViewController.swift in Sources */,
 				915F49692043022E005C09B3 /* Fonts.swift in Sources */,
+				91B74AF922A9955700B3CCFF /* OneWalletConfirmationViewController.swift in Sources */,
 				91A226792278915000FD4E78 /* MigratingWalletViewController.swift in Sources */,
 				9131A0BB212C055F000203DC /* RestoreBackupQuestionsViewController.swift in Sources */,
 				91FDE1572028B09F003A30FB /* Data+KinWallet.swift in Sources */,
@@ -2817,6 +2654,7 @@
 				914013DC2019F2BF0066367C /* UICollectionViewCell+KinWallet.swift in Sources */,
 				913C9C6A21D3879D00B855BC /* AppBasicInfoTableViewCell.swift in Sources */,
 				91B57F8A20E035E900CE5EE1 /* WebViewController.swift in Sources */,
+				91B74AFA22A9957100B3CCFF /* WalletLinker.swift in Sources */,
 				91E6B660203C69A90080C2FC /* Amplitude.m in Sources */,
 				915995472134491600E4E840 /* FormsheetPresentationController.swift in Sources */,
 				91AAB932201E0AC00075DAA1 /* ResourceDownloader.swift in Sources */,
@@ -3240,30 +3078,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9192F3E92277426D006E7909 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				91123D73228C3D4200805624 /* UIAlertController+KinWallet.swift in Sources */,
-				912D36EE2289A17500409667 /* ImageAssets.swift in Sources */,
-				912D36D32289619100409667 /* OneWalletConfirmationViewController.swift in Sources */,
-				91123D57228ACCA600805624 /* UILabel+Extensions.swift in Sources */,
-				912D36D922896A5900409667 /* Strings.swift in Sources */,
-				91123D76228C409E00805624 /* Error+Extensions.swift in Sources */,
-				91123D8A228D672400805624 /* KinEnvironment.swift in Sources */,
-				9192F3F22277426D006E7909 /* OneWalletActionViewController.swift in Sources */,
-				91123D5E228B006500805624 /* OneWalletLinkTypes.swift in Sources */,
-				9132289F2281C43C00A36024 /* Array+KinWallet.swift in Sources */,
-				91123D72228C3D3D00805624 /* UIAlertAction+KinWallet.swift in Sources */,
-				912D36E92289797100409667 /* UIViewController+Extensions.swift in Sources */,
-				91113FE3229D3AF3001F9AD6 /* UIImage+KinWallet.swift in Sources */,
-				91123D51228AC02500805624 /* Fonts.swift in Sources */,
-				912D36EA2289798700409667 /* UIView+KinWallet.swift in Sources */,
-				912D36D8228967E100409667 /* UIColor+KinWallet.swift in Sources */,
-				918E03D42280214F0065804E /* WalletLinker.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		91FF1241211B18290098470D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3279,16 +3093,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		912D36D12289615200409667 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 91FF1245211B18290098470D /* KinitDesignables */;
-			targetProxy = 912D36D02289615200409667 /* PBXContainerItemProxy */;
-		};
-		91345CD222806EAF00672D43 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9192F3EC2277426D006E7909 /* OneWalletExtension */;
-			targetProxy = 91345CD122806EAF00672D43 /* PBXContainerItemProxy */;
-		};
 		9140134220162FA90066367C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9140132920162FA90066367C /* KinWallet */;
@@ -3510,55 +3314,6 @@
 				TEST_TARGET_NAME = KinWallet;
 			};
 			name = Debug;
-		};
-		9192F3FA2277426D006E7909 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C76F4FDD315F5A9117CE0E41 /* Pods-OneWalletExtension.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = OneWalletExtensionAppIcon;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CODE_SIGN_ENTITLEMENTS = OneWalletExtension/OneWalletExtension.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F879J8YSJ9;
-				INFOPLIST_FILE = OneWalletExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = org.kinecosystem.kinit.OneWalletExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		9192F3FB2277426D006E7909 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AF0029ADFD068AEFA92ECC31 /* Pods-OneWalletExtension.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = OneWalletExtensionAppIcon;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CODE_SIGN_ENTITLEMENTS = OneWalletExtension/OneWalletExtension.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F879J8YSJ9;
-				INFOPLIST_FILE = OneWalletExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = org.kinecosystem.kinit.OneWalletExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
 		};
 		91B2626920DA4A5A00E8A766 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -3809,15 +3564,6 @@
 			buildConfigurations = (
 				9140135B20162FA90066367C /* Debug */,
 				91B2626C20DA4A5A00E8A766 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		9192F4002277426D006E7909 /* Build configuration list for PBXNativeTarget "OneWalletExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9192F3FA2277426D006E7909 /* Debug */,
-				9192F3FB2277426D006E7909 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

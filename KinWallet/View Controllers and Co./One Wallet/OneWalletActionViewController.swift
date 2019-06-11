@@ -14,11 +14,9 @@ private let walletLinkingSetupTypeIdentifier = "org.kinecosystem.kinit.wallet-li
 @objc(OneWalletActionViewController)
 
 class OneWalletActionViewController: UIViewController {
-    let confirmationViewController = UIStoryboard(name: "OneWalletExtension", bundle: nil)
-        .instantiateViewController(withIdentifier: "OneWalletConfirmationViewController")
-        as! OneWalletConfirmationViewController //swiftlint:disable:this force_cast
+    let confirmationViewController = StoryboardScene.Main.oneWalletConfirmationViewController.instantiate()
 
-    var linkRequestPayload: KinWalletLinkRequestPayload?
+    var linkRequestPayload: KinWalletLinkRequestPayload!
     var promise: Promise<TransactionEnvelope>?
     var retryCount = 0
     var masterAddress: String!
@@ -37,44 +35,14 @@ class OneWalletActionViewController: UIViewController {
             return
         }
 
-        confirmationViewController.isLoading = true
-
-        guard let itemProvider = (extensionContext?.inputItems.first as? NSExtensionItem)?
-            .attachments?
-            .first(where: { $0.hasItemConformingToTypeIdentifier(walletLinkingTypeIdentifier) }) else {
-                handleDecodingError()
-                return
+        guard WalletLinker.isAddressAllowedToLink(linkRequestPayload.publicAddress) else {
+            self.addressesMatch()
+            return
         }
 
-        itemProvider.loadItem(forTypeIdentifier: walletLinkingTypeIdentifier, options: nil) { [weak self] result, _ in
-            DispatchQueue.main.async {
-                guard let self = self else {
-                    return
-                }
-                self.confirmationViewController.isLoading = false
-
-                guard let data = result as? Data,
-                    let operationType = try? JSONDecoder().decode(KinitOneWalletOperationType.self, from: data) else {
-                        self.handleDecodingError()
-                        return
-                }
-
-                switch operationType {
-                case .confirmSetup:
-                    print("Confirm setup is not ready yet")
-                case .link(let payload):
-                    guard WalletLinker.isAddressAllowedToLink(payload.publicAddress) else {
-                        self.addressesMatch()
-                        return
-                    }
-
-                    self.linkRequestPayload = payload
-                    self.confirmationViewController.appName = payload.appName
-                    self.confirmationViewController.setAgreeButtonHidden(false, animated: true)
-                    self.startConnectPromise()
-                }
-            }
-        }
+        confirmationViewController.appName = linkRequestPayload.appName
+        confirmationViewController.setAgreeButtonHidden(false, animated: true)
+        startConnectPromise()
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
@@ -128,11 +96,35 @@ class OneWalletActionViewController: UIViewController {
 
         let linkAccounts = WalletLinker.createLinkingAccountsTransaction(to: payload.publicAddress,
                                                                          appBundleIdentifier: payload.bundleId)
-        promise = linkAccounts.0
         masterAddress = linkAccounts.1
+        let recipientAddress = payload.publicAddress
+
+        let p = Promise<TransactionEnvelope>()
+        promise = p
+        linkAccounts.0.then { txEnv in
+            guard let txBase64 = txEnv.asBase64String else {
+                p.signal(TxSignatureError.encodingFailed)
+                return
+            }
+
+            let transaction = WhitelistTransactionRequest(senderAddress: self.masterAddress!,
+                                                          recipientAddress: recipientAddress,
+                                                          transaction: txBase64)
+            WebRequests.signLinkingTransaction(transaction)
+                .withCompletion { result in
+                    guard
+                        let signedTxString = result.value,
+                        let signedEnv = TransactionEnvelope.fromBase64String(string: signedTxString) else {
+                            p.signal(result.error ?? TxSignatureError.decodingFailed)
+                            return
+                    }
+
+                    p.signal(signedEnv)
+                }.load(with: KinWebService.shared)
+        }
     }
 
-    func connect() {
+    private func connect() {
         if promise == nil {
             startConnectPromise(isRetrying: true)
         }
@@ -166,7 +158,7 @@ class OneWalletActionViewController: UIViewController {
         }
     }
 
-    func linkingFailed(error: Error, isEncodingError: Bool) {
+    private func linkingFailed(error: Error, isEncodingError: Bool) {
         promise = nil
         let shouldEnableAgreeButton: Bool
         confirmationViewController.isLoading = false
@@ -199,16 +191,23 @@ class OneWalletActionViewController: UIViewController {
     private func complete(with result: OneWalletLinkResult) {
         confirmationViewController.isLoading = false
 
-        guard let data = try? JSONEncoder().encode(result) else {
-            extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
-            return
+        defer {
+            dismissAnimated()
         }
 
-        let returnProvider = NSItemProvider(item: data as NSSecureCoding,
-                                            typeIdentifier: walletLinkingResultTypeIdentifier)
-        let returnItem = NSExtensionItem()
-        returnItem.attachments = [returnProvider]
-        extensionContext?.completeRequest(returningItems: [returnItem], completionHandler: nil)
+        guard
+            let data = try? JSONEncoder().encode(result),
+            let jsonString = String(data: data, encoding: .utf8),
+            let payload = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+            let url = URL(string: "\(linkRequestPayload.urlScheme)://kin-wallet-link/result?payload=\(payload)") else {
+                if let fallbackURL = URL(string: linkRequestPayload.urlScheme + "://") {
+                    UIApplication.shared.open(fallbackURL)
+                }
+
+                return
+        }
+
+        UIApplication.shared.open(url)
     }
 }
 

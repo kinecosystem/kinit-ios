@@ -24,9 +24,3 @@ target 'KinWallet' do
     # Pods for testing
   end
 end
-
-target 'OneWalletExtension' do
-  use_frameworks!
-
-  add_kin_sdk
-end

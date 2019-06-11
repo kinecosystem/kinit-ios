@@ -64,6 +64,8 @@ internal enum StoryboardScene {
 
     internal static let offerWallNavigationController = SceneType<KinWallet.KinNavigationController>(storyboard: Main.self, identifier: "OfferWallNavigationController")
 
+    internal static let oneWalletConfirmationViewController = SceneType<KinWallet.OneWalletConfirmationViewController>(storyboard: Main.self, identifier: "OneWalletConfirmationViewController")
+
     internal static let rootTabBarController = SceneType<KinWallet.RootTabBarController>(storyboard: Main.self, identifier: "RootTabBarController")
 
     internal static let surveyNavigationController = SceneType<KinWallet.KinNavigationController>(storyboard: Main.self, identifier: "SurveyNavigationController")

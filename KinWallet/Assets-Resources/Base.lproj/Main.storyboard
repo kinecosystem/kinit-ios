@@ -582,9 +582,60 @@ Message</string>
             </objects>
             <point key="canvasLocation" x="2616" y="1861.169415292354"/>
         </scene>
+        <!--One Wallet Confirmation View Controller-->
+        <scene sceneID="R1V-uz-dNK">
+            <objects>
+                <viewController storyboardIdentifier="OneWalletConfirmationViewController" id="849-vp-oUy" customClass="OneWalletConfirmationViewController" customModule="OneWalletExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QOX-Oz-4yF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dRY-KI-uct">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Kin Ecosystem" id="RVN-1A-uyp"/>
+                                </items>
+                            </navigationBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="akl-HM-qk1">
+                                <rect key="frame" x="37.5" y="156" width="300" height="168.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" image="KinEcosystemLogo" translatesAutoresizingMaskIntoConstraints="NO" id="eUC-fJ-NC8">
+                                        <rect key="frame" x="116" y="0.0" width="68" height="69"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Urb-rz-6fg">
+                                        <rect key="frame" x="0.0" y="87" width="300" height="81.5"/>
+                                        <string key="text">Please give Kinit permission to receive your Kin account information (i.e., your public address and user ID) to approve future transactions in each app.</string>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="akl-HM-qk1" firstAttribute="width" secondItem="QOX-Oz-4yF" secondAttribute="width" multiplier="0.8" id="6DW-L6-6vk"/>
+                            <constraint firstItem="dRY-KI-uct" firstAttribute="top" secondItem="log-72-NeK" secondAttribute="top" id="8sR-I3-5R2"/>
+                            <constraint firstItem="akl-HM-qk1" firstAttribute="centerY" secondItem="log-72-NeK" secondAttribute="centerY" multiplier="0.7" id="HzY-zB-Zta"/>
+                            <constraint firstItem="dRY-KI-uct" firstAttribute="trailing" secondItem="log-72-NeK" secondAttribute="trailing" id="L44-aO-eDN"/>
+                            <constraint firstItem="dRY-KI-uct" firstAttribute="leading" secondItem="log-72-NeK" secondAttribute="leading" id="gNH-sP-2SW"/>
+                            <constraint firstItem="akl-HM-qk1" firstAttribute="centerX" secondItem="log-72-NeK" secondAttribute="centerX" id="xKT-Us-eo4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="log-72-NeK"/>
+                    </view>
+                    <connections>
+                        <outlet property="explanationLabel" destination="Urb-rz-6fg" id="LfD-vX-2x9"/>
+                        <outlet property="navigationBar" destination="dRY-KI-uct" id="gSo-qz-STu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rSi-O5-P4H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2319" y="1063"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BackupNagHeader" width="280" height="141"/>
+        <image name="KinEcosystemLogo" width="68" height="69"/>
         <image name="SowingIllustration" width="214" height="150"/>
     </resources>
 </document>

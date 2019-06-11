@@ -7,22 +7,18 @@
 
 import Foundation
 
-#if BUILDING_FOR_APP_EXTENSION
 import KinSDK
-#else
 import KinMigrationModule
-#endif
 
 enum KinEnvironment {
-    #if BUILDING_FOR_APP_EXTENSION
-    static let network: KinSDK.Network = {
+    static let kinSDKNetwork: KinSDK.Network = {
         #if DEBUG || RELEASE_STAGE
         return .testNet
         #else
         return .mainNet
         #endif
     }()
-    #else
+
     static let network: KinMigrationModule.Network = {
         #if DEBUG || RELEASE_STAGE
         return .testNet
@@ -30,7 +26,6 @@ enum KinEnvironment {
         return .mainNet
         #endif
     }()
-    #endif
 
     static let nodeURL: URL = {
         #if DEBUG || RELEASE_STAGE

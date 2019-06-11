@@ -70,7 +70,13 @@ class KinAmountInputViewController: UIViewController {
             amountLabel.heightAnchor.constraint(equalToConstant: 60),
             view.centerXAnchor.constraint(equalTo: amountLabel.centerXAnchor),
             amountLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            amountLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 120)
+            NSLayoutConstraint(item: amountLabel,
+                               attribute: .centerY,
+                               relatedBy: .equal,
+                               toItem: view,
+                               attribute: .centerY,
+                               multiplier: 0.6,
+                               constant: 0)
             ])
 
         keyboard.delegate = self

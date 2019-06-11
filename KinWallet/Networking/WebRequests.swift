@@ -256,11 +256,11 @@ extension WebRequests {
     }
 }
 
-struct SignableTransaction: Codable {
-    let id: String
+struct WhitelistTransactionRequest: Codable {
+    let id: String?
     let senderAddress: String
     let recipientAddress: String
-    let amount: Int
+    let amount: Int?
     let transaction: String
 
     enum CodingKeys: String, CodingKey {
@@ -270,9 +270,21 @@ struct SignableTransaction: Codable {
         case amount
         case transaction
     }
+
+    init(id: String? = nil,
+         senderAddress: String,
+         recipientAddress: String,
+         amount: Int? = nil,
+         transaction: String) {
+        self.id = id
+        self.senderAddress = senderAddress
+        self.recipientAddress = recipientAddress
+        self.amount = amount
+        self.transaction = transaction
+    }
 }
 
-struct SignableTransactionResponse: Codable, StatusResponse {
+struct SignedTransactionResponse: Codable, StatusResponse {
     let status: String
     let signedTransaction: String
 
@@ -283,8 +295,19 @@ struct SignableTransactionResponse: Codable, StatusResponse {
 }
 
 extension WebRequests {
-    static func addSignature(to transaction: SignableTransaction) -> WebRequest<SignableTransactionResponse, String> {
+    static func addSignature(to transaction: WhitelistTransactionRequest) -> WebRequest<SignedTransactionResponse, String> {
         return .init(POST: "/user/add-signature", body: transaction, transform: {
+            guard let response = $0,
+                WebResourceHandlers.isJSONStatusOk(response: response).boolValue else {
+                    return nil
+            }
+
+            return response.signedTransaction
+        })
+    }
+
+    static func signLinkingTransaction(_ transaction: WhitelistTransactionRequest) -> WebRequest<SignedTransactionResponse, String> {
+        return .init(POST: "/user/link_wallet/whitelist", body: transaction, transform: {
             guard let response = $0,
                 WebResourceHandlers.isJSONStatusOk(response: response).boolValue else {
                     return nil

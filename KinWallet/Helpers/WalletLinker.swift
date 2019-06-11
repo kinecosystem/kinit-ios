@@ -8,6 +8,8 @@
 import Foundation
 import KinSDK
 
+typealias WalletLinkingResult = (Promise<TransactionEnvelope>, String?)
+
 enum WalletLinkerError: Error {
     case noAccount
 }
@@ -17,12 +19,12 @@ class WalletLinker {
         let appId = try! AppId(KinEnvironment.kinitAppId) //swiftlint:disable:this force_try
 
         return KinClient(with: KinEnvironment.nodeURL,
-                         network: KinEnvironment.network,
+                         network: KinEnvironment.kinSDKNetwork,
                          appId: appId)
     }
 
     static func isWalletAvailable() -> Bool {
-        return kinClient.accounts.isNotEmpty// && User.current?.publicAddress != nil
+        return kinClient.accounts.isNotEmpty && User.current?.publicAddress != nil
     }
 
     static func isAddressAllowedToLink(_ address: String) -> Bool {
@@ -34,7 +36,7 @@ class WalletLinker {
     }
 
     static func createLinkingAccountsTransaction(to publicAddress: String,
-                                                 appBundleIdentifier: String) -> (Promise<TransactionEnvelope>, String?) {
+                                                 appBundleIdentifier: String) -> WalletLinkingResult {
         guard let account = kinClient.accounts.last else {
             return (.init(WalletLinkerError.noAccount), nil)
         }

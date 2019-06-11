@@ -106,8 +106,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        print(url)
-        print(url.query ?? "No URL query")
+
+        var toPresent: UIViewController?
 
         if url.host == "topup",
             let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
@@ -115,8 +115,23 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             let payload = payloadQueryItem.value?.removingPercentEncoding,
             let payloadData = payload.data(using: .utf8),
             let request = try? JSONDecoder().decode(OneWalletTopupRequest.self, from: payloadData) {
-            let topupViewController = TopupViewController(topupRequest: request)
-            rootViewController.presentAnimated(topupViewController)
+            toPresent = TopupViewController(topupRequest: request)
+        }
+
+        if url.host == "kin-wallet-link",
+            url.path == "/request",
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+            let payloadQueryItem = components.queryItems?.first(where: { $0.name == "payload" }),
+            let rawPayload = payloadQueryItem.value?.removingPercentEncoding,
+            let payloadData = rawPayload.data(using: .utf8),
+            let payload = try? JSONDecoder().decode(KinWalletLinkRequestPayload.self, from: payloadData) {
+            let oneWalletActionVC = OneWalletActionViewController()
+            oneWalletActionVC.linkRequestPayload = payload
+            toPresent = oneWalletActionVC
+        }
+
+        if let viewController = toPresent {
+            rootViewController.presentAnimated(viewController)
         }
 
         return true

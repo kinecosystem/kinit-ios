@@ -7,21 +7,16 @@
 
 import UIKit
 
-class TopupSuccessView {
-
-}
-
-class TopupFailureView {
-
-}
-
 class TopupViewController: UIViewController {
     let appBundleIdentifier: String
     let destinationAddress: String
     let appURLScheme: String
+    let appName: String
 
     let amountInputViewController = KinAmountInputViewController()
     let actionBar: KinInputActionBar
+
+    var completionBarTopConstraint: NSLayoutConstraint?
 
     let navigationBar = with(UINavigationBar()) {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -33,9 +28,10 @@ class TopupViewController: UIViewController {
     }
 
     init(topupRequest: OneWalletTopupRequest) {
-        self.appBundleIdentifier = topupRequest.appBundleIdentifier
-        self.destinationAddress = topupRequest.publicAddress
-        self.appURLScheme = topupRequest.appURLScheme
+        appBundleIdentifier = topupRequest.appBundleIdentifier
+        destinationAddress = topupRequest.publicAddress
+        appURLScheme = topupRequest.appURLScheme
+        appName = topupRequest.appName
 
         actionBar = KinInputActionBar(title: "Top up",
                                       progressText: "Topping up",
@@ -45,7 +41,7 @@ class TopupViewController: UIViewController {
 
         actionBar.delegate = self
 
-        let navigationItem = UINavigationItem(title: "Top up \(topupRequest.appName)")
+        let navigationItem = UINavigationItem(title: "Top up \(appName)")
         let xImage = Asset.closeButtonBlack.image.withRenderingMode(.alwaysOriginal)
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: xImage,
                                                            landscapeImagePhone: nil,
@@ -68,7 +64,6 @@ class TopupViewController: UIViewController {
         view.leadingAnchor.constraint(equalTo: actionBar.leadingAnchor).isActive = true
         view.bottomAnchor.constraint(equalTo: actionBar.bottomAnchor).isActive = true
         view.trailingAnchor.constraint(equalTo: actionBar.trailingAnchor).isActive = true
-        actionBar.heightAnchor.constraint(equalToConstant: 72).isActive = true
 
         amountInputViewController.delegate = self
         add(amountInputViewController, to: view) {
@@ -98,14 +93,12 @@ class TopupViewController: UIViewController {
 
     fileprivate func topupSucceded() {
         print("Success topping up")
+        FeedbackGenerator.notifySuccessIfAvailable()
 
-        DispatchQueue.main.async {
-            self.actionBar.finishProgress(duration: 0.3) { _ in
-                //TODO: Replace action bar with option to take the user back to the app
-                //for now: launch the app back
-                self.launchBackApp()
-                self.dismissAnimated()
-            }
+        let result = TopupCompletionResult.success((appName, amountInputViewController.amount))
+
+        actionBar.finishProgress(duration: 0.2) { _ in
+            self.addCompletionBar(result: result)
         }
     }
 
@@ -115,7 +108,12 @@ class TopupViewController: UIViewController {
     }
 
     fileprivate func topupFailed(_ error: Error) {
-        print("Failure topping up: \(error)")
+        print("Topup failed: \(error)")
+
+        FeedbackGenerator.notifyErrorIfAvailable()
+        actionBar.reset(isEnabled: true)
+        amountInputViewController.isEnabled = true
+        addCompletionBar(result: .failure(error))
     }
 
     fileprivate func launchBackApp() {
@@ -125,10 +123,53 @@ class TopupViewController: UIViewController {
 
         UIApplication.shared.open(url)
     }
+
+    fileprivate func addCompletionBar(result: TopupCompletionResult) {
+        let completionBar = TopupCompletionBar(result: result, delegate: self)
+        completionBar.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(completionBar)
+
+        let constraintToDeactivate = completionBar.topAnchor.constraint(equalTo: view.bottomAnchor)
+        NSLayoutConstraint.activate([
+            completionBar.heightAnchor.constraint(equalTo: actionBar.heightAnchor),
+            completionBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            completionBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            constraintToDeactivate
+            ])
+
+        completionBarTopConstraint = completionBar.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        view.layoutIfNeeded()
+
+        UIView.animate(withDuration: 0.3,
+                       delay: 0.1,
+                       usingSpringWithDamping: 0.8,
+                       initialSpringVelocity: 0.8,
+                       options: [],
+                       animations: {
+            self.completionBarTopConstraint?.isActive = true
+            constraintToDeactivate.isActive = false
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
+
+    fileprivate func removeCompletionBar(_ completionBar: TopupCompletionBar) {
+        let constraintToActivate = completionBar.topAnchor.constraint(equalTo: view.bottomAnchor)
+        UIView.animate(withDuration: 0.3, animations: {
+            self.completionBarTopConstraint?.isActive = false
+            constraintToActivate.isActive = true
+            self.view.layoutIfNeeded()
+        }, completion: { _ in
+            completionBar.removeFromSuperview()
+        })
+    }
 }
 
 extension TopupViewController: KinAmountInputDelegate {
     func amountInputDidChange(_ amount: UInt64) {
+        if let completionBar = view.subviews.compactMap({ $0 as? TopupCompletionBar }).first {
+            removeCompletionBar(completionBar)
+        }
+
         actionBar.isEnabled = amount > 0
     }
 }
@@ -136,17 +177,34 @@ extension TopupViewController: KinAmountInputDelegate {
 extension TopupViewController: KinInputActionBarDelegate {
     func kinInputActionBarDidTap() {
         amountInputViewController.isEnabled = false
-        actionBar.startProgress(duration: 30)
+        actionBar.startProgress(duration: 35)
         let tempOrderId = "Topup\(appBundleIdentifier)".replacingOccurrences(of: "-", with: "")
+
+        let cancelButton = navigationBar.topItem?.leftBarButtonItem
+        cancelButton?.isEnabled = false
 
         Kin.shared.send(amountInputViewController.amount,
                         orderId: tempOrderId,
                         to: destinationAddress,
                         type: .crossApp) { [weak self] result in
-            switch result {
-            case .success: self?.topupSucceded()
-            case .failure(let error): self?.topupFailed(error)
+            DispatchQueue.main.async {
+                cancelButton?.isEnabled = true
+                switch result {
+                case .success: self?.topupSucceded()
+                case .failure(let error): self?.topupFailed(error)
+                }
             }
         }
+    }
+}
+
+extension TopupViewController: TopupCompletionBarDelegate {
+    func topupCompletionBarDidTapClose(_ completionBar: TopupCompletionBar) {
+        removeCompletionBar(completionBar)
+    }
+
+    func topupCompletionBarDidTapBackToApp(_ completionBar: TopupCompletionBar) {
+        launchBackApp()
+        dismiss(animated: false)
     }
 }
