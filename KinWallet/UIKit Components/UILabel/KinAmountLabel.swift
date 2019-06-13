@@ -10,11 +10,6 @@ enum AmountLabelSize: Int {
     case large = 56
 }
 
-enum AmountLabelType {
-    case prefixed
-    case suffixed
-}
-
 class KinAmountFormatter: NumberFormatter {
     override init() {
         super.init()
@@ -31,6 +26,11 @@ class KinAmountFormatter: NumberFormatter {
 }
 
 class KinAmountLabel: UILabel {
+    enum PrecedenceType {
+        case prefixed
+        case suffixed
+    }
+
     static let amountFormatter = KinAmountFormatter()
 
     var size = AmountLabelSize.small {
@@ -41,9 +41,9 @@ class KinAmountLabel: UILabel {
         }
     }
 
-    var type = AmountLabelType.suffixed {
+    var precedenceType = PrecedenceType.suffixed {
         didSet {
-            if oldValue != type {
+            if oldValue != precedenceType {
                 renderAmount()
             }
         }
@@ -56,7 +56,7 @@ class KinAmountLabel: UILabel {
     }
 
     private func attributedPrefix() -> NSAttributedString? {
-        guard type == .prefixed else {
+        guard precedenceType == .prefixed else {
             return nil
         }
 
@@ -67,7 +67,7 @@ class KinAmountLabel: UILabel {
     }
 
     private func attributedSuffix() -> NSAttributedString? {
-        guard type == .suffixed else {
+        guard precedenceType == .suffixed else {
             return nil
         }
 

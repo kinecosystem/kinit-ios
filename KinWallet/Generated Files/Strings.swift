@@ -315,6 +315,8 @@ internal enum L10n {
   internal static let tapToContinue = L10n.tr("Localizable", "TapToContinue")
   /// Tap to finish
   internal static let tapToFinish = L10n.tr("Localizable", "TapToFinish")
+  /// Total Balance
+  internal static let totalBalance = L10n.tr("Localizable", "TotalBalance")
   ///  Sorry! We were unable to retrieve your code.\nPlease contact support to resolve this issue.
   internal static let transactionIncompleteMessage = L10n.tr("Localizable", "TransactionIncompleteMessage")
   /// Oops! Transaction incomplete

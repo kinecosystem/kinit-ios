@@ -6,7 +6,23 @@
 import UIKit
 
 class BalanceLabel: KinAmountLabel {
+    enum BalanceType: Int {
+        case local
+        case aggregate
+    }
+
     private let kin: Kin
+
+    var balanceType: BalanceType = .local {
+        didSet {
+            switch balanceType {
+            case .local:
+                balance = kin.localBalance
+            case .aggregate:
+                balance = kin.aggregateBalance
+            }
+        }
+    }
 
     fileprivate var balance: UInt64 = 0 {
         didSet {
@@ -16,8 +32,9 @@ class BalanceLabel: KinAmountLabel {
         }
     }
 
-    init(kin: Kin) {
+    init(kin: Kin, balanceType: BalanceType = .local) {
         self.kin = kin
+        self.balanceType = balanceType
         balance = kin.balance
 
         super.init(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
@@ -43,7 +60,19 @@ class BalanceLabel: KinAmountLabel {
 }
 
 extension BalanceLabel: BalanceDelegate {
-    func balanceDidUpdate(balance: UInt64) {
+    func localBalanceDidUpdate(balance: UInt64) {
+        guard balanceType == .local else {
+            return
+        }
+
+        self.balance = balance
+    }
+
+    func aggregateBalanceDidUpdate(balance: UInt64) {
+        guard balanceType == .aggregate else {
+            return
+        }
+
         self.balance = balance
     }
 }

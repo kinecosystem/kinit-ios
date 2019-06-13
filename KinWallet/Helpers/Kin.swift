@@ -6,11 +6,13 @@
 import Foundation
 import KinMigrationModule
 import StellarErrors
+import class KinSDK.KinAccount
 
 //swiftlint:disable force_try
 
 private let userIdMigrationQueryItemName = "user_id"
-private let balanceUserDefaultsKey = "org.kinfoundation.kinwallet.currentBalance"
+private let localBalanceUserDefaultsKey = "org.kinfoundation.kinwallet.currentBalance"
+private let aggregateBalanceUserDefaultsKey = "org.kinfoundation.kinwallet.currentAggregateBalance"
 private let accountStatusPerformedBackupKey = "org.kinfoundation.kinwallet.performedBackup"
 
 class Kin: NSObject {
@@ -126,7 +128,7 @@ extension Kin {
             .then { balance in
                 self.client = tempKin3Client
                 self.account = tempKin3Client.accounts.first!
-                self.balanceUpdated(balance)
+                self.localBalanceUpdated(balance)
                 completion(.success(migrationNeeded: false))
             }.error { error in
                 tempKin3Client.deleteKeystore()
@@ -166,7 +168,7 @@ extension Kin {
             return onboardingPromise!
         }
 
-        refreshBalance { result in
+        refreshLocalBalance { result in
             switch result {
             case .success(let balance):
                 KLogVerbose("Already on-boarded account \(self.account.publicAddress). Balance is \(balance) KIN")
@@ -210,7 +212,7 @@ extension Kin {
                 KLogVerbose("Success onboarding account? \(result.value.boolValue)")
                 Events.Log.StellarAccountCreationSucceeded().send()
                 Events.Business.WalletCreated().send()
-                self.balanceUpdated(0)
+                self.localBalanceUpdated(0)
                 p.signal(.success)
             }.load(with: KinWebService.shared)
 
@@ -221,7 +223,15 @@ extension Kin {
 // MARK: Balance/Watch operations
 extension Kin {
     var balance: UInt64 {
-        return UInt64(UserDefaults.standard.integer(forKey: balanceUserDefaultsKey))
+        return localBalance
+    }
+
+    var localBalance: UInt64 {
+        return UInt64(UserDefaults.standard.integer(forKey: localBalanceUserDefaultsKey))
+    }
+
+    var aggregateBalance: UInt64 {
+        return UInt64(UserDefaults.standard.integer(forKey: aggregateBalanceUserDefaultsKey))
     }
 
     func addBalanceDelegate(_ delegate: BalanceDelegate) {
@@ -235,9 +245,14 @@ extension Kin {
     }
 
     func refreshBalance(completion: ((Result<Decimal, Error>) -> Void)? = nil) {
+        refreshLocalBalance(completion: completion)
+        refreshAggregateBalance()
+    }
+
+    func refreshLocalBalance(completion: ((Result<Decimal, Error>) -> Void)? = nil) {
         account.balance()
             .then({ [weak self] balance in
-                self?.balanceUpdated(balance)
+                self?.localBalanceUpdated(balance)
                 completion?(.success(balance))
             }).error({ error in
                 KLogError("Error fetching balance")
@@ -256,15 +271,27 @@ extension Kin {
             })
     }
 
-    private func balanceUpdated(_ balance: Decimal) {
+    private func localBalanceUpdated(_ balance: Decimal) {
         KLogVerbose("Balance is now \(balance)")
         let balanceAsUInt = (balance as NSDecimalNumber).uint64Value
-        UserDefaults.standard.set(balanceAsUInt, forKey: balanceUserDefaultsKey)
+        UserDefaults.standard.set(balanceAsUInt, forKey: localBalanceUserDefaultsKey)
         Analytics.balance = balanceAsUInt
 
         self.balanceDelegates
             .compactMap { $0.value as? BalanceDelegate }
-            .forEach { $0.balanceDidUpdate(balance: balanceAsUInt) }
+            .forEach { $0.localBalanceDidUpdate(balance: balanceAsUInt) }
+    }
+
+    private func refreshAggregateBalance() {
+        account.aggregateBalance()
+            .then { kin in
+                let balanceAsUInt = (kin as NSDecimalNumber).uint64Value
+                UserDefaults.standard.set(balanceAsUInt, forKey: aggregateBalanceUserDefaultsKey)
+
+                self.balanceDelegates
+                    .compactMap { $0.value as? BalanceDelegate }
+                    .forEach { $0.aggregateBalanceDidUpdate(balance: balanceAsUInt) }
+        }
     }
 
     func watch(cursor: String?) throws -> PaymentWatchProtocol {

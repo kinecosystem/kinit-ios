@@ -130,6 +130,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             toPresent = oneWalletActionVC
         }
 
+        if url.host == "balance" {
+            rootViewController.selectedIndex = 2
+        }
+
         if let viewController = toPresent {
             rootViewController.presentAnimated(viewController)
         }

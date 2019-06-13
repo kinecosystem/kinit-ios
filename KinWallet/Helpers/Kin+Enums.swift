@@ -42,5 +42,6 @@ extension Notification.Name {
 }
 
 protocol BalanceDelegate: class {
-    func balanceDidUpdate(balance: UInt64)
+    func localBalanceDidUpdate(balance: UInt64)
+    func aggregateBalanceDidUpdate(balance: UInt64)
 }

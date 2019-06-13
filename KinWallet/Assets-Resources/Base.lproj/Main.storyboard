@@ -585,7 +585,7 @@ Message</string>
         <!--One Wallet Confirmation View Controller-->
         <scene sceneID="R1V-uz-dNK">
             <objects>
-                <viewController storyboardIdentifier="OneWalletConfirmationViewController" id="849-vp-oUy" customClass="OneWalletConfirmationViewController" customModule="OneWalletExtension" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OneWalletConfirmationViewController" id="849-vp-oUy" customClass="OneWalletConfirmationViewController" customModule="KinWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QOX-Oz-4yF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

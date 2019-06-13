@@ -17,7 +17,7 @@ class KinAmountInputViewController: UIViewController {
 
     private let amountLabel = with(KinAmountLabel(frame: .zero)) {
         $0.size = .large
-        $0.type = .prefixed
+        $0.precedenceType = .prefixed
     }
 
     private let formatter: NumberFormatter = {

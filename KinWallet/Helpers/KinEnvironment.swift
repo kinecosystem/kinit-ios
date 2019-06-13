@@ -29,7 +29,7 @@ enum KinEnvironment {
 
     static let nodeURL: URL = {
         #if DEBUG || RELEASE_STAGE
-        return URL(string: "https://horizon-testnet.kininfrastructure.com")!
+        return URL(string: "https://horizon-testnet-one-wallet.kininfrastructure.com")!
         #else
         return URL(string: "https://horizon.kinfederation.com")!
         #endif

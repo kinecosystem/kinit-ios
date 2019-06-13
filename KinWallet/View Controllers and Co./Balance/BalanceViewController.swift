@@ -20,8 +20,9 @@ class BalanceViewController: UIViewController {
 
     @IBOutlet weak var balanceLabel: BalanceLabel! {
         didSet {
+            balanceLabel.balanceType = .aggregate
             balanceLabel.textColor = .white
-            balanceLabel.type = .prefixed
+            balanceLabel.precedenceType = .prefixed
             balanceLabel.size = .large
         }
     }
@@ -30,7 +31,7 @@ class BalanceViewController: UIViewController {
         didSet {
             balanceTitleLabel.font = FontFamily.Roboto.regular.font(size: 12)
             balanceTitleLabel.textColor = UIColor.white.withAlphaComponent(0.7)
-            balanceTitleLabel.text = L10n.yourKinBalance
+            balanceTitleLabel.text = L10n.totalBalance
         }
     }
 

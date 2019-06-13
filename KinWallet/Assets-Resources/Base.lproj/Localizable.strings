@@ -216,6 +216,8 @@
 
 "YourKinBalance" = "Your Kin Balance";
 
+"TotalBalance" = "Total Balance";
+
 "XKinAvailable" = "%d Kin available";
 
 "TransactionsEmptyStateMessage" = "Your transactions will appear here!";

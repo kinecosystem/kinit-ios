@@ -49,6 +49,14 @@ class RootViewController: UIViewController {
 
     var latestWalletCreationAttempt: String?
 
+    var selectedIndex: Int {
+        set {
+            return rootTabBarController.selectedIndex = newValue
+        }
+        get {
+            return rootTabBarController.selectedIndex
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
